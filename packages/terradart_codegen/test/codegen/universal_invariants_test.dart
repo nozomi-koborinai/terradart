@@ -364,8 +364,8 @@ void main() {
         'and', 'or', 'not', 'any', 'all', 'one',
         // Networking protocols
         'tcp', 'udp', 'ssl', 'tls', 'h2c', 'ah', 'esp',
-        // Data formats / hashes
-        'csv', 'orc', 'sql', 'md5', 'sha',
+        // Data formats / hashes / pattern syntax
+        'csv', 'orc', 'sql', 'md5', 'sha', 're2',
         // Aggregates
         'min', 'max', 'sum', 'avg',
         // State / lifecycle

@@ -132,6 +132,7 @@ final class CloudRunV2InstanceContainers {
     this.command,
     required this.image,
     this.name,
+    this.sandboxLauncher,
     this.workingDir,
     this.env,
     this.livenessProbe,
@@ -148,6 +149,8 @@ final class CloudRunV2InstanceContainers {
   final TfArg<String> image;
 
   final TfArg<String>? name;
+
+  final TfArg<bool>? sandboxLauncher;
 
   final TfArg<String>? workingDir;
 
@@ -169,6 +172,7 @@ final class CloudRunV2InstanceContainers {
     'command': ?command?.toTfJson(),
     'image': image.toTfJson(),
     'name': ?name?.toTfJson(),
+    'sandbox_launcher': ?sandboxLauncher?.toTfJson(),
     'working_dir': ?workingDir?.toTfJson(),
     if (env != null) 'env': [for (final e in env!) e.encode()],
     'liveness_probe': ?livenessProbe?.encode(),
@@ -428,6 +432,7 @@ final class CloudRunV2InstanceTcpSocket {
 
 /// Typed helper for the `containers.volume_mounts` block of
 /// `google_cloud_run_v2_instance` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class CloudRunV2InstanceVolumeMounts {
   const CloudRunV2InstanceVolumeMounts({
@@ -447,6 +452,79 @@ final class CloudRunV2InstanceVolumeMounts {
     'mount_path': mountPath.toTfJson(),
     'name': name.toTfJson(),
     'sub_path': ?subPath?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `sandboxes` block of
+/// `google_cloud_run_v2_instance` (derived from provider schema).
+@immutable
+final class CloudRunV2InstanceSandboxes {
+  const CloudRunV2InstanceSandboxes({this.templates});
+
+  final List<CloudRunV2InstanceTemplates>? templates;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (templates != null)
+      'templates': [for (final e in templates!) e.encode()],
+  };
+}
+
+/// Typed helper for the `sandboxes.templates` block of
+/// `google_cloud_run_v2_instance` (derived from provider schema).
+@immutable
+final class CloudRunV2InstanceTemplates {
+  const CloudRunV2InstanceTemplates({
+    this.args,
+    this.command,
+    required this.image,
+    required this.name,
+    this.workingDir,
+    this.env,
+    this.volumeMounts,
+  });
+
+  final TfArg<List<String>>? args;
+
+  final TfArg<List<String>>? command;
+
+  final TfArg<String> image;
+
+  final TfArg<String> name;
+
+  final TfArg<String>? workingDir;
+
+  final List<CloudRunV2InstanceTemplatesEnv>? env;
+
+  final List<CloudRunV2InstanceVolumeMounts>? volumeMounts;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'image': image.toTfJson(),
+    'name': name.toTfJson(),
+    'working_dir': ?workingDir?.toTfJson(),
+    if (env != null) 'env': [for (final e in env!) e.encode()],
+    if (volumeMounts != null)
+      'volume_mounts': [for (final e in volumeMounts!) e.encode()],
+  };
+}
+
+/// Typed helper for the `sandboxes.templates.env` block of
+/// `google_cloud_run_v2_instance` (derived from provider schema).
+@immutable
+final class CloudRunV2InstanceTemplatesEnv {
+  const CloudRunV2InstanceTemplatesEnv({required this.name, this.value});
+
+  final TfArg<String> name;
+
+  final TfArg<String>? value;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -648,6 +726,7 @@ final class GoogleCloudRunV2Instance extends Resource {
     CloudRunV2InstanceRestartPolicy? restartPolicy,
     RefTo<GoogleServiceAccount>? serviceAccount,
     required List<CloudRunV2InstanceContainers> containers,
+    CloudRunV2InstanceSandboxes? sandboxes,
     List<CloudRunV2InstanceVolumes>? volumes,
     super.lifecycle,
     super.dependsOn,
@@ -676,6 +755,8 @@ final class GoogleCloudRunV2Instance extends Resource {
            'containers': TfArg.literal([
              for (final e in containers) e.encode(),
            ]),
+           if (sandboxes != null)
+             'sandboxes': TfArg.literal(sandboxes.encode()),
            if (volumes != null)
              'volumes': TfArg.literal([for (final e in volumes) e.encode()]),
          },

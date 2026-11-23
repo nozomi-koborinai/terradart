@@ -1,7 +1,7 @@
 {
   "name": "networkconnectivity",
   "version": "v1",
-  "revision": "20261105",
+  "revision": "20261111",
   "sourceUrl": "https://networkconnectivity.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AllocationOptions": {
@@ -19,13 +19,13 @@
     },
     "Destination": {
       "properties": {
-        "stateTimeline": {
-          "$ref": "StateTimeline"
-        },
         "endpoints": {
           "items": {
             "$ref": "DestinationEndpoint"
           }
+        },
+        "stateTimeline": {
+          "$ref": "StateTimeline"
         }
       }
     },
@@ -64,12 +64,6 @@
     },
     "GatewayAdvertisedRoute": {
       "properties": {
-        "recipient": {
-          "enum": [
-            "RECIPIENT_UNSPECIFIED",
-            "ADVERTISE_TO_HUB"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -82,6 +76,12 @@
             "INACTIVE",
             "OBSOLETE",
             "FAILED"
+          ]
+        },
+        "recipient": {
+          "enum": [
+            "RECIPIENT_UNSPECIFIED",
+            "ADVERTISE_TO_HUB"
           ]
         }
       }
@@ -126,9 +126,6 @@
             "FAILED"
           ]
         },
-        "spokeSummary": {
-          "$ref": "SpokeSummary"
-        },
         "presetTopology": {
           "enum": [
             "PRESET_TOPOLOGY_UNSPECIFIED",
@@ -136,39 +133,14 @@
             "STAR",
             "HYBRID_INSPECTION"
           ]
+        },
+        "spokeSummary": {
+          "$ref": "SpokeSummary"
         }
       }
     },
     "InternalRange": {
       "properties": {
-        "peering": {
-          "enum": [
-            "PEERING_UNSPECIFIED",
-            "FOR_SELF",
-            "FOR_PEER",
-            "NOT_SHARED"
-          ]
-        },
-        "usage": {
-          "enum": [
-            "USAGE_UNSPECIFIED",
-            "FOR_VPC",
-            "EXTERNAL_TO_VPC",
-            "FOR_MIGRATION"
-          ]
-        },
-        "rangeStatus": {
-          "enum": [
-            "RANGE_STATUS_UNSPECIFIED",
-            "ACTIVE",
-            "OBSOLETE",
-            "CREATING",
-            "DELETING"
-          ]
-        },
-        "allocationOptions": {
-          "$ref": "AllocationOptions"
-        },
         "overlaps": {
           "items": {
             "enum": [
@@ -184,6 +156,34 @@
             "VPC_SUBNET",
             "INTERNAL_ADDRESS"
           ]
+        },
+        "allocationOptions": {
+          "$ref": "AllocationOptions"
+        },
+        "rangeStatus": {
+          "enum": [
+            "RANGE_STATUS_UNSPECIFIED",
+            "ACTIVE",
+            "OBSOLETE",
+            "CREATING",
+            "DELETING"
+          ]
+        },
+        "usage": {
+          "enum": [
+            "USAGE_UNSPECIFIED",
+            "FOR_VPC",
+            "EXTERNAL_TO_VPC",
+            "FOR_MIGRATION"
+          ]
+        },
+        "peering": {
+          "enum": [
+            "PEERING_UNSPECIFIED",
+            "FOR_SELF",
+            "FOR_PEER",
+            "NOT_SHARED"
+          ]
         }
       }
     },
@@ -198,11 +198,6 @@
     },
     "PolicyBasedRoute": {
       "properties": {
-        "warnings": {
-          "items": {
-            "$ref": "Warnings"
-          }
-        },
         "filter": {
           "$ref": "Filter"
         },
@@ -211,6 +206,11 @@
             "OTHER_ROUTES_UNSPECIFIED",
             "DEFAULT_ROUTING"
           ]
+        },
+        "warnings": {
+          "items": {
+            "$ref": "Warnings"
+          }
         }
       }
     },
@@ -226,6 +226,14 @@
     },
     "PscConnection": {
       "properties": {
+        "errorType": {
+          "enum": [
+            "CONNECTION_ERROR_TYPE_UNSPECIFIED",
+            "ERROR_INTERNAL",
+            "ERROR_CONSUMER_SIDE",
+            "ERROR_PRODUCER_SIDE"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -243,14 +251,6 @@
             "IPV4",
             "IPV6"
           ]
-        },
-        "errorType": {
-          "enum": [
-            "CONNECTION_ERROR_TYPE_UNSPECIFIED",
-            "ERROR_INTERNAL",
-            "ERROR_CONSUMER_SIDE",
-            "ERROR_PRODUCER_SIDE"
-          ]
         }
       }
     },
@@ -267,19 +267,19 @@
     },
     "ServiceConnectionPolicy": {
       "properties": {
-        "infrastructure": {
-          "enum": [
-            "INFRASTRUCTURE_UNSPECIFIED",
-            "PSC"
-          ]
+        "pscConfig": {
+          "$ref": "PscConfig"
         },
         "pscConnections": {
           "items": {
             "$ref": "PscConnection"
           }
         },
-        "pscConfig": {
-          "$ref": "PscConfig"
+        "infrastructure": {
+          "enum": [
+            "INFRASTRUCTURE_UNSPECIFIED",
+            "PSC"
+          ]
         }
       }
     },
@@ -304,6 +304,9 @@
             "FAILED"
           ]
         },
+        "gateway": {
+          "$ref": "Gateway"
+        },
         "spokeType": {
           "enum": [
             "SPOKE_TYPE_UNSPECIFIED",
@@ -314,9 +317,6 @@
             "GATEWAY",
             "PRODUCER_VPC_NETWORK"
           ]
-        },
-        "gateway": {
-          "$ref": "Gateway"
         }
       }
     },
@@ -356,14 +356,14 @@
     },
     "SpokeSummary": {
       "properties": {
-        "spokeStateReasonCounts": {
-          "items": {
-            "$ref": "SpokeStateReasonCount"
-          }
-        },
         "spokeTypeCounts": {
           "items": {
             "$ref": "SpokeTypeCount"
+          }
+        },
+        "spokeStateReasonCounts": {
+          "items": {
+            "$ref": "SpokeStateReasonCount"
           }
         },
         "spokeStateCounts": {
@@ -429,11 +429,16 @@
     },
     "Transport": {
       "properties": {
-        "stackType": {
+        "state": {
           "enum": [
-            "STACK_TYPE_UNSPECIFIED",
-            "IPV4_ONLY",
-            "IPV4_IPV6"
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "PENDING_CONFIG",
+            "PENDING_KEY",
+            "ACTIVE",
+            "DELETING",
+            "DEPROVISIONED",
+            "SUSPENDED"
           ]
         },
         "bandwidth": {
@@ -454,16 +459,11 @@
             "BPS_100G"
           ]
         },
-        "state": {
+        "stackType": {
           "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "PENDING_CONFIG",
-            "PENDING_KEY",
-            "ACTIVE",
-            "DELETING",
-            "DEPROVISIONED",
-            "SUSPENDED"
+            "STACK_TYPE_UNSPECIFIED",
+            "IPV4_ONLY",
+            "IPV4_IPV6"
           ]
         }
       }

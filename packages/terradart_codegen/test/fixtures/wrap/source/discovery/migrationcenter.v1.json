@@ -52,14 +52,14 @@
     },
     "FileValidationReport": {
       "properties": {
-        "rowErrors": {
-          "items": {
-            "$ref": "ImportRowError"
-          }
-        },
         "fileErrors": {
           "items": {
             "$ref": "ImportError"
+          }
+        },
+        "rowErrors": {
+          "items": {
+            "$ref": "ImportRowError"
           }
         }
       }
@@ -103,11 +103,11 @@
     },
     "ImportJob": {
       "properties": {
-        "executionReport": {
-          "$ref": "ExecutionReport"
-        },
         "validationReport": {
           "$ref": "ValidationReport"
+        },
+        "executionReport": {
+          "$ref": "ExecutionReport"
         },
         "state": {
           "enum": [
@@ -141,14 +141,6 @@
     },
     "Report": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "SUCCEEDED",
-            "FAILED"
-          ]
-        },
         "summary": {
           "$ref": "ReportSummary"
         },
@@ -156,6 +148,14 @@
           "enum": [
             "TYPE_UNSPECIFIED",
             "TOTAL_COST_OF_OWNERSHIP"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "SUCCEEDED",
+            "FAILED"
           ]
         }
       }
@@ -221,20 +221,20 @@
     },
     "SoleTenancyPreferences": {
       "properties": {
-        "commitmentPlan": {
-          "enum": [
-            "COMMITMENT_PLAN_UNSPECIFIED",
-            "ON_DEMAND",
-            "COMMITMENT_1_YEAR",
-            "COMMITMENT_3_YEAR"
-          ]
-        },
         "hostMaintenancePolicy": {
           "enum": [
             "HOST_MAINTENANCE_POLICY_UNSPECIFIED",
             "HOST_MAINTENANCE_POLICY_DEFAULT",
             "HOST_MAINTENANCE_POLICY_RESTART_IN_PLACE",
             "HOST_MAINTENANCE_POLICY_MIGRATE_WITHIN_NODE_GROUP"
+          ]
+        },
+        "commitmentPlan": {
+          "enum": [
+            "COMMITMENT_PLAN_UNSPECIFIED",
+            "ON_DEMAND",
+            "COMMITMENT_1_YEAR",
+            "COMMITMENT_3_YEAR"
           ]
         }
       }
@@ -263,14 +263,14 @@
     },
     "ValidationReport": {
       "properties": {
-        "jobErrors": {
-          "items": {
-            "$ref": "ImportError"
-          }
-        },
         "fileValidations": {
           "items": {
             "$ref": "FileValidationReport"
+          }
+        },
+        "jobErrors": {
+          "items": {
+            "$ref": "ImportError"
           }
         }
       }
@@ -280,17 +280,6 @@
         "computeEnginePreferences": {
           "$ref": "ComputeEnginePreferences"
         },
-        "sizingOptimizationStrategy": {
-          "enum": [
-            "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
-            "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",
-            "SIZING_OPTIMIZATION_STRATEGY_MODERATE",
-            "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE"
-          ]
-        },
-        "vmwareEnginePreferences": {
-          "$ref": "VmwareEnginePreferences"
-        },
         "commitmentPlan": {
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
@@ -298,6 +287,9 @@
             "COMMITMENT_PLAN_ONE_YEAR",
             "COMMITMENT_PLAN_THREE_YEARS"
           ]
+        },
+        "soleTenancyPreferences": {
+          "$ref": "SoleTenancyPreferences"
         },
         "targetProduct": {
           "enum": [
@@ -307,8 +299,16 @@
             "COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY"
           ]
         },
-        "soleTenancyPreferences": {
-          "$ref": "SoleTenancyPreferences"
+        "vmwareEnginePreferences": {
+          "$ref": "VmwareEnginePreferences"
+        },
+        "sizingOptimizationStrategy": {
+          "enum": [
+            "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
+            "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",
+            "SIZING_OPTIMIZATION_STRATEGY_MODERATE",
+            "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE"
+          ]
         }
       }
     },

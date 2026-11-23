@@ -49,14 +49,14 @@
     },
     "GoogleFirebaseAppcheckV1Service": {
       "properties": {
-        "enforcementMode": {
+        "replayProtection": {
           "enum": [
             "OFF",
             "UNENFORCED",
             "ENFORCED"
           ]
         },
-        "replayProtection": {
+        "enforcementMode": {
           "enum": [
             "OFF",
             "UNENFORCED",

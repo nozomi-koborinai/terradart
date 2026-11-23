@@ -16,16 +16,6 @@
     },
     "Workflow": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "UNAVAILABLE"
-          ]
-        },
-        "stateError": {
-          "$ref": "StateError"
-        },
         "callLogLevel": {
           "enum": [
             "CALL_LOG_LEVEL_UNSPECIFIED",
@@ -34,11 +24,21 @@
             "LOG_NONE"
           ]
         },
+        "stateError": {
+          "$ref": "StateError"
+        },
         "executionHistoryLevel": {
           "enum": [
             "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
             "EXECUTION_HISTORY_BASIC",
             "EXECUTION_HISTORY_DETAILED"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "UNAVAILABLE"
           ]
         }
       }

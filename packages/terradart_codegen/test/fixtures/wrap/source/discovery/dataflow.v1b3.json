@@ -1,7 +1,7 @@
 {
   "name": "dataflow",
   "version": "v1b3",
-  "revision": "20261110",
+  "revision": "20261116",
   "sourceUrl": "https://dataflow.googleapis.com/$discovery/rest?version=v1b3",
   "schemas": {
     "ConfigStoreSetting": {
@@ -9,13 +9,6 @@
     },
     "FlexTemplateRuntimeEnvironment": {
       "properties": {
-        "ipConfiguration": {
-          "enum": [
-            "WORKER_IP_UNSPECIFIED",
-            "WORKER_IP_PUBLIC",
-            "WORKER_IP_PRIVATE"
-          ]
-        },
         "streamingMode": {
           "enum": [
             "STREAMING_MODE_UNSPECIFIED",
@@ -30,6 +23,13 @@
             "FLEXRS_COST_OPTIMIZED"
           ]
         },
+        "ipConfiguration": {
+          "enum": [
+            "WORKER_IP_UNSPECIFIED",
+            "WORKER_IP_PUBLIC",
+            "WORKER_IP_PRIVATE"
+          ]
+        },
         "autoscalingAlgorithm": {
           "enum": [
             "AUTOSCALING_ALGORITHM_UNKNOWN",
@@ -41,18 +41,18 @@
     },
     "RuntimeEnvironment": {
       "properties": {
-        "streamingMode": {
-          "enum": [
-            "STREAMING_MODE_UNSPECIFIED",
-            "STREAMING_MODE_EXACTLY_ONCE",
-            "STREAMING_MODE_AT_LEAST_ONCE"
-          ]
-        },
         "ipConfiguration": {
           "enum": [
             "WORKER_IP_UNSPECIFIED",
             "WORKER_IP_PUBLIC",
             "WORKER_IP_PRIVATE"
+          ]
+        },
+        "streamingMode": {
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_EXACTLY_ONCE",
+            "STREAMING_MODE_AT_LEAST_ONCE"
           ]
         }
       }

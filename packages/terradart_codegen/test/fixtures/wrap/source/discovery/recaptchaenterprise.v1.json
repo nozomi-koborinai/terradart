@@ -6,11 +6,11 @@
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1Key": {
       "properties": {
-        "webSettings": {
-          "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings"
-        },
         "testingOptions": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions"
+        },
+        "webSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings"
         },
         "wafSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings"
@@ -30,15 +30,6 @@
     },
     "GoogleCloudRecaptchaenterpriseV1WafSettings": {
       "properties": {
-        "wafFeature": {
-          "enum": [
-            "WAF_FEATURE_UNSPECIFIED",
-            "CHALLENGE_PAGE",
-            "SESSION_TOKEN",
-            "ACTION_TOKEN",
-            "EXPRESS"
-          ]
-        },
         "wafService": {
           "enum": [
             "WAF_SERVICE_UNSPECIFIED",
@@ -47,11 +38,28 @@
             "CLOUDFLARE",
             "AKAMAI"
           ]
+        },
+        "wafFeature": {
+          "enum": [
+            "WAF_FEATURE_UNSPECIFIED",
+            "CHALLENGE_PAGE",
+            "SESSION_TOKEN",
+            "ACTION_TOKEN",
+            "EXPRESS"
+          ]
         }
       }
     },
     "GoogleCloudRecaptchaenterpriseV1WebKeySettings": {
       "properties": {
+        "challengeSecurityPreference": {
+          "enum": [
+            "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
+            "USABILITY",
+            "BALANCE",
+            "SECURITY"
+          ]
+        },
         "integrationType": {
           "enum": [
             "INTEGRATION_TYPE_UNSPECIFIED",
@@ -59,14 +67,6 @@
             "CHECKBOX",
             "INVISIBLE",
             "POLICY_BASED_CHALLENGE"
-          ]
-        },
-        "challengeSecurityPreference": {
-          "enum": [
-            "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
-            "USABILITY",
-            "BALANCE",
-            "SECURITY"
           ]
         }
       }

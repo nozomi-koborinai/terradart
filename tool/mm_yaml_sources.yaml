@@ -2929,6 +2929,40 @@ files:
     upstream: mmv1/products/redis/ClusterTokenAuthUser.yaml
   google_vertex_ai_evaluation_item:
     upstream: mmv1/products/vertexai/EvaluationItem.yaml
+  google_apihub_addon:
+    upstream: mmv1/products/apihub/Addon.yaml
+  google_backup_dr_auto_protection_policy_binding:
+    upstream: mmv1/products/backupdr/AutoProtectionPolicyBinding.yaml
+  google_cloud_identity_inbound_oidc_sso_profile:
+    upstream: mmv1/products/cloudidentity/InboundOidcSsoProfile.yaml
+  google_cloud_identity_inbound_saml_sso_profile:
+    upstream: mmv1/products/cloudidentity/InboundSamlSsoProfile.yaml
+  google_cloud_identity_policy:
+    upstream: mmv1/products/cloudidentity/Policy.yaml
+  google_design_center_application:
+    upstream: mmv1/products/designcenter/Application.yaml
+  google_design_center_space:
+    upstream: mmv1/products/designcenter/Space.yaml
+  google_design_center_space_iam_binding:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_design_center_space_iam_member:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_design_center_space_iam_policy:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_saas_runtime_release:
+    upstream: mmv1/products/saasservicemgmt/Release.yaml
+  google_saas_runtime_rollout_kind:
+    upstream: mmv1/products/saasservicemgmt/RolloutKind.yaml
+  google_saas_runtime_saas:
+    upstream: mmv1/products/saasservicemgmt/Saas.yaml
+  google_saas_runtime_tenant:
+    upstream: mmv1/products/saasservicemgmt/Tenant.yaml
+  google_saas_runtime_unit:
+    upstream: mmv1/products/saasservicemgmt/Unit.yaml
+  google_saas_runtime_unit_kind:
+    upstream: mmv1/products/saasservicemgmt/UnitKind.yaml
+  google_saas_runtime_unit_operation:
+    upstream: mmv1/products/saasservicemgmt/UnitOperation.yaml
   data_google_access_approval_folder_service_account:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_access_approval_organization_service_account:
@@ -3397,6 +3431,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_datastream_static_ips:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_design_center_space_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_discovery_engine_data_store:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_discovery_engine_data_stores:

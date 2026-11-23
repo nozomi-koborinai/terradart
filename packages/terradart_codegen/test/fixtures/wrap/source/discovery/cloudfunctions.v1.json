@@ -6,12 +6,22 @@
   "schemas": {
     "CloudFunction": {
       "properties": {
+        "httpsTrigger": {
+          "$ref": "HttpsTrigger"
+        },
         "ingressSettings": {
           "enum": [
             "INGRESS_SETTINGS_UNSPECIFIED",
             "ALLOW_ALL",
             "ALLOW_INTERNAL_ONLY",
             "ALLOW_INTERNAL_AND_GCLB"
+          ]
+        },
+        "dockerRegistry": {
+          "enum": [
+            "DOCKER_REGISTRY_UNSPECIFIED",
+            "CONTAINER_REGISTRY",
+            "ARTIFACT_REGISTRY"
           ]
         },
         "vpcConnectorEgressSettings": {
@@ -30,16 +40,6 @@
             "DELETE_IN_PROGRESS",
             "UNKNOWN"
           ]
-        },
-        "dockerRegistry": {
-          "enum": [
-            "DOCKER_REGISTRY_UNSPECIFIED",
-            "CONTAINER_REGISTRY",
-            "ARTIFACT_REGISTRY"
-          ]
-        },
-        "httpsTrigger": {
-          "$ref": "HttpsTrigger"
         }
       }
     },

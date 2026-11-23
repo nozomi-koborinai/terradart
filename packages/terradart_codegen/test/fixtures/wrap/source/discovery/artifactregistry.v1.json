@@ -13,15 +13,15 @@
     },
     "CleanupPolicy": {
       "properties": {
+        "condition": {
+          "$ref": "CleanupPolicyCondition"
+        },
         "action": {
           "enum": [
             "ACTION_UNSPECIFIED",
             "DELETE",
             "KEEP"
           ]
-        },
-        "condition": {
-          "$ref": "CleanupPolicyCondition"
         }
       }
     },
@@ -165,36 +165,32 @@
     },
     "RemoteRepositoryConfig": {
       "properties": {
-        "pythonRepository": {
-          "$ref": "PythonRepository"
-        },
         "npmRepository": {
           "$ref": "NpmRepository"
         },
         "yumRepository": {
           "$ref": "YumRepository"
         },
-        "mavenRepository": {
-          "$ref": "MavenRepository"
+        "aptRepository": {
+          "$ref": "AptRepository"
         },
         "dockerRepository": {
           "$ref": "DockerRepository"
         },
-        "aptRepository": {
-          "$ref": "AptRepository"
+        "pythonRepository": {
+          "$ref": "PythonRepository"
+        },
+        "mavenRepository": {
+          "$ref": "MavenRepository"
         }
       }
     },
     "Repository": {
       "properties": {
-        "remoteRepositoryConfig": {
-          "$ref": "RemoteRepositoryConfig"
-        },
-        "platformLogsConfig": {
-          "$ref": "PlatformLogsConfig"
-        },
-        "mavenConfig": {
-          "$ref": "MavenRepositoryConfig"
+        "cleanupPolicies": {
+          "additionalProperties": {
+            "$ref": "CleanupPolicy"
+          }
         },
         "mode": {
           "enum": [
@@ -205,6 +201,15 @@
             "AOSS_REPOSITORY",
             "ASSURED_OSS_REPOSITORY"
           ]
+        },
+        "remoteRepositoryConfig": {
+          "$ref": "RemoteRepositoryConfig"
+        },
+        "vulnerabilityScanningConfig": {
+          "$ref": "VulnerabilityScanningConfig"
+        },
+        "platformLogsConfig": {
+          "$ref": "PlatformLogsConfig"
         },
         "format": {
           "enum": [
@@ -223,13 +228,8 @@
             "CONDA"
           ]
         },
-        "vulnerabilityScanningConfig": {
-          "$ref": "VulnerabilityScanningConfig"
-        },
-        "cleanupPolicies": {
-          "additionalProperties": {
-            "$ref": "CleanupPolicy"
-          }
+        "mavenConfig": {
+          "$ref": "MavenRepositoryConfig"
         }
       }
     },

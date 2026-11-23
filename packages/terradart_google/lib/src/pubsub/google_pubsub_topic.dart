@@ -421,8 +421,9 @@ extension type const PubsubTopicCompressionAlgorithm._(TfArg<String> _)
   const PubsubTopicCompressionAlgorithm.arg(TfArg<String> arg) : this._(arg);
 
   static const zlib = PubsubTopicCompressionAlgorithm._(TfArgLiteral('ZLIB'));
+  static const zstd = PubsubTopicCompressionAlgorithm._(TfArgLiteral('ZSTD'));
 
-  static const List<PubsubTopicCompressionAlgorithm> values = [zlib];
+  static const List<PubsubTopicCompressionAlgorithm> values = [zlib, zstd];
 }
 
 /// `compression_mode` — derived from the provider schema description.

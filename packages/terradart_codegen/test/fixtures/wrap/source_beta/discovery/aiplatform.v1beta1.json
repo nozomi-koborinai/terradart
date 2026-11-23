@@ -56,13 +56,6 @@
             "THIRD_PARTY_OWNED_OSS"
           ]
         },
-        "versionState": {
-          "enum": [
-            "VERSION_STATE_UNSPECIFIED",
-            "VERSION_STATE_STABLE",
-            "VERSION_STATE_UNSTABLE"
-          ]
-        },
         "launchStage": {
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
@@ -70,6 +63,13 @@
             "PRIVATE_PREVIEW",
             "PUBLIC_PREVIEW",
             "GA"
+          ]
+        },
+        "versionState": {
+          "enum": [
+            "VERSION_STATE_UNSPECIFIED",
+            "VERSION_STATE_STABLE",
+            "VERSION_STATE_UNSTABLE"
           ]
         },
         "supportedActions": {

@@ -6,11 +6,6 @@
   "schemas": {
     "Cluster": {
       "properties": {
-        "datastoreMountConfig": {
-          "items": {
-            "$ref": "DatastoreMountConfig"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -20,6 +15,11 @@
             "DELETING",
             "REPAIRING"
           ]
+        },
+        "datastoreMountConfig": {
+          "items": {
+            "$ref": "DatastoreMountConfig"
+          }
         }
       }
     },
@@ -67,6 +67,13 @@
     },
     "ExternalAccessRule": {
       "properties": {
+        "action": {
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -74,13 +81,6 @@
             "CREATING",
             "UPDATING",
             "DELETING"
-          ]
-        },
-        "action": {
-          "enum": [
-            "ACTION_UNSPECIFIED",
-            "ALLOW",
-            "DENY"
           ]
         }
       }
@@ -112,15 +112,6 @@
     },
     "NetworkPeering": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "INACTIVE",
-            "ACTIVE",
-            "CREATING",
-            "DELETING"
-          ]
-        },
         "peerNetworkType": {
           "enum": [
             "PEER_NETWORK_TYPE_UNSPECIFIED",
@@ -132,6 +123,15 @@
             "DELL_POWERSCALE",
             "GOOGLE_CLOUD_NETAPP_VOLUMES",
             "GOOGLE_CLOUD_FILESTORE_INSTANCES"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ACTIVE",
+            "CREATING",
+            "DELETING"
           ]
         }
       }
@@ -171,6 +171,22 @@
     },
     "PrivateCloud": {
       "properties": {
+        "hcx": {
+          "$ref": "Hcx"
+        },
+        "type": {
+          "enum": [
+            "STANDARD",
+            "TIME_LIMITED",
+            "STRETCHED"
+          ]
+        },
+        "vcenter": {
+          "$ref": "Vcenter"
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -182,24 +198,8 @@
             "PURGING"
           ]
         },
-        "encryptionConfig": {
-          "$ref": "EncryptionConfig"
-        },
-        "type": {
-          "enum": [
-            "STANDARD",
-            "TIME_LIMITED",
-            "STRETCHED"
-          ]
-        },
-        "hcx": {
-          "$ref": "Hcx"
-        },
         "nsx": {
           "$ref": "Nsx"
-        },
-        "vcenter": {
-          "$ref": "Vcenter"
         }
       }
     },
@@ -231,6 +231,11 @@
     },
     "VmwareEngineNetwork": {
       "properties": {
+        "vpcNetworks": {
+          "items": {
+            "$ref": "VpcNetwork"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -239,11 +244,6 @@
             "UPDATING",
             "DELETING"
           ]
-        },
-        "vpcNetworks": {
-          "items": {
-            "$ref": "VpcNetwork"
-          }
         },
         "type": {
           "enum": [

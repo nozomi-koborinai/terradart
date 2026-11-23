@@ -43,6 +43,42 @@
     },
     "Node": {
       "properties": {
+        "health": {
+          "enum": [
+            "HEALTH_UNSPECIFIED",
+            "HEALTHY",
+            "TIMEOUT",
+            "UNHEALTHY_TENSORFLOW",
+            "UNHEALTHY_MAINTENANCE"
+          ]
+        },
+        "acceleratorConfig": {
+          "$ref": "AcceleratorConfig"
+        },
+        "symptoms": {
+          "items": {
+            "$ref": "Symptom"
+          }
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance"
+        },
+        "apiVersion": {
+          "enum": [
+            "API_VERSION_UNSPECIFIED",
+            "V1_ALPHA1",
+            "V1",
+            "V2_ALPHA1"
+          ]
+        },
+        "schedulingConfig": {
+          "$ref": "SchedulingConfig"
+        },
+        "dataDisks": {
+          "items": {
+            "$ref": "AttachedDisk"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -62,57 +98,27 @@
             "UNHIDING",
             "UNKNOWN"
           ]
-        },
-        "dataDisks": {
-          "items": {
-            "$ref": "AttachedDisk"
-          }
-        },
-        "symptoms": {
-          "items": {
-            "$ref": "Symptom"
-          }
-        },
-        "apiVersion": {
-          "enum": [
-            "API_VERSION_UNSPECIFIED",
-            "V1_ALPHA1",
-            "V1",
-            "V2_ALPHA1"
-          ]
-        },
-        "schedulingConfig": {
-          "$ref": "SchedulingConfig"
-        },
-        "upcomingMaintenance": {
-          "$ref": "UpcomingMaintenance"
-        },
-        "acceleratorConfig": {
-          "$ref": "AcceleratorConfig"
-        },
-        "health": {
-          "enum": [
-            "HEALTH_UNSPECIFIED",
-            "HEALTHY",
-            "TIMEOUT",
-            "UNHEALTHY_TENSORFLOW",
-            "UNHEALTHY_MAINTENANCE"
-          ]
         }
       }
     },
     "NodeSpec": {
       "properties": {
-        "multiNodeParams": {
-          "$ref": "MultiNodeParams"
-        },
         "node": {
           "$ref": "Node"
+        },
+        "multiNodeParams": {
+          "$ref": "MultiNodeParams"
         }
       }
     },
     "QueuedResource": {
       "properties": {
+        "state": {
+          "$ref": "QueuedResourceState"
+        },
+        "tpu": {
+          "$ref": "Tpu"
+        },
         "provisioningModel": {
           "enum": [
             "PROVISIONING_MODEL_UNSPECIFIED",
@@ -121,12 +127,6 @@
             "RESERVATION_BOUND",
             "FLEX_START"
           ]
-        },
-        "tpu": {
-          "$ref": "Tpu"
-        },
-        "state": {
-          "$ref": "QueuedResourceState"
         }
       }
     },

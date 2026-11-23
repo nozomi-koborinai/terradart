@@ -6,31 +6,6 @@
   "schemas": {
     "ScanConfig": {
       "properties": {
-        "riskLevel": {
-          "enum": [
-            "RISK_LEVEL_UNSPECIFIED",
-            "NORMAL",
-            "LOW"
-          ]
-        },
-        "userAgent": {
-          "enum": [
-            "USER_AGENT_UNSPECIFIED",
-            "CHROME_LINUX",
-            "CHROME_ANDROID",
-            "SAFARI_IPHONE"
-          ]
-        },
-        "latestRun": {
-          "$ref": "ScanRun"
-        },
-        "exportToSecurityCommandCenter": {
-          "enum": [
-            "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
         "targetPlatforms": {
           "items": {
             "enum": [
@@ -41,6 +16,31 @@
               "CLOUD_FUNCTIONS"
             ]
           }
+        },
+        "exportToSecurityCommandCenter": {
+          "enum": [
+            "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "userAgent": {
+          "enum": [
+            "USER_AGENT_UNSPECIFIED",
+            "CHROME_LINUX",
+            "CHROME_ANDROID",
+            "SAFARI_IPHONE"
+          ]
+        },
+        "riskLevel": {
+          "enum": [
+            "RISK_LEVEL_UNSPECIFIED",
+            "NORMAL",
+            "LOW"
+          ]
+        },
+        "latestRun": {
+          "$ref": "ScanRun"
         }
       }
     },
@@ -97,14 +97,6 @@
     },
     "ScanRun": {
       "properties": {
-        "errorTrace": {
-          "$ref": "ScanRunErrorTrace"
-        },
-        "warningTraces": {
-          "items": {
-            "$ref": "ScanRunWarningTrace"
-          }
-        },
         "resultState": {
           "enum": [
             "RESULT_STATE_UNSPECIFIED",
@@ -112,6 +104,14 @@
             "ERROR",
             "KILLED"
           ]
+        },
+        "warningTraces": {
+          "items": {
+            "$ref": "ScanRunWarningTrace"
+          }
+        },
+        "errorTrace": {
+          "$ref": "ScanRunErrorTrace"
         },
         "executionState": {
           "enum": [

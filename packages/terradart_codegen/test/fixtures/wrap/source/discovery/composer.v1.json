@@ -1,7 +1,7 @@
 {
   "name": "composer",
   "version": "v1",
-  "revision": "20261109",
+  "revision": "20261115",
   "sourceUrl": "https://composer.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -27,6 +27,12 @@
     },
     "Environment": {
       "properties": {
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DEVELOPMENT"
+          ]
+        },
         "config": {
           "$ref": "EnvironmentConfig"
         },
@@ -40,26 +46,16 @@
             "DELETING",
             "ERROR"
           ]
-        },
-        "mode": {
-          "enum": [
-            "MODE_UNSPECIFIED",
-            "DEVELOPMENT"
-          ]
         }
       }
     },
     "EnvironmentConfig": {
       "properties": {
-        "environmentSize": {
-          "enum": [
-            "ENVIRONMENT_SIZE_UNSPECIFIED",
-            "ENVIRONMENT_SIZE_SMALL",
-            "ENVIRONMENT_SIZE_MEDIUM",
-            "ENVIRONMENT_SIZE_LARGE",
-            "ENVIRONMENT_SIZE_EXTRA_LARGE",
-            "ENVIRONMENT_SIZE_X_EXTRA_LARGE"
-          ]
+        "privateEnvironmentConfig": {
+          "$ref": "PrivateEnvironmentConfig"
+        },
+        "softwareConfig": {
+          "$ref": "SoftwareConfig"
         },
         "resilienceMode": {
           "enum": [
@@ -70,11 +66,15 @@
         "dataRetentionConfig": {
           "$ref": "DataRetentionConfig"
         },
-        "privateEnvironmentConfig": {
-          "$ref": "PrivateEnvironmentConfig"
-        },
-        "softwareConfig": {
-          "$ref": "SoftwareConfig"
+        "environmentSize": {
+          "enum": [
+            "ENVIRONMENT_SIZE_UNSPECIFIED",
+            "ENVIRONMENT_SIZE_SMALL",
+            "ENVIRONMENT_SIZE_MEDIUM",
+            "ENVIRONMENT_SIZE_LARGE",
+            "ENVIRONMENT_SIZE_EXTRA_LARGE",
+            "ENVIRONMENT_SIZE_X_EXTRA_LARGE"
+          ]
         }
       }
     },
@@ -105,18 +105,18 @@
     },
     "SoftwareConfig": {
       "properties": {
-        "auditLogsReplicationMode": {
-          "enum": [
-            "AUDIT_LOGS_REPLICATION_MODE_UNSPECIFIED",
-            "AUDIT_LOGS_REPLICATION_DISABLED",
-            "AUDIT_LOGS_REPLICATION_ENABLED"
-          ]
-        },
         "webServerPluginsMode": {
           "enum": [
             "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED",
             "PLUGINS_DISABLED",
             "PLUGINS_ENABLED"
+          ]
+        },
+        "auditLogsReplicationMode": {
+          "enum": [
+            "AUDIT_LOGS_REPLICATION_MODE_UNSPECIFIED",
+            "AUDIT_LOGS_REPLICATION_DISABLED",
+            "AUDIT_LOGS_REPLICATION_ENABLED"
           ]
         }
       }

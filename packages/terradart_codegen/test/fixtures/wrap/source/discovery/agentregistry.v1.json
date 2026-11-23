@@ -1,7 +1,7 @@
 {
   "name": "agentregistry",
   "version": "v1",
-  "revision": "20261108",
+  "revision": "20261114",
   "sourceUrl": "https://agentregistry.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AgentSpec": {
@@ -56,16 +56,16 @@
         "endpointSpec": {
           "$ref": "EndpointSpec"
         },
-        "interfaces": {
-          "items": {
-            "$ref": "Interface"
-          }
-        },
         "mcpServerSpec": {
           "$ref": "McpServerSpec"
         },
         "agentSpec": {
           "$ref": "AgentSpec"
+        },
+        "interfaces": {
+          "items": {
+            "$ref": "Interface"
+          }
         }
       }
     }

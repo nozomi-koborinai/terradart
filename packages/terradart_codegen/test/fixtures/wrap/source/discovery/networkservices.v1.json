@@ -1,19 +1,20 @@
 {
   "name": "networkservices",
   "version": "v1",
-  "revision": "20261109",
+  "revision": "20261111",
   "sourceUrl": "https://networkservices.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AgentConnectivityTemplate": {
       "properties": {
-        "agentCompute": {
+        "accessPath": {
           "enum": [
-            "AGENT_COMPUTE_UNSPECIFIED",
-            "GKE",
-            "CLOUD_RUN",
-            "BORG",
-            "GCE_VM"
+            "ACCESS_PATH_UNSPECIFIED",
+            "CLIENT_TO_AGENT",
+            "AGENT_TO_ANYWHERE"
           ]
+        },
+        "egressNetworkConfig": {
+          "$ref": "EgressNetworkConfig"
         },
         "accessTypes": {
           "items": {
@@ -24,30 +25,26 @@
             ]
           }
         },
+        "agentCompute": {
+          "enum": [
+            "AGENT_COMPUTE_UNSPECIFIED",
+            "GKE",
+            "CLOUD_RUN",
+            "BORG",
+            "GCE_VM"
+          ]
+        },
         "deploymentModel": {
           "enum": [
             "DEPLOYMENT_MODEL_UNSPECIFIED",
             "CENTRALIZED",
             "AMBIENT"
           ]
-        },
-        "accessPath": {
-          "enum": [
-            "ACCESS_PATH_UNSPECIFIED",
-            "CLIENT_TO_AGENT",
-            "AGENT_TO_ANYWHERE"
-          ]
-        },
-        "egressNetworkConfig": {
-          "$ref": "EgressNetworkConfig"
         }
       }
     },
     "AgentGateway": {
       "properties": {
-        "googleManaged": {
-          "$ref": "AgentGatewayGoogleManaged"
-        },
         "protocols": {
           "items": {
             "enum": [
@@ -55,6 +52,9 @@
               "MCP"
             ]
           }
+        },
+        "googleManaged": {
+          "$ref": "AgentGatewayGoogleManaged"
         }
       }
     },
@@ -89,15 +89,15 @@
     },
     "EgressNetworkConfig": {
       "properties": {
-        "tlsConfig": {
-          "$ref": "EgressNetworkConfigTlsConfig"
-        },
         "vpcEgress": {
           "enum": [
             "VPC_EGRESS_UNSPECIFIED",
             "ALL_TRAFFIC",
             "PRIVATE_RANGES_ONLY"
           ]
+        },
+        "tlsConfig": {
+          "$ref": "EgressNetworkConfigTlsConfig"
         }
       }
     },
@@ -155,13 +155,6 @@
     },
     "ExtensionChainExtension": {
       "properties": {
-        "requestBodySendMode": {
-          "enum": [
-            "BODY_SEND_MODE_UNSPECIFIED",
-            "BODY_SEND_MODE_STREAMED",
-            "BODY_SEND_MODE_FULL_DUPLEX_STREAMED"
-          ]
-        },
         "supportedEvents": {
           "items": {
             "enum": [
@@ -181,17 +174,18 @@
             "BODY_SEND_MODE_STREAMED",
             "BODY_SEND_MODE_FULL_DUPLEX_STREAMED"
           ]
+        },
+        "requestBodySendMode": {
+          "enum": [
+            "BODY_SEND_MODE_UNSPECIFIED",
+            "BODY_SEND_MODE_STREAMED",
+            "BODY_SEND_MODE_FULL_DUPLEX_STREAMED"
+          ]
         }
       }
     },
     "Gateway": {
       "properties": {
-        "routingMode": {
-          "enum": [
-            "EXPLICIT_ROUTING_MODE",
-            "NEXT_HOP_ROUTING_MODE"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -211,6 +205,12 @@
             "IP_VERSION_UNSPECIFIED",
             "IPV4",
             "IPV6"
+          ]
+        },
+        "routingMode": {
+          "enum": [
+            "EXPLICIT_ROUTING_MODE",
+            "NEXT_HOP_ROUTING_MODE"
           ]
         }
       }
@@ -248,13 +248,13 @@
     },
     "GrpcRouteRouteMatch": {
       "properties": {
+        "method": {
+          "$ref": "GrpcRouteMethodMatch"
+        },
         "headers": {
           "items": {
             "$ref": "GrpcRouteHeaderMatch"
           }
-        },
-        "method": {
-          "$ref": "GrpcRouteMethodMatch"
         }
       }
     },
@@ -306,33 +306,33 @@
     },
     "LbEdgeExtension": {
       "properties": {
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
+        },
         "loadBalancingScheme": {
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
             "EXTERNAL_MANAGED"
           ]
-        },
-        "extensionChains": {
-          "items": {
-            "$ref": "ExtensionChain"
-          }
         }
       }
     },
     "LbRouteExtension": {
       "properties": {
-        "extensionChains": {
-          "items": {
-            "$ref": "ExtensionChain"
-          }
-        },
         "loadBalancingScheme": {
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
             "EXTERNAL_MANAGED"
           ]
+        },
+        "extensionChains": {
+          "items": {
+            "$ref": "ExtensionChain"
+          }
         }
       }
     },
@@ -379,15 +379,15 @@
     },
     "MulticastGroupConsumerActivation": {
       "properties": {
-        "state": {
-          "$ref": "MulticastResourceState"
-        },
         "resourceState": {
           "enum": [
             "CONSUMER_RESOURCE_STATE_UNSPECIFIED",
             "ACTIVE",
             "OBSOLETE"
           ]
+        },
+        "state": {
+          "$ref": "MulticastResourceState"
         }
       }
     },
@@ -413,6 +413,9 @@
     },
     "ServiceLbPolicy": {
       "properties": {
+        "isolationConfig": {
+          "$ref": "ServiceLbPolicyIsolationConfig"
+        },
         "loadBalancingAlgorithm": {
           "enum": [
             "LOAD_BALANCING_ALGORITHM_UNSPECIFIED",
@@ -421,9 +424,6 @@
             "WATERFALL_BY_REGION",
             "WATERFALL_BY_ZONE"
           ]
-        },
-        "isolationConfig": {
-          "$ref": "ServiceLbPolicyIsolationConfig"
         }
       }
     },

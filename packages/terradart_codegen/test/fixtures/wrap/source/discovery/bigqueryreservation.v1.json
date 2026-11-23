@@ -42,6 +42,14 @@
             "FAILED"
           ]
         },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ]
+        },
         "plan": {
           "enum": [
             "COMMITMENT_PLAN_UNSPECIFIED",
@@ -54,14 +62,6 @@
             "ANNUAL_FLAT_RATE",
             "THREE_YEAR",
             "NONE"
-          ]
-        },
-        "edition": {
-          "enum": [
-            "EDITION_UNSPECIFIED",
-            "STANDARD",
-            "ENTERPRISE",
-            "ENTERPRISE_PLUS"
           ]
         },
         "renewalPlan": {
@@ -82,20 +82,20 @@
     },
     "Reservation": {
       "properties": {
-        "edition": {
-          "enum": [
-            "EDITION_UNSPECIFIED",
-            "STANDARD",
-            "ENTERPRISE",
-            "ENTERPRISE_PLUS"
-          ]
-        },
         "scalingMode": {
           "enum": [
             "SCALING_MODE_UNSPECIFIED",
             "AUTOSCALE_ONLY",
             "IDLE_SLOTS_ONLY",
             "ALL_SLOTS"
+          ]
+        },
+        "edition": {
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
           ]
         }
       }

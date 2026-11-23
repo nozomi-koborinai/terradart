@@ -47,5 +47,6 @@ paramOrder:
   - client_id
   - enabled
   - client_secret
+  - response_type
   - project
   - deletion_policy

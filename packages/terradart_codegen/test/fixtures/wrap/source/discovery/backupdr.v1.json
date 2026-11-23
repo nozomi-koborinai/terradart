@@ -1,7 +1,7 @@
 {
   "name": "backupdr",
   "version": "v1",
-  "revision": "20261105",
+  "revision": "20261111",
   "sourceUrl": "https://backupdr.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AutoProtectionPolicy": {
@@ -17,13 +17,20 @@
         }
       }
     },
+    "AutoProtectionPolicyBinding": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETION_INITIATED"
+          ]
+        }
+      }
+    },
     "BackupPlan": {
       "properties": {
-        "backupRules": {
-          "items": {
-            "$ref": "BackupRule"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -33,6 +40,11 @@
             "INACTIVE",
             "UPDATING"
           ]
+        },
+        "backupRules": {
+          "items": {
+            "$ref": "BackupRule"
+          }
         }
       }
     },
@@ -72,6 +84,15 @@
             "MATCH_BACKUP_EXPIRE_TIME"
           ]
         },
+        "accessRestriction": {
+          "enum": [
+            "ACCESS_RESTRICTION_UNSPECIFIED",
+            "WITHIN_PROJECT",
+            "WITHIN_ORGANIZATION",
+            "UNRESTRICTED",
+            "WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -81,20 +102,22 @@
             "ERROR",
             "UPDATING"
           ]
-        },
-        "accessRestriction": {
-          "enum": [
-            "ACCESS_RESTRICTION_UNSPECIFIED",
-            "WITHIN_PROJECT",
-            "WITHIN_ORGANIZATION",
-            "UNRESTRICTED",
-            "WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA"
-          ]
         }
       }
     },
     "ManagementServer": {
       "properties": {
+        "networks": {
+          "items": {
+            "$ref": "NetworkConfig"
+          }
+        },
+        "type": {
+          "enum": [
+            "INSTANCE_TYPE_UNSPECIFIED",
+            "BACKUP_RESTORE"
+          ]
+        },
         "state": {
           "enum": [
             "INSTANCE_STATE_UNSPECIFIED",
@@ -105,17 +128,6 @@
             "REPAIRING",
             "MAINTENANCE",
             "ERROR"
-          ]
-        },
-        "networks": {
-          "items": {
-            "$ref": "NetworkConfig"
-          }
-        },
-        "type": {
-          "enum": [
-            "INSTANCE_TYPE_UNSPECIFIED",
-            "BACKUP_RESTORE"
           ]
         }
       }
@@ -145,19 +157,6 @@
     },
     "StandardSchedule": {
       "properties": {
-        "recurrenceType": {
-          "enum": [
-            "RECURRENCE_TYPE_UNSPECIFIED",
-            "HOURLY",
-            "DAILY",
-            "WEEKLY",
-            "MONTHLY",
-            "YEARLY"
-          ]
-        },
-        "weekDayOfMonth": {
-          "$ref": "WeekDayOfMonth"
-        },
         "daysOfWeek": {
           "items": {
             "enum": [
@@ -190,11 +189,34 @@
               "DECEMBER"
             ]
           }
+        },
+        "recurrenceType": {
+          "enum": [
+            "RECURRENCE_TYPE_UNSPECIFIED",
+            "HOURLY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "YEARLY"
+          ]
+        },
+        "weekDayOfMonth": {
+          "$ref": "WeekDayOfMonth"
         }
       }
     },
     "WeekDayOfMonth": {
       "properties": {
+        "weekOfMonth": {
+          "enum": [
+            "WEEK_OF_MONTH_UNSPECIFIED",
+            "FIRST",
+            "SECOND",
+            "THIRD",
+            "FOURTH",
+            "LAST"
+          ]
+        },
         "dayOfWeek": {
           "enum": [
             "DAY_OF_WEEK_UNSPECIFIED",
@@ -205,16 +227,6 @@
             "FRIDAY",
             "SATURDAY",
             "SUNDAY"
-          ]
-        },
-        "weekOfMonth": {
-          "enum": [
-            "WEEK_OF_MONTH_UNSPECIFIED",
-            "FIRST",
-            "SECOND",
-            "THIRD",
-            "FOURTH",
-            "LAST"
           ]
         }
       }

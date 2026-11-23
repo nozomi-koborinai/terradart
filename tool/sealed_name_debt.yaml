@@ -9,6 +9,8 @@
 # on a missing or stale entry.
 google_app_engine_standard_app_version:
   "vpc_access, vpc_access_connector": "awaiting-name: hashicorp/google 8.11.0"
+google_compute_global_forwarding_rule:
+  "backend_service, target": "awaiting-name: hashicorp/google 8.12.0"
 google_vertex_ai_evaluation_item:
   "evaluation_request, gcs_uri": "awaiting-name: hashicorp/google 8.11.0"
   "evaluation_request.golden_response.agent_data, evaluation_request.golden_response.text, evaluation_request.golden_response.value": "awaiting-name: hashicorp/google 8.11.0"

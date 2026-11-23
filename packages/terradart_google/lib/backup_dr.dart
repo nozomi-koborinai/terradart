@@ -12,6 +12,8 @@ export 'src/backup_dr/google_backup_dr_auto_protection_policy.dart'
         BackupDrAutoProtectionPolicyLabelCondition,
         BackupDrAutoProtectionPolicyMatchingConditions,
         GoogleBackupDrAutoProtectionPolicy;
+export 'src/backup_dr/google_backup_dr_auto_protection_policy_binding.dart'
+    show GoogleBackupDrAutoProtectionPolicyBinding;
 export 'src/backup_dr/google_backup_dr_backup_plan.dart'
     show
         BackupDrBackupPlanBackupRules,

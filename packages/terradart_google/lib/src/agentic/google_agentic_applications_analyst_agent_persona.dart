@@ -845,6 +845,7 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
     required this.serverUrl,
     this.sessionIdHeader,
     this.taskIdHeader,
+    this.requestHeaders,
   });
 
   final Sensitive<String>? apiKey;
@@ -873,6 +874,9 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
 
   final TfArg<String>? taskIdHeader;
 
+  final List<AgenticApplicationsAnalystAgentPersonaRequestHeaders>?
+  requestHeaders;
+
   @internal
   Map<String, Object?> encode() => {
     'api_key': ?apiKey?.toTfJson(),
@@ -888,7 +892,54 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
     'server_url': serverUrl.toTfJson(),
     'session_id_header': ?sessionIdHeader?.toTfJson(),
     'task_id_header': ?taskIdHeader?.toTfJson(),
+    if (requestHeaders != null)
+      'request_headers': [for (final e in requestHeaders!) e.encode()],
   };
+}
+
+/// Typed helper for the `mcp_data_sources.request_headers` block of
+/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
+@immutable
+final class AgenticApplicationsAnalystAgentPersonaRequestHeaders {
+  const AgenticApplicationsAnalystAgentPersonaRequestHeaders({
+    this.dynamicValue,
+    required this.headerName,
+    this.value,
+  });
+
+  final AgenticApplicationsAnalystAgentPersonaDynamicValue? dynamicValue;
+
+  final TfArg<String> headerName;
+
+  final TfArg<String>? value;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'dynamic_value': ?dynamicValue?.toTfJson(),
+    'header_name': headerName.toTfJson(),
+    'value': ?value?.toTfJson(),
+  };
+}
+
+/// `dynamic_value` — derived from the provider schema description.
+extension type const AgenticApplicationsAnalystAgentPersonaDynamicValue._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  AgenticApplicationsAnalystAgentPersonaDynamicValue.variable(String name)
+    : this._(TfArg.variable(name));
+  AgenticApplicationsAnalystAgentPersonaDynamicValue.expression(String template)
+    : this._(TfArg.expression(template));
+  const AgenticApplicationsAnalystAgentPersonaDynamicValue.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const userId = AgenticApplicationsAnalystAgentPersonaDynamicValue._(
+    TfArgLiteral('USER_ID'),
+  );
+
+  static const List<AgenticApplicationsAnalystAgentPersonaDynamicValue> values =
+      [userId];
 }
 
 /// Typed helper for the `resources` block of

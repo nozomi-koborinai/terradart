@@ -1,7 +1,7 @@
 {
   "name": "privateca",
   "version": "v1",
-  "revision": "20261104",
+  "revision": "20261111",
   "sourceUrl": "https://privateca.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AllowedKeyType": {
@@ -30,9 +30,6 @@
     },
     "CaPool": {
       "properties": {
-        "publishingOptions": {
-          "$ref": "PublishingOptions"
-        },
         "issuancePolicy": {
           "$ref": "IssuancePolicy"
         },
@@ -42,6 +39,9 @@
             "ENTERPRISE",
             "DEVOPS"
           ]
+        },
+        "publishingOptions": {
+          "$ref": "PublishingOptions"
         }
       }
     },
@@ -53,9 +53,6 @@
         "certificateDescription": {
           "$ref": "CertificateDescription"
         },
-        "config": {
-          "$ref": "CertificateConfig"
-        },
         "subjectMode": {
           "enum": [
             "SUBJECT_REQUEST_MODE_UNSPECIFIED",
@@ -63,11 +60,27 @@
             "RDN_SEQUENCE",
             "REFLECTED_SPIFFE"
           ]
+        },
+        "config": {
+          "$ref": "CertificateConfig"
         }
       }
     },
     "CertificateAuthority": {
       "properties": {
+        "config": {
+          "$ref": "CertificateConfig"
+        },
+        "keySpec": {
+          "$ref": "KeyVersionSpec"
+        },
+        "tier": {
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "ENTERPRISE",
+            "DEVOPS"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -89,19 +102,6 @@
           "items": {
             "$ref": "CertificateDescription"
           }
-        },
-        "config": {
-          "$ref": "CertificateConfig"
-        },
-        "tier": {
-          "enum": [
-            "TIER_UNSPECIFIED",
-            "ENTERPRISE",
-            "DEVOPS"
-          ]
-        },
-        "keySpec": {
-          "$ref": "KeyVersionSpec"
         }
       }
     },
@@ -163,13 +163,13 @@
     },
     "IssuancePolicy": {
       "properties": {
-        "passthroughExtensions": {
-          "$ref": "CertificateExtensionConstraints"
-        },
         "allowedKeyTypes": {
           "items": {
             "$ref": "AllowedKeyType"
           }
+        },
+        "passthroughExtensions": {
+          "$ref": "CertificateExtensionConstraints"
         }
       }
     },

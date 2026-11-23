@@ -11,5 +11,6 @@ paramOrder:
   - enable_customer_data_sharing
   - disable_web_grounding
   - web_grounding_type
+  - gcs_bucket
   - labels
   - project

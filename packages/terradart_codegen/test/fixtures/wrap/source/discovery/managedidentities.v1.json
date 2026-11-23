@@ -6,11 +6,6 @@
   "schemas": {
     "Domain": {
       "properties": {
-        "trusts": {
-          "items": {
-            "$ref": "Trust"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -22,6 +17,11 @@
             "PERFORMING_MAINTENANCE",
             "UNAVAILABLE"
           ]
+        },
+        "trusts": {
+          "items": {
+            "$ref": "Trust"
+          }
         }
       }
     },

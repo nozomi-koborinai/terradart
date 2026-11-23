@@ -1,7 +1,7 @@
 {
   "name": "modelarmor",
   "version": "v1",
-  "revision": "20261104",
+  "revision": "20261111",
   "sourceUrl": "https://modelarmor.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "CsamFilterSettings": {
@@ -36,23 +36,23 @@
     },
     "FilterConfig": {
       "properties": {
-        "piAndJailbreakFilterSettings": {
-          "$ref": "PiAndJailbreakFilterSettings"
-        },
-        "filterRuleSettings": {
-          "$ref": "FilterRuleSettings"
+        "raiSettings": {
+          "$ref": "RaiFilterSettings"
         },
         "maliciousUriFilterSettings": {
           "$ref": "MaliciousUriFilterSettings"
         },
-        "csamFilterSettings": {
-          "$ref": "CsamFilterSettings"
-        },
         "sdpSettings": {
           "$ref": "SdpFilterSettings"
         },
-        "raiSettings": {
-          "$ref": "RaiFilterSettings"
+        "filterRuleSettings": {
+          "$ref": "FilterRuleSettings"
+        },
+        "csamFilterSettings": {
+          "$ref": "CsamFilterSettings"
+        },
+        "piAndJailbreakFilterSettings": {
+          "$ref": "PiAndJailbreakFilterSettings"
         }
       }
     },
@@ -105,6 +105,9 @@
     },
     "FloorSetting": {
       "properties": {
+        "filterConfig": {
+          "$ref": "FilterConfig"
+        },
         "integratedServices": {
           "items": {
             "enum": [
@@ -113,9 +116,6 @@
               "GOOGLE_MCP_SERVER"
             ]
           }
-        },
-        "filterConfig": {
-          "$ref": "FilterConfig"
         }
       }
     },
@@ -132,13 +132,6 @@
     },
     "PiAndJailbreakFilterSettings": {
       "properties": {
-        "filterEnforcement": {
-          "enum": [
-            "PI_AND_JAILBREAK_FILTER_ENFORCEMENT_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
         "confidenceLevel": {
           "enum": [
             "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
@@ -146,11 +139,26 @@
             "MEDIUM_AND_ABOVE",
             "HIGH"
           ]
+        },
+        "filterEnforcement": {
+          "enum": [
+            "PI_AND_JAILBREAK_FILTER_ENFORCEMENT_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
         }
       }
     },
     "RaiFilter": {
       "properties": {
+        "confidenceLevel": {
+          "enum": [
+            "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
+            "LOW_AND_ABOVE",
+            "MEDIUM_AND_ABOVE",
+            "HIGH"
+          ]
+        },
         "filterType": {
           "enum": [
             "RAI_FILTER_TYPE_UNSPECIFIED",
@@ -158,14 +166,6 @@
             "HATE_SPEECH",
             "HARASSMENT",
             "DANGEROUS"
-          ]
-        },
-        "confidenceLevel": {
-          "enum": [
-            "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
-            "LOW_AND_ABOVE",
-            "MEDIUM_AND_ABOVE",
-            "HIGH"
           ]
         }
       }
@@ -212,13 +212,6 @@
         "filterVersionSelector": {
           "$ref": "FilterVersionSelector"
         },
-        "enforcementType": {
-          "enum": [
-            "ENFORCEMENT_TYPE_UNSPECIFIED",
-            "INSPECT_ONLY",
-            "INSPECT_AND_BLOCK"
-          ]
-        },
         "modalities": {
           "items": {
             "enum": [
@@ -227,6 +220,13 @@
               "MODALITY_IMAGE"
             ]
           }
+        },
+        "enforcementType": {
+          "enum": [
+            "ENFORCEMENT_TYPE_UNSPECIFIED",
+            "INSPECT_ONLY",
+            "INSPECT_AND_BLOCK"
+          ]
         }
       }
     }

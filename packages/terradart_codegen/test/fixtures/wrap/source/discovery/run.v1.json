@@ -6,11 +6,11 @@
   "schemas": {
     "DomainMapping": {
       "properties": {
-        "spec": {
-          "$ref": "DomainMappingSpec"
-        },
         "status": {
           "$ref": "DomainMappingStatus"
+        },
+        "spec": {
+          "$ref": "DomainMappingSpec"
         }
       }
     },

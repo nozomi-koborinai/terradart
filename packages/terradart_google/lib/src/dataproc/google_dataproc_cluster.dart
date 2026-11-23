@@ -457,6 +457,7 @@ final class DataprocClusterGceClusterConfig {
     this.tags,
     this.zone,
     this.confidentialInstanceConfig,
+    this.multiZoneConfig,
     this.nodeGroupAffinity,
     this.reservationAffinity,
     this.shieldedInstanceConfig,
@@ -482,6 +483,8 @@ final class DataprocClusterGceClusterConfig {
 
   final DataprocClusterConfidentialInstanceConfig? confidentialInstanceConfig;
 
+  final DataprocClusterMultiZoneConfig? multiZoneConfig;
+
   final DataprocClusterNodeGroupAffinity? nodeGroupAffinity;
 
   final DataprocClusterReservationAffinity? reservationAffinity;
@@ -500,6 +503,7 @@ final class DataprocClusterGceClusterConfig {
     'tags': ?tags?.toTfJson(),
     'zone': ?zone?.toTfJson(),
     'confidential_instance_config': ?confidentialInstanceConfig?.encode(),
+    'multi_zone_config': ?multiZoneConfig?.encode(),
     'node_group_affinity': ?nodeGroupAffinity?.encode(),
     'reservation_affinity': ?reservationAffinity?.encode(),
     'shielded_instance_config': ?shieldedInstanceConfig?.encode(),
@@ -551,6 +555,32 @@ extension type const DataprocClusterConfidentialInstanceType._(TfArg<String> _)
     sevSnp,
     tdx,
   ];
+}
+
+/// Typed helper for the `cluster_config.gce_cluster_config.multi_zone_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterMultiZoneConfig {
+  const DataprocClusterMultiZoneConfig({required this.targetShape});
+
+  final DataprocClusterTargetShape targetShape;
+
+  @internal
+  Map<String, Object?> encode() => {'target_shape': targetShape.toTfJson()};
+}
+
+/// `target_shape` — derived from the provider schema description.
+extension type const DataprocClusterTargetShape._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterTargetShape.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterTargetShape.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterTargetShape.arg(TfArg<String> arg) : this._(arg);
+
+  static const any = DataprocClusterTargetShape._(TfArgLiteral('ANY'));
+
+  static const List<DataprocClusterTargetShape> values = [any];
 }
 
 /// Typed helper for the `cluster_config.gce_cluster_config.node_group_affinity` block of

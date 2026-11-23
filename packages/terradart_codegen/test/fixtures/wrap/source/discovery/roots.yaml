@@ -3,157 +3,159 @@
 # null when none was found. tool/wrap_lanes.dart re-fetches when this record no longer
 # matches provider_version.txt, the MM ref, the wrapped types or tool/discovery_sources.yaml,
 # and fails the wrap gate when a document no longer matches its digest.
-provider_version: 8.11.0
-upstream_ref: c41dcfd1e7c47bd0dac83bf39818d19c584f7e9d
+provider_version: 8.12.0
+upstream_ref: b374a6e8b7fa43a49eed40eaaa89854115bb8af6
 hand_roots: 2bf511f815cd71fa
 digests:
-  accessapproval.v1: e7a86a51907b37da225334f2ab587cffd65b52dd8a7034103d00d6b8ada83778
-  accesscontextmanager.v1: b58747bae07abeb06e2d9ce48836923d4d27f1f1fc1588e29cf06f93664acbad
+  accessapproval.v1: a4caf30908fde6cce46cdee180bf8cd5fc0fb444215611997cf079317405c97d
+  accesscontextmanager.v1: fccc2b64e1a3d2e01e0550f7bc22425c41ee5691b667b453b4ae886923d9d4ca
   agentidentity.v1: 4c701ad6c1a9d1d1ad6e43234bb22b8c4517a01502a554c9f5ab23c3c14b1693
-  agentregistry.v1: 16957b1d35806079d30b69c007cfcc373175a20f65922fcc13357244b6d4e97e
-  aiplatform.v1: c2502b0f5335bc4a0232ae1d557b5723d6a118d1c26367077b0fa2be6b3ceb60
-  alloydb.v1: 003c1cc08508e35cf6bb1d242ca413e5b04890c04e0549505c235b7f5ff5ea1a
-  analyticshub.v1: 8ed1a21aba60813a99cecac07b1af85a9456f4269e137d40e65ab7f67f8829b0
-  apigee.v1: 7de798107f93c788ce90256886818a4c693a3ec911f6781b3373737aae5fbd86
-  apihub.v1: f7802917bb6587be0d159b488969f1220bf302c01d611c3fb641c88f3b67705c
+  agentregistry.v1: 8804bbabd2ab308353af1a8e82b95162488a749729fe593e026ddced94161918
+  aiplatform.v1: a948ff63c510464d7d6e61770788cd2d13699e81c29c1364bf02a477f70dcbd0
+  alloydb.v1: a26a4e21bb28384345eb7a3ae12d81d14fc296273d9ab02938ab4a2d224b2967
+  analyticshub.v1: 61be7335ed34c253e50c4f2d2e3fc28b6b343c1d93bc40b30f4f9396e4d6d675
+  apigee.v1: fb3f3cef01913dc02681293c115b070f250439d4f242548f4d5cbd0a80fc5e00
+  apihub.v1: 1b348328fbca41f72f7d78d8c1069c2fe73d7a82e99adaadac2e31728f5e55d3
   apikeys.v2: 231b1fb7320855343d117dedbc4330ed0f2d63122003c80574371c724ecab4eb
-  appengine.v1: a78a35582dc56ec57f828f52ceb2c619732f96a902d1fee48d52086759af0f45
-  apphub.v1: a4efa0b79bd5946a06c89fec202257bf7fe6dfbf49493a34d651033c1728098c
-  artifactregistry.v1: 47f3da0d21fadea45539e1473525443a22cb5cfb472140172d21792871d2a65d
-  assuredworkloads.v1: 5fab5175d2b8e4b2ec87f70e6a06f7de0b49bac999f5a312ef46fa85598ad1ce
-  backupdr.v1: 31f66b00c0199a926adb1af92a7a41710620a8be10fd97cec4149a1032a0091d
-  beyondcorp.v1: 3c27c6f34d54df29a5aaab1a4ab26cfc5202ea15c00b373e37d70128f9535846
-  biglake.v1: ea0a2b9b9ae2f05d4debc4d3bf96fbf639f6b1e8b897e6d3618ee9a6488e621a
-  bigquery.v2: 6e89dac1230baecd97552dac77c81958c807bafa4633f146a990b29520ed6ce9
-  bigqueryconnection.v1: fb6c0ed90026fa024ea549fedcf1919283bba60e4b9344bfecedaee77d05b14c
-  bigquerydatapolicy.v1: 2f427e06c65c57f387764b16458de75cb1e5109393ab4d4543069d2fbfc2cb37
-  bigquerydatapolicy.v2: f197ba32a2a6d31fc23a74890e78911733526f26f07186f7d453fa9a3ba7f80d
-  bigquerydatatransfer.v1: eb86586fb6ab1e49be97150d44ce6ec9c6937715b267dd933508fbd8637e26da
-  bigqueryreservation.v1: 3a7a0e6739ccf52273cb32df1e4ba2891ac0e505fd95a55ab73abb3af55a3aa5
-  bigtableadmin.v2: e7d3e3de171aa2b639266a4137f67a43c778e81873a9100feb37f221274aee8a
-  billingbudgets.v1: f8bb384dcc9fee84bdcb5e7672ce0a4ba47e82a6806d4daa06076bde456cb595
-  binaryauthorization.v1: 51fde42be76b550de6aecddddf73e61ae0b6b8869b5679fb2dbdf7fd0a3a7fa9
-  blockchainnodeengine.v1: 36d16ace67a9de7ff691298aca42c6545894c9dfc9cd95f57a19b21e8bf9539b
-  certificatemanager.v1: db410914c44720b549f5968575f049875ce6e379203e5babf141e2ed5e5f79fd
-  ces.v1: e3b62022d14397e3deeb8da3309d7877e822b33d87269bfcab867a68602f9714
+  appengine.v1: 75d594eadd2dc45db67709f0d79615475ed55e3dddb5e466b73876edcd45cc06
+  apphub.v1: e4b8d50daff481c84d13cc6951ff3ab75c36cbb9213d7bb880228e7f736d5449
+  artifactregistry.v1: 2c97d02c48f84456f797c8093c563502d79e01d68bfc4fc2123ed76194e8cbe4
+  assuredworkloads.v1: 968f73d2460cc49c5effbeb5dc31dc94fff7348996595821881fe93383295409
+  backupdr.v1: 63893bc4da80c4759704f33f5be9f08c385c4e902158564f02ace42ff93dbb46
+  beyondcorp.v1: 0b19d5624db28a38b538145ab2aeb4bfe0ab07f0d9787428cf49301f8bc514bc
+  biglake.v1: 8a204fec4f1bafe844975a614ebac4d594e19c520705fc205d3edaedbc2ed05d
+  bigquery.v2: ebe3f83166c182b247d979b12787c9af03bec2144c52dc85b646a631f782f7c2
+  bigqueryconnection.v1: a5a2c104417f75c40560279e122eb20aaac681ecb3966d17b766c52f28a1bcb4
+  bigquerydatapolicy.v1: 20cbc01b66c4721dbf501e5afae0ee4147035eaafa1877c7651773a6252b48fd
+  bigquerydatapolicy.v2: ad68f603992c72767f5e1c7311e2fd3d2f69c34f80a98bef11ac2696f9171148
+  bigquerydatatransfer.v1: d6b52ec0fef2c1ffb7a88228b479c3f9fd3658656b39bed00c312ccc1a3ea6f9
+  bigqueryreservation.v1: 62ea7845e06f21099a0094354faae68305bb3fa4a07d3635a9259fb57385572e
+  bigtableadmin.v2: 4fa52038a37c6a970d02c77f3b7d3cd96ceae6ebb40e8b7f8fb43bdcd54556a6
+  billingbudgets.v1: 13b261091626b149891c3687d57b7080a6f937615be724e7e96363ef7dc7991e
+  binaryauthorization.v1: 6f207a3033ca5327f7e43afbb474405a5b399496e25e1a6b22b7927081eacec8
+  blockchainnodeengine.v1: 2d65f1c598757b098794acd830aaed1b478bbed77e22d41ecdbb08d17e0ba0a0
+  certificatemanager.v1: 8e19e488117028a38bcc0a558cadb4b0b0d5c175cf20b7451eb7e6840f34e71b
+  ces.v1: 69a57399c5a32b09779221060ef3d353079fc35616aa1665828fb1b543118614
   cloudasset.v1: 0979ec1bd92f2529d368998ff10f71f38b59e6d7ee7781a165896b0c96e0e78f
   cloudbilling.v1: fc260fe23b0a890a35dd8ab9e44ab3dd9d9d976a8b5a1e99797ceb0aae9a3416
-  cloudbuild.v1: 10bc3247528146e4739a6978fd14d227e1adcc7d3358efe04cbea572a5af8252
+  cloudbuild.v1: d63108d67464f17f2f42ffea6663326966cd86a1801f03196b3786f410463725
   cloudbuild.v2: ba92670197537ce704d78f9d258e0a91da35d1167399315c8b948b052de90283
-  clouddeploy.v1: 89c31187541c05427469636a05f96026b45ad0430243af3bf8effbb3bb1fb731
-  cloudfunctions.v1: 6461f3b75dd2d3415706f4e4699342ee1affcdfd71d99e24d56520d64c9931d1
-  cloudfunctions.v2: 2c8e624c95a45336353e14634ea94f43754287af5dadb5116925460a485522f3
-  cloudidentity.v1: f6ab2e9c8c4bb15ec624c1729c55b5224178c7edb96d48c38562d10b9c6e63e8
-  cloudkms.v1: 9ed43d2bbd7e847580d9bc97d42e9a6af4d41f6307df439a2c6f4f77f492231a
+  clouddeploy.v1: 1b4d36c37a760b842fe4f5acf9eb2e0066855cf0aa2e1407cca9e29594090597
+  cloudfunctions.v1: 3e38c4128793c82c771d45eeb292edf3db39ebc8eaebf02c0f7cdc6a15de60d8
+  cloudfunctions.v2: 09e3c2b24f8c07299c40c71bcb6f6292b8aa70043fa93906fb706370ae086e45
+  cloudidentity.v1: 0261fff3a3be2d4463c8bd726d2a31136a0bd5bca1bac55b4548840630386bff
+  cloudkms.v1: 9de213e1b0e4a1af55054b4d6400354045a3f65da336d4cf3cca2f77ae663197
   cloudquotas.v1: 2c8780e0b7e11fc25fb2f6072d52bd48232115d4cb23b50766b6fc0ff84d5f09
-  cloudresourcemanager.v1: 47f0935fd28e9f8bcbca57c27657b93a7d5e57b3822d73875ac69226412826a0
-  cloudresourcemanager.v3: 5d35fe8941b79386a984a7c3b45e24bfec4d55e051f03f4b1338b0d267c8022f
-  cloudscheduler.v1: a88fd1f43b4a82ed6f92a1cc3cee0cbea3a6c5f43aad0aac168ee6b554f3d58a
+  cloudresourcemanager.v1: 2b752a2cd9dc4d22f0ee9a61119614d17a592349f85f7b3e42bdd4cafec9f3bc
+  cloudresourcemanager.v3: 0474dd9744e44daf53d749bf0a21a7eb0459ef856e435aedc68c928620db923e
+  cloudscheduler.v1: bec1b123bb8629e586bbcd3d4ba25d13613205cf21ff8e9d19e52f68f3105a37
   cloudsupport.v2: 5fba699a53eb54a1983f3982c83f99a5aabcf284a0902c5f3dd71d8b72c81e9e
-  cloudtasks.v2: 30105ebf35975a42ff58392d896347a682d7d56bbb4420e3fa7dd9f4716925d4
-  composer.v1: 2e76ad72d5a1f8488f2d0aef39155f44fcaf64ea9c91cdc3e81864b676a372d5
-  compute.v1: 5015d8d31f63e1f7f8b7195d29d99c0234c1f7ce6397d2daa243090aa136e6b4
-  config.v1: 26e99e6b6580d506872e4a505c66b3078eb2149dd9598d2b1658f6a8db3dacd1
-  connectors.v1: a74a7fa90fb1b8b4c3d42d68afb08bca49b9ba59cfe07115e8f255ce65a596af
-  contactcenterinsights.v1: e239dfe81b89eb1de02ebde491319d8bc243d5ab18c5c6e5209efbe157058c72
-  container.v1: 16eed81372e05f0f48d2f8fad96645095082d395ba4597f20f6fc4c175e15082
-  containeranalysis.v1: cf388bd91f707d211e62798a35248299cde9b79d28997a9d94406a5c29032ce9
-  datacatalog.v1: dc65b284336947b9fe9bebd60b503ea609923536346107e7541463f4d63ee7ec
-  dataflow.v1b3: f4089dd839a50256db1325a076b4a731c81f1dcf6bc1d88c467167920852579f
-  dataform.v1: 32adf2f707a3285ae214b0415243115d66f50c42a82ad9a520b0f2140337c97f
-  datafusion.v1: ea3ea8e57be1f9045abd43128222a19a93235953288ea6b83a68066e7bb5c240
-  datalineage.v1: 23897a1c048db19d11105b2b89af90a92fc1277112fb99e13a17a0dda0e58fb3
-  datamigration.v1: f69adcec5853139c4f932be8b97ea65aea47e75c4e2153c957d45f3dcf346ffb
-  datapipelines.v1: c2763b97dbecc15d0f8e10b5552d503736ccdf9856e9a93bc7c5b438602a83e8
-  dataplex.v1: 208918df6b120ad1f43888141576dc6517fc33d7dc3373eebdb6bb522a100e12
-  dataproc.v1: ebade32ec9cf0d8dd03deef5dbe76daff3f715a9978a29f853263da23833a738
-  datastream.v1: 991d5ac2a2642bcc5b13ee3d4b1edf54b1fc8af8b9747718cb3aff72b127fb74
-  deploymentmanager.v2: ab8dc24b94536e6218551ec71f568b741ff325ff4571fef23b0d915e43737b22
-  developerconnect.v1: ed85e0e38e75c757f76bceb5dda94d93e6eef5920cf13f349eca143ca374d6e9
-  dialogflow.v2: 1f512316dfc658c8b79d24df34fc7d95e49b634843e0b45e73ed78e60162ec34
-  dialogflow.v3: 5e271b54f66fb533e231b46d65eafbf6bc6f1725a045b69e0edea4596764d7ad
-  discoveryengine.v1: e37809565321a8eb8fbc13eab18c55394f73a560744a272313ad3d5d6e6bc818
-  dlp.v2: e96bb42cdc26281900707aee9a6940ecbab2fa7df69f37e93453c13430130737
-  dns.v1: 2cad3e60f435bf3e7630b94c1929cca09ba91e81f08f3066363f6162eb54003c
-  documentai.v1: ec4a1810f9e6ba97b77d79eb547d367e3ae745ca5cfd7dc9e700bcf2907e1f03
-  domains.v1: 42904ef2d3417322b5122438b8760ca18393dfc419a6c720d69a3fe9a3f784b9
+  cloudtasks.v2: 7c6ad7a4e6e149f7a68f39ef7670686601d0544af39d2837ffaaf1bbf9fb0284
+  composer.v1: 6f78138ad4bdee083d5b339040957c7404cd511cc810c10cdd06a03404c339ba
+  compute.v1: a74e46c86a9ee9c693010753c27450ddc3c71cb9af62840ed51ff74a6b87d600
+  config.v1: 1d4bb00c773de3bc8128ae4cc2908fe125b98878440e6dcf1d2291b7f6d77ab3
+  connectors.v1: 45022f2a163014704c13fda02ac65ea3a4d7df4187ec1e1c892ab2838cee81ba
+  contactcenterinsights.v1: e2309b53909d2c7cf1aff497fb536c48d9bf8d3b4c5f20b4b21a31b3f3e6bd8e
+  container.v1: 5b347a0f64f9c7ffd109c85721c61b33a32e6b3b86a51b3edfd25b0e010ebdfd
+  containeranalysis.v1: 5118af7e82eff65b1ecaeebf7006ccfa9b498079804a4e85308de1cf98ee0e03
+  datacatalog.v1: fc6bc6b38ebc33895687d6a679b7e8514395ced7892aa6ed0c3f82c75a0a4f1d
+  dataflow.v1b3: 19250265b99d27131ed8db583c9e28f4367dd59a960dd0af0f0a78df014e3444
+  dataform.v1: 5356dfda6751914ade9a10e67732e1b59792f5bf4713a072a4f136a57defe676
+  datafusion.v1: 390ed1aec8655c7cf9345a18c2e93b65be108d2f6d148522d8f06e5e8b8e2d2d
+  datalineage.v1: 760a3aa9f198e465a754882beb418bf11047f1eacd7b073cffe824db667b7db7
+  datamigration.v1: fa8fdcead6c95267d3719534a13c07baa8f4c1bdfc0ad66f0b6eaf040f792e1f
+  datapipelines.v1: eefa631013ca313003f27048fe5c42777cc981017727f7b7ef96828f54dee1f2
+  dataplex.v1: 2ec90c6d0e956e09250253a7c79eb3c3a760871cab29930d6624789000a6d7d9
+  dataproc.v1: f047e4046a74f37075c977bfd0bb038dbe44b80fceb3d48f0bd8183d830b4b6a
+  datastream.v1: 9daa34a6dd3f0589bb8d8401039676c8bd2af1d8ce25245fc70b94dc94e48a35
+  deploymentmanager.v2: 71ac2586500f28fabf9861cbcd015ebf3efecabbf3c58b82dbf41398d57dd21f
+  designcenter.v1: cddd1f514a3a26b03e28de4875d56782f21a460ba09deae801dffb56cffe100f
+  developerconnect.v1: 0a9cc7291b47fd7e050c45d458c19d4738b07fef1b7d86aecff58c060533e7a4
+  dialogflow.v2: e4e47c9a4c556c2a2162cab5d46843ecb6c7463bc79b712abe0589fa103c4953
+  dialogflow.v3: 2d261c360e0f35bb89257dfa553a859a32daeb6267c3c0b6858d6b4c4b8f2ca5
+  discoveryengine.v1: eba56e06362c43cc3d672bcccdeccff57c9b4e9996033f2af003ce35eb316f44
+  dlp.v2: 1149996711e0f4970f93b7195f65e7302ac1e58b7aad81df4dddac61f7fb1be3
+  dns.v1: e57236e0df9b2c81643bb8f68c5948ef81a942ccff3df6f82246735b023963b4
+  documentai.v1: d8f26dde53ff179ca09fd92e5e101930406caa03b1c40d3f4e9dc84b94adb374
+  domains.v1: 19857f3584f1d2107653427aab53aa2c19a2d5a03f9369162ec048f2fbf596f5
   essentialcontacts.v1: 770877c3c19175a628dd59f6ec8e54cecdb9bfc30859a7cbe9e0c91ac163f22b
   eventarc.v1: 5af6c0975ff334894a472b5dbfcf548795b35f44638f06d2a28d616cdc8a495b
-  file.v1: ecc521fee949d1237e1f22f9178aee28a9deb0d289eac5b54406fc1b1fb7d093
-  firebaseappcheck.v1: 2fd561341babe6e1ac91a45cf58eca843181f9a763f9136461afb98ca5940e7a
-  firebaseapphosting.v1: 062c3d95eb6789d4c9bad66c3d6538b9edad1fe475d82e2807cdd45d94d7f338
-  firebasedataconnect.v1: 279a6f9fa36cbe8f12ba30f86b6ccd85f62979685e0a5be662a6d3b4a89be7d5
-  firebaseremoteconfig.v1: 81eb72bebe525f42dfa410ecc62c14f18dd7c9c880a6f86e72f77b4c34912b50
+  file.v1: bcc9b94db190ef5468962aef802c1d92f6f61f0de7933e7e531b72ec1bfc531c
+  firebaseappcheck.v1: 98de96c5d5d8a45c013b0d7d0ac4b20b031e184c6179eb9f7328f29230e47f11
+  firebaseapphosting.v1: beccf0814cfffeb8e0d4b3df69c2235091156957f4d6be50161de69465930edd
+  firebasedataconnect.v1: 62e693d3447bc78a5704359373e1a7bba714cc15f3aba1f7b5185e8e34dcbc44
+  firebaseremoteconfig.v1: 482376fd1d3d712dc574add8f5ad56128487b91f4c921f4f0335c94b16efc43f
   firebaserules.v1: 440f56dd3a715c53f6c775c92d01caf48c1da4509f042220e360a54ab106beee
-  firestore.v1: ae0c871eb4af3ff6aec99714d5bfac97a13a5e1d72f861b298dc7446c6cea3e7
-  ftp.v1: 30540eb8b355be3c3be90a559ef5b4d93123e3a21ae06607a30eba3cc2e32bb0
-  geminidataanalytics.v1: 4e4a9c9706d5d422a8d3117b6a7e6e2c0ebf6347183e674829963554c59e5b61
-  gkebackup.v1: d3a220fa55a142c98874e72c173c1e31ae72a7807bf019ce8b8df6f92545e9b2
-  gkehub.v1: 4232ffc95798c8d9f0f3db35b837c49283cec27b1fc006374e7d5470e7a4f134
-  gkeonprem.v1: b647c1a2032902587d1a6e16e1c4280261c5d4edc7464a53214f16427fbdf5e6
-  healthcare.v1: 4762442a78ee1eb97f6e58c482a082161c9766a0c7fcfeef05f8e21264e23a8a
-  hypercomputecluster.v1: 080d9005700be722a096178f5dec33c8fcb17e6440e80d763d58ac2c02db8536
-  iam.v1: f0dc4719c8f27a28045438788f846f03cbaef2ab4353e56a3f9a5578cc101627
+  firestore.v1: de28898786c2fd468e5124163a2d89188a90ee699a6d9131e2d414235de513c7
+  ftp.v1: 832e863eb511acd88115c8b51562efe899ee43c2846a634a3d53df6e813f1d41
+  geminidataanalytics.v1: 8b19ae65b546726ecf0f44bc7f2638a8087f0e5e5d59a52a186e7279dbd51155
+  gkebackup.v1: 11a5e87cab5f9f8f4b4473506a5456d67f3516c57f643d43107bee7cba8d838a
+  gkehub.v1: 2b826da93d03df415dba4da5885dd7821a5a11f506533a8107c8223a94302cd1
+  gkeonprem.v1: 38e12639943158d50e87761dc6fc45eeef31aa03b71930ca19456a8e6700a597
+  healthcare.v1: 73dd4030e0e03309d63adac4589e19531b5629dbfb901192362bd1a709381d9a
+  hypercomputecluster.v1: 1fddb2f4ee984104bda72735164a73af1621920889ce18a57ffac8057686de46
+  iam.v1: 571dd6dfc566afae45f192a5e6ff0e710899484831fb3c24dac08c24bc83570e
   iam.v2: a52f2f13e20758a9a1c2b529652be6a28c807a8e0252fa083d576039d3308406
   iam.v3: fd0a1ad8540501b87c809f36edfa7778ddbe87cd64683836b203d4a73e5e49d0
   iap.v1: c32d64f4084ebcf75fbc1a12e6bfb64b1ae27993c64f6ef20e96780222ff6f49
-  identitytoolkit.v2: 65f43e3640ee90f0b0c0d04cb2d70c73b07e996240bf5762e15ea824bb5bb0ae
+  identitytoolkit.v2: 4397ef8467f4ef93b19ce084a594e9048ecffb1fe5cdd62789553503f4e407fb
   ids.v1: b894b640bb31e47ecfaa84babbc75101eaf8d5fd5f3180290ab8c748daf301f9
-  integrations.v1: 0e5f8b88e29cf2057e17e6a48ded9bf720d78fc34d611e9a3615126a67a5fc26
-  logging.v2: aa19f49c4c71db6f34588fe62ab4dd6f78c3cd72c579c43929fde3568f7a5bb4
-  looker.v1: 1a5233ebc046a92d3cef49a2fe7d70c9425ca99901e03851c08dff1086fc7a3d
-  lustre.v1: 56e31f03cf3b7aa84b3f2ed010f80e224df37413d73c3452c2069bcff0cc6d2b
-  managedidentities.v1: a4137c1ba03d630156cd89355539acaba7476c75433a12564dba3e7f7ec3a655
-  managedkafka.v1: 495486f74fb03e4e90465b46f58b7147c6c2884597ab3886cfcbedb76165c945
-  memcache.v1: 0fc28bdd4baedc5b8bab46bcd6946291115d46d6f47d0a2962840ac144900f26
-  metastore.v1: 2925e11bc73673bab64d48141b32a018bdac9f37634e755fc0229e4256d42ec6
-  migrationcenter.v1: f06117cc4cfc6414ba0f9d9acabe20d4b6082a71e27b44f4bfab5c6a7b38e5f0
-  modelarmor.v1: 27dc67da541e77c1b7f8ffd5432ecf726b743bb3cdb564a566d01f00cd4a05a6
-  monitoring.v3: d57886a82675246a60b01a57a1050d811ef7a681bb4406f949c1a4be30271bf9
-  netapp.v1: 25b0d07b1d443e7fa1666789a632d6cf5bfbd7205d6c5086f1a09d48e76d7872
-  networkconnectivity.v1: 1518dbb2a408ae85d264cf825051f8e57c5dce5a6f2ebf131ef5539e5f2e7f78
-  networkmanagement.v1: a3de51a28ffbfc13ea2dc0e9f85b7127eae875102ad35d8171acfd8e928542c9
-  networksecurity.v1: ae1e06f059e6514eca4a44ae47fa55524024b78fd4f0986576958514403d10d8
-  networkservices.v1: 80b2625771ef163c583106a999030f681e572018d680404bd31c34150f44a10b
-  notebooks.v2: 3873485082558153cea93c3cd441509ab29aa46b34b15afdfb40ef25961da379
-  observability.v1: af6e860ea8713085d200d1bd38bdd58339eaa5e3c7ecf35f604840c2713472e7
-  oracledatabase.v1: a32cfdb4b0f22ed1a8bc2b825db865817a114999ffb3bb353ef5c0a62f5f92f3
-  orgpolicy.v2: ba2574fa5bfad682cb238f3cbbe02b87fc5171f19cf9289e67803475608b6343
-  osconfig.v1: de5c3b5fb4961a7c167fb470ebc78e278cfbfc3a476dab433af91d9facb5b112
-  osconfig.v2: 018d60c9f96f76fc40a01b5d9551b4686e8957003a85065709c10404aab8a24d
+  integrations.v1: a81d3b3db7fb825ae7b307aa674ccef3277bfa7359906797f2dca14c318561b9
+  logging.v2: 33e33999ce0f39afa4733da1afd4ba87dea2a9012f78d8301ba1c146aeb8c3a2
+  looker.v1: c517663c3f0d469b87169ec5a713db17c6f5613f4b1d8de6922424f222496dd3
+  lustre.v1: 56ce8639ce9948dd09f5e2b715086eecafbf27e5b373bf807bf08d62fc3068e6
+  managedidentities.v1: 4f6a8285a55c3dd31887c966d2deca922a439fde87bc5dabc837fe6b71a5dea8
+  managedkafka.v1: 0f6e8c9633d84f1e252425c421eccdca8cf615b7b3c48ecfa9a878363ebe4c22
+  memcache.v1: 1e7d4dec7b63645ca307354b6772b3d32072ff3d8d71559b1c74b190326569e5
+  metastore.v1: 2fc3500b41a5e023c7561d9cf0e14a9f6213c5fb191faee59e850d51b3dda7e1
+  migrationcenter.v1: 1494505c8fdcca9f89e9971ecee0926327f11e331170d180cc79b5a1efbc2ea3
+  modelarmor.v1: 63aba478fee1f3b643fd9a3e699a05da7c076cb65617f2fd88aba0b828c7d209
+  monitoring.v3: 1eaf0437b021e4b1d13c4369dcc343b3c510820769b8033b559406a5c4a75b20
+  netapp.v1: 759c21dcb8cc48d35c502e78e7c98cbb1178ff8c4b58e35cd333152e4ce7b183
+  networkconnectivity.v1: c26d0eae9e0bacf211febf08ba71cb87d9de39bb551773e7867cb9e03b466654
+  networkmanagement.v1: 6ae4f111be1204a858b1126a7dcf5b2e6ae262d4da6d9753f36de862de0f30ba
+  networksecurity.v1: e9d1e4a8b95016ac90ac880a6dd843e450e5d1d846914e39ae3ea64bec196175
+  networkservices.v1: 2820e3c409125b241b4cd5821212cc92c691ee20ce0681fd224d66c309435340
+  notebooks.v2: f2230d42fbc32924ed81ccef1bd2275986075a62e7d389b978cfc21c1756d27b
+  observability.v1: d312a4186b837b77a54f50ab4aa2ca8df4868548d6eb1dbb934d1d0621f49c42
+  oracledatabase.v1: f5809edc31e3dfc08fce42bdc7527165df03fdda65193755d0b562965955d50b
+  orgpolicy.v2: a9e2a9c90f875f1b6955cd8a2450d87365b932421515d33e6870b46b53dca940
+  osconfig.v1: c3da5d96c405e6a38ebafa0086623c4f0da022bdec26efeeacd3f00da9b68b28
+  osconfig.v2: 957e0145a2dad67aa8be8d93242d995cacbbf78bbd61b2b3a1a321fa8fc423c3
   oslogin.v1: d5b08e51339461ee51f9e279bcd8344f58b0c521b866573a91f22dff909a92e5
-  parallelstore.v1: cc8684fec541b2a97a428f11ec87548eacc99f2b3f34ca06d021dfaa57ac7e82
+  parallelstore.v1: 30dac738bead9a1d8da5e55cee26be1153d5cb0d329e2c6e22740287fce43ac2
   parametermanager.v1: e0f19c85a4fb5917a86cf5224b892b05e892e2daebb835cc2639a84de653ce2b
-  privateca.v1: e55e0129c4ef56f7c0d46d7e6abcbe2e8154b25e85f2eb92e578a535a3b34c25
+  privateca.v1: 227ac9476ed6b4a83de27798ecf838a3ebac91a25f01f596361fc72518c3a193
   privilegedaccessmanager.v1: e46624b5db421da86593bae8e0156916a2d3c99280968498104bbf59d1070d1a
-  publicca.v1: 190906ac728f5c6320f3872dc497610c92b99bb5ca219e694abd2980f63db627
-  pubsub.v1: d14f518b4579594b6113ca85d8ae3a70a3715ffadc2b66714f2d4817ac8ce3cc
+  publicca.v1: 2f327b09098081828a24f069c129e00d6afab19208175ea22c88d8692e2575ad
+  pubsub.v1: bade3479e8520086151ea2c2e3c55bba713690630385d1ca5e12b115a5e44aea
   pubsublite.v1: c6ed768b7864ae2c67180eba8062385c92b078962d89c5faf9b5baa86f91a66e
-  recaptchaenterprise.v1: 823f1ce0b9c72ab83c37aee50d7197d756de7cd6b27f158b957de939903e9286
-  redis.v1: 35ea34b4dfd5263aa8337b94c995db29a18585f036bfa9190eccf5b1f4a0368c
-  run.v1: 97428cd82f2b38b6d4bc90122e69e9b9f50b919f93ef004d191f959b6c741514
-  run.v2: 9dc3faf7a5e0967a23166014ad8fab7f5d31965222f23a4ec2b48d8d3752e010
-  secretmanager.v1: 273461b5d8e5ee636aefa87678f6b8f4874bad3b388d8465bcc8e8b9e88c51f1
-  securesourcemanager.v1: caca2ac69dfbc35a92ea04ca72644e2daf17e1dc84c97de1821af87c04458956
-  securitycenter.v1: 17fbd34028c719719c87142d1dc559537f3abdcdcefe336659fc0e5159f92dd5
-  securitycenter.v2: a1062b623262fbc1ae62e1985efe4846ae3ae4404435a5312a0d6a89338771b1
-  securityposture.v1: 8ab75b453bf368e598d43a6e0abda53b9aa4c96ad22e6ee42d0339f991776813
-  servicedirectory.v1: 2fa296e90a2c75f11f9b11feb2cf9e117865b5c5d48e5e3367517232be8afc60
+  recaptchaenterprise.v1: 23aef5666282f55debc808ef06e7f7c47ed4a52eb27c4b743e0e8f12d7d2f07f
+  redis.v1: 267015902c80e29bf117d7eaddfa2a1011287fb7290d6768803cd2dc74f40f4c
+  run.v1: 2c1424dfd2b8b749fcb92082d5018c7bb4080d0372c3136fed052fabe271548c
+  run.v2: 0f7f15bca0b5d58ad41230a5c03e5c37bc949e17c0ef386b41dbcb8a510b8c37
+  saasservicemgmt.v1: c12afa14acdfdfe33e4a9df2b27f4099883e16a6a555349147bbbcdf864d3679
+  secretmanager.v1: 05a9d7c968dd581803e03413c2d21915cf35a3dec1f154d881f201a7d66b170c
+  securesourcemanager.v1: 94e1966d1aae35e95768256d741f666df8d7de8c761f74890b81a4e51589978a
+  securitycenter.v1: 16a8a22537192047f2d81fbee759b76e9a43eb9be69f66a55da513ec6cd4a03a
+  securitycenter.v2: 91328466e53e0a1b34781353fa4bbcf9e8fd007bc4e636c47261aff64f215511
+  securityposture.v1: 7bf90f9bd6fa7942e01e885992dabad85eaf0c0cd0ffa6839f11094eb462232c
+  servicedirectory.v1: ea7c6e9c29fe66da9925e5eb2236e549a0bece1a3adffba48041e8c9d59c9f44
   servicenetworking.v1: 35786d4117dbc7b9d0ee84dfb6c6e9c51c7ad0cc26b832073927fa1448febfd6
-  sourcerepo.v1: 0494661ef1234276eb35b05fb24244e79870e29b629b309933a4bac5d2c19c58
-  spanner.v1: a095b1691daf3d13bb47de2e70941564abb4b1b170b584a6d80bb34bd9a02daa
-  sqladmin.v1: 8a74ab0f46bc721985f82bd600f69292666c6b3fc97009199180579daadd303a
-  sqladmin.v1beta4: b422dd4cf5de5e44da486218be119ebbada31bfce29c684884cb8ffa472721c2
-  storage.v1: 57de933a12d536b9bdaf467d4ced669bc6d9881659a660084b2d21aa2cc80c39
-  storagebatchoperations.v1: 4fdfdea162925d6d7afc99be0f94546003ad2f23f33a8ed2c38b62f8073eafd9
+  sourcerepo.v1: b1a56eb84b1b97a47f556d694bda1f6c8bf3ae7d65e69f020f4785e57e83a19b
+  spanner.v1: 8219e6e1d782a6fc559a087a99d58d6b58942675675f9e8961dfff7fc40f136e
+  sqladmin.v1: 18994f80e473ffa8fac4d759d913e25e67421539ce5f1aa8d27e03fa947e188d
+  sqladmin.v1beta4: cabdcb67ace07d7034018e462cea0d21b31b7df00143ab6753bb2a923037b33c
+  storage.v1: f4ee284647be7f8113e5312d77edd004d72cd8ce0437853ad814eecc293cf832
+  storagebatchoperations.v1: cc5ddfc442eaaab4cf9f7c754fa30f2d17fdfe8dccd6eb9655c6ca3ea5a480cf
   storageinsights.v1: c18352df156d3c1d893ac45a01c97435f9dec3c71cdad74e97e35d1ca3f7aa13
-  storagetransfer.v1: da57405b3a14c393a5058d5a6797e0c287fc12c25af96827eaf339e9093188a4
-  transcoder.v1: 589b90b06eb9a907df76c2c62ea016dec1afa92ec65c8f9180c551ae5ae74164
-  vectorsearch.v1: 1f39cb68e302c6566b754876e6172e752d210f95a11d11ee250b5b18801304c5
-  vmwareengine.v1: cfeb3d53d75288cd50f4649b50f4a01ae3edda1669afa191f90aec2b7aaa25aa
+  storagetransfer.v1: 7e54878319b1da3dbcbbdcc3a37a51e40e170b3ccc0afaef51560f02a2b1b1c1
+  transcoder.v1: 31440ab97ef9892a0632dcbeff093fbe60b9df53f277d0863155cbf93787666a
+  vectorsearch.v1: a2f5c25ce60c646df68bad58e55b68dcd14881f4c84cf82dc4532001c4e49711
+  vmwareengine.v1: ee623d5d44866403486394d0eee6ea0584ad43240daf5cd2aa33465593a68f49
   vpcaccess.v1: 9fc963f7591d0c7b407014b3fb270b011942659e17da795d25e59bd55b1eb944
-  workflows.v1: 9589a0e27144c3af49c703d0e5afaffb64d704d2542ddd9e8d79bc2d98350513
-  workstations.v1: 11864a71a39c3b2df14d1d325eccd218bae6e2cab74f99e593dbe348893b770e
+  workflows.v1: b61ec365e16cd34fe3ab380eb5c75b0e347ab84ec44460c5a66b65c865cb5e1a
+  workstations.v1: 68bd3626666625889bfc0fc2f0dd1fedfa9fb74fbcaa1b715debaf103c14a597
 resources:
   google_access_context_manager_access_level:
     doc: accesscontextmanager.v1
@@ -339,6 +341,9 @@ resources:
   google_apigee_target_server:
     doc: apigee.v1
     schema: GoogleCloudApigeeV1TargetServer
+  google_apihub_addon:
+    doc: apihub.v1
+    schema: GoogleCloudApihubV1Addon
   google_apihub_api_hub_instance:
     doc: apihub.v1
     schema: GoogleCloudApihubV1ApiHubInstance
@@ -417,6 +422,9 @@ resources:
   google_backup_dr_auto_protection_policy:
     doc: backupdr.v1
     schema: AutoProtectionPolicy
+  google_backup_dr_auto_protection_policy_binding:
+    doc: backupdr.v1
+    schema: AutoProtectionPolicyBinding
   google_backup_dr_backup_plan:
     doc: backupdr.v1
     schema: BackupPlan
@@ -696,6 +704,15 @@ resources:
   google_cloud_identity_group_membership:
     doc: cloudidentity.v1
     schema: Membership
+  google_cloud_identity_inbound_oidc_sso_profile:
+    doc: cloudidentity.v1
+    schema: InboundOidcSsoProfile
+  google_cloud_identity_inbound_saml_sso_profile:
+    doc: cloudidentity.v1
+    schema: InboundSamlSsoProfile
+  google_cloud_identity_policy:
+    doc: cloudidentity.v1
+    schema: Policy
   google_cloud_ids_endpoint:
     doc: ids.v1
     schema: Endpoint
@@ -1605,6 +1622,15 @@ resources:
   google_deployment_manager_deployment:
     doc: deploymentmanager.v2
     schema: Deployment
+  google_design_center_application:
+    doc: designcenter.v1
+    schema: Application
+  google_design_center_space:
+    doc: designcenter.v1
+    schema: Space
+  google_design_center_space_iam_binding: null  # no Magic Modules YAML and no hand root
+  google_design_center_space_iam_member: null  # no Magic Modules YAML and no hand root
+  google_design_center_space_iam_policy: null  # no Magic Modules YAML and no hand root
   google_developer_connect_account_connector:
     doc: developerconnect.v1
     schema: AccountConnector
@@ -2791,6 +2817,27 @@ resources:
   google_resource_manager_lien:
     doc: cloudresourcemanager.v1
     schema: Lien
+  google_saas_runtime_release:
+    doc: saasservicemgmt.v1
+    schema: Release
+  google_saas_runtime_rollout_kind:
+    doc: saasservicemgmt.v1
+    schema: RolloutKind
+  google_saas_runtime_saas:
+    doc: saasservicemgmt.v1
+    schema: Saas
+  google_saas_runtime_tenant:
+    doc: saasservicemgmt.v1
+    schema: Tenant
+  google_saas_runtime_unit:
+    doc: saasservicemgmt.v1
+    schema: Unit
+  google_saas_runtime_unit_kind:
+    doc: saasservicemgmt.v1
+    schema: UnitKind
+  google_saas_runtime_unit_operation:
+    doc: saasservicemgmt.v1
+    schema: UnitOperation
   google_scc_event_threat_detection_custom_module:
     doc: securitycenter.v1
     schema: EventThreatDetectionCustomModule
@@ -2837,25 +2884,25 @@ resources:
   google_scc_source_iam_policy: null  # no Magic Modules YAML and no hand root
   google_scc_v2_folder_mute_config:
     doc: securitycenter.v2
-    schema: GoogleCloudSecuritycenterV2MuteConfig
+    schema: GoogleCloudSecuritycenterV1MuteConfig
   google_scc_v2_folder_notification_config:
     doc: securitycenter.v2
     schema: NotificationConfig
   google_scc_v2_folder_scc_big_query_export:
     doc: securitycenter.v2
-    schema: GoogleCloudSecuritycenterV1BigQueryExport
+    schema: GoogleCloudSecuritycenterV2BigQueryExport
   google_scc_v2_organization_mute_config:
     doc: securitycenter.v2
-    schema: GoogleCloudSecuritycenterV2MuteConfig
+    schema: GoogleCloudSecuritycenterV1MuteConfig
   google_scc_v2_organization_notification_config:
     doc: securitycenter.v2
     schema: NotificationConfig
   google_scc_v2_organization_scc_big_query_export:
     doc: securitycenter.v2
-    schema: GoogleCloudSecuritycenterV1BigQueryExport
+    schema: GoogleCloudSecuritycenterV2BigQueryExport
   google_scc_v2_organization_scc_big_query_exports:
     doc: securitycenter.v2
-    schema: GoogleCloudSecuritycenterV1BigQueryExport
+    schema: GoogleCloudSecuritycenterV2BigQueryExport
   google_scc_v2_organization_source:
     doc: securitycenter.v2
     schema: Source
@@ -2864,13 +2911,13 @@ resources:
   google_scc_v2_organization_source_iam_policy: null  # no Magic Modules YAML and no hand root
   google_scc_v2_project_mute_config:
     doc: securitycenter.v2
-    schema: GoogleCloudSecuritycenterV2MuteConfig
+    schema: GoogleCloudSecuritycenterV1MuteConfig
   google_scc_v2_project_notification_config:
     doc: securitycenter.v2
     schema: NotificationConfig
   google_scc_v2_project_scc_big_query_export:
     doc: securitycenter.v2
-    schema: GoogleCloudSecuritycenterV1BigQueryExport
+    schema: GoogleCloudSecuritycenterV2BigQueryExport
   google_secret_manager_regional_secret:
     doc: secretmanager.v1
     schema: Secret
@@ -3351,7 +3398,9 @@ data_sources:
   google_cloud_identity_group_transitive_memberships: null  # no Magic Modules YAML and no hand root
   google_cloud_identity_groups: null  # no Magic Modules YAML and no hand root
   google_cloud_identity_policies: null  # no Magic Modules YAML and no hand root
-  google_cloud_identity_policy: null  # no Magic Modules YAML and no hand root
+  google_cloud_identity_policy:
+    doc: cloudidentity.v1
+    schema: Policy
   google_cloud_quotas_quota_info: null  # no Magic Modules YAML and no hand root
   google_cloud_quotas_quota_infos: null  # no Magic Modules YAML and no hand root
   google_cloud_run_locations: null  # no Magic Modules YAML and no hand root
@@ -3664,6 +3713,7 @@ data_sources:
   google_dataproc_metastore_service_iam_policy: null  # no Magic Modules YAML and no hand root
   google_dataproc_metastore_table_iam_policy: null  # no Magic Modules YAML and no hand root
   google_datastream_static_ips: null  # no Magic Modules YAML and no hand root
+  google_design_center_space_iam_policy: null  # no Magic Modules YAML and no hand root
   google_discovery_engine_data_store:
     doc: discoveryengine.v1
     schema: GoogleCloudDiscoveryengineV1DataStore

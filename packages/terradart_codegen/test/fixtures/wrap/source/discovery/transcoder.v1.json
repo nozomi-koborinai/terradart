@@ -1,7 +1,7 @@
 {
   "name": "transcoder",
   "version": "v1",
-  "revision": "20261104",
+  "revision": "20261111",
   "sourceUrl": "https://transcoder.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Animation": {
@@ -73,12 +73,8 @@
             "FAILED"
           ]
         },
-        "optimization": {
-          "enum": [
-            "OPTIMIZATION_STRATEGY_UNSPECIFIED",
-            "AUTODETECT",
-            "DISABLED"
-          ]
+        "config": {
+          "$ref": "JobConfig"
         },
         "mode": {
           "enum": [
@@ -87,18 +83,17 @@
             "PROCESSING_MODE_BATCH"
           ]
         },
-        "config": {
-          "$ref": "JobConfig"
+        "optimization": {
+          "enum": [
+            "OPTIMIZATION_STRATEGY_UNSPECIFIED",
+            "AUTODETECT",
+            "DISABLED"
+          ]
         }
       }
     },
     "JobConfig": {
       "properties": {
-        "overlays": {
-          "items": {
-            "$ref": "Overlay"
-          }
-        },
         "manifests": {
           "items": {
             "$ref": "Manifest"
@@ -107,6 +102,11 @@
         "elementaryStreams": {
           "items": {
             "$ref": "ElementaryStream"
+          }
+        },
+        "overlays": {
+          "items": {
+            "$ref": "Overlay"
           }
         }
       }
@@ -143,14 +143,14 @@
     },
     "VideoStream": {
       "properties": {
+        "vp9": {
+          "$ref": "Vp9CodecSettings"
+        },
         "h265": {
           "$ref": "H265CodecSettings"
         },
         "h264": {
           "$ref": "H264CodecSettings"
-        },
-        "vp9": {
-          "$ref": "Vp9CodecSettings"
         }
       }
     },

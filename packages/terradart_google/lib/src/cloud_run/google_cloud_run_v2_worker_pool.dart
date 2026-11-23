@@ -191,6 +191,7 @@ final class CloudRunV2WorkerPoolTemplate {
     this.serviceAccount,
     this.containers,
     this.nodeSelector,
+    this.sandboxes,
     this.volumes,
     this.vpcAccess,
   });
@@ -220,6 +221,8 @@ final class CloudRunV2WorkerPoolTemplate {
 
   final CloudRunV2WorkerPoolNodeSelector? nodeSelector;
 
+  final CloudRunV2WorkerPoolSandboxes? sandboxes;
+
   final List<CloudRunV2WorkerPoolVolumes>? volumes;
 
   final CloudRunV2WorkerPoolVpcAccess? vpcAccess;
@@ -241,6 +244,7 @@ final class CloudRunV2WorkerPoolTemplate {
     if (containers != null)
       'containers': [for (final e in containers!) e.encode()],
     'node_selector': ?nodeSelector?.encode(),
+    'sandboxes': ?sandboxes?.encode(),
     if (volumes != null) 'volumes': [for (final e in volumes!) e.encode()],
     'vpc_access': ?vpcAccess?.encode(),
   };
@@ -574,6 +578,7 @@ final class CloudRunV2WorkerPoolStartupProbe {
 
 /// Typed helper for the `template.containers.volume_mounts` block of
 /// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class CloudRunV2WorkerPoolVolumeMounts {
   const CloudRunV2WorkerPoolVolumeMounts({
@@ -606,6 +611,79 @@ final class CloudRunV2WorkerPoolNodeSelector {
 
   @internal
   Map<String, Object?> encode() => {'accelerator': accelerator.toTfJson()};
+}
+
+/// Typed helper for the `template.sandboxes` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolSandboxes {
+  const CloudRunV2WorkerPoolSandboxes({this.templates});
+
+  final List<CloudRunV2WorkerPoolTemplates>? templates;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (templates != null)
+      'templates': [for (final e in templates!) e.encode()],
+  };
+}
+
+/// Typed helper for the `template.sandboxes.templates` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplates {
+  const CloudRunV2WorkerPoolTemplates({
+    this.args,
+    this.command,
+    required this.image,
+    required this.name,
+    this.workingDir,
+    this.env,
+    this.volumeMounts,
+  });
+
+  final TfArg<List<String>>? args;
+
+  final TfArg<List<String>>? command;
+
+  final TfArg<String> image;
+
+  final TfArg<String> name;
+
+  final TfArg<String>? workingDir;
+
+  final List<CloudRunV2WorkerPoolTemplatesEnv>? env;
+
+  final List<CloudRunV2WorkerPoolVolumeMounts>? volumeMounts;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'image': image.toTfJson(),
+    'name': name.toTfJson(),
+    'working_dir': ?workingDir?.toTfJson(),
+    if (env != null) 'env': [for (final e in env!) e.encode()],
+    if (volumeMounts != null)
+      'volume_mounts': [for (final e in volumeMounts!) e.encode()],
+  };
+}
+
+/// Typed helper for the `template.sandboxes.templates.env` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplatesEnv {
+  const CloudRunV2WorkerPoolTemplatesEnv({required this.name, this.value});
+
+  final TfArg<String> name;
+
+  final TfArg<String>? value;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'value': ?value?.toTfJson(),
+  };
 }
 
 /// Typed helper for the `template.volumes` block of

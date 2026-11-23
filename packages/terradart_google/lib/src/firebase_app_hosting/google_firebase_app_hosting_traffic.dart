@@ -75,6 +75,8 @@ class FirebaseAppHostingTrafficRolloutPolicy {
   const FirebaseAppHostingTrafficRolloutPolicy({
     this.codebaseBranch,
     this.disabled,
+    this.ignoredPaths,
+    this.requiredPaths,
   });
 
   /// Branch to watch. New commits on this branch trigger a build +
@@ -85,9 +87,70 @@ class FirebaseAppHostingTrafficRolloutPolicy {
   /// surfaces `disabled_time` once a pause takes effect.
   final TfArg<bool>? disabled;
 
+  /// File path patterns to exclude from triggering a rollout.
+  final List<FirebaseAppHostingTrafficRolloutPolicyPath>? ignoredPaths;
+
+  /// File path patterns that trigger a build and rollout when matched.
+  final List<FirebaseAppHostingTrafficRolloutPolicyPath>? requiredPaths;
+
   Map<String, Object?> toArgMap() => {
     if (codebaseBranch != null) 'codebase_branch': codebaseBranch!.toTfJson(),
     if (disabled != null) 'disabled': disabled!.toTfJson(),
+    if (ignoredPaths != null)
+      'ignored_paths': ignoredPaths!.map((p) => p.toArgMap()).toList(),
+    if (requiredPaths != null)
+      'required_paths': requiredPaths!.map((p) => p.toArgMap()).toList(),
+  };
+}
+
+/// Pattern syntax for `rollout_policy.ignored_paths.type` and
+/// `rollout_policy.required_paths.type`.
+extension type const FirebaseAppHostingTrafficRolloutPolicyPathType._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  FirebaseAppHostingTrafficRolloutPolicyPathType.variable(String name)
+    : this._(TfArg.variable(name));
+  FirebaseAppHostingTrafficRolloutPolicyPathType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirebaseAppHostingTrafficRolloutPolicyPathType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const re2 = FirebaseAppHostingTrafficRolloutPolicyPathType._(
+    TfArgLiteral('RE2'),
+  );
+  static const glob = FirebaseAppHostingTrafficRolloutPolicyPathType._(
+    TfArgLiteral('GLOB'),
+  );
+  static const prefix = FirebaseAppHostingTrafficRolloutPolicyPathType._(
+    TfArgLiteral('PREFIX'),
+  );
+
+  static const List<FirebaseAppHostingTrafficRolloutPolicyPathType> values = [
+    re2,
+    glob,
+    prefix,
+  ];
+}
+
+/// One path filter entry in `rollout_policy.ignored_paths` or
+/// `rollout_policy.required_paths`.
+@immutable
+class FirebaseAppHostingTrafficRolloutPolicyPath {
+  const FirebaseAppHostingTrafficRolloutPolicyPath({
+    required this.pattern,
+    required this.type,
+  });
+
+  /// The pattern to match against.
+  final TfArg<String> pattern;
+
+  /// The pattern syntax ([FirebaseAppHostingTrafficRolloutPolicyPathType]).
+  final FirebaseAppHostingTrafficRolloutPolicyPathType type;
+
+  Map<String, Object?> toArgMap() => {
+    'pattern': pattern.toTfJson(),
+    'type': type.toTfJson(),
   };
 }
 

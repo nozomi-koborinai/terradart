@@ -1,11 +1,17 @@
 {
   "name": "apphub",
   "version": "v1",
-  "revision": "20261027",
+  "revision": "20261111",
   "sourceUrl": "https://apphub.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Application": {
       "properties": {
+        "attributes": {
+          "$ref": "Attributes"
+        },
+        "applicationType": {
+          "$ref": "ApplicationType"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -13,12 +19,6 @@
             "ACTIVE",
             "DELETING"
           ]
-        },
-        "attributes": {
-          "$ref": "Attributes"
-        },
-        "applicationType": {
-          "$ref": "ApplicationType"
         },
         "scope": {
           "$ref": "Scope"
@@ -112,16 +112,14 @@
           "enum": [
             "TYPE_UNSPECIFIED",
             "REGIONAL",
-            "GLOBAL"
+            "GLOBAL",
+            "MULTI_REGIONAL"
           ]
         }
       }
     },
     "Service": {
       "properties": {
-        "serviceProperties": {
-          "$ref": "ServiceProperties"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -130,6 +128,9 @@
             "DELETING",
             "DETACHED"
           ]
+        },
+        "serviceProperties": {
+          "$ref": "ServiceProperties"
         },
         "attributes": {
           "$ref": "Attributes"
@@ -160,6 +161,9 @@
     },
     "Workload": {
       "properties": {
+        "workloadProperties": {
+          "$ref": "WorkloadProperties"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -168,9 +172,6 @@
             "DELETING",
             "DETACHED"
           ]
-        },
-        "workloadProperties": {
-          "$ref": "WorkloadProperties"
         },
         "attributes": {
           "$ref": "Attributes"

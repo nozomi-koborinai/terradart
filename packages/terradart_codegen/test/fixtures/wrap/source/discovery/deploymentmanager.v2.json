@@ -1,7 +1,7 @@
 {
   "name": "deploymentmanager",
   "version": "v2",
-  "revision": "20260827",
+  "revision": "20261112",
   "sourceUrl": "https://www.googleapis.com/discovery/v1/apis/deploymentmanager/v2/rest",
   "schemas": {
     "BulkInsertOperationStatus": {
@@ -41,6 +41,14 @@
             "AVAILABILITY_SLO_STATUS_SLO_UNKNOWN"
           ]
         },
+        "unhealthyReason": {
+          "enum": [
+            "UNHEALTHY_REASON_UNSPECIFIED",
+            "UNHEALTHY_REASON_REPAIRING",
+            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
+            "UNHEALTHY_REASON_UNSCHEDULABLE"
+          ]
+        },
         "repairCategory": {
           "enum": [
             "REPAIR_CATEGORY_UNSPECIFIED",
@@ -56,14 +64,6 @@
             "HEALTH_STATUS_HEALTHY",
             "HEALTH_STATUS_UNHEALTHY"
           ]
-        },
-        "unhealthyReason": {
-          "enum": [
-            "UNHEALTHY_REASON_UNSPECIFIED",
-            "UNHEALTHY_REASON_REPAIRING",
-            "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
-            "UNHEALTHY_REASON_UNSCHEDULABLE"
-          ]
         }
       }
     },
@@ -76,8 +76,27 @@
         }
       }
     },
+    "MicroVmsImportOperationMetadata": {
+      "properties": {
+        "phase": {
+          "enum": [
+            "PHASE_UNSPECIFIED",
+            "SCHEDULING",
+            "PROVISIONING_STORAGE",
+            "IMPORTING",
+            "BOOTING"
+          ]
+        }
+      }
+    },
     "Operation": {
       "properties": {
+        "setCommonInstanceMetadataOperationMetadata": {
+          "$ref": "SetCommonInstanceMetadataOperationMetadata"
+        },
+        "getHealthOperationMetadata": {
+          "$ref": "GetHealthOperationMetadata"
+        },
         "warnings": {
           "items": {
             "properties": {
@@ -118,8 +137,8 @@
                   "QUOTA_INFO_UNAVAILABLE",
                   "RESOURCE_USES_GLOBAL_DNS",
                   "RATE_LIMIT_EXCEEDED",
+                  "ASYNC_REPLICATION_SECONDARY_UPDATE_PENDING",
                   "UPCOMING_MAINTENANCES_UNAVAILABLE",
-                  "RESERVED_ENTRY_136",
                   "RESERVED_ENTRY_139",
                   "RESERVED_ENTRY_141",
                   "RESERVED_ENTRY_142",
@@ -129,14 +148,18 @@
             }
           }
         },
-        "getHealthOperationMetadata": {
-          "$ref": "GetHealthOperationMetadata"
+        "microVmsImportOperationMetadata": {
+          "$ref": "MicroVmsImportOperationMetadata"
         },
         "instancesBulkInsertOperationMetadata": {
           "$ref": "InstancesBulkInsertOperationMetadata"
         },
-        "setCommonInstanceMetadataOperationMetadata": {
-          "$ref": "SetCommonInstanceMetadataOperationMetadata"
+        "status": {
+          "enum": [
+            "PENDING",
+            "RUNNING",
+            "DONE"
+          ]
         },
         "error": {
           "properties": {
@@ -156,13 +179,6 @@
               }
             }
           }
-        },
-        "status": {
-          "enum": [
-            "PENDING",
-            "RUNNING",
-            "DONE"
-          ]
         }
       }
     },

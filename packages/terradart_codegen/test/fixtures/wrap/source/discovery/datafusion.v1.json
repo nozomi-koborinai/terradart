@@ -27,31 +27,6 @@
     },
     "Instance": {
       "properties": {
-        "disabledReason": {
-          "items": {
-            "enum": [
-              "DISABLED_REASON_UNSPECIFIED",
-              "KMS_KEY_ISSUE",
-              "PROJECT_STATE_OFF"
-            ]
-          }
-        },
-        "availableVersion": {
-          "items": {
-            "$ref": "Version"
-          }
-        },
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "BASIC",
-            "ENTERPRISE",
-            "DEVELOPER"
-          ]
-        },
-        "networkConfig": {
-          "$ref": "NetworkConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -68,15 +43,40 @@
             "ENABLING"
           ]
         },
+        "availableVersion": {
+          "items": {
+            "$ref": "Version"
+          }
+        },
         "maintenanceEvents": {
           "items": {
             "$ref": "MaintenanceEvent"
           }
         },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "BASIC",
+            "ENTERPRISE",
+            "DEVELOPER"
+          ]
+        },
         "accelerators": {
           "items": {
             "$ref": "Accelerator"
           }
+        },
+        "disabledReason": {
+          "items": {
+            "enum": [
+              "DISABLED_REASON_UNSPECIFIED",
+              "KMS_KEY_ISSUE",
+              "PROJECT_STATE_OFF"
+            ]
+          }
+        },
+        "networkConfig": {
+          "$ref": "NetworkConfig"
         }
       }
     },

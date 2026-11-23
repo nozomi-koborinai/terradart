@@ -28,6 +28,8 @@ export 'src/firebase_app_hosting/google_firebase_app_hosting_domain.dart'
 export 'src/firebase_app_hosting/google_firebase_app_hosting_traffic.dart'
     show
         FirebaseAppHostingTrafficRolloutPolicy,
+        FirebaseAppHostingTrafficRolloutPolicyPath,
+        FirebaseAppHostingTrafficRolloutPolicyPathType,
         FirebaseAppHostingTrafficRouting,
         FirebaseAppHostingTrafficRoutingRolloutPolicy,
         FirebaseAppHostingTrafficRoutingTarget,

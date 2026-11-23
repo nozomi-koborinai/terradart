@@ -27,9 +27,6 @@
     },
     "CryptoKey": {
       "properties": {
-        "primary": {
-          "$ref": "CryptoKeyVersion"
-        },
         "purpose": {
           "enum": [
             "CRYPTO_KEY_PURPOSE_UNSPECIFIED",
@@ -42,11 +39,14 @@
             "AES_WRAPPING"
           ]
         },
-        "versionTemplate": {
-          "$ref": "CryptoKeyVersionTemplate"
+        "primary": {
+          "$ref": "CryptoKeyVersion"
         },
         "keyAccessJustificationsPolicy": {
           "$ref": "KeyAccessJustificationsPolicy"
+        },
+        "versionTemplate": {
+          "$ref": "CryptoKeyVersionTemplate"
         }
       }
     },
@@ -227,18 +227,12 @@
             "HSM_SINGLE_TENANT"
           ]
         },
-        "importMethod": {
+        "state": {
           "enum": [
-            "IMPORT_METHOD_UNSPECIFIED",
-            "RSA_OAEP_3072_SHA1_AES_256",
-            "RSA_OAEP_4096_SHA1_AES_256",
-            "RSA_OAEP_3072_SHA256_AES_256",
-            "RSA_OAEP_4096_SHA256_AES_256",
-            "RSA_OAEP_3072_SHA256",
-            "RSA_OAEP_4096_SHA256",
-            "HPKE_KEM_ML_KEM_768_HKDF_SHA256_AES_256_GCM",
-            "HPKE_KEM_ML_KEM_1024_HKDF_SHA256_AES_256_GCM",
-            "HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM"
+            "IMPORT_JOB_STATE_UNSPECIFIED",
+            "PENDING_GENERATION",
+            "ACTIVE",
+            "EXPIRED"
           ]
         },
         "attestation": {
@@ -253,12 +247,18 @@
             "XWING_RAW_BYTES"
           ]
         },
-        "state": {
+        "importMethod": {
           "enum": [
-            "IMPORT_JOB_STATE_UNSPECIFIED",
-            "PENDING_GENERATION",
-            "ACTIVE",
-            "EXPIRED"
+            "IMPORT_METHOD_UNSPECIFIED",
+            "RSA_OAEP_3072_SHA1_AES_256",
+            "RSA_OAEP_4096_SHA1_AES_256",
+            "RSA_OAEP_3072_SHA256_AES_256",
+            "RSA_OAEP_4096_SHA256_AES_256",
+            "RSA_OAEP_3072_SHA256",
+            "RSA_OAEP_4096_SHA256",
+            "HPKE_KEM_ML_KEM_768_HKDF_SHA256_AES_256_GCM",
+            "HPKE_KEM_ML_KEM_1024_HKDF_SHA256_AES_256_GCM",
+            "HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM"
           ]
         }
       }

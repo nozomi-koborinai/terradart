@@ -13,6 +13,9 @@
     },
     "Certificate": {
       "properties": {
+        "verification": {
+          "$ref": "CertVerification"
+        },
         "state": {
           "enum": [
             "CERT_STATE_UNSPECIFIED",
@@ -32,9 +35,6 @@
             "PROJECT_GROUPED",
             "DEDICATED"
           ]
-        },
-        "verification": {
-          "$ref": "CertVerification"
         }
       }
     },
@@ -50,8 +50,15 @@
         "cert": {
           "$ref": "Certificate"
         },
-        "requiredDnsUpdates": {
-          "$ref": "DnsUpdates"
+        "hostState": {
+          "enum": [
+            "HOST_STATE_UNSPECIFIED",
+            "HOST_UNHOSTED",
+            "HOST_UNREACHABLE",
+            "HOST_MISMATCH",
+            "HOST_CONFLICT",
+            "HOST_ACTIVE"
+          ]
         },
         "ownershipState": {
           "enum": [
@@ -73,27 +80,13 @@
             "DEDICATED"
           ]
         },
-        "hostState": {
-          "enum": [
-            "HOST_STATE_UNSPECIFIED",
-            "HOST_UNHOSTED",
-            "HOST_UNREACHABLE",
-            "HOST_MISMATCH",
-            "HOST_CONFLICT",
-            "HOST_ACTIVE"
-          ]
+        "requiredDnsUpdates": {
+          "$ref": "DnsUpdates"
         }
       }
     },
     "DnsRecord": {
       "properties": {
-        "requiredAction": {
-          "enum": [
-            "NONE",
-            "ADD",
-            "REMOVE"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -102,6 +95,13 @@
             "TXT",
             "AAAA",
             "CAA"
+          ]
+        },
+        "requiredAction": {
+          "enum": [
+            "NONE",
+            "ADD",
+            "REMOVE"
           ]
         }
       }
@@ -131,6 +131,9 @@
     },
     "Release": {
       "properties": {
+        "version": {
+          "$ref": "Version"
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -138,9 +141,6 @@
             "ROLLBACK",
             "SITE_DISABLE"
           ]
-        },
-        "version": {
-          "$ref": "Version"
         }
       }
     },

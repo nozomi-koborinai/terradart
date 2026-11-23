@@ -1563,6 +1563,13 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     add(
+      DataGoogleDesignCenterSpaceIamPolicy(
+        'design_center_space_iam_policy',
+        spaceId: TfArg.literal(leftover),
+      ),
+    );
+
+    add(
       DataGoogleDiscoveryEngineDataStore(
         'discovery_engine_data_store',
         dataStoreId: TfArg.literal(leftover),

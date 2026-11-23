@@ -6,9 +6,6 @@
   "schemas": {
     "AuthorizationAttemptInfo": {
       "properties": {
-        "troubleshooting": {
-          "$ref": "Troubleshooting"
-        },
         "failureReason": {
           "enum": [
             "FAILURE_REASON_UNSPECIFIED",
@@ -24,17 +21,14 @@
             "AUTHORIZED",
             "FAILED"
           ]
+        },
+        "troubleshooting": {
+          "$ref": "Troubleshooting"
         }
       }
     },
     "Certificate": {
       "properties": {
-        "managedIdentity": {
-          "$ref": "ManagedIdentityCertificate"
-        },
-        "managed": {
-          "$ref": "ManagedCertificate"
-        },
         "scope": {
           "enum": [
             "DEFAULT",
@@ -42,6 +36,12 @@
             "ALL_REGIONS",
             "CLIENT_AUTH"
           ]
+        },
+        "managed": {
+          "$ref": "ManagedCertificate"
+        },
+        "managedIdentity": {
+          "$ref": "ManagedIdentityCertificate"
         }
       }
     },
@@ -89,11 +89,6 @@
     },
     "ManagedCertificate": {
       "properties": {
-        "authorizationAttemptInfo": {
-          "items": {
-            "$ref": "AuthorizationAttemptInfo"
-          }
-        },
         "provisioningIssue": {
           "$ref": "ProvisioningIssue"
         },
@@ -104,14 +99,16 @@
             "FAILED",
             "ACTIVE"
           ]
+        },
+        "authorizationAttemptInfo": {
+          "items": {
+            "$ref": "AuthorizationAttemptInfo"
+          }
         }
       }
     },
     "ManagedIdentityCertificate": {
       "properties": {
-        "provisioningIssue": {
-          "$ref": "ProvisioningIssue"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -119,6 +116,9 @@
             "FAILED",
             "ACTIVE"
           ]
+        },
+        "provisioningIssue": {
+          "$ref": "ProvisioningIssue"
         }
       }
     },

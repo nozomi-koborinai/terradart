@@ -55,11 +55,6 @@
     },
     "RestoreConfig": {
       "properties": {
-        "transformationRules": {
-          "items": {
-            "$ref": "TransformationRule"
-          }
-        },
         "namespacedResourceRestoreMode": {
           "enum": [
             "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED",
@@ -69,6 +64,19 @@
             "MERGE_REPLACE_VOLUME_ON_CONFLICT",
             "MERGE_REPLACE_ON_CONFLICT"
           ]
+        },
+        "volumeDataRestorePolicy": {
+          "enum": [
+            "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
+            "RESTORE_VOLUME_DATA_FROM_BACKUP",
+            "REUSE_VOLUME_HANDLE_FROM_BACKUP",
+            "NO_VOLUME_DATA_RESTORATION"
+          ]
+        },
+        "transformationRules": {
+          "items": {
+            "$ref": "TransformationRule"
+          }
         },
         "volumeDataRestorePolicyBindings": {
           "items": {
@@ -81,22 +89,11 @@
             "USE_EXISTING_VERSION",
             "USE_BACKUP_VERSION"
           ]
-        },
-        "volumeDataRestorePolicy": {
-          "enum": [
-            "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
-            "RESTORE_VOLUME_DATA_FROM_BACKUP",
-            "REUSE_VOLUME_HANDLE_FROM_BACKUP",
-            "NO_VOLUME_DATA_RESTORATION"
-          ]
         }
       }
     },
     "RestorePlan": {
       "properties": {
-        "restoreConfig": {
-          "$ref": "RestoreConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -105,6 +102,9 @@
             "FAILED",
             "DELETING"
           ]
+        },
+        "restoreConfig": {
+          "$ref": "RestoreConfig"
         }
       }
     },
@@ -150,18 +150,18 @@
     },
     "VolumeDataRestorePolicyBinding": {
       "properties": {
-        "volumeType": {
-          "enum": [
-            "VOLUME_TYPE_UNSPECIFIED",
-            "GCE_PERSISTENT_DISK"
-          ]
-        },
         "policy": {
           "enum": [
             "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
             "RESTORE_VOLUME_DATA_FROM_BACKUP",
             "REUSE_VOLUME_HANDLE_FROM_BACKUP",
             "NO_VOLUME_DATA_RESTORATION"
+          ]
+        },
+        "volumeType": {
+          "enum": [
+            "VOLUME_TYPE_UNSPECIFIED",
+            "GCE_PERSISTENT_DISK"
           ]
         }
       }

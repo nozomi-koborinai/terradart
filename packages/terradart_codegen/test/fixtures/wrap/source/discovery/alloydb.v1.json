@@ -13,6 +13,18 @@
     },
     "Backup": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "CREATING",
+            "FAILED",
+            "DELETING"
+          ]
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo"
+        },
         "databaseVersion": {
           "enum": [
             "DATABASE_VERSION_UNSPECIFIED",
@@ -24,15 +36,6 @@
             "POSTGRES_18"
           ]
         },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "READY",
-            "CREATING",
-            "FAILED",
-            "DELETING"
-          ]
-        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -40,9 +43,6 @@
             "AUTOMATED",
             "CONTINUOUS"
           ]
-        },
-        "encryptionInfo": {
-          "$ref": "EncryptionInfo"
         }
       }
     },
@@ -55,20 +55,19 @@
     },
     "Cluster": {
       "properties": {
-        "maintenanceUpdatePolicy": {
-          "$ref": "MaintenanceUpdatePolicy"
-        },
-        "continuousBackupInfo": {
-          "$ref": "ContinuousBackupInfo"
-        },
         "encryptionInfo": {
           "$ref": "EncryptionInfo"
         },
-        "sslConfig": {
-          "$ref": "SslConfig"
-        },
-        "migrationSource": {
-          "$ref": "MigrationSource"
+        "databaseVersion": {
+          "enum": [
+            "DATABASE_VERSION_UNSPECIFIED",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
+            "POSTGRES_17",
+            "POSTGRES_18"
+          ]
         },
         "state": {
           "enum": [
@@ -85,18 +84,21 @@
             "SWITCHOVER"
           ]
         },
-        "maintenanceVersionSelectionPolicy": {
-          "enum": [
-            "MAINTENANCE_VERSION_SELECTION_POLICY_UNSPECIFIED",
-            "MAINTENANCE_VERSION_SELECTION_POLICY_LATEST",
-            "MAINTENANCE_VERSION_SELECTION_POLICY_DEFAULT"
-          ]
+        "automatedBackupPolicy": {
+          "$ref": "AutomatedBackupPolicy"
         },
         "subscriptionType": {
           "enum": [
             "SUBSCRIPTION_TYPE_UNSPECIFIED",
             "STANDARD",
             "TRIAL"
+          ]
+        },
+        "maintenanceVersionSelectionPolicy": {
+          "enum": [
+            "MAINTENANCE_VERSION_SELECTION_POLICY_UNSPECIFIED",
+            "MAINTENANCE_VERSION_SELECTION_POLICY_LATEST",
+            "MAINTENANCE_VERSION_SELECTION_POLICY_DEFAULT"
           ]
         },
         "clusterType": {
@@ -106,25 +108,23 @@
             "SECONDARY"
           ]
         },
-        "databaseVersion": {
-          "enum": [
-            "DATABASE_VERSION_UNSPECIFIED",
-            "POSTGRES_13",
-            "POSTGRES_14",
-            "POSTGRES_15",
-            "POSTGRES_16",
-            "POSTGRES_17",
-            "POSTGRES_18"
-          ]
+        "migrationSource": {
+          "$ref": "MigrationSource"
         },
-        "automatedBackupPolicy": {
-          "$ref": "AutomatedBackupPolicy"
+        "continuousBackupInfo": {
+          "$ref": "ContinuousBackupInfo"
+        },
+        "maintenanceUpdatePolicy": {
+          "$ref": "MaintenanceUpdatePolicy"
+        },
+        "sslConfig": {
+          "$ref": "SslConfig"
         }
       }
     },
     "ConnectionPoolConfig": {
       "properties": {
-        "authproxyPoolerScalingType": {
+        "poolerScalingType": {
           "enum": [
             "POOLER_SCALING_TYPE_UNSPECIFIED",
             "POOLER_NONE",
@@ -132,7 +132,7 @@
             "POOLER_MANUAL_OVERRIDE"
           ]
         },
-        "poolerScalingType": {
+        "authproxyPoolerScalingType": {
           "enum": [
             "POOLER_SCALING_TYPE_UNSPECIFIED",
             "POOLER_NONE",
@@ -190,6 +190,9 @@
     },
     "Instance": {
       "properties": {
+        "pscInstanceConfig": {
+          "$ref": "PscInstanceConfig"
+        },
         "activationPolicy": {
           "enum": [
             "ACTIVATION_POLICY_UNSPECIFIED",
@@ -197,36 +200,8 @@
             "NEVER"
           ]
         },
-        "dataApiAccess": {
-          "enum": [
-            "DEFAULT_DATA_API_ENABLED_FOR_GOOGLE_CLOUD_SERVICES",
-            "DISABLED",
-            "ENABLED"
-          ]
-        },
-        "availabilityType": {
-          "enum": [
-            "AVAILABILITY_TYPE_UNSPECIFIED",
-            "ZONAL",
-            "REGIONAL"
-          ]
-        },
-        "connectionPoolConfig": {
-          "$ref": "ConnectionPoolConfig"
-        },
-        "pscInstanceConfig": {
-          "$ref": "PscInstanceConfig"
-        },
         "clientConnectionConfig": {
           "$ref": "ClientConnectionConfig"
-        },
-        "instanceType": {
-          "enum": [
-            "INSTANCE_TYPE_UNSPECIFIED",
-            "PRIMARY",
-            "READ_POOL",
-            "SECONDARY"
-          ]
         },
         "state": {
           "enum": [
@@ -242,6 +217,31 @@
             "SWITCHOVER",
             "STOPPING",
             "STARTING"
+          ]
+        },
+        "availabilityType": {
+          "enum": [
+            "AVAILABILITY_TYPE_UNSPECIFIED",
+            "ZONAL",
+            "REGIONAL"
+          ]
+        },
+        "dataApiAccess": {
+          "enum": [
+            "DEFAULT_DATA_API_ENABLED_FOR_GOOGLE_CLOUD_SERVICES",
+            "DISABLED",
+            "ENABLED"
+          ]
+        },
+        "connectionPoolConfig": {
+          "$ref": "ConnectionPoolConfig"
+        },
+        "instanceType": {
+          "enum": [
+            "INSTANCE_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "READ_POOL",
+            "SECONDARY"
           ]
         }
       }
@@ -292,10 +292,12 @@
     },
     "PscInstanceConfig": {
       "properties": {
-        "pscAutoConnections": {
-          "items": {
-            "$ref": "PscAutoConnectionConfig"
-          }
+        "pscAutoConnectionPolicyState": {
+          "enum": [
+            "PSC_AUTO_CONNECTION_POLICY_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
         },
         "pscAutoDnsState": {
           "enum": [
@@ -304,12 +306,10 @@
             "PSC_AUTO_DNS_STATE_DISABLED"
           ]
         },
-        "pscAutoConnectionPolicyState": {
-          "enum": [
-            "PSC_AUTO_CONNECTION_POLICY_STATE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
+        "pscAutoConnections": {
+          "items": {
+            "$ref": "PscAutoConnectionConfig"
+          }
         }
       }
     },

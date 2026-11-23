@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../identity/google_cloud_identity_policy.dart';
 
 /// Sensitive field paths for `google_cloud_identity_policy`.
 const Set<String> _googleCloudIdentityPolicySensitive = <String>{};
@@ -22,6 +23,11 @@ final class DataGoogleCloudIdentityPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleCloudIdentityPolicySensitive;
+
+  /// A reference to the `google_cloud_identity_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleCloudIdentityPolicy>`.
+  RefTo<GoogleCloudIdentityPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');

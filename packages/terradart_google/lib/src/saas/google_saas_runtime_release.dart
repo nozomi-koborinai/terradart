@@ -1,0 +1,205 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_saas_runtime_release`.
+const Set<String> _googleSaasRuntimeReleaseSensitive = <String>{};
+
+/// Typed helper for the `blueprint` block of
+/// `google_saas_runtime_release` (derived from provider schema).
+@immutable
+final class SaasRuntimeReleaseBlueprint {
+  const SaasRuntimeReleaseBlueprint({this.package});
+
+  final TfArg<String>? package;
+
+  @internal
+  Map<String, Object?> encode() => {'package': ?package?.toTfJson()};
+}
+
+/// Typed helper for the `input_variable_defaults` block of
+/// `google_saas_runtime_release` (derived from provider schema).
+@immutable
+final class SaasRuntimeReleaseInputVariableDefaults {
+  const SaasRuntimeReleaseInputVariableDefaults({
+    this.type,
+    this.value,
+    required this.variable,
+  });
+
+  final SaasRuntimeReleaseType? type;
+
+  final TfArg<String>? value;
+
+  final TfArg<String> variable;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
+    'variable': variable.toTfJson(),
+  };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const SaasRuntimeReleaseType._(TfArg<String> _)
+    implements TfArg<String> {
+  SaasRuntimeReleaseType.variable(String name) : this._(TfArg.variable(name));
+  SaasRuntimeReleaseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SaasRuntimeReleaseType.arg(TfArg<String> arg) : this._(arg);
+
+  static const typeUnspecified = SaasRuntimeReleaseType._(
+    TfArgLiteral('TYPE_UNSPECIFIED'),
+  );
+  static const string = SaasRuntimeReleaseType._(TfArgLiteral('STRING'));
+  static const int = SaasRuntimeReleaseType._(TfArgLiteral('INT'));
+  static const bool = SaasRuntimeReleaseType._(TfArgLiteral('BOOL'));
+
+  static const List<SaasRuntimeReleaseType> values = [
+    typeUnspecified,
+    string,
+    int,
+    bool,
+  ];
+}
+
+/// Typed helper for the `release_requirements` block of
+/// `google_saas_runtime_release` (derived from provider schema).
+@immutable
+final class SaasRuntimeReleaseRequirements {
+  const SaasRuntimeReleaseRequirements({this.upgradeableFromReleases});
+
+  final TfArg<List<String>>? upgradeableFromReleases;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'upgradeable_from_releases': ?upgradeableFromReleases?.toTfJson(),
+  };
+}
+
+/// Factory wrapper for `google_saas_runtime_release`.
+///
+/// A version to be propagated and deployed to Units. It points to a specific
+/// version of a Blueprint that can be applied to Units, for example, via a
+/// Rollout.
+final class GoogleSaasRuntimeRelease extends Resource {
+  static const String tfType = 'google_saas_runtime_release';
+
+  GoogleSaasRuntimeRelease(
+    super.localName, {
+    TfArg<Map<String, String>>? annotations,
+    TfArg<String>? deletionPolicy,
+    TfArg<Map<String, String>>? labels,
+    required TfArg<String> location,
+    TfArg<String>? project,
+    required TfArg<String> releaseId,
+    required TfArg<String> unitKind,
+    SaasRuntimeReleaseBlueprint? blueprint,
+    List<SaasRuntimeReleaseInputVariableDefaults>? inputVariableDefaults,
+    SaasRuntimeReleaseRequirements? releaseRequirements,
+    super.lifecycle,
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
+           'location': location,
+           'project': ?project,
+           'release_id': releaseId,
+           'unit_kind': unitKind,
+           if (blueprint != null)
+             'blueprint': TfArg.literal(blueprint.encode()),
+           if (inputVariableDefaults != null)
+             'input_variable_defaults': TfArg.literal([
+               for (final e in inputVariableDefaults) e.encode(),
+             ]),
+           if (releaseRequirements != null)
+             'release_requirements': TfArg.literal(
+               releaseRequirements.encode(),
+             ),
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields => _googleSaasRuntimeReleaseSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSaasRuntimeRelease>`.
+  RefTo<GoogleSaasRuntimeRelease> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `application_template_component` attribute.
+  TfRef<List<Map<String, Object?>>> get applicationTemplateComponent =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'application_template_component',
+      );
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `effective_annotations` attribute.
+  TfRef<Map<String, String>> get effectiveAnnotations =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_annotations');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `input_variables` attribute.
+  TfRef<List<Map<String, Object?>>> get inputVariables =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'input_variables');
+
+  /// Reference to `output_variables` attribute.
+  TfRef<List<Map<String, Object?>>> get outputVariables =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'output_variables');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `uid` attribute.
+  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotations =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labels =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `release_id` attribute.
+  TfRef<String> get releaseId => TfRef.attribute<String>(this, 'release_id');
+
+  /// Reference to `unit_kind` attribute.
+  TfRef<String> get unitKind => TfRef.attribute<String>(this, 'unit_kind');
+}

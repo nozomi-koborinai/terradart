@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../identity/google_identity_platform_tenant.dart'
@@ -9,6 +10,26 @@ import '../identity/google_identity_platform_tenant.dart'
 /// Sensitive field paths for `google_identity_platform_tenant_oauth_idp_config`.
 const Set<String> _googleIdentityPlatformTenantOauthIdpConfigSensitive =
     <String>{};
+
+/// Typed helper for the `response_type` block of
+/// `google_identity_platform_tenant_oauth_idp_config` (derived from provider schema).
+@immutable
+final class IdentityPlatformTenantOauthIdpConfigResponseType {
+  const IdentityPlatformTenantOauthIdpConfigResponseType({
+    this.code,
+    this.idToken,
+  });
+
+  final TfArg<bool>? code;
+
+  final TfArg<bool>? idToken;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'code': ?code?.toTfJson(),
+    'id_token': ?idToken?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_identity_platform_tenant_oauth_idp_config`.
 ///
@@ -63,6 +84,7 @@ final class GoogleIdentityPlatformTenantOauthIdpConfig extends Resource {
     required TfArg<String> clientId,
     TfArg<bool>? enabled,
     TfArg<String>? clientSecret,
+    IdentityPlatformTenantOauthIdpConfigResponseType? responseType,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -79,6 +101,8 @@ final class GoogleIdentityPlatformTenantOauthIdpConfig extends Resource {
            'client_id': clientId,
            'enabled': ?enabled,
            'client_secret': ?clientSecret,
+           if (responseType != null)
+             'response_type': TfArg.literal(responseType.encode()),
            'project': ?project,
            'deletion_policy': ?deletionPolicy,
          },

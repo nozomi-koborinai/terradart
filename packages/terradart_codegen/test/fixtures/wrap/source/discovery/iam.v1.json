@@ -86,13 +86,6 @@
     },
     "OauthClient": {
       "properties": {
-        "clientType": {
-          "enum": [
-            "CLIENT_TYPE_UNSPECIFIED",
-            "PUBLIC_CLIENT",
-            "CONFIDENTIAL_CLIENT"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -108,6 +101,13 @@
               "REFRESH_TOKEN_GRANT"
             ]
           }
+        },
+        "clientType": {
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "PUBLIC_CLIENT",
+            "CONFIDENTIAL_CLIENT"
+          ]
         }
       }
     },
@@ -130,6 +130,33 @@
     },
     "ServiceAccountKey": {
       "properties": {
+        "extendedStatus": {
+          "items": {
+            "$ref": "ExtendedStatus"
+          }
+        },
+        "keyOrigin": {
+          "enum": [
+            "ORIGIN_UNSPECIFIED",
+            "USER_PROVIDED",
+            "GOOGLE_PROVIDED"
+          ]
+        },
+        "keyAlgorithm": {
+          "enum": [
+            "KEY_ALG_UNSPECIFIED",
+            "KEY_ALG_RSA_1024",
+            "KEY_ALG_RSA_2048"
+          ]
+        },
+        "disableReason": {
+          "enum": [
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_UNSPECIFIED",
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED",
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_EXPOSED",
+            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_COMPROMISE_DETECTED"
+          ]
+        },
         "keyType": {
           "enum": [
             "KEY_TYPE_UNSPECIFIED",
@@ -143,33 +170,6 @@
             "TYPE_PKCS12_FILE",
             "TYPE_GOOGLE_CREDENTIALS_FILE"
           ]
-        },
-        "keyAlgorithm": {
-          "enum": [
-            "KEY_ALG_UNSPECIFIED",
-            "KEY_ALG_RSA_1024",
-            "KEY_ALG_RSA_2048"
-          ]
-        },
-        "keyOrigin": {
-          "enum": [
-            "ORIGIN_UNSPECIFIED",
-            "USER_PROVIDED",
-            "GOOGLE_PROVIDED"
-          ]
-        },
-        "disableReason": {
-          "enum": [
-            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_UNSPECIFIED",
-            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED",
-            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_EXPOSED",
-            "SERVICE_ACCOUNT_KEY_DISABLE_REASON_COMPROMISE_DETECTED"
-          ]
-        },
-        "extendedStatus": {
-          "items": {
-            "$ref": "ExtendedStatus"
-          }
         }
       }
     },
@@ -186,6 +186,23 @@
     },
     "WorkforcePoolProvider": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ]
+        },
+        "oidc": {
+          "$ref": "GoogleIamAdminV1WorkforcePoolProviderOidc"
+        },
+        "scimUsage": {
+          "enum": [
+            "SCIM_USAGE_UNSPECIFIED",
+            "ENABLED_FOR_GROUPS",
+            "ENABLED_FOR_USERS_GROUPS"
+          ]
+        },
         "vendorType": {
           "enum": [
             "VENDOR_TYPE_UNSPECIFIED",
@@ -203,25 +220,8 @@
         "extendedAttributesOauth2Client": {
           "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
         },
-        "oidc": {
-          "$ref": "GoogleIamAdminV1WorkforcePoolProviderOidc"
-        },
         "extraAttributesOauth2Client": {
           "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client"
-        },
-        "scimUsage": {
-          "enum": [
-            "SCIM_USAGE_UNSPECIFIED",
-            "ENABLED_FOR_GROUPS",
-            "ENABLED_FOR_USERS_GROUPS"
-          ]
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "DELETED"
-          ]
         }
       }
     },
@@ -233,15 +233,15 @@
             "ENCRYPTION"
           ]
         },
-        "keyData": {
-          "$ref": "KeyData"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "DELETED"
           ]
+        },
+        "keyData": {
+          "$ref": "KeyData"
         }
       }
     },

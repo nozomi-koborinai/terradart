@@ -1,7 +1,7 @@
 {
   "name": "binaryauthorization",
   "version": "v1",
-  "revision": "20261107",
+  "revision": "20261113",
   "sourceUrl": "https://binaryauthorization.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AdmissionRule": {
@@ -67,20 +67,7 @@
     },
     "Policy": {
       "properties": {
-        "defaultAdmissionRule": {
-          "$ref": "AdmissionRule"
-        },
-        "kubernetesServiceAccountAdmissionRules": {
-          "additionalProperties": {
-            "$ref": "AdmissionRule"
-          }
-        },
-        "kubernetesNamespaceAdmissionRules": {
-          "additionalProperties": {
-            "$ref": "AdmissionRule"
-          }
-        },
-        "clusterAdmissionRules": {
+        "istioServiceIdentityAdmissionRules": {
           "additionalProperties": {
             "$ref": "AdmissionRule"
           }
@@ -92,10 +79,23 @@
             "DISABLE"
           ]
         },
-        "istioServiceIdentityAdmissionRules": {
+        "kubernetesNamespaceAdmissionRules": {
           "additionalProperties": {
             "$ref": "AdmissionRule"
           }
+        },
+        "clusterAdmissionRules": {
+          "additionalProperties": {
+            "$ref": "AdmissionRule"
+          }
+        },
+        "kubernetesServiceAccountAdmissionRules": {
+          "additionalProperties": {
+            "$ref": "AdmissionRule"
+          }
+        },
+        "defaultAdmissionRule": {
+          "$ref": "AdmissionRule"
         }
       }
     },

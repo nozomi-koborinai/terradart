@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_gemini_gemini_gcp_enablement_setting`.
 const Set<String> _googleGeminiGeminiGcpEnablementSettingSensitive = <String>{};
 
@@ -71,6 +73,7 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
     TfArg<bool>? enableCustomerDataSharing,
     TfArg<bool>? disableWebGrounding,
     GeminiGeminiGcpEnablementSettingWebGroundingType? webGroundingType,
+    RefTo<GoogleStorageBucket>? gcsBucket,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
     super.lifecycle,
@@ -85,6 +88,7 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
            'enable_customer_data_sharing': ?enableCustomerDataSharing,
            'disable_web_grounding': ?disableWebGrounding,
            'web_grounding_type': ?webGroundingType,
+           'gcs_bucket': ?gcsBucket?.encodeAs('name'),
            'labels': ?labels,
            'project': ?project,
          },
@@ -129,6 +133,9 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
   /// Reference to `enable_customer_data_sharing` attribute.
   TfRef<bool> get enableCustomerDataSharing =>
       TfRef.attribute<bool>(this, 'enable_customer_data_sharing');
+
+  /// Reference to `gcs_bucket` attribute.
+  TfRef<String> get gcsBucket => TfRef.attribute<String>(this, 'gcs_bucket');
 
   /// Reference to `gemini_enterprise_project` attribute.
   TfRef<String> get geminiEnterpriseProject =>

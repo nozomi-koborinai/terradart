@@ -104,6 +104,9 @@
     },
     "GoogleCloudContactcenterinsightsV1QaScorecardRevision": {
       "properties": {
+        "snapshot": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QaScorecard"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -114,9 +117,6 @@
             "DELETING",
             "TRAINING_CANCELLED"
           ]
-        },
-        "snapshot": {
-          "$ref": "GoogleCloudContactcenterinsightsV1QaScorecard"
         }
       }
     },
