@@ -262,7 +262,7 @@ final class TestProject {
     final root = Directory.systemTemp.createTempSync('terradart_cli_test_');
     addTearDown(() => root.deleteSync(recursive: true));
     File(p.join(root.path, 'pubspec.yaml')).writeAsStringSync(
-      'name: my_app\nenvironment:\n  sdk: ^3.10.0\n'
+      'name: my_app\nenvironment:\n  sdk: ^3.12.0\n'
       '${terradart.isEmpty ? '' : 'terradart:\n$terradart'}',
     );
     File(p.join(root.path, 'bin', 'infra.dart'))

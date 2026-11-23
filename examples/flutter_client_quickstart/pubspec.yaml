@@ -3,7 +3,7 @@ description: Cloud Run and a storage bucket whose typed outputs a Flutter app re
 publish_to: none
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 
 resolution: workspace
 

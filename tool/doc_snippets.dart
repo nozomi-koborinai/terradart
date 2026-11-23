@@ -315,7 +315,7 @@ String _pubspec(String root, List<String> packages) {
     ..writeln('name: my_app')
     ..writeln('publish_to: none')
     ..writeln('environment:')
-    ..writeln('  sdk: ^3.10.0')
+    ..writeln('  sdk: ^3.12.0')
     ..writeln('dependencies:');
   for (final pkg in packages) {
     b.writeln('  $pkg: any');
