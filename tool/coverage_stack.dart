@@ -234,7 +234,7 @@ Future<CoverageVerdict> runCoverageStack(
   final excluded = <String, ExcludedFactory>{};
   final learned = <DummyKey, (LearnedDummy, ValueRejection)>{};
   final learnedIncludes =
-      <DummyKey, (LearnedInclude, BlockRejection, AttrPath)>{};
+      <DummyKey, (LearnedInclude, BlockRejection, AttrPath, Set<TfAddress>)>{};
   try {
     for (var pass = 1; ; pass++) {
       final dummies = lane.dummies.revised(
@@ -293,7 +293,7 @@ Future<CoverageVerdict> runCoverageStack(
                   at: r.at,
                   detail: r.message,
                 ),
-              for (final MapEntry(:key, value: (inc, r, reqPath))
+              for (final MapEntry(:key, value: (inc, r, reqPath, _))
                   in learnedIncludes.entries)
                 LearnedEntry(
                   key: key.value,
@@ -332,7 +332,10 @@ Future<CoverageVerdict> runCoverageStack(
           }
           var progressed = false;
           void leaveOut(TfAddress address, ProviderRejected cause) {
-            learnedIncludes.removeWhere((_, v) => v.$2.address == address);
+            learnedIncludes.removeWhere((_, v) {
+              v.$4.remove(address);
+              return v.$4.isEmpty;
+            });
             final factory = lane.factoryAt(address)!;
             if (exclude.add(factory.className)) {
               excluded[factory.className] = factory.excluded(cause);
@@ -341,6 +344,7 @@ Future<CoverageVerdict> runCoverageStack(
           }
 
           final groups = <DummyKey, List<ValueRejection>>{};
+          final blockGroups = <DummyKey, List<(BlockRejection, AttrPath)>>{};
           final learnedAddresses = <TfAddress>{};
           final pendingLeaveOut = <(TfAddress, ProviderRejected)>[];
           for (final r in rejections) {
@@ -364,19 +368,31 @@ Future<CoverageVerdict> runCoverageStack(
                     key != null &&
                     !learnedIncludes.containsKey(key) &&
                     !dummies.includesParam(key)) {
-                  learnedIncludes[key] = (
-                    LearnedInclude('${r.address}: ${_firstLine(r.message)}'),
-                    r,
-                    reqPath!,
-                  );
-                  learnedAddresses.add(r.address);
-                  progressed = true;
+                  (blockGroups[key] ??= []).add((r, reqPath!));
                 } else {
-                  if (key != null) learnedIncludes.remove(key);
+                  if (key != null) {
+                    final existing = learnedIncludes[key];
+                    if (existing != null) {
+                      existing.$4.remove(r.address);
+                      if (existing.$4.isEmpty) learnedIncludes.remove(key);
+                    }
+                  }
                   pendingLeaveOut.add((r.address, _cause(r)));
                 }
               case StackRejection():
             }
+          }
+          for (final MapEntry(key: key, value: items) in blockGroups.entries) {
+            final (first, reqPath) = items.first;
+            final addresses = {for (final (r, _) in items) r.address};
+            learnedIncludes[key] = (
+              LearnedInclude('${first.address}: ${_firstLine(first.message)}'),
+              first,
+              reqPath,
+              addresses,
+            );
+            learnedAddresses.addAll(addresses);
+            progressed = true;
           }
           final found = await search(slug, groups, mainTfJson, dummies, oracle);
           for (final MapEntry(key: key, value: at) in groups.entries) {
