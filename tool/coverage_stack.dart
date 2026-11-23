@@ -387,10 +387,21 @@ Future<CoverageVerdict> runCoverageStack(
                     ? null
                     : dummies.slotTargetAt(r.address, reqPath);
                 final key = target?.key;
+                final currentVariant = key == null
+                    ? null
+                    : (learnedIncludes[key]?.$1.variant ??
+                          dummies.includedVariantByKey(key));
+                final alreadyIncluded =
+                    key != null &&
+                    (learnedIncludes.containsKey(key) ||
+                        dummies.includesParam(key));
+                final canUpgradeVariant =
+                    alreadyIncluded &&
+                    currentVariant == null &&
+                    target?.variant != null;
                 if (pass <= kLearnPasses &&
                     key != null &&
-                    !learnedIncludes.containsKey(key) &&
-                    !dummies.includesParam(key)) {
+                    (!alreadyIncluded || canUpgradeVariant)) {
                   (blockGroups[key] ??= []).add((r, reqPath!, target!.variant));
                 } else {
                   if (key != null) {
@@ -406,12 +417,28 @@ Future<CoverageVerdict> runCoverageStack(
             }
           }
           for (final MapEntry(key: key, value: items) in blockGroups.entries) {
-            final (first, reqPath, variant) = items.first;
-            final addresses = {for (final (r, _, _) in items) r.address};
+            final chosenVariant = items
+                .map((e) => e.$3)
+                .whereType<String>()
+                .firstOrNull;
+            final matching = [
+              for (final item in items)
+                if (item.$3 == null || item.$3 == chosenVariant) item,
+            ];
+            for (final item in items) {
+              if (item.$3 != null && item.$3 != chosenVariant) {
+                pendingLeaveOut.add((item.$1.address, _cause(item.$1)));
+              }
+            }
+            final (first, reqPath, _) = matching.first;
+            final addresses = {
+              ...?learnedIncludes[key]?.$4,
+              for (final (r, _, _) in matching) r.address,
+            };
             learnedIncludes[key] = (
               LearnedInclude(
                 '${first.address}: ${_firstLine(first.message)}',
-                variant: variant,
+                variant: chosenVariant,
               ),
               first,
               reqPath,

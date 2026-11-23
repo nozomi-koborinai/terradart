@@ -1037,7 +1037,159 @@ AwsVpclatticeListenerRule.action:
         expect(rendered.source, isNot(contains('action: .fixedResponse(')));
       },
     );
+
+    test(
+      'wrapped sealed slot learns specific variant across passes (action -> action[0].forward)',
+      () async {
+        const wrappedManifest = MigrateManifest(
+          package: 'terradart_example',
+          entries: [
+            MigrateEntry(
+              tfType: 'example_rule',
+              className: 'ExampleRule',
+              barrel: 'example',
+              kind: CatalogKind.resource,
+              slots: [
+                MigrateSlot(
+                  tfName: 'action',
+                  dartName: 'action',
+                  kind: MigrateSlotKind.sealed,
+                  required: false,
+                  wrapped: false,
+                  variants: {
+                    'fixed_response': 'ExampleRuleActionFixed',
+                    'forward': 'ExampleRuleActionForward',
+                  },
+                ),
+              ],
+              getters: [],
+            ),
+          ],
+          helpers: {
+            'ExampleRuleActionFixed': MigrateHelper(
+              className: 'ExampleRuleActionFixed',
+              shorthand: 'fixedResponse',
+              slots: [
+                MigrateSlot(
+                  tfName: 'fixed_response',
+                  dartName: 'fixedResponse',
+                  kind: MigrateSlotKind.helper,
+                  required: true,
+                  positional: true,
+                  helper: 'ExampleRuleFixed',
+                ),
+              ],
+            ),
+            'ExampleRuleActionForward': MigrateHelper(
+              className: 'ExampleRuleActionForward',
+              shorthand: 'forward',
+              slots: [
+                MigrateSlot(
+                  tfName: 'forward',
+                  dartName: 'forward',
+                  kind: MigrateSlotKind.helper,
+                  required: true,
+                  positional: true,
+                  helper: 'ExampleRuleForward',
+                ),
+              ],
+            ),
+            'ExampleRuleFixed': MigrateHelper(
+              className: 'ExampleRuleFixed',
+              slots: [],
+            ),
+            'ExampleRuleForward': MigrateHelper(
+              className: 'ExampleRuleForward',
+              slots: [],
+            ),
+          },
+          enums: {},
+        );
+        final ledgerFile = File('${tmp.path}/wrapped_sealed_ledger.yaml')
+          ..writeAsStringSync("# ledger\nname: 'leftover'\n");
+        final stackFile = File('${tmp.path}/wrapped_sealed_main.dart');
+        final lane = CoverageLane(
+          name: 'test',
+          generator: _WrappedSealedStack(),
+          manifest: wrappedManifest,
+          dummies: CoverageDummies.parse(
+            ledgerFile.readAsStringSync(),
+            path: ledgerFile.path,
+            manifest: wrappedManifest,
+            bindings: const {},
+          ),
+          debtListed: const {},
+          stackPath: stackFile.path,
+        );
+        final rule = TfAddress.parse('example_rule.rule')!;
+
+        final verdict = await run(
+          lane,
+          _FakeOracle(
+            stackFile,
+            onRun: (source) {
+              if (!source.contains('action:')) {
+                return OracleRejected([
+                  BlockRejection(
+                    rule,
+                    'Missing Configuration for Required Attribute',
+                    'Block action must have a configuration value as the '
+                        'provider has marked it as required',
+                  ),
+                ], '{}');
+              }
+              if (!source.contains('action: .forward(')) {
+                return OracleRejected([
+                  BlockRejection(
+                    rule,
+                    'Missing Configuration for Required Attribute',
+                    'Block action[0].forward must have a configuration value '
+                        'as the provider has marked it as required',
+                  ),
+                ], '{}');
+              }
+              return const OracleGreen('tofu 1.13.1', {
+                'hashicorp/aws': '6.73.0',
+              });
+            },
+            onRevalidate: (_) => const [],
+          ),
+        );
+
+        expect(verdict, isA<CoverageGreen>());
+        final green = verdict as CoverageGreen;
+        expect(green.excluded, isEmpty);
+        expect(
+          ledgerFile.readAsStringSync(),
+          contains(
+            "ExampleRule.action:\n  include: true\n  variant: 'forward'",
+          ),
+        );
+      },
+    );
   });
+}
+
+final class _WrappedSealedStack implements CoverageStackGenerator {
+  @override
+  String get slug => 'wrapped_sealed_leftover';
+
+  @override
+  Set<String> get bindings => const {};
+
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    if (exclude.contains('ExampleRule')) return const RenderedStack('');
+    if (!dummies.includedParams('ExampleRule').contains('action')) {
+      return const RenderedStack('ExampleRule()\n');
+    }
+    final variant =
+        dummies.includedVariant('ExampleRule', 'action') ?? 'fixedResponse';
+    return RenderedStack('ExampleRule(action: .$variant(.new()))\n');
+  }
 }
 
 final class _UnplaceableOnIncludeStack implements CoverageStackGenerator {

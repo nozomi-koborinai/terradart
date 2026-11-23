@@ -250,6 +250,13 @@ final class CoverageDummies {
         _ => null,
       };
 
+  /// The Dart variant member name recorded for [key], or null.
+  String? includedVariantByKey(DummyKey key) =>
+      switch (_exact[key.value]?.value) {
+        IncludeDummy(:final variant) => variant,
+        _ => null,
+      };
+
   /// Whether [key] is already marked `include: true`.
   bool includesParam(DummyKey key) => _exact[key.value]?.value is IncludeDummy;
 
@@ -679,7 +686,7 @@ String? _inVariant(MigrateManifest m, MigrateSlot slot, List<Object> path) {
 
 /// Like [_keyIn], but resolves a block or attribute slot itself when [path]
 /// ends at that slot (`rest.isEmpty`), preserving the Dart variant member name
-/// when [path] ends on a variant key of a merged sealed slot.
+/// when [path] ends on a variant key of a merged or wrapped sealed slot.
 ({String key, String? variant})? _slotTargetIn(
   MigrateManifest m,
   String owner,
@@ -692,18 +699,7 @@ String? _inVariant(MigrateManifest m, MigrateSlot slot, List<Object> path) {
     if (slot.merged) {
       final target = switch (slot.kind) {
         MigrateSlotKind.helper => _slotTargetInHelper(m, slot.helper, path),
-        MigrateSlotKind.sealed =>
-          path.first is String &&
-                  _skipIndices(path.sublist(1)).isEmpty &&
-                  (slot.variants?.containsKey(path.first) ?? false)
-              ? (
-                  key: '$owner.${slot.dartName}',
-                  variant: _variantMemberName(
-                    m,
-                    slot.variants![path.first as String],
-                  ),
-                )
-              : _slotTargetInVariant(m, slot, path),
+        MigrateSlotKind.sealed => _slotTargetInSealed(m, owner, slot, path),
         _ => null,
       };
       if (target != null) return target;
@@ -737,11 +733,32 @@ String? _inVariant(MigrateManifest m, MigrateSlot slot, List<Object> path) {
     }
     return switch (slot.kind) {
       MigrateSlotKind.helper => _slotTargetInHelper(m, slot.helper, rest),
-      MigrateSlotKind.sealed => _slotTargetInVariant(m, slot, rest),
+      MigrateSlotKind.sealed => _slotTargetInSealed(m, owner, slot, rest),
       _ => null,
     };
   }
   return null;
+}
+
+({String key, String? variant})? _slotTargetInSealed(
+  MigrateManifest m,
+  String owner,
+  MigrateSlot slot,
+  List<Object> path,
+) {
+  path = _skipIndices(path);
+  if (path.isEmpty) {
+    return (key: '$owner.${slot.dartName}', variant: null);
+  }
+  if (path.first is String &&
+      _skipIndices(path.sublist(1)).isEmpty &&
+      (slot.variants?.containsKey(path.first) ?? false)) {
+    return (
+      key: '$owner.${slot.dartName}',
+      variant: _variantMemberName(m, slot.variants![path.first as String]),
+    );
+  }
+  return _slotTargetInVariant(m, slot, path);
 }
 
 String? _variantMemberName(MigrateManifest m, String? variantHelper) {

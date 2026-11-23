@@ -189,6 +189,17 @@ ExampleQueueScope.zoneId: 'unjudged'
               variants: {'cidr_ip': 'ExampleRouteCidrIp'},
             ),
             MigrateSlot(
+              tfName: 'action',
+              dartName: 'action',
+              kind: MigrateSlotKind.sealed,
+              required: false,
+              wrapped: false,
+              variants: {
+                'fixed_response': 'ExampleRouteActionFixed',
+                'forward': 'ExampleRouteActionForward',
+              },
+            ),
+            MigrateSlot(
               tfName: 'config',
               dartName: 'config',
               kind: MigrateSlotKind.helper,
@@ -215,6 +226,55 @@ ExampleQueueScope.zoneId: 'unjudged'
         ),
       ],
       helpers: {
+        'ExampleRouteActionFixed': MigrateHelper(
+          className: 'ExampleRouteActionFixed',
+          shorthand: 'fixedResponse',
+          slots: [
+            MigrateSlot(
+              tfName: 'fixed_response',
+              dartName: 'fixedResponse',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              positional: true,
+              helper: 'ExampleRouteFixed',
+            ),
+          ],
+        ),
+        'ExampleRouteActionForward': MigrateHelper(
+          className: 'ExampleRouteActionForward',
+          shorthand: 'forward',
+          slots: [
+            MigrateSlot(
+              tfName: 'forward',
+              dartName: 'forward',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              positional: true,
+              helper: 'ExampleRouteForward',
+            ),
+          ],
+        ),
+        'ExampleRouteFixed': MigrateHelper(
+          className: 'ExampleRouteFixed',
+          slots: [],
+        ),
+        'ExampleRouteForward': MigrateHelper(
+          className: 'ExampleRouteForward',
+          slots: [
+            MigrateSlot(
+              tfName: 'target',
+              dartName: 'target',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              helper: 'ExampleRouteTarget',
+            ),
+          ],
+        ),
+        'ExampleRouteTarget': MigrateHelper(
+          className: 'ExampleRouteTarget',
+          slots: [],
+        ),
         'ExampleRouteCidrIp': MigrateHelper(
           className: 'ExampleRouteCidrIp',
           slots: [
@@ -307,6 +367,37 @@ ExampleQueueScope.zoneId: 'unjudged'
         key: dummies.slotKeyAt(route, const AttrPath(['cidr_ip']))!,
         variant: 'cidrIp',
       ));
+      expect(dummies.slotTargetAt(route, const AttrPath(['action'])), (
+        key: dummies.slotKeyAt(route, const AttrPath(['action']))!,
+        variant: null,
+      ));
+      expect(
+        dummies.slotTargetAt(route, const AttrPath(['action', 0, 'forward'])),
+        (
+          key: dummies.slotKeyAt(route, const AttrPath(['action']))!,
+          variant: 'forward',
+        ),
+      );
+      expect(
+        dummies.slotTargetAt(
+          route,
+          const AttrPath(['action', 0, 'forward', 0]),
+        ),
+        (
+          key: dummies.slotKeyAt(route, const AttrPath(['action']))!,
+          variant: 'forward',
+        ),
+      );
+      expect(
+        dummies
+            .slotTargetAt(
+              route,
+              const AttrPath(['action', 0, 'forward', 0, 'target']),
+            )
+            ?.key
+            .value,
+        'ExampleRouteForward.target',
+      );
     });
 
     test('include: true round-trips through save and includedParams', () {
