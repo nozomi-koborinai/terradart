@@ -305,18 +305,17 @@ class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.backendService(...)`.
-sealed class ComputeGlobalForwardingRuleBackendServiceOrTarget {
-  const ComputeGlobalForwardingRuleBackendServiceOrTarget();
+sealed class ComputeGlobalForwardingRuleTarget {
+  const ComputeGlobalForwardingRuleTarget();
 
   /// Sets `backend_service`.
-  const factory ComputeGlobalForwardingRuleBackendServiceOrTarget.backendService(
+  const factory ComputeGlobalForwardingRuleTarget.backendService(
     RefTo<GoogleComputeBackendService> backendService,
-  ) = ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService;
+  ) = ComputeGlobalForwardingRuleTargetBackendService;
 
   /// Sets `target`.
-  const factory ComputeGlobalForwardingRuleBackendServiceOrTarget.target(
-    TfArg<String> target,
-  ) = ComputeGlobalForwardingRuleBackendServiceOrTargetChoice;
+  const factory ComputeGlobalForwardingRuleTarget.target(TfArg<String> target) =
+      ComputeGlobalForwardingRuleTargetChoice;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -331,12 +330,10 @@ sealed class ComputeGlobalForwardingRuleBackendServiceOrTarget {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ComputeGlobalForwardingRuleBackendServiceOrTarget.backendService] choice: sets `backend_service`.
-final class ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService
-    extends ComputeGlobalForwardingRuleBackendServiceOrTarget {
-  const ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService(
-    this.backendService,
-  );
+/// The [ComputeGlobalForwardingRuleTarget.backendService] choice: sets `backend_service`.
+final class ComputeGlobalForwardingRuleTargetBackendService
+    extends ComputeGlobalForwardingRuleTarget {
+  const ComputeGlobalForwardingRuleTargetBackendService(this.backendService);
 
   final RefTo<GoogleComputeBackendService> backendService;
 
@@ -357,10 +354,10 @@ final class ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService
   };
 }
 
-/// The [ComputeGlobalForwardingRuleBackendServiceOrTarget.target] choice: sets `target`.
-final class ComputeGlobalForwardingRuleBackendServiceOrTargetChoice
-    extends ComputeGlobalForwardingRuleBackendServiceOrTarget {
-  const ComputeGlobalForwardingRuleBackendServiceOrTargetChoice(this.target);
+/// The [ComputeGlobalForwardingRuleTarget.target] choice: sets `target`.
+final class ComputeGlobalForwardingRuleTargetChoice
+    extends ComputeGlobalForwardingRuleTarget {
+  const ComputeGlobalForwardingRuleTargetChoice(this.target);
 
   final TfArg<String> target;
 
@@ -455,7 +452,7 @@ final class ComputeGlobalForwardingRuleBackendServiceOrTargetChoice
 /// final feFwd = GoogleComputeGlobalForwardingRule(
 ///   'fe',
 ///   name: TfArg.literal('lb-https-frontend'),
-///   backendServiceOrTarget: .target(httpsProxy.selfLink),
+///   target: .target(httpsProxy.selfLink),
 ///   ipAddress: lbVip.selfLink,
 ///   ipProtocol: GlobalForwardingRuleIpProtocol.tcp,
 ///   portRange: TfArg.literal('443'),
@@ -472,8 +469,7 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
   GoogleComputeGlobalForwardingRule(
     super.localName, {
     required TfArg<String> name,
-    required ComputeGlobalForwardingRuleBackendServiceOrTarget
-    backendServiceOrTarget,
+    required ComputeGlobalForwardingRuleTarget target,
     TfArg<String>? ipAddress,
     GlobalForwardingRuleIpProtocol? ipProtocol,
     GlobalForwardingRuleIpVersion? ipVersion,
@@ -501,7 +497,7 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           ...backendServiceOrTarget.argMap,
+           ...target.argMap,
            'ip_address': ?ipAddress,
            'ip_protocol': ?ipProtocol,
            'ip_version': ?ipVersion,

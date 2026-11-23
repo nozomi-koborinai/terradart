@@ -9513,16 +9513,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'vpcAccessConnectorOrVpcAccess',
+          dartName: 'connectivity',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'vpc_access_connector':
-                'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector',
-            'vpc_access':
-                'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice',
+                'AppEngineStandardAppVersionConnectivityVpcAccessConnector',
+            'vpc_access': 'AppEngineStandardAppVersionConnectivityVpcAccess',
           },
         ),
         MigrateSlot(
@@ -46990,15 +46989,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'backendServiceOrTarget',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'backend_service':
-                'ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService',
-            'target': 'ComputeGlobalForwardingRuleBackendServiceOrTargetChoice',
+                'ComputeGlobalForwardingRuleTargetBackendService',
+            'target': 'ComputeGlobalForwardingRuleTargetChoice',
           },
         ),
         MigrateSlot(
@@ -175481,15 +175480,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'evaluationRequestOrGcsUri',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'evaluation_request':
-                'VertexAiEvaluationItemEvaluationRequestOrGcsUriEvaluationRequest',
-            'gcs_uri': 'VertexAiEvaluationItemEvaluationRequestOrGcsUriChoice',
+                'VertexAiEvaluationItemSourceEvaluationRequest',
+            'gcs_uri': 'VertexAiEvaluationItemSourceGcsUri',
           },
         ),
         MigrateSlot(
@@ -190513,6 +190512,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'basicScaling',
     ),
+    'AppEngineStandardAppVersionConnectivityVpcAccess': MigrateHelper(
+      className: 'AppEngineStandardAppVersionConnectivityVpcAccess',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vpc_access',
+          dartName: 'vpcAccess',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'AppEngineStandardAppVersionVpcAccess',
+        ),
+      ],
+      shorthand: 'vpcAccess',
+    ),
+    'AppEngineStandardAppVersionConnectivityVpcAccessConnector': MigrateHelper(
+      className: 'AppEngineStandardAppVersionConnectivityVpcAccessConnector',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vpc_access_connector',
+          dartName: 'vpcAccessConnector',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'AppEngineStandardAppVersionVpcAccessConnector',
+        ),
+      ],
+      shorthand: 'vpcAccessConnector',
+    ),
     'AppEngineStandardAppVersionDeployment': MigrateHelper(
       className: 'AppEngineStandardAppVersionDeployment',
       slots: <MigrateSlot>[
@@ -190873,40 +190902,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice':
-        MigrateHelper(
-          className:
-              'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'vpc_access',
-              dartName: 'vpcAccess',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'AppEngineStandardAppVersionVpcAccess',
-            ),
-          ],
-          shorthand: 'vpcAccess',
-        ),
-    'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector':
-        MigrateHelper(
-          className:
-              'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'vpc_access_connector',
-              dartName: 'vpcAccessConnector',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'AppEngineStandardAppVersionVpcAccessConnector',
-            ),
-          ],
-          shorthand: 'vpcAccessConnector',
-        ),
     'AppEngineStandardAppVersionZip': MigrateHelper(
       className: 'AppEngineStandardAppVersionZip',
       slots: <MigrateSlot>[
@@ -226808,37 +226803,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService':
-        MigrateHelper(
-          className:
-              'ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'backend_service',
-              dartName: 'backendService',
-              kind: MigrateSlotKind.reference,
-              required: true,
-              positional: true,
-              dartType: 'GoogleComputeBackendService',
-              attribute: 'self_link',
-            ),
-          ],
-          shorthand: 'backendService',
-        ),
-    'ComputeGlobalForwardingRuleBackendServiceOrTargetChoice': MigrateHelper(
-      className: 'ComputeGlobalForwardingRuleBackendServiceOrTargetChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'target',
-          dartName: 'target',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'target',
-    ),
     'ComputeGlobalForwardingRuleMetadataFilter': MigrateHelper(
       className: 'ComputeGlobalForwardingRuleMetadataFilter',
       slots: <MigrateSlot>[
@@ -226897,6 +226861,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ComputeGlobalForwardingRuleTargetBackendService': MigrateHelper(
+      className: 'ComputeGlobalForwardingRuleTargetBackendService',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'backend_service',
+          dartName: 'backendService',
+          kind: MigrateSlotKind.reference,
+          required: true,
+          positional: true,
+          dartType: 'GoogleComputeBackendService',
+          attribute: 'self_link',
+        ),
+      ],
+      shorthand: 'backendService',
+    ),
+    'ComputeGlobalForwardingRuleTargetChoice': MigrateHelper(
+      className: 'ComputeGlobalForwardingRuleTargetChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'target',
+          dartName: 'target',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'target',
     ),
     'ComputeGlobalVmExtensionPolicyExtensionPolicies': MigrateHelper(
       className: 'ComputeGlobalVmExtensionPolicyExtensionPolicies',
@@ -333764,18 +333757,47 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VertexAiEvaluationItemContent': MigrateHelper(
-      className: 'VertexAiEvaluationItemContent',
+    'VertexAiEvaluationItemContentAgentData': MigrateHelper(
+      className: 'VertexAiEvaluationItemContentAgentData',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'property',
-          dartName: 'property',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'VertexAiEvaluationItemProperty',
+          tfName: 'agent_data',
+          dartName: 'agentData',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
       ],
+      shorthand: 'agentData',
+    ),
+    'VertexAiEvaluationItemContentText': MigrateHelper(
+      className: 'VertexAiEvaluationItemContentText',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'text',
+          dartName: 'text',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'text',
+    ),
+    'VertexAiEvaluationItemContentValue': MigrateHelper(
+      className: 'VertexAiEvaluationItemContentValue',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'value',
     ),
     'VertexAiEvaluationItemEvaluationRequest': MigrateHelper(
       className: 'VertexAiEvaluationItemEvaluationRequest',
@@ -333823,54 +333845,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VertexAiEvaluationItemEvaluationRequestOrGcsUriChoice': MigrateHelper(
-      className: 'VertexAiEvaluationItemEvaluationRequestOrGcsUriChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'gcs_uri',
-          dartName: 'gcsUri',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'gcsUri',
-    ),
-    'VertexAiEvaluationItemEvaluationRequestOrGcsUriEvaluationRequest':
-        MigrateHelper(
-          className:
-              'VertexAiEvaluationItemEvaluationRequestOrGcsUriEvaluationRequest',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'evaluation_request',
-              dartName: 'evaluationRequest',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiEvaluationItemEvaluationRequest',
-            ),
-          ],
-          shorthand: 'evaluationRequest',
-        ),
     'VertexAiEvaluationItemGoldenResponse': MigrateHelper(
       className: 'VertexAiEvaluationItemGoldenResponse',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'textOrValueOrAgentData',
+          dartName: 'content',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'text':
-                'VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataText',
-            'value':
-                'VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataValue',
-            'agent_data':
-                'VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataChoice',
+            'text': 'VertexAiEvaluationItemContentText',
+            'value': 'VertexAiEvaluationItemContentValue',
+            'agent_data': 'VertexAiEvaluationItemContentAgentData',
           },
         ),
         MigrateSlot(
@@ -333882,54 +333870,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataChoice':
-        MigrateHelper(
-          className:
-              'VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'agent_data',
-              dartName: 'agentData',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'agentData',
-        ),
-    'VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataText':
-        MigrateHelper(
-          className:
-              'VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataText',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'text',
-              dartName: 'text',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'text',
-        ),
-    'VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataValue':
-        MigrateHelper(
-          className:
-              'VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataValue',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'value',
-              dartName: 'value',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'value',
-        ),
     'VertexAiEvaluationItemPromptAgentData': MigrateHelper(
       className: 'VertexAiEvaluationItemPromptAgentData',
       slots: <MigrateSlot>[
@@ -334061,6 +334001,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'VertexAiEvaluationItemRubricsContent': MigrateHelper(
+      className: 'VertexAiEvaluationItemRubricsContent',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'property',
+          dartName: 'property',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiEvaluationItemProperty',
+        ),
+      ],
+    ),
     'VertexAiEvaluationItemRubricsRubrics': MigrateHelper(
       className: 'VertexAiEvaluationItemRubricsRubrics',
       slots: <MigrateSlot>[
@@ -334091,9 +334044,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.helper,
           required: true,
           wrapped: false,
-          helper: 'VertexAiEvaluationItemContent',
+          helper: 'VertexAiEvaluationItemRubricsContent',
         ),
       ],
+    ),
+    'VertexAiEvaluationItemSourceEvaluationRequest': MigrateHelper(
+      className: 'VertexAiEvaluationItemSourceEvaluationRequest',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'evaluation_request',
+          dartName: 'evaluationRequest',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VertexAiEvaluationItemEvaluationRequest',
+        ),
+      ],
+      shorthand: 'evaluationRequest',
+    ),
+    'VertexAiEvaluationItemSourceGcsUri': MigrateHelper(
+      className: 'VertexAiEvaluationItemSourceGcsUri',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gcs_uri',
+          dartName: 'gcsUri',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'gcsUri',
     ),
     'VertexAiEvaluationItemUserScenario': MigrateHelper(
       className: 'VertexAiEvaluationItemUserScenario',

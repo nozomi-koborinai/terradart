@@ -287,18 +287,18 @@ final class AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.vpcAccessConnector(...)`.
-sealed class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess {
-  const AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess();
+sealed class AppEngineStandardAppVersionConnectivity {
+  const AppEngineStandardAppVersionConnectivity();
 
   /// Sets `vpc_access_connector`.
-  const factory AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccessConnector(
+  const factory AppEngineStandardAppVersionConnectivity.vpcAccessConnector(
     AppEngineStandardAppVersionVpcAccessConnector vpcAccessConnector,
-  ) = AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector;
+  ) = AppEngineStandardAppVersionConnectivityVpcAccessConnector;
 
   /// Sets `vpc_access`.
-  const factory AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccess(
+  const factory AppEngineStandardAppVersionConnectivity.vpcAccess(
     AppEngineStandardAppVersionVpcAccess vpcAccess,
-  ) = AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice;
+  ) = AppEngineStandardAppVersionConnectivityVpcAccess;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -313,10 +313,10 @@ sealed class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccessConnector] choice: sets `vpc_access_connector`.
-final class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector
-    extends AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess {
-  const AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector(
+/// The [AppEngineStandardAppVersionConnectivity.vpcAccessConnector] choice: sets `vpc_access_connector`.
+final class AppEngineStandardAppVersionConnectivityVpcAccessConnector
+    extends AppEngineStandardAppVersionConnectivity {
+  const AppEngineStandardAppVersionConnectivityVpcAccessConnector(
     this.vpcAccessConnector,
   );
 
@@ -339,12 +339,10 @@ final class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector
   };
 }
 
-/// The [AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccess] choice: sets `vpc_access`.
-final class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice
-    extends AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess {
-  const AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice(
-    this.vpcAccess,
-  );
+/// The [AppEngineStandardAppVersionConnectivity.vpcAccess] choice: sets `vpc_access`.
+final class AppEngineStandardAppVersionConnectivityVpcAccess
+    extends AppEngineStandardAppVersionConnectivity {
+  const AppEngineStandardAppVersionConnectivityVpcAccess(this.vpcAccess);
 
   final AppEngineStandardAppVersionVpcAccess vpcAccess;
 
@@ -1006,8 +1004,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     required AppEngineStandardAppVersionDeployment deployment,
     required AppEngineStandardAppVersionEntrypoint entrypoint,
     AppEngineStandardAppVersionScaling? scaling,
-    AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess?
-    vpcAccessConnectorOrVpcAccess,
+    AppEngineStandardAppVersionConnectivity? connectivity,
     AppEngineStandardAppVersionLegacyServices? legacyServices,
     TfArg<bool>? deleteServiceOnDestroy,
     TfArg<String>? deletionPolicy,
@@ -1035,7 +1032,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
            'deployment': TfArg.literal(deployment.encode()),
            'entrypoint': TfArg.literal(entrypoint.encode()),
            ...?scaling?.argMap,
-           ...?vpcAccessConnectorOrVpcAccess?.argMap,
+           ...?connectivity?.argMap,
            ...?legacyServices?.argMap,
            'delete_service_on_destroy': ?deleteServiceOnDestroy,
            'deletion_policy': ?deletionPolicy,

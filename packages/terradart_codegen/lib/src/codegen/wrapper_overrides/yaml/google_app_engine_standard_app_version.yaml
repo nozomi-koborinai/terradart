@@ -23,6 +23,7 @@ extraImports:
 
 sealedNames:
   "app_engine_apis, app_engine_bundled_services": legacy_services
+  "vpc_access, vpc_access_connector": connectivity
 
 paramOrder:
   - service
