@@ -46,6 +46,8 @@ export 'src/config/aws_config_configuration_recorder_status.dart'
     show AwsConfigConfigurationRecorderStatus;
 export 'src/config/aws_config_conformance_pack.dart'
     show AwsConfigConformancePack, ConfigConformancePackInputParameter;
+export 'src/config/aws_config_connector.dart'
+    show AwsConfigConnector, ConfigConnectorAzure, ConfigConnectorConfiguration;
 export 'src/config/aws_config_delivery_channel.dart'
     show
         AwsConfigDeliveryChannel,

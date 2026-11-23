@@ -67,6 +67,7 @@ export 'src/elasticache/aws_elasticache_reserved_cache_node.dart'
 export 'src/elasticache/aws_elasticache_serverless_cache.dart'
     show
         AwsElasticacheServerlessCache,
+        ElasticacheServerlessCacheConnectionType,
         ElasticacheServerlessCacheDataStorage,
         ElasticacheServerlessCacheEcpuPerSecond,
         ElasticacheServerlessCacheNetworkType,

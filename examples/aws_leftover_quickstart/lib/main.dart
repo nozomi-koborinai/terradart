@@ -1609,6 +1609,14 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsBedrockGuardrailResourcePolicy(
+        'bedrock_guardrail_resource_policy',
+        policy: .literal(policy),
+        resourceArn: .literal(arn),
+      ),
+    );
+
+    add(
       AwsBedrockGuardrailVersion(
         'bedrock_guardrail_version',
         guardrailArn: .literal(arn),
@@ -3611,6 +3619,22 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsConfigConnector(
+        'config_connector',
+        connectorConfiguration: [
+          ConfigConnectorConfiguration(
+            azure: [
+              .new(
+                clientIdentifier: .literal(leftover),
+                tenantIdentifier: .literal(leftover),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+
+    add(
       AwsConfigDeliveryChannel(
         'config_delivery_channel',
         s3BucketName: .literal(leftover),
@@ -4806,6 +4830,25 @@ final class AwsLeftoverStack extends Stack {
         'dsql_cluster_policy',
         identifier: .literal('abcdefghijklmnopqrstuvwxyz'),
         policy: .literal(policy),
+      ),
+    );
+
+    add(
+      AwsDsqlStream(
+        'dsql_stream',
+        clusterIdentifier: .literal('00000000000000000000000000'),
+        format: .json,
+        ordering: .unordered,
+        targetDefinition: [
+          DsqlStreamTargetDefinition(
+            kinesis: [
+              .new(
+                roleArn: .literal(arn),
+                streamArn: .literal('arn:awsa:kinesis:a:000000000000:stream/0'),
+              ),
+            ],
+          ),
+        ],
       ),
     );
 
@@ -9535,6 +9578,52 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsNetworksecuritymanagerAdminAccount(
+        'networksecuritymanager_admin_account',
+        accountId: .literal('123456789012'),
+        priority: .literal(1),
+      ),
+    );
+
+    add(
+      AwsNetworksecuritymanagerDeployment(
+        'networksecuritymanager_deployment',
+        name: .literal(leftover),
+        policyArns: .literal([arn]),
+        scopeArn: .literal(arn),
+        configuration: [
+          NetworksecuritymanagerDeploymentConfiguration(
+            enableCrossAccountVisibility: .literal(true),
+          ),
+        ],
+      ),
+    );
+
+    add(
+      AwsNetworksecuritymanagerPolicy(
+        'networksecuritymanager_policy',
+        firewallType: .waf,
+        name: .literal(leftover),
+        priority: .literal(200),
+        configuration: [
+          NetworksecuritymanagerPolicyConfiguration(
+            remediationEnabled: .literal(true),
+            resourcesCleanUp: .literal(true),
+          ),
+        ],
+      ),
+    );
+
+    add(
+      AwsNetworksecuritymanagerTemplate(
+        'networksecuritymanager_template',
+        firewallType: .waf,
+        name: .literal(leftover),
+        ruleArns: .literal([arn]),
+      ),
+    );
+
+    add(
       AwsNotificationsChannelAssociation(
         'notifications_channel_association',
         arn: .literal(arn),
@@ -10209,6 +10298,12 @@ final class AwsLeftoverStack extends Stack {
         'pinpointsmsvoicev2_pool',
         messageType: .transactional,
         originationIdentities: .literal([leftover]),
+      ),
+    );
+
+    add(
+      AwsPinpointsmsvoicev2ProtectConfiguration(
+        'pinpointsmsvoicev2_protect_configuration',
       ),
     );
 
@@ -12700,7 +12795,15 @@ final class AwsLeftoverStack extends Stack {
         'securityhub_connector_v2',
         name: .literal(leftover),
         connectorProvider: [
-          .jiraCloud([.new(projectKey: .literal(leftover))]),
+          SecurityhubConnectorV2ConnectorProvider(
+            azure: [
+              .new(
+                awsConfigConnectorArn: .literal(arn),
+                azureRegions: .literal([leftover]),
+                scopeConfiguration: [.new(scopeType: .tenant)],
+              ),
+            ],
+          ),
         ],
       ),
     );

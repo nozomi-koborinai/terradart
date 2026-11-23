@@ -9,65 +9,97 @@ import '../kms/aws_kms_key.dart' show AwsKmsKey;
 /// Sensitive field paths for `aws_securityhub_connector_v2`.
 const Set<String> _awsSecurityhubConnectorV2Sensitive = <String>{};
 
-/// Exactly one of `jira_cloud`, `service_now` on the `connector_provider` block of `aws_securityhub_connector_v2`: the provider rejects
-/// none and more than one, so each variant sets one of them.
-///
-/// Pick one with a dot shorthand: `.jiraCloud(...)`.
-sealed class SecurityhubConnectorV2ConnectorProvider {
-  const SecurityhubConnectorV2ConnectorProvider();
+/// Typed helper for the `connector_provider` block of
+/// `aws_securityhub_connector_v2` (derived from provider schema).
+@immutable
+final class SecurityhubConnectorV2ConnectorProvider {
+  const SecurityhubConnectorV2ConnectorProvider({
+    this.azure,
+    this.jiraCloud,
+    this.serviceNow,
+  });
 
-  /// Sets `jira_cloud`.
-  const factory SecurityhubConnectorV2ConnectorProvider.jiraCloud(
-    List<SecurityhubConnectorV2JiraCloud> jiraCloud,
-  ) = SecurityhubConnectorV2ConnectorProviderJiraCloud;
+  final List<SecurityhubConnectorV2Azure>? azure;
 
-  /// Sets `service_now`.
-  const factory SecurityhubConnectorV2ConnectorProvider.serviceNow(
-    List<SecurityhubConnectorV2ServiceNow> serviceNow,
-  ) = SecurityhubConnectorV2ConnectorProviderServiceNow;
+  final List<SecurityhubConnectorV2JiraCloud>? jiraCloud;
 
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
+  final List<SecurityhubConnectorV2ServiceNow>? serviceNow;
 
   @internal
-  Map<String, Object?> encode();
-}
-
-/// The [SecurityhubConnectorV2ConnectorProvider.jiraCloud] choice: sets `jira_cloud`.
-final class SecurityhubConnectorV2ConnectorProviderJiraCloud
-    extends SecurityhubConnectorV2ConnectorProvider {
-  const SecurityhubConnectorV2ConnectorProviderJiraCloud(this.jiraCloud);
-
-  final List<SecurityhubConnectorV2JiraCloud> jiraCloud;
-
-  @internal
-  @override
-  String get blockKey => 'jira_cloud';
-
-  @internal
-  @override
   Map<String, Object?> encode() => {
-    'jira_cloud': [for (final e in jiraCloud) e.encode()],
+    if (azure != null) 'azure': [for (final e in azure!) e.encode()],
+    if (jiraCloud != null)
+      'jira_cloud': [for (final e in jiraCloud!) e.encode()],
+    if (serviceNow != null)
+      'service_now': [for (final e in serviceNow!) e.encode()],
   };
 }
 
-/// The [SecurityhubConnectorV2ConnectorProvider.serviceNow] choice: sets `service_now`.
-final class SecurityhubConnectorV2ConnectorProviderServiceNow
-    extends SecurityhubConnectorV2ConnectorProvider {
-  const SecurityhubConnectorV2ConnectorProviderServiceNow(this.serviceNow);
+/// Typed helper for the `connector_provider.azure` block of
+/// `aws_securityhub_connector_v2` (derived from provider schema).
+@immutable
+final class SecurityhubConnectorV2Azure {
+  const SecurityhubConnectorV2Azure({
+    required this.awsConfigConnectorArn,
+    required this.azureRegions,
+    this.scopeConfiguration,
+  });
 
-  final List<SecurityhubConnectorV2ServiceNow> serviceNow;
+  final TfArg<String> awsConfigConnectorArn;
+
+  final TfArg<List<String>> azureRegions;
+
+  final List<SecurityhubConnectorV2ScopeConfiguration>? scopeConfiguration;
 
   @internal
-  @override
-  String get blockKey => 'service_now';
-
-  @internal
-  @override
   Map<String, Object?> encode() => {
-    'service_now': [for (final e in serviceNow) e.encode()],
+    'aws_config_connector_arn': awsConfigConnectorArn.toTfJson(),
+    'azure_regions': azureRegions.toTfJson(),
+    if (scopeConfiguration != null)
+      'scope_configuration': [for (final e in scopeConfiguration!) e.encode()],
   };
+}
+
+/// Typed helper for the `connector_provider.azure.scope_configuration` block of
+/// `aws_securityhub_connector_v2` (derived from provider schema).
+@immutable
+final class SecurityhubConnectorV2ScopeConfiguration {
+  const SecurityhubConnectorV2ScopeConfiguration({
+    required this.scopeType,
+    this.scopeValues,
+  });
+
+  final SecurityhubConnectorV2ScopeType scopeType;
+
+  final TfArg<List<String>>? scopeValues;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'scope_type': scopeType.toTfJson(),
+    'scope_values': ?scopeValues?.toTfJson(),
+  };
+}
+
+/// `scope_type` — derived from the provider schema description.
+extension type const SecurityhubConnectorV2ScopeType._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityhubConnectorV2ScopeType.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityhubConnectorV2ScopeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityhubConnectorV2ScopeType.arg(TfArg<String> arg) : this._(arg);
+
+  static const tenant = SecurityhubConnectorV2ScopeType._(
+    TfArgLiteral('TENANT'),
+  );
+  static const subscription = SecurityhubConnectorV2ScopeType._(
+    TfArgLiteral('SUBSCRIPTION'),
+  );
+
+  static const List<SecurityhubConnectorV2ScopeType> values = [
+    tenant,
+    subscription,
+  ];
 }
 
 /// Typed helper for the `connector_provider.jira_cloud` block of

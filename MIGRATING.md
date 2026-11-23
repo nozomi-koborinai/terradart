@@ -2,6 +2,62 @@
 
 ## Unreleased
 
+### AWS provider 6.73.0
+
+**Breaking (`terradart_aws`).** Provider 6.73.0 adds `azure` (with
+`scope_configuration`) to `connector_provider` on
+`aws_securityhub_connector_v2` and removes the `ExactlyOneOf` validator between
+`jira_cloud` and `service_now`. `SecurityhubConnectorV2ConnectorProvider` is
+now a plain helper class with optional `azure`, `jiraCloud`, and `serviceNow`
+fields instead of a sealed class, and
+`SecurityhubConnectorV2ConnectorProviderJiraCloud` and
+`SecurityhubConnectorV2ConnectorProviderServiceNow` are removed.
+
+The same release narrows the nested statement blocks of
+`aws_wafv2_web_acl_rule` to the shapes AWS WAFv2 accepts. Nested
+`and_statement`, `or_statement`, and `not_statement` blocks no longer accept
+`managed_rule_group_statement`, `rate_based_statement`, or
+`rule_group_reference_statement`, which remain only on the top-level
+`Wafv2WebAclRuleStatement`. `and_statement` no longer directly nests
+`and_statement` (`Wafv2WebAclRuleAndStatementStatement.andStatement` is
+removed) and `or_statement` no longer directly nests `or_statement`
+(`Wafv2WebAclRuleStatementStatement.orStatement` is removed). Because the
+three combinators now have distinct child shapes, they take separate helper
+types instead of sharing `Wafv2WebAclRuleAndStatement`,
+`Wafv2WebAclRuleStatementAndStatement`, and
+`Wafv2WebAclRuleAndStatementAndStatement` (removed):
+
+- `Wafv2WebAclRuleStatement.notStatement` takes `Wafv2WebAclRuleNotStatement`
+  and `.orStatement` takes `Wafv2WebAclRuleOrStatement` (both previously
+  `Wafv2WebAclRuleAndStatement`).
+- `Wafv2WebAclRuleAndStatementStatement.notStatement` takes
+  `Wafv2WebAclRuleStatementNotStatement` and `.orStatement` takes
+  `Wafv2WebAclRuleStatementOrStatement` (both previously
+  `Wafv2WebAclRuleStatementAndStatement`).
+- `Wafv2WebAclRuleStatementAndStatement.statement` takes
+  `Wafv2WebAclRuleStatementAndStatementStatement` (previously
+  `Wafv2WebAclRuleStatementStatement`).
+- `Wafv2WebAclRuleStatementStatement.andStatement` and `.notStatement` take
+  `Wafv2WebAclRuleStatementAndStatement` (previously
+  `Wafv2WebAclRuleAndStatementAndStatement`).
+
+A `.new(...)` shorthand compiles unchanged wherever the child fields remain.
+The Terraform JSON for the same values is unchanged.
+
+| Before | After |
+|---|---|
+| `AwsSecurityhubConnectorV2('c', name: .literal('c'), connectorProvider: [.jiraCloud([.new(projectKey: .literal('PROJ'))])])` | `AwsSecurityhubConnectorV2('c', name: .literal('c'), connectorProvider: [SecurityhubConnectorV2ConnectorProvider(jiraCloud: [.new(projectKey: .literal('PROJ'))])])` |
+| `AwsSecurityhubConnectorV2('c', name: .literal('c'), connectorProvider: [.serviceNow([.new(instanceName: .literal('i'), secretArn: .literal('a'))])])` | `AwsSecurityhubConnectorV2('c', name: .literal('c'), connectorProvider: [SecurityhubConnectorV2ConnectorProvider(serviceNow: [.new(instanceName: .literal('i'), secretArn: .literal('a'))])])` |
+| `Wafv2WebAclRuleStatement(notStatement: [Wafv2WebAclRuleAndStatement(...)])` | `Wafv2WebAclRuleStatement(notStatement: [Wafv2WebAclRuleNotStatement(...)])` |
+| `Wafv2WebAclRuleStatement(orStatement: [Wafv2WebAclRuleAndStatement(...)])` | `Wafv2WebAclRuleStatement(orStatement: [Wafv2WebAclRuleOrStatement(...)])` |
+| `Wafv2WebAclRuleAndStatementStatement(notStatement: [Wafv2WebAclRuleStatementAndStatement(...)])` | `Wafv2WebAclRuleAndStatementStatement(notStatement: [Wafv2WebAclRuleStatementNotStatement(...)])` |
+| `Wafv2WebAclRuleAndStatementStatement(orStatement: [Wafv2WebAclRuleStatementAndStatement(...)])` | `Wafv2WebAclRuleAndStatementStatement(orStatement: [Wafv2WebAclRuleStatementOrStatement(...)])` |
+| `Wafv2WebAclRuleStatementAndStatement(statement: [Wafv2WebAclRuleStatementStatement(...)])` | `Wafv2WebAclRuleStatementAndStatement(statement: [Wafv2WebAclRuleStatementAndStatementStatement(...)])` |
+| `Wafv2WebAclRuleStatementStatement(andStatement: [Wafv2WebAclRuleAndStatementAndStatement(...)])` | `Wafv2WebAclRuleStatementStatement(andStatement: [Wafv2WebAclRuleStatementAndStatement(...)])` |
+| `Wafv2WebAclRuleStatementStatement(notStatement: [Wafv2WebAclRuleAndStatementAndStatement(...)])` | `Wafv2WebAclRuleStatementStatement(notStatement: [Wafv2WebAclRuleStatementAndStatement(...)])` |
+| `Wafv2WebAclRuleAndStatementStatement(managedRuleGroupStatement: [Wafv2WebAclRuleManagedRuleGroupStatement(...)])` | `Wafv2WebAclRuleStatement(managedRuleGroupStatement: [Wafv2WebAclRuleManagedRuleGroupStatement(...)])` |
+| `Wafv2WebAclRuleAndStatementStatement(rateBasedStatement: [Wafv2WebAclRuleRateBasedStatement(...)])` | `Wafv2WebAclRuleStatement(rateBasedStatement: [Wafv2WebAclRuleRateBasedStatement(...)])` |
+
 ### Appwrite provider 2.7.0
 
 **Breaking (`terradart_appwrite`).** Provider 2.7.0 removes the
@@ -117,32 +173,16 @@ provider (`GoogleProvider` must be in the Stack). Confirm that
 
 ### AWS provider 6.71.0
 
-**Breaking (`terradart_aws`).** Provider 6.71.0 lets the top-level
-`scope_down_statement` of `aws_wafv2_web_acl_rule` nest `and_statement`,
-`or_statement` and `not_statement`. The managed rule group and rate-based
-statements inside a nested `statement` keep the shallower shape, so they
-take their own types. `Wafv2WebAclRuleManagedRuleGroupStatement` and
-`Wafv2WebAclRuleRateBasedStatement` stay the types of the top-level
-`Wafv2WebAclRuleStatement`. Inside `Wafv2WebAclRuleAndStatementStatement`,
-`Wafv2WebAclRuleStatementStatement` and
-`Wafv2WebAclRuleStatementAndStatementStatement`, the
-`managedRuleGroupStatement` and `rateBasedStatement` fields take
-`Wafv2WebAclRuleStatementManagedRuleGroupStatement` and
-`Wafv2WebAclRuleStatementRateBasedStatement`. The fields are the same. A
-`.new(...)` shorthand compiles unchanged.
-
-The same release adds `route53_resolved_ip_validation` to
-`aws_networkfirewall_firewall_policy`, whose `action` takes
-`NetworkfirewallFirewallPolicyAction` (`reject`, `drop`, `alert`). The
-`action` of a stateful rule group `override` block takes
-`NetworkfirewallFirewallPolicyOverrideAction`, which has `dropToAlert`. A
-dot shorthand such as `.dropToAlert` compiles unchanged. The Terraform JSON
-for the same value is unchanged.
+**Breaking (`terradart_aws`).** Provider 6.71.0 adds
+`route53_resolved_ip_validation` to `aws_networkfirewall_firewall_policy`,
+whose `action` takes `NetworkfirewallFirewallPolicyAction` (`reject`, `drop`,
+`alert`). The `action` of a stateful rule group `override` block takes
+`NetworkfirewallFirewallPolicyOverrideAction`, which has `dropToAlert`. A dot
+shorthand such as `.dropToAlert` compiles unchanged. The Terraform JSON for the
+same value is unchanged.
 
 | Before | After |
 |---|---|
-| `Wafv2WebAclRuleAndStatementStatement(managedRuleGroupStatement: [Wafv2WebAclRuleManagedRuleGroupStatement(...)])` | `Wafv2WebAclRuleAndStatementStatement(managedRuleGroupStatement: [Wafv2WebAclRuleStatementManagedRuleGroupStatement(...)])` |
-| `Wafv2WebAclRuleAndStatementStatement(rateBasedStatement: [Wafv2WebAclRuleRateBasedStatement(...)])` | `Wafv2WebAclRuleAndStatementStatement(rateBasedStatement: [Wafv2WebAclRuleStatementRateBasedStatement(...)])` |
 | `NetworkfirewallFirewallPolicyOverride(action: NetworkfirewallFirewallPolicyAction.dropToAlert)` | `NetworkfirewallFirewallPolicyOverride(action: NetworkfirewallFirewallPolicyOverrideAction.dropToAlert)` |
 
 ## 0.35.x → 0.36.0

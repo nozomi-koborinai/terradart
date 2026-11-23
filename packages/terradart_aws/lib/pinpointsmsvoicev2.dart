@@ -31,6 +31,8 @@ export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_phone_number.dart'
         Pinpointsmsvoicev2PhoneNumberType;
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_pool.dart'
     show AwsPinpointsmsvoicev2Pool, Pinpointsmsvoicev2PoolMessageType;
+export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_protect_configuration.dart'
+    show AwsPinpointsmsvoicev2ProtectConfiguration;
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_resource_policy.dart'
     show AwsPinpointsmsvoicev2ResourcePolicy;
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_sender_id.dart'
