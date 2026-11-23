@@ -43,8 +43,9 @@ prelude: |
 
     static const scimUsageUnspecified = IamWorkforcePoolProviderScimUsage._(TfArgLiteral('SCIM_USAGE_UNSPECIFIED'));
     static const enabledForGroups = IamWorkforcePoolProviderScimUsage._(TfArgLiteral('ENABLED_FOR_GROUPS'));
+    static const enabledForUsersGroups = IamWorkforcePoolProviderScimUsage._(TfArgLiteral('ENABLED_FOR_USERS_GROUPS'));
 
-    static const List<IamWorkforcePoolProviderScimUsage> values = [scimUsageUnspecified, enabledForGroups];
+    static const List<IamWorkforcePoolProviderScimUsage> values = [scimUsageUnspecified, enabledForGroups, enabledForUsersGroups];
   }
 
 dartTypeOverrides:

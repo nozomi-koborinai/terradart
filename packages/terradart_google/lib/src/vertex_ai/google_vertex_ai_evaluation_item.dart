@@ -7,6 +7,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_vertex_ai_evaluation_item`.
 const Set<String> _googleVertexAiEvaluationItemSensitive = <String>{};
 
+/// Vertex Ai Evaluation Item enum for `evaluation_item_type`.
+extension type const VertexAiEvaluationItemType._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiEvaluationItemType.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiEvaluationItemType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiEvaluationItemType.arg(TfArg<String> arg) : this._(arg);
+
+  static const request = VertexAiEvaluationItemType._(TfArgLiteral('REQUEST'));
+  static const result = VertexAiEvaluationItemType._(TfArgLiteral('RESULT'));
+
+  static const List<VertexAiEvaluationItemType> values = [request, result];
+}
+
 /// Exactly one of `evaluation_request`, `gcs_uri` on `google_vertex_ai_evaluation_item`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -512,7 +527,7 @@ final class GoogleVertexAiEvaluationItem extends Resource {
     super.localName, {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
-    required TfArg<String> evaluationItemType,
+    required VertexAiEvaluationItemType evaluationItemType,
     required VertexAiEvaluationItemEvaluationRequestOrGcsUri
     evaluationRequestOrGcsUri,
     TfArg<Map<String, String>>? labels,

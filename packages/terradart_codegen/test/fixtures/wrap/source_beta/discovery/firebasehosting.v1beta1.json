@@ -47,6 +47,12 @@
     },
     "CustomDomain": {
       "properties": {
+        "cert": {
+          "$ref": "Certificate"
+        },
+        "requiredDnsUpdates": {
+          "$ref": "DnsUpdates"
+        },
         "ownershipState": {
           "enum": [
             "OWNERSHIP_STATE_UNSPECIFIED",
@@ -58,6 +64,15 @@
             "OWNERSHIP_ACTIVE"
           ]
         },
+        "certPreference": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TEMPORARY",
+            "GROUPED",
+            "PROJECT_GROUPED",
+            "DEDICATED"
+          ]
+        },
         "hostState": {
           "enum": [
             "HOST_STATE_UNSPECIFIED",
@@ -67,26 +82,18 @@
             "HOST_CONFLICT",
             "HOST_ACTIVE"
           ]
-        },
-        "cert": {
-          "$ref": "Certificate"
-        },
-        "requiredDnsUpdates": {
-          "$ref": "DnsUpdates"
-        },
-        "certPreference": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "TEMPORARY",
-            "GROUPED",
-            "PROJECT_GROUPED",
-            "DEDICATED"
-          ]
         }
       }
     },
     "DnsRecord": {
       "properties": {
+        "requiredAction": {
+          "enum": [
+            "NONE",
+            "ADD",
+            "REMOVE"
+          ]
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -95,13 +102,6 @@
             "TXT",
             "AAAA",
             "CAA"
-          ]
-        },
-        "requiredAction": {
-          "enum": [
-            "NONE",
-            "ADD",
-            "REMOVE"
           ]
         }
       }
@@ -146,17 +146,17 @@
     },
     "ServingConfig": {
       "properties": {
-        "appAssociation": {
-          "enum": [
-            "AUTO",
-            "NONE"
-          ]
-        },
         "trailingSlashBehavior": {
           "enum": [
             "TRAILING_SLASH_BEHAVIOR_UNSPECIFIED",
             "ADD",
             "REMOVE"
+          ]
+        },
+        "appAssociation": {
+          "enum": [
+            "AUTO",
+            "NONE"
           ]
         }
       }

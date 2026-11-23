@@ -208,6 +208,9 @@ extension type const SecurityPolicyRuleRateLimitEnforceOnKey._(TfArg<String> _)
   static const userIp = SecurityPolicyRuleRateLimitEnforceOnKey._(
     TfArgLiteral('USER_IP'),
   );
+  static const asn = SecurityPolicyRuleRateLimitEnforceOnKey._(
+    TfArgLiteral('ASN'),
+  );
 
   static const List<SecurityPolicyRuleRateLimitEnforceOnKey> values = [
     all,
@@ -221,6 +224,7 @@ extension type const SecurityPolicyRuleRateLimitEnforceOnKey._(TfArg<String> _)
     tlsJa3Fingerprint,
     tlsJa4Fingerprint,
     userIp,
+    asn,
   ];
 }
 

@@ -238,7 +238,7 @@ Each package wraps an official Terraform provider: one generated factory per res
 | Package | Terraform provider | Catalog | Pub |
 | :--- | :--- | :--- | :--- |
 | [`terradart_google`](packages/terradart_google) | `hashicorp/google` | **1405 curated resource factories + 475 data sources** (1880 catalog entries) | [![pub](https://img.shields.io/pub/v/terradart_google.svg)](https://pub.dev/packages/terradart_google) |
-| [`terradart_google_beta`](packages/terradart_google_beta) | `hashicorp/google-beta` | the beta-only types (**110 resource factories**); everything also in GA stays in `terradart_google` | [![pub](https://img.shields.io/pub/v/terradart_google_beta.svg)](https://pub.dev/packages/terradart_google_beta) |
+| [`terradart_google_beta`](packages/terradart_google_beta) | `hashicorp/google-beta` | the beta-only types (**107 resource factories**); everything also in GA stays in `terradart_google` | [![pub](https://img.shields.io/pub/v/terradart_google_beta.svg)](https://pub.dev/packages/terradart_google_beta) |
 | [`terradart_aws`](packages/terradart_aws) | `hashicorp/aws` | every resource and data source at the pinned provider version | [![pub](https://img.shields.io/pub/v/terradart_aws.svg)](https://pub.dev/packages/terradart_aws) |
 | [`terradart_azure`](packages/terradart_azure) | `hashicorp/azurerm` | every resource and data source at the pinned provider version | [![pub](https://img.shields.io/pub/v/terradart_azure.svg)](https://pub.dev/packages/terradart_azure) |
 | [`terradart_cloudflare`](packages/terradart_cloudflare) | `cloudflare/cloudflare` | every resource and data source at the pinned provider version | [![pub](https://img.shields.io/pub/v/terradart_cloudflare.svg)](https://pub.dev/packages/terradart_cloudflare) |

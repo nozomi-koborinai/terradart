@@ -13,7 +13,6 @@ import 'package:terradart_google_beta/ces.dart';
 import 'package:terradart_google_beta/chronicle.dart';
 import 'package:terradart_google_beta/compute.dart';
 import 'package:terradart_google_beta/container.dart';
-import 'package:terradart_google_beta/dataform.dart';
 import 'package:terradart_google_beta/dataplex.dart';
 import 'package:terradart_google_beta/firebase.dart';
 import 'package:terradart_google_beta/folder.dart';
@@ -373,26 +372,6 @@ final class BetaLeftoverStack extends Stack {
         membershipRbacRoleBindingId: .literal('terradart-leftover'),
         user: .literal('terradart-leftover'),
         role: GkeHubMembershipRbacRoleBindingRole(predefinedRole: .admin),
-      ),
-    );
-    add(
-      GoogleDataformConfig(
-        'dataform_config',
-        region: .literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleDataformRepositoryReleaseConfig(
-        'dataform_repository_release_config',
-        gitCommitish: .literal('terradart-leftover'),
-        name: .literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleDataformRepositoryWorkflowConfig(
-        'dataform_repository_workflow_config',
-        name: .literal('terradart-leftover'),
-        releaseConfig: .literal('terradart-leftover'),
       ),
     );
     add(

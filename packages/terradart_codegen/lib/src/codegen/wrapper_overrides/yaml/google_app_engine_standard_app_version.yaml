@@ -37,6 +37,7 @@ paramOrder:
   - automatic_scaling
   - manual_scaling
   - vpc_access_connector
+  - vpc_access
   - app_engine_apis
   - delete_service_on_destroy
   - deletion_policy

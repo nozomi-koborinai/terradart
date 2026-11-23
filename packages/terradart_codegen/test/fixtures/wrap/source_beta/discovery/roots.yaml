@@ -7,29 +7,28 @@ provider_version: 8.11.0
 upstream_ref: c41dcfd1e7c47bd0dac83bf39818d19c584f7e9d
 hand_roots: 9dedf670f90a7b98
 digests:
-  aiplatform.v1beta1: f448a866b3d6f61f5f791f64ffc72c7d2952e1f9e321e79d6a2e6e276dd7d756
-  analyticshub.v1: 1320f8c436f3945ea5043bf3c1c67e70b5dcfbffa8c0afdc934bbb4486e7e1ab
-  apigateway.v1beta: 9e68d7ba2a62a19dbd2e4f29201fca9f0910c941ecd5fd0291a28d00a4f21bee
-  ces.v1beta: aec6c7d5a4d1ef19ac3287c368fd8ab5c1e3f835585615e9bbd54d546653b291
-  cloudidentity.v1beta1: 59d439c9f1664b7289df3967b045151e5ef18fa5fab0d5344ea99dcb46eab5eb
+  aiplatform.v1beta1: 56faaa2cdaf189e8beadc7eb7e2ace7a9789a1e2ffae1073ff509ab114392169
+  analyticshub.v1: f01205ab371f986294ed148b6ecd8dae6b81a40904f2aad3fcc4f1cfeaa366f5
+  apigateway.v1beta: d95eda6fab061a2ee919808ce36dc315bd44d4ef7f98a296eaedad0c7d5d7494
+  ces.v1beta: c2171f26535686144d5f704fe4d693544c0c31e4ed25c90f8472901343a75e62
+  cloudidentity.v1beta1: d0806809d22021ea0c47fde3cadb8dc703e6a9923bde56435a9f901a7967cac7
   cloudkms.v1: bb7ddc490b025814f576a1c70b1fa84b8ebab69963b8620b885675f5f7db32ff
-  compute.beta: d9ce5e5e3e2cc7d4fc91e4c0ab16fa5693fcb60cd523b6b7e3e7dac4bb39d930
-  dataform.v1beta1: 94b20975f7e40b02b6bd69a79af4c9a5bb3f4eacf5311cf107292a315c499ca9
-  dataplex.v1: d73011497f68b819612fea95169149ed386eeb5c6e78dcee361f17f6131876da
-  firebase.v1beta1: 98a7b0b3d2f53f94b0a156942cff51edfd70bed21bae1a1725a9880913c2026e
-  firebasedatabase.v1beta: 4a4ac21963646b32c42255d654b5030a8d8c64805cc35d28f25e4790b0637a4e
-  firebasehosting.v1beta1: 984b53ce9af03e239ff8ba4714aefb540ba12b6a300903993afb9f0d45cf57f2
+  compute.beta: f97ac606f4b3f665190b31b71e76a21f575115c1fb2b0c50736c6c729f4c6867
+  dataplex.v1: c35c1b7d999b4ae2291b5b4acd54f56d6b7fe904f0371b662266e45dd09dd1d1
+  firebase.v1beta1: 7e78e68bb39a556ab5de3d492602ea78b12ce874e310bedac37dfc59bfd14a23
+  firebasedatabase.v1beta: 1400179a5db39b6354ea2ab35cfa623592ac8779cd46bd11371cba2774daed2c
+  firebasehosting.v1beta1: f19054ee704245d365bf14fee9290894c3f205615c929e0cf54d8d951b96dfca
   firebasestorage.v1beta: 2fb868156b574a7c0301a9c6ccddcb8f58c88e0a36b178c2c3d338059aeb35ce
-  firebasevertexai.v1beta: 0ad123c9942cd0d047d677956db85889fe1aa7bf4fdd3e8100886b5d3b936e9d
+  firebasevertexai.v1beta: 8174e035a83afdd814247deb6451c1b2d2eab915757bfd8e919dce9a34ddbac9
   gkehub.v1beta: 69490d15dd81bb2f2078192e3ccf3f5f84211abf3bb34f60ed1ee2c49595d9d9
   managedidentities.v1beta1: cc76bf56b68e2b52e7f5ec2d0b8d480ee303715cfc8257276510d5dffdf896da
-  networksecurity.v1beta1: b50d0530a5a5d8b24571e429f6d1e6275250067230ae53eefc1ff09cf4b037ce
-  osconfig.v1beta: 3535cb693ea0b4a8b9204a2be5d447a2fc24e8ec068661dc35fd9ca631dbe2c0
-  privilegedaccessmanager.v1beta: c63a36ecb6cb607afa6ec9289287cd4eb4d8291b4b0408b0576a7764799e117e
-  saasservicemgmt.v1beta1: f72ee860227396c4da57e5a765faae3994e912deafacb052baa585bdec461e55
+  networksecurity.v1beta1: f0f61742f26ea4cdf7993290ef57945f9a2f52548178725e34a3c8a426269b5b
+  osconfig.v1beta: c8610d0c44d979269109c40dfe632a2101e88fde1d743769b2121d8282ae6fe2
+  privilegedaccessmanager.v1beta: c7a0a98d10e062c79f83ef69178d6b3dc1b70be233d832dc1250fa5d9fdb6ef3
+  saasservicemgmt.v1beta1: 44c4f82c6601d8ea095a1eb4522e4cc6087a39cc6549deb162ff1f76c34bb74e
   serviceusage.v1beta1: 142ad4f8d7fad3dd91333a60c5f245483e39243117027b1fab05f69415db6589
-  tpu.v2alpha1: b737c56c3ed222c41c3d63d3ec814acf6a22afc77580305b741fd0893697b183
-  websecurityscanner.v1beta: 99a747767768dc16ed6dfb1d72e59e69fd767e8dddcd5097a3437c2aebb4d493
+  tpu.v2alpha1: 7b25e769b724e2c039a4c9440e0a2183b894a8fc8fc8fc7edee285d7694dcd33
+  websecurityscanner.v1beta: 2a3e6e6e489eb980acc039635f632925c2fa7595afde89838f883544c3781cf0
 resources:
   google_active_directory_peering:
     doc: managedidentities.v1beta1
@@ -94,15 +93,6 @@ resources:
   google_compute_region_backend_service_iam_policy: null  # no Magic Modules YAML and no hand root
   google_compute_region_network_policy: null  # no Discovery version in the base_url of compute
   google_compute_region_network_policy_traffic_classification_rule: null  # no Discovery version in the base_url of compute
-  google_dataform_config:
-    doc: dataform.v1beta1
-    schema: Config
-  google_dataform_repository_release_config:
-    doc: dataform.v1beta1
-    schema: ReleaseConfig
-  google_dataform_repository_workflow_config:
-    doc: dataform.v1beta1
-    schema: WorkflowConfig
   google_dataplex_data_asset:
     doc: dataplex.v1
     schema: GoogleCloudDataplexV1DataAsset

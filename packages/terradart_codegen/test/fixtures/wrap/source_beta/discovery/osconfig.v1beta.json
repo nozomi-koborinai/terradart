@@ -1,7 +1,7 @@
 {
   "name": "osconfig",
   "version": "v1beta",
-  "revision": "20261106",
+  "revision": "20261117",
   "sourceUrl": "https://osconfig.googleapis.com/$discovery/rest?version=v1beta",
   "schemas": {
     "AptRepository": {
@@ -22,14 +22,14 @@
             "$ref": "SoftwareRecipe"
           }
         },
-        "packages": {
-          "items": {
-            "$ref": "Package"
-          }
-        },
         "packageRepositories": {
           "items": {
             "$ref": "PackageRepository"
+          }
+        },
+        "packages": {
+          "items": {
+            "$ref": "Package"
           }
         }
       }
@@ -65,7 +65,7 @@
     },
     "SoftwareRecipe": {
       "properties": {
-        "installSteps": {
+        "updateSteps": {
           "items": {
             "$ref": "SoftwareRecipeStep"
           }
@@ -78,7 +78,7 @@
             "REMOVED"
           ]
         },
-        "updateSteps": {
+        "installSteps": {
           "items": {
             "$ref": "SoftwareRecipeStep"
           }

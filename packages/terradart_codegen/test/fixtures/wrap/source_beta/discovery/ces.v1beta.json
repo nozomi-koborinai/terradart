@@ -1,7 +1,7 @@
 {
   "name": "ces",
   "version": "v1beta",
-  "revision": "20261106",
+  "revision": "20261114",
   "sourceUrl": "https://ces.googleapis.com/$discovery/rest?version=v1beta",
   "schemas": {
     "EndpointControlPolicy": {
@@ -17,10 +17,8 @@
     },
     "Evaluation": {
       "properties": {
-        "lastTenResults": {
-          "items": {
-            "$ref": "EvaluationResult"
-          }
+        "evaluationMetricsThresholdOverride": {
+          "$ref": "EvaluationMetricsThresholds"
         },
         "lastCompletedResult": {
           "$ref": "EvaluationResult"
@@ -31,8 +29,10 @@
         "scenario": {
           "$ref": "EvaluationScenario"
         },
-        "evaluationMetricsThresholdOverride": {
-          "$ref": "EvaluationMetricsThresholds"
+        "lastTenResults": {
+          "items": {
+            "$ref": "EvaluationResult"
+          }
         }
       }
     },
@@ -40,6 +40,9 @@
       "properties": {
         "inputAudioConfig": {
           "$ref": "InputAudioConfig"
+        },
+        "outputAudioConfig": {
+          "$ref": "OutputAudioConfig"
         },
         "evaluationChannel": {
           "enum": [
@@ -54,9 +57,6 @@
             "REAL",
             "FAKE"
           ]
-        },
-        "outputAudioConfig": {
-          "$ref": "OutputAudioConfig"
         }
       }
     },
@@ -105,26 +105,26 @@
             "ENABLED"
           ]
         },
+        "turnLevelMetricsThresholdsOverride": {
+          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds"
+        },
         "steps": {
           "items": {
             "$ref": "EvaluationStep"
           }
-        },
-        "turnLevelMetricsThresholdsOverride": {
-          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds"
         }
       }
     },
     "EvaluationMetricsThresholds": {
       "properties": {
-        "hallucinationMetricBehavior": {
+        "scenarioHallucinationMetricBehavior": {
           "enum": [
             "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
             "DISABLED",
             "ENABLED"
           ]
         },
-        "scenarioHallucinationMetricBehavior": {
+        "hallucinationMetricBehavior": {
           "enum": [
             "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
             "DISABLED",
@@ -145,11 +145,11 @@
     },
     "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds": {
       "properties": {
-        "turnLevelMetricsThresholds": {
-          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds"
-        },
         "toolMatchingSettings": {
           "$ref": "EvaluationMetricsThresholdsToolMatchingSettings"
+        },
+        "turnLevelMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds"
         }
       }
     },
@@ -197,8 +197,16 @@
     },
     "EvaluationResult": {
       "properties": {
-        "persona": {
-          "$ref": "EvaluationPersona"
+        "evaluationStatus": {
+          "enum": [
+            "OUTCOME_UNSPECIFIED",
+            "PASS",
+            "FAIL",
+            "SKIPPED"
+          ]
+        },
+        "goldenResult": {
+          "$ref": "EvaluationResultGoldenResult"
         },
         "goldenRunMethod": {
           "enum": [
@@ -207,8 +215,14 @@
             "NAIVE"
           ]
         },
-        "goldenResult": {
-          "$ref": "EvaluationResultGoldenResult"
+        "errorInfo": {
+          "$ref": "EvaluationErrorInfo"
+        },
+        "persona": {
+          "$ref": "EvaluationPersona"
+        },
+        "evaluationMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholds"
         },
         "executionState": {
           "enum": [
@@ -220,31 +234,17 @@
             "CANCELLED"
           ]
         },
-        "errorInfo": {
-          "$ref": "EvaluationErrorInfo"
-        },
         "outcomeMetadata": {
           "enum": [
             "OUTCOME_METADATA_UNSPECIFIED",
             "GRACEFUL_HANDOFF"
           ]
         },
-        "config": {
-          "$ref": "EvaluationConfig"
-        },
-        "evaluationMetricsThresholds": {
-          "$ref": "EvaluationMetricsThresholds"
-        },
-        "evaluationStatus": {
-          "enum": [
-            "OUTCOME_UNSPECIFIED",
-            "PASS",
-            "FAIL",
-            "SKIPPED"
-          ]
-        },
         "scenarioResult": {
           "$ref": "EvaluationResultScenarioResult"
+        },
+        "config": {
+          "$ref": "EvaluationConfig"
         }
       }
     },
@@ -262,12 +262,6 @@
     },
     "EvaluationResultGoldenExpectationOutcome": {
       "properties": {
-        "semanticSimilarityResult": {
-          "$ref": "EvaluationResultSemanticSimilarityResult"
-        },
-        "toolInvocationResult": {
-          "$ref": "EvaluationResultGoldenExpectationOutcomeToolInvocationResult"
-        },
         "outcome": {
           "enum": [
             "OUTCOME_UNSPECIFIED",
@@ -276,8 +270,14 @@
             "SKIPPED"
           ]
         },
+        "toolInvocationResult": {
+          "$ref": "EvaluationResultGoldenExpectationOutcomeToolInvocationResult"
+        },
         "expectation": {
           "$ref": "EvaluationGoldenExpectation"
+        },
+        "semanticSimilarityResult": {
+          "$ref": "EvaluationResultSemanticSimilarityResult"
         }
       }
     },
@@ -309,24 +309,24 @@
     },
     "EvaluationResultGoldenResultTurnReplayResult": {
       "properties": {
+        "errorInfo": {
+          "$ref": "EvaluationErrorInfo"
+        },
+        "semanticSimilarityResult": {
+          "$ref": "EvaluationResultSemanticSimilarityResult"
+        },
         "expectationOutcome": {
           "items": {
             "$ref": "EvaluationResultGoldenExpectationOutcome"
           }
         },
-        "semanticSimilarityResult": {
-          "$ref": "EvaluationResultSemanticSimilarityResult"
+        "overallToolInvocationResult": {
+          "$ref": "EvaluationResultOverallToolInvocationResult"
         },
         "spanLatencies": {
           "items": {
             "$ref": "EvaluationResultSpanLatency"
           }
-        },
-        "overallToolInvocationResult": {
-          "$ref": "EvaluationResultOverallToolInvocationResult"
-        },
-        "errorInfo": {
-          "$ref": "EvaluationErrorInfo"
         }
       }
     },
@@ -356,11 +356,6 @@
     },
     "EvaluationResultScenarioResult": {
       "properties": {
-        "evaluationExpectationResults": {
-          "items": {
-            "$ref": "EvaluationResultEvaluationExpectationResult"
-          }
-        },
         "milestoneResults": {
           "items": {
             "$ref": "EvaluationResultScenarioResultMilestoneResult"
@@ -369,6 +364,11 @@
         "expectationOutcomes": {
           "items": {
             "$ref": "EvaluationResultScenarioExpectationOutcome"
+          }
+        },
+        "evaluationExpectationResults": {
+          "items": {
+            "$ref": "EvaluationResultEvaluationExpectationResult"
           }
         },
         "spanLatencies": {
@@ -417,19 +417,19 @@
     },
     "EvaluationScenario": {
       "properties": {
-        "taskCompletionBehavior": {
-          "enum": [
-            "TASK_COMPLETION_BEHAVIOR_UNSPECIFIED",
-            "TASK_SATISFIED",
-            "TASK_REJECTED"
-          ]
-        },
         "userGoalBehavior": {
           "enum": [
             "USER_GOAL_BEHAVIOR_UNSPECIFIED",
             "USER_GOAL_SATISFIED",
             "USER_GOAL_REJECTED",
             "USER_GOAL_IGNORED"
+          ]
+        },
+        "taskCompletionBehavior": {
+          "enum": [
+            "TASK_COMPLETION_BEHAVIOR_UNSPECIFIED",
+            "TASK_SATISFIED",
+            "TASK_REJECTED"
           ]
         },
         "scenarioExecutionMode": {
@@ -443,11 +443,11 @@
     },
     "EvaluationStep": {
       "properties": {
-        "userInput": {
-          "$ref": "SessionInput"
-        },
         "expectation": {
           "$ref": "EvaluationGoldenExpectation"
+        },
+        "userInput": {
+          "$ref": "SessionInput"
         }
       }
     },

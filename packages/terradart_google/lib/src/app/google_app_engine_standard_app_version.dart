@@ -282,6 +282,87 @@ final class AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices
   };
 }
 
+/// At most one of `vpc_access_connector`, `vpc_access` on `google_app_engine_standard_app_version`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.vpcAccessConnector(...)`.
+sealed class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess {
+  const AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess();
+
+  /// Sets `vpc_access_connector`.
+  const factory AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccessConnector(
+    AppEngineStandardAppVersionVpcAccessConnector vpcAccessConnector,
+  ) = AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector;
+
+  /// Sets `vpc_access`.
+  const factory AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccess(
+    AppEngineStandardAppVersionVpcAccess vpcAccess,
+  ) = AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccessConnector] choice: sets `vpc_access_connector`.
+final class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector
+    extends AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess {
+  const AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector(
+    this.vpcAccessConnector,
+  );
+
+  final AppEngineStandardAppVersionVpcAccessConnector vpcAccessConnector;
+
+  @internal
+  @override
+  String get blockKey => 'vpc_access_connector';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'vpc_access_connector': vpcAccessConnector.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc_access_connector': TfArg.literal(vpcAccessConnector.encode()),
+  };
+}
+
+/// The [AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccess] choice: sets `vpc_access`.
+final class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice
+    extends AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess {
+  const AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice(
+    this.vpcAccess,
+  );
+
+  final AppEngineStandardAppVersionVpcAccess vpcAccess;
+
+  @internal
+  @override
+  String get blockKey => 'vpc_access';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'vpc_access': vpcAccess.encode()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc_access': TfArg.literal(vpcAccess.encode()),
+  };
+}
+
 /// At most one of `automatic_scaling`, `basic_scaling`, `manual_scaling` on `google_app_engine_standard_app_version`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -925,7 +1006,8 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     required AppEngineStandardAppVersionDeployment deployment,
     required AppEngineStandardAppVersionEntrypoint entrypoint,
     AppEngineStandardAppVersionScaling? scaling,
-    AppEngineStandardAppVersionVpcAccessConnector? vpcAccessConnector,
+    AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess?
+    vpcAccessConnectorOrVpcAccess,
     AppEngineStandardAppVersionLegacyServices? legacyServices,
     TfArg<bool>? deleteServiceOnDestroy,
     TfArg<String>? deletionPolicy,
@@ -953,8 +1035,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
            'deployment': TfArg.literal(deployment.encode()),
            'entrypoint': TfArg.literal(entrypoint.encode()),
            ...?scaling?.argMap,
-           if (vpcAccessConnector != null)
-             'vpc_access_connector': TfArg.literal(vpcAccessConnector.encode()),
+           ...?vpcAccessConnectorOrVpcAccess?.argMap,
            ...?legacyServices?.argMap,
            'delete_service_on_destroy': ?deleteServiceOnDestroy,
            'deletion_policy': ?deletionPolicy,

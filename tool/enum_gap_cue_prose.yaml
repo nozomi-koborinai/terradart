@@ -481,3 +481,15 @@ google_vertex_ai_training_pipeline.input_data_config.stratified_split.key: a use
 google_vertex_ai_training_pipeline.input_data_config.timestamp_split.key: a user-defined column name of the dataset ('one of the Dataset\'s data columns'), not a fixed set
 google_network_services_http_route.rules.action.idle_timeout: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
 google_network_services_grpc_route.rules.action.idle_timeout: the 'either ... or' is ordinary prose about the value (alternative forms, or a condition), not a value set
+google_cloudbuild_trigger.build.options.worker_release: a release channel (rapid, regular, stable) or any specific release version
+google_dataflow_config_store_setting.parent: a parent resource path pattern ('projects/{project_number}', 'folders/{folder_id}', 'organizations/{organization_id}'), not a fixed value set
+google_vertex_ai_evaluation_item.gcs_uri: the 'Exactly one of' names mutually exclusive fields ('evaluation_request' or 'gcs_uri'), not enum values
+google_vertex_ai_evaluation_item.evaluation_request.candidate_responses.agent_data: the 'At most one of' names mutually exclusive fields ('text', 'value', 'agent_data'), not enum values
+google_vertex_ai_evaluation_item.evaluation_request.candidate_responses.text: the 'At most one of' names mutually exclusive fields ('text', 'value', 'agent_data'), not enum values
+google_vertex_ai_evaluation_item.evaluation_request.candidate_responses.value: the 'At most one of' names mutually exclusive fields ('text', 'value', 'agent_data'), not enum values
+google_vertex_ai_evaluation_item.evaluation_request.golden_response.agent_data: the 'At most one of' names mutually exclusive fields ('text', 'value', 'agent_data'), not enum values
+google_vertex_ai_evaluation_item.evaluation_request.golden_response.text: the 'At most one of' names mutually exclusive fields ('text', 'value', 'agent_data'), not enum values
+google_vertex_ai_evaluation_item.evaluation_request.golden_response.value: the 'At most one of' names mutually exclusive fields ('text', 'value', 'agent_data'), not enum values
+google_vertex_ai_evaluation_item.evaluation_request.prompt.agent_data: the 'At most one of' names mutually exclusive fields ('text', 'value', 'prompt_template_data', 'agent_data', 'user_scenario'), not enum values
+google_vertex_ai_evaluation_item.evaluation_request.prompt.text: the 'At most one of' names mutually exclusive fields ('text', 'value', 'prompt_template_data', 'agent_data', 'user_scenario'), not enum values
+google_vertex_ai_evaluation_item.evaluation_request.prompt.value: the 'At most one of' names mutually exclusive fields ('text', 'value', 'prompt_template_data', 'agent_data', 'user_scenario'), not enum values

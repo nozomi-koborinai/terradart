@@ -99,6 +99,9 @@ export 'src/app/google_app_engine_standard_app_version.dart'
         AppEngineStandardAppVersionStaticFiles,
         AppEngineStandardAppVersionVpcAccess,
         AppEngineStandardAppVersionVpcAccessConnector,
+        AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess,
+        AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice,
+        AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector,
         AppEngineStandardAppVersionVpcEgress,
         AppEngineStandardAppVersionZip,
         GoogleAppEngineStandardAppVersion;

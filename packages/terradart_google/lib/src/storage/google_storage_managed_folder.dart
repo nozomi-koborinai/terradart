@@ -85,6 +85,7 @@ final class GoogleStorageManagedFolder extends Resource {
     required RefTo<GoogleStorageBucket> bucket,
     TfArg<bool>? forceDestroy,
     required TfArg<String> name,
+    StorageManagedFolderRapidCacheConfig? rapidCacheConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -95,6 +96,8 @@ final class GoogleStorageManagedFolder extends Resource {
            'bucket': bucket.encodeAs('name'),
            'force_destroy': ?forceDestroy,
            'name': name,
+           if (rapidCacheConfig != null)
+             'rapid_cache_config': TfArg.literal(rapidCacheConfig.encode()),
          },
        );
 

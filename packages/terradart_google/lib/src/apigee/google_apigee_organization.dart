@@ -62,10 +62,14 @@ extension type const ApigeeOrganizationRetention._(TfArg<String> _)
     TfArgLiteral('DELETION_RETENTION_UNSPECIFIED'),
   );
   static const minimum = ApigeeOrganizationRetention._(TfArgLiteral('MINIMUM'));
+  static const noRetention = ApigeeOrganizationRetention._(
+    TfArgLiteral('NO_RETENTION'),
+  );
 
   static const List<ApigeeOrganizationRetention> values = [
     deletionRetentionUnspecified,
     minimum,
+    noRetention,
   ];
 }
 

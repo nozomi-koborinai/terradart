@@ -111,6 +111,7 @@ export 'src/vertex_ai/google_vertex_ai_evaluation_item.dart'
         VertexAiEvaluationItemProperty,
         VertexAiEvaluationItemRubrics,
         VertexAiEvaluationItemRubricsRubrics,
+        VertexAiEvaluationItemType,
         VertexAiEvaluationItemUserScenario;
 export 'src/vertex_ai/google_vertex_ai_evaluation_metric.dart'
     show GoogleVertexAiEvaluationMetric, VertexAiEvaluationMetricEncryptionSpec;

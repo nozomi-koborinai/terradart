@@ -100,7 +100,6 @@ export 'ces.dart';
 export 'chronicle.dart';
 export 'compute.dart';
 export 'container.dart';
-export 'dataform.dart';
 export 'dataplex.dart';
 export 'firebase.dart';
 export 'folder.dart';

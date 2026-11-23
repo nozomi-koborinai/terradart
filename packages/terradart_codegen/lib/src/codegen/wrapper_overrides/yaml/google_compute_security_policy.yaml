@@ -240,8 +240,9 @@ prelude: |
     static const tlsJa3Fingerprint = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('TLS_JA3_FINGERPRINT'));
     static const tlsJa4Fingerprint = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('TLS_JA4_FINGERPRINT'));
     static const userIp = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('USER_IP'));
+    static const asn = SecurityPolicyRuleRateLimitEnforceOnKey._(TfArgLiteral('ASN'));
 
-    static const List<SecurityPolicyRuleRateLimitEnforceOnKey> values = [all, ip, httpHeader, xffIp, httpCookie, httpPath, sni, regionCode, tlsJa3Fingerprint, tlsJa4Fingerprint, userIp];
+    static const List<SecurityPolicyRuleRateLimitEnforceOnKey> values = [all, ip, httpHeader, xffIp, httpCookie, httpPath, sni, regionCode, tlsJa3Fingerprint, tlsJa4Fingerprint, userIp, asn];
   }
 
   /// Operator for preconfigured WAF exclusion match clauses.

@@ -59,3 +59,5 @@ paramOrder:
   - project
   - instagram_credentials
   - whatsapp_credentials
+  - modality
+  - model_settings

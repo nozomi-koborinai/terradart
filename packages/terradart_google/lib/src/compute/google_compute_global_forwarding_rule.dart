@@ -111,12 +111,16 @@ extension type const GlobalForwardingRuleLoadBalancingScheme._(TfArg<String> _)
   static const internalSelfManaged = GlobalForwardingRuleLoadBalancingScheme._(
     TfArgLiteral('INTERNAL_SELF_MANAGED'),
   );
+  static const externalPassthrough = GlobalForwardingRuleLoadBalancingScheme._(
+    TfArgLiteral('EXTERNAL_PASSTHROUGH'),
+  );
 
   static const List<GlobalForwardingRuleLoadBalancingScheme> values = [
     external,
     externalManaged,
     internalManaged,
     internalSelfManaged,
+    externalPassthrough,
   ];
 }
 

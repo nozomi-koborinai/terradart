@@ -1,7 +1,7 @@
 {
   "name": "apigateway",
   "version": "v1beta",
-  "revision": "20261102",
+  "revision": "20261111",
   "sourceUrl": "https://apigateway.googleapis.com/$discovery/rest?version=v1beta",
   "schemas": {
     "ApigatewayApi": {

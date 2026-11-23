@@ -47,9 +47,6 @@ files:
   google_compute_region_backend_service_iam_policy: null  # no resource_compute_region_backend_service_iam_policy.go in google-beta/services
   google_compute_region_network_policy: mmv1/products/compute/RegionNetworkPolicy.yaml
   google_compute_region_network_policy_traffic_classification_rule: mmv1/products/compute/RegionNetworkPolicyTrafficClassificationRule.yaml
-  google_dataform_config: mmv1/products/dataform/Config.yaml
-  google_dataform_repository_release_config: mmv1/products/dataform/RepositoryReleaseConfig.yaml
-  google_dataform_repository_workflow_config: mmv1/products/dataform/RepositoryWorkflowConfig.yaml
   google_dataplex_data_asset: mmv1/products/dataplex/DataAsset.yaml
   google_firebase_ai_logic_config: mmv1/products/firebaseailogic/Config.yaml
   google_firebase_ai_logic_prompt_template: mmv1/products/firebaseailogic/PromptTemplate.yaml

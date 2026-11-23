@@ -8,6 +8,9 @@ deriveEnums: true
 dartTypeOverrides:
   visibility: IntegrationsAuthConfigVisibility
 
+typeNames:
+  decrypted_credential.oauth2_client_credentials.request_type: IntegrationsAuthConfigRequestType
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 

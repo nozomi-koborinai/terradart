@@ -9417,12 +9417,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           },
         ),
         MigrateSlot(
-          tfName: 'vpc_access_connector',
-          dartName: 'vpcAccessConnector',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'vpcAccessConnectorOrVpcAccess',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'AppEngineStandardAppVersionVpcAccessConnector',
+          merged: true,
+          variants: <String, String>{
+            'vpc_access_connector':
+                'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector',
+            'vpc_access':
+                'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice',
+          },
         ),
         MigrateSlot(
           tfName: '',
@@ -27137,6 +27143,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'CesDeploymentWhatsappCredentials',
+        ),
+        MigrateSlot(
+          tfName: 'modality',
+          dartName: 'modality',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'CesDeploymentModality',
+        ),
+        MigrateSlot(
+          tfName: 'model_settings',
+          dartName: 'modelSettings',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'CesDeploymentModelSettings',
         ),
       ],
       getters: <MigrateGetter>[
@@ -52217,6 +52238,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'ComputeInterconnectMacsec',
+        ),
+        MigrateSlot(
+          tfName: 'aai_enabled',
+          dartName: 'aaiEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'application_aware_interconnect',
+          dartName: 'applicationAwareInterconnect',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ComputeInterconnectApplicationAwareInterconnect',
         ),
         MigrateSlot(
           tfName: 'params',
@@ -170247,6 +170283,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: true,
           dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: 'rapid_cache_config',
+          dartName: 'rapidCacheConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'StorageManagedFolderRapidCacheConfig',
+        ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
@@ -173176,9 +173220,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'evaluation_item_type',
           dartName: 'evaluationItemType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'VertexAiEvaluationItemType',
         ),
         MigrateSlot(
           tfName: '',
@@ -188197,6 +188241,40 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice':
+        MigrateHelper(
+          className:
+              'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'vpc_access',
+              dartName: 'vpcAccess',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'AppEngineStandardAppVersionVpcAccess',
+            ),
+          ],
+          shorthand: 'vpcAccess',
+        ),
+    'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector':
+        MigrateHelper(
+          className:
+              'AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'vpc_access_connector',
+              dartName: 'vpcAccessConnector',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'AppEngineStandardAppVersionVpcAccessConnector',
+            ),
+          ],
+          shorthand: 'vpcAccessConnector',
+        ),
     'AppEngineStandardAppVersionZip': MigrateHelper(
       className: 'AppEngineStandardAppVersionZip',
       slots: <MigrateSlot>[
@@ -293978,7 +294056,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'requestType',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'IntegrationsAuthConfigOauth2ClientCredentialsRequestType',
+          dartType: 'IntegrationsAuthConfigRequestType',
         ),
         MigrateSlot(
           tfName: 'scope',
@@ -336465,6 +336543,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'DELETION_RETENTION_UNSPECIFIED': 'deletionRetentionUnspecified',
         'MINIMUM': 'minimum',
+        'NO_RETENTION': 'noRetention',
       },
     ),
     'ApigeeOrganizationRuntimeType': MigrateEnum(
@@ -339445,17 +339524,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ALLOW_ALL': 'allowAll',
         'ALLOW_INTERNAL_ONLY': 'allowInternalOnly',
         'ALLOW_INTERNAL_AND_GCLB': 'allowInternalAndGclb',
-      },
-    ),
-    'CloudfunctionsFunctionStatus': MigrateEnum(
-      name: 'CloudfunctionsFunctionStatus',
-      members: <String, String>{
-        'CLOUD_FUNCTION_STATUS_UNSPECIFIED': 'cloudFunctionStatusUnspecified',
-        'ACTIVE': 'active',
-        'OFFLINE': 'offline',
-        'DEPLOY_IN_PROGRESS': 'deployInProgress',
-        'DELETE_IN_PROGRESS': 'deleteInProgress',
-        'UNKNOWN': 'unknown',
       },
     ),
     'CloudfunctionsFunctionVpcConnectorEgressSettings': MigrateEnum(
@@ -344921,6 +344989,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'EXTERNAL_MANAGED': 'externalManaged',
         'INTERNAL_MANAGED': 'internalManaged',
         'INTERNAL_SELF_MANAGED': 'internalSelfManaged',
+        'EXTERNAL_PASSTHROUGH': 'externalPassthrough',
       },
     ),
     'GlobalForwardingRuleMetadataFilterMatchCriteria': MigrateEnum(
@@ -345152,6 +345221,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       members: <String, String>{
         'SCIM_USAGE_UNSPECIFIED': 'scimUsageUnspecified',
         'ENABLED_FOR_GROUPS': 'enabledForGroups',
+        'ENABLED_FOR_USERS_GROUPS': 'enabledForUsersGroups',
       },
     ),
     'IamWorkloadIdentityPoolKeyAlgorithm': MigrateEnum(
@@ -345451,8 +345521,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ENCODED_HEADER': 'encodedHeader',
       },
     ),
-    'IntegrationsAuthConfigOauth2ClientCredentialsRequestType': MigrateEnum(
-      name: 'IntegrationsAuthConfigOauth2ClientCredentialsRequestType',
+    'IntegrationsAuthConfigRequestType': MigrateEnum(
+      name: 'IntegrationsAuthConfigRequestType',
       members: <String, String>{
         'REQUEST_TYPE_UNSPECIFIED': 'requestTypeUnspecified',
         'REQUEST_BODY': 'requestBody',
@@ -345651,6 +345721,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'EXTERNAL_MANAGED': 'externalManaged',
         'INTERNAL_SELF_MANAGED': 'internalSelfManaged',
         'INTERNAL_MANAGED': 'internalManaged',
+        'EXTERNAL_PASSTHROUGH': 'externalPassthrough',
       },
     ),
     'LocalityLbPolicy': MigrateEnum(
@@ -349466,6 +349537,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'TLS_JA3_FINGERPRINT': 'tlsJa3Fingerprint',
         'TLS_JA4_FINGERPRINT': 'tlsJa4Fingerprint',
         'USER_IP': 'userIp',
+        'ASN': 'asn',
       },
     ),
     'SecurityPolicyRuleVisibility': MigrateEnum(
@@ -350435,6 +350507,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'MEDIUM': 'medium',
         'LOW': 'low',
       },
+    ),
+    'VertexAiEvaluationItemType': MigrateEnum(
+      name: 'VertexAiEvaluationItemType',
+      members: <String, String>{'REQUEST': 'request', 'RESULT': 'result'},
     ),
     'VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline': MigrateEnum(
       name: 'VertexAiFeaturestoreEntitytypeAnomalyDetectionBaseline',

@@ -2,6 +2,55 @@
 
 ## Unreleased
 
+### Google provider 8.11.0
+
+**Breaking (`terradart_google`).** Provider 8.11.0 promotes `vpc_access`
+(Direct VPC Access) to GA on `google_app_engine_standard_app_version`, where it
+conflicts with `vpc_access_connector`. `GoogleAppEngineStandardAppVersion.vpcAccessConnector`
+moves onto the nullable sealed argument `vpcAccessConnectorOrVpcAccess`
+(`.vpcAccessConnector(...)` or `.vpcAccess(...)`).
+
+The same release adds a top-level `modality` input to `google_ces_deployment`,
+which takes `CesDeploymentModality`. `CesDeploymentWebWidgetConfig.modality`
+moves from `CesDeploymentModality` to `CesDeploymentWebWidgetConfigModality`
+(the same members; dot-shorthand calls do not change).
+
+Magic Modules 8.11.0 also changes computed-only (`output: true`) fields from
+`Enum` to `String`, removing 46 unused output-only enum types from
+`terradart_google` (including `CloudfunctionsFunctionStatus`,
+`DataFusionInstanceState`, `IntegrationsAuthConfigCredentialType`,
+`RedisClusterState`, and `SpannerInstanceState`) and 6 from
+`terradart_google_beta` (`FirebaseDatabaseInstanceState`,
+`FirebaseExtensionsInstanceState`, `FirebaseHostingCustomDomainOwnershipState`,
+`NetworkSecuritySacAttachmentState`, `NetworkSecuritySacRealmState`, and
+`VertexAiModelGardenEnableModelEnablementState`). None were accepted by any
+constructor; the output getters already returned `TfRef<String>`. The Terraform
+JSON for existing resources is unchanged.
+
+| Before | After |
+|---|---|
+| `GoogleAppEngineStandardAppVersion('v', vpcAccessConnector: AppEngineStandardAppVersionVpcAccessConnector(name: .literal('c')), ...)` | `GoogleAppEngineStandardAppVersion('v', vpcAccessConnectorOrVpcAccess: .vpcAccessConnector(AppEngineStandardAppVersionVpcAccessConnector(name: .literal('c'))), ...)` |
+| `CesDeploymentWebWidgetConfig(modality: CesDeploymentModality.chatOnly)` | `CesDeploymentWebWidgetConfig(modality: CesDeploymentWebWidgetConfigModality.chatOnly)` |
+
+#### Beta-only types now in `terradart_google`
+
+**Breaking (`terradart_google_beta`).** Provider 8.11.0 promoted
+`google_dataform_config`, `google_dataform_repository_release_config`, and
+`google_dataform_repository_workflow_config` to GA, so `GoogleDataformConfig`,
+`GoogleDataformRepositoryReleaseConfig`, and
+`GoogleDataformRepositoryWorkflowConfig` (with their helper types
+`DataformRepositoryReleaseConfigCodeCompilationConfig`,
+`DataformRepositoryWorkflowConfigInvocationConfig`, and
+`DataformRepositoryWorkflowConfigIncludedTargets`) move from
+`terradart_google_beta` to `terradart_google`
+(`package:terradart_google/dataform.dart`).
+`package:terradart_google_beta/dataform.dart` is gone. Change the import; the
+compiler finds every use. The constructors, fields, and helpers are unchanged.
+The factories no longer pin `provider = google-beta`, so the resources move to
+the `google` provider (`GoogleProvider` must be in the Stack). Confirm that
+`terraform plan` shows no replacement before you apply. Pass a registered
+`GoogleBetaProvider` as `provider` to keep a resource on the beta provider.
+
 ### AWS provider 6.73.0
 
 **Breaking (`terradart_aws`).** Provider 6.73.0 adds `azure` (with

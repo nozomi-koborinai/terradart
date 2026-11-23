@@ -478,7 +478,7 @@ final class IntegrationsAuthConfigOauth2ClientCredentials {
 
   final TfArg<String>? clientSecret;
 
-  final IntegrationsAuthConfigOauth2ClientCredentialsRequestType? requestType;
+  final IntegrationsAuthConfigRequestType? requestType;
 
   final TfArg<String>? scope;
 
@@ -498,38 +498,28 @@ final class IntegrationsAuthConfigOauth2ClientCredentials {
 }
 
 /// `request_type` — derived from the provider schema description.
-extension type const IntegrationsAuthConfigOauth2ClientCredentialsRequestType._(
-  TfArg<String> _
-)
+extension type const IntegrationsAuthConfigRequestType._(TfArg<String> _)
     implements TfArg<String> {
-  IntegrationsAuthConfigOauth2ClientCredentialsRequestType.variable(String name)
+  IntegrationsAuthConfigRequestType.variable(String name)
     : this._(TfArg.variable(name));
-  IntegrationsAuthConfigOauth2ClientCredentialsRequestType.expression(
-    String template,
-  ) : this._(TfArg.expression(template));
-  const IntegrationsAuthConfigOauth2ClientCredentialsRequestType.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
+  IntegrationsAuthConfigRequestType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IntegrationsAuthConfigRequestType.arg(TfArg<String> arg) : this._(arg);
 
-  static const requestTypeUnspecified =
-      IntegrationsAuthConfigOauth2ClientCredentialsRequestType._(
-        TfArgLiteral('REQUEST_TYPE_UNSPECIFIED'),
-      );
-  static const requestBody =
-      IntegrationsAuthConfigOauth2ClientCredentialsRequestType._(
-        TfArgLiteral('REQUEST_BODY'),
-      );
-  static const queryParameters =
-      IntegrationsAuthConfigOauth2ClientCredentialsRequestType._(
-        TfArgLiteral('QUERY_PARAMETERS'),
-      );
-  static const encodedHeader =
-      IntegrationsAuthConfigOauth2ClientCredentialsRequestType._(
-        TfArgLiteral('ENCODED_HEADER'),
-      );
+  static const requestTypeUnspecified = IntegrationsAuthConfigRequestType._(
+    TfArgLiteral('REQUEST_TYPE_UNSPECIFIED'),
+  );
+  static const requestBody = IntegrationsAuthConfigRequestType._(
+    TfArgLiteral('REQUEST_BODY'),
+  );
+  static const queryParameters = IntegrationsAuthConfigRequestType._(
+    TfArgLiteral('QUERY_PARAMETERS'),
+  );
+  static const encodedHeader = IntegrationsAuthConfigRequestType._(
+    TfArgLiteral('ENCODED_HEADER'),
+  );
 
-  static const List<IntegrationsAuthConfigOauth2ClientCredentialsRequestType>
-  values = [
+  static const List<IntegrationsAuthConfigRequestType> values = [
     requestTypeUnspecified,
     requestBody,
     queryParameters,

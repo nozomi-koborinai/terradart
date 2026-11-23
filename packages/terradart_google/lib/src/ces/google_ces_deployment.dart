@@ -615,6 +615,8 @@ final class GoogleCesDeployment extends Resource {
     TfArg<String>? project,
     CesDeploymentInstagramCredentials? instagramCredentials,
     CesDeploymentWhatsappCredentials? whatsappCredentials,
+    CesDeploymentModality? modality,
+    CesDeploymentModelSettings? modelSettings,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -637,6 +639,9 @@ final class GoogleCesDeployment extends Resource {
              'whatsapp_credentials': TfArg.literal(
                whatsappCredentials.encode(),
              ),
+           'modality': ?modality,
+           if (modelSettings != null)
+             'model_settings': TfArg.literal(modelSettings.encode()),
          },
        );
 

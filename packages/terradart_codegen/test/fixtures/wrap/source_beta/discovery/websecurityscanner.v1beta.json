@@ -6,6 +6,21 @@
   "schemas": {
     "ScanConfig": {
       "properties": {
+        "riskLevel": {
+          "enum": [
+            "RISK_LEVEL_UNSPECIFIED",
+            "NORMAL",
+            "LOW"
+          ]
+        },
+        "userAgent": {
+          "enum": [
+            "USER_AGENT_UNSPECIFIED",
+            "CHROME_LINUX",
+            "CHROME_ANDROID",
+            "SAFARI_IPHONE"
+          ]
+        },
         "latestRun": {
           "$ref": "ScanRun"
         },
@@ -26,21 +41,6 @@
               "CLOUD_FUNCTIONS"
             ]
           }
-        },
-        "userAgent": {
-          "enum": [
-            "USER_AGENT_UNSPECIFIED",
-            "CHROME_LINUX",
-            "CHROME_ANDROID",
-            "SAFARI_IPHONE"
-          ]
-        },
-        "riskLevel": {
-          "enum": [
-            "RISK_LEVEL_UNSPECIFIED",
-            "NORMAL",
-            "LOW"
-          ]
         }
       }
     },
@@ -97,6 +97,14 @@
     },
     "ScanRun": {
       "properties": {
+        "errorTrace": {
+          "$ref": "ScanRunErrorTrace"
+        },
+        "warningTraces": {
+          "items": {
+            "$ref": "ScanRunWarningTrace"
+          }
+        },
         "resultState": {
           "enum": [
             "RESULT_STATE_UNSPECIFIED",
@@ -112,14 +120,6 @@
             "SCANNING",
             "FINISHED"
           ]
-        },
-        "errorTrace": {
-          "$ref": "ScanRunErrorTrace"
-        },
-        "warningTraces": {
-          "items": {
-            "$ref": "ScanRunWarningTrace"
-          }
         }
       }
     },

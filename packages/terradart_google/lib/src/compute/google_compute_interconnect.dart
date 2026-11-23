@@ -293,6 +293,9 @@ final class GoogleComputeInterconnect extends Resource {
     EnumList<ComputeInterconnectRequestedFeatures>? requestedFeatures,
     TfArg<Map<String, String>>? labels,
     ComputeInterconnectMacsec? macsec,
+    TfArg<bool>? aaiEnabled,
+    ComputeInterconnectApplicationAwareInterconnect?
+    applicationAwareInterconnect,
     ComputeInterconnectParams? params,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -317,6 +320,11 @@ final class GoogleComputeInterconnect extends Resource {
            'requested_features': ?requestedFeatures,
            'labels': ?labels,
            if (macsec != null) 'macsec': TfArg.literal(macsec.encode()),
+           'aai_enabled': ?aaiEnabled,
+           if (applicationAwareInterconnect != null)
+             'application_aware_interconnect': TfArg.literal(
+               applicationAwareInterconnect.encode(),
+             ),
            if (params != null) 'params': TfArg.literal(params.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

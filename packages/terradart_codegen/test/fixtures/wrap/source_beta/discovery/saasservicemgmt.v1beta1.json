@@ -1,7 +1,7 @@
 {
   "name": "saasservicemgmt",
   "version": "v1beta1",
-  "revision": "20261106",
+  "revision": "20261111",
   "sourceUrl": "https://saasservicemgmt.googleapis.com/$discovery/rest?version=v1beta1",
   "schemas": {
     "AppParams": {
@@ -34,17 +34,17 @@
     },
     "Release": {
       "properties": {
+        "inputVariables": {
+          "items": {
+            "$ref": "UnitVariable"
+          }
+        },
         "inputVariableDefaults": {
           "items": {
             "$ref": "UnitVariable"
           }
         },
         "outputVariables": {
-          "items": {
-            "$ref": "UnitVariable"
-          }
-        },
-        "inputVariables": {
           "items": {
             "$ref": "UnitVariable"
           }
@@ -72,15 +72,6 @@
     },
     "Saas": {
       "properties": {
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "STATE_TYPE_UNSPECIFIED",
-            "STATE_ACTIVE",
-            "STATE_RUNNING",
-            "STATE_FAILED"
-          ]
-        },
         "conditions": {
           "items": {
             "$ref": "SaasCondition"
@@ -90,24 +81,33 @@
           "items": {
             "$ref": "Location"
           }
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STATE_TYPE_UNSPECIFIED",
+            "STATE_ACTIVE",
+            "STATE_RUNNING",
+            "STATE_FAILED"
+          ]
         }
       }
     },
     "SaasCondition": {
       "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_READY",
+            "TYPE_SYNCHRONIZED"
+          ]
+        },
         "status": {
           "enum": [
             "STATUS_UNSPECIFIED",
             "STATUS_UNKNOWN",
             "STATUS_TRUE",
             "STATUS_FALSE"
-          ]
-        },
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "TYPE_READY",
-            "TYPE_SYNCHRONIZED"
           ]
         }
       }
@@ -128,6 +128,28 @@
     },
     "Unit": {
       "properties": {
+        "conditions": {
+          "items": {
+            "$ref": "UnitCondition"
+          }
+        },
+        "inputVariables": {
+          "items": {
+            "$ref": "UnitVariable"
+          }
+        },
+        "outputVariables": {
+          "items": {
+            "$ref": "UnitVariable"
+          }
+        },
+        "managementMode": {
+          "enum": [
+            "MANAGEMENT_MODE_UNSPECIFIED",
+            "MANAGEMENT_MODE_USER",
+            "MANAGEMENT_MODE_SYSTEM"
+          ]
+        },
         "state": {
           "enum": [
             "UNIT_STATE_UNSPECIFIED",
@@ -139,37 +161,15 @@
             "UNIT_STATE_ERROR"
           ]
         },
+        "deploymentLocation": {
+          "$ref": "Location"
+        },
         "systemManagedState": {
           "enum": [
             "SYSTEM_MANAGED_STATE_UNSPECIFIED",
             "SYSTEM_MANAGED_STATE_ACTIVE",
             "SYSTEM_MANAGED_STATE_INACTIVE",
             "SYSTEM_MANAGED_STATE_DECOMMISSIONED"
-          ]
-        },
-        "outputVariables": {
-          "items": {
-            "$ref": "UnitVariable"
-          }
-        },
-        "inputVariables": {
-          "items": {
-            "$ref": "UnitVariable"
-          }
-        },
-        "conditions": {
-          "items": {
-            "$ref": "UnitCondition"
-          }
-        },
-        "deploymentLocation": {
-          "$ref": "Location"
-        },
-        "managementMode": {
-          "enum": [
-            "MANAGEMENT_MODE_UNSPECIFIED",
-            "MANAGEMENT_MODE_USER",
-            "MANAGEMENT_MODE_SYSTEM"
           ]
         }
       }
@@ -219,17 +219,6 @@
             "$ref": "UnitOperationCondition"
           }
         },
-        "state": {
-          "enum": [
-            "UNIT_OPERATION_STATE_UNKNOWN",
-            "UNIT_OPERATION_STATE_PENDING",
-            "UNIT_OPERATION_STATE_SCHEDULED",
-            "UNIT_OPERATION_STATE_RUNNING",
-            "UNIT_OPERATION_STATE_SUCCEEDED",
-            "UNIT_OPERATION_STATE_FAILED",
-            "UNIT_OPERATION_STATE_CANCELLED"
-          ]
-        },
         "provision": {
           "$ref": "Provision"
         },
@@ -245,11 +234,30 @@
             "IGNORABLE",
             "STANDARD"
           ]
+        },
+        "state": {
+          "enum": [
+            "UNIT_OPERATION_STATE_UNKNOWN",
+            "UNIT_OPERATION_STATE_PENDING",
+            "UNIT_OPERATION_STATE_SCHEDULED",
+            "UNIT_OPERATION_STATE_RUNNING",
+            "UNIT_OPERATION_STATE_SUCCEEDED",
+            "UNIT_OPERATION_STATE_FAILED",
+            "UNIT_OPERATION_STATE_CANCELLED"
+          ]
         }
       }
     },
     "UnitOperationCondition": {
       "properties": {
+        "status": {
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "STATUS_UNKNOWN",
+            "STATUS_TRUE",
+            "STATUS_FALSE"
+          ]
+        },
         "type": {
           "enum": [
             "TYPE_UNSPECIFIED",
@@ -260,14 +268,6 @@
             "TYPE_APP_CREATED",
             "TYPE_APP_COMPONENTS_REGISTERED",
             "TYPE_WORKLOAD_SUCCEEDED"
-          ]
-        },
-        "status": {
-          "enum": [
-            "STATUS_UNSPECIFIED",
-            "STATUS_UNKNOWN",
-            "STATUS_TRUE",
-            "STATUS_FALSE"
           ]
         }
       }
