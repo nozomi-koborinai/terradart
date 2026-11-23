@@ -15,6 +15,9 @@ final class JsonResult {
   /// The command path: `plan`, `state migrate`.
   final String command;
 
+  /// The CLI version (`--version`).
+  String? version;
+
   /// The environment and why it is the one (`flag`, `variable`, `default`,
   /// `only`, `prompt`).
   ({String name, String source})? env;
@@ -68,6 +71,7 @@ final class JsonResult {
       'command': command,
       'ok': error == null && usage == null && failed == null,
       'exitCode': exitCode,
+      'version': ?version,
       if (dryRun) 'dryRun': true,
       if (env case final env?) 'env': {'name': env.name, 'source': env.source},
       if (engine case final engine?)

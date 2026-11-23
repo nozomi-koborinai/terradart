@@ -225,6 +225,7 @@ implies --no-input, and goes before or after the command.
   }
 
   schemaVersion  1; raised only for a change that breaks a reader
+  version        --version: the CLI version
   env.source     flag, variable, default, only, prompt
   engine.source  engine_path, setting, state, path, managed
   plan           from show -json of the saved plan; a replacement counts

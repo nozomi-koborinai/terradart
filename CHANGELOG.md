@@ -6,6 +6,10 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## [Unreleased]
 
+### Added
+
+- **`terradart --version`** (`terradart_cli`) — prints the CLI version (`terradart <version>`) and exits 0, or a JSON result carrying `version` with `--json`.
+
 ### Changed
 
 - **Minimum Dart SDK is 3.12** (**breaking**) — every package, example, and cookbook stack declares `sdk: ^3.12.0` (was `^3.10.0`; `terradart_codegen` was `^3.11.0`). `terradart init` and `terradart migrate` write `sdk: ^3.12.0` into generated packages. See [MIGRATING.md](MIGRATING.md#dart-312-is-the-minimum-sdk).

@@ -17,6 +17,7 @@ import 'process_runner.dart';
 import 'skill/installer.dart';
 import 'skill/skill_command.dart';
 import 'target.dart';
+import 'version.dart';
 import 'workflow.dart';
 
 /// Runs the `terradart` command with [arguments] and returns its exit code.
@@ -85,6 +86,11 @@ Future<int> runTerradart(
       help:
           'Print one JSON result on stdout (schemaVersion 1) and everything '
           'else on stderr; implies --no-input.',
+    )
+    ..addFlag(
+      'version',
+      negatable: false,
+      help: 'Print the terradart version and exit.',
     );
   const globalFlags = {'--json', '--no-input', '--quiet', '-q'};
   if (arguments.where((a) => !globalFlags.contains(a)).toList() case [
@@ -121,6 +127,17 @@ Future<int> runTerradart(
     final results = cli.parse(arguments);
     final json = results.flag('json');
     if (!json) io.result = null;
+    if (results.flag('version')) {
+      if (results.command != null || results.rest.isNotEmpty) {
+        throw UsageException(
+          '--version takes no command or arguments.',
+          cli.usage,
+        );
+      }
+      if (json) (io.result ??= JsonResult(path)).version = cliVersion;
+      io.out('terradart $cliVersion');
+      return finish(0);
+    }
     if (json && results.command == null) {
       throw UsageException('--json needs a command.', cli.usage);
     }
