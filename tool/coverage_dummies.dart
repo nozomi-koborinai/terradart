@@ -648,8 +648,8 @@ String? _slotKeyIn(
       final key = switch (slot.kind) {
         MigrateSlotKind.helper => _slotInHelper(m, slot.helper, path),
         MigrateSlotKind.sealed =>
-          path.length == 1 &&
-                  path.first is String &&
+          path.first is String &&
+                  _skipIndices(path.sublist(1)).isEmpty &&
                   (slot.variants?.containsKey(path.first) ?? false)
               ? '$owner.${slot.dartName}'
               : _slotInVariant(m, slot, path),

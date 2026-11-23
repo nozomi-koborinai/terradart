@@ -916,12 +916,7 @@ String _sealedChoice(
 }) {
   final ownExtras = _requiredAtValidate[sealed];
   if (ownExtras != null) _usedKeys.add(sealed);
-  final extras = [
-    ...?ownExtras,
-    ..._dummies.includedParams(sealed),
-    if (ownExtras == null) ...?_requiredAtValidate[owner],
-    ..._dummies.includedParams(owner),
-  ];
+  final extras = ownExtras ?? _requiredAtValidate[owner] ?? const <String>[];
   final variants = [
     for (final v in _sealedVariants[sealed]!)
       (v, helpers[v]!.requiredParams.single),
@@ -985,7 +980,11 @@ List<_Param> _extraSlots(
     }
     final slot =
         optional.where((p) => p.name == name).firstOrNull ??
-        optional.where((p) => _isSealedMember([p], name, helpers)).firstOrNull;
+        (strict
+            ? optional
+                  .where((p) => _isSealedMember([p], name, helpers))
+                  .firstOrNull
+            : null);
     if (slot == null) {
       if (strict) throw StateError('$owner.$name is not an optional parameter');
       continue;

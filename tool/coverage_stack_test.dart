@@ -8,6 +8,7 @@ import 'bump_plan.dart';
 import 'coverage_dummies.dart';
 import 'coverage_stack.dart';
 import 'coverage_verdict.dart';
+import 'generate_aws_leftover_example.dart';
 import 'provider_diagnostics.dart';
 import 'wrap_lanes.dart' show providersPath;
 
@@ -665,6 +666,28 @@ String _literal(String className, String name) {
         expect(green.excluded.map((e) => e.className), ['ExampleDeployment']);
         expect(green.learned, isEmpty);
         expect(ledgerFile.readAsStringSync(), isNot(contains('include: true')));
+      },
+    );
+
+    test(
+      'owner includedParams do not hijack unrelated sealed variant choices',
+      () {
+        final allOtherAws = {
+          for (final e in awsMigrateManifest.entries)
+            if (e.className != 'AwsVpclatticeListenerRule') e.className,
+        };
+        final dummies = CoverageDummies.parse(
+          '''
+AwsVpclatticeListenerRule.forward:
+  include: true
+''',
+          path: 'aws.yaml',
+          manifest: awsMigrateManifest,
+          bindings: awsLeftoverStack.bindings,
+        );
+        final rendered = awsLeftoverStack.render(dummies, exclude: allOtherAws);
+        expect(rendered.source, contains('action: .fixedResponse('));
+        expect(rendered.source, isNot(contains('action: .forward(')));
       },
     );
   });

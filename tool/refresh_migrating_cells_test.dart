@@ -123,22 +123,27 @@ void main() {
           (owner: 'AwsFoo', slot: 'globalSlot'): (
             oldType: 'FooOldGlobal',
             newType: 'FooNewGlobal',
+            positional: false,
           ),
           (owner: 'AwsFoo', slot: 'scopedSlot'): (
             oldType: 'FooShared',
             newType: 'FooScopedNew',
+            positional: false,
           ),
           (owner: 'AwsFoo', slot: 'action'): (
             oldType: 'OldAction',
             newType: 'NewAction',
+            positional: false,
           ),
           (owner: 'AwsFoo', slot: 'ambigA'): (
             oldType: 'FooAmbiguous',
             newType: 'FooAmbigA',
+            positional: false,
           ),
           (owner: 'AwsFoo', slot: 'ambigB'): (
             oldType: 'FooAmbiguous',
             newType: 'FooAmbigB',
+            positional: false,
           ),
         });
       },
@@ -179,6 +184,7 @@ void main() {
             (owner: 'AwsFoo', slot: 'scopedSlot'): (
               oldType: 'FooShared',
               newType: 'FooScopedNew',
+              positional: false,
             ),
           },
         );
@@ -236,6 +242,58 @@ void main() {
 | `TypeB` | `TypeC` |
 ''');
     });
+
+    test(
+      'refreshes positional After-cell arguments for scoped slot renames',
+      () {
+        final before = snapshotFromApiSurface({
+          'helper:terradart_google:CloudbuildTriggerGithubEventPush': {
+            'sig': '',
+          },
+          'helper:terradart_google:CloudbuildTriggerPush': {'sig': ''},
+          'slot:terradart_google:CloudbuildTriggerGithubEventPush.push': {
+            'sig': 'helper||CloudbuildTriggerPush|bare|positional',
+            'required': true,
+            'owner': 'helper:terradart_google:CloudbuildTriggerGithubEventPush',
+          },
+        });
+        final after = snapshotFromApiSurface({
+          'helper:terradart_google:CloudbuildTriggerGithubEventPush': {
+            'sig': '',
+          },
+          'helper:terradart_google:CloudbuildTriggerPush': {'sig': ''},
+          'helper:terradart_google:CloudbuildTriggerBitbucketPush': {'sig': ''},
+          'slot:terradart_google:CloudbuildTriggerGithubEventPush.push': {
+            'sig': 'helper||CloudbuildTriggerBitbucketPush|bare|positional',
+            'required': true,
+            'owner': 'helper:terradart_google:CloudbuildTriggerGithubEventPush',
+          },
+        });
+        final renames = deriveGeneratedTypeRenames(before, after);
+        expect(renames.globalRenames, isEmpty);
+
+        const positionalDoc = '''
+# Migrating terradart
+
+## Unreleased
+
+| Before | After |
+|---|---|
+| `CloudbuildTriggerGithubEventPush(CloudbuildTriggerPush(...))` | `CloudbuildTriggerGithubEventPush(CloudbuildTriggerPush(...))` |
+''';
+        final res = refreshMigratingAfterCells(positionalDoc, renames);
+        expect(res.changed, isTrue);
+        expect(res.updatedText, '''
+# Migrating terradart
+
+## Unreleased
+
+| Before | After |
+|---|---|
+| `CloudbuildTriggerGithubEventPush(CloudbuildTriggerPush(...))` | `CloudbuildTriggerGithubEventPush(CloudbuildTriggerBitbucketPush(...))` |
+''');
+      },
+    );
   });
 
   group('refreshAndVerifyMigratingMd', () {
@@ -287,6 +345,30 @@ void main() {
         );
         expect(outcome.written, isFalse);
         expect(outcome.reason, contains('still fail compile'));
+        expect(file.readAsStringSync(), initial);
+      },
+    );
+
+    test(
+      'leaves MIGRATING.md untouched when verification reports unmapped compile failures',
+      () async {
+        final tmp = Directory.systemTemp.createTempSync(
+          'refresh_mig_unmapped_',
+        );
+        addTearDown(() => tmp.deleteSync(recursive: true));
+        final file = File(p.join(tmp.path, migratingPath))
+          ..writeAsStringSync(initial);
+
+        final outcome = await refreshAndVerifyMigratingMd(
+          tmp.path,
+          renames,
+          verifyAfter: (_, {migrating}) async => (
+            failures: const ['dart pub get failed in /tmp/after: offline'],
+            failingLines: const <int>{},
+          ),
+        );
+        expect(outcome.written, isFalse);
+        expect(outcome.reason, contains('unmapped'));
         expect(file.readAsStringSync(), initial);
       },
     );

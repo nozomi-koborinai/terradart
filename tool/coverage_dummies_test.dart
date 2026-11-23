@@ -288,11 +288,19 @@ ExampleQueueScope.zoneId: 'unjudged'
         'ExampleRoute.config',
       );
       expect(
+        dummies.slotKeyAt(route, const AttrPath(['config', 0]))?.value,
+        'ExampleRoute.config',
+      );
+      expect(
         dummies.slotKeyAt(route, const AttrPath(['config', 0, 'mode']))?.value,
         'ExampleRouteConfig.mode',
       );
       expect(
         dummies.slotKeyAt(route, const AttrPath(['cidr_ip']))?.value,
+        'ExampleRoute.cidr',
+      );
+      expect(
+        dummies.slotKeyAt(route, const AttrPath(['cidr_ip', 0]))?.value,
         'ExampleRoute.cidr',
       );
     });

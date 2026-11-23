@@ -41,9 +41,13 @@ final class GeneratedTypeRenames {
   /// longer exists and every renamed slot moved to one unambiguous new name.
   final Map<String, String> globalRenames;
 
-  /// `(owner, slot)` -> `(oldType, newType)` when a slot kept the same kind
-  /// and container flags and only its helper or enum type name changed.
-  final Map<({String owner, String slot}), ({String oldType, String newType})>
+  /// `(owner, slot)` -> `(oldType, newType, positional)` when a slot kept the
+  /// same kind and container flags and only its helper or enum type name
+  /// changed.
+  final Map<
+    ({String owner, String slot}),
+    ({String oldType, String newType, bool positional})
+  >
   slotRenames;
 
   bool get isEmpty => globalRenames.isEmpty && slotRenames.isEmpty;
@@ -187,7 +191,10 @@ GeneratedTypeRenames deriveGeneratedTypeRenames(
   ManifestTypeSnapshot after,
 ) {
   final slotRenames =
-      <({String owner, String slot}), ({String oldType, String newType})>{};
+      <
+        ({String owner, String slot}),
+        ({String oldType, String newType, bool positional})
+      >{};
   final candidates = <String, Set<String>>{};
 
   for (final MapEntry(key: slotKey, value: beforeSig) in before.slots.entries) {
@@ -200,6 +207,7 @@ GeneratedTypeRenames deriveGeneratedTypeRenames(
     slotRenames[slotKey] = (
       oldType: beforeSig.typeName,
       newType: afterSig.typeName,
+      positional: beforeSig.flags.split('|').contains('positional'),
     );
     (candidates[beforeSig.typeName] ??= {}).add(afterSig.typeName);
   }
@@ -319,14 +327,23 @@ Future<MigratingVerifyOutcome> refreshAndVerifyMigratingMd(
   final beforeCheck = await verify(repoRoot, migrating: original);
   final afterCheck = await verify(repoRoot, migrating: refreshed.updatedText);
 
+  final unmappedAfter = _unmappedFailures(afterCheck);
+  final unmappedBefore = _unmappedFailures(beforeCheck);
   final brokenModified = refreshed.modifiedLines.intersection(
     afterCheck.failingLines,
   );
   final regressed = afterCheck.failingLines.difference(
     beforeCheck.failingLines,
   );
-  if (brokenModified.isNotEmpty || regressed.isNotEmpty) {
+  if (unmappedAfter.isNotEmpty ||
+      (unmappedBefore.isNotEmpty && afterCheck.failingLines.isNotEmpty) ||
+      brokenModified.isNotEmpty ||
+      regressed.isNotEmpty) {
     final reasons = [
+      if (unmappedAfter.isNotEmpty)
+        'unmapped compile failures: ${unmappedAfter.join('; ')}',
+      if (unmappedBefore.isNotEmpty && afterCheck.failingLines.isNotEmpty)
+        'baseline check had unmapped failures: ${unmappedBefore.join('; ')}',
       if (brokenModified.isNotEmpty)
         'refreshed lines still fail compile: ${brokenModified.toList()..sort()}',
       if (regressed.isNotEmpty)
@@ -375,13 +392,33 @@ String _rewriteCode(
   return result;
 }
 
+List<String> _unmappedFailures(
+  ({List<String> failures, Set<int> failingLines}) check,
+) {
+  final linePattern = RegExp('^${RegExp.escape(migratingPath)}:(\\d+):');
+  return [
+    for (final f in check.failures)
+      if (linePattern.firstMatch(f) case final m?)
+        if (!check.failingLines.contains(int.parse(m.group(1)!))) f else ...[]
+      else
+        f,
+  ];
+}
+
 String _applySlotRenames(
   String code,
-  Map<({String owner, String slot}), ({String oldType, String newType})>
+  Map<
+    ({String owner, String slot}),
+    ({String oldType, String newType, bool positional})
+  >
   slotRenames, {
   required void Function(String oldName, String newName) onChange,
 }) {
-  final byOwner = <String, Map<String, ({String oldType, String newType})>>{};
+  final byOwner =
+      <
+        String,
+        Map<String, ({String oldType, String newType, bool positional})>
+      >{};
   for (final MapEntry(:key, :value) in slotRenames.entries) {
     (byOwner[key.owner] ??= {})[key.slot] = value;
   }
@@ -402,11 +439,7 @@ String _applySlotRenames(
       if (closeParen < 0) break;
 
       final argsBody = out.substring(openParen + 1, closeParen);
-      final updatedBody = _rewriteNamedArgs(
-        argsBody,
-        slotMap,
-        onChange: onChange,
-      );
+      final updatedBody = _rewriteArgs(argsBody, slotMap, onChange: onChange);
       if (updatedBody != argsBody) {
         out = out.replaceRange(openParen + 1, closeParen, updatedBody);
         searchFrom = openParen + 1 + updatedBody.length + 1;
@@ -418,11 +451,15 @@ String _applySlotRenames(
   return out;
 }
 
-String _rewriteNamedArgs(
+String _rewriteArgs(
   String argsBody,
-  Map<String, ({String oldType, String newType})> slotMap, {
+  Map<String, ({String oldType, String newType, bool positional})> slotMap, {
   required void Function(String oldName, String newName) onChange,
 }) {
+  final positionalRenames = <String, String>{};
+  for (final r in slotMap.values) {
+    if (r.positional) positionalRenames[r.oldType] = r.newType;
+  }
   final parts = _splitTopLevelArgs(argsBody);
   var changed = false;
   final rebuilt = <String>[];
@@ -443,6 +480,17 @@ String _rewriteNamedArgs(
           changed = true;
           continue;
         }
+      }
+    } else if (positionalRenames.isNotEmpty) {
+      final updatedPart = _replaceIdentifiersOutsideStrings(
+        part,
+        positionalRenames,
+        onChange: onChange,
+      );
+      if (updatedPart != part) {
+        rebuilt.add(updatedPart);
+        changed = true;
+        continue;
       }
     }
     rebuilt.add(part);
