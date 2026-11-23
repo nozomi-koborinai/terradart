@@ -9,7 +9,7 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 
 0.35.0 changes no Stack code: the Dart API, synth output and every provider pin stay as they were. It changes how the `terradart` command behaves in CI and scripts.
 
-1. **Raise every TerraDart constraint to `^0.35.0` by hand**, then run `dart pub upgrade`, and `dart install terradart_cli` for the new command.
+1. **Raise every TerraDart constraint to `^0.35.0` by hand**, then run `dart pub upgrade`, and `dart install terradart_cli` ([PATH setup](/docs/cli/#install)) for the new command.
 2. **Pass `--auto-approve` where nobody can answer.** Without a terminal — or with `--no-input`, `CI`, or in an AI agent's shell — `terradart apply` and `terradart destroy` stop before `init` with exit code 3 instead of starting the engine. A script that piped `yes` into them passes `--auto-approve` instead.
 3. **Check exit codes against the new table.** A failed engine step exits 12 (the engine's own code is `error.engineExitCode` under `--json`), a failed entry point 10, an unknown `--env` 65. A script that tested `$? -eq 1` tests `$? -ne 0`, or reads `error.code` from `--json`. See [JSON and exit codes](/docs/cli/#json-and-exit-codes).
 4. **Optional: install the agent skill.** `terradart skill install` writes the TerraDart Agent Skill of the CLI's release into the project; `terradart skill status --check` keeps it current in CI. See [Let an AI agent do it](/docs/start/ai-agent/).
@@ -18,7 +18,7 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 
 0.34.0 changes no Stack code: the Dart API, synth output and every provider pin stay as they were.
 
-1. **Raise every TerraDart constraint to `^0.34.0` by hand**, then run `dart pub upgrade`, and `dart install terradart_cli` for the new command.
+1. **Raise every TerraDart constraint to `^0.34.0` by hand**, then run `dart pub upgrade`, and `dart install terradart_cli` ([PATH setup](/docs/cli/#install)) for the new command.
 2. **Optional: name a default environment.** Passing a `defaultEnv` member to `runEnvironments` lets `terradart plan` run without `--env`; `TERRADART_ENV` overrides it. See [Environments](/docs/environments/).
 3. **Appwrite Stacks run on Terraform.** The `terradart` command now picks the `terraform` on `PATH` for a Stack that uses `terradart_appwrite`, and stops before `init` when there is none or OpenTofu is asked for.
 4. **A state another engine wrote now needs an answer.** When `.terradart/engines.json` has no record (a fresh clone, or right after a migration), `plan`, `apply` and `destroy` read the state first. If the engine the command picked by itself is not the one that wrote the state, they ask on a terminal. Without a terminal they stop with exit code 64; pass `--engine`, or set the `engine` of the `terradart` section in `pubspec.yaml`, in CI.
@@ -37,7 +37,7 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
      # terradart_cloudflare, terradart_appwrite or terradart_time
    ```
 
-2. **Switch to the command.** `dart install terradart_cli`, then `terradart apply` replaces `dart run bin/infra.dart`, `cd tf-out`, `terraform init` and `terraform apply`, and writes the define file a client reads its outputs from. An existing `bin/infra.dart` keeps working; calling `runStack` or `runEnvironments` from it lets the command select an environment with `--env <name>`. See [The terradart command](/docs/cli/).
+2. **Switch to the command.** `dart install terradart_cli` ([PATH setup](/docs/cli/#install)), then `terradart apply` replaces `dart run bin/infra.dart`, `cd tf-out`, `terraform init` and `terraform apply`, and writes the define file a client reads its outputs from. An existing `bin/infra.dart` keeps working; calling `runStack` or `runEnvironments` from it lets the command select an environment with `--env <name>`. See [The terradart command](/docs/cli/).
 3. **`terradart-migrate` users:** run `terradart migrate` with the same flags. `terradart-migrate` still runs, prints that it is deprecated, and goes away in a later release.
 4. **Maintainers only:** `dart install terradart_codegen` now installs `terradart-codegen` (`terradart-codegen wrap ...`), because `terradart` is the user command. Uninstall and reinstall `terradart_codegen` (`dart uninstall terradart_codegen` then `dart install terradart_codegen`) before installing `terradart_cli`; `dart run terradart_codegen:terradart` is unchanged.
 

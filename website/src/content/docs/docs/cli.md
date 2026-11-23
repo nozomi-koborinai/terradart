@@ -16,6 +16,22 @@ dart install terradart_cli
 terradart init
 ```
 
+`dart install` builds an ahead-of-time (AOT) compiled native executable, so `terradart` starts fast ([Dart CLI distribution](https://dart.dev/tools/cli-distribution)).
+
+`dart install` puts executables in `$DART_DATA_HOME/install/bin`, which must be on your `PATH`. Per-platform defaults:
+
+- macOS: `$HOME/Library/Application Support/Dart/install/bin`
+- Linux: `$HOME/.local/share/dart/install/bin` (or `$XDG_DATA_HOME/dart/install/bin`)
+- Windows: `%LOCALAPPDATA%\Dart\install\bin`
+
+On macOS with zsh, add it and open a new terminal:
+
+```bash
+echo 'export PATH="$PATH":"$HOME/Library/Application Support/Dart/install/bin"' >> ~/.zshrc
+```
+
+Run `dart uninstall terradart_cli` to remove it.
+
 For a one-off run without installing globally (Dart 3.12+):
 
 ```bash

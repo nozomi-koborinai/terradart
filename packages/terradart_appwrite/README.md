@@ -64,6 +64,8 @@ dart install terradart_cli
 APPWRITE_API_KEY=... terradart apply
 ```
 
+Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for per-platform defaults and `dart uninstall terradart_cli`).
+
 ## Curated surface
 
 Curated surface is the full `appwrite/appwrite` catalog at the current pin, across project, proxy, TablesDB, dedicated PostgreSQL / MySQL / Mongo, storage, auth, functions, sites, messaging, webhooks, and backups. Provider pinned exactly at `kAppwriteProviderVersionConstraint`. `AppwriteProjectKey` is import-only (mint it in the Console, then import it into the state with `"$(terradart engine)" -chdir=tf-out import`); the quickstart does not create one.

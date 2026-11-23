@@ -70,6 +70,8 @@ dart install terradart_cli
 CLOUDFLARE_API_TOKEN=... terradart apply
 ```
 
+Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for per-platform defaults and `dart uninstall terradart_cli`).
+
 ## Curated surface
 
 Curated surface is the full `cloudflare/cloudflare` catalog at the pin — every resource and data source — across per-service barrels (`zone`, `dns`, `r2`, `zero_trust`, `workers`, …). The provider is pinned exactly (`kCloudflareProviderVersionConstraint`, the release the wrappers were generated from). Start with [`examples/cloudflare_dns_quickstart`](../../examples/cloudflare_dns_quickstart); the rest of the catalog is exercised by [`examples/cloudflare_leftover_quickstart`](../../examples/cloudflare_leftover_quickstart) (synth only; CI validates it against the provider).

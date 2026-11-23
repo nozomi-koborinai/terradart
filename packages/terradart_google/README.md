@@ -56,6 +56,8 @@ dart install terradart_cli
 terradart apply
 ```
 
+Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for per-platform defaults and `dart uninstall terradart_cli`).
+
 Register a second configuration, a `GoogleProvider` with an `alias`, through `addProvider`, and select it on a resource with its `provider` argument — every factory and data source takes a `provider` (Terraform's `provider` meta-argument), a provider instance the Stack registers; a registered `GoogleBetaProvider` puts a GA type on the beta provider.
 
 ```dart

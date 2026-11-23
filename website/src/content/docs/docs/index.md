@@ -9,7 +9,7 @@ Guides track the **0.36.x** line on pub.dev. Every Dart snippet on this site com
 
 ## Start
 
-Pick the guide for where you start. Each is one path you can paste, from `dart install terradart_cli` to an apply, and none asks you to install Terraform.
+Pick the guide for where you start. Each is one path you can paste, from `dart install terradart_cli` ([PATH setup](/docs/cli/#install)) to an apply, and none asks you to install Terraform.
 
 - [Start from an existing Flutter app](/docs/start/flutter-app/) — add `infra/` beside the app, apply it, and build the app with the outputs, typed, through `--dart-define-from-file`
 - [Start from an empty directory](/docs/start/new-project/) — `terradart init`, then `validate`, `plan` and `apply`, with a default environment and the state moved to a bucket

@@ -14,7 +14,7 @@ dart install terradart_cli
 terradart --help
 ```
 
-If the second line is not found, add the bin directory `dart install` prints to your `PATH`. For a one-off run without installing globally, prefix each command with `dart run terradart_cli:terradart@` instead of `terradart`. The migration needs no Dart project: run it from anywhere.
+If the second line is not found, add `$DART_DATA_HOME/install/bin` to your `PATH` — see [Install](/docs/cli/#install) for per-platform defaults, the macOS zsh snippet, and `dart uninstall terradart_cli`. For a one-off run without installing globally, prefix each command with `dart run terradart_cli:terradart@` instead of `terradart`. The migration needs no Dart project: run it from anywhere.
 
 ## 2. Size it
 
