@@ -702,4 +702,136 @@ func resourceDemo() *Resource {
     });
     expect(scan.unresolvedSites, ['azurerm_demo remote']);
   });
+
+  test(
+    'scans qualified Schema calls, local schema maps and + slice elements',
+    () {
+      final root = Directory.systemTemp.createTempSync('azurerm_hints_qual_');
+      addTearDown(() => root.deleteSync(recursive: true));
+      void write(String rel, String src) {
+        final file = File(p.join(root.path, rel));
+        file.parent.createSync(recursive: true);
+        file.writeAsStringSync(src);
+      }
+
+      write(
+        'go.mod',
+        'module github.com/hashicorp/terraform-provider-azurerm\n',
+      );
+      write('internal/provider/provider.go', 'package provider\n');
+      write(
+        'vendor/github.com/hashicorp/go-azure-sdk/resource-manager/demo/constants.go',
+        '''
+package demo
+
+type Kind string
+
+const (
+	KindAlpha Kind = "Alpha"
+	KindBeta  Kind = "Beta"
+)
+
+type Reason string
+
+const (
+	ReasonOne Reason = "One"
+)
+''',
+      );
+      write('internal/services/demo/registration.go', '''
+package demo
+
+import (
+	"github.com/hashicorp/terraform-provider-azurerm/internal/services/demo/resources/policy"
+	"github.com/hashicorp/terraform-provider-azurerm/internal/services/demo/resources/vault"
+)
+
+func (r Registration) SupportedDataSources() map[string]*Resource {
+	return map[string]*Resource{
+		"azurerm_policy": policy.RegisterDataSource(),
+	}
+}
+
+func (r Registration) SupportedResources() map[string]*Resource {
+	return map[string]*Resource{
+		"azurerm_vault": vault.RegisterResource(),
+	}
+}
+''');
+      write('internal/services/demo/helpers/policy.go', '''
+package helpers
+
+func PolicyDataSourceSchema() map[string]*pluginsdk.Schema {
+	return map[string]*pluginsdk.Schema{
+		"display_name": {
+			Type:         pluginsdk.TypeString,
+			Optional:     true,
+			ExactlyOneOf: []string{"name", "display_name"},
+		},
+		"name": {
+			Type:         pluginsdk.TypeString,
+			Optional:     true,
+			ExactlyOneOf: []string{"name", "display_name"},
+		},
+	}
+}
+''');
+      write('internal/services/demo/resources/policy/data_source.go', '''
+package policy
+
+import (
+	"github.com/hashicorp/terraform-provider-azurerm/internal/services/demo/helpers"
+)
+
+func RegisterDataSource() *pluginsdk.Resource {
+	return &pluginsdk.Resource{
+		Schema: helpers.PolicyDataSourceSchema(),
+	}
+}
+''');
+      write('internal/services/demo/resources/vault/resource.go', '''
+package vault
+
+import (
+	"github.com/hashicorp/go-azure-sdk/resource-manager/demo"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
+)
+
+func RegisterResource() *pluginsdk.Resource {
+	return &pluginsdk.Resource{
+		Schema: vaultSchema(),
+	}
+}
+
+func vaultSchema() map[string]*pluginsdk.Schema {
+	s := map[string]*pluginsdk.Schema{
+		"classification": {
+			Type: pluginsdk.TypeString,
+			ValidateFunc: validation.StringInSlice([]string{
+				string(demo.KindAlpha),
+				string(demo.KindBeta) + "_" + string(demo.ReasonOne),
+			}, false),
+		},
+	}
+	return s
+}
+''');
+
+      final scan = scanAzurermProvider(root);
+      final policyData = scan.dataSourcesByType['azurerm_policy'];
+      expect(policyData, isNotNull);
+      expect(
+        policyData!.groups.map((g) => g.map((m) => m.join('.')).toList()),
+        [
+          ['display_name', 'name'],
+        ],
+      );
+
+      final vault = scan.byType['azurerm_vault'];
+      expect(vault, isNotNull);
+      expect(vault!.hints.single.dotted, 'classification');
+      expect(vault.hints.single.values, ['Alpha', 'Beta_One']);
+      expect(scan.unresolvedSites, isEmpty);
+    },
+  );
 }
