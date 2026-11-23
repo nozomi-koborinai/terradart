@@ -378,14 +378,16 @@ String _sealedChoice(
   Map<String, _ClassInfo> helpers, {
   required int depth,
   required Set<String> sensitive,
+  String? preferredVariant,
 }) {
   final variants = [
     for (final v in _sealedVariants[sealed]!)
       (v, helpers[v]!.requiredParams.single),
   ];
   if (variants.isEmpty) throw StateError('$sealed declares no variants');
+  final want = preferredVariant ?? _sealedMember[sealed];
   final (variant, member) = variants.firstWhere(
-    (v) => v.$2.name == _sealedMember[sealed],
+    (v) => v.$2.name == want,
     orElse: () => variants.first,
   );
   final outer = _insideHelper;
@@ -402,23 +404,35 @@ String _sealedChoice(
 }
 
 List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
-  if (f.kind != _Kind.data || f.requiredParams.isNotEmpty) return const [];
+  final requiredNames = {for (final p in f.requiredParams) p.name};
   final optional = {for (final p in f.optionalParams) p.name: p};
-  final pick = ['name', 'id'].where(optional.containsKey).firstOrNull;
-  if (pick == null) return const [];
-  final p = optional[pick]!;
-  return [
-    _Extra(
-      pick,
-      _dummy(
-        p,
-        helpers,
-        sensitive: f.sensitiveLeaves,
-        depth: 0,
-        owner: f.className,
+  final out = <_Extra>[];
+  void add(String name) {
+    if (requiredNames.contains(name) || !optional.containsKey(name)) return;
+    if (out.any((e) => e.name == name)) return;
+    final p = optional[name]!;
+    out.add(
+      _Extra(
+        name,
+        _dummy(
+          p,
+          helpers,
+          sensitive: f.sensitiveLeaves,
+          depth: 0,
+          owner: f.className,
+        ),
       ),
-    ),
-  ];
+    );
+  }
+
+  if (f.kind == _Kind.data && f.requiredParams.isEmpty) {
+    final pick = ['name', 'id'].where(optional.containsKey).firstOrNull;
+    if (pick != null) add(pick);
+  }
+  for (final name in _dummies.includedParams(f.className)) {
+    add(name);
+  }
+  return out;
 }
 
 List<String> _splitTopLevel(String src, String sep) {
@@ -588,7 +602,13 @@ String _dummyForType(
     return "{'k': leftover}";
   }
   if (_sealedVariants.containsKey(t)) {
-    return _sealedChoice(t, helpers, depth: depth, sensitive: sensitive);
+    return _sealedChoice(
+      t,
+      helpers,
+      depth: depth,
+      sensitive: sensitive,
+      preferredVariant: _dummies.includedVariant(owner, name),
+    );
   }
   if (helpers.containsKey(t)) {
     return _constructHelper(
@@ -713,10 +733,11 @@ String _stringValue(String name, {String owner = ''}) {
 }
 
 String? _fit(DummyValue value, String t) {
+  if (value is IncludeDummy) return null;
   final json = switch (value) {
     LiteralDummy(:final json) => json,
     BoundDummy(:final template) => template,
-    DartDummy() => null,
+    DartDummy() || IncludeDummy() => null,
   };
   if (value is DartDummy || t == 'Object' || t == 'dynamic') return value.dart;
   if (_listEnum(t) case final enumName?) {
@@ -746,9 +767,19 @@ String _constructHelper(
   if (depth > 8) return '$ctor()';
   final info = helpers[className];
   if (info == null) return '$ctor()';
+  final optional = {for (final p in info.optionalParams) p.name: p};
+  final requiredNames = {for (final p in info.requiredParams) p.name};
+  final learned = [
+    for (final name in _dummies.includedParams(className))
+      if (!requiredNames.contains(name) && optional.containsKey(name))
+        optional[name]!,
+  ];
   final params = [
     ...info.requiredParams,
-    if (info.requiredParams.isEmpty && info.optionalParams.isNotEmpty)
+    ...learned,
+    if (info.requiredParams.isEmpty &&
+        learned.isEmpty &&
+        info.optionalParams.isNotEmpty)
       info.optionalParams.first,
   ];
   if (params.isEmpty) {

@@ -48,8 +48,9 @@ import 'package:yaml/yaml.dart';
 
 import 'fetch_discovery_enums.dart' show staleDiscovery;
 import 'migrate_fixture_pins.dart';
+import 'refresh_migrating_cells.dart';
 import 'retire_removed_overrides.dart';
-import 'retire_stale_sealed_names.dart';
+import 'self_heal_overrides.dart';
 
 const providersPath = 'tool/providers.yaml';
 
@@ -718,18 +719,26 @@ Future<void> main(List<String> args) async {
       final codegen = p.join(repoRoot, codegenDir);
       final args = ['run', 'bin/terradart.dart', ...gate.args(lane)];
       final capture = gate == WrapGate.regen;
+      final manifestFile = File(p.join(repoRoot, lane.migrateManifest));
+      final beforeManifest = capture && manifestFile.existsSync()
+          ? manifestFile.readAsStringSync()
+          : null;
       var run = await _runDart(args, codegen, captureLog: capture);
-      if (run.code != 0 && capture) {
-        final dropped = retireStaleSealedNames(
-          p.join(repoRoot, lane.overridesRoot),
-          staleSealedNamesIn(run.log),
-        );
-        if (dropped.isNotEmpty) {
-          print(
-            '>> retire stale sealedNames (${lane.name}): '
-            '${dropped.join('; ')}',
+      if (capture) {
+        const maxSelfHealPasses = 5;
+        for (var pass = 1; pass <= maxSelfHealPasses; pass++) {
+          final fixes = parseMechanicalWrapFixes(run.log);
+          if (fixes.isEmpty) break;
+          final applied = applyMechanicalOverrideFixes(
+            p.join(repoRoot, lane.overridesRoot),
+            fixes,
           );
-          print('>> ${gate.label} (${lane.name}) retry');
+          if (applied.isEmpty) break;
+          print(
+            '>> self-heal overrides (${lane.name}, pass $pass): '
+            '${applied.join('; ')}',
+          );
+          print('>> ${gate.label} (${lane.name}) retry $pass');
           run = await _runDart(args, codegen, captureLog: true);
         }
       }
@@ -749,6 +758,32 @@ Future<void> main(List<String> args) async {
             '>> repin migrate lane fixtures (${lane.name}): '
             '${moved.join(', ')}',
           );
+        }
+        if (beforeManifest != null && manifestFile.existsSync()) {
+          final afterManifest = manifestFile.readAsStringSync();
+          if (afterManifest != beforeManifest) {
+            final renames = deriveGeneratedTypeRenames(
+              parseManifestSourceSnapshot(beforeManifest),
+              parseManifestSourceSnapshot(afterManifest),
+            );
+            if (!renames.isEmpty) {
+              final outcome = await refreshAndVerifyMigratingMd(
+                repoRoot,
+                renames,
+              );
+              if (outcome.written) {
+                print(
+                  '>> refresh MIGRATING.md After cells (${lane.name}): '
+                  '${outcome.replacements.join('; ')}',
+                );
+              } else if (outcome.reason != null) {
+                print(
+                  '>> skipped MIGRATING.md After-cell refresh (${lane.name}): '
+                  '${outcome.reason}',
+                );
+              }
+            }
+          }
         }
         if (lane.discovery) {
           final code = await _recordProseSources(repoRoot);

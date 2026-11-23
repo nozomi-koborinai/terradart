@@ -45,21 +45,40 @@ String _repinJsonFixture(
 }) {
   final root = jsonDecode(json);
   if (root is! Map) return json;
-  final tf = root['terraform'];
-  final providers = tf is Map ? tf['required_providers'] : null;
-  if (providers is! Map) return json;
   var changed = false;
-  for (final entry in providers.values) {
-    if (entry is! Map || entry['source'] != source) continue;
-    final current = entry['version'];
-    if (current is! String ||
-        current == version ||
-        !_isSingleVersion(current)) {
-      continue;
+
+  void visitProviders(Object? providers) {
+    if (providers is List) {
+      for (final item in providers) {
+        visitProviders(item);
+      }
+      return;
     }
-    entry['version'] = version;
-    changed = true;
+    if (providers is! Map) return;
+    for (final entry in providers.values) {
+      if (entry is! Map || entry['source'] != source) continue;
+      final current = entry['version'];
+      if (current is! String ||
+          current == version ||
+          !_isSingleVersion(current)) {
+        continue;
+      }
+      entry['version'] = version;
+      changed = true;
+    }
   }
+
+  void visitTerraform(Object? tf) {
+    if (tf is List) {
+      for (final block in tf) {
+        visitTerraform(block);
+      }
+      return;
+    }
+    if (tf is Map) visitProviders(tf['required_providers']);
+  }
+
+  visitTerraform(root['terraform']);
   if (!changed) return json;
   return '${const JsonEncoder.withIndent('  ').convert(root)}\n';
 }

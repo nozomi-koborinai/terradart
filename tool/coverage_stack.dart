@@ -196,9 +196,9 @@ final class OracleBroken extends OracleRun {
   final String log;
 }
 
-/// Passes that may learn values. Later passes only leave factories out, so
-/// the run ends.
-const kLearnPasses = 3;
+/// Passes that may learn values or required blocks. Later passes only leave
+/// factories out, so the run ends.
+const kLearnPasses = 5;
 
 /// Trial rounds one search may spend, and the wall time it may take.
 const kMaxRounds = 6;
@@ -233,22 +233,49 @@ Future<CoverageVerdict> runCoverageStack(
   final exclude = {...lane.debtListed};
   final excluded = <String, ExcludedFactory>{};
   final learned = <DummyKey, (LearnedDummy, ValueRejection)>{};
+  final learnedIncludes =
+      <DummyKey, (LearnedInclude, BlockRejection, AttrPath, Set<TfAddress>)>{};
   try {
     for (var pass = 1; ; pass++) {
-      final dummies = lane.dummies.revised({
-        for (final MapEntry(:key, :value) in learned.entries) key: value.$1,
-      });
+      var dummies = lane.dummies.revised(
+        {for (final MapEntry(:key, :value) in learned.entries) key: value.$1},
+        included: {
+          for (final MapEntry(:key, :value) in learnedIncludes.entries)
+            key: value.$1,
+        },
+      );
       try {
         var rendered = lane.generator.render(dummies, exclude: exclude);
         while (rendered.unplaceable.isNotEmpty) {
+          var prunedInclude = false;
           for (final MapEntry(key: className, value: why)
               in rendered.unplaceable.entries) {
             if (!exclude.add(className)) {
               throw StateError('the generator rendered excluded $className');
             }
-            excluded[className] = lane
-                .factoryNamed(className)
-                .excluded(GeneratorCannotPlace(why));
+            final factory = lane.factoryNamed(className);
+            final isData = factory.kind == FactoryKind.dataSource;
+            learnedIncludes.removeWhere((_, v) {
+              final beforeCount = v.$4.length;
+              v.$4.removeWhere(
+                (a) => a.type == factory.tfType && a.dataSource == isData,
+              );
+              if (v.$4.length != beforeCount) prunedInclude = true;
+              return v.$4.isEmpty;
+            });
+            excluded[className] = factory.excluded(GeneratorCannotPlace(why));
+          }
+          if (prunedInclude) {
+            dummies = lane.dummies.revised(
+              {
+                for (final MapEntry(:key, :value) in learned.entries)
+                  key: value.$1,
+              },
+              included: {
+                for (final MapEntry(:key, :value) in learnedIncludes.entries)
+                  key: value.$1,
+              },
+            );
           }
           rendered = lane.generator.render(dummies, exclude: exclude);
         }
@@ -268,7 +295,11 @@ Future<CoverageVerdict> runCoverageStack(
       switch (await oracle.run(slug)) {
         case OracleGreen(:final engine, :final providers):
           final pruned = [for (final k in lane.dummies.stale) k.value]..sort();
-          if (learned.isNotEmpty || pruned.isNotEmpty) dummies.save();
+          if (learned.isNotEmpty ||
+              learnedIncludes.isNotEmpty ||
+              pruned.isNotEmpty) {
+            dummies.save();
+          }
           return CoverageGreen(
             slug: slug,
             engine: engine,
@@ -281,6 +312,16 @@ Future<CoverageVerdict> runCoverageStack(
                   source: l.candidate.source,
                   rejected: r.rejected,
                   at: r.at,
+                  detail: r.message,
+                ),
+              for (final MapEntry(:key, value: (inc, r, reqPath, _))
+                  in learnedIncludes.entries)
+                LearnedEntry(
+                  key: key.value,
+                  value: 'include',
+                  source: inc.source,
+                  rejected: '(missing)',
+                  at: '${r.address}.${reqPath.text}',
                   detail: r.message,
                 ),
             ],
@@ -312,6 +353,10 @@ Future<CoverageVerdict> runCoverageStack(
           }
           var progressed = false;
           void leaveOut(TfAddress address, ProviderRejected cause) {
+            learnedIncludes.removeWhere((_, v) {
+              v.$4.remove(address);
+              return v.$4.isEmpty;
+            });
             final factory = lane.factoryAt(address)!;
             if (exclude.add(factory.className)) {
               excluded[factory.className] = factory.excluded(cause);
@@ -320,6 +365,10 @@ Future<CoverageVerdict> runCoverageStack(
           }
 
           final groups = <DummyKey, List<ValueRejection>>{};
+          final blockGroups =
+              <DummyKey, List<(BlockRejection, AttrPath, String?)>>{};
+          final learnedAddresses = <TfAddress>{};
+          final pendingLeaveOut = <(TfAddress, ProviderRejected)>[];
           for (final r in rejections) {
             switch (r) {
               case ValueRejection():
@@ -330,22 +379,91 @@ Future<CoverageVerdict> runCoverageStack(
                   (groups[key] ??= []).add(r);
                 } else {
                   learned.remove(key);
-                  leaveOut(r.address, _cause(r));
+                  pendingLeaveOut.add((r.address, _cause(r)));
                 }
               case BlockRejection():
-                leaveOut(r.address, _cause(r));
+                final reqPath = requiredPathNamedBy(r.message);
+                final target = reqPath == null
+                    ? null
+                    : dummies.slotTargetAt(r.address, reqPath);
+                final key = target?.key;
+                final currentVariant = key == null
+                    ? null
+                    : (learnedIncludes[key]?.$1.variant ??
+                          dummies.includedVariantByKey(key));
+                final alreadyIncluded =
+                    key != null &&
+                    (learnedIncludes.containsKey(key) ||
+                        dummies.includesParam(key));
+                final canUpgradeVariant =
+                    alreadyIncluded &&
+                    currentVariant == null &&
+                    target?.variant != null;
+                if (pass <= kLearnPasses &&
+                    key != null &&
+                    (!alreadyIncluded || canUpgradeVariant)) {
+                  (blockGroups[key] ??= []).add((r, reqPath!, target!.variant));
+                } else {
+                  if (key != null) {
+                    final existing = learnedIncludes[key];
+                    if (existing != null) {
+                      existing.$4.remove(r.address);
+                      if (existing.$4.isEmpty) learnedIncludes.remove(key);
+                    }
+                  }
+                  pendingLeaveOut.add((r.address, _cause(r)));
+                }
               case StackRejection():
             }
+          }
+          for (final MapEntry(key: key, value: items) in blockGroups.entries) {
+            final chosenVariant = items
+                .map((e) => e.$3)
+                .whereType<String>()
+                .firstOrNull;
+            final matching = [
+              for (final item in items)
+                if (item.$3 == null || item.$3 == chosenVariant) item,
+            ];
+            for (final item in items) {
+              if (item.$3 != null && item.$3 != chosenVariant) {
+                pendingLeaveOut.add((item.$1.address, _cause(item.$1)));
+              }
+            }
+            final (first, reqPath, _) = matching.first;
+            final addresses = {
+              ...?learnedIncludes[key]?.$4,
+              for (final (r, _, _) in matching) r.address,
+            };
+            learnedIncludes[key] = (
+              LearnedInclude(
+                '${first.address}: ${_firstLine(first.message)}',
+                variant: chosenVariant,
+              ),
+              first,
+              reqPath,
+              addresses,
+            );
+            learnedAddresses.addAll(addresses);
+            progressed = true;
           }
           final found = await search(slug, groups, mainTfJson, dummies, oracle);
           for (final MapEntry(key: key, value: at) in groups.entries) {
             if (found[key] case final l?) {
               learned[key] = (l, at.first);
+              for (final r in at) {
+                learnedAddresses.add(r.address);
+              }
               progressed = true;
             } else {
               for (final r in at) {
-                leaveOut(r.address, _cause(r));
+                pendingLeaveOut.add((r.address, _cause(r)));
               }
+            }
+          }
+          for (final (address, cause) in pendingLeaveOut) {
+            if (!learnedAddresses.contains(address)) {
+              leaveOut(address, cause);
             }
           }
           if (!progressed) {

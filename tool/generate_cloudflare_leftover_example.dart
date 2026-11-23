@@ -387,14 +387,16 @@ String _sealedChoice(
   Map<String, _ClassInfo> helpers, {
   required int depth,
   required Set<String> sensitive,
+  String? preferredVariant,
 }) {
   final variants = [
     for (final v in _sealedVariants[sealed]!)
       (v, helpers[v]!.requiredParams.single),
   ];
   if (variants.isEmpty) throw StateError('$sealed declares no variants');
+  final want = preferredVariant ?? _sealedMember[sealed];
   final (variant, member) = variants.firstWhere(
-    (v) => v.$2.name == _sealedMember[sealed],
+    (v) => v.$2.name == want,
     orElse: () => variants.first,
   );
   final outer = _insideHelper;
@@ -473,6 +475,9 @@ List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
     if (!optional.containsKey(name) && !requiredNames.contains(name)) {
       throw StateError('_optionalExtras: ${f.className} has no slot $name');
     }
+    add(name);
+  }
+  for (final name in _dummies.includedParams(f.className)) {
     add(name);
   }
   return out;
@@ -638,7 +643,13 @@ String _dummyForType(
     return "{'k': leftover}";
   }
   if (_sealedVariants.containsKey(t)) {
-    return _sealedChoice(t, helpers, depth: depth, sensitive: sensitive);
+    return _sealedChoice(
+      t,
+      helpers,
+      depth: depth,
+      sensitive: sensitive,
+      preferredVariant: _dummies.includedVariant(owner, name),
+    );
   }
   if (helpers.containsKey(t)) {
     return _constructHelper(
@@ -780,10 +791,11 @@ String _stringValue(String name, {String owner = ''}) {
 /// [value] written for a slot of inner type [t], or null when it does not
 /// fit and the slot takes its type default.
 String? _fit(DummyValue value, String t) {
+  if (value is IncludeDummy) return null;
   final json = switch (value) {
     LiteralDummy(:final json) => json,
     BoundDummy(:final template) => template,
-    DartDummy() => null,
+    DartDummy() || IncludeDummy() => null,
   };
   if (value is DartDummy || t == 'Object' || t == 'dynamic') return value.dart;
   if (_listEnum(t) case final enumName?) {
@@ -815,9 +827,19 @@ String _constructHelper(
   if (depth > 8) return '$ctor()';
   final info = helpers[className];
   if (info == null) return '$ctor()';
+  final optional = {for (final p in info.optionalParams) p.name: p};
+  final requiredNames = {for (final p in info.requiredParams) p.name};
+  final learned = [
+    for (final name in _dummies.includedParams(className))
+      if (!requiredNames.contains(name) && optional.containsKey(name))
+        optional[name]!,
+  ];
   final params = [
     ...info.requiredParams,
-    if (info.requiredParams.isEmpty && info.optionalParams.isNotEmpty)
+    ...learned,
+    if (info.requiredParams.isEmpty &&
+        learned.isEmpty &&
+        info.optionalParams.isNotEmpty)
       info.optionalParams.first,
   ];
   if (params.isEmpty) {

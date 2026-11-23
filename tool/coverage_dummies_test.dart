@@ -189,6 +189,17 @@ ExampleQueueScope.zoneId: 'unjudged'
               variants: {'cidr_ip': 'ExampleRouteCidrIp'},
             ),
             MigrateSlot(
+              tfName: 'action',
+              dartName: 'action',
+              kind: MigrateSlotKind.sealed,
+              required: false,
+              wrapped: false,
+              variants: {
+                'fixed_response': 'ExampleRouteActionFixed',
+                'forward': 'ExampleRouteActionForward',
+              },
+            ),
+            MigrateSlot(
               tfName: 'config',
               dartName: 'config',
               kind: MigrateSlotKind.helper,
@@ -215,6 +226,55 @@ ExampleQueueScope.zoneId: 'unjudged'
         ),
       ],
       helpers: {
+        'ExampleRouteActionFixed': MigrateHelper(
+          className: 'ExampleRouteActionFixed',
+          shorthand: 'fixedResponse',
+          slots: [
+            MigrateSlot(
+              tfName: 'fixed_response',
+              dartName: 'fixedResponse',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              positional: true,
+              helper: 'ExampleRouteFixed',
+            ),
+          ],
+        ),
+        'ExampleRouteActionForward': MigrateHelper(
+          className: 'ExampleRouteActionForward',
+          shorthand: 'forward',
+          slots: [
+            MigrateSlot(
+              tfName: 'forward',
+              dartName: 'forward',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              positional: true,
+              helper: 'ExampleRouteForward',
+            ),
+          ],
+        ),
+        'ExampleRouteFixed': MigrateHelper(
+          className: 'ExampleRouteFixed',
+          slots: [],
+        ),
+        'ExampleRouteForward': MigrateHelper(
+          className: 'ExampleRouteForward',
+          slots: [
+            MigrateSlot(
+              tfName: 'target',
+              dartName: 'target',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              helper: 'ExampleRouteTarget',
+            ),
+          ],
+        ),
+        'ExampleRouteTarget': MigrateHelper(
+          className: 'ExampleRouteTarget',
+          slots: [],
+        ),
         'ExampleRouteCidrIp': MigrateHelper(
           className: 'ExampleRouteCidrIp',
           slots: [
@@ -281,5 +341,147 @@ ExampleQueueScope.zoneId: 'unjudged'
         "['subnet-1']",
       );
     });
+
+    test('slotKeyAt resolves helper and sealed block slots', () {
+      expect(
+        dummies.slotKeyAt(route, const AttrPath(['config']))?.value,
+        'ExampleRoute.config',
+      );
+      expect(
+        dummies.slotKeyAt(route, const AttrPath(['config', 0]))?.value,
+        'ExampleRoute.config',
+      );
+      expect(
+        dummies.slotKeyAt(route, const AttrPath(['config', 0, 'mode']))?.value,
+        'ExampleRouteConfig.mode',
+      );
+      expect(
+        dummies.slotKeyAt(route, const AttrPath(['cidr_ip']))?.value,
+        'ExampleRoute.cidr',
+      );
+      expect(
+        dummies.slotKeyAt(route, const AttrPath(['cidr_ip', 0]))?.value,
+        'ExampleRoute.cidr',
+      );
+      expect(dummies.slotTargetAt(route, const AttrPath(['cidr_ip', 0])), (
+        key: dummies.slotKeyAt(route, const AttrPath(['cidr_ip']))!,
+        variant: 'cidrIp',
+      ));
+      expect(dummies.slotTargetAt(route, const AttrPath(['action'])), (
+        key: dummies.slotKeyAt(route, const AttrPath(['action']))!,
+        variant: null,
+      ));
+      expect(
+        dummies.slotTargetAt(route, const AttrPath(['action', 0, 'forward'])),
+        (
+          key: dummies.slotKeyAt(route, const AttrPath(['action']))!,
+          variant: 'forward',
+        ),
+      );
+      expect(
+        dummies.slotTargetAt(
+          route,
+          const AttrPath(['action', 0, 'forward', 0]),
+        ),
+        (
+          key: dummies.slotKeyAt(route, const AttrPath(['action']))!,
+          variant: 'forward',
+        ),
+      );
+      expect(
+        dummies
+            .slotTargetAt(
+              route,
+              const AttrPath(['action', 0, 'forward', 0, 'target']),
+            )
+            ?.key
+            .value,
+        'ExampleRouteForward.target',
+      );
+    });
+
+    test('include: true round-trips through save and includedParams', () {
+      final tmp = Directory.systemTemp.createTempSync('include_dummy_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      final path = '${tmp.path}/ledger.yaml';
+      final parsed = CoverageDummies.parse(
+        "subnetIds: ['fallback']\n",
+        path: path,
+        manifest: manifest,
+        bindings: const {},
+      );
+      final key = parsed.slotKeyAt(route, const AttrPath(['config']))!;
+      final updated = parsed.revised(
+        const {},
+        included: {
+          key: const LearnedInclude(
+            'example_route.route: Block config must have a configuration value',
+          ),
+        },
+      );
+      expect(updated.includedParams('ExampleRoute'), ['config']);
+      expect(updated.includesParam(key), isTrue);
+      expect(updated.ownsValue('ExampleRoute', 'config'), isFalse);
+      expect(updated.valueFor('ExampleRoute', 'config'), isNull);
+
+      updated.save();
+      final reloaded = CoverageDummies.parse(
+        File(path).readAsStringSync(),
+        path: path,
+        manifest: manifest,
+        bindings: const {},
+      );
+      expect(reloaded.includedParams('ExampleRoute'), ['config']);
+      expect(reloaded.stale, isEmpty);
+    });
+
+    test('include: true rejects non-exact keys and false values', () {
+      expect(() => _parse('config:\n  include: true\n'), throwsFormatException);
+      expect(
+        () => _parse('ExampleQueue.directoryId:\n  include: false\n'),
+        throwsFormatException,
+      );
+      expect(
+        () => _parse("ExampleQueue.directoryId:\n  value: 'x'\n  variant: a\n"),
+        throwsFormatException,
+      );
+    });
+
+    test(
+      'include: true with variant round-trips through save and includedVariant',
+      () {
+        final tmp = Directory.systemTemp.createTempSync('include_variant_');
+        addTearDown(() => tmp.deleteSync(recursive: true));
+        final path = '${tmp.path}/ledger.yaml';
+        final parsed = CoverageDummies.parse(
+          "subnetIds: ['fallback']\n",
+          path: path,
+          manifest: manifest,
+          bindings: const {},
+        );
+        final target = parsed.slotTargetAt(
+          route,
+          const AttrPath(['cidr_ip', 0]),
+        )!;
+        final updated = parsed.revised(
+          const {},
+          included: {
+            target.key: LearnedInclude(
+              'example_route.route: Block cidr_ip must have a configuration value',
+              variant: target.variant,
+            ),
+          },
+        );
+        expect(updated.includedVariant('ExampleRoute', 'cidr'), 'cidrIp');
+        updated.save();
+        final reloaded = CoverageDummies.parse(
+          File(path).readAsStringSync(),
+          path: path,
+          manifest: manifest,
+          bindings: const {},
+        );
+        expect(reloaded.includedVariant('ExampleRoute', 'cidr'), 'cidrIp');
+      },
+    );
   });
 }

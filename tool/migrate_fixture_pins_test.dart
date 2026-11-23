@@ -4,6 +4,7 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 import 'migrate_fixture_pins.dart';
+import 'wrap_lanes.dart';
 
 const _hcl = '''
 terraform {
@@ -107,4 +108,51 @@ terraform {
       isEmpty,
     );
   });
+
+  test(
+    'repinFixture handles JSON list-form terraform blocks and equals pins',
+    () {
+      const json =
+          '{"terraform":[{"required_providers":[{"aws":{"source":"hashicorp/aws","version":"= 6.72.0"}}]}]}\n';
+      final after = repinFixture(
+        json,
+        source: 'hashicorp/aws',
+        version: '6.73.0',
+      );
+      expect(after, contains('"version": "6.73.0"'));
+      expect(after, isNot(contains('6.72.0')));
+      expect(
+        repinFixture(after, source: 'hashicorp/aws', version: '6.73.0'),
+        after,
+      );
+    },
+  );
+
+  test(
+    'every committed exact-pinned lane and shape fixture matches provider_version.txt',
+    () {
+      final lanes = parseWrapLanes(File(providersPath).readAsStringSync());
+      for (final lane in lanes) {
+        final version = File(
+          p.join(lane.schemaDir, 'provider_version.txt'),
+        ).readAsStringSync().trim();
+        for (final sub in ['lanes', 'shapes']) {
+          final dir = Directory(p.join(migrateFixturesRoot, sub));
+          if (!dir.existsSync()) continue;
+          for (final file in dir.listSync(recursive: true).whereType<File>()) {
+            if (!file.path.endsWith('.tf') && !file.path.endsWith('.tf.json')) {
+              continue;
+            }
+            final content = file.readAsStringSync();
+            expect(
+              repinFixture(content, source: lane.source, version: version),
+              content,
+              reason:
+                  '${file.path} has a stale ${lane.source} pin (expected $version)',
+            );
+          }
+        }
+      }
+    },
+  );
 }

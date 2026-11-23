@@ -49,10 +49,12 @@ final class AppwriteLeftoverGenerator implements CoverageStackGenerator {
     final unplaceable = <String, String>{};
     for (final factory in todo) {
       final args = <(_Param, _Written)>[];
+      final included = dummies.includedParams(factory.className).toSet();
       var blocked = false;
       for (final param in factory.params) {
         if (!param.required &&
-            !dummies.ownsValue(factory.className, param.name)) {
+            !dummies.ownsValue(factory.className, param.name) &&
+            !included.contains(param.name)) {
           continue;
         }
         switch (_argument(factory, param, dummies, enums, sealed)) {
@@ -239,19 +241,18 @@ final class _SealedMember {
   final String type;
 }
 
-Map<String, _SealedMember> _parseSealed(String srcRoot) {
+Map<String, List<_SealedMember>> _parseSealed(String srcRoot) {
   final variant = RegExp(
     r'final class (\w+) extends (\w+) \{\s*'
     r'const \1\(this\.(\w+)\);\s*'
     r'final ([^;]+?) \3;',
   );
-  final out = <String, _SealedMember>{};
+  final out = <String, List<_SealedMember>>{};
   for (final file in _dartFiles(srcRoot)) {
     final src = file.readAsStringSync();
     for (final match in variant.allMatches(src)) {
-      out.putIfAbsent(
-        match.group(2)!,
-        () => _SealedMember(match.group(3)!, match.group(4)!.trim()),
+      (out[match.group(2)!] ??= []).add(
+        _SealedMember(match.group(3)!, match.group(4)!.trim()),
       );
     }
   }
@@ -263,11 +264,16 @@ _Arg _argument(
   _Param param,
   CoverageDummies dummies,
   _Enums enums,
-  Map<String, _SealedMember> sealed,
+  Map<String, List<_SealedMember>> sealed,
 ) {
   final value = dummies.valueFor(factory.className, param.name);
   final type = param.type;
-  if (sealed[type] case final member?) {
+  if (sealed[type] case final members? when members.isNotEmpty) {
+    final want = dummies.includedVariant(factory.className, param.name);
+    final member = members.firstWhere(
+      (m) => m.name == want,
+      orElse: () => members.first,
+    );
     final inner = _argument(
       factory,
       _Param(member.name, member.type, required: true),

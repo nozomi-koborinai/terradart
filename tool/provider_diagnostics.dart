@@ -359,6 +359,67 @@ List<Candidate> shapesNamedBy(String message) => [
         Candidate(shape, 'family ${family.name}'),
 ];
 
+final _requiredBlockMsg = RegExp(
+  r'\bBlock\s+([A-Za-z_][A-Za-z0-9_.\[\]]*)\s+must have a configuration value as the provider has marked it as required',
+);
+final _requiredBlocksCoreMsg = RegExp(
+  r'(?:At least \d+ "([A-Za-z_][A-Za-z0-9_]*)" blocks are required|Blocks of type "([A-Za-z_][A-Za-z0-9_]*)" are required)',
+);
+final _requiredArgumentMsg = RegExp(
+  r'The argument "([A-Za-z_][A-Za-z0-9_]*)" is required',
+);
+final _oneOfConfiguredMsg = RegExp(
+  r'(?:Exactly|At least) one of these attributes must be configured:\s*\[([^\]]+)\]',
+);
+
+/// Parses a Terraform attribute/block path such as `configuration`,
+/// `connector_provider[0].azure[0].scope_configuration`, or `a.0.b` into an
+/// [AttrPath]. Returns null when [text] is not a valid path.
+AttrPath? parseAttrPath(String text) {
+  final trimmed = text.trim();
+  if (trimmed.isEmpty) return null;
+  final segments = <Object>[];
+  for (final part in trimmed.split('.')) {
+    if (part.isEmpty) return null;
+    if (RegExp(r'^\d+$').hasMatch(part)) {
+      segments.add(int.parse(part));
+      continue;
+    }
+    final m = RegExp(
+      r'^([A-Za-z_][A-Za-z0-9_]*)((?:\[\d+\])*)$',
+    ).firstMatch(part);
+    if (m == null) return null;
+    segments.add(m[1]!);
+    for (final idx in RegExp(r'\[(\d+)\]').allMatches(m[2]!)) {
+      segments.add(int.parse(idx[1]!));
+    }
+  }
+  return segments.isEmpty ? null : AttrPath(segments);
+}
+
+/// The missing required block or attribute path named by a provider's
+/// block-level validation [message], or null when [message] does not name one.
+AttrPath? requiredPathNamedBy(String message) {
+  if (_requiredBlockMsg.firstMatch(message) case final m?) {
+    return parseAttrPath(m[1]!);
+  }
+  if (_requiredBlocksCoreMsg.firstMatch(message) case final m?) {
+    return parseAttrPath((m[1] ?? m[2])!);
+  }
+  if (_requiredArgumentMsg.firstMatch(message) case final m?) {
+    return parseAttrPath(m[1]!);
+  }
+  if (_oneOfConfiguredMsg.firstMatch(message) case final m?) {
+    for (final raw in m[1]!.split(RegExp(r'[,\s]+'))) {
+      final cleaned = raw.trim().replaceAll(RegExp(r'''^["']|["']$'''), '');
+      if (cleaned.isEmpty) continue;
+      final parsed = parseAttrPath(cleaned);
+      if (parsed != null) return parsed;
+    }
+  }
+  return null;
+}
+
 /// A string matching [pattern], or null outside the subset this samples:
 /// literals, escapes, character classes, `\d` `\w` `\s`, `.`, groups,
 /// `{n}` `{n,}` `{n,m}` `?` `+` `*`, anchors, and the first branch of an

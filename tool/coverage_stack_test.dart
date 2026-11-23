@@ -8,6 +8,7 @@ import 'bump_plan.dart';
 import 'coverage_dummies.dart';
 import 'coverage_stack.dart';
 import 'coverage_verdict.dart';
+import 'generate_aws_leftover_example.dart';
 import 'provider_diagnostics.dart';
 import 'wrap_lanes.dart' show providersPath;
 
@@ -451,6 +452,818 @@ String _literal(String className, String name) {
     expect(chosen.patches.single.$1, path);
     expect(chosen.patches.single.$2, '10.0.0.2');
   });
+
+  group('required-block learning', () {
+    const blockManifest = MigrateManifest(
+      package: 'terradart_example',
+      entries: [
+        MigrateEntry(
+          tfType: 'example_deployment',
+          className: 'ExampleDeployment',
+          barrel: 'example',
+          kind: CatalogKind.resource,
+          slots: [
+            MigrateSlot(
+              tfName: 'name',
+              dartName: 'name',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'configuration',
+              dartName: 'configuration',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              helper: 'ExampleDeploymentConfiguration',
+            ),
+          ],
+          getters: [],
+        ),
+      ],
+      helpers: {
+        'ExampleDeploymentConfiguration': MigrateHelper(
+          className: 'ExampleDeploymentConfiguration',
+          slots: [
+            MigrateSlot(
+              tfName: 'mode',
+              dartName: 'mode',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+      },
+      enums: {},
+    );
+
+    final address = TfAddress.parse('example_deployment.dep')!;
+
+    test(
+      'learns a required block and then an inner scalar value across passes',
+      () async {
+        final ledgerFile = File('${tmp.path}/block_ledger.yaml')
+          ..writeAsStringSync("# block ledger\nname: 'leftover'\n");
+        final stackFile = File('${tmp.path}/block_main.dart');
+        final generator = _BlockStack();
+        final lane = CoverageLane(
+          name: 'test',
+          generator: generator,
+          manifest: blockManifest,
+          dummies: CoverageDummies.parse(
+            ledgerFile.readAsStringSync(),
+            path: ledgerFile.path,
+            manifest: blockManifest,
+            bindings: const {},
+          ),
+          debtListed: const {},
+          stackPath: stackFile.path,
+        );
+
+        final mainTfWithConfig = jsonEncode({
+          'resource': {
+            'example_deployment': {
+              'dep': {
+                'name': 'leftover',
+                'configuration': [
+                  {'mode': 'leftover'},
+                ],
+              },
+            },
+          },
+        });
+
+        final verdict = await run(
+          lane,
+          _FakeOracle(
+            stackFile,
+            onRun: (source) {
+              if (!source.contains('configuration:')) {
+                return OracleRejected([
+                  BlockRejection(
+                    address,
+                    'Missing Configuration for Required Attribute',
+                    'Block configuration must have a configuration value as the '
+                        'provider has marked it as required',
+                  ),
+                ], '{}');
+              }
+              if (!source.contains("mode: 'ACTIVE'")) {
+                return OracleRejected([
+                  ValueRejection(
+                    address,
+                    const AttrPath(['configuration', 0, 'mode']),
+                    'leftover',
+                    'Invalid Attribute Value Match',
+                    'Attribute mode value must be one of: ["ACTIVE"], got: "leftover"',
+                  ),
+                ], mainTfWithConfig);
+              }
+              return const OracleGreen('tofu 1.13.1', {
+                'hashicorp/aws': '6.73.0',
+              });
+            },
+            onRevalidate: (patched) {
+              final res = patched['resource']! as Map<String, Object?>;
+              final dep =
+                  (res['example_deployment']! as Map<String, Object?>)['dep']!
+                      as Map<String, Object?>;
+              final cfg =
+                  (dep['configuration']! as List).first as Map<String, Object?>;
+              return cfg['mode'] == 'ACTIVE'
+                  ? const []
+                  : [
+                      ValueRejection(
+                        address,
+                        const AttrPath(['configuration', 0, 'mode']),
+                        cfg['mode']!,
+                        'Invalid Attribute Value Match',
+                        'Attribute mode value must be one of: ["ACTIVE"]',
+                      ),
+                    ];
+            },
+          ),
+        );
+
+        expect(verdict, isA<CoverageGreen>());
+        final green = verdict as CoverageGreen;
+        expect(green.excluded, isEmpty);
+        expect(
+          green.learned.map((l) => (l.key, l.value, l.source)),
+          unorderedEquals([
+            ('ExampleDeployment.configuration', 'include', 'required block'),
+            ('ExampleDeploymentConfiguration.mode', 'ACTIVE', 'family one-of'),
+          ]),
+        );
+        final saved = ledgerFile.readAsStringSync();
+        expect(
+          saved,
+          contains('ExampleDeployment.configuration:\n  include: true'),
+        );
+        expect(
+          saved,
+          contains("ExampleDeploymentConfiguration.mode:\n  value: 'ACTIVE'"),
+        );
+      },
+    );
+
+    test(
+      'leaves factory out and drops learned include when provider still rejects',
+      () async {
+        final ledgerFile = File('${tmp.path}/fail_ledger.yaml')
+          ..writeAsStringSync("# fail ledger\nname: 'leftover'\n");
+        final stackFile = File('${tmp.path}/fail_main.dart');
+        final lane = CoverageLane(
+          name: 'test',
+          generator: _BlockStack(),
+          manifest: blockManifest,
+          dummies: CoverageDummies.parse(
+            ledgerFile.readAsStringSync(),
+            path: ledgerFile.path,
+            manifest: blockManifest,
+            bindings: const {},
+          ),
+          debtListed: const {},
+          stackPath: stackFile.path,
+        );
+
+        final verdict = await run(
+          lane,
+          _FakeOracle(
+            stackFile,
+            onRun: (source) {
+              if (!source.contains('ExampleDeployment(')) {
+                return const OracleGreen('tofu 1.13.1', {
+                  'hashicorp/aws': '6.73.0',
+                });
+              }
+              if (!source.contains('configuration:')) {
+                return OracleRejected([
+                  BlockRejection(
+                    address,
+                    'Missing Configuration for Required Attribute',
+                    'Block configuration must have a configuration value as the '
+                        'provider has marked it as required',
+                  ),
+                ], '{}');
+              }
+              return OracleRejected([
+                BlockRejection(
+                  address,
+                  'Invalid Configuration',
+                  'Conflicting attributes inside configuration',
+                ),
+              ], '{}');
+            },
+            onRevalidate: (_) => const [],
+          ),
+        );
+
+        expect(verdict, isA<CoverageGreen>());
+        final green = verdict as CoverageGreen;
+        expect(green.excluded.map((e) => e.className), ['ExampleDeployment']);
+        expect(green.learned, isEmpty);
+        expect(ledgerFile.readAsStringSync(), isNot(contains('include: true')));
+      },
+    );
+
+    test(
+      'owner includedParams do not hijack unrelated sealed variant choices',
+      () {
+        final allOtherAws = {
+          for (final e in awsMigrateManifest.entries)
+            if (e.className != 'AwsVpclatticeListenerRule') e.className,
+        };
+        final dummies = CoverageDummies.parse(
+          '''
+AwsVpclatticeListenerRule.forward:
+  include: true
+''',
+          path: 'aws.yaml',
+          manifest: awsMigrateManifest,
+          bindings: awsLeftoverStack.bindings,
+        );
+        final rendered = awsLeftoverStack.render(dummies, exclude: allOtherAws);
+        expect(rendered.source, contains('action: .fixedResponse('));
+        expect(rendered.source, isNot(contains('action: .forward(')));
+      },
+    );
+
+    test(
+      'two factories sharing a nested helper required-block key both learn and stay covered',
+      () async {
+        const sharedManifest = MigrateManifest(
+          package: 'terradart_example',
+          entries: [
+            MigrateEntry(
+              tfType: 'example_alpha',
+              className: 'ExampleAlpha',
+              barrel: 'example',
+              kind: CatalogKind.resource,
+              slots: [
+                MigrateSlot(
+                  tfName: 'config',
+                  dartName: 'config',
+                  kind: MigrateSlotKind.helper,
+                  required: true,
+                  repeated: true,
+                  helper: 'SharedConfig',
+                ),
+              ],
+              getters: [],
+            ),
+            MigrateEntry(
+              tfType: 'example_beta',
+              className: 'ExampleBeta',
+              barrel: 'example',
+              kind: CatalogKind.resource,
+              slots: [
+                MigrateSlot(
+                  tfName: 'config',
+                  dartName: 'config',
+                  kind: MigrateSlotKind.helper,
+                  required: true,
+                  repeated: true,
+                  helper: 'SharedConfig',
+                ),
+              ],
+              getters: [],
+            ),
+          ],
+          helpers: {
+            'SharedConfig': MigrateHelper(
+              className: 'SharedConfig',
+              slots: [
+                MigrateSlot(
+                  tfName: 'inner',
+                  dartName: 'inner',
+                  kind: MigrateSlotKind.helper,
+                  required: false,
+                  repeated: true,
+                  helper: 'SharedInner',
+                ),
+              ],
+            ),
+            'SharedInner': MigrateHelper(className: 'SharedInner', slots: []),
+          },
+          enums: {},
+        );
+        final ledgerFile = File('${tmp.path}/shared_ledger.yaml')
+          ..writeAsStringSync("# shared ledger\nname: 'leftover'\n");
+        final stackFile = File('${tmp.path}/shared_main.dart');
+        final lane = CoverageLane(
+          name: 'test',
+          generator: _SharedBlockStack(),
+          manifest: sharedManifest,
+          dummies: CoverageDummies.parse(
+            ledgerFile.readAsStringSync(),
+            path: ledgerFile.path,
+            manifest: sharedManifest,
+            bindings: const {},
+          ),
+          debtListed: const {},
+          stackPath: stackFile.path,
+        );
+        final alpha = TfAddress.parse('example_alpha.alpha')!;
+        final beta = TfAddress.parse('example_beta.beta')!;
+
+        final verdict = await run(
+          lane,
+          _FakeOracle(
+            stackFile,
+            onRun: (source) {
+              if (!source.contains('inner: [SharedInner()]')) {
+                return OracleRejected([
+                  BlockRejection(
+                    alpha,
+                    'Missing Configuration for Required Attribute',
+                    'Block config[0].inner must have a configuration value as '
+                        'the provider has marked it as required',
+                  ),
+                  BlockRejection(
+                    beta,
+                    'Missing Configuration for Required Attribute',
+                    'Block config[0].inner must have a configuration value as '
+                        'the provider has marked it as required',
+                  ),
+                ], '{}');
+              }
+              return const OracleGreen('tofu 1.13.1', {
+                'hashicorp/aws': '6.73.0',
+              });
+            },
+            onRevalidate: (_) => const [],
+          ),
+        );
+
+        expect(verdict, isA<CoverageGreen>());
+        final green = verdict as CoverageGreen;
+        expect(green.excluded, isEmpty);
+        expect(green.learned.map((l) => (l.key, l.value, l.source)), [
+          ('SharedConfig.inner', 'include', 'required block'),
+        ]);
+        expect(
+          ledgerFile.readAsStringSync(),
+          contains('SharedConfig.inner:\n  include: true'),
+        );
+      },
+    );
+
+    test(
+      'excluding one sibling factory preserves a shared include still needed by another',
+      () async {
+        const sharedManifest = MigrateManifest(
+          package: 'terradart_example',
+          entries: [
+            MigrateEntry(
+              tfType: 'example_alpha',
+              className: 'ExampleAlpha',
+              barrel: 'example',
+              kind: CatalogKind.resource,
+              slots: [
+                MigrateSlot(
+                  tfName: 'config',
+                  dartName: 'config',
+                  kind: MigrateSlotKind.helper,
+                  required: true,
+                  repeated: true,
+                  helper: 'SharedConfig',
+                ),
+              ],
+              getters: [],
+            ),
+            MigrateEntry(
+              tfType: 'example_beta',
+              className: 'ExampleBeta',
+              barrel: 'example',
+              kind: CatalogKind.resource,
+              slots: [
+                MigrateSlot(
+                  tfName: 'config',
+                  dartName: 'config',
+                  kind: MigrateSlotKind.helper,
+                  required: true,
+                  repeated: true,
+                  helper: 'SharedConfig',
+                ),
+              ],
+              getters: [],
+            ),
+          ],
+          helpers: {
+            'SharedConfig': MigrateHelper(
+              className: 'SharedConfig',
+              slots: [
+                MigrateSlot(
+                  tfName: 'inner',
+                  dartName: 'inner',
+                  kind: MigrateSlotKind.helper,
+                  required: false,
+                  repeated: true,
+                  helper: 'SharedInner',
+                ),
+              ],
+            ),
+            'SharedInner': MigrateHelper(className: 'SharedInner', slots: []),
+          },
+          enums: {},
+        );
+        final ledgerFile = File('${tmp.path}/shared_sibling_ledger.yaml')
+          ..writeAsStringSync("# shared ledger\nname: 'leftover'\n");
+        final stackFile = File('${tmp.path}/shared_sibling_main.dart');
+        final lane = CoverageLane(
+          name: 'test',
+          generator: _SharedBlockStack(),
+          manifest: sharedManifest,
+          dummies: CoverageDummies.parse(
+            ledgerFile.readAsStringSync(),
+            path: ledgerFile.path,
+            manifest: sharedManifest,
+            bindings: const {},
+          ),
+          debtListed: const {},
+          stackPath: stackFile.path,
+        );
+        final alpha = TfAddress.parse('example_alpha.alpha')!;
+        final beta = TfAddress.parse('example_beta.beta')!;
+
+        final verdict = await run(
+          lane,
+          _FakeOracle(
+            stackFile,
+            onRun: (source) {
+              if (!source.contains('inner: [SharedInner()]')) {
+                return OracleRejected([
+                  BlockRejection(
+                    alpha,
+                    'Missing Configuration for Required Attribute',
+                    'Block config[0].inner must have a configuration value as '
+                        'the provider has marked it as required',
+                  ),
+                  BlockRejection(
+                    beta,
+                    'Missing Configuration for Required Attribute',
+                    'Block config[0].inner must have a configuration value as '
+                        'the provider has marked it as required',
+                  ),
+                ], '{}');
+              }
+              if (source.contains('ExampleAlpha(')) {
+                return OracleRejected([
+                  BlockRejection(
+                    alpha,
+                    'Invalid Configuration',
+                    'Alpha fails an unrelated check',
+                  ),
+                ], '{}');
+              }
+              return const OracleGreen('tofu 1.13.1', {
+                'hashicorp/aws': '6.73.0',
+              });
+            },
+            onRevalidate: (_) => const [],
+          ),
+        );
+
+        expect(verdict, isA<CoverageGreen>());
+        final green = verdict as CoverageGreen;
+        expect(green.excluded.map((e) => e.className), ['ExampleAlpha']);
+        expect(green.learned.map((l) => (l.key, l.value, l.source)), [
+          ('SharedConfig.inner', 'include', 'required block'),
+        ]);
+        expect(
+          ledgerFile.readAsStringSync(),
+          contains('SharedConfig.inner:\n  include: true'),
+        );
+      },
+    );
+
+    test(
+      'unused helper include still falls back to first optional helper parameter',
+      () {
+        final allOtherAws = {
+          for (final e in awsMigrateManifest.entries)
+            if (e.className != 'AwsDsqlStream') e.className,
+        };
+        final dummies = CoverageDummies.parse(
+          '''
+DsqlStreamTargetDefinition.nonExistent:
+  include: true
+''',
+          path: 'aws.yaml',
+          manifest: awsMigrateManifest,
+          bindings: awsLeftoverStack.bindings,
+        );
+        final rendered = awsLeftoverStack.render(dummies, exclude: allOtherAws);
+        expect(
+          rendered.source,
+          contains('DsqlStreamTargetDefinition(kinesis:'),
+        );
+      },
+    );
+
+    test(
+      'unplaceable factory after learning an include prunes the learned include',
+      () async {
+        final ledgerFile = File('${tmp.path}/unplaceable_ledger.yaml')
+          ..writeAsStringSync("# ledger\nname: 'leftover'\n");
+        final stackFile = File('${tmp.path}/unplaceable_main.dart');
+        final lane = CoverageLane(
+          name: 'test',
+          generator: _UnplaceableOnIncludeStack(),
+          manifest: blockManifest,
+          dummies: CoverageDummies.parse(
+            ledgerFile.readAsStringSync(),
+            path: ledgerFile.path,
+            manifest: blockManifest,
+            bindings: const {},
+          ),
+          debtListed: const {},
+          stackPath: stackFile.path,
+        );
+
+        final verdict = await run(
+          lane,
+          _FakeOracle(
+            stackFile,
+            onRun: (source) {
+              if (!source.contains('ExampleDeployment(')) {
+                return const OracleGreen('tofu 1.13.1', {
+                  'appwrite/appwrite': '2.7.0',
+                });
+              }
+              return OracleRejected([
+                BlockRejection(
+                  address,
+                  'Missing Configuration for Required Attribute',
+                  'Block configuration must have a configuration value as the '
+                      'provider has marked it as required',
+                ),
+              ], '{}');
+            },
+            onRevalidate: (_) => const [],
+          ),
+        );
+
+        expect(verdict, isA<CoverageGreen>());
+        final green = verdict as CoverageGreen;
+        expect(green.excluded.map((e) => e.className), ['ExampleDeployment']);
+        expect(green.learned, isEmpty);
+        expect(ledgerFile.readAsStringSync(), isNot(contains('include: true')));
+      },
+    );
+
+    test(
+      'sealed include with variant picks the named variant on that slot',
+      () {
+        final allOtherAws = {
+          for (final e in awsMigrateManifest.entries)
+            if (e.className != 'AwsVpclatticeListenerRule') e.className,
+        };
+        final dummies = CoverageDummies.parse(
+          '''
+AwsVpclatticeListenerRule.action:
+  include: true
+  variant: forward
+''',
+          path: 'aws.yaml',
+          manifest: awsMigrateManifest,
+          bindings: awsLeftoverStack.bindings,
+        );
+        final rendered = awsLeftoverStack.render(dummies, exclude: allOtherAws);
+        expect(rendered.source, contains('action: .forward('));
+        expect(rendered.source, isNot(contains('action: .fixedResponse(')));
+      },
+    );
+
+    test(
+      'wrapped sealed slot learns specific variant across passes (action -> action[0].forward)',
+      () async {
+        const wrappedManifest = MigrateManifest(
+          package: 'terradart_example',
+          entries: [
+            MigrateEntry(
+              tfType: 'example_rule',
+              className: 'ExampleRule',
+              barrel: 'example',
+              kind: CatalogKind.resource,
+              slots: [
+                MigrateSlot(
+                  tfName: 'action',
+                  dartName: 'action',
+                  kind: MigrateSlotKind.sealed,
+                  required: false,
+                  wrapped: false,
+                  variants: {
+                    'fixed_response': 'ExampleRuleActionFixed',
+                    'forward': 'ExampleRuleActionForward',
+                  },
+                ),
+              ],
+              getters: [],
+            ),
+          ],
+          helpers: {
+            'ExampleRuleActionFixed': MigrateHelper(
+              className: 'ExampleRuleActionFixed',
+              shorthand: 'fixedResponse',
+              slots: [
+                MigrateSlot(
+                  tfName: 'fixed_response',
+                  dartName: 'fixedResponse',
+                  kind: MigrateSlotKind.helper,
+                  required: true,
+                  positional: true,
+                  helper: 'ExampleRuleFixed',
+                ),
+              ],
+            ),
+            'ExampleRuleActionForward': MigrateHelper(
+              className: 'ExampleRuleActionForward',
+              shorthand: 'forward',
+              slots: [
+                MigrateSlot(
+                  tfName: 'forward',
+                  dartName: 'forward',
+                  kind: MigrateSlotKind.helper,
+                  required: true,
+                  positional: true,
+                  helper: 'ExampleRuleForward',
+                ),
+              ],
+            ),
+            'ExampleRuleFixed': MigrateHelper(
+              className: 'ExampleRuleFixed',
+              slots: [],
+            ),
+            'ExampleRuleForward': MigrateHelper(
+              className: 'ExampleRuleForward',
+              slots: [],
+            ),
+          },
+          enums: {},
+        );
+        final ledgerFile = File('${tmp.path}/wrapped_sealed_ledger.yaml')
+          ..writeAsStringSync("# ledger\nname: 'leftover'\n");
+        final stackFile = File('${tmp.path}/wrapped_sealed_main.dart');
+        final lane = CoverageLane(
+          name: 'test',
+          generator: _WrappedSealedStack(),
+          manifest: wrappedManifest,
+          dummies: CoverageDummies.parse(
+            ledgerFile.readAsStringSync(),
+            path: ledgerFile.path,
+            manifest: wrappedManifest,
+            bindings: const {},
+          ),
+          debtListed: const {},
+          stackPath: stackFile.path,
+        );
+        final rule = TfAddress.parse('example_rule.rule')!;
+
+        final verdict = await run(
+          lane,
+          _FakeOracle(
+            stackFile,
+            onRun: (source) {
+              if (!source.contains('action:')) {
+                return OracleRejected([
+                  BlockRejection(
+                    rule,
+                    'Missing Configuration for Required Attribute',
+                    'Block action must have a configuration value as the '
+                        'provider has marked it as required',
+                  ),
+                ], '{}');
+              }
+              if (!source.contains('action: .forward(')) {
+                return OracleRejected([
+                  BlockRejection(
+                    rule,
+                    'Missing Configuration for Required Attribute',
+                    'Block action[0].forward must have a configuration value '
+                        'as the provider has marked it as required',
+                  ),
+                ], '{}');
+              }
+              return const OracleGreen('tofu 1.13.1', {
+                'hashicorp/aws': '6.73.0',
+              });
+            },
+            onRevalidate: (_) => const [],
+          ),
+        );
+
+        expect(verdict, isA<CoverageGreen>());
+        final green = verdict as CoverageGreen;
+        expect(green.excluded, isEmpty);
+        expect(
+          ledgerFile.readAsStringSync(),
+          contains(
+            "ExampleRule.action:\n  include: true\n  variant: 'forward'",
+          ),
+        );
+      },
+    );
+  });
+}
+
+final class _WrappedSealedStack implements CoverageStackGenerator {
+  @override
+  String get slug => 'wrapped_sealed_leftover';
+
+  @override
+  Set<String> get bindings => const {};
+
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    if (exclude.contains('ExampleRule')) return const RenderedStack('');
+    if (!dummies.includedParams('ExampleRule').contains('action')) {
+      return const RenderedStack('ExampleRule()\n');
+    }
+    final variant =
+        dummies.includedVariant('ExampleRule', 'action') ?? 'fixedResponse';
+    return RenderedStack('ExampleRule(action: .$variant(.new()))\n');
+  }
+}
+
+final class _UnplaceableOnIncludeStack implements CoverageStackGenerator {
+  @override
+  String get slug => 'unplaceable_leftover';
+
+  @override
+  Set<String> get bindings => const {};
+
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    if (exclude.contains('ExampleDeployment')) return const RenderedStack('');
+    if (dummies.includedParams('ExampleDeployment').contains('configuration')) {
+      return const RenderedStack(
+        '',
+        unplaceable: {
+          'ExampleDeployment': 'cannot construct helper configuration',
+        },
+      );
+    }
+    return const RenderedStack("ExampleDeployment(name: 'leftover')\n");
+  }
+}
+
+final class _SharedBlockStack implements CoverageStackGenerator {
+  @override
+  String get slug => 'shared_block_leftover';
+
+  @override
+  Set<String> get bindings => const {};
+
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    final hasInner = dummies.includedParams('SharedConfig').contains('inner');
+    final innerArg = hasInner ? 'inner: [SharedInner()]' : '';
+    final out = StringBuffer();
+    if (!exclude.contains('ExampleAlpha')) {
+      out.writeln('ExampleAlpha(config: [SharedConfig($innerArg)])');
+    }
+    if (!exclude.contains('ExampleBeta')) {
+      out.writeln('ExampleBeta(config: [SharedConfig($innerArg)])');
+    }
+    return RenderedStack(out.toString());
+  }
+}
+
+final class _BlockStack implements CoverageStackGenerator {
+  @override
+  String get slug => 'block_leftover';
+
+  @override
+  Set<String> get bindings => const {};
+
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    if (exclude.contains('ExampleDeployment')) return const RenderedStack('');
+    final hasConfig = dummies
+        .includedParams('ExampleDeployment')
+        .contains('configuration');
+    final mode =
+        dummies.valueFor('ExampleDeploymentConfiguration', 'mode')?.dart ??
+        "'leftover'";
+    final configArg = hasConfig ? ', configuration: [Config(mode: $mode)]' : '';
+    return RenderedStack("ExampleDeployment(name: 'leftover'$configArg)\n");
+  }
 }
 
 /// What a coverage-stack generator may not do: declare `main` (only

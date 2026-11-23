@@ -481,6 +481,112 @@ Future<MigratingReport> checkMigratingCells(
   );
 }
 
+/// Compiles only the After cells of the top section of [migrating] against the
+/// workspace packages (no pub.dev lookup). Returns failures keyed with their
+/// document line number.
+Future<({List<String> failures, Set<int> failingLines})>
+checkMigratingAfterCells(String root, {String? migrating}) async {
+  final text =
+      migrating ?? File(p.join(root, migratingPath)).readAsStringSync();
+  final cells = [
+    for (final c in extractMigratingCells(text))
+      if (!c.before) c,
+  ];
+  if (cells.isEmpty) {
+    return (failures: const <String>[], failingLines: const <int>{});
+  }
+  final packages = docSnippetPackages(
+    File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
+  );
+  final barrels = docSnippetBarrels(
+    parseWrapLanes(File(p.join(root, providersPath)).readAsStringSync()),
+  );
+  final failures = <String>[];
+  final failingLines = <int>{};
+  final after = <MigratingCell>[];
+  for (final cell in cells) {
+    if (cellShapeError(cell) case final error?) {
+      failingLines.add(cell.line);
+      failures.add(
+        '$migratingPath:${cell.line}: `${cell.code}` $error (${cell.section})',
+      );
+    } else {
+      after.add(cell);
+    }
+  }
+  if (after.isEmpty) return (failures: failures, failingLines: failingLines);
+
+  final sandbox = await Directory.systemTemp.createTemp('migrating_after_');
+  try {
+    final dir = p.join(sandbox.path, 'after');
+    Directory(p.join(dir, 'lib')).createSync(recursive: true);
+    File(
+      p.join(dir, 'pubspec.yaml'),
+    ).writeAsStringSync(_workspacePubspec(root, packages));
+    final r = renderCells(after, barrels);
+    final file = p.canonicalize(p.join(dir, 'lib', 'cells.dart'));
+    File(file).writeAsStringSync(r.contents);
+    var get = await Process.run('dart', [
+      'pub',
+      'get',
+      '--offline',
+    ], workingDirectory: dir);
+    if (get.exitCode != 0) {
+      get = await Process.run('dart', ['pub', 'get'], workingDirectory: dir);
+    }
+    if (get.exitCode != 0) {
+      return (
+        failures: [...failures, 'dart pub get failed in $dir:\n${get.stderr}'],
+        failingLines: failingLines,
+      );
+    }
+
+    var diagnostics = await analyzeDiagnostics(dir);
+    final undefined = <String>{};
+    for (final d in diagnostics) {
+      if (d.file != file) continue;
+      if (d.code != 'UNDEFINED_IDENTIFIER' && d.code != 'UNDEFINED_FUNCTION') {
+        continue;
+      }
+      final name = RegExp(r"'([a-z]\w*)'").firstMatch(d.message)?.group(1);
+      if (name != null) undefined.add(name);
+    }
+    if (undefined.isNotEmpty) {
+      final lines = File(file).readAsStringSync().split('\n');
+      lines.add('dynamic ${(undefined.toList()..sort()).join(', ')};');
+      File(file).writeAsStringSync(lines.join('\n'));
+      diagnostics = await analyzeDiagnostics(dir);
+    }
+
+    for (final d in diagnostics) {
+      if (d.severity != 'ERROR' && d.severity != 'WARNING') continue;
+      final inCell = d.file == file && d.line <= r.cells.length;
+      final cell = inCell ? r.cells[d.line - 1] : null;
+      if (cell != null &&
+          elisionCodes.contains(d.code) &&
+          resolveElisions(cell.code).elided) {
+        continue;
+      }
+      if (cell != null &&
+          d.code == 'STATIC_ACCESS_TO_INSTANCE_MEMBER' &&
+          _memberSpan.hasMatch(cell.code)) {
+        continue;
+      }
+      final docLine = inCell ? r.docLines[d.line - 1] : null;
+      if (docLine != null) failingLines.add(docLine);
+      failures.add(
+        docLine == null || cell == null
+            ? '${d.file}:${d.line}: ${d.message} (${d.code})'
+            : '$migratingPath:$docLine: After `${cell.code}`: '
+                  '${d.message} (${d.code})',
+      );
+    }
+  } finally {
+    sandbox.deleteSync(recursive: true);
+  }
+  return (failures: failures, failingLines: failingLines);
+}
+
 Future<void> main() async {
   final report = await checkMigratingCells(Directory.current.path);
   print(

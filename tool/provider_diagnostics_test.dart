@@ -343,4 +343,60 @@ void main() {
     expect(sampleRegex(r'(a)\1'), isNull);
     expect(sampleRegex('^(prod|dev)-[0-9]+?\$'), 'prod-0');
   });
+
+  group('requiredPathNamedBy', () {
+    test('extracts top-level and nested required block paths', () {
+      expect(
+        requiredPathNamedBy(
+          'Block configuration must have a configuration value as the '
+          'provider has marked it as required',
+        )?.segments,
+        ['configuration'],
+      );
+      expect(
+        requiredPathNamedBy(
+          'Block connector_provider[0].azure[0].scope_configuration must have '
+          'a configuration value as the provider has marked it as required',
+        )?.segments,
+        ['connector_provider', 0, 'azure', 0, 'scope_configuration'],
+      );
+      expect(
+        requiredPathNamedBy(
+          'Block content[0].file[0].body must have a configuration value as '
+          'the provider has marked it as required',
+        )?.segments,
+        ['content', 0, 'file', 0, 'body'],
+      );
+    });
+
+    test('extracts core block, argument, and one-of required diagnostics', () {
+      expect(
+        requiredPathNamedBy(
+          'At least 1 "ingress" blocks are required',
+        )?.segments,
+        ['ingress'],
+      );
+      expect(
+        requiredPathNamedBy('Blocks of type "rule" are required')?.segments,
+        ['rule'],
+      );
+      expect(
+        requiredPathNamedBy('The argument "domain" is required')?.segments,
+        ['domain'],
+      );
+      expect(
+        requiredPathNamedBy(
+          'Exactly one of these attributes must be configured: [id,domain]',
+        )?.segments,
+        ['id'],
+      );
+    });
+
+    test('returns null for unlearnable block rejections', () {
+      expect(
+        requiredPathNamedBy('Two attributes conflict in this configuration'),
+        isNull,
+      );
+    });
+  });
 }

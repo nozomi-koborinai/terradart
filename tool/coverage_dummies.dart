@@ -88,6 +88,29 @@ final class DartDummy extends DummyValue {
   bool get isString => false;
 }
 
+/// Marks an optional parameter (block or attribute) to be included using the
+/// generator's normal type/helper builder (`include: true`). When [variant] is
+/// set on a sealed parameter, the generator selects that Dart variant member.
+final class IncludeDummy extends DummyValue {
+  const IncludeDummy({this.variant});
+
+  final String? variant;
+
+  @override
+  String get dart =>
+      throw StateError('IncludeDummy marks inclusion and has no literal Dart');
+
+  @override
+  bool get isString => false;
+
+  @override
+  bool operator ==(Object other) =>
+      other is IncludeDummy && other.variant == variant;
+
+  @override
+  int get hashCode => Object.hash(IncludeDummy, variant);
+}
+
 /// A value worth trying where the provider rejected one, and where it came
 /// from.
 final class Candidate {
@@ -108,6 +131,20 @@ final class LearnedDummy {
   /// `<address>.<path> rejected <value>: <message> (<source>)`, saved as the
   /// entry's `why:`.
   final String evidence;
+}
+
+/// A required optional block or attribute the provider asked for, and the
+/// diagnostic it answered.
+final class LearnedInclude {
+  const LearnedInclude(
+    this.evidence, {
+    this.source = 'required block',
+    this.variant,
+  });
+
+  final String evidence;
+  final String source;
+  final String? variant;
 }
 
 /// One lane's ledger, parsed and validated.
@@ -173,19 +210,55 @@ final class CoverageDummies {
 
   /// The value for [param] of [owner], or null so the generator writes its
   /// type default. An exact `Owner.param` wins, then a bare `param`, then the
-  /// first glob in file order.
-  DummyValue? valueFor(String owner, String param) =>
-      (_exact['$owner.$param'] ??
-              _bare[param] ??
-              _globs
-                  .where((e) => (e.key as _GlobKey).matches(owner, param))
-                  .firstOrNull)
-          ?.value;
+  /// first glob in file order. `IncludeDummy` entries mark inclusion only and
+  /// fall through to bare/glob/type defaults for the value.
+  DummyValue? valueFor(String owner, String param) {
+    final exact = _exact['$owner.$param']?.value;
+    if (exact != null && exact is! IncludeDummy) return exact;
+    return (_bare[param] ??
+            _globs
+                .where((e) => (e.key as _GlobKey).matches(owner, param))
+                .firstOrNull)
+        ?.value;
+  }
 
-  /// Whether [owner] itself names [param]: an `Owner.param` entry, not a bare
-  /// key or glob that would match any owner.
+  /// Whether [owner] itself names a concrete value for [param]: an
+  /// `Owner.param` entry carrying a value (not an `include: true` marker, bare
+  /// key, or glob).
   bool ownsValue(String owner, String param) =>
-      _exact.containsKey('$owner.$param');
+      switch (_exact['$owner.$param']?.value) {
+        null || IncludeDummy() => false,
+        _ => true,
+      };
+
+  /// Optional parameters of [owner] marked `include: true`, sorted.
+  List<String> includedParams(String owner) {
+    final prefix = '$owner.';
+    final out = <String>[
+      for (final e in _exact.values)
+        if (e.value is IncludeDummy && e.key.text.startsWith(prefix))
+          e.key.text.substring(prefix.length),
+    ]..sort();
+    return out;
+  }
+
+  /// The Dart variant member name recorded for a sealed `include: true` entry
+  /// on [owner].[param], or null.
+  String? includedVariant(String owner, String param) =>
+      switch (_exact['$owner.$param']?.value) {
+        IncludeDummy(:final variant) => variant,
+        _ => null,
+      };
+
+  /// The Dart variant member name recorded for [key], or null.
+  String? includedVariantByKey(DummyKey key) =>
+      switch (_exact[key.value]?.value) {
+        IncludeDummy(:final variant) => variant,
+        _ => null,
+      };
+
+  /// Whether [key] is already marked `include: true`.
+  bool includesParam(DummyKey key) => _exact[key.value]?.value is IncludeDummy;
 
   /// The exact key for the value the generator wrote at [path] of the block
   /// [address]: the class holding the slot (factory, helper or sealed
@@ -200,6 +273,33 @@ final class CoverageDummies {
     if (entry == null) return null;
     final key = _keyIn(_manifest, entry.className, entry.slots, path.segments);
     return key == null ? null : DummyKey._(key);
+  }
+
+  /// The exact key for a block or attribute slot at [path] of [address],
+  /// including helper and sealed block slots themselves (`rest.isEmpty`).
+  DummyKey? slotKeyAt(TfAddress address, AttrPath path) =>
+      slotTargetAt(address, path)?.key;
+
+  /// Like [slotKeyAt], also returning the Dart variant member name when [path]
+  /// ends at a specific variant key of a merged sealed slot.
+  ({DummyKey key, String? variant})? slotTargetAt(
+    TfAddress address,
+    AttrPath path,
+  ) {
+    final entry = _manifest.entryFor(
+      address.type,
+      address.dataSource ? CatalogKind.dataSource : CatalogKind.resource,
+    );
+    if (entry == null) return null;
+    final target = _slotTargetIn(
+      _manifest,
+      entry.className,
+      entry.slots,
+      path.segments,
+    );
+    return target == null
+        ? null
+        : (key: DummyKey._(target.key), variant: target.variant);
   }
 
   /// Literal values other entries give a parameter named like [key]'s,
@@ -225,11 +325,14 @@ final class CoverageDummies {
     ].take(5).toList();
   }
 
-  /// A copy with each of [learned] under its exact key, with the evidence as
-  /// `why:`, and with [stale] keys removed. A list slot takes a scalar
-  /// candidate as a one-element list. Pure.
-  CoverageDummies revised(Map<DummyKey, LearnedDummy> learned) {
-    final drop = {...stale, ...learned.keys};
+  /// A copy with each of [learned] and [included] under its exact key, with
+  /// the evidence as `why:`, and with [stale] keys removed. A list slot takes
+  /// a scalar candidate as a one-element list. Pure.
+  CoverageDummies revised(
+    Map<DummyKey, LearnedDummy> learned, {
+    Map<DummyKey, LearnedInclude> included = const {},
+  }) {
+    final drop = {...stale, ...learned.keys, ...included.keys};
     return CoverageDummies._(path, _header, [
       for (final e in _entries)
         if (!drop.contains(DummyKey._(e.key.text))) e,
@@ -240,6 +343,14 @@ final class CoverageDummies {
             _shapedFor(owner, param, l.candidate.value),
             l.evidence,
           ),
+      for (final MapEntry(key: k, value: inc) in included.entries)
+        if (!learned.containsKey(k))
+          if (_split(k) case (final owner, final param))
+            _Entry(
+              _ExactKey(k.value, owner, param),
+              IncludeDummy(variant: inc.variant),
+              inc.evidence,
+            ),
     ], _manifest);
   }
 
@@ -334,6 +445,14 @@ final class _Entry {
   String get yaml {
     final key = _yamlKey(this.key.text);
     final value = this.value;
+    if (value is IncludeDummy) {
+      return [
+        '$key:\n',
+        '  include: true\n',
+        if (value.variant case final v?) '  variant: ${_yamlString(v)}\n',
+        if (why != null) '  why: ${_yamlString(why!)}\n',
+      ].join();
+    }
     if (value is DartDummy || why != null) {
       return [
         '$key:\n',
@@ -376,14 +495,41 @@ _Entry _parseEntry(
   DummyValue value;
   if (raw is YamlMap) {
     final fields = raw.keys.cast<Object?>().toSet();
-    if (!(fields.length == 1 ||
-            (fields.length == 2 && fields.contains('why'))) ||
-        !(fields.contains('value') ^ fields.contains('dart'))) {
-      fail('the map form is `value:` or `dart:`, with an optional `why:`');
+    final kindCount = [
+      fields.contains('value'),
+      fields.contains('dart'),
+      fields.contains('include'),
+    ].where((b) => b).length;
+    final allowedExtras = fields.contains('include')
+        ? const {'why', 'variant'}
+        : const {'why'};
+    final unknown = fields.difference({
+      'value',
+      'dart',
+      'include',
+      ...allowedExtras,
+    });
+    if (unknown.isNotEmpty || kindCount != 1) {
+      fail(
+        'the map form is `value:`, `dart:`, or `include: true` (with optional '
+        '`variant:`), with an optional `why:`',
+      );
     }
     final w = raw['why'];
     if (w != null && w is! String) fail('`why:` is text');
     why = w as String?;
+    if (fields.contains('include')) {
+      if (raw['include'] != true) fail('`include:` must be true');
+      if (key is! _ExactKey) {
+        fail('`include: true` requires an exact `Owner.param` key');
+      }
+      final v = raw['variant'];
+      if (v != null &&
+          (v is! String || !RegExp(r'^[A-Za-z_]\w*$').hasMatch(v))) {
+        fail('`variant:` must be a Dart identifier');
+      }
+      return _Entry(key, IncludeDummy(variant: v as String?), why);
+    }
     final dart = raw['dart'];
     if (fields.contains('dart')) {
       if (dart is! String || dart.trim().isEmpty) {
@@ -538,6 +684,119 @@ String? _inVariant(MigrateManifest m, MigrateSlot slot, List<Object> path) {
   return _keyIn(m, v.className, v.slots, writesKey ? path : path.sublist(1));
 }
 
+/// Like [_keyIn], but resolves a block or attribute slot itself when [path]
+/// ends at that slot (`rest.isEmpty`), preserving the Dart variant member name
+/// when [path] ends on a variant key of a merged or wrapped sealed slot.
+({String key, String? variant})? _slotTargetIn(
+  MigrateManifest m,
+  String owner,
+  List<MigrateSlot> slots,
+  List<Object> path,
+) {
+  path = _skipIndices(path);
+  if (path.isEmpty) return null;
+  for (final slot in slots) {
+    if (slot.merged) {
+      final target = switch (slot.kind) {
+        MigrateSlotKind.helper => _slotTargetInHelper(m, slot.helper, path),
+        MigrateSlotKind.sealed => _slotTargetInSealed(m, owner, slot, path),
+        _ => null,
+      };
+      if (target != null) return target;
+      continue;
+    }
+    final names = slot.tfName.split('.');
+    if (path.length < names.length) continue;
+    var matches = true;
+    for (var k = 0; k < names.length && matches; k++) {
+      matches = path[k] == names[k];
+    }
+    if (!matches) continue;
+    var rest = _skipIndices(path.sublist(names.length));
+    if (rest.isEmpty) {
+      return switch (slot.kind) {
+        MigrateSlotKind.scalar ||
+        MigrateSlotKind.enumValue ||
+        MigrateSlotKind.reference ||
+        MigrateSlotKind.principal ||
+        MigrateSlotKind.helper ||
+        MigrateSlotKind.sealed => (
+          key: '$owner.${slot.dartName}',
+          variant: null,
+        ),
+        _ => null,
+      };
+    }
+    if (slot.keyed) {
+      if (rest.isEmpty) return null;
+      rest = rest.sublist(1);
+    }
+    return switch (slot.kind) {
+      MigrateSlotKind.helper => _slotTargetInHelper(m, slot.helper, rest),
+      MigrateSlotKind.sealed => _slotTargetInSealed(m, owner, slot, rest),
+      _ => null,
+    };
+  }
+  return null;
+}
+
+({String key, String? variant})? _slotTargetInSealed(
+  MigrateManifest m,
+  String owner,
+  MigrateSlot slot,
+  List<Object> path,
+) {
+  path = _skipIndices(path);
+  if (path.isEmpty) {
+    return (key: '$owner.${slot.dartName}', variant: null);
+  }
+  if (path.first is String &&
+      _skipIndices(path.sublist(1)).isEmpty &&
+      (slot.variants?.containsKey(path.first) ?? false)) {
+    return (
+      key: '$owner.${slot.dartName}',
+      variant: _variantMemberName(m, slot.variants![path.first as String]),
+    );
+  }
+  return _slotTargetInVariant(m, slot, path);
+}
+
+String? _variantMemberName(MigrateManifest m, String? variantHelper) {
+  final h = m.helpers[variantHelper];
+  if (h == null) return null;
+  return h.shorthand ?? h.slots.firstOrNull?.dartName;
+}
+
+({String key, String? variant})? _slotTargetInHelper(
+  MigrateManifest m,
+  String? helper,
+  List<Object> path,
+) {
+  final h = m.helpers[helper];
+  return h == null ? null : _slotTargetIn(m, h.className, h.slots, path);
+}
+
+({String key, String? variant})? _slotTargetInVariant(
+  MigrateManifest m,
+  MigrateSlot slot,
+  List<Object> path,
+) {
+  path = _skipIndices(path);
+  if (path.isEmpty || path.first is! String) return null;
+  final key = path.first as String;
+  final v = m.helpers[slot.variants?[key]];
+  if (v == null) return null;
+  final writesKey = v.slots.any(
+    (s) => s.tfName == key || s.tfName.startsWith('$key.'),
+  );
+  return _slotTargetIn(
+    m,
+    v.className,
+    v.slots,
+    writesKey ? path : path.sublist(1),
+  );
+}
+
 List<Object> _skipIndices(List<Object> path) {
   var i = 0;
   while (i < path.length && path[i] is int) {
@@ -610,4 +869,5 @@ String _yamlValueOf(DummyValue v) => switch (v) {
   LiteralDummy(:final json) => _yamlValue(json),
   BoundDummy(:final template) => _yamlValue(template),
   DartDummy() => throw StateError('a Dart value has the map form'),
+  IncludeDummy() => throw StateError('an include entry has the map form'),
 };
