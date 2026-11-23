@@ -1,8 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.37.0 - 2026-11-23
 
-- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+- **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).
+- **Breaking (provider 5.14.0):** local schema-map hint extraction types validated enums on `azurerm_consumption_budget_management_group`, `azurerm_sentinel_automation_rule`, and the five `azurerm_hdinsight_*_cluster` resources, and merges `AzurermStorageShareFile.source` and `sourceContent` into the sealed `StorageShareFileSource` choice. See [MIGRATING.md](../../MIGRATING.md#azure-provider-5140).
+- Follows `hashicorp/azurerm` 5.14.0 (was 5.12.0), and synth output pins that version. Adds `AzurermDataProtectionBackupInstanceCosmosdbAccount` and `AzurermCognitiveAccountProjectConnectionEntraId` (1109 resources + 398 data sources).
 
 ## 0.36.0 - 2026-11-01
 

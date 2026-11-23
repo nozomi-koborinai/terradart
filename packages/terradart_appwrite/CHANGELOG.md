@@ -1,8 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.37.0 - 2026-11-23
 
-- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+- **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).
+- **Breaking (provider 2.7.0):** `AppwriteProxyRule.type` takes `TfArg<String>` instead of `ProxyRuleType`, and `ProxyRuleType` is removed. See [MIGRATING.md](../../MIGRATING.md#appwrite-provider-270).
+- Follows `appwrite/appwrite` 2.7.0 (was 2.3.0), and synth output pins that version. Adds 18 resource factories and 1 data source covering domains, WAF rules, analytics properties, auth team memberships and user targets, and project settings (64 resources + 29 data sources).
 
 ## 0.36.0 - 2026-11-01
 

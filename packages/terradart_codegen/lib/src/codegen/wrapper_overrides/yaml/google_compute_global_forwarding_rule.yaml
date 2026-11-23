@@ -3,6 +3,9 @@ outputDir: compute
 deriveClassDoc: true
 deriveExactlyOne: true
 
+sealedNames:
+  "backend_service, target": target
+
 curatedDoc: |-
   /// The entry point ("frontend") of a GCP global load balancer. A global
   /// forwarding rule binds a public anycast VIP + port range to a target
@@ -73,7 +76,7 @@ curatedDoc: |-
   /// final feFwd = GoogleComputeGlobalForwardingRule(
   ///   'fe',
   ///   name: TfArg.literal('lb-https-frontend'),
-  ///   backendServiceOrTarget: .target(httpsProxy.selfLink),
+  ///   target: .target(httpsProxy.selfLink),
   ///   ipAddress: lbVip.selfLink,
   ///   ipProtocol: GlobalForwardingRuleIpProtocol.tcp,
   ///   portRange: TfArg.literal('443'),

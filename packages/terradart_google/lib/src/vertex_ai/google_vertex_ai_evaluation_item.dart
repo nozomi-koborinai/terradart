@@ -26,18 +26,17 @@ extension type const VertexAiEvaluationItemType._(TfArg<String> _)
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.evaluationRequest(...)`.
-sealed class VertexAiEvaluationItemEvaluationRequestOrGcsUri {
-  const VertexAiEvaluationItemEvaluationRequestOrGcsUri();
+sealed class VertexAiEvaluationItemSource {
+  const VertexAiEvaluationItemSource();
 
   /// Sets `evaluation_request`.
-  const factory VertexAiEvaluationItemEvaluationRequestOrGcsUri.evaluationRequest(
+  const factory VertexAiEvaluationItemSource.evaluationRequest(
     VertexAiEvaluationItemEvaluationRequest evaluationRequest,
-  ) = VertexAiEvaluationItemEvaluationRequestOrGcsUriEvaluationRequest;
+  ) = VertexAiEvaluationItemSourceEvaluationRequest;
 
   /// Sets `gcs_uri`.
-  const factory VertexAiEvaluationItemEvaluationRequestOrGcsUri.gcsUri(
-    TfArg<String> gcsUri,
-  ) = VertexAiEvaluationItemEvaluationRequestOrGcsUriChoice;
+  const factory VertexAiEvaluationItemSource.gcsUri(TfArg<String> gcsUri) =
+      VertexAiEvaluationItemSourceGcsUri;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -52,12 +51,10 @@ sealed class VertexAiEvaluationItemEvaluationRequestOrGcsUri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VertexAiEvaluationItemEvaluationRequestOrGcsUri.evaluationRequest] choice: sets `evaluation_request`.
-final class VertexAiEvaluationItemEvaluationRequestOrGcsUriEvaluationRequest
-    extends VertexAiEvaluationItemEvaluationRequestOrGcsUri {
-  const VertexAiEvaluationItemEvaluationRequestOrGcsUriEvaluationRequest(
-    this.evaluationRequest,
-  );
+/// The [VertexAiEvaluationItemSource.evaluationRequest] choice: sets `evaluation_request`.
+final class VertexAiEvaluationItemSourceEvaluationRequest
+    extends VertexAiEvaluationItemSource {
+  const VertexAiEvaluationItemSourceEvaluationRequest(this.evaluationRequest);
 
   final VertexAiEvaluationItemEvaluationRequest evaluationRequest;
 
@@ -78,10 +75,10 @@ final class VertexAiEvaluationItemEvaluationRequestOrGcsUriEvaluationRequest
   };
 }
 
-/// The [VertexAiEvaluationItemEvaluationRequestOrGcsUri.gcsUri] choice: sets `gcs_uri`.
-final class VertexAiEvaluationItemEvaluationRequestOrGcsUriChoice
-    extends VertexAiEvaluationItemEvaluationRequestOrGcsUri {
-  const VertexAiEvaluationItemEvaluationRequestOrGcsUriChoice(this.gcsUri);
+/// The [VertexAiEvaluationItemSource.gcsUri] choice: sets `gcs_uri`.
+final class VertexAiEvaluationItemSourceGcsUri
+    extends VertexAiEvaluationItemSource {
+  const VertexAiEvaluationItemSourceGcsUri(this.gcsUri);
 
   final TfArg<String> gcsUri;
 
@@ -160,18 +157,17 @@ final class VertexAiEvaluationItemCandidateResponses {
 @immutable
 final class VertexAiEvaluationItemGoldenResponse {
   const VertexAiEvaluationItemGoldenResponse({
-    this.textOrValueOrAgentData,
+    this.content,
     required this.candidate,
   });
 
-  final VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData?
-  textOrValueOrAgentData;
+  final VertexAiEvaluationItemContent? content;
 
   final TfArg<String> candidate;
 
   @internal
   Map<String, Object?> encode() => {
-    ...?textOrValueOrAgentData?.encode(),
+    ...?content?.encode(),
     'candidate': candidate.toTfJson(),
   };
 }
@@ -181,23 +177,21 @@ final class VertexAiEvaluationItemGoldenResponse {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.text(...)`.
-sealed class VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData {
-  const VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData();
+sealed class VertexAiEvaluationItemContent {
+  const VertexAiEvaluationItemContent();
 
   /// Sets `text`.
-  const factory VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData.text(
-    TfArg<String> text,
-  ) = VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataText;
+  const factory VertexAiEvaluationItemContent.text(TfArg<String> text) =
+      VertexAiEvaluationItemContentText;
 
   /// Sets `value`.
-  const factory VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData.value(
-    TfArg<String> value,
-  ) = VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataValue;
+  const factory VertexAiEvaluationItemContent.value(TfArg<String> value) =
+      VertexAiEvaluationItemContentValue;
 
   /// Sets `agent_data`.
-  const factory VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData.agentData(
+  const factory VertexAiEvaluationItemContent.agentData(
     TfArg<String> agentData,
-  ) = VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataChoice;
+  ) = VertexAiEvaluationItemContentAgentData;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -207,12 +201,10 @@ sealed class VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData.text] choice: sets `text`.
-final class VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataText
-    extends VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData {
-  const VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataText(
-    this.text,
-  );
+/// The [VertexAiEvaluationItemContent.text] choice: sets `text`.
+final class VertexAiEvaluationItemContentText
+    extends VertexAiEvaluationItemContent {
+  const VertexAiEvaluationItemContentText(this.text);
 
   final TfArg<String> text;
 
@@ -225,12 +217,10 @@ final class VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataText
   Map<String, Object?> encode() => {'text': text.toTfJson()};
 }
 
-/// The [VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData.value] choice: sets `value`.
-final class VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataValue
-    extends VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData {
-  const VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataValue(
-    this.value,
-  );
+/// The [VertexAiEvaluationItemContent.value] choice: sets `value`.
+final class VertexAiEvaluationItemContentValue
+    extends VertexAiEvaluationItemContent {
+  const VertexAiEvaluationItemContentValue(this.value);
 
   final TfArg<String> value;
 
@@ -243,12 +233,10 @@ final class VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData.agentData] choice: sets `agent_data`.
-final class VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataChoice
-    extends VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentData {
-  const VertexAiEvaluationItemGoldenResponseTextOrValueOrAgentDataChoice(
-    this.agentData,
-  );
+/// The [VertexAiEvaluationItemContent.agentData] choice: sets `agent_data`.
+final class VertexAiEvaluationItemContentAgentData
+    extends VertexAiEvaluationItemContent {
+  const VertexAiEvaluationItemContentAgentData(this.agentData);
 
   final TfArg<String> agentData;
 
@@ -459,7 +447,7 @@ final class VertexAiEvaluationItemRubricsRubrics {
 
   final TfArg<String>? type;
 
-  final VertexAiEvaluationItemContent content;
+  final VertexAiEvaluationItemRubricsContent content;
 
   @internal
   Map<String, Object?> encode() => {
@@ -495,8 +483,8 @@ extension type const VertexAiEvaluationItemImportance._(TfArg<String> _)
 /// Typed helper for the `evaluation_request.rubrics.rubrics.content` block of
 /// `google_vertex_ai_evaluation_item` (derived from provider schema).
 @immutable
-final class VertexAiEvaluationItemContent {
-  const VertexAiEvaluationItemContent({this.property});
+final class VertexAiEvaluationItemRubricsContent {
+  const VertexAiEvaluationItemRubricsContent({this.property});
 
   final VertexAiEvaluationItemProperty? property;
 
@@ -528,8 +516,7 @@ final class GoogleVertexAiEvaluationItem extends Resource {
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     required VertexAiEvaluationItemType evaluationItemType,
-    required VertexAiEvaluationItemEvaluationRequestOrGcsUri
-    evaluationRequestOrGcsUri,
+    required VertexAiEvaluationItemSource source,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? metadata,
     TfArg<String>? project,
@@ -544,7 +531,7 @@ final class GoogleVertexAiEvaluationItem extends Resource {
            'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
            'evaluation_item_type': evaluationItemType,
-           ...evaluationRequestOrGcsUri.argMap,
+           ...source.argMap,
            'labels': ?labels,
            'metadata': ?metadata,
            'project': ?project,

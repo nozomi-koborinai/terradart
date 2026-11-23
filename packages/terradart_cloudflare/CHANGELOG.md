@@ -1,8 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.37.0 - 2026-11-23
 
-- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+- **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).
+- **Breaking (provider 5.29.0):** follows `cloudflare/cloudflare` 5.29.0 (was 5.28.1), and synth output pins that version. Updates `CloudflareSecretsStoreSecret.scopes`, `LoadBalancerRules.overrides`, `WorkersScriptPlacement.mode`, `ZeroTrustAccessApplicationPolicies.mfaConfig`, `ListItems`, `CloudflarePrecursor`, `DataCloudflareWorkersCustomDomain`, `DataCloudflareWorkersCustomDomains`, and `FlagshipFlagClausesClausesClauses`, and removes dropped upstream fields. See [MIGRATING.md](../../MIGRATING.md#cloudflare-provider-5290).
+- Adds 17 resource factories and 31 data sources across AI Security, Log Explorer datasets, Zero Trust CASB finding types, Zero Trust CWS, and Zero Trust DLP proximity validators (289 resources + 499 data sources).
 
 ## 0.36.0 - 2026-11-01
 

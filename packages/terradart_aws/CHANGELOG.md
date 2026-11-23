@@ -1,8 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.37.0 - 2026-11-23
 
-- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+- **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).
+- **Breaking (provider 6.73.0):** `SecurityhubConnectorV2ConnectorProvider` becomes a plain helper class with optional `azure`, `jiraCloud`, and `serviceNow` fields, and nested `aws_wafv2_web_acl_rule` statement blocks narrow to separate helper types. See [MIGRATING.md](../../MIGRATING.md#aws-provider-6730).
+- **Breaking (provider 6.71.0):** `NetworkfirewallFirewallPolicyOverride.action` takes `NetworkfirewallFirewallPolicyOverrideAction` instead of `NetworkfirewallFirewallPolicyAction`. See [MIGRATING.md](../../MIGRATING.md#aws-provider-6710).
+- Follows `hashicorp/aws` 6.73.0 (was 6.70.0), and synth output pins that version. Adds 24 resource factories and 4 data sources, including Bedrock Data Automation, Lambda Web, Network Security Manager, CloudWatch Omni, DevOps Agent, DSQL streams, RDS tenant databases, and QuickSight account custom permissions (1766 resources + 689 data sources).
 
 ## 0.36.0 - 2026-11-01
 

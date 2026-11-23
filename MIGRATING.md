@@ -1,6 +1,6 @@
 # Migrating terradart
 
-## Unreleased
+## 0.36.x → 0.37.0
 
 ### Dart 3.12 is the minimum SDK
 
@@ -108,13 +108,13 @@ changes and removes two upstream enum/conflict constraints:
 
 **Breaking (`terradart_google`).** Provider 8.12.0 exposes `backend_service`
 in GA on `google_compute_global_forwarding_rule`, where it is mutually
-exclusive with `target`. `GoogleComputeGlobalForwardingRule.target` moves
-onto the required sealed argument `backendServiceOrTarget` (`.target(...)` or
-`.backendService(...)`). The Terraform JSON for existing rules is unchanged.
+exclusive with `target`. `GoogleComputeGlobalForwardingRule.target` now takes
+the required sealed `ComputeGlobalForwardingRuleTarget` choice (`.target(...)`
+or `.backendService(...)`). The Terraform JSON for existing rules is unchanged.
 
 | Before | After |
 |---|---|
-| `GoogleComputeGlobalForwardingRule('fe', name: .literal('fe'), target: .literal('proxy'))` | `GoogleComputeGlobalForwardingRule('fe', name: .literal('fe'), backendServiceOrTarget: .target(.literal('proxy')))` |
+| `GoogleComputeGlobalForwardingRule('fe', name: .literal('fe'), target: .literal('proxy'))` | `GoogleComputeGlobalForwardingRule('fe', name: .literal('fe'), target: .target(.literal('proxy')))` |
 
 #### Beta-only types now in `terradart_google`
 
@@ -144,7 +144,7 @@ beta provider.
 **Breaking (`terradart_google`).** Provider 8.11.0 promotes `vpc_access`
 (Direct VPC Access) to GA on `google_app_engine_standard_app_version`, where it
 conflicts with `vpc_access_connector`. `GoogleAppEngineStandardAppVersion.vpcAccessConnector`
-moves onto the nullable sealed argument `vpcAccessConnectorOrVpcAccess`
+moves onto the nullable sealed argument `connectivity`
 (`.vpcAccessConnector(...)` or `.vpcAccess(...)`).
 
 The same release adds a top-level `modality` input to `google_ces_deployment`,
@@ -166,7 +166,7 @@ JSON for existing resources is unchanged.
 
 | Before | After |
 |---|---|
-| `GoogleAppEngineStandardAppVersion('v', vpcAccessConnector: AppEngineStandardAppVersionVpcAccessConnector(name: .literal('c')), ...)` | `GoogleAppEngineStandardAppVersion('v', vpcAccessConnectorOrVpcAccess: .vpcAccessConnector(AppEngineStandardAppVersionVpcAccessConnector(name: .literal('c'))), ...)` |
+| `GoogleAppEngineStandardAppVersion('v', vpcAccessConnector: AppEngineStandardAppVersionVpcAccessConnector(name: .literal('c')), ...)` | `GoogleAppEngineStandardAppVersion('v', connectivity: .vpcAccessConnector(AppEngineStandardAppVersionVpcAccessConnector(name: .literal('c'))), ...)` |
 | `CesDeploymentWebWidgetConfig(modality: CesDeploymentModality.chatOnly)` | `CesDeploymentWebWidgetConfig(modality: CesDeploymentWebWidgetConfigModality.chatOnly)` |
 
 #### Beta-only types now in `terradart_google`

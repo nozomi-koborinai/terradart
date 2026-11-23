@@ -201,12 +201,12 @@ export 'src/compute/google_compute_global_address.dart'
         GoogleComputeGlobalAddress;
 export 'src/compute/google_compute_global_forwarding_rule.dart'
     show
-        ComputeGlobalForwardingRuleBackendServiceOrTarget,
-        ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService,
-        ComputeGlobalForwardingRuleBackendServiceOrTargetChoice,
         ComputeGlobalForwardingRuleMetadataFilter,
         ComputeGlobalForwardingRuleMetadataFilterLabel,
         ComputeGlobalForwardingRuleServiceDirectoryRegistration,
+        ComputeGlobalForwardingRuleTarget,
+        ComputeGlobalForwardingRuleTargetBackendService,
+        ComputeGlobalForwardingRuleTargetChoice,
         GlobalForwardingRuleIpProtocol,
         GlobalForwardingRuleIpVersion,
         GlobalForwardingRuleLoadBalancingScheme,

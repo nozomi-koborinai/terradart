@@ -13,6 +13,10 @@ deriveExactlyOne: true
 
 deriveEnums: true
 
+sealedNames:
+  "evaluation_request, gcs_uri": source
+  "evaluation_request.golden_response.agent_data, evaluation_request.golden_response.text, evaluation_request.golden_response.value": content
+
 # TODO(wrap-init): the class doc derives from the IR (lead line + MM description); uncomment curatedDoc only for artisanal notes the IR cannot derive (worked example, variant guidance, ForceNew callouts) — otherwise delete this placeholder.
 # curatedDoc:
 
