@@ -1,7 +1,7 @@
 {
   "name": "analyticshub",
   "version": "v1",
-  "revision": "20261106",
+  "revision": "20261114",
   "sourceUrl": "https://analyticshub.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BigQueryDatasetSource": {
@@ -44,8 +44,8 @@
     },
     "Listing": {
       "properties": {
-        "commercialInfo": {
-          "$ref": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo"
+        "storedProcedureConfig": {
+          "$ref": "StoredProcedureConfig"
         },
         "discoveryType": {
           "enum": [
@@ -57,11 +57,20 @@
         "bigqueryDataset": {
           "$ref": "BigQueryDatasetSource"
         },
+        "commercialInfo": {
+          "$ref": "GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo"
+        },
         "resourceType": {
           "enum": [
             "SHARED_RESOURCE_TYPE_UNSPECIFIED",
             "BIGQUERY_DATASET",
             "PUBSUB_TOPIC"
+          ]
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE"
           ]
         },
         "categories": {
@@ -90,15 +99,6 @@
               "CATEGORY_GOOGLE_EARTH_ENGINE"
             ]
           }
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE"
-          ]
-        },
-        "storedProcedureConfig": {
-          "$ref": "StoredProcedureConfig"
         }
       }
     },
@@ -120,17 +120,17 @@
     },
     "Replica": {
       "properties": {
+        "primaryState": {
+          "enum": [
+            "PRIMARY_STATE_UNSPECIFIED",
+            "PRIMARY_REPLICA"
+          ]
+        },
         "replicaState": {
           "enum": [
             "REPLICA_STATE_UNSPECIFIED",
             "READY_TO_USE",
             "UNAVAILABLE"
-          ]
-        },
-        "primaryState": {
-          "enum": [
-            "PRIMARY_STATE_UNSPECIFIED",
-            "PRIMARY_REPLICA"
           ]
         }
       }

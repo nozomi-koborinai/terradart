@@ -1,7 +1,7 @@
 {
   "name": "pubsub",
   "version": "v1",
-  "revision": "20261111",
+  "revision": "20261110",
   "sourceUrl": "https://pubsub.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AwsKinesis": {
@@ -114,17 +114,18 @@
     },
     "Compression": {
       "properties": {
-        "compressionAlgorithm": {
-          "enum": [
-            "COMPRESSION_ALGORITHM_UNSPECIFIED",
-            "ZLIB"
-          ]
-        },
         "compressionMode": {
           "enum": [
             "COMPRESSION_MODE_UNSPECIFIED",
             "COMPRESS",
             "DECOMPRESS"
+          ]
+        },
+        "compressionAlgorithm": {
+          "enum": [
+            "COMPRESSION_ALGORITHM_UNSPECIFIED",
+            "ZLIB",
+            "ZSTD"
           ]
         }
       }
@@ -150,8 +151,8 @@
         "awsMsk": {
           "$ref": "AwsMsk"
         },
-        "azureEventHubs": {
-          "$ref": "AzureEventHubs"
+        "awsKinesis": {
+          "$ref": "AwsKinesis"
         },
         "platformLogsSettings": {
           "$ref": "PlatformLogsSettings"
@@ -162,8 +163,8 @@
         "confluentCloud": {
           "$ref": "ConfluentCloud"
         },
-        "awsKinesis": {
-          "$ref": "AwsKinesis"
+        "azureEventHubs": {
+          "$ref": "AzureEventHubs"
         }
       }
     },
@@ -212,6 +213,16 @@
     },
     "Subscription": {
       "properties": {
+        "bigtableConfig": {
+          "$ref": "BigtableConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "RESOURCE_ERROR"
+          ]
+        },
         "messageTransforms": {
           "items": {
             "$ref": "MessageTransform"
@@ -222,24 +233,11 @@
         },
         "bigqueryConfig": {
           "$ref": "BigQueryConfig"
-        },
-        "bigtableConfig": {
-          "$ref": "BigtableConfig"
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "RESOURCE_ERROR"
-          ]
         }
       }
     },
     "Topic": {
       "properties": {
-        "schemaSettings": {
-          "$ref": "SchemaSettings"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -254,6 +252,9 @@
         },
         "ingestionDataSourceSettings": {
           "$ref": "IngestionDataSourceSettings"
+        },
+        "schemaSettings": {
+          "$ref": "SchemaSettings"
         }
       }
     }

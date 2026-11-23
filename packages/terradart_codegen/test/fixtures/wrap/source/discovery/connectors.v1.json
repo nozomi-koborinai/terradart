@@ -17,6 +17,11 @@
     },
     "AuthConfig": {
       "properties": {
+        "additionalVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
+        },
         "authType": {
           "enum": [
             "AUTH_TYPE_UNSPECIFIED",
@@ -28,11 +33,6 @@
             "GOOGLE_AUTHENTICATION",
             "OAUTH2_AUTH_CODE_FLOW_GOOGLE_MANAGED"
           ]
-        },
-        "additionalVariables": {
-          "items": {
-            "$ref": "ConfigVariable"
-          }
         }
       }
     },
@@ -56,11 +56,11 @@
     },
     "Connection": {
       "properties": {
-        "subscriptionType": {
+        "eventingEnablementType": {
           "enum": [
-            "SUBSCRIPTION_TYPE_UNSPECIFIED",
-            "PAY_G",
-            "PAID"
+            "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
+            "EVENTING_AND_CONNECTION",
+            "ONLY_EVENTING"
           ]
         },
         "adminFilters": {
@@ -68,11 +68,29 @@
             "$ref": "AdminFilters"
           }
         },
+        "configVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
+        },
+        "euaOauthAuthConfig": {
+          "$ref": "AuthConfig"
+        },
+        "subscriptionType": {
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "PAY_G",
+            "PAID"
+          ]
+        },
+        "authConfig": {
+          "$ref": "AuthConfig"
+        },
         "eventingConfig": {
           "$ref": "EventingConfig"
         },
-        "sslConfig": {
-          "$ref": "SslConfig"
+        "eventingRuntimeData": {
+          "$ref": "EventingRuntimeData"
         },
         "logConfig": {
           "$ref": "ConnectorsLogConfig"
@@ -80,15 +98,11 @@
         "billingConfig": {
           "$ref": "BillingConfig"
         },
-        "authConfig": {
-          "$ref": "AuthConfig"
+        "sslConfig": {
+          "$ref": "SslConfig"
         },
-        "eventingEnablementType": {
-          "enum": [
-            "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
-            "EVENTING_AND_CONNECTION",
-            "ONLY_EVENTING"
-          ]
+        "connectorVersionInfraConfig": {
+          "$ref": "ConnectorVersionInfraConfig"
         },
         "connectorVersionLaunchStage": {
           "enum": [
@@ -100,22 +114,8 @@
             "PRIVATE_PREVIEW"
           ]
         },
-        "connectorVersionInfraConfig": {
-          "$ref": "ConnectorVersionInfraConfig"
-        },
-        "configVariables": {
-          "items": {
-            "$ref": "ConfigVariable"
-          }
-        },
-        "euaOauthAuthConfig": {
-          "$ref": "AuthConfig"
-        },
         "status": {
           "$ref": "ConnectionStatus"
-        },
-        "eventingRuntimeData": {
-          "$ref": "EventingRuntimeData"
         }
       }
     },
@@ -137,13 +137,6 @@
     },
     "ConnectorVersionInfraConfig": {
       "properties": {
-        "deploymentModel": {
-          "enum": [
-            "DEPLOYMENT_MODEL_UNSPECIFIED",
-            "GKE_MST",
-            "CLOUD_RUN_MST"
-          ]
-        },
         "deploymentModelMigrationState": {
           "enum": [
             "DEPLOYMENT_MODEL_MIGRATION_STATE_UNSPECIFIED",
@@ -158,6 +151,13 @@
             "TLS_MIGRATION_STATE_UNSPECIFIED",
             "TLS_MIGRATION_NOT_STARTED",
             "TLS_MIGRATION_COMPLETED"
+          ]
+        },
+        "deploymentModel": {
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "GKE_MST",
+            "CLOUD_RUN_MST"
           ]
         }
       }
@@ -203,19 +203,19 @@
     },
     "EventingConfig": {
       "properties": {
+        "listenerAuthConfig": {
+          "$ref": "AuthConfig"
+        },
+        "sslConfig": {
+          "$ref": "SslConfig"
+        },
         "additionalVariables": {
           "items": {
             "$ref": "ConfigVariable"
           }
         },
-        "listenerAuthConfig": {
-          "$ref": "AuthConfig"
-        },
         "authConfig": {
           "$ref": "AuthConfig"
-        },
-        "sslConfig": {
-          "$ref": "SslConfig"
         }
       }
     },
@@ -249,6 +249,24 @@
     },
     "SslConfig": {
       "properties": {
+        "type": {
+          "enum": [
+            "SSL_TYPE_UNSPECIFIED",
+            "TLS",
+            "MTLS"
+          ]
+        },
+        "additionalVariables": {
+          "items": {
+            "$ref": "ConfigVariable"
+          }
+        },
+        "clientCertType": {
+          "enum": [
+            "CERT_TYPE_UNSPECIFIED",
+            "PEM"
+          ]
+        },
         "trustModel": {
           "enum": [
             "PUBLIC",
@@ -261,24 +279,6 @@
             "CERT_TYPE_UNSPECIFIED",
             "PEM"
           ]
-        },
-        "clientCertType": {
-          "enum": [
-            "CERT_TYPE_UNSPECIFIED",
-            "PEM"
-          ]
-        },
-        "type": {
-          "enum": [
-            "SSL_TYPE_UNSPECIFIED",
-            "TLS",
-            "MTLS"
-          ]
-        },
-        "additionalVariables": {
-          "items": {
-            "$ref": "ConfigVariable"
-          }
         }
       }
     },

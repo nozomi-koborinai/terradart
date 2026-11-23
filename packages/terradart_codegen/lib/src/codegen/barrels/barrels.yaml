@@ -402,6 +402,9 @@ barrels:
       /// GDC / Interactive session paths are never_apply for apply-smoke.
       /// Workflow templates are reusable DAG metadata — create does not
       /// start a cluster.
+  design:
+    doc: |-
+      /// `design` factories, added by the weekly schema bump.
   developer_connect:
     doc: |-
       /// Developer Connect — account connectors that start an OAuth flow
@@ -674,6 +677,10 @@ barrels:
       /// Pub/Sub Lite — reserved throughput capacity, topics, and
       /// subscriptions. Reservations bill while they exist (never_apply
       /// for apply-smoke).
+  saas:
+    file: saas_runtime
+    doc: |-
+      /// SaaS Runtime — units, tenants, releases, and rollouts.
   scc:
     doc: |-
       /// Security Command Center (SCC) v1 / v2 / Management — sources,

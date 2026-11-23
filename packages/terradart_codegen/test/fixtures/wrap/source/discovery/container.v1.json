@@ -136,46 +136,72 @@
     },
     "Cluster": {
       "properties": {
-        "autoscaling": {
-          "$ref": "ClusterAutoscaling"
-        },
-        "podAutoscaling": {
-          "$ref": "PodAutoscaling"
-        },
-        "databaseEncryption": {
-          "$ref": "DatabaseEncryption"
-        },
-        "loggingConfig": {
-          "$ref": "LoggingConfig"
-        },
-        "securityPostureConfig": {
-          "$ref": "SecurityPostureConfig"
+        "compliancePostureConfig": {
+          "$ref": "CompliancePostureConfig"
         },
         "nodePoolAutoConfig": {
           "$ref": "NodePoolAutoConfig"
         },
-        "notificationConfig": {
-          "$ref": "NotificationConfig"
+        "controlPlaneEgress": {
+          "$ref": "ControlPlaneEgress"
         },
-        "managedOpentelemetryConfig": {
-          "$ref": "ManagedOpenTelemetryConfig"
+        "releaseChannel": {
+          "$ref": "ReleaseChannel"
+        },
+        "networkPolicy": {
+          "$ref": "NetworkPolicy"
+        },
+        "securityPostureConfig": {
+          "$ref": "SecurityPostureConfig"
+        },
+        "nodeConfig": {
+          "$ref": "NodeConfig"
+        },
+        "conditions": {
+          "items": {
+            "$ref": "StatusCondition"
+          }
+        },
+        "autoscaling": {
+          "$ref": "ClusterAutoscaling"
+        },
+        "ipAllocationPolicy": {
+          "$ref": "IPAllocationPolicy"
+        },
+        "fleet": {
+          "$ref": "Fleet"
+        },
+        "monitoringConfig": {
+          "$ref": "MonitoringConfig"
         },
         "networkConfig": {
           "$ref": "NetworkConfig"
-        },
-        "confidentialNodes": {
-          "$ref": "ConfidentialNodes"
         },
         "nodePools": {
           "items": {
             "$ref": "NodePool"
           }
         },
-        "compliancePostureConfig": {
-          "$ref": "CompliancePostureConfig"
+        "binaryAuthorization": {
+          "$ref": "BinaryAuthorization"
         },
-        "nodeCreationConfig": {
-          "$ref": "NodeCreationConfig"
+        "nodePoolDefaults": {
+          "$ref": "NodePoolDefaults"
+        },
+        "notificationConfig": {
+          "$ref": "NotificationConfig"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        },
+        "databaseEncryption": {
+          "$ref": "DatabaseEncryption"
+        },
+        "confidentialNodes": {
+          "$ref": "ConfidentialNodes"
+        },
+        "gkeAutoUpgradeConfig": {
+          "$ref": "GkeAutoUpgradeConfig"
         },
         "status": {
           "enum": [
@@ -188,52 +214,26 @@
             "DEGRADED"
           ]
         },
-        "nodeConfig": {
-          "$ref": "NodeConfig"
-        },
-        "releaseChannel": {
-          "$ref": "ReleaseChannel"
-        },
-        "fleet": {
-          "$ref": "Fleet"
-        },
-        "nodePoolDefaults": {
-          "$ref": "NodePoolDefaults"
-        },
-        "binaryAuthorization": {
-          "$ref": "BinaryAuthorization"
-        },
-        "ipAllocationPolicy": {
-          "$ref": "IPAllocationPolicy"
-        },
-        "enterpriseConfig": {
-          "$ref": "EnterpriseConfig"
-        },
-        "controlPlaneEgress": {
-          "$ref": "ControlPlaneEgress"
-        },
-        "networkPolicy": {
-          "$ref": "NetworkPolicy"
+        "anonymousAuthenticationConfig": {
+          "$ref": "AnonymousAuthenticationConfig"
         },
         "addonsConfig": {
           "$ref": "AddonsConfig"
         },
-        "gkeAutoUpgradeConfig": {
-          "$ref": "GkeAutoUpgradeConfig"
+        "nodeCreationConfig": {
+          "$ref": "NodeCreationConfig"
         },
-        "conditions": {
-          "items": {
-            "$ref": "StatusCondition"
-          }
+        "managedOpentelemetryConfig": {
+          "$ref": "ManagedOpenTelemetryConfig"
         },
-        "monitoringConfig": {
-          "$ref": "MonitoringConfig"
-        },
-        "anonymousAuthenticationConfig": {
-          "$ref": "AnonymousAuthenticationConfig"
+        "podAutoscaling": {
+          "$ref": "PodAutoscaling"
         },
         "maintenancePolicy": {
           "$ref": "MaintenancePolicy"
+        },
+        "enterpriseConfig": {
+          "$ref": "EnterpriseConfig"
         }
       }
     },
@@ -241,9 +241,6 @@
       "properties": {
         "autoprovisioningNodePoolDefaults": {
           "$ref": "AutoprovisioningNodePoolDefaults"
-        },
-        "autoprovisioningRestrictionConfig": {
-          "$ref": "AutoprovisioningRestrictionConfig"
         },
         "autoscalingProfile": {
           "enum": [
@@ -258,6 +255,9 @@
             "NO_PERFORMANCE",
             "NONE"
           ]
+        },
+        "autoprovisioningRestrictionConfig": {
+          "$ref": "AutoprovisioningRestrictionConfig"
         }
       }
     },
@@ -316,19 +316,19 @@
     },
     "DNSConfig": {
       "properties": {
+        "clusterDnsScope": {
+          "enum": [
+            "DNS_SCOPE_UNSPECIFIED",
+            "CLUSTER_SCOPE",
+            "VPC_SCOPE"
+          ]
+        },
         "clusterDns": {
           "enum": [
             "PROVIDER_UNSPECIFIED",
             "PLATFORM_DEFAULT",
             "CLOUD_DNS",
             "KUBE_DNS"
-          ]
-        },
-        "clusterDnsScope": {
-          "enum": [
-            "DNS_SCOPE_UNSPECIFIED",
-            "CLUSTER_SCOPE",
-            "VPC_SCOPE"
           ]
         }
       }
@@ -372,14 +372,14 @@
     },
     "EnterpriseConfig": {
       "properties": {
-        "clusterTier": {
+        "desiredTier": {
           "enum": [
             "CLUSTER_TIER_UNSPECIFIED",
             "STANDARD",
             "ENTERPRISE"
           ]
         },
-        "desiredTier": {
+        "clusterTier": {
           "enum": [
             "CLUSTER_TIER_UNSPECIFIED",
             "STANDARD",
@@ -485,11 +485,6 @@
     },
     "IPAllocationPolicy": {
       "properties": {
-        "additionalIpRangesConfigs": {
-          "items": {
-            "$ref": "AdditionalIPRangesConfig"
-          }
-        },
         "ipv6AccessType": {
           "enum": [
             "IPV6_ACCESS_TYPE_UNSPECIFIED",
@@ -497,15 +492,20 @@
             "EXTERNAL"
           ]
         },
+        "networkTierConfig": {
+          "$ref": "NetworkTierConfig"
+        },
+        "additionalIpRangesConfigs": {
+          "items": {
+            "$ref": "AdditionalIPRangesConfig"
+          }
+        },
         "stackType": {
           "enum": [
             "STACK_TYPE_UNSPECIFIED",
             "IPV4",
             "IPV4_IPV6"
           ]
-        },
-        "networkTierConfig": {
-          "$ref": "NetworkTierConfig"
         }
       }
     },
@@ -534,6 +534,20 @@
     },
     "LinuxNodeConfig": {
       "properties": {
+        "transparentHugepageEnabled": {
+          "enum": [
+            "TRANSPARENT_HUGEPAGE_ENABLED_UNSPECIFIED",
+            "TRANSPARENT_HUGEPAGE_ENABLED_ALWAYS",
+            "TRANSPARENT_HUGEPAGE_ENABLED_MADVISE",
+            "TRANSPARENT_HUGEPAGE_ENABLED_NEVER"
+          ]
+        },
+        "nodeKernelModuleLoading": {
+          "$ref": "NodeKernelModuleLoading"
+        },
+        "kernelOverrides": {
+          "$ref": "KernelOverrides"
+        },
         "transparentHugepageDefrag": {
           "enum": [
             "TRANSPARENT_HUGEPAGE_DEFRAG_UNSPECIFIED",
@@ -549,20 +563,6 @@
             "CGROUP_MODE_UNSPECIFIED",
             "CGROUP_MODE_V1",
             "CGROUP_MODE_V2"
-          ]
-        },
-        "nodeKernelModuleLoading": {
-          "$ref": "NodeKernelModuleLoading"
-        },
-        "kernelOverrides": {
-          "$ref": "KernelOverrides"
-        },
-        "transparentHugepageEnabled": {
-          "enum": [
-            "TRANSPARENT_HUGEPAGE_ENABLED_UNSPECIFIED",
-            "TRANSPARENT_HUGEPAGE_ENABLED_ALWAYS",
-            "TRANSPARENT_HUGEPAGE_ENABLED_MADVISE",
-            "TRANSPARENT_HUGEPAGE_ENABLED_NEVER"
           ]
         }
       }
@@ -607,17 +607,17 @@
     },
     "MaintenanceExclusionOptions": {
       "properties": {
+        "endTimeBehavior": {
+          "enum": [
+            "END_TIME_BEHAVIOR_UNSPECIFIED",
+            "UNTIL_END_OF_SUPPORT"
+          ]
+        },
         "scope": {
           "enum": [
             "NO_UPGRADES",
             "NO_MINOR_UPGRADES",
             "NO_MINOR_OR_NODE_UPGRADES"
-          ]
-        },
-        "endTimeBehavior": {
-          "enum": [
-            "END_TIME_BEHAVIOR_UNSPECIFIED",
-            "UNTIL_END_OF_SUPPORT"
           ]
         }
       }
@@ -686,27 +686,28 @@
     },
     "MonitoringConfig": {
       "properties": {
+        "advancedDatapathObservabilityConfig": {
+          "$ref": "AdvancedDatapathObservabilityConfig"
+        },
         "componentConfig": {
           "$ref": "MonitoringComponentConfig"
         },
         "managedPrometheusConfig": {
           "$ref": "ManagedPrometheusConfig"
-        },
-        "advancedDatapathObservabilityConfig": {
-          "$ref": "AdvancedDatapathObservabilityConfig"
         }
       }
     },
     "NetworkConfig": {
       "properties": {
-        "gatewayApiConfig": {
-          "$ref": "GatewayAPIConfig"
-        },
         "dnsConfig": {
           "$ref": "DNSConfig"
         },
-        "networkPerformanceConfig": {
-          "$ref": "ClusterNetworkPerformanceConfig"
+        "inTransitEncryptionConfig": {
+          "enum": [
+            "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED",
+            "IN_TRANSIT_ENCRYPTION_DISABLED",
+            "IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT"
+          ]
         },
         "datapathProvider": {
           "enum": [
@@ -717,6 +718,9 @@
             "MIGRATE_TO_LEGACY_DATAPATH"
           ]
         },
+        "dataplaneV2Config": {
+          "$ref": "DataplaneV2Config"
+        },
         "privateIpv6GoogleAccess": {
           "enum": [
             "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
@@ -725,15 +729,11 @@
             "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL"
           ]
         },
-        "dataplaneV2Config": {
-          "$ref": "DataplaneV2Config"
+        "gatewayApiConfig": {
+          "$ref": "GatewayAPIConfig"
         },
-        "inTransitEncryptionConfig": {
-          "enum": [
-            "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED",
-            "IN_TRANSIT_ENCRYPTION_DISABLED",
-            "IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT"
-          ]
+        "networkPerformanceConfig": {
+          "$ref": "ClusterNetworkPerformanceConfig"
         }
       }
     },
@@ -782,27 +782,39 @@
     },
     "NodeConfig": {
       "properties": {
-        "gpuDirectConfig": {
-          "$ref": "GPUDirectConfig"
+        "windowsNodeConfig": {
+          "$ref": "WindowsNodeConfig"
         },
-        "confidentialNodes": {
-          "$ref": "ConfidentialNodes"
+        "sandboxConfig": {
+          "$ref": "SandboxConfig"
         },
         "taints": {
           "items": {
             "$ref": "NodeTaint"
           }
         },
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
+        },
+        "workloadMetadataConfig": {
+          "$ref": "WorkloadMetadataConfig"
+        },
+        "linuxNodeConfig": {
+          "$ref": "LinuxNodeConfig"
+        },
+        "containerdConfig": {
+          "$ref": "ContainerdConfig"
+        },
+        "taintConfig": {
+          "$ref": "TaintConfig"
+        },
+        "soleTenantConfig": {
+          "$ref": "SoleTenantConfig"
+        },
         "secondaryBootDisks": {
           "items": {
             "$ref": "SecondaryBootDisk"
           }
-        },
-        "advancedMachineFeatures": {
-          "$ref": "AdvancedMachineFeatures"
-        },
-        "reservationAffinity": {
-          "$ref": "ReservationAffinity"
         },
         "effectiveCgroupMode": {
           "enum": [
@@ -811,22 +823,19 @@
             "EFFECTIVE_CGROUP_MODE_V2"
           ]
         },
-        "linuxNodeConfig": {
-          "$ref": "LinuxNodeConfig"
-        },
         "accelerators": {
           "items": {
             "$ref": "AcceleratorConfig"
           }
         },
-        "windowsNodeConfig": {
-          "$ref": "WindowsNodeConfig"
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures"
         },
-        "taintConfig": {
-          "$ref": "TaintConfig"
+        "gpuDirectConfig": {
+          "$ref": "GPUDirectConfig"
         },
-        "loggingConfig": {
-          "$ref": "NodePoolLoggingConfig"
+        "confidentialNodes": {
+          "$ref": "ConfidentialNodes"
         },
         "localSsdEncryptionMode": {
           "enum": [
@@ -835,17 +844,8 @@
             "EPHEMERAL_KEY_ENCRYPTION"
           ]
         },
-        "soleTenantConfig": {
-          "$ref": "SoleTenantConfig"
-        },
-        "containerdConfig": {
-          "$ref": "ContainerdConfig"
-        },
-        "sandboxConfig": {
-          "$ref": "SandboxConfig"
-        },
-        "workloadMetadataConfig": {
-          "$ref": "WorkloadMetadataConfig"
+        "loggingConfig": {
+          "$ref": "NodePoolLoggingConfig"
         }
       }
     },
@@ -886,9 +886,6 @@
         "networkPerformanceConfig": {
           "$ref": "NetworkPerformanceConfig"
         },
-        "networkTierConfig": {
-          "$ref": "NetworkTierConfig"
-        },
         "datapathProvider": {
           "enum": [
             "DATAPATH_PROVIDER_UNSPECIFIED",
@@ -897,6 +894,9 @@
             "MIGRATE_TO_ADVANCED_DATAPATH",
             "MIGRATE_TO_LEGACY_DATAPATH"
           ]
+        },
+        "networkTierConfig": {
+          "$ref": "NetworkTierConfig"
         }
       }
     },
@@ -904,6 +904,9 @@
       "properties": {
         "networkConfig": {
           "$ref": "NodeNetworkConfig"
+        },
+        "updateInfo": {
+          "$ref": "UpdateInfo"
         },
         "status": {
           "enum": [
@@ -916,8 +919,14 @@
             "ERROR"
           ]
         },
+        "placementPolicy": {
+          "$ref": "PlacementPolicy"
+        },
         "autoscaling": {
           "$ref": "NodePoolAutoscaling"
+        },
+        "upgradeSettings": {
+          "$ref": "UpgradeSettings"
         },
         "conditions": {
           "items": {
@@ -926,15 +935,6 @@
         },
         "config": {
           "$ref": "NodeConfig"
-        },
-        "upgradeSettings": {
-          "$ref": "UpgradeSettings"
-        },
-        "placementPolicy": {
-          "$ref": "PlacementPolicy"
-        },
-        "updateInfo": {
-          "$ref": "UpdateInfo"
         }
       }
     },
@@ -1082,20 +1082,20 @@
     },
     "SecurityPostureConfig": {
       "properties": {
-        "mode": {
-          "enum": [
-            "MODE_UNSPECIFIED",
-            "DISABLED",
-            "BASIC",
-            "ENTERPRISE"
-          ]
-        },
         "vulnerabilityMode": {
           "enum": [
             "VULNERABILITY_MODE_UNSPECIFIED",
             "VULNERABILITY_DISABLED",
             "VULNERABILITY_BASIC",
             "VULNERABILITY_ENTERPRISE"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "BASIC",
+            "ENTERPRISE"
           ]
         }
       }

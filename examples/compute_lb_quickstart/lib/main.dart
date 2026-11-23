@@ -517,7 +517,7 @@ final class ComputeLbStack extends Stack {
         ipProtocol: .tcp,
         portRange: .literal('443'),
         loadBalancingScheme: .externalManaged,
-        target: lbHttpsProxy.selfLink,
+        backendServiceOrTarget: .target(lbHttpsProxy.selfLink),
       ),
     );
 
@@ -804,7 +804,7 @@ final class ComputeLbStack extends Stack {
         ipProtocol: .tcp,
         portRange: .literal('80'),
         loadBalancingScheme: .externalManaged,
-        target: httpProxy.selfLink,
+        backendServiceOrTarget: .target(httpProxy.selfLink),
       ),
     );
 

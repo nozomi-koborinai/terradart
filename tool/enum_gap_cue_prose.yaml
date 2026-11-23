@@ -493,3 +493,5 @@ google_vertex_ai_evaluation_item.evaluation_request.golden_response.value: the '
 google_vertex_ai_evaluation_item.evaluation_request.prompt.agent_data: the 'At most one of' names mutually exclusive fields ('text', 'value', 'prompt_template_data', 'agent_data', 'user_scenario'), not enum values
 google_vertex_ai_evaluation_item.evaluation_request.prompt.text: the 'At most one of' names mutually exclusive fields ('text', 'value', 'prompt_template_data', 'agent_data', 'user_scenario'), not enum values
 google_vertex_ai_evaluation_item.evaluation_request.prompt.value: the 'At most one of' names mutually exclusive fields ('text', 'value', 'prompt_template_data', 'agent_data', 'user_scenario'), not enum values
+google_agent_identity_auth_provider.auth_provider_type_params.connector_reference_auth_provider.connector: a Data Connector resource name, Authorization resource name, or connector ID ('either ... or'), not a fixed enum
+google_saas_runtime_rollout_kind.rollout_orchestration_strategy: dotted rollout orchestration strategy identifiers (such as Google.Cloud.Simple.AllAtOnce), not a closed API enum

@@ -1,7 +1,7 @@
 {
   "name": "file",
   "version": "v1",
-  "revision": "20261109",
+  "revision": "20261111",
   "sourceUrl": "https://file.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Backup": {
@@ -16,6 +16,13 @@
             "INVALID"
           ]
         },
+        "fileSystemProtocol": {
+          "enum": [
+            "FILE_PROTOCOL_UNSPECIFIED",
+            "NFS_V3",
+            "NFS_V4_1"
+          ]
+        },
         "sourceInstanceTier": {
           "enum": [
             "TIER_UNSPECIFIED",
@@ -27,13 +34,6 @@
             "ENTERPRISE",
             "ZONAL",
             "REGIONAL"
-          ]
-        },
-        "fileSystemProtocol": {
-          "enum": [
-            "FILE_PROTOCOL_UNSPECIFIED",
-            "NFS_V3",
-            "NFS_V4_1"
           ]
         }
       }
@@ -49,25 +49,17 @@
     },
     "Instance": {
       "properties": {
-        "networks": {
-          "items": {
-            "$ref": "NetworkConfig"
-          }
-        },
-        "suspensionReasons": {
-          "items": {
-            "enum": [
-              "SUSPENSION_REASON_UNSPECIFIED",
-              "KMS_KEY_ISSUE"
-            ]
-          }
-        },
         "protocol": {
           "enum": [
             "FILE_PROTOCOL_UNSPECIFIED",
             "NFS_V3",
             "NFS_V4_1"
           ]
+        },
+        "fileShares": {
+          "items": {
+            "$ref": "FileShareConfig"
+          }
         },
         "tier": {
           "enum": [
@@ -82,13 +74,18 @@
             "REGIONAL"
           ]
         },
-        "fileShares": {
+        "suspensionReasons": {
           "items": {
-            "$ref": "FileShareConfig"
+            "enum": [
+              "SUSPENSION_REASON_UNSPECIFIED",
+              "KMS_KEY_ISSUE"
+            ]
           }
         },
-        "replication": {
-          "$ref": "Replication"
+        "networks": {
+          "items": {
+            "$ref": "NetworkConfig"
+          }
         },
         "state": {
           "enum": [
@@ -105,19 +102,14 @@
             "REVERTING",
             "PROMOTING"
           ]
+        },
+        "replication": {
+          "$ref": "Replication"
         }
       }
     },
     "NetworkConfig": {
       "properties": {
-        "connectMode": {
-          "enum": [
-            "CONNECT_MODE_UNSPECIFIED",
-            "DIRECT_PEERING",
-            "PRIVATE_SERVICE_ACCESS",
-            "PRIVATE_SERVICE_CONNECT"
-          ]
-        },
         "modes": {
           "items": {
             "enum": [
@@ -126,23 +118,31 @@
               "MODE_IPV6"
             ]
           }
+        },
+        "connectMode": {
+          "enum": [
+            "CONNECT_MODE_UNSPECIFIED",
+            "DIRECT_PEERING",
+            "PRIVATE_SERVICE_ACCESS",
+            "PRIVATE_SERVICE_CONNECT"
+          ]
         }
       }
     },
     "NfsExportOptions": {
       "properties": {
-        "accessMode": {
-          "enum": [
-            "ACCESS_MODE_UNSPECIFIED",
-            "READ_ONLY",
-            "READ_WRITE"
-          ]
-        },
         "squashMode": {
           "enum": [
             "SQUASH_MODE_UNSPECIFIED",
             "NO_ROOT_SQUASH",
             "ROOT_SQUASH"
+          ]
+        },
+        "accessMode": {
+          "enum": [
+            "ACCESS_MODE_UNSPECIFIED",
+            "READ_ONLY",
+            "READ_WRITE"
           ]
         }
       }

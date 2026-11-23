@@ -81,4 +81,8 @@ final class GoogleDiscoveryEngineProjectProvision extends Resource {
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `provision_intent` attribute.
+  TfRef<String> get provisionIntent =>
+      TfRef.attribute<String>(this, 'provision_intent');
 }

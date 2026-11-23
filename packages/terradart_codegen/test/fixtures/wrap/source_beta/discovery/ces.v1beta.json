@@ -17,45 +17,45 @@
     },
     "Evaluation": {
       "properties": {
-        "evaluationMetricsThresholdOverride": {
-          "$ref": "EvaluationMetricsThresholds"
+        "scenario": {
+          "$ref": "EvaluationScenario"
         },
         "lastCompletedResult": {
           "$ref": "EvaluationResult"
-        },
-        "golden": {
-          "$ref": "EvaluationGolden"
-        },
-        "scenario": {
-          "$ref": "EvaluationScenario"
         },
         "lastTenResults": {
           "items": {
             "$ref": "EvaluationResult"
           }
+        },
+        "golden": {
+          "$ref": "EvaluationGolden"
+        },
+        "evaluationMetricsThresholdOverride": {
+          "$ref": "EvaluationMetricsThresholds"
         }
       }
     },
     "EvaluationConfig": {
       "properties": {
-        "inputAudioConfig": {
-          "$ref": "InputAudioConfig"
-        },
         "outputAudioConfig": {
           "$ref": "OutputAudioConfig"
-        },
-        "evaluationChannel": {
-          "enum": [
-            "EVALUATION_CHANNEL_UNSPECIFIED",
-            "TEXT",
-            "AUDIO"
-          ]
         },
         "toolCallBehaviour": {
           "enum": [
             "EVALUATION_TOOL_CALL_BEHAVIOUR_UNSPECIFIED",
             "REAL",
             "FAKE"
+          ]
+        },
+        "inputAudioConfig": {
+          "$ref": "InputAudioConfig"
+        },
+        "evaluationChannel": {
+          "enum": [
+            "EVALUATION_CHANNEL_UNSPECIFIED",
+            "TEXT",
+            "AUDIO"
           ]
         }
       }
@@ -98,15 +98,15 @@
     },
     "EvaluationGoldenTurn": {
       "properties": {
+        "turnLevelMetricsThresholdsOverride": {
+          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds"
+        },
         "hallucinationMetricBehaviorOverride": {
           "enum": [
             "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
             "DISABLED",
             "ENABLED"
           ]
-        },
-        "turnLevelMetricsThresholdsOverride": {
-          "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds"
         },
         "steps": {
           "items": {
@@ -117,14 +117,14 @@
     },
     "EvaluationMetricsThresholds": {
       "properties": {
-        "scenarioHallucinationMetricBehavior": {
+        "goldenHallucinationMetricBehavior": {
           "enum": [
             "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
             "DISABLED",
             "ENABLED"
           ]
         },
-        "hallucinationMetricBehavior": {
+        "scenarioHallucinationMetricBehavior": {
           "enum": [
             "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
             "DISABLED",
@@ -134,7 +134,7 @@
         "goldenEvaluationMetricsThresholds": {
           "$ref": "EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds"
         },
-        "goldenHallucinationMetricBehavior": {
+        "hallucinationMetricBehavior": {
           "enum": [
             "HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED",
             "DISABLED",
@@ -197,32 +197,8 @@
     },
     "EvaluationResult": {
       "properties": {
-        "evaluationStatus": {
-          "enum": [
-            "OUTCOME_UNSPECIFIED",
-            "PASS",
-            "FAIL",
-            "SKIPPED"
-          ]
-        },
         "goldenResult": {
           "$ref": "EvaluationResultGoldenResult"
-        },
-        "goldenRunMethod": {
-          "enum": [
-            "GOLDEN_RUN_METHOD_UNSPECIFIED",
-            "STABLE",
-            "NAIVE"
-          ]
-        },
-        "errorInfo": {
-          "$ref": "EvaluationErrorInfo"
-        },
-        "persona": {
-          "$ref": "EvaluationPersona"
-        },
-        "evaluationMetricsThresholds": {
-          "$ref": "EvaluationMetricsThresholds"
         },
         "executionState": {
           "enum": [
@@ -240,8 +216,32 @@
             "GRACEFUL_HANDOFF"
           ]
         },
+        "evaluationMetricsThresholds": {
+          "$ref": "EvaluationMetricsThresholds"
+        },
         "scenarioResult": {
           "$ref": "EvaluationResultScenarioResult"
+        },
+        "errorInfo": {
+          "$ref": "EvaluationErrorInfo"
+        },
+        "persona": {
+          "$ref": "EvaluationPersona"
+        },
+        "goldenRunMethod": {
+          "enum": [
+            "GOLDEN_RUN_METHOD_UNSPECIFIED",
+            "STABLE",
+            "NAIVE"
+          ]
+        },
+        "evaluationStatus": {
+          "enum": [
+            "OUTCOME_UNSPECIFIED",
+            "PASS",
+            "FAIL",
+            "SKIPPED"
+          ]
         },
         "config": {
           "$ref": "EvaluationConfig"
@@ -262,6 +262,15 @@
     },
     "EvaluationResultGoldenExpectationOutcome": {
       "properties": {
+        "semanticSimilarityResult": {
+          "$ref": "EvaluationResultSemanticSimilarityResult"
+        },
+        "expectation": {
+          "$ref": "EvaluationGoldenExpectation"
+        },
+        "toolInvocationResult": {
+          "$ref": "EvaluationResultGoldenExpectationOutcomeToolInvocationResult"
+        },
         "outcome": {
           "enum": [
             "OUTCOME_UNSPECIFIED",
@@ -269,15 +278,6 @@
             "FAIL",
             "SKIPPED"
           ]
-        },
-        "toolInvocationResult": {
-          "$ref": "EvaluationResultGoldenExpectationOutcomeToolInvocationResult"
-        },
-        "expectation": {
-          "$ref": "EvaluationGoldenExpectation"
-        },
-        "semanticSimilarityResult": {
-          "$ref": "EvaluationResultSemanticSimilarityResult"
         }
       }
     },
@@ -312,21 +312,21 @@
         "errorInfo": {
           "$ref": "EvaluationErrorInfo"
         },
-        "semanticSimilarityResult": {
-          "$ref": "EvaluationResultSemanticSimilarityResult"
+        "spanLatencies": {
+          "items": {
+            "$ref": "EvaluationResultSpanLatency"
+          }
+        },
+        "overallToolInvocationResult": {
+          "$ref": "EvaluationResultOverallToolInvocationResult"
         },
         "expectationOutcome": {
           "items": {
             "$ref": "EvaluationResultGoldenExpectationOutcome"
           }
         },
-        "overallToolInvocationResult": {
-          "$ref": "EvaluationResultOverallToolInvocationResult"
-        },
-        "spanLatencies": {
-          "items": {
-            "$ref": "EvaluationResultSpanLatency"
-          }
+        "semanticSimilarityResult": {
+          "$ref": "EvaluationResultSemanticSimilarityResult"
         }
       }
     },
@@ -356,24 +356,24 @@
     },
     "EvaluationResultScenarioResult": {
       "properties": {
-        "milestoneResults": {
-          "items": {
-            "$ref": "EvaluationResultScenarioResultMilestoneResult"
-          }
-        },
         "expectationOutcomes": {
           "items": {
             "$ref": "EvaluationResultScenarioExpectationOutcome"
           }
         },
-        "evaluationExpectationResults": {
+        "milestoneResults": {
           "items": {
-            "$ref": "EvaluationResultEvaluationExpectationResult"
+            "$ref": "EvaluationResultScenarioResultMilestoneResult"
           }
         },
         "spanLatencies": {
           "items": {
             "$ref": "EvaluationResultSpanLatency"
+          }
+        },
+        "evaluationExpectationResults": {
+          "items": {
+            "$ref": "EvaluationResultEvaluationExpectationResult"
           }
         }
       }

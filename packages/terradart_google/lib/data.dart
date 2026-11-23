@@ -450,6 +450,8 @@ export 'src/data/google_dataproc_metastore_table_iam_policy.dart'
     show DataGoogleDataprocMetastoreTableIamPolicy;
 export 'src/data/google_datastream_static_ips.dart'
     show DataGoogleDatastreamStaticIps;
+export 'src/data/google_design_center_space_iam_policy.dart'
+    show DataGoogleDesignCenterSpaceIamPolicy;
 export 'src/data/google_discovery_engine_data_store.dart'
     show
         DataDiscoveryEngineDataStoreLocation,

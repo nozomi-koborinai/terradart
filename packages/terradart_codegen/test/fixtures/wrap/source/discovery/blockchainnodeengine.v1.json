@@ -1,7 +1,7 @@
 {
   "name": "blockchainnodeengine",
   "version": "v1",
-  "revision": "20250514",
+  "revision": "20250507",
   "sourceUrl": "https://blockchainnodeengine.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BlockchainNode": {
@@ -11,9 +11,6 @@
             "BLOCKCHAIN_TYPE_UNSPECIFIED",
             "ETHEREUM"
           ]
-        },
-        "ethereumDetails": {
-          "$ref": "EthereumDetails"
         },
         "state": {
           "enum": [
@@ -27,11 +24,21 @@
             "RECONCILING",
             "SYNCING"
           ]
+        },
+        "ethereumDetails": {
+          "$ref": "EthereumDetails"
         }
       }
     },
     "EthereumDetails": {
       "properties": {
+        "executionClient": {
+          "enum": [
+            "EXECUTION_CLIENT_UNSPECIFIED",
+            "GETH",
+            "ERIGON"
+          ]
+        },
         "nodeType": {
           "enum": [
             "NODE_TYPE_UNSPECIFIED",
@@ -40,19 +47,8 @@
             "ARCHIVE"
           ]
         },
-        "consensusClient": {
-          "enum": [
-            "CONSENSUS_CLIENT_UNSPECIFIED",
-            "LIGHTHOUSE",
-            "ERIGON_EMBEDDED_CONSENSUS_LAYER"
-          ]
-        },
-        "executionClient": {
-          "enum": [
-            "EXECUTION_CLIENT_UNSPECIFIED",
-            "GETH",
-            "ERIGON"
-          ]
+        "gethDetails": {
+          "$ref": "GethDetails"
         },
         "network": {
           "enum": [
@@ -63,8 +59,12 @@
             "TESTNET_HOLESKY"
           ]
         },
-        "gethDetails": {
-          "$ref": "GethDetails"
+        "consensusClient": {
+          "enum": [
+            "CONSENSUS_CLIENT_UNSPECIFIED",
+            "LIGHTHOUSE",
+            "ERIGON_EMBEDDED_CONSENSUS_LAYER"
+          ]
         }
       }
     },

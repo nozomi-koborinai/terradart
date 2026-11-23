@@ -27,25 +27,30 @@
     },
     "Build": {
       "properties": {
+        "warnings": {
+          "items": {
+            "$ref": "Warning"
+          }
+        },
         "failureInfo": {
           "$ref": "FailureInfo"
         },
-        "options": {
-          "$ref": "BuildOptions"
-        },
-        "sourceProvenance": {
-          "$ref": "SourceProvenance"
+        "source": {
+          "$ref": "Source"
         },
         "results": {
           "$ref": "Results"
-        },
-        "source": {
-          "$ref": "Source"
         },
         "steps": {
           "items": {
             "$ref": "BuildStep"
           }
+        },
+        "approval": {
+          "$ref": "BuildApproval"
+        },
+        "options": {
+          "$ref": "BuildOptions"
         },
         "status": {
           "enum": [
@@ -61,21 +66,13 @@
             "EXPIRED"
           ]
         },
-        "warnings": {
-          "items": {
-            "$ref": "Warning"
-          }
-        },
-        "approval": {
-          "$ref": "BuildApproval"
+        "sourceProvenance": {
+          "$ref": "SourceProvenance"
         }
       }
     },
     "BuildApproval": {
       "properties": {
-        "result": {
-          "$ref": "ApprovalResult"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -84,15 +81,70 @@
             "REJECTED",
             "CANCELLED"
           ]
+        },
+        "result": {
+          "$ref": "ApprovalResult"
         }
       }
     },
     "BuildOptions": {
       "properties": {
+        "logging": {
+          "enum": [
+            "LOGGING_UNSPECIFIED",
+            "LEGACY",
+            "GCS_ONLY",
+            "STACKDRIVER_ONLY",
+            "CLOUD_LOGGING_ONLY",
+            "NONE"
+          ]
+        },
+        "defaultLogsBucketBehavior": {
+          "enum": [
+            "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
+            "REGIONAL_USER_OWNED_BUCKET",
+            "LEGACY_BUCKET"
+          ]
+        },
+        "rankedMachineSeries": {
+          "items": {
+            "enum": [
+              "MACHINE_SERIES_UNSPECIFIED",
+              "MACHINE_SERIES_E",
+              "MACHINE_SERIES_N",
+              "MACHINE_SERIES_C"
+            ]
+          }
+        },
+        "machineType": {
+          "enum": [
+            "UNSPECIFIED",
+            "N1_HIGHCPU_8",
+            "N1_HIGHCPU_32",
+            "E2_HIGHCPU_8",
+            "E2_HIGHCPU_32",
+            "E2_MEDIUM",
+            "E2_STANDARD_2"
+          ]
+        },
+        "logStreamingOption": {
+          "enum": [
+            "STREAM_DEFAULT",
+            "STREAM_ON",
+            "STREAM_OFF"
+          ]
+        },
         "substitutionOption": {
           "enum": [
             "MUST_MATCH",
             "ALLOW_LOOSE"
+          ]
+        },
+        "requestedVerifyOption": {
+          "enum": [
+            "NOT_VERIFIED",
+            "VERIFIED",
+            "BEST_EFFORT"
           ]
         },
         "sourceProvenanceHash": {
@@ -106,58 +158,6 @@
               "DIRSUM_SHA256"
             ]
           }
-        },
-        "logStreamingOption": {
-          "enum": [
-            "STREAM_DEFAULT",
-            "STREAM_ON",
-            "STREAM_OFF"
-          ]
-        },
-        "rankedMachineSeries": {
-          "items": {
-            "enum": [
-              "MACHINE_SERIES_UNSPECIFIED",
-              "MACHINE_SERIES_E",
-              "MACHINE_SERIES_N",
-              "MACHINE_SERIES_C"
-            ]
-          }
-        },
-        "requestedVerifyOption": {
-          "enum": [
-            "NOT_VERIFIED",
-            "VERIFIED",
-            "BEST_EFFORT"
-          ]
-        },
-        "defaultLogsBucketBehavior": {
-          "enum": [
-            "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
-            "REGIONAL_USER_OWNED_BUCKET",
-            "LEGACY_BUCKET"
-          ]
-        },
-        "machineType": {
-          "enum": [
-            "UNSPECIFIED",
-            "N1_HIGHCPU_8",
-            "N1_HIGHCPU_32",
-            "E2_HIGHCPU_8",
-            "E2_HIGHCPU_32",
-            "E2_MEDIUM",
-            "E2_STANDARD_2"
-          ]
-        },
-        "logging": {
-          "enum": [
-            "LOGGING_UNSPECIFIED",
-            "LEGACY",
-            "GCS_ONLY",
-            "STACKDRIVER_ONLY",
-            "CLOUD_LOGGING_ONLY",
-            "NONE"
-          ]
         }
       }
     },
@@ -181,17 +181,38 @@
     },
     "BuildTrigger": {
       "properties": {
-        "build": {
-          "$ref": "Build"
+        "includeBuildLogs": {
+          "enum": [
+            "INCLUDE_BUILD_LOGS_UNSPECIFIED",
+            "INCLUDE_BUILD_LOGS_WITH_STATUS"
+          ]
         },
-        "github": {
-          "$ref": "GitHubEventsConfig"
+        "sourceToBuild": {
+          "$ref": "GitRepoSource"
+        },
+        "bitbucketServerTriggerConfig": {
+          "$ref": "BitbucketServerTriggerConfig"
         },
         "repositoryEventConfig": {
           "$ref": "RepositoryEventConfig"
         },
-        "bitbucketServerTriggerConfig": {
-          "$ref": "BitbucketServerTriggerConfig"
+        "build": {
+          "$ref": "Build"
+        },
+        "pubsubConfig": {
+          "$ref": "PubsubConfig"
+        },
+        "developerConnectEventConfig": {
+          "$ref": "DeveloperConnectEventConfig"
+        },
+        "webhookConfig": {
+          "$ref": "WebhookConfig"
+        },
+        "gitFileSource": {
+          "$ref": "GitFileSource"
+        },
+        "github": {
+          "$ref": "GitHubEventsConfig"
         },
         "eventType": {
           "enum": [
@@ -201,27 +222,6 @@
             "PUBSUB",
             "MANUAL"
           ]
-        },
-        "includeBuildLogs": {
-          "enum": [
-            "INCLUDE_BUILD_LOGS_UNSPECIFIED",
-            "INCLUDE_BUILD_LOGS_WITH_STATUS"
-          ]
-        },
-        "pubsubConfig": {
-          "$ref": "PubsubConfig"
-        },
-        "developerConnectEventConfig": {
-          "$ref": "DeveloperConnectEventConfig"
-        },
-        "sourceToBuild": {
-          "$ref": "GitRepoSource"
-        },
-        "gitFileSource": {
-          "$ref": "GitFileSource"
-        },
-        "webhookConfig": {
-          "$ref": "WebhookConfig"
         }
       }
     },
@@ -238,6 +238,9 @@
     },
     "DeveloperConnectEventConfig": {
       "properties": {
+        "pullRequest": {
+          "$ref": "PullRequestFilter"
+        },
         "gitRepositoryLinkType": {
           "enum": [
             "GIT_REPOSITORY_LINK_TYPE_UNSPECIFIED",
@@ -248,9 +251,6 @@
             "BITBUCKET_DATA_CENTER",
             "BITBUCKET_CLOUD"
           ]
-        },
-        "pullRequest": {
-          "$ref": "PullRequestFilter"
         }
       }
     },
@@ -370,24 +370,9 @@
     },
     "Results": {
       "properties": {
-        "goModules": {
+        "images": {
           "items": {
-            "$ref": "UploadedGoModule"
-          }
-        },
-        "mavenArtifacts": {
-          "items": {
-            "$ref": "UploadedMavenArtifact"
-          }
-        },
-        "pythonPackages": {
-          "items": {
-            "$ref": "UploadedPythonPackage"
-          }
-        },
-        "genericArtifacts": {
-          "items": {
-            "$ref": "UploadedGenericArtifact"
+            "$ref": "BuiltImage"
           }
         },
         "npmPackages": {
@@ -395,9 +380,24 @@
             "$ref": "UploadedNpmPackage"
           }
         },
-        "images": {
+        "goModules": {
           "items": {
-            "$ref": "BuiltImage"
+            "$ref": "UploadedGoModule"
+          }
+        },
+        "pythonPackages": {
+          "items": {
+            "$ref": "UploadedPythonPackage"
+          }
+        },
+        "mavenArtifacts": {
+          "items": {
+            "$ref": "UploadedMavenArtifact"
+          }
+        },
+        "genericArtifacts": {
+          "items": {
+            "$ref": "UploadedGenericArtifact"
           }
         }
       }
@@ -434,13 +434,13 @@
     },
     "UploadedGenericArtifact": {
       "properties": {
+        "artifactFingerprint": {
+          "$ref": "FileHashes"
+        },
         "fileHashes": {
           "additionalProperties": {
             "$ref": "FileHashes"
           }
-        },
-        "artifactFingerprint": {
-          "$ref": "FileHashes"
         }
       }
     },

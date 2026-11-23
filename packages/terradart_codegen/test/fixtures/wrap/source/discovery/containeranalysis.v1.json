@@ -6,17 +6,17 @@
   "schemas": {
     "AISkillAnalysisOccurrence": {
       "properties": {
+        "findings": {
+          "items": {
+            "$ref": "Finding"
+          }
+        },
         "maxSeverity": {
           "enum": [
             "SEVERITY_UNSPECIFIED",
             "CRITICAL",
             "HIGH"
           ]
-        },
-        "findings": {
-          "items": {
-            "$ref": "Finding"
-          }
         },
         "perScannerVerdict": {
           "$ref": "PerScannerVerdict"
@@ -40,11 +40,6 @@
         "justification": {
           "$ref": "Justification"
         },
-        "remediations": {
-          "items": {
-            "$ref": "Remediation"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -53,6 +48,11 @@
             "FIXED",
             "UNDER_INVESTIGATION"
           ]
+        },
+        "remediations": {
+          "items": {
+            "$ref": "Remediation"
+          }
         }
       }
     },
@@ -81,26 +81,14 @@
             "USER_INTERACTION_ACTIVE"
           ]
         },
-        "exploitMaturity": {
+        "attackRequirements": {
           "enum": [
-            "EXPLOIT_MATURITY_UNSPECIFIED",
-            "EXPLOIT_MATURITY_NOT_DEFINED",
-            "EXPLOIT_MATURITY_ATTACKED",
-            "EXPLOIT_MATURITY_POC",
-            "EXPLOIT_MATURITY_UNREPORTED"
+            "ATTACK_REQUIREMENTS_UNSPECIFIED",
+            "ATTACK_REQUIREMENTS_NONE",
+            "ATTACK_REQUIREMENTS_PRESENT"
           ]
         },
-        "vulnerableSystemConfidentialityImpact": {
-          "enum": [
-            "IMPACT_UNSPECIFIED",
-            "IMPACT_HIGH",
-            "IMPACT_LOW",
-            "IMPACT_NONE",
-            "IMPACT_PARTIAL",
-            "IMPACT_COMPLETE"
-          ]
-        },
-        "confidentialityImpact": {
+        "subsequentSystemAvailabilityImpact": {
           "enum": [
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
@@ -120,14 +108,43 @@
             "IMPACT_COMPLETE"
           ]
         },
-        "scope": {
+        "authentication": {
           "enum": [
-            "SCOPE_UNSPECIFIED",
-            "SCOPE_UNCHANGED",
-            "SCOPE_CHANGED"
+            "AUTHENTICATION_UNSPECIFIED",
+            "AUTHENTICATION_MULTIPLE",
+            "AUTHENTICATION_SINGLE",
+            "AUTHENTICATION_NONE"
           ]
         },
-        "subsequentSystemConfidentialityImpact": {
+        "availabilityImpact": {
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
+          ]
+        },
+        "integrityImpact": {
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
+          ]
+        },
+        "privilegesRequired": {
+          "enum": [
+            "PRIVILEGES_REQUIRED_UNSPECIFIED",
+            "PRIVILEGES_REQUIRED_NONE",
+            "PRIVILEGES_REQUIRED_LOW",
+            "PRIVILEGES_REQUIRED_HIGH"
+          ]
+        },
+        "confidentialityImpact": {
           "enum": [
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
@@ -146,7 +163,7 @@
             "ATTACK_VECTOR_PHYSICAL"
           ]
         },
-        "vulnerableSystemIntegrityImpact": {
+        "vulnerableSystemConfidentialityImpact": {
           "enum": [
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
@@ -156,7 +173,7 @@
             "IMPACT_COMPLETE"
           ]
         },
-        "availabilityImpact": {
+        "vulnerableSystemIntegrityImpact": {
           "enum": [
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
@@ -176,55 +193,38 @@
             "IMPACT_COMPLETE"
           ]
         },
-        "authentication": {
-          "enum": [
-            "AUTHENTICATION_UNSPECIFIED",
-            "AUTHENTICATION_MULTIPLE",
-            "AUTHENTICATION_SINGLE",
-            "AUTHENTICATION_NONE"
-          ]
-        },
-        "integrityImpact": {
-          "enum": [
-            "IMPACT_UNSPECIFIED",
-            "IMPACT_HIGH",
-            "IMPACT_LOW",
-            "IMPACT_NONE",
-            "IMPACT_PARTIAL",
-            "IMPACT_COMPLETE"
-          ]
-        },
-        "attackRequirements": {
-          "enum": [
-            "ATTACK_REQUIREMENTS_UNSPECIFIED",
-            "ATTACK_REQUIREMENTS_NONE",
-            "ATTACK_REQUIREMENTS_PRESENT"
-          ]
-        },
-        "privilegesRequired": {
-          "enum": [
-            "PRIVILEGES_REQUIRED_UNSPECIFIED",
-            "PRIVILEGES_REQUIRED_NONE",
-            "PRIVILEGES_REQUIRED_LOW",
-            "PRIVILEGES_REQUIRED_HIGH"
-          ]
-        },
-        "subsequentSystemAvailabilityImpact": {
-          "enum": [
-            "IMPACT_UNSPECIFIED",
-            "IMPACT_HIGH",
-            "IMPACT_LOW",
-            "IMPACT_NONE",
-            "IMPACT_PARTIAL",
-            "IMPACT_COMPLETE"
-          ]
-        },
         "attackComplexity": {
           "enum": [
             "ATTACK_COMPLEXITY_UNSPECIFIED",
             "ATTACK_COMPLEXITY_LOW",
             "ATTACK_COMPLEXITY_HIGH",
             "ATTACK_COMPLEXITY_MEDIUM"
+          ]
+        },
+        "subsequentSystemConfidentialityImpact": {
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
+          ]
+        },
+        "scope": {
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "SCOPE_UNCHANGED",
+            "SCOPE_CHANGED"
+          ]
+        },
+        "exploitMaturity": {
+          "enum": [
+            "EXPLOIT_MATURITY_UNSPECIFIED",
+            "EXPLOIT_MATURITY_NOT_DEFINED",
+            "EXPLOIT_MATURITY_ATTACKED",
+            "EXPLOIT_MATURITY_POC",
+            "EXPLOIT_MATURITY_UNREPORTED"
           ]
         }
       }
@@ -238,11 +238,13 @@
             "ATTACK_COMPLEXITY_HIGH"
           ]
         },
-        "userInteraction": {
+        "attackVector": {
           "enum": [
-            "USER_INTERACTION_UNSPECIFIED",
-            "USER_INTERACTION_NONE",
-            "USER_INTERACTION_REQUIRED"
+            "ATTACK_VECTOR_UNSPECIFIED",
+            "ATTACK_VECTOR_NETWORK",
+            "ATTACK_VECTOR_ADJACENT",
+            "ATTACK_VECTOR_LOCAL",
+            "ATTACK_VECTOR_PHYSICAL"
           ]
         },
         "integrityImpact": {
@@ -261,21 +263,11 @@
             "IMPACT_NONE"
           ]
         },
-        "availabilityImpact": {
+        "userInteraction": {
           "enum": [
-            "IMPACT_UNSPECIFIED",
-            "IMPACT_HIGH",
-            "IMPACT_LOW",
-            "IMPACT_NONE"
-          ]
-        },
-        "attackVector": {
-          "enum": [
-            "ATTACK_VECTOR_UNSPECIFIED",
-            "ATTACK_VECTOR_NETWORK",
-            "ATTACK_VECTOR_ADJACENT",
-            "ATTACK_VECTOR_LOCAL",
-            "ATTACK_VECTOR_PHYSICAL"
+            "USER_INTERACTION_UNSPECIFIED",
+            "USER_INTERACTION_NONE",
+            "USER_INTERACTION_REQUIRED"
           ]
         },
         "scope": {
@@ -283,6 +275,14 @@
             "SCOPE_UNSPECIFIED",
             "SCOPE_UNCHANGED",
             "SCOPE_CHANGED"
+          ]
+        },
+        "availabilityImpact": {
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
           ]
         },
         "privilegesRequired": {
@@ -337,13 +337,13 @@
     },
     "Detail": {
       "properties": {
-        "affectedVersionStart": {
-          "$ref": "Version"
-        },
         "affectedVersionEnd": {
           "$ref": "Version"
         },
         "fixedVersion": {
+          "$ref": "Version"
+        },
+        "affectedVersionStart": {
           "$ref": "Version"
         }
       }
@@ -373,16 +373,6 @@
     },
     "DiscoveryOccurrence": {
       "properties": {
-        "sbomStatus": {
-          "$ref": "SBOMStatus"
-        },
-        "continuousAnalysis": {
-          "enum": [
-            "CONTINUOUS_ANALYSIS_UNSPECIFIED",
-            "ACTIVE",
-            "INACTIVE"
-          ]
-        },
         "analysisStatus": {
           "enum": [
             "ANALYSIS_STATUS_UNSPECIFIED",
@@ -393,20 +383,30 @@
             "FINISHED_FAILED",
             "FINISHED_UNSUPPORTED"
           ]
+        },
+        "continuousAnalysis": {
+          "enum": [
+            "CONTINUOUS_ANALYSIS_UNSPECIFIED",
+            "ACTIVE",
+            "INACTIVE"
+          ]
+        },
+        "sbomStatus": {
+          "$ref": "SBOMStatus"
         }
       }
     },
     "Distribution": {
       "properties": {
+        "latestVersion": {
+          "$ref": "Version"
+        },
         "architecture": {
           "enum": [
             "ARCHITECTURE_UNSPECIFIED",
             "X86",
             "X64"
           ]
-        },
-        "latestVersion": {
-          "$ref": "Version"
         }
       }
     },
@@ -508,68 +508,77 @@
     },
     "MaliciousContentLLMResult": {
       "properties": {
-        "maxSeverity": {
-          "enum": [
-            "SEVERITY_UNSPECIFIED",
-            "CRITICAL",
-            "HIGH"
-          ]
-        },
         "scanStatus": {
           "enum": [
             "SCAN_STATUS_UNSPECIFIED",
             "PERFORMED",
             "NOT_PERFORMED"
+          ]
+        },
+        "maxSeverity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH"
           ]
         }
       }
     },
     "MaliciousContentStaticResult": {
       "properties": {
+        "scanStatus": {
+          "enum": [
+            "SCAN_STATUS_UNSPECIFIED",
+            "PERFORMED",
+            "NOT_PERFORMED"
+          ]
+        },
         "maxSeverity": {
           "enum": [
             "SEVERITY_UNSPECIFIED",
             "CRITICAL",
             "HIGH"
           ]
-        },
-        "scanStatus": {
-          "enum": [
-            "SCAN_STATUS_UNSPECIFIED",
-            "PERFORMED",
-            "NOT_PERFORMED"
-          ]
         }
       }
     },
     "MalwareScanResult": {
       "properties": {
-        "scanStatus": {
-          "enum": [
-            "SCAN_STATUS_UNSPECIFIED",
-            "PERFORMED",
-            "NOT_PERFORMED"
-          ]
-        },
         "verdict": {
           "enum": [
             "VERDICT_UNSPECIFIED",
             "PASSED",
             "FAILED"
           ]
+        },
+        "scanStatus": {
+          "enum": [
+            "SCAN_STATUS_UNSPECIFIED",
+            "PERFORMED",
+            "NOT_PERFORMED"
+          ]
         }
       }
     },
     "Note": {
       "properties": {
-        "package": {
-          "$ref": "PackageNote"
-        },
-        "compliance": {
-          "$ref": "ComplianceNote"
+        "vulnerability": {
+          "$ref": "VulnerabilityNote"
         },
         "upgrade": {
           "$ref": "UpgradeNote"
+        },
+        "vulnerabilityAssessment": {
+          "$ref": "VulnerabilityAssessmentNote"
+        },
+        "package": {
+          "$ref": "PackageNote"
+        },
+        "discovery": {
+          "$ref": "DiscoveryNote"
+        },
+        "compliance": {
+          "$ref": "ComplianceNote"
         },
         "kind": {
           "enum": [
@@ -589,31 +598,19 @@
             "SECRET",
             "AI_SKILL_ANALYSIS"
           ]
-        },
-        "discovery": {
-          "$ref": "DiscoveryNote"
-        },
-        "vulnerabilityAssessment": {
-          "$ref": "VulnerabilityAssessmentNote"
-        },
-        "vulnerability": {
-          "$ref": "VulnerabilityNote"
         }
       }
     },
     "Occurrence": {
       "properties": {
-        "build": {
-          "$ref": "BuildOccurrence"
-        },
-        "vulnerability": {
-          "$ref": "VulnerabilityOccurrence"
-        },
         "package": {
           "$ref": "PackageOccurrence"
         },
-        "upgrade": {
-          "$ref": "UpgradeOccurrence"
+        "build": {
+          "$ref": "BuildOccurrence"
+        },
+        "secret": {
+          "$ref": "SecretOccurrence"
         },
         "deployment": {
           "$ref": "DeploymentOccurrence"
@@ -621,9 +618,6 @@
         "aiSkillAnalysis": {
           "$ref": "AISkillAnalysisOccurrence"
         },
-        "secret": {
-          "$ref": "SecretOccurrence"
-        },
         "kind": {
           "enum": [
             "NOTE_KIND_UNSPECIFIED",
@@ -642,6 +636,12 @@
             "SECRET",
             "AI_SKILL_ANALYSIS"
           ]
+        },
+        "upgrade": {
+          "$ref": "UpgradeOccurrence"
+        },
+        "vulnerability": {
+          "$ref": "VulnerabilityOccurrence"
         },
         "discovery": {
           "$ref": "DiscoveryOccurrence"
@@ -650,15 +650,6 @@
     },
     "PackageIssue": {
       "properties": {
-        "exploitability": {
-          "$ref": "Exploitability"
-        },
-        "fixedVersion": {
-          "$ref": "Version"
-        },
-        "affectedVersion": {
-          "$ref": "Version"
-        },
         "effectiveSeverity": {
           "enum": [
             "SEVERITY_UNSPECIFIED",
@@ -668,25 +659,34 @@
             "HIGH",
             "CRITICAL"
           ]
+        },
+        "affectedVersion": {
+          "$ref": "Version"
+        },
+        "exploitability": {
+          "$ref": "Exploitability"
+        },
+        "fixedVersion": {
+          "$ref": "Version"
         }
       }
     },
     "PackageNote": {
       "properties": {
-        "distribution": {
-          "items": {
-            "$ref": "Distribution"
-          }
-        },
-        "version": {
-          "$ref": "Version"
-        },
         "architecture": {
           "enum": [
             "ARCHITECTURE_UNSPECIFIED",
             "X86",
             "X64"
           ]
+        },
+        "version": {
+          "$ref": "Version"
+        },
+        "distribution": {
+          "items": {
+            "$ref": "Distribution"
+          }
         }
       }
     },
@@ -711,17 +711,17 @@
     },
     "PerScannerVerdict": {
       "properties": {
-        "maliciousContentLlmResult": {
-          "$ref": "MaliciousContentLLMResult"
+        "maliciousContentStaticResult": {
+          "$ref": "MaliciousContentStaticResult"
         },
         "workspacePolicy": {
           "$ref": "WorkspacePolicyResult"
         },
-        "maliciousContentStaticResult": {
-          "$ref": "MaliciousContentStaticResult"
-        },
         "malwareScan": {
           "$ref": "MalwareScanResult"
+        },
+        "maliciousContentLlmResult": {
+          "$ref": "MaliciousContentLLMResult"
         }
       }
     },
@@ -752,6 +752,11 @@
     },
     "SecretOccurrence": {
       "properties": {
+        "statuses": {
+          "items": {
+            "$ref": "SecretStatus"
+          }
+        },
         "kind": {
           "enum": [
             "SECRET_KIND_UNSPECIFIED",
@@ -778,11 +783,6 @@
             "SECRET_KIND_STRIPE_RESTRICTED_KEY",
             "SECRET_KIND_STRIPE_WEBHOOK_SECRET"
           ]
-        },
-        "statuses": {
-          "items": {
-            "$ref": "SecretStatus"
-          }
         }
       }
     },
@@ -800,13 +800,13 @@
     },
     "Source": {
       "properties": {
+        "context": {
+          "$ref": "SourceContext"
+        },
         "additionalContexts": {
           "items": {
             "$ref": "SourceContext"
           }
-        },
-        "context": {
-          "$ref": "SourceContext"
         }
       }
     },
@@ -848,6 +848,11 @@
     },
     "VexAssessment": {
       "properties": {
+        "remediations": {
+          "items": {
+            "$ref": "Remediation"
+          }
+        },
         "justification": {
           "$ref": "Justification"
         },
@@ -859,11 +864,6 @@
             "FIXED",
             "UNDER_INVESTIGATION"
           ]
-        },
-        "remediations": {
-          "items": {
-            "$ref": "Remediation"
-          }
         }
       }
     },
@@ -876,11 +876,6 @@
     },
     "VulnerabilityNote": {
       "properties": {
-        "details": {
-          "items": {
-            "$ref": "Detail"
-          }
-        },
         "severity": {
           "enum": [
             "SEVERITY_UNSPECIFIED",
@@ -891,7 +886,15 @@
             "CRITICAL"
           ]
         },
-        "cvssV2": {
+        "details": {
+          "items": {
+            "$ref": "Detail"
+          }
+        },
+        "cvssV3": {
+          "$ref": "CVSSv3"
+        },
+        "cvssV4": {
           "$ref": "CVSS"
         },
         "cvssVersion": {
@@ -902,10 +905,7 @@
             "CVSS_VERSION_4"
           ]
         },
-        "cvssV3": {
-          "$ref": "CVSSv3"
-        },
-        "cvssV4": {
+        "cvssV2": {
           "$ref": "CVSS"
         }
       }
@@ -913,14 +913,6 @@
     "VulnerabilityOccurrence": {
       "properties": {
         "cvssv3": {
-          "$ref": "CVSS"
-        },
-        "packageIssue": {
-          "items": {
-            "$ref": "PackageIssue"
-          }
-        },
-        "cvssV2": {
           "$ref": "CVSS"
         },
         "effectiveSeverity": {
@@ -936,12 +928,6 @@
         "cvssV4": {
           "$ref": "CVSS"
         },
-        "vexAssessment": {
-          "$ref": "VexAssessment"
-        },
-        "exploitability": {
-          "$ref": "Exploitability"
-        },
         "severity": {
           "enum": [
             "SEVERITY_UNSPECIFIED",
@@ -952,6 +938,9 @@
             "CRITICAL"
           ]
         },
+        "cvssV2": {
+          "$ref": "CVSS"
+        },
         "cvssVersion": {
           "enum": [
             "CVSS_VERSION_UNSPECIFIED",
@@ -959,6 +948,17 @@
             "CVSS_VERSION_3",
             "CVSS_VERSION_4"
           ]
+        },
+        "packageIssue": {
+          "items": {
+            "$ref": "PackageIssue"
+          }
+        },
+        "exploitability": {
+          "$ref": "Exploitability"
+        },
+        "vexAssessment": {
+          "$ref": "VexAssessment"
         }
       }
     },

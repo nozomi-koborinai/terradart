@@ -40,6 +40,10 @@ final class DataGoogleComputeGlobalForwardingRule extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `backend_service` attribute.
+  TfRef<String> get backendService =>
+      TfRef.attribute<String>(this, 'backend_service');
+
   /// Reference to `base_forwarding_rule` attribute.
   TfRef<String> get baseForwardingRule =>
       TfRef.attribute<String>(this, 'base_forwarding_rule');
@@ -75,6 +79,10 @@ final class DataGoogleComputeGlobalForwardingRule extends Data {
 
   /// Reference to `ip_address` attribute.
   TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
+
+  /// Reference to `ip_addresses` attribute.
+  TfRef<List<String>> get ipAddresses =>
+      TfRef.attribute<List<String>>(this, 'ip_addresses');
 
   /// Reference to `ip_protocol` attribute.
   TfRef<String> get ipProtocol => TfRef.attribute<String>(this, 'ip_protocol');

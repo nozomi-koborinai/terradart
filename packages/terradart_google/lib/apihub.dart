@@ -6,6 +6,19 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
+export 'src/apihub/google_apihub_addon.dart'
+    show
+        ApihubAddonAllDataAddonConfig,
+        ApihubAddonAllDataAddonConfigChoice,
+        ApihubAddonApigeeEdgeConfig,
+        ApihubAddonApigeeOpdkConfig,
+        ApihubAddonApigeeXHybridConfig,
+        ApihubAddonConfig,
+        ApihubAddonEnvironmentFilter,
+        ApihubAddonGatewayPluginAddonConfig,
+        ApihubAddonGatewayPluginAddonConfigChoice,
+        ApihubAddonGatewayPluginConfigs,
+        GoogleApihubAddon;
 export 'src/apihub/google_apihub_api_hub_instance.dart'
     show
         ApihubApiHubInstanceConfig,

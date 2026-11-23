@@ -33,6 +33,7 @@ final class CesAppAudioProcessingConfig {
     this.inactivityTimeout,
     this.ambientSoundConfig,
     this.bargeInConfig,
+    this.customVoiceSamples,
     this.synthesizeSpeechConfigs,
   });
 
@@ -42,6 +43,8 @@ final class CesAppAudioProcessingConfig {
 
   final CesAppBargeInConfig? bargeInConfig;
 
+  final List<CesAppCustomVoiceSamples>? customVoiceSamples;
+
   final List<CesAppSynthesizeSpeechConfigs>? synthesizeSpeechConfigs;
 
   @internal
@@ -49,6 +52,8 @@ final class CesAppAudioProcessingConfig {
     'inactivity_timeout': ?inactivityTimeout?.toTfJson(),
     'ambient_sound_config': ?ambientSoundConfig?.encode(),
     'barge_in_config': ?bargeInConfig?.encode(),
+    if (customVoiceSamples != null)
+      'custom_voice_samples': [for (final e in customVoiceSamples!) e.encode()],
     if (synthesizeSpeechConfigs != null)
       'synthesize_speech_configs': [
         for (final e in synthesizeSpeechConfigs!) e.encode(),
@@ -137,6 +142,38 @@ final class CesAppBargeInConfig {
   @internal
   Map<String, Object?> encode() => {
     'barge_in_awareness': ?bargeInAwareness?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `audio_processing_config.custom_voice_samples` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppCustomVoiceSamples {
+  const CesAppCustomVoiceSamples({
+    this.consentAudioGcsUri,
+    this.name,
+    this.previewText,
+    this.voiceInstruction,
+    this.voiceSampleGcsUri,
+  });
+
+  final TfArg<String>? consentAudioGcsUri;
+
+  final TfArg<String>? name;
+
+  final TfArg<String>? previewText;
+
+  final TfArg<String>? voiceInstruction;
+
+  final TfArg<String>? voiceSampleGcsUri;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'consent_audio_gcs_uri': ?consentAudioGcsUri?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'preview_text': ?previewText?.toTfJson(),
+    'voice_instruction': ?voiceInstruction?.toTfJson(),
+    'voice_sample_gcs_uri': ?voiceSampleGcsUri?.toTfJson(),
   };
 }
 
@@ -726,6 +763,7 @@ final class CesAppLanguageSettings {
 @immutable
 final class CesAppLoggingSettings {
   const CesAppLoggingSettings({
+    this.requiredRecordingConsent,
     this.audioRecordingConfig,
     this.bigqueryExportSettings,
     this.cloudLoggingSettings,
@@ -733,6 +771,8 @@ final class CesAppLoggingSettings {
     this.metricAnalysisSettings,
     this.redactionConfig,
   });
+
+  final TfArg<bool>? requiredRecordingConsent;
 
   final CesAppAudioRecordingConfig? audioRecordingConfig;
 
@@ -748,6 +788,7 @@ final class CesAppLoggingSettings {
 
   @internal
   Map<String, Object?> encode() => {
+    'required_recording_consent': ?requiredRecordingConsent?.toTfJson(),
     'audio_recording_config': ?audioRecordingConfig?.encode(),
     'bigquery_export_settings': ?bigqueryExportSettings?.encode(),
     'cloud_logging_settings': ?cloudLoggingSettings?.encode(),

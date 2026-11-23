@@ -1,7 +1,7 @@
 {
   "name": "osconfig",
   "version": "v1",
-  "revision": "20261106",
+  "revision": "20261117",
   "sourceUrl": "https://osconfig.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AptSettings": {
@@ -17,10 +17,10 @@
     },
     "ExecStep": {
       "properties": {
-        "windowsExecStepConfig": {
+        "linuxExecStepConfig": {
           "$ref": "ExecStepConfig"
         },
-        "linuxExecStepConfig": {
+        "windowsExecStepConfig": {
           "$ref": "ExecStepConfig"
         }
       }
@@ -80,14 +80,14 @@
     },
     "OSPolicyResource": {
       "properties": {
-        "file": {
-          "$ref": "OSPolicyResourceFileResource"
+        "pkg": {
+          "$ref": "OSPolicyResourcePackageResource"
         },
         "exec": {
           "$ref": "OSPolicyResourceExecResource"
         },
-        "pkg": {
-          "$ref": "OSPolicyResourcePackageResource"
+        "file": {
+          "$ref": "OSPolicyResourceFileResource"
         },
         "repository": {
           "$ref": "OSPolicyResourceRepositoryResource"
@@ -96,10 +96,10 @@
     },
     "OSPolicyResourceExecResource": {
       "properties": {
-        "enforce": {
+        "validate": {
           "$ref": "OSPolicyResourceExecResourceExec"
         },
-        "validate": {
+        "enforce": {
           "$ref": "OSPolicyResourceExecResourceExec"
         }
       }
@@ -168,11 +168,17 @@
     },
     "PatchConfig": {
       "properties": {
-        "apt": {
-          "$ref": "AptSettings"
-        },
         "preStep": {
           "$ref": "ExecStep"
+        },
+        "windowsUpdate": {
+          "$ref": "WindowsUpdateSettings"
+        },
+        "postStep": {
+          "$ref": "ExecStep"
+        },
+        "apt": {
+          "$ref": "AptSettings"
         },
         "rebootConfig": {
           "enum": [
@@ -181,22 +187,19 @@
             "ALWAYS",
             "NEVER"
           ]
-        },
-        "windowsUpdate": {
-          "$ref": "WindowsUpdateSettings"
-        },
-        "postStep": {
-          "$ref": "ExecStep"
         }
       }
     },
     "PatchDeployment": {
       "properties": {
+        "recurringSchedule": {
+          "$ref": "RecurringSchedule"
+        },
         "patchConfig": {
           "$ref": "PatchConfig"
         },
-        "recurringSchedule": {
-          "$ref": "RecurringSchedule"
+        "rollout": {
+          "$ref": "PatchRollout"
         },
         "state": {
           "enum": [
@@ -204,9 +207,6 @@
             "ACTIVE",
             "PAUSED"
           ]
-        },
-        "rollout": {
-          "$ref": "PatchRollout"
         }
       }
     },

@@ -13,14 +13,7 @@
     },
     "SettingsEmailNotificationSettingsCustomNotificationBehavior_AdminNotifications": {
       "properties": {
-        "grantActivationScheduled": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantActivationFailed": {
+        "grantEnded": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -41,7 +34,14 @@
             "DISABLED"
           ]
         },
-        "grantEnded": {
+        "grantActivationFailed": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantActivationScheduled": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -63,7 +63,7 @@
     },
     "SettingsEmailNotificationSettingsCustomNotificationBehavior_RequesterNotifications": {
       "properties": {
-        "grantExternallyModified": {
+        "grantRevoked": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -71,13 +71,6 @@
           ]
         },
         "grantActivationFailed": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "entitlementAssigned": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -105,7 +98,14 @@
             "DISABLED"
           ]
         },
-        "grantRevoked": {
+        "entitlementAssigned": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantEnded": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -119,7 +119,7 @@
             "DISABLED"
           ]
         },
-        "grantEnded": {
+        "grantExternallyModified": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -130,11 +130,11 @@
     },
     "SettingsEmailNotificationSettings_CustomNotificationBehavior": {
       "properties": {
-        "requesterNotifications": {
-          "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_RequesterNotifications"
-        },
         "approverNotifications": {
           "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_ApproverNotifications"
+        },
+        "requesterNotifications": {
+          "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_RequesterNotifications"
         },
         "adminNotifications": {
           "$ref": "SettingsEmailNotificationSettingsCustomNotificationBehavior_AdminNotifications"

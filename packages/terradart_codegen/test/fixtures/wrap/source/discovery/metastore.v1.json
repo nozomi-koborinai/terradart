@@ -17,11 +17,6 @@
     },
     "Federation": {
       "properties": {
-        "backendMetastores": {
-          "additionalProperties": {
-            "$ref": "BackendMetastore"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -31,6 +26,11 @@
             "DELETING",
             "ERROR"
           ]
+        },
+        "backendMetastores": {
+          "additionalProperties": {
+            "$ref": "BackendMetastore"
+          }
         }
       }
     },
@@ -109,13 +109,6 @@
     },
     "Restore": {
       "properties": {
-        "type": {
-          "enum": [
-            "RESTORE_TYPE_UNSPECIFIED",
-            "FULL",
-            "METADATA_ONLY"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -123,6 +116,13 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "RESTORE_TYPE_UNSPECIFIED",
+            "FULL",
+            "METADATA_ONLY"
           ]
         }
       }
@@ -150,8 +150,31 @@
     },
     "Service": {
       "properties": {
+        "databaseType": {
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "MYSQL",
+            "SPANNER"
+          ]
+        },
+        "releaseChannel": {
+          "enum": [
+            "RELEASE_CHANNEL_UNSPECIFIED",
+            "CANARY",
+            "STABLE"
+          ]
+        },
+        "metadataManagementActivity": {
+          "$ref": "MetadataManagementActivity"
+        },
+        "hiveMetastoreConfig": {
+          "$ref": "HiveMetastoreConfig"
+        },
         "scalingConfig": {
           "$ref": "ScalingConfig"
+        },
+        "scheduledBackup": {
+          "$ref": "ScheduledBackup"
         },
         "tier": {
           "enum": [
@@ -160,22 +183,8 @@
             "ENTERPRISE"
           ]
         },
-        "databaseType": {
-          "enum": [
-            "DATABASE_TYPE_UNSPECIFIED",
-            "MYSQL",
-            "SPANNER"
-          ]
-        },
         "maintenanceWindow": {
           "$ref": "MaintenanceWindow"
-        },
-        "releaseChannel": {
-          "enum": [
-            "RELEASE_CHANNEL_UNSPECIFIED",
-            "CANARY",
-            "STABLE"
-          ]
         },
         "state": {
           "enum": [
@@ -194,15 +203,6 @@
         },
         "telemetryConfig": {
           "$ref": "TelemetryConfig"
-        },
-        "scheduledBackup": {
-          "$ref": "ScheduledBackup"
-        },
-        "metadataManagementActivity": {
-          "$ref": "MetadataManagementActivity"
-        },
-        "hiveMetastoreConfig": {
-          "$ref": "HiveMetastoreConfig"
         }
       }
     },

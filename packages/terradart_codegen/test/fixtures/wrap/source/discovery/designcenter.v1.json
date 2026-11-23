@@ -1,0 +1,387 @@
+{
+  "name": "designcenter",
+  "version": "v1",
+  "revision": "20261108",
+  "sourceUrl": "https://designcenter.googleapis.com/$discovery/rest?version=v1",
+  "schemas": {
+    "AlternateDefault": {
+      "properties": {
+        "type": {
+          "enum": [
+            "DISPLAY_VARIABLE_ALTERNATE_TYPE_UNSPECIFIED",
+            "DISPLAY_VARIABLE_ALTERNATE_TYPE_SECURITY",
+            "DISPLAY_VARIABLE_ALTERNATE_TYPE_DC"
+          ]
+        }
+      }
+    },
+    "AppHubApplicationParameters": {
+      "properties": {
+        "scope": {
+          "$ref": "Scope"
+        },
+        "attributes": {
+          "$ref": "Attributes"
+        }
+      }
+    },
+    "Application": {
+      "properties": {
+        "serializedApplicationTemplate": {
+          "$ref": "SerializedApplicationTemplate"
+        },
+        "effectiveIacEngineConfig": {
+          "$ref": "IacEngineConfig"
+        },
+        "templateMetadata": {
+          "$ref": "TFBlueprintMetadata"
+        },
+        "componentParameters": {
+          "items": {
+            "$ref": "ComponentParameters"
+          }
+        },
+        "scope": {
+          "$ref": "Scope"
+        },
+        "type": {
+          "enum": [
+            "APPLICATION_TYPE_UNSPECIFIED",
+            "TERRAFORM_APP",
+            "HELM_APP"
+          ]
+        },
+        "iacEngineConfig": {
+          "$ref": "IacEngineConfig"
+        },
+        "deploymentGroupMetadata": {
+          "$ref": "DeploymentGroupMetadata"
+        },
+        "paramsUpdateStrategy": {
+          "enum": [
+            "UPDATE_STRATEGY_UNSPECIFIED",
+            "REPLACE"
+          ]
+        },
+        "attributes": {
+          "$ref": "Attributes"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DRAFT",
+            "CREATING_DEPLOYMENT",
+            "UPDATING_DEPLOYMENT",
+            "DELETING",
+            "DEPLOYED",
+            "DELETED",
+            "FAILED",
+            "DEPLOYING"
+          ]
+        },
+        "compositionType": {
+          "enum": [
+            "APPLICATION_COMPOSITION_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "COMPOSITE"
+          ]
+        },
+        "iacSource": {
+          "enum": [
+            "IAC_SOURCE_UNSPECIFIED",
+            "IAC_SOURCE_SAT",
+            "IAC_SOURCE_TERRAFORM"
+          ]
+        },
+        "deploymentMetadata": {
+          "$ref": "DeploymentMetadata"
+        }
+      }
+    },
+    "Attributes": {
+      "properties": {
+        "criticality": {
+          "$ref": "Criticality"
+        },
+        "environment": {
+          "$ref": "Environment"
+        }
+      }
+    },
+    "ComponentApplicationInfo": {
+      "properties": {
+        "scope": {
+          "$ref": "Scope"
+        },
+        "attributes": {
+          "$ref": "Attributes"
+        }
+      }
+    },
+    "ComponentParameters": {
+      "properties": {
+        "applicationInfo": {
+          "$ref": "ComponentApplicationInfo"
+        },
+        "effectiveApplicationInfo": {
+          "$ref": "ComponentApplicationInfo"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DRAFT",
+            "CREATING_DEPLOYMENT",
+            "UPDATING_DEPLOYMENT",
+            "DELETING",
+            "DEPLOYED",
+            "DELETED",
+            "FAILED"
+          ]
+        }
+      }
+    },
+    "Criticality": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "MISSION_CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ]
+        }
+      }
+    },
+    "DeploymentError": {
+      "properties": {
+        "type": {
+          "enum": [
+            "ERROR_TYPE_UNSPECIFIED",
+            "PERMISSION",
+            "QUOTA",
+            "ALREADY_EXISTS",
+            "RESOURCE_UNAVAILABLE",
+            "BILLING",
+            "GENERIC",
+            "TERRAFORM",
+            "BAD_INPUT",
+            "PLATFORM",
+            "API_ENABLEMENT",
+            "BAD_REQUEST"
+          ]
+        },
+        "code": {
+          "enum": [
+            "ERROR_CODE_UNSPECIFIED",
+            "REVISION_FAILED",
+            "CLOUD_BUILD_PERMISSION_DENIED",
+            "DELETE_BUILD_API_FAILED",
+            "DELETE_BUILD_RUN_FAILED",
+            "BUCKET_CREATION_PERMISSION_DENIED",
+            "BUCKET_CREATION_FAILED",
+            "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED"
+          ]
+        }
+      }
+    },
+    "DeploymentGroupMetadata": {
+      "properties": {
+        "deploymentMetadataMap": {
+          "additionalProperties": {
+            "$ref": "DeploymentMetadata"
+          }
+        }
+      }
+    },
+    "DeploymentMetadata": {
+      "properties": {
+        "error": {
+          "$ref": "DeploymentError"
+        }
+      }
+    },
+    "DisplayVariableToggle": {
+      "properties": {
+        "variableType": {
+          "enum": [
+            "TOGGLE_VARIABLE_TYPE_UNSPECIFIED",
+            "TOGGLE_VARIABLE_TYPE_BOOLEAN",
+            "TOGGLE_VARIABLE_TYPE_STRING",
+            "TOGGLE_VARIABLE_TYPE_INTEGER"
+          ]
+        }
+      }
+    },
+    "Environment": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PRODUCTION",
+            "STAGING",
+            "TEST",
+            "DEVELOPMENT"
+          ]
+        }
+      }
+    },
+    "IacEngineConfig": {
+      "properties": {
+        "engine": {
+          "enum": [
+            "ENGINE_UNSPECIFIED",
+            "TERRAFORM",
+            "OPENTOFU"
+          ]
+        }
+      }
+    },
+    "Scope": {
+      "properties": {
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "REGIONAL",
+            "GLOBAL",
+            "MULTI_REGIONAL"
+          ]
+        }
+      }
+    },
+    "SerializedApplicationTemplate": {
+      "properties": {
+        "components": {
+          "items": {
+            "$ref": "SerializedComponent"
+          }
+        },
+        "iacFormat": {
+          "enum": [
+            "IAC_FORMAT_UNSPECIFIED",
+            "TERRAFORM",
+            "HELM"
+          ]
+        },
+        "apphubApplicationParameters": {
+          "$ref": "AppHubApplicationParameters"
+        },
+        "serializedPolicies": {
+          "items": {
+            "$ref": "SerializedPolicy"
+          }
+        },
+        "iacEngineConfig": {
+          "$ref": "IacEngineConfig"
+        },
+        "compositionType": {
+          "enum": [
+            "APPLICATION_COMPOSITION_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "COMPOSITE"
+          ]
+        }
+      }
+    },
+    "SerializedComponent": {
+      "properties": {
+        "connections": {
+          "items": {
+            "$ref": "SerializedConnection"
+          }
+        },
+        "applicationInfo": {
+          "$ref": "ComponentApplicationInfo"
+        }
+      }
+    },
+    "SerializedConnection": {
+      "properties": {
+        "dependencyType": {
+          "enum": [
+            "CONNECTION_DEPENDENCY_TYPE_UNSPECIFIED",
+            "CONNECTION_DEPENDENCY_TYPE_DATA",
+            "CONNECTION_DEPENDENCY_TYPE_LOGICAL"
+          ]
+        }
+      }
+    },
+    "SerializedPolicy": {
+      "properties": {
+        "policyType": {
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "COMPLIANCE_FRAMEWORK"
+          ]
+        }
+      }
+    },
+    "Space": {
+      "properties": {}
+    },
+    "TFBlueprintMetadata": {
+      "properties": {
+        "uiMetadata": {
+          "$ref": "TerraformBlueprintUiMetadata"
+        }
+      }
+    },
+    "TerraformBlueprintUiMetadata": {
+      "properties": {
+        "terraformUiInput": {
+          "$ref": "TerraformUiInput"
+        },
+        "terraformUiOutput": {
+          "$ref": "TerraformUiOutput"
+        }
+      }
+    },
+    "TerraformUiInput": {
+      "properties": {
+        "terraformUiInputs": {
+          "additionalProperties": {
+            "$ref": "TerraformUiInputDisplayVariable"
+          }
+        }
+      }
+    },
+    "TerraformUiInputDisplayVariable": {
+      "properties": {
+        "properties": {
+          "additionalProperties": {
+            "$ref": "TerraformUiInputDisplayVariable"
+          }
+        },
+        "alternateDefaults": {
+          "items": {
+            "$ref": "AlternateDefault"
+          }
+        },
+        "toggleUsingVariables": {
+          "items": {
+            "$ref": "DisplayVariableToggle"
+          }
+        }
+      }
+    },
+    "TerraformUiOutput": {
+      "properties": {
+        "terraformUiOutputs": {
+          "additionalProperties": {
+            "$ref": "TerraformUiOutputDisplay"
+          }
+        }
+      }
+    },
+    "TerraformUiOutputDisplay": {
+      "properties": {
+        "visibility": {
+          "enum": [
+            "DISPLAY_VARIABLE_VISIBILITY_UNSPECIFIED",
+            "DISPLAY_VARIABLE_VISIBILITY_ROOT"
+          ]
+        }
+      }
+    }
+  }
+}

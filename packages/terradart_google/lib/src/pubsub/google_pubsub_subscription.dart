@@ -521,8 +521,14 @@ extension type const PubsubSubscriptionCompressionAlgorithm._(TfArg<String> _)
   static const zlib = PubsubSubscriptionCompressionAlgorithm._(
     TfArgLiteral('ZLIB'),
   );
+  static const zstd = PubsubSubscriptionCompressionAlgorithm._(
+    TfArgLiteral('ZSTD'),
+  );
 
-  static const List<PubsubSubscriptionCompressionAlgorithm> values = [zlib];
+  static const List<PubsubSubscriptionCompressionAlgorithm> values = [
+    zlib,
+    zstd,
+  ];
 }
 
 /// `compression_mode` — derived from the provider schema description.

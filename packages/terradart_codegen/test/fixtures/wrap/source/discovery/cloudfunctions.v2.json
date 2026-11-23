@@ -34,6 +34,13 @@
         "upgradeInfo": {
           "$ref": "UpgradeInfo"
         },
+        "environment": {
+          "enum": [
+            "ENVIRONMENT_UNSPECIFIED",
+            "GEN_1",
+            "GEN_2"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -46,23 +53,16 @@
             "DETACH_FAILED"
           ]
         },
-        "buildConfig": {
-          "$ref": "BuildConfig"
-        },
-        "eventTrigger": {
-          "$ref": "EventTrigger"
-        },
-        "environment": {
-          "enum": [
-            "ENVIRONMENT_UNSPECIFIED",
-            "GEN_1",
-            "GEN_2"
-          ]
-        },
         "stateMessages": {
           "items": {
             "$ref": "GoogleCloudFunctionsV2StateMessage"
           }
+        },
+        "eventTrigger": {
+          "$ref": "EventTrigger"
+        },
+        "buildConfig": {
+          "$ref": "BuildConfig"
         }
       }
     },
@@ -80,21 +80,6 @@
     },
     "ServiceConfig": {
       "properties": {
-        "vpcConnectorEgressSettings": {
-          "enum": [
-            "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
-            "PRIVATE_RANGES_ONLY",
-            "ALL_TRAFFIC"
-          ]
-        },
-        "ingressSettings": {
-          "enum": [
-            "INGRESS_SETTINGS_UNSPECIFIED",
-            "ALLOW_ALL",
-            "ALLOW_INTERNAL_ONLY",
-            "ALLOW_INTERNAL_AND_GCLB"
-          ]
-        },
         "securityLevel": {
           "enum": [
             "SECURITY_LEVEL_UNSPECIFIED",
@@ -108,11 +93,29 @@
             "VPC_EGRESS_PRIVATE_RANGES_ONLY",
             "VPC_EGRESS_ALL_TRAFFIC"
           ]
+        },
+        "ingressSettings": {
+          "enum": [
+            "INGRESS_SETTINGS_UNSPECIFIED",
+            "ALLOW_ALL",
+            "ALLOW_INTERNAL_ONLY",
+            "ALLOW_INTERNAL_AND_GCLB"
+          ]
+        },
+        "vpcConnectorEgressSettings": {
+          "enum": [
+            "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
+            "PRIVATE_RANGES_ONLY",
+            "ALL_TRAFFIC"
+          ]
         }
       }
     },
     "UpgradeInfo": {
       "properties": {
+        "serviceConfig": {
+          "$ref": "ServiceConfig"
+        },
         "upgradeState": {
           "enum": [
             "UPGRADE_STATE_UNSPECIFIED",
@@ -130,9 +133,6 @@
             "COMMIT_FUNCTION_UPGRADE_AS_GEN2_SUCCESSFUL",
             "COMMIT_FUNCTION_UPGRADE_AS_GEN2_ERROR"
           ]
-        },
-        "serviceConfig": {
-          "$ref": "ServiceConfig"
         },
         "buildConfig": {
           "$ref": "BuildConfig"

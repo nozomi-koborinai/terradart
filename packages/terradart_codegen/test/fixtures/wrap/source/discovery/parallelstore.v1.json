@@ -6,6 +6,14 @@
   "schemas": {
     "Instance": {
       "properties": {
+        "fileStripeLevel": {
+          "enum": [
+            "FILE_STRIPE_LEVEL_UNSPECIFIED",
+            "FILE_STRIPE_LEVEL_MIN",
+            "FILE_STRIPE_LEVEL_BALANCED",
+            "FILE_STRIPE_LEVEL_MAX"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -23,14 +31,6 @@
             "DIRECTORY_STRIPE_LEVEL_MIN",
             "DIRECTORY_STRIPE_LEVEL_BALANCED",
             "DIRECTORY_STRIPE_LEVEL_MAX"
-          ]
-        },
-        "fileStripeLevel": {
-          "enum": [
-            "FILE_STRIPE_LEVEL_UNSPECIFIED",
-            "FILE_STRIPE_LEVEL_MIN",
-            "FILE_STRIPE_LEVEL_BALANCED",
-            "FILE_STRIPE_LEVEL_MAX"
           ]
         },
         "deploymentType": {

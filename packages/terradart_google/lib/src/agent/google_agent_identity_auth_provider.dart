@@ -9,9 +9,10 @@ const Set<String> _googleAgentIdentityAuthProviderSensitive = <String>{
   'auth_provider_type_params.api_key.api_key',
   'auth_provider_type_params.three_legged_oauth.client_secret',
   'auth_provider_type_params.two_legged_oauth.client_secret',
+  'auth_provider_type_params.xaa_auth_provider.client_secret_auth.client_secret',
 };
 
-/// Exactly one of `api_key`, `three_legged_oauth`, `two_legged_oauth` on the `auth_provider_type_params` block of `google_agent_identity_auth_provider`: the provider rejects
+/// Exactly one of `api_key`, `connector_reference_auth_provider`, `three_legged_oauth`, `two_legged_oauth`, `xaa_auth_provider` on the `auth_provider_type_params` block of `google_agent_identity_auth_provider`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.apiKey(...)`.
@@ -23,6 +24,12 @@ sealed class AgentIdentityAuthProviderTypeParams {
     AgentIdentityAuthProviderApiKey apiKey,
   ) = AgentIdentityAuthProviderTypeParamsApiKey;
 
+  /// Sets `connector_reference_auth_provider`.
+  const factory AgentIdentityAuthProviderTypeParams.connectorReferenceAuthProvider(
+    AgentIdentityAuthProviderConnectorReferenceAuthProvider
+    connectorReferenceAuthProvider,
+  ) = AgentIdentityAuthProviderTypeParamsConnectorReferenceAuthProvider;
+
   /// Sets `three_legged_oauth`.
   const factory AgentIdentityAuthProviderTypeParams.threeLeggedOauth(
     AgentIdentityAuthProviderThreeLeggedOauth threeLeggedOauth,
@@ -32,6 +39,11 @@ sealed class AgentIdentityAuthProviderTypeParams {
   const factory AgentIdentityAuthProviderTypeParams.twoLeggedOauth(
     AgentIdentityAuthProviderTwoLeggedOauth twoLeggedOauth,
   ) = AgentIdentityAuthProviderTypeParamsTwoLeggedOauth;
+
+  /// Sets `xaa_auth_provider`.
+  const factory AgentIdentityAuthProviderTypeParams.xaaAuthProvider(
+    AgentIdentityAuthProviderXaaAuthProvider xaaAuthProvider,
+  ) = AgentIdentityAuthProviderTypeParamsXaaAuthProvider;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -55,6 +67,28 @@ final class AgentIdentityAuthProviderTypeParamsApiKey
   @internal
   @override
   Map<String, Object?> encode() => {'api_key': apiKey.encode()};
+}
+
+/// The [AgentIdentityAuthProviderTypeParams.connectorReferenceAuthProvider] choice: sets `connector_reference_auth_provider`.
+final class AgentIdentityAuthProviderTypeParamsConnectorReferenceAuthProvider
+    extends AgentIdentityAuthProviderTypeParams {
+  const AgentIdentityAuthProviderTypeParamsConnectorReferenceAuthProvider(
+    this.connectorReferenceAuthProvider,
+  );
+
+  final AgentIdentityAuthProviderConnectorReferenceAuthProvider
+  connectorReferenceAuthProvider;
+
+  @internal
+  @override
+  String get blockKey => 'connector_reference_auth_provider';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'connector_reference_auth_provider': connectorReferenceAuthProvider
+        .encode(),
+  };
 }
 
 /// The [AgentIdentityAuthProviderTypeParams.threeLeggedOauth] choice: sets `three_legged_oauth`.
@@ -95,6 +129,26 @@ final class AgentIdentityAuthProviderTypeParamsTwoLeggedOauth
   };
 }
 
+/// The [AgentIdentityAuthProviderTypeParams.xaaAuthProvider] choice: sets `xaa_auth_provider`.
+final class AgentIdentityAuthProviderTypeParamsXaaAuthProvider
+    extends AgentIdentityAuthProviderTypeParams {
+  const AgentIdentityAuthProviderTypeParamsXaaAuthProvider(
+    this.xaaAuthProvider,
+  );
+
+  final AgentIdentityAuthProviderXaaAuthProvider xaaAuthProvider;
+
+  @internal
+  @override
+  String get blockKey => 'xaa_auth_provider';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'xaa_auth_provider': xaaAuthProvider.encode(),
+  };
+}
+
 /// Typed helper for the `auth_provider_type_params.api_key` block of
 /// `google_agent_identity_auth_provider` (derived from provider schema).
 @immutable
@@ -105,6 +159,26 @@ final class AgentIdentityAuthProviderApiKey {
 
   @internal
   Map<String, Object?> encode() => {'api_key': ?apiKey?.toTfJson()};
+}
+
+/// Typed helper for the `auth_provider_type_params.connector_reference_auth_provider` block of
+/// `google_agent_identity_auth_provider` (derived from provider schema).
+@immutable
+final class AgentIdentityAuthProviderConnectorReferenceAuthProvider {
+  const AgentIdentityAuthProviderConnectorReferenceAuthProvider({
+    this.authorizationDetails,
+    required this.connector,
+  });
+
+  final TfArg<String>? authorizationDetails;
+
+  final TfArg<String> connector;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'authorization_details': ?authorizationDetails?.toTfJson(),
+    'connector': connector.toTfJson(),
+  };
 }
 
 /// Typed helper for the `auth_provider_type_params.three_legged_oauth` block of
@@ -300,6 +374,172 @@ final class AgentIdentityAuthProviderTwoLeggedOauthClientSecretWo
   @override
   Map<String, Object?> encode() => {
     'client_secret_wo': clientSecretWo.toTfJson(),
+  };
+}
+
+/// Typed helper for the `auth_provider_type_params.xaa_auth_provider` block of
+/// `google_agent_identity_auth_provider` (derived from provider schema).
+@immutable
+final class AgentIdentityAuthProviderXaaAuthProvider {
+  const AgentIdentityAuthProviderXaaAuthProvider({
+    this.additionalParameters,
+    this.client,
+    this.customIssuer,
+    this.idTokenInput,
+  });
+
+  final TfArg<Map<String, String>>? additionalParameters;
+
+  final AgentIdentityAuthProviderClient? client;
+
+  final AgentIdentityAuthProviderCustomIssuer? customIssuer;
+
+  final AgentIdentityAuthProviderIdTokenInput? idTokenInput;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'additional_parameters': ?additionalParameters?.toTfJson(),
+    ...?client?.encode(),
+    'custom_issuer': ?customIssuer?.encode(),
+    'id_token_input': ?idTokenInput?.encode(),
+  };
+}
+
+/// At most one of `client_assertion_jwt_auth`, `client_secret_auth` on the `auth_provider_type_params.xaa_auth_provider` block of `google_agent_identity_auth_provider`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientAssertionJwtAuth(...)`.
+sealed class AgentIdentityAuthProviderClient {
+  const AgentIdentityAuthProviderClient();
+
+  /// Sets `client_assertion_jwt_auth`.
+  const factory AgentIdentityAuthProviderClient.clientAssertionJwtAuth(
+    AgentIdentityAuthProviderClientAssertionJwtAuth clientAssertionJwtAuth,
+  ) = AgentIdentityAuthProviderClientAssertionJwtAuthChoice;
+
+  /// Sets `client_secret_auth`.
+  const factory AgentIdentityAuthProviderClient.clientSecretAuth(
+    AgentIdentityAuthProviderClientSecretAuth clientSecretAuth,
+  ) = AgentIdentityAuthProviderClientSecretAuthChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [AgentIdentityAuthProviderClient.clientAssertionJwtAuth] choice: sets `client_assertion_jwt_auth`.
+final class AgentIdentityAuthProviderClientAssertionJwtAuthChoice
+    extends AgentIdentityAuthProviderClient {
+  const AgentIdentityAuthProviderClientAssertionJwtAuthChoice(
+    this.clientAssertionJwtAuth,
+  );
+
+  final AgentIdentityAuthProviderClientAssertionJwtAuth clientAssertionJwtAuth;
+
+  @internal
+  @override
+  String get blockKey => 'client_assertion_jwt_auth';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_assertion_jwt_auth': clientAssertionJwtAuth.encode(),
+  };
+}
+
+/// The [AgentIdentityAuthProviderClient.clientSecretAuth] choice: sets `client_secret_auth`.
+final class AgentIdentityAuthProviderClientSecretAuthChoice
+    extends AgentIdentityAuthProviderClient {
+  const AgentIdentityAuthProviderClientSecretAuthChoice(this.clientSecretAuth);
+
+  final AgentIdentityAuthProviderClientSecretAuth clientSecretAuth;
+
+  @internal
+  @override
+  String get blockKey => 'client_secret_auth';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_auth': clientSecretAuth.encode(),
+  };
+}
+
+/// Typed helper for the `auth_provider_type_params.xaa_auth_provider.client_assertion_jwt_auth` block of
+/// `google_agent_identity_auth_provider` (derived from provider schema).
+@immutable
+final class AgentIdentityAuthProviderClientAssertionJwtAuth {
+  const AgentIdentityAuthProviderClientAssertionJwtAuth({
+    required this.clientId,
+  });
+
+  final TfArg<String> clientId;
+
+  @internal
+  Map<String, Object?> encode() => {'client_id': clientId.toTfJson()};
+}
+
+/// Typed helper for the `auth_provider_type_params.xaa_auth_provider.client_secret_auth` block of
+/// `google_agent_identity_auth_provider` (derived from provider schema).
+@immutable
+final class AgentIdentityAuthProviderClientSecretAuth {
+  const AgentIdentityAuthProviderClientSecretAuth({
+    required this.clientId,
+    required this.clientSecret,
+  });
+
+  final TfArg<String> clientId;
+
+  final Sensitive<String> clientSecret;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'client_id': clientId.toTfJson(),
+    'client_secret': clientSecret.toTfJson(),
+  };
+}
+
+/// Typed helper for the `auth_provider_type_params.xaa_auth_provider.custom_issuer` block of
+/// `google_agent_identity_auth_provider` (derived from provider schema).
+@immutable
+final class AgentIdentityAuthProviderCustomIssuer {
+  const AgentIdentityAuthProviderCustomIssuer({
+    this.issuer,
+    required this.tokenUrl,
+  });
+
+  final TfArg<String>? issuer;
+
+  final TfArg<String> tokenUrl;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'issuer': ?issuer?.toTfJson(),
+    'token_url': tokenUrl.toTfJson(),
+  };
+}
+
+/// Typed helper for the `auth_provider_type_params.xaa_auth_provider.id_token_input` block of
+/// `google_agent_identity_auth_provider` (derived from provider schema).
+@immutable
+final class AgentIdentityAuthProviderIdTokenInput {
+  const AgentIdentityAuthProviderIdTokenInput({
+    this.idJagAdditionalClaims,
+    this.idJagAuthProvider,
+  });
+
+  final TfArg<String>? idJagAdditionalClaims;
+
+  final TfArg<String>? idJagAuthProvider;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'id_jag_additional_claims': ?idJagAdditionalClaims?.toTfJson(),
+    'id_jag_auth_provider': ?idJagAuthProvider?.toTfJson(),
   };
 }
 

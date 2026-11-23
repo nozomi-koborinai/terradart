@@ -1,7 +1,7 @@
 {
   "name": "storagebatchoperations",
   "version": "v1",
-  "revision": "20261110",
+  "revision": "20261111",
   "sourceUrl": "https://storagebatchoperations.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "ErrorSummary": {
@@ -31,6 +31,17 @@
     },
     "Job": {
       "properties": {
+        "errorSummaries": {
+          "items": {
+            "$ref": "ErrorSummary"
+          }
+        },
+        "putMetadata": {
+          "$ref": "PutMetadata"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -46,36 +57,25 @@
         },
         "rewriteObject": {
           "$ref": "RewriteObject"
-        },
-        "loggingConfig": {
-          "$ref": "LoggingConfig"
-        },
-        "putMetadata": {
-          "$ref": "PutMetadata"
-        },
-        "errorSummaries": {
-          "items": {
-            "$ref": "ErrorSummary"
-          }
         }
       }
     },
     "LoggingConfig": {
       "properties": {
-        "logActions": {
-          "items": {
-            "enum": [
-              "LOGGABLE_ACTION_UNSPECIFIED",
-              "TRANSFORM"
-            ]
-          }
-        },
         "logActionStates": {
           "items": {
             "enum": [
               "LOGGABLE_ACTION_STATE_UNSPECIFIED",
               "SUCCEEDED",
               "FAILED"
+            ]
+          }
+        },
+        "logActions": {
+          "items": {
+            "enum": [
+              "LOGGABLE_ACTION_UNSPECIFIED",
+              "TRANSFORM"
             ]
           }
         }

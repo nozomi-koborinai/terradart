@@ -17,6 +17,11 @@
     },
     "GuestPolicy": {
       "properties": {
+        "packages": {
+          "items": {
+            "$ref": "Package"
+          }
+        },
         "recipes": {
           "items": {
             "$ref": "SoftwareRecipe"
@@ -25,11 +30,6 @@
         "packageRepositories": {
           "items": {
             "$ref": "PackageRepository"
-          }
-        },
-        "packages": {
-          "items": {
-            "$ref": "Package"
           }
         }
       }
@@ -87,11 +87,11 @@
     },
     "SoftwareRecipeStep": {
       "properties": {
-        "scriptRun": {
-          "$ref": "SoftwareRecipeStepRunScript"
-        },
         "archiveExtraction": {
           "$ref": "SoftwareRecipeStepExtractArchive"
+        },
+        "scriptRun": {
+          "$ref": "SoftwareRecipeStepRunScript"
         }
       }
     },

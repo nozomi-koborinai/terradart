@@ -318,6 +318,7 @@ final class SqlDatabaseInstanceBlueGreenDeployment {
     this.activeEnvironment,
     this.deleteOldSourceOnDestroy,
     required this.deploymentName,
+    this.description,
     this.targetDatabaseVersion,
   });
 
@@ -327,6 +328,8 @@ final class SqlDatabaseInstanceBlueGreenDeployment {
 
   final TfArg<String> deploymentName;
 
+  final TfArg<String>? description;
+
   final TfArg<String>? targetDatabaseVersion;
 
   @internal
@@ -334,6 +337,7 @@ final class SqlDatabaseInstanceBlueGreenDeployment {
     'active_environment': ?activeEnvironment?.toTfJson(),
     'delete_old_source_on_destroy': ?deleteOldSourceOnDestroy?.toTfJson(),
     'deployment_name': deploymentName.toTfJson(),
+    'description': ?description?.toTfJson(),
     'target_database_version': ?targetDatabaseVersion?.toTfJson(),
   };
 }

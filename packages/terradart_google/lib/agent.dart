@@ -10,6 +10,14 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/agent/google_agent_identity_auth_provider.dart'
     show
         AgentIdentityAuthProviderApiKey,
+        AgentIdentityAuthProviderClient,
+        AgentIdentityAuthProviderClientAssertionJwtAuth,
+        AgentIdentityAuthProviderClientAssertionJwtAuthChoice,
+        AgentIdentityAuthProviderClientSecretAuth,
+        AgentIdentityAuthProviderClientSecretAuthChoice,
+        AgentIdentityAuthProviderConnectorReferenceAuthProvider,
+        AgentIdentityAuthProviderCustomIssuer,
+        AgentIdentityAuthProviderIdTokenInput,
         AgentIdentityAuthProviderThreeLeggedOauth,
         AgentIdentityAuthProviderThreeLeggedOauthClientSecret,
         AgentIdentityAuthProviderThreeLeggedOauthClientSecretChoice,
@@ -20,8 +28,11 @@ export 'src/agent/google_agent_identity_auth_provider.dart'
         AgentIdentityAuthProviderTwoLeggedOauthClientSecretWo,
         AgentIdentityAuthProviderTypeParams,
         AgentIdentityAuthProviderTypeParamsApiKey,
+        AgentIdentityAuthProviderTypeParamsConnectorReferenceAuthProvider,
         AgentIdentityAuthProviderTypeParamsThreeLeggedOauth,
         AgentIdentityAuthProviderTypeParamsTwoLeggedOauth,
+        AgentIdentityAuthProviderTypeParamsXaaAuthProvider,
+        AgentIdentityAuthProviderXaaAuthProvider,
         GoogleAgentIdentityAuthProvider;
 export 'src/agent/google_agent_identity_auth_provider_iam_binding.dart'
     show

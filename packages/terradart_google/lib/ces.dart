@@ -51,6 +51,7 @@ export 'src/ces/google_ces_app.dart'
         CesAppClientCertificateSettings,
         CesAppCloudLoggingSettings,
         CesAppConversationLoggingSettings,
+        CesAppCustomVoiceSamples,
         CesAppDefaultChannelProfile,
         CesAppEndSessionConfig,
         CesAppErrorHandlingSettings,

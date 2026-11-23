@@ -137,9 +137,6 @@ barrels:
   folder:
     doc: |-
       /// Folder-level service identity (beta-only).
-  identity:
-    doc: |-
-      /// Cloud Identity policy (beta-only).
   kms:
     doc: |-
       /// Cloud KMS key-access justification (KAJ) policy configs (beta-only).
@@ -162,9 +159,6 @@ barrels:
   runtimeconfig:
     doc: |-
       /// Runtime Configurator configs, variables, and config IAM (beta-only).
-  saas_runtime:
-    doc: |-
-      /// SaaS Runtime units, tenants, releases, and rollouts (beta-only).
   security_scanner:
     doc: |-
       /// Web Security Scanner scan config (beta-only).

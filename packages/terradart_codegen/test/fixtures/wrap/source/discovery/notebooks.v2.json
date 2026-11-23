@@ -65,6 +65,13 @@
     },
     "DataDisk": {
       "properties": {
+        "diskEncryption": {
+          "enum": [
+            "DISK_ENCRYPTION_UNSPECIFIED",
+            "GMEK",
+            "CMEK"
+          ]
+        },
         "diskType": {
           "enum": [
             "DISK_TYPE_UNSPECIFIED",
@@ -78,31 +85,11 @@
             "HYPERDISK_BALANCED_HIGH_AVAILABILITY",
             "HYPERDISK_ML"
           ]
-        },
-        "diskEncryption": {
-          "enum": [
-            "DISK_ENCRYPTION_UNSPECIFIED",
-            "GMEK",
-            "CMEK"
-          ]
         }
       }
     },
     "GceSetup": {
       "properties": {
-        "dataDisks": {
-          "items": {
-            "$ref": "DataDisk"
-          }
-        },
-        "reservationAffinity": {
-          "$ref": "ReservationAffinity"
-        },
-        "acceleratorConfigs": {
-          "items": {
-            "$ref": "AcceleratorConfig"
-          }
-        },
         "networkInterfaces": {
           "items": {
             "$ref": "NetworkInterface"
@@ -111,13 +98,40 @@
         "confidentialInstanceConfig": {
           "$ref": "ConfidentialInstanceConfig"
         },
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
+        },
         "bootDisk": {
           "$ref": "BootDisk"
+        },
+        "dataDisks": {
+          "items": {
+            "$ref": "DataDisk"
+          }
+        },
+        "acceleratorConfigs": {
+          "items": {
+            "$ref": "AcceleratorConfig"
+          }
         }
       }
     },
     "Instance": {
       "properties": {
+        "upgradeHistory": {
+          "items": {
+            "$ref": "UpgradeHistoryEntry"
+          }
+        },
+        "healthState": {
+          "enum": [
+            "HEALTH_STATE_UNSPECIFIED",
+            "HEALTHY",
+            "UNHEALTHY",
+            "AGENT_NOT_INSTALLED",
+            "AGENT_NOT_RUNNING"
+          ]
+        },
         "gceSetup": {
           "$ref": "GceSetup"
         },
@@ -135,20 +149,6 @@
             "SUSPENDING",
             "SUSPENDED",
             "ORPHANED"
-          ]
-        },
-        "upgradeHistory": {
-          "items": {
-            "$ref": "UpgradeHistoryEntry"
-          }
-        },
-        "healthState": {
-          "enum": [
-            "HEALTH_STATE_UNSPECIFIED",
-            "HEALTHY",
-            "UNHEALTHY",
-            "AGENT_NOT_INSTALLED",
-            "AGENT_NOT_RUNNING"
           ]
         }
       }

@@ -6,6 +6,32 @@
   "schemas": {
     "GoogleCloudAssuredworkloadsV1Workload": {
       "properties": {
+        "resourceSettings": {
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadResourceSettings"
+          }
+        },
+        "kajEnrollmentState": {
+          "enum": [
+            "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
+            "KAJ_ENROLLMENT_STATE_PENDING",
+            "KAJ_ENROLLMENT_STATE_COMPLETE"
+          ]
+        },
+        "saaEnrollmentResponse": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse"
+        },
+        "resources": {
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadResourceInfo"
+          }
+        },
+        "ekmProvisioningResponse": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse"
+        },
+        "workloadOptions": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions"
+        },
         "complianceRegime": {
           "enum": [
             "COMPLIANCE_REGIME_UNSPECIFIED",
@@ -56,11 +82,6 @@
             "US_REGIONAL_ACCESS"
           ]
         },
-        "resources": {
-          "items": {
-            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadResourceInfo"
-          }
-        },
         "partner": {
           "enum": [
             "PARTNER_UNSPECIFIED",
@@ -72,32 +93,19 @@
             "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM",
             "SPAIN_DATA_BOUNDARY_BY_TELEFONICA"
           ]
-        },
-        "saaEnrollmentResponse": {
-          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse"
-        },
-        "kajEnrollmentState": {
-          "enum": [
-            "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
-            "KAJ_ENROLLMENT_STATE_PENDING",
-            "KAJ_ENROLLMENT_STATE_COMPLETE"
-          ]
-        },
-        "workloadOptions": {
-          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions"
-        },
-        "ekmProvisioningResponse": {
-          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse"
-        },
-        "resourceSettings": {
-          "items": {
-            "$ref": "GoogleCloudAssuredworkloadsV1WorkloadResourceSettings"
-          }
         }
       }
     },
     "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse": {
       "properties": {
+        "ekmProvisioningErrorMapping": {
+          "enum": [
+            "EKM_PROVISIONING_ERROR_MAPPING_UNSPECIFIED",
+            "INVALID_SERVICE_ACCOUNT",
+            "MISSING_METRICS_SCOPE_ADMIN_PERMISSION",
+            "MISSING_EKM_CONNECTION_ADMIN_PERMISSION"
+          ]
+        },
         "ekmProvisioningState": {
           "enum": [
             "EKM_PROVISIONING_STATE_UNSPECIFIED",
@@ -114,14 +122,6 @@
             "EXTERNAL_USER_ERROR",
             "EXTERNAL_PARTNER_ERROR",
             "TIMEOUT_ERROR"
-          ]
-        },
-        "ekmProvisioningErrorMapping": {
-          "enum": [
-            "EKM_PROVISIONING_ERROR_MAPPING_UNSPECIFIED",
-            "INVALID_SERVICE_ACCOUNT",
-            "MISSING_METRICS_SCOPE_ADMIN_PERMISSION",
-            "MISSING_EKM_CONNECTION_ADMIN_PERMISSION"
           ]
         }
       }

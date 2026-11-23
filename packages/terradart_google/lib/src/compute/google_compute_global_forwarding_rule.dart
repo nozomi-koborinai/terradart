@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_backend_service.dart'
+    show GoogleComputeBackendService;
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 
@@ -299,6 +301,82 @@ class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
   };
 }
 
+/// Exactly one of `backend_service`, `target` on `google_compute_global_forwarding_rule`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.backendService(...)`.
+sealed class ComputeGlobalForwardingRuleBackendServiceOrTarget {
+  const ComputeGlobalForwardingRuleBackendServiceOrTarget();
+
+  /// Sets `backend_service`.
+  const factory ComputeGlobalForwardingRuleBackendServiceOrTarget.backendService(
+    RefTo<GoogleComputeBackendService> backendService,
+  ) = ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService;
+
+  /// Sets `target`.
+  const factory ComputeGlobalForwardingRuleBackendServiceOrTarget.target(
+    TfArg<String> target,
+  ) = ComputeGlobalForwardingRuleBackendServiceOrTargetChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [ComputeGlobalForwardingRuleBackendServiceOrTarget.backendService] choice: sets `backend_service`.
+final class ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService
+    extends ComputeGlobalForwardingRuleBackendServiceOrTarget {
+  const ComputeGlobalForwardingRuleBackendServiceOrTargetBackendService(
+    this.backendService,
+  );
+
+  final RefTo<GoogleComputeBackendService> backendService;
+
+  @internal
+  @override
+  String get blockKey => 'backend_service';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'backend_service': backendService.encodeAs('self_link').toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'backend_service': backendService.encodeAs('self_link'),
+  };
+}
+
+/// The [ComputeGlobalForwardingRuleBackendServiceOrTarget.target] choice: sets `target`.
+final class ComputeGlobalForwardingRuleBackendServiceOrTargetChoice
+    extends ComputeGlobalForwardingRuleBackendServiceOrTarget {
+  const ComputeGlobalForwardingRuleBackendServiceOrTargetChoice(this.target);
+
+  final TfArg<String> target;
+
+  @internal
+  @override
+  String get blockKey => 'target';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'target': target.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'target': target};
+}
+
 /// Factory wrapper for `google_compute_global_forwarding_rule`.
 ///
 /// Represents a GlobalForwardingRule resource. Global forwarding rules are used
@@ -377,7 +455,7 @@ class ComputeGlobalForwardingRuleServiceDirectoryRegistration {
 /// final feFwd = GoogleComputeGlobalForwardingRule(
 ///   'fe',
 ///   name: TfArg.literal('lb-https-frontend'),
-///   target: httpsProxy.selfLink,
+///   backendServiceOrTarget: .target(httpsProxy.selfLink),
 ///   ipAddress: lbVip.selfLink,
 ///   ipProtocol: GlobalForwardingRuleIpProtocol.tcp,
 ///   portRange: TfArg.literal('443'),
@@ -394,7 +472,8 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
   GoogleComputeGlobalForwardingRule(
     super.localName, {
     required TfArg<String> name,
-    required TfArg<String> target,
+    required ComputeGlobalForwardingRuleBackendServiceOrTarget
+    backendServiceOrTarget,
     TfArg<String>? ipAddress,
     GlobalForwardingRuleIpProtocol? ipProtocol,
     GlobalForwardingRuleIpVersion? ipVersion,
@@ -422,7 +501,7 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'target': target,
+           ...backendServiceOrTarget.argMap,
            'ip_address': ?ipAddress,
            'ip_protocol': ?ipProtocol,
            'ip_version': ?ipVersion,
@@ -496,6 +575,10 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `backend_service` attribute.
+  TfRef<String> get backendService =>
+      TfRef.attribute<String>(this, 'backend_service');
+
   /// Reference to `deletion_policy` attribute.
   TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
@@ -519,6 +602,10 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
 
   /// Reference to `ip_address` attribute.
   TfRef<String> get ipAddress => TfRef.attribute<String>(this, 'ip_address');
+
+  /// Reference to `ip_addresses` attribute.
+  TfRef<List<String>> get ipAddresses =>
+      TfRef.attribute<List<String>>(this, 'ip_addresses');
 
   /// Reference to `ip_protocol` attribute.
   TfRef<String> get ipProtocol => TfRef.attribute<String>(this, 'ip_protocol');

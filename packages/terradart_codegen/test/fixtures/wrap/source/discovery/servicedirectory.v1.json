@@ -1,7 +1,7 @@
 {
   "name": "servicedirectory",
   "version": "v1",
-  "revision": "20261106",
+  "revision": "20261109",
   "sourceUrl": "https://servicedirectory.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Endpoint": {

@@ -1,7 +1,7 @@
 {
   "name": "datastream",
   "version": "v1",
-  "revision": "20261105",
+  "revision": "20261111",
   "sourceUrl": "https://datastream.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "BigQueryDestinationConfig": {
@@ -13,11 +13,11 @@
     },
     "BigQueryPartitioning": {
       "properties": {
-        "ingestionTimePartition": {
-          "$ref": "IngestionTimePartition"
-        },
         "timeUnitPartition": {
           "$ref": "TimeUnitPartition"
+        },
+        "ingestionTimePartition": {
+          "$ref": "IngestionTimePartition"
         }
       }
     },
@@ -49,11 +49,11 @@
     },
     "DestinationConfig": {
       "properties": {
-        "bigqueryDestinationConfig": {
-          "$ref": "BigQueryDestinationConfig"
-        },
         "gcsDestinationConfig": {
           "$ref": "GcsDestinationConfig"
+        },
+        "bigqueryDestinationConfig": {
+          "$ref": "BigQueryDestinationConfig"
         }
       }
     },
@@ -79,18 +79,18 @@
     },
     "JsonFileFormat": {
       "properties": {
-        "schemaFileFormat": {
-          "enum": [
-            "SCHEMA_FILE_FORMAT_UNSPECIFIED",
-            "NO_SCHEMA_FILE",
-            "AVRO_SCHEMA_FILE"
-          ]
-        },
         "compression": {
           "enum": [
             "JSON_COMPRESSION_UNSPECIFIED",
             "NO_COMPRESSION",
             "GZIP"
+          ]
+        },
+        "schemaFileFormat": {
+          "enum": [
+            "SCHEMA_FILE_FORMAT_UNSPECIFIED",
+            "NO_SCHEMA_FILE",
+            "AVRO_SCHEMA_FILE"
           ]
         }
       }
@@ -131,11 +131,11 @@
     },
     "SourceConfig": {
       "properties": {
-        "spannerSourceConfig": {
-          "$ref": "SpannerSourceConfig"
-        },
         "mongodbSourceConfig": {
           "$ref": "MongodbSourceConfig"
+        },
+        "spannerSourceConfig": {
+          "$ref": "SpannerSourceConfig"
         }
       }
     },
@@ -153,17 +153,6 @@
     },
     "Stream": {
       "properties": {
-        "ruleSets": {
-          "items": {
-            "$ref": "RuleSet"
-          }
-        },
-        "sourceConfig": {
-          "$ref": "SourceConfig"
-        },
-        "destinationConfig": {
-          "$ref": "DestinationConfig"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -176,6 +165,17 @@
             "STARTING",
             "DRAINING"
           ]
+        },
+        "ruleSets": {
+          "items": {
+            "$ref": "RuleSet"
+          }
+        },
+        "destinationConfig": {
+          "$ref": "DestinationConfig"
+        },
+        "sourceConfig": {
+          "$ref": "SourceConfig"
         }
       }
     },

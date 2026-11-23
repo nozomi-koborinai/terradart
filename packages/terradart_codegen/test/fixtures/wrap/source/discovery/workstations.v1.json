@@ -1,7 +1,7 @@
 {
   "name": "workstations",
   "version": "v1",
-  "revision": "20261108",
+  "revision": "20261116",
   "sourceUrl": "https://workstations.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GceHyperdiskBalancedHighAvailability": {

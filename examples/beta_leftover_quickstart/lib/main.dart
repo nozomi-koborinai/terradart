@@ -16,7 +16,6 @@ import 'package:terradart_google_beta/container.dart';
 import 'package:terradart_google_beta/dataplex.dart';
 import 'package:terradart_google_beta/firebase.dart';
 import 'package:terradart_google_beta/folder.dart';
-import 'package:terradart_google_beta/identity.dart';
 import 'package:terradart_google_beta/kms.dart';
 import 'package:terradart_google_beta/network.dart';
 import 'package:terradart_google_beta/organization.dart';
@@ -24,7 +23,6 @@ import 'package:terradart_google_beta/os_config.dart';
 import 'package:terradart_google_beta/privileged_access_manager.dart';
 import 'package:terradart_google_beta/project.dart';
 import 'package:terradart_google_beta/runtimeconfig.dart';
-import 'package:terradart_google_beta/saas_runtime.dart';
 import 'package:terradart_google_beta/security_scanner.dart';
 import 'package:terradart_google_beta/service_usage.dart';
 import 'package:terradart_google_beta/tags.dart';
@@ -479,19 +477,6 @@ final class BetaLeftoverStack extends Stack {
       ),
     );
     add(
-      GoogleCloudIdentityPolicy(
-        'cloud_identity_policy',
-        customer: .literal('terradart-leftover'),
-        policyQuery: CloudIdentityPolicyQuery(
-          orgUnit: .literal('terradart-leftover'),
-        ),
-        setting: CloudIdentityPolicySetting(
-          type: .literal('settings/terradart-leftover'),
-          valueJson: .literal('{}'),
-        ),
-      ),
-    );
-    add(
       GoogleKmsFolderKajPolicyConfig(
         'kms_folder_kaj_policy_config',
         folder: .literal('terradart-leftover'),
@@ -591,60 +576,6 @@ final class BetaLeftoverStack extends Stack {
         name: .literal('terradart-leftover'),
         parent: .literal('terradart-leftover'),
         text: runtimeconfigVariableText,
-      ),
-    );
-    add(
-      GoogleSaasRuntimeRelease(
-        'saas_runtime_release',
-        location: .literal('terradart-leftover'),
-        releaseId: .literal('terradart-leftover'),
-        unitKind: .literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleSaasRuntimeRolloutKind(
-        'saas_runtime_rollout_kind',
-        location: .literal('terradart-leftover'),
-        rolloutKindId: .literal('terradart-leftover'),
-        unitKind: .literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleSaasRuntimeSaas(
-        'saas_runtime_saas',
-        location: .literal('terradart-leftover'),
-        saasId: .literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleSaasRuntimeTenant(
-        'saas_runtime_tenant',
-        location: .literal('terradart-leftover'),
-        saas: .literal('terradart-leftover'),
-        tenantId: .literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleSaasRuntimeUnit(
-        'saas_runtime_unit',
-        location: .literal('terradart-leftover'),
-        unitId: .literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleSaasRuntimeUnitKind(
-        'saas_runtime_unit_kind',
-        location: .literal('terradart-leftover'),
-        saas: .literal('terradart-leftover'),
-        unitKindId: .literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleSaasRuntimeUnitOperation(
-        'saas_runtime_unit_operation',
-        location: .literal('terradart-leftover'),
-        unit: .literal('terradart-leftover'),
-        unitOperationId: .literal('terradart-leftover'),
       ),
     );
     add(

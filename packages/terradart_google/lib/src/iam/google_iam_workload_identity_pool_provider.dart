@@ -156,11 +156,14 @@ final class IamWorkloadIdentityPoolProviderAws {
 final class IamWorkloadIdentityPoolProviderOidc {
   const IamWorkloadIdentityPoolProviderOidc({
     this.allowedAudiences,
+    this.discoveryUri,
     required this.issuerUri,
     this.jwksJson,
   });
 
   final TfArg<List<String>>? allowedAudiences;
+
+  final TfArg<String>? discoveryUri;
 
   final TfArg<String> issuerUri;
 
@@ -169,6 +172,7 @@ final class IamWorkloadIdentityPoolProviderOidc {
   @internal
   Map<String, Object?> encode() => {
     'allowed_audiences': ?allowedAudiences?.toTfJson(),
+    'discovery_uri': ?discoveryUri?.toTfJson(),
     'issuer_uri': issuerUri.toTfJson(),
     'jwks_json': ?jwksJson?.toTfJson(),
   };
@@ -341,6 +345,10 @@ final class GoogleIamWorkloadIdentityPoolProvider extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `actor_providers` attribute.
+  TfRef<List<String>> get actorProviders =>
+      TfRef.attribute<List<String>>(this, 'actor_providers');
 
   /// Reference to `attribute_condition` attribute.
   TfRef<String> get attributeCondition =>

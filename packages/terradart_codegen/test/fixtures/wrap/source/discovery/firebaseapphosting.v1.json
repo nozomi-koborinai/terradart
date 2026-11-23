@@ -1,7 +1,7 @@
 {
   "name": "firebaseapphosting",
   "version": "v1",
-  "revision": "20261109",
+  "revision": "20261116",
   "sourceUrl": "https://firebaseapphosting.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "Backend": {
@@ -22,6 +22,9 @@
             "$ref": "Error"
           }
         },
+        "config": {
+          "$ref": "Config"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -33,20 +36,17 @@
             "SKIPPED",
             "EXPIRED"
           ]
-        },
-        "config": {
-          "$ref": "Config"
         }
       }
     },
     "Config": {
       "properties": {
-        "effectiveEnv": {
+        "env": {
           "items": {
             "$ref": "EnvironmentVariable"
           }
         },
-        "env": {
+        "effectiveEnv": {
           "items": {
             "$ref": "EnvironmentVariable"
           }
@@ -55,17 +55,6 @@
     },
     "CustomDomainStatus": {
       "properties": {
-        "ownershipState": {
-          "enum": [
-            "OWNERSHIP_STATE_UNSPECIFIED",
-            "OWNERSHIP_MISSING",
-            "OWNERSHIP_UNREACHABLE",
-            "OWNERSHIP_MISMATCH",
-            "OWNERSHIP_CONFLICT",
-            "OWNERSHIP_PENDING",
-            "OWNERSHIP_ACTIVE"
-          ]
-        },
         "certState": {
           "enum": [
             "CERT_STATE_UNSPECIFIED",
@@ -76,6 +65,11 @@
             "CERT_EXPIRING_SOON",
             "CERT_EXPIRED"
           ]
+        },
+        "requiredDnsUpdates": {
+          "items": {
+            "$ref": "DnsUpdates"
+          }
         },
         "hostState": {
           "enum": [
@@ -88,10 +82,16 @@
             "HOST_ACTIVE"
           ]
         },
-        "requiredDnsUpdates": {
-          "items": {
-            "$ref": "DnsUpdates"
-          }
+        "ownershipState": {
+          "enum": [
+            "OWNERSHIP_STATE_UNSPECIFIED",
+            "OWNERSHIP_MISSING",
+            "OWNERSHIP_UNREACHABLE",
+            "OWNERSHIP_MISMATCH",
+            "OWNERSHIP_CONFLICT",
+            "OWNERSHIP_PENDING",
+            "OWNERSHIP_ACTIVE"
+          ]
         }
       }
     },

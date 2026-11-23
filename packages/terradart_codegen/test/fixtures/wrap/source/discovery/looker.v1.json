@@ -1,7 +1,7 @@
 {
   "name": "looker",
   "version": "v1",
-  "revision": "20261108",
+  "revision": "20261020",
   "sourceUrl": "https://looker.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "CustomDomain": {
@@ -32,46 +32,6 @@
     },
     "Instance": {
       "properties": {
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "CREATING",
-            "FAILED",
-            "SUSPENDED",
-            "UPDATING",
-            "DELETING",
-            "EXPORTING",
-            "IMPORTING"
-          ]
-        },
-        "pscConfig": {
-          "$ref": "PscConfig"
-        },
-        "softDeleteReason": {
-          "enum": [
-            "SOFT_DELETE_REASON_UNSPECIFIED",
-            "BILLING_ACCOUNT_ISSUE",
-            "TRIAL_EXPIRED",
-            "CUSTOMER_REQUEST"
-          ]
-        },
-        "classType": {
-          "enum": [
-            "CLASS_TYPE_UNSPECIFIED",
-            "R1",
-            "P1"
-          ]
-        },
-        "encryptionConfig": {
-          "$ref": "EncryptionConfig"
-        },
-        "customDomain": {
-          "$ref": "CustomDomain"
-        },
         "platformEdition": {
           "enum": [
             "PLATFORM_EDITION_UNSPECIFIED",
@@ -88,6 +48,9 @@
             "LOOKER_CORE_TRIAL_EMBED"
           ]
         },
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
+        },
         "releaseChannel": {
           "enum": [
             "RELEASE_CHANNEL_UNSPECIFIED",
@@ -95,6 +58,43 @@
             "REGULAR",
             "STABLE"
           ]
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig"
+        },
+        "classType": {
+          "enum": [
+            "CLASS_TYPE_UNSPECIFIED",
+            "R1",
+            "P1"
+          ]
+        },
+        "pscConfig": {
+          "$ref": "PscConfig"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "FAILED",
+            "SUSPENDED",
+            "UPDATING",
+            "DELETING",
+            "EXPORTING",
+            "IMPORTING"
+          ]
+        },
+        "softDeleteReason": {
+          "enum": [
+            "SOFT_DELETE_REASON_UNSPECIFIED",
+            "BILLING_ACCOUNT_ISSUE",
+            "TRIAL_EXPIRED",
+            "CUSTOMER_REQUEST"
+          ]
+        },
+        "customDomain": {
+          "$ref": "CustomDomain"
         }
       }
     },

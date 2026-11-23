@@ -14,13 +14,13 @@
             "$ref": "EnrolledService"
           }
         },
+        "approvalPolicy": {
+          "$ref": "CustomerApprovalApprovalPolicy"
+        },
         "ancestorsEnrolledServices": {
           "items": {
             "$ref": "EnrolledService"
           }
-        },
-        "approvalPolicy": {
-          "$ref": "CustomerApprovalApprovalPolicy"
         },
         "requestScopeMaxWidthPreference": {
           "enum": [

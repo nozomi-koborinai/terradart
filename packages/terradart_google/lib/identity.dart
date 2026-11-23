@@ -33,6 +33,20 @@ export 'src/identity/google_cloud_identity_group_membership.dart'
         CloudIdentityGroupMembershipRoles,
         CloudIdentityGroupMembershipRolesName,
         GoogleCloudIdentityGroupMembership;
+export 'src/identity/google_cloud_identity_inbound_oidc_sso_profile.dart'
+    show
+        CloudIdentityInboundOidcSsoProfileIdpConfig,
+        CloudIdentityInboundOidcSsoProfileRpConfig,
+        GoogleCloudIdentityInboundOidcSsoProfile;
+export 'src/identity/google_cloud_identity_inbound_saml_sso_profile.dart'
+    show
+        CloudIdentityInboundSamlSsoProfileIdpConfig,
+        GoogleCloudIdentityInboundSamlSsoProfile;
+export 'src/identity/google_cloud_identity_policy.dart'
+    show
+        CloudIdentityPolicyQuery,
+        CloudIdentityPolicySetting,
+        GoogleCloudIdentityPolicy;
 export 'src/identity/google_identity_platform_config.dart'
     show
         GoogleIdentityPlatformConfig,
@@ -91,4 +105,6 @@ export 'src/identity/google_identity_platform_tenant_inbound_saml_config.dart'
         IdentityPlatformTenantInboundSamlConfigIdpConfig,
         IdentityPlatformTenantInboundSamlConfigSpConfig;
 export 'src/identity/google_identity_platform_tenant_oauth_idp_config.dart'
-    show GoogleIdentityPlatformTenantOauthIdpConfig;
+    show
+        GoogleIdentityPlatformTenantOauthIdpConfig,
+        IdentityPlatformTenantOauthIdpConfigResponseType;

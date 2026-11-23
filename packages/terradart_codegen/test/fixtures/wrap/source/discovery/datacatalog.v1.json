@@ -1,7 +1,7 @@
 {
   "name": "datacatalog",
   "version": "v1",
-  "revision": "20261106",
+  "revision": "20261116",
   "sourceUrl": "https://datacatalog.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudDatacatalogV1BigQueryConnectionSpec": {
@@ -42,6 +42,9 @@
     },
     "GoogleCloudDatacatalogV1ColumnSchema": {
       "properties": {
+        "lookerColumnSpec": {
+          "$ref": "GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec"
+        },
         "highestIndexingType": {
           "enum": [
             "INDEXING_TYPE_UNSPECIFIED",
@@ -50,9 +53,6 @@
             "INDEXING_TYPE_UNIQUE",
             "INDEXING_TYPE_PRIMARY_KEY"
           ]
-        },
-        "lookerColumnSpec": {
-          "$ref": "GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec"
         },
         "subcolumns": {
           "items": {
@@ -95,18 +95,18 @@
     },
     "GoogleCloudDatacatalogV1DatabaseTableSpec": {
       "properties": {
-        "dataplexTable": {
-          "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec"
-        },
-        "databaseViewSpec": {
-          "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec"
-        },
         "type": {
           "enum": [
             "TABLE_TYPE_UNSPECIFIED",
             "NATIVE",
             "EXTERNAL"
           ]
+        },
+        "dataplexTable": {
+          "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec"
+        },
+        "databaseViewSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec"
         }
       }
     },
@@ -157,8 +157,49 @@
     },
     "GoogleCloudDatacatalogV1Entry": {
       "properties": {
+        "datasetSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatasetSpec"
+        },
+        "dataSourceConnectionSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DataSourceConnectionSpec"
+        },
+        "databaseTableSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpec"
+        },
+        "routineSpec": {
+          "$ref": "GoogleCloudDatacatalogV1RoutineSpec"
+        },
+        "integratedSystem": {
+          "enum": [
+            "INTEGRATED_SYSTEM_UNSPECIFIED",
+            "BIGQUERY",
+            "CLOUD_PUBSUB",
+            "DATAPROC_METASTORE",
+            "DATAPLEX",
+            "CLOUD_SPANNER",
+            "CLOUD_BIGTABLE",
+            "CLOUD_SQL",
+            "LOOKER",
+            "VERTEX_AI"
+          ]
+        },
+        "bigqueryTableSpec": {
+          "$ref": "GoogleCloudDatacatalogV1BigQueryTableSpec"
+        },
+        "dataSource": {
+          "$ref": "GoogleCloudDatacatalogV1DataSource"
+        },
+        "schema": {
+          "$ref": "GoogleCloudDatacatalogV1Schema"
+        },
+        "graphSpec": {
+          "$ref": "GoogleCloudDatacatalogV1GraphSpec"
+        },
         "featureOnlineStoreSpec": {
           "$ref": "GoogleCloudDatacatalogV1FeatureOnlineStoreSpec"
+        },
+        "modelSpec": {
+          "$ref": "GoogleCloudDatacatalogV1ModelSpec"
         },
         "type": {
           "enum": [
@@ -185,47 +226,6 @@
             "NODE",
             "EDGE"
           ]
-        },
-        "datasetSpec": {
-          "$ref": "GoogleCloudDatacatalogV1DatasetSpec"
-        },
-        "dataSourceConnectionSpec": {
-          "$ref": "GoogleCloudDatacatalogV1DataSourceConnectionSpec"
-        },
-        "integratedSystem": {
-          "enum": [
-            "INTEGRATED_SYSTEM_UNSPECIFIED",
-            "BIGQUERY",
-            "CLOUD_PUBSUB",
-            "DATAPROC_METASTORE",
-            "DATAPLEX",
-            "CLOUD_SPANNER",
-            "CLOUD_BIGTABLE",
-            "CLOUD_SQL",
-            "LOOKER",
-            "VERTEX_AI"
-          ]
-        },
-        "graphSpec": {
-          "$ref": "GoogleCloudDatacatalogV1GraphSpec"
-        },
-        "schema": {
-          "$ref": "GoogleCloudDatacatalogV1Schema"
-        },
-        "routineSpec": {
-          "$ref": "GoogleCloudDatacatalogV1RoutineSpec"
-        },
-        "bigqueryTableSpec": {
-          "$ref": "GoogleCloudDatacatalogV1BigQueryTableSpec"
-        },
-        "databaseTableSpec": {
-          "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpec"
-        },
-        "dataSource": {
-          "$ref": "GoogleCloudDatacatalogV1DataSource"
-        },
-        "modelSpec": {
-          "$ref": "GoogleCloudDatacatalogV1ModelSpec"
         }
       }
     },
@@ -242,12 +242,12 @@
     },
     "GoogleCloudDatacatalogV1GraphSpec": {
       "properties": {
-        "edgeTables": {
+        "nodeTables": {
           "items": {
             "$ref": "GoogleCloudDatacatalogV1GraphSpecGraphElementTable"
           }
         },
-        "nodeTables": {
+        "edgeTables": {
           "items": {
             "$ref": "GoogleCloudDatacatalogV1GraphSpecGraphElementTable"
           }
@@ -332,9 +332,6 @@
     },
     "GoogleCloudDatacatalogV1Taxonomy": {
       "properties": {
-        "service": {
-          "$ref": "GoogleCloudDatacatalogV1TaxonomyService"
-        },
         "activatedPolicyTypes": {
           "items": {
             "enum": [
@@ -342,6 +339,9 @@
               "FINE_GRAINED_ACCESS_CONTROL"
             ]
           }
+        },
+        "service": {
+          "$ref": "GoogleCloudDatacatalogV1TaxonomyService"
         }
       }
     },

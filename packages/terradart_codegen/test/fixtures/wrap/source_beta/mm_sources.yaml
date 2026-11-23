@@ -3,8 +3,8 @@
 # through the provider's generated Go source at the release tag; null when the
 # resource has none. tool/wrap_lanes.dart re-syncs when this file no longer
 # matches provider_version.txt or the schema.json resource set.
-provider_version: 8.11.0
-upstream_ref: c41dcfd1e7c47bd0dac83bf39818d19c584f7e9d
+provider_version: 8.12.0
+upstream_ref: b374a6e8b7fa43a49eed40eaaa89854115bb8af6
 files:
   google_active_directory_peering: mmv1/products/activedirectory/Peering.yaml
   google_api_gateway_api: mmv1/products/apigateway/Api.yaml
@@ -24,7 +24,6 @@ files:
   google_ces_evaluation: mmv1/products/ces/Evaluation.yaml
   google_ces_security_settings: mmv1/products/ces/SecuritySettings.yaml
   google_chronicle_soar_domain: mmv1/products/chronicle/SoarDomain.yaml
-  google_cloud_identity_policy: mmv1/products/cloudidentity/Policy.yaml
   google_compute_backend_bucket_iam_binding: null  # no resource_compute_backend_bucket_iam_binding.go in google-beta/services
   google_compute_backend_bucket_iam_member: null  # no resource_compute_backend_bucket_iam_member.go in google-beta/services
   google_compute_backend_bucket_iam_policy: null  # no resource_compute_backend_bucket_iam_policy.go in google-beta/services
@@ -81,13 +80,6 @@ files:
   google_runtimeconfig_config_iam_member: null  # no resource_runtimeconfig_config_iam_member.go in google-beta/services
   google_runtimeconfig_config_iam_policy: null  # no resource_runtimeconfig_config_iam_policy.go in google-beta/services
   google_runtimeconfig_variable: null  # hand-written (google-beta/services/runtimeconfig/resource_runtimeconfig_variable.go)
-  google_saas_runtime_release: mmv1/products/saasservicemgmt/Release.yaml
-  google_saas_runtime_rollout_kind: mmv1/products/saasservicemgmt/RolloutKind.yaml
-  google_saas_runtime_saas: mmv1/products/saasservicemgmt/Saas.yaml
-  google_saas_runtime_tenant: mmv1/products/saasservicemgmt/Tenant.yaml
-  google_saas_runtime_unit: mmv1/products/saasservicemgmt/Unit.yaml
-  google_saas_runtime_unit_kind: mmv1/products/saasservicemgmt/UnitKind.yaml
-  google_saas_runtime_unit_operation: mmv1/products/saasservicemgmt/UnitOperation.yaml
   google_security_scanner_scan_config: mmv1/products/securityscanner/ScanConfig.yaml
   google_service_usage_consumer_quota_override: mmv1/products/serviceusage/ConsumerQuotaOverride.yaml
   google_tags_tag_binding_collection: null  # hand-written (google-beta/services/tags/resource_tags_tag_binding_collection.go)

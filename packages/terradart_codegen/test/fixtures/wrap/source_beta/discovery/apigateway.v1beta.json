@@ -42,6 +42,12 @@
             "EFFECTIVE_STREAMING_MODE_ENABLED"
           ]
         },
+        "streamingMode": {
+          "enum": [
+            "STREAMING_MODE_UNSPECIFIED",
+            "STREAMING_MODE_ENABLED"
+          ]
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -50,12 +56,6 @@
             "FAILED",
             "DELETING",
             "UPDATING"
-          ]
-        },
-        "streamingMode": {
-          "enum": [
-            "STREAMING_MODE_UNSPECIFIED",
-            "STREAMING_MODE_ENABLED"
           ]
         }
       }

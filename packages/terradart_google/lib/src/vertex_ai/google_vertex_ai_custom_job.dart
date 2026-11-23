@@ -32,7 +32,12 @@ final class VertexAiCustomJobSpec {
   const VertexAiCustomJobSpec({
     this.enableDashboardAccess,
     this.enableWebAccess,
+    this.experiment,
+    this.experimentRun,
+    this.models,
     this.network,
+    this.persistentResourceId,
+    this.protectedArtifactLocationId,
     this.reservedIpRanges,
     this.serviceAccount,
     this.tensorboard,
@@ -46,7 +51,17 @@ final class VertexAiCustomJobSpec {
 
   final TfArg<bool>? enableWebAccess;
 
+  final TfArg<String>? experiment;
+
+  final TfArg<String>? experimentRun;
+
+  final TfArg<List<String>>? models;
+
   final RefTo<GoogleComputeNetwork>? network;
+
+  final TfArg<String>? persistentResourceId;
+
+  final TfArg<String>? protectedArtifactLocationId;
 
   final TfArg<List<String>>? reservedIpRanges;
 
@@ -66,7 +81,12 @@ final class VertexAiCustomJobSpec {
   Map<String, Object?> encode() => {
     'enable_dashboard_access': ?enableDashboardAccess?.toTfJson(),
     'enable_web_access': ?enableWebAccess?.toTfJson(),
+    'experiment': ?experiment?.toTfJson(),
+    'experiment_run': ?experimentRun?.toTfJson(),
+    'models': ?models?.toTfJson(),
     'network': ?network?.encodeAs('id').toTfJson(),
+    'persistent_resource_id': ?persistentResourceId?.toTfJson(),
+    'protected_artifact_location_id': ?protectedArtifactLocationId?.toTfJson(),
     'reserved_ip_ranges': ?reservedIpRanges?.toTfJson(),
     'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
     'tensorboard': ?tensorboard?.toTfJson(),

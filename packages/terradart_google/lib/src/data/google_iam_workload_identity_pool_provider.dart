@@ -49,6 +49,10 @@ final class DataGoogleIamWorkloadIdentityPoolProvider extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `actor_providers` attribute.
+  TfRef<List<String>> get actorProviders =>
+      TfRef.attribute<List<String>>(this, 'actor_providers');
+
   /// Reference to `attribute_condition` attribute.
   TfRef<String> get attributeCondition =>
       TfRef.attribute<String>(this, 'attribute_condition');

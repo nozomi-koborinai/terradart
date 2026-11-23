@@ -104,6 +104,41 @@ changes and removes two upstream enum/conflict constraints:
 | `DataCloudflareWorkersCustomDomain('d')` | `DataCloudflareWorkersCustomDomain('d', accountId: .literal('00000000000000000000000000000001'))` |
 | `DataCloudflareWorkersCustomDomains('d')` | `DataCloudflareWorkersCustomDomains('d', accountId: .literal('00000000000000000000000000000001'))` |
 
+### Google provider 8.12.0
+
+**Breaking (`terradart_google`).** Provider 8.12.0 exposes `backend_service`
+in GA on `google_compute_global_forwarding_rule`, where it is mutually
+exclusive with `target`. `GoogleComputeGlobalForwardingRule.target` moves
+onto the required sealed argument `backendServiceOrTarget` (`.target(...)` or
+`.backendService(...)`). The Terraform JSON for existing rules is unchanged.
+
+| Before | After |
+|---|---|
+| `GoogleComputeGlobalForwardingRule('fe', name: .literal('fe'), target: .literal('proxy'))` | `GoogleComputeGlobalForwardingRule('fe', name: .literal('fe'), backendServiceOrTarget: .target(.literal('proxy')))` |
+
+#### Beta-only types now in `terradart_google`
+
+**Breaking (`terradart_google_beta`).** Provider 8.12.0 promoted
+`google_cloud_identity_policy` and the seven `google_saas_runtime_*` resources
+(`google_saas_runtime_release`, `google_saas_runtime_rollout_kind`,
+`google_saas_runtime_saas`, `google_saas_runtime_tenant`,
+`google_saas_runtime_unit`, `google_saas_runtime_unit_kind`, and
+`google_saas_runtime_unit_operation`) to GA, so `GoogleCloudIdentityPolicy`,
+`GoogleSaasRuntimeRelease`, `GoogleSaasRuntimeRolloutKind`,
+`GoogleSaasRuntimeSaas`, `GoogleSaasRuntimeTenant`, `GoogleSaasRuntimeUnit`,
+`GoogleSaasRuntimeUnitKind`, and `GoogleSaasRuntimeUnitOperation` (with their
+helper and enum types) move from `terradart_google_beta` to `terradart_google`
+(`package:terradart_google/identity.dart` and
+`package:terradart_google/saas_runtime.dart`).
+`package:terradart_google_beta/identity.dart` and
+`package:terradart_google_beta/saas_runtime.dart` are gone. Change the import;
+the compiler finds every use. The constructors, fields, helpers, and enums are
+unchanged. The factories no longer pin `provider = google-beta`, so the
+resources move to the `google` provider (`GoogleProvider` must be in the
+Stack). Confirm that `terraform plan` shows no replacement before you apply.
+Pass a registered `GoogleBetaProvider` as `provider` to keep a resource on the
+beta provider.
+
 ### Google provider 8.11.0
 
 **Breaking (`terradart_google`).** Provider 8.11.0 promotes `vpc_access`

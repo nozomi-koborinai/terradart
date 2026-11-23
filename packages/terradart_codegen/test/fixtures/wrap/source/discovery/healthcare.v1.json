@@ -1,7 +1,7 @@
 {
   "name": "healthcare",
   "version": "v1",
-  "revision": "20261103",
+  "revision": "20261118",
   "sourceUrl": "https://healthcare.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AccessDeterminationLogConfig": {
@@ -18,9 +18,6 @@
     },
     "ConsentConfig": {
       "properties": {
-        "consentHeaderHandling": {
-          "$ref": "ConsentHeaderHandling"
-        },
         "accessDeterminationLogConfig": {
           "$ref": "AccessDeterminationLogConfig"
         },
@@ -29,6 +26,9 @@
             "CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED",
             "V1"
           ]
+        },
+        "consentHeaderHandling": {
+          "$ref": "ConsentHeaderHandling"
         }
       }
     },
@@ -58,14 +58,14 @@
     },
     "DeidentifyConfig": {
       "properties": {
-        "fhir": {
-          "$ref": "FhirConfig"
-        },
         "dicom": {
           "$ref": "DicomConfig"
         },
         "image": {
           "$ref": "ImageConfig"
+        },
+        "fhir": {
+          "$ref": "FhirConfig"
         }
       }
     },
@@ -219,20 +219,27 @@
     },
     "SchemaConfig": {
       "properties": {
-        "lastUpdatedPartitionConfig": {
-          "$ref": "TimePartitioning"
-        },
         "schemaType": {
           "enum": [
             "SCHEMA_TYPE_UNSPECIFIED",
             "ANALYTICS",
             "ANALYTICS_V2"
           ]
+        },
+        "lastUpdatedPartitionConfig": {
+          "$ref": "TimePartitioning"
         }
       }
     },
     "SchemaPackage": {
       "properties": {
+        "schematizedParsingType": {
+          "enum": [
+            "SCHEMATIZED_PARSING_TYPE_UNSPECIFIED",
+            "SOFT_FAIL",
+            "HARD_FAIL"
+          ]
+        },
         "unexpectedSegmentHandling": {
           "enum": [
             "UNEXPECTED_SEGMENT_HANDLING_MODE_UNSPECIFIED",
@@ -245,13 +252,6 @@
           "items": {
             "$ref": "Hl7TypesConfig"
           }
-        },
-        "schematizedParsingType": {
-          "enum": [
-            "SCHEMATIZED_PARSING_TYPE_UNSPECIFIED",
-            "SOFT_FAIL",
-            "HARD_FAIL"
-          ]
         }
       }
     },

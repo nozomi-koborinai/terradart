@@ -15,13 +15,6 @@
             "SECURE_ALWAYS"
           ]
         },
-        "authFailAction": {
-          "enum": [
-            "AUTH_FAIL_ACTION_UNSPECIFIED",
-            "AUTH_FAIL_ACTION_REDIRECT",
-            "AUTH_FAIL_ACTION_UNAUTHORIZED"
-          ]
-        },
         "login": {
           "enum": [
             "LOGIN_UNSPECIFIED",
@@ -29,11 +22,26 @@
             "LOGIN_ADMIN",
             "LOGIN_REQUIRED"
           ]
+        },
+        "authFailAction": {
+          "enum": [
+            "AUTH_FAIL_ACTION_UNSPECIFIED",
+            "AUTH_FAIL_ACTION_REDIRECT",
+            "AUTH_FAIL_ACTION_UNAUTHORIZED"
+          ]
         }
       }
     },
     "Application": {
       "properties": {
+        "databaseType": {
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "CLOUD_DATASTORE",
+            "CLOUD_FIRESTORE",
+            "CLOUD_DATASTORE_COMPATIBILITY"
+          ]
+        },
         "sslPolicy": {
           "enum": [
             "SSL_POLICY_UNSPECIFIED",
@@ -48,26 +56,18 @@
             "USER_DISABLED",
             "SYSTEM_DISABLED"
           ]
-        },
-        "databaseType": {
-          "enum": [
-            "DATABASE_TYPE_UNSPECIFIED",
-            "CLOUD_DATASTORE",
-            "CLOUD_FIRESTORE",
-            "CLOUD_DATASTORE_COMPATIBILITY"
-          ]
         }
       }
     },
     "DomainMapping": {
       "properties": {
-        "sslSettings": {
-          "$ref": "SslSettings"
-        },
         "resourceRecords": {
           "items": {
             "$ref": "ResourceRecord"
           }
+        },
+        "sslSettings": {
+          "$ref": "SslSettings"
         }
       }
     },
@@ -194,6 +194,13 @@
             "REDIRECT_HTTP_RESPONSE_CODE_307"
           ]
         },
+        "authFailAction": {
+          "enum": [
+            "AUTH_FAIL_ACTION_UNSPECIFIED",
+            "AUTH_FAIL_ACTION_REDIRECT",
+            "AUTH_FAIL_ACTION_UNAUTHORIZED"
+          ]
+        },
         "login": {
           "enum": [
             "LOGIN_UNSPECIFIED",
@@ -201,53 +208,13 @@
             "LOGIN_ADMIN",
             "LOGIN_REQUIRED"
           ]
-        },
-        "authFailAction": {
-          "enum": [
-            "AUTH_FAIL_ACTION_UNSPECIFIED",
-            "AUTH_FAIL_ACTION_REDIRECT",
-            "AUTH_FAIL_ACTION_UNAUTHORIZED"
-          ]
         }
       }
     },
     "Version": {
       "properties": {
-        "inboundServices": {
-          "items": {
-            "enum": [
-              "INBOUND_SERVICE_UNSPECIFIED",
-              "INBOUND_SERVICE_MAIL",
-              "INBOUND_SERVICE_MAIL_BOUNCE",
-              "INBOUND_SERVICE_XMPP_ERROR",
-              "INBOUND_SERVICE_XMPP_MESSAGE",
-              "INBOUND_SERVICE_XMPP_SUBSCRIBE",
-              "INBOUND_SERVICE_XMPP_PRESENCE",
-              "INBOUND_SERVICE_CHANNEL_PRESENCE",
-              "INBOUND_SERVICE_WARMUP"
-            ]
-          }
-        },
-        "handlers": {
-          "items": {
-            "$ref": "UrlMap"
-          }
-        },
-        "endpointsApiService": {
-          "$ref": "EndpointsApiService"
-        },
-        "vpcAccessConnector": {
-          "$ref": "VpcAccessConnector"
-        },
-        "apiConfig": {
-          "$ref": "ApiConfigHandler"
-        },
-        "servingStatus": {
-          "enum": [
-            "SERVING_STATUS_UNSPECIFIED",
-            "SERVING",
-            "STOPPED"
-          ]
+        "network": {
+          "$ref": "Network"
         },
         "errorHandlers": {
           "items": {
@@ -256,6 +223,18 @@
         },
         "vpcAccess": {
           "$ref": "VpcAccess"
+        },
+        "servingStatus": {
+          "enum": [
+            "SERVING_STATUS_UNSPECIFIED",
+            "SERVING",
+            "STOPPED"
+          ]
+        },
+        "handlers": {
+          "items": {
+            "$ref": "UrlMap"
+          }
         },
         "appEngineBundledServices": {
           "items": {
@@ -279,8 +258,29 @@
             ]
           }
         },
-        "network": {
-          "$ref": "Network"
+        "endpointsApiService": {
+          "$ref": "EndpointsApiService"
+        },
+        "apiConfig": {
+          "$ref": "ApiConfigHandler"
+        },
+        "vpcAccessConnector": {
+          "$ref": "VpcAccessConnector"
+        },
+        "inboundServices": {
+          "items": {
+            "enum": [
+              "INBOUND_SERVICE_UNSPECIFIED",
+              "INBOUND_SERVICE_MAIL",
+              "INBOUND_SERVICE_MAIL_BOUNCE",
+              "INBOUND_SERVICE_XMPP_ERROR",
+              "INBOUND_SERVICE_XMPP_MESSAGE",
+              "INBOUND_SERVICE_XMPP_SUBSCRIBE",
+              "INBOUND_SERVICE_XMPP_PRESENCE",
+              "INBOUND_SERVICE_CHANNEL_PRESENCE",
+              "INBOUND_SERVICE_WARMUP"
+            ]
+          }
         }
       }
     },

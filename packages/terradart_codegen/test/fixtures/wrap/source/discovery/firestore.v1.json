@@ -13,20 +13,6 @@
         }
       }
     },
-    "Function": {
-      "properties": {
-        "options": {
-          "additionalProperties": {
-            "$ref": "Value"
-          }
-        },
-        "args": {
-          "items": {
-            "$ref": "Value"
-          }
-        }
-      }
-    },
     "GoogleFirestoreAdminV1BackupSchedule": {
       "properties": {
         "weeklyRecurrence": {
@@ -39,6 +25,13 @@
     },
     "GoogleFirestoreAdminV1Database": {
       "properties": {
+        "appEngineIntegrationMode": {
+          "enum": [
+            "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
         "realtimeUpdatesMode": {
           "enum": [
             "REALTIME_UPDATES_MODE_UNSPECIFIED",
@@ -46,28 +39,7 @@
             "REALTIME_UPDATES_MODE_DISABLED"
           ]
         },
-        "pointInTimeRecoveryEnablement": {
-          "enum": [
-            "POINT_IN_TIME_RECOVERY_ENABLEMENT_UNSPECIFIED",
-            "POINT_IN_TIME_RECOVERY_ENABLED",
-            "POINT_IN_TIME_RECOVERY_DISABLED"
-          ]
-        },
-        "type": {
-          "enum": [
-            "DATABASE_TYPE_UNSPECIFIED",
-            "FIRESTORE_NATIVE",
-            "DATASTORE_MODE"
-          ]
-        },
-        "deleteProtectionState": {
-          "enum": [
-            "DELETE_PROTECTION_STATE_UNSPECIFIED",
-            "DELETE_PROTECTION_DISABLED",
-            "DELETE_PROTECTION_ENABLED"
-          ]
-        },
-        "firestoreDataAccessMode": {
+        "mongodbCompatibleDataAccessMode": {
           "enum": [
             "DATA_ACCESS_MODE_UNSPECIFIED",
             "DATA_ACCESS_MODE_ENABLED",
@@ -81,7 +53,7 @@
             "ENTERPRISE"
           ]
         },
-        "mongodbCompatibleDataAccessMode": {
+        "firestoreDataAccessMode": {
           "enum": [
             "DATA_ACCESS_MODE_UNSPECIFIED",
             "DATA_ACCESS_MODE_ENABLED",
@@ -96,27 +68,49 @@
             "OPTIMISTIC_WITH_ENTITY_GROUPS"
           ]
         },
-        "appEngineIntegrationMode": {
+        "deleteProtectionState": {
           "enum": [
-            "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
+            "DELETE_PROTECTION_STATE_UNSPECIFIED",
+            "DELETE_PROTECTION_DISABLED",
+            "DELETE_PROTECTION_ENABLED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "FIRESTORE_NATIVE",
+            "DATASTORE_MODE"
+          ]
+        },
+        "pointInTimeRecoveryEnablement": {
+          "enum": [
+            "POINT_IN_TIME_RECOVERY_ENABLEMENT_UNSPECIFIED",
+            "POINT_IN_TIME_RECOVERY_ENABLED",
+            "POINT_IN_TIME_RECOVERY_DISABLED"
           ]
         }
       }
     },
     "GoogleFirestoreAdminV1Field": {
       "properties": {
-        "indexConfig": {
-          "$ref": "GoogleFirestoreAdminV1IndexConfig"
-        },
         "ttlConfig": {
           "$ref": "GoogleFirestoreAdminV1TtlConfig"
+        },
+        "indexConfig": {
+          "$ref": "GoogleFirestoreAdminV1IndexConfig"
         }
       }
     },
     "GoogleFirestoreAdminV1Index": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "NEEDS_REPAIR"
+          ]
+        },
         "queryScope": {
           "enum": [
             "QUERY_SCOPE_UNSPECIFIED",
@@ -125,12 +119,10 @@
             "COLLECTION_RECURSIVE"
           ]
         },
-        "apiScope": {
-          "enum": [
-            "ANY_API",
-            "DATASTORE_MODE_API",
-            "MONGODB_COMPATIBLE_API"
-          ]
+        "fields": {
+          "items": {
+            "$ref": "GoogleFirestoreAdminV1IndexField"
+          }
         },
         "density": {
           "enum": [
@@ -140,17 +132,11 @@
             "DENSE"
           ]
         },
-        "fields": {
-          "items": {
-            "$ref": "GoogleFirestoreAdminV1IndexField"
-          }
-        },
-        "state": {
+        "apiScope": {
           "enum": [
-            "STATE_UNSPECIFIED",
-            "CREATING",
-            "READY",
-            "NEEDS_REPAIR"
+            "ANY_API",
+            "DATASTORE_MODE_API",
+            "MONGODB_COMPATIBLE_API"
           ]
         }
       }
@@ -166,8 +152,12 @@
     },
     "GoogleFirestoreAdminV1IndexField": {
       "properties": {
-        "searchConfig": {
-          "$ref": "GoogleFirestoreAdminV1SearchConfig"
+        "order": {
+          "enum": [
+            "ORDER_UNSPECIFIED",
+            "ASCENDING",
+            "DESCENDING"
+          ]
         },
         "arrayConfig": {
           "enum": [
@@ -175,12 +165,8 @@
             "CONTAINS"
           ]
         },
-        "order": {
-          "enum": [
-            "ORDER_UNSPECIFIED",
-            "ASCENDING",
-            "DESCENDING"
-          ]
+        "searchConfig": {
+          "$ref": "GoogleFirestoreAdminV1SearchConfig"
         }
       }
     },
@@ -193,16 +179,16 @@
     },
     "GoogleFirestoreAdminV1SearchTextIndexSpec": {
       "properties": {
-        "indexType": {
-          "enum": [
-            "TEXT_INDEX_TYPE_UNSPECIFIED",
-            "TOKENIZED"
-          ]
-        },
         "matchType": {
           "enum": [
             "TEXT_MATCH_TYPE_UNSPECIFIED",
             "MATCH_GLOBALLY"
+          ]
+        },
+        "indexType": {
+          "enum": [
+            "TEXT_INDEX_TYPE_UNSPECIFIED",
+            "TOKENIZED"
           ]
         }
       }
@@ -255,41 +241,12 @@
         }
       }
     },
-    "Pipeline": {
-      "properties": {
-        "stages": {
-          "items": {
-            "$ref": "Stage"
-          }
-        }
-      }
-    },
-    "Stage": {
-      "properties": {
-        "options": {
-          "additionalProperties": {
-            "$ref": "Value"
-          }
-        },
-        "args": {
-          "items": {
-            "$ref": "Value"
-          }
-        }
-      }
-    },
     "Value": {
       "properties": {
         "nullValue": {
           "enum": [
             "NULL_VALUE"
           ]
-        },
-        "functionValue": {
-          "$ref": "Function"
-        },
-        "pipelineValue": {
-          "$ref": "Pipeline"
         }
       }
     }

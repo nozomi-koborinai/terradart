@@ -24,12 +24,6 @@
     },
     "FilterExpression": {
       "properties": {
-        "fieldSourceValue": {
-          "$ref": "FieldSource"
-        },
-        "fieldSource": {
-          "$ref": "FieldSource"
-        },
         "comparator": {
           "enum": [
             "COMPARATOR_UNSPECIFIED",
@@ -43,6 +37,12 @@
             "IN",
             "LIKE"
           ]
+        },
+        "fieldSourceValue": {
+          "$ref": "FieldSource"
+        },
+        "fieldSource": {
+          "$ref": "FieldSource"
         }
       }
     },
@@ -112,6 +112,19 @@
     },
     "MetricDescriptor": {
       "properties": {
+        "labels": {
+          "items": {
+            "$ref": "LabelDescriptor"
+          }
+        },
+        "metricKind": {
+          "enum": [
+            "METRIC_KIND_UNSPECIFIED",
+            "GAUGE",
+            "DELTA",
+            "CUMULATIVE"
+          ]
+        },
         "metadata": {
           "$ref": "MetricDescriptorMetadata"
         },
@@ -127,14 +140,6 @@
             "DEPRECATED"
           ]
         },
-        "metricKind": {
-          "enum": [
-            "METRIC_KIND_UNSPECIFIED",
-            "GAUGE",
-            "DELTA",
-            "CUMULATIVE"
-          ]
-        },
         "valueType": {
           "enum": [
             "VALUE_TYPE_UNSPECIFIED",
@@ -145,11 +150,6 @@
             "DISTRIBUTION",
             "MONEY"
           ]
-        },
-        "labels": {
-          "items": {
-            "$ref": "LabelDescriptor"
-          }
         }
       }
     },
@@ -203,32 +203,32 @@
     },
     "QueryBuilderConfig": {
       "properties": {
-        "filter": {
-          "$ref": "FilterPredicate"
+        "fieldSources": {
+          "items": {
+            "$ref": "FieldSource"
+          }
         },
         "orderBys": {
           "items": {
             "$ref": "SortOrderParameter"
           }
         },
-        "fieldSources": {
-          "items": {
-            "$ref": "FieldSource"
-          }
+        "filter": {
+          "$ref": "FilterPredicate"
         }
       }
     },
     "SavedQuery": {
       "properties": {
-        "opsAnalyticsQuery": {
-          "$ref": "OpsAnalyticsQuery"
-        },
         "visibility": {
           "enum": [
             "VISIBILITY_UNSPECIFIED",
             "PRIVATE",
             "SHARED"
           ]
+        },
+        "opsAnalyticsQuery": {
+          "$ref": "OpsAnalyticsQuery"
         }
       }
     },
@@ -241,9 +241,6 @@
     },
     "SortOrderParameter": {
       "properties": {
-        "fieldSource": {
-          "$ref": "FieldSource"
-        },
         "sortOrderDirection": {
           "enum": [
             "SORT_ORDER_UNSPECIFIED",
@@ -251,6 +248,9 @@
             "SORT_ORDER_ASCENDING",
             "SORT_ORDER_DESCENDING"
           ]
+        },
+        "fieldSource": {
+          "$ref": "FieldSource"
         }
       }
     },

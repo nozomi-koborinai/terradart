@@ -1,18 +1,18 @@
 {
   "name": "cloudidentity",
   "version": "v1",
-  "revision": "20261108",
+  "revision": "20261118",
   "sourceUrl": "https://cloudidentity.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "DynamicGroupMetadata": {
       "properties": {
+        "status": {
+          "$ref": "DynamicGroupStatus"
+        },
         "queries": {
           "items": {
             "$ref": "DynamicGroupQuery"
           }
-        },
-        "status": {
-          "$ref": "DynamicGroupStatus"
         }
       }
     },
@@ -44,6 +44,12 @@
           "$ref": "DynamicGroupMetadata"
         }
       }
+    },
+    "InboundOidcSsoProfile": {
+      "properties": {}
+    },
+    "InboundSamlSsoProfile": {
+      "properties": {}
     },
     "Membership": {
       "properties": {
@@ -94,6 +100,17 @@
             "FORWARD_COMPLIANT",
             "NON_COMPLIANT",
             "EVALUATING"
+          ]
+        }
+      }
+    },
+    "Policy": {
+      "properties": {
+        "type": {
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "SYSTEM",
+            "ADMIN"
           ]
         }
       }

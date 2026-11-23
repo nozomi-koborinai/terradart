@@ -3,12 +3,6 @@ outputDir: compute
 deriveClassDoc: true
 deriveExactlyOne: true
 
-unsealedGroups:
-  "backend_service, target": >-
-    Magic Modules declares backend_service under api_version ga 2026-11-01,
-    but hashicorp/google 8.11.0 does not expose backend_service in the GA
-    schema and still requires target.
-
 curatedDoc: |-
   /// The entry point ("frontend") of a GCP global load balancer. A global
   /// forwarding rule binds a public anycast VIP + port range to a target
@@ -79,7 +73,7 @@ curatedDoc: |-
   /// final feFwd = GoogleComputeGlobalForwardingRule(
   ///   'fe',
   ///   name: TfArg.literal('lb-https-frontend'),
-  ///   target: httpsProxy.selfLink,
+  ///   backendServiceOrTarget: .target(httpsProxy.selfLink),
   ///   ipAddress: lbVip.selfLink,
   ///   ipProtocol: GlobalForwardingRuleIpProtocol.tcp,
   ///   portRange: TfArg.literal('443'),
@@ -94,6 +88,7 @@ curatedDoc: |-
 paramOrder:
   - name
   - target
+  - backend_service
   - ip_address
   - ip_protocol
   - ip_version

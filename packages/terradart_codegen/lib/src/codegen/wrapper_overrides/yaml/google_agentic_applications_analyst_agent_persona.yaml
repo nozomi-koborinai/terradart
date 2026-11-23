@@ -9,6 +9,10 @@ deriveEnums: true
 typeNames:
   artifacts_config.audit_trail_export_options.export_format: AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat
 
+enumValues:
+  mcp_data_sources.request_headers.dynamic_value:
+    - USER_ID
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 

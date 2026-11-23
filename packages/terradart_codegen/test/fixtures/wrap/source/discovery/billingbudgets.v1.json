@@ -6,6 +6,13 @@
   "schemas": {
     "GoogleCloudBillingBudgetsV1Budget": {
       "properties": {
+        "ownershipScope": {
+          "enum": [
+            "OWNERSHIP_SCOPE_UNSPECIFIED",
+            "ALL_USERS",
+            "BILLING_ACCOUNT"
+          ]
+        },
         "spendCap": {
           "$ref": "GoogleCloudBillingBudgetsV1SpendCap"
         },
@@ -16,32 +23,25 @@
         },
         "budgetFilter": {
           "$ref": "GoogleCloudBillingBudgetsV1Filter"
-        },
-        "ownershipScope": {
-          "enum": [
-            "OWNERSHIP_SCOPE_UNSPECIFIED",
-            "ALL_USERS",
-            "BILLING_ACCOUNT"
-          ]
         }
       }
     },
     "GoogleCloudBillingBudgetsV1Filter": {
       "properties": {
-        "calendarPeriod": {
-          "enum": [
-            "CALENDAR_PERIOD_UNSPECIFIED",
-            "MONTH",
-            "QUARTER",
-            "YEAR"
-          ]
-        },
         "creditTypesTreatment": {
           "enum": [
             "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
             "INCLUDE_ALL_CREDITS",
             "EXCLUDE_ALL_CREDITS",
             "INCLUDE_SPECIFIED_CREDITS"
+          ]
+        },
+        "calendarPeriod": {
+          "enum": [
+            "CALENDAR_PERIOD_UNSPECIFIED",
+            "MONTH",
+            "QUARTER",
+            "YEAR"
           ]
         }
       }
