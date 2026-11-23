@@ -518,7 +518,7 @@ final class HdinsightInteractiveQueryClusterHeadNode {
 
   final TfArg<String>? virtualNetworkId;
 
-  final TfArg<String> vmSize;
+  final HdinsightInteractiveQueryClusterVmSize vmSize;
 
   final List<HdinsightInteractiveQueryClusterScriptActions>? scriptActions;
 
@@ -533,6 +533,477 @@ final class HdinsightInteractiveQueryClusterHeadNode {
     if (scriptActions != null)
       'script_actions': [for (final e in scriptActions!) e.encode()],
   };
+}
+
+/// `vm_size` — derived from the provider schema description.
+extension type const HdinsightInteractiveQueryClusterVmSize._(TfArg<String> _)
+    implements TfArg<String> {
+  HdinsightInteractiveQueryClusterVmSize.variable(String name)
+    : this._(TfArg.variable(name));
+  HdinsightInteractiveQueryClusterVmSize.expression(String template)
+    : this._(TfArg.expression(template));
+  const HdinsightInteractiveQueryClusterVmSize.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const extrasmall = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('ExtraSmall'),
+  );
+  static const small = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Small'),
+  );
+  static const medium = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Medium'),
+  );
+  static const large = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Large'),
+  );
+  static const extralarge = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('ExtraLarge'),
+  );
+  static const a5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('A5'),
+  );
+  static const a6 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('A6'),
+  );
+  static const a7 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('A7'),
+  );
+  static const a8 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('A8'),
+  );
+  static const a9 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('A9'),
+  );
+  static const a10 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('A10'),
+  );
+  static const a11 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('A11'),
+  );
+  static const standardA1V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_A1_V2'),
+  );
+  static const standardA2V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_A2_V2'),
+  );
+  static const standardA2mV2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_A2m_V2'),
+  );
+  static const standardA3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_A3'),
+  );
+  static const standardA4V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_A4_V2'),
+  );
+  static const standardA4mV2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_A4m_V2'),
+  );
+  static const standardA8V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_A8_V2'),
+  );
+  static const standardA8mV2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_A8m_V2'),
+  );
+  static const standardD1 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D1'),
+  );
+  static const standardD2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D2'),
+  );
+  static const standardD3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D3'),
+  );
+  static const standardD4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D4'),
+  );
+  static const standardD11 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D11'),
+  );
+  static const standardD12 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D12'),
+  );
+  static const standardD13 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D13'),
+  );
+  static const standardD14 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D14'),
+  );
+  static const standardD1V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D1_V2'),
+  );
+  static const standardD2V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D2_V2'),
+  );
+  static const standardD3V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D3_V2'),
+  );
+  static const standardD4V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D4_V2'),
+  );
+  static const standardD5V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D5_V2'),
+  );
+  static const standardD11V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D11_V2'),
+  );
+  static const standardD12V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D12_V2'),
+  );
+  static const standardD13V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D13_V2'),
+  );
+  static const standardD14V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D14_V2'),
+  );
+  static const standardDs1V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_DS1_V2'),
+  );
+  static const standardDs2V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_DS2_V2'),
+  );
+  static const standardDs3V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_DS3_V2'),
+  );
+  static const standardDs4V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_DS4_V2'),
+  );
+  static const standardDs5V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_DS5_V2'),
+  );
+  static const standardDs11V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_DS11_V2'),
+  );
+  static const standardDs12V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_DS12_V2'),
+  );
+  static const standardDs13V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_DS13_V2'),
+  );
+  static const standardDs14V2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_DS14_V2'),
+  );
+  static const standardE2V3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E2_V3'),
+  );
+  static const standardE4V3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E4_V3'),
+  );
+  static const standardE8V3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E8_V3'),
+  );
+  static const standardE16V3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E16_V3'),
+  );
+  static const standardE20V3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E20_V3'),
+  );
+  static const standardE32V3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E32_V3'),
+  );
+  static const standardE64V3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E64_V3'),
+  );
+  static const standardE64iV3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E64i_V3'),
+  );
+  static const standardE2sV3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E2s_V3'),
+  );
+  static const standardE4sV3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E4s_V3'),
+  );
+  static const standardE8sV3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E8s_V3'),
+  );
+  static const standardE16sV3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E16s_V3'),
+  );
+  static const standardE20sV3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E20s_V3'),
+  );
+  static const standardE32sV3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E32s_V3'),
+  );
+  static const standardE64sV3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E64s_V3'),
+  );
+  static const standardE64isV3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E64is_V3'),
+  );
+  static const standardD2aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D2a_V4'),
+  );
+  static const standardD4aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D4a_V4'),
+  );
+  static const standardD8aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D8a_V4'),
+  );
+  static const standardD16aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D16a_V4'),
+  );
+  static const standardD32aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D32a_V4'),
+  );
+  static const standardD48aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D48a_V4'),
+  );
+  static const standardD64aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D64a_V4'),
+  );
+  static const standardD96aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D96a_V4'),
+  );
+  static const standardE2aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E2a_V4'),
+  );
+  static const standardE4aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E4a_V4'),
+  );
+  static const standardE8aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E8a_V4'),
+  );
+  static const standardE16aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E16a_V4'),
+  );
+  static const standardE20aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E20a_V4'),
+  );
+  static const standardE32aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E32a_V4'),
+  );
+  static const standardE48aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E48a_V4'),
+  );
+  static const standardE64aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E64a_V4'),
+  );
+  static const standardE96aV4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E96a_V4'),
+  );
+  static const standardD2adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D2ads_V5'),
+  );
+  static const standardD4adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D4ads_V5'),
+  );
+  static const standardD8adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D8ads_V5'),
+  );
+  static const standardD16adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D16ads_V5'),
+  );
+  static const standardD32adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D32ads_V5'),
+  );
+  static const standardD48adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D48ads_V5'),
+  );
+  static const standardD64adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D64ads_V5'),
+  );
+  static const standardD96adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_D96ads_V5'),
+  );
+  static const standardE2adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E2ads_V5'),
+  );
+  static const standardE4adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E4ads_V5'),
+  );
+  static const standardE8adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E8ads_V5'),
+  );
+  static const standardE16adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E16ads_V5'),
+  );
+  static const standardE20adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E20ads_V5'),
+  );
+  static const standardE32adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E32ads_V5'),
+  );
+  static const standardE48adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E48ads_V5'),
+  );
+  static const standardE64adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E64ads_V5'),
+  );
+  static const standardE96adsV5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_E96ads_V5'),
+  );
+  static const standardG1 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_G1'),
+  );
+  static const standardG2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_G2'),
+  );
+  static const standardG3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_G3'),
+  );
+  static const standardG4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_G4'),
+  );
+  static const standardG5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_G5'),
+  );
+  static const standardF2sV2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_F2s_V2'),
+  );
+  static const standardF4sV2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_F4s_V2'),
+  );
+  static const standardF8sV2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_F8s_V2'),
+  );
+  static const standardF16sV2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_F16s_V2'),
+  );
+  static const standardF32sV2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_F32s_V2'),
+  );
+  static const standardF64sV2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_F64s_V2'),
+  );
+  static const standardF72sV2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_F72s_V2'),
+  );
+  static const standardGs1 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_GS1'),
+  );
+  static const standardGs2 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_GS2'),
+  );
+  static const standardGs3 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_GS3'),
+  );
+  static const standardGs4 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_GS4'),
+  );
+  static const standardGs5 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_GS5'),
+  );
+  static const standardNc24 = HdinsightInteractiveQueryClusterVmSize._(
+    TfArgLiteral('Standard_NC24'),
+  );
+
+  static const List<HdinsightInteractiveQueryClusterVmSize> values = [
+    extrasmall,
+    small,
+    medium,
+    large,
+    extralarge,
+    a5,
+    a6,
+    a7,
+    a8,
+    a9,
+    a10,
+    a11,
+    standardA1V2,
+    standardA2V2,
+    standardA2mV2,
+    standardA3,
+    standardA4V2,
+    standardA4mV2,
+    standardA8V2,
+    standardA8mV2,
+    standardD1,
+    standardD2,
+    standardD3,
+    standardD4,
+    standardD11,
+    standardD12,
+    standardD13,
+    standardD14,
+    standardD1V2,
+    standardD2V2,
+    standardD3V2,
+    standardD4V2,
+    standardD5V2,
+    standardD11V2,
+    standardD12V2,
+    standardD13V2,
+    standardD14V2,
+    standardDs1V2,
+    standardDs2V2,
+    standardDs3V2,
+    standardDs4V2,
+    standardDs5V2,
+    standardDs11V2,
+    standardDs12V2,
+    standardDs13V2,
+    standardDs14V2,
+    standardE2V3,
+    standardE4V3,
+    standardE8V3,
+    standardE16V3,
+    standardE20V3,
+    standardE32V3,
+    standardE64V3,
+    standardE64iV3,
+    standardE2sV3,
+    standardE4sV3,
+    standardE8sV3,
+    standardE16sV3,
+    standardE20sV3,
+    standardE32sV3,
+    standardE64sV3,
+    standardE64isV3,
+    standardD2aV4,
+    standardD4aV4,
+    standardD8aV4,
+    standardD16aV4,
+    standardD32aV4,
+    standardD48aV4,
+    standardD64aV4,
+    standardD96aV4,
+    standardE2aV4,
+    standardE4aV4,
+    standardE8aV4,
+    standardE16aV4,
+    standardE20aV4,
+    standardE32aV4,
+    standardE48aV4,
+    standardE64aV4,
+    standardE96aV4,
+    standardD2adsV5,
+    standardD4adsV5,
+    standardD8adsV5,
+    standardD16adsV5,
+    standardD32adsV5,
+    standardD48adsV5,
+    standardD64adsV5,
+    standardD96adsV5,
+    standardE2adsV5,
+    standardE4adsV5,
+    standardE8adsV5,
+    standardE16adsV5,
+    standardE20adsV5,
+    standardE32adsV5,
+    standardE48adsV5,
+    standardE64adsV5,
+    standardE96adsV5,
+    standardG1,
+    standardG2,
+    standardG3,
+    standardG4,
+    standardG5,
+    standardF2sV2,
+    standardF4sV2,
+    standardF8sV2,
+    standardF16sV2,
+    standardF32sV2,
+    standardF64sV2,
+    standardF72sV2,
+    standardGs1,
+    standardGs2,
+    standardGs3,
+    standardGs4,
+    standardGs5,
+    standardNc24,
+  ];
 }
 
 /// Typed helper for the `roles.head_node.script_actions` block of
@@ -588,7 +1059,7 @@ final class HdinsightInteractiveQueryClusterWorkerNode {
 
   final TfArg<String>? virtualNetworkId;
 
-  final TfArg<String> vmSize;
+  final HdinsightInteractiveQueryClusterVmSize vmSize;
 
   final HdinsightInteractiveQueryClusterAutoscale? autoscale;
 
@@ -689,7 +1160,7 @@ final class HdinsightInteractiveQueryClusterZookeeperNode {
 
   final TfArg<String>? virtualNetworkId;
 
-  final TfArg<String> vmSize;
+  final HdinsightInteractiveQueryClusterVmSize vmSize;
 
   final List<HdinsightInteractiveQueryClusterScriptActions>? scriptActions;
 

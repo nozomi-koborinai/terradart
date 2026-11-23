@@ -191,6 +191,7 @@ final class AzurermVirtualNetwork extends Resource {
   AzurermVirtualNetwork(
     super.localName, {
     required VirtualNetworkAddressing addressing,
+    TfArg<List<String>>? advertisedGatewayPrefixes,
     TfArg<String>? bgpCommunity,
     TfArg<List<String>>? dnsServers,
     TfArg<String>? edgeZone,
@@ -211,6 +212,7 @@ final class AzurermVirtualNetwork extends Resource {
          terraformType: tfType,
          argMap: {
            ...addressing.argMap,
+           'advertised_gateway_prefixes': ?advertisedGatewayPrefixes,
            'bgp_community': ?bgpCommunity,
            'dns_servers': ?dnsServers,
            'edge_zone': ?edgeZone,
@@ -247,6 +249,10 @@ final class AzurermVirtualNetwork extends Resource {
   /// Reference to `address_space` attribute.
   TfRef<List<String>> get addressSpace =>
       TfRef.attribute<List<String>>(this, 'address_space');
+
+  /// Reference to `advertised_gateway_prefixes` attribute.
+  TfRef<List<String>> get advertisedGatewayPrefixes =>
+      TfRef.attribute<List<String>>(this, 'advertised_gateway_prefixes');
 
   /// Reference to `bgp_community` attribute.
   TfRef<String> get bgpCommunity =>

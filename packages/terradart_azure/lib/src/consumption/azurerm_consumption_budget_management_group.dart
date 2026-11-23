@@ -90,11 +90,11 @@ final class ConsumptionBudgetManagementGroupNotification {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String> operator;
+  final ConsumptionBudgetManagementGroupOperator operator;
 
   final TfArg<num> threshold;
 
-  final TfArg<String>? thresholdType;
+  final ConsumptionBudgetManagementGroupThresholdType? thresholdType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -104,6 +104,59 @@ final class ConsumptionBudgetManagementGroupNotification {
     'threshold': threshold.toTfJson(),
     'threshold_type': ?thresholdType?.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const ConsumptionBudgetManagementGroupOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  ConsumptionBudgetManagementGroupOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ConsumptionBudgetManagementGroupOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConsumptionBudgetManagementGroupOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const equalto = ConsumptionBudgetManagementGroupOperator._(
+    TfArgLiteral('EqualTo'),
+  );
+  static const greaterthan = ConsumptionBudgetManagementGroupOperator._(
+    TfArgLiteral('GreaterThan'),
+  );
+  static const greaterthanorequalto =
+      ConsumptionBudgetManagementGroupOperator._(
+        TfArgLiteral('GreaterThanOrEqualTo'),
+      );
+
+  static const List<ConsumptionBudgetManagementGroupOperator> values = [
+    equalto,
+    greaterthan,
+    greaterthanorequalto,
+  ];
+}
+
+/// `threshold_type` — derived from the provider schema description.
+extension type const ConsumptionBudgetManagementGroupThresholdType._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  ConsumptionBudgetManagementGroupThresholdType.variable(String name)
+    : this._(TfArg.variable(name));
+  ConsumptionBudgetManagementGroupThresholdType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConsumptionBudgetManagementGroupThresholdType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const actual = ConsumptionBudgetManagementGroupThresholdType._(
+    TfArgLiteral('Actual'),
+  );
+  static const forecasted = ConsumptionBudgetManagementGroupThresholdType._(
+    TfArgLiteral('Forecasted'),
+  );
+
+  static const List<ConsumptionBudgetManagementGroupThresholdType> values = [
+    actual,
+    forecasted,
+  ];
 }
 
 /// Typed helper for the `time_period` block of

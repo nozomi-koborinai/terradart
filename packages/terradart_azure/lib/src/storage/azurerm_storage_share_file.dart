@@ -1,10 +1,79 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `azurerm_storage_share_file`.
 const Set<String> _azurermStorageShareFileSensitive = <String>{};
+
+/// At most one of `source`, `source_content` on `azurerm_storage_share_file`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.source(...)`.
+sealed class StorageShareFileSource {
+  const StorageShareFileSource();
+
+  /// Sets `source`.
+  const factory StorageShareFileSource.source(TfArg<String> source) =
+      StorageShareFileSourceChoice;
+
+  /// Sets `source_content`.
+  const factory StorageShareFileSource.sourceContent(
+    TfArg<String> sourceContent,
+  ) = StorageShareFileSourceContent;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [StorageShareFileSource.source] choice: sets `source`.
+final class StorageShareFileSourceChoice extends StorageShareFileSource {
+  const StorageShareFileSourceChoice(this.source);
+
+  final TfArg<String> source;
+
+  @internal
+  @override
+  String get blockKey => 'source';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'source': source.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'source': source};
+}
+
+/// The [StorageShareFileSource.sourceContent] choice: sets `source_content`.
+final class StorageShareFileSourceContent extends StorageShareFileSource {
+  const StorageShareFileSourceContent(this.sourceContent);
+
+  final TfArg<String> sourceContent;
+
+  @internal
+  @override
+  String get blockKey => 'source_content';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'source_content': sourceContent.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'source_content': sourceContent};
+}
 
 /// Factory wrapper for `azurerm_storage_share_file`.
 final class AzurermStorageShareFile extends Resource {
@@ -19,8 +88,7 @@ final class AzurermStorageShareFile extends Resource {
     TfArg<Map<String, String>>? metadata,
     required TfArg<String> name,
     TfArg<String>? path,
-    TfArg<String>? source,
-    TfArg<String>? sourceContent,
+    StorageShareFileSource? source,
     required TfArg<String> storageShareUrl,
     super.lifecycle,
     super.dependsOn,
@@ -36,8 +104,7 @@ final class AzurermStorageShareFile extends Resource {
            'metadata': ?metadata,
            'name': name,
            'path': ?path,
-           'source': ?source,
-           'source_content': ?sourceContent,
+           ...?source?.argMap,
            'storage_share_url': storageShareUrl,
          },
        );

@@ -74,6 +74,7 @@ export 'src/hdinsight/azurerm_hdinsight_hbase_cluster.dart'
         HdinsightHbaseClusterStorageAccountGen2,
         HdinsightHbaseClusterTier,
         HdinsightHbaseClusterTlsMinVersion,
+        HdinsightHbaseClusterVmSize,
         HdinsightHbaseClusterWorkerNode,
         HdinsightHbaseClusterZookeeperNode;
 export 'src/hdinsight/azurerm_hdinsight_interactive_query_cluster.dart'
@@ -106,6 +107,7 @@ export 'src/hdinsight/azurerm_hdinsight_interactive_query_cluster.dart'
         HdinsightInteractiveQueryClusterStorageAccountGen2,
         HdinsightInteractiveQueryClusterTier,
         HdinsightInteractiveQueryClusterTlsMinVersion,
+        HdinsightInteractiveQueryClusterVmSize,
         HdinsightInteractiveQueryClusterWorkerNode,
         HdinsightInteractiveQueryClusterZookeeperNode;
 export 'src/hdinsight/azurerm_hdinsight_kafka_cluster.dart'
@@ -137,6 +139,7 @@ export 'src/hdinsight/azurerm_hdinsight_kafka_cluster.dart'
         HdinsightKafkaClusterStorageAccountGen2,
         HdinsightKafkaClusterTier,
         HdinsightKafkaClusterTlsMinVersion,
+        HdinsightKafkaClusterVmSize,
         HdinsightKafkaClusterWorkerNode,
         HdinsightKafkaClusterZookeeperNode;
 export 'src/hdinsight/azurerm_hdinsight_spark_cluster.dart'
@@ -170,5 +173,6 @@ export 'src/hdinsight/azurerm_hdinsight_spark_cluster.dart'
         HdinsightSparkClusterStorageAccountGen2,
         HdinsightSparkClusterTier,
         HdinsightSparkClusterTlsMinVersion,
+        HdinsightSparkClusterVmSize,
         HdinsightSparkClusterWorkerNode,
         HdinsightSparkClusterZookeeperNode;

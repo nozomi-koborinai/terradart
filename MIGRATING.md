@@ -18,6 +18,41 @@ and run `dart pub upgrade`. Install or update the CLI with
 `dart install terradart_cli` (or run one-off commands without installing via
 `dart run terradart_cli:terradart@ <command>`).
 
+### Azure provider 5.14.0
+
+**Breaking (`terradart_azure`).** Extracting hints from local schema maps in
+provider 5.14.0 types the validated enums and `ConflictsWith` pair that
+`azurerm_consumption_budget_management_group`, `azurerm_sentinel_automation_rule`,
+`azurerm_storage_share_file`, and the five `azurerm_hdinsight_*_cluster`
+resources enforce. `AzurermStorageShareFile.source` and `sourceContent` merge
+into the sealed `StorageShareFileSource` choice (`.source(...)`,
+`.sourceContent(...)`), and the validated string inputs take their generated
+enum types. The Terraform JSON for the same values is unchanged.
+
+| Before | After |
+|---|---|
+| `AzurermSentinelAutomationRule('r', triggersOn: .literal('Incidents'), triggersWhen: .literal('Created'), ...)` | `AzurermSentinelAutomationRule('r', triggersOn: .incidents, triggersWhen: .created, ...)` |
+| `SentinelAutomationRuleActionIncident(classification: .literal('Undetermined'), severity: .literal('High'), status: .literal('Active'), ...)` | `SentinelAutomationRuleActionIncident(classification: .undetermined, severity: .high, status: .active, ...)` |
+| `AzurermStorageShareFile('f', source: .literal('a.txt'), ...)` | `AzurermStorageShareFile('f', source: .source(.literal('a.txt')), ...)` |
+| `AzurermStorageShareFile('f', sourceContent: .literal('hi'), ...)` | `AzurermStorageShareFile('f', source: .sourceContent(.literal('hi')), ...)` |
+| `ConsumptionBudgetManagementGroupNotification(operator: .literal('EqualTo'), thresholdType: .literal('Actual'), ...)` | `ConsumptionBudgetManagementGroupNotification(operator: .equalto, thresholdType: .actual, ...)` |
+| `HdinsightHadoopClusterHeadNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightHadoopClusterHeadNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightHadoopClusterWorkerNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightHadoopClusterWorkerNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightHadoopClusterZookeeperNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightHadoopClusterZookeeperNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightHbaseClusterHeadNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightHbaseClusterHeadNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightHbaseClusterWorkerNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightHbaseClusterWorkerNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightHbaseClusterZookeeperNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightHbaseClusterZookeeperNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightInteractiveQueryClusterHeadNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightInteractiveQueryClusterHeadNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightInteractiveQueryClusterWorkerNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightInteractiveQueryClusterWorkerNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightInteractiveQueryClusterZookeeperNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightInteractiveQueryClusterZookeeperNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightKafkaClusterHeadNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightKafkaClusterHeadNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightKafkaClusterKafkaManagementNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightKafkaClusterKafkaManagementNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightKafkaClusterWorkerNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightKafkaClusterWorkerNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightKafkaClusterZookeeperNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightKafkaClusterZookeeperNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightSparkClusterHeadNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightSparkClusterHeadNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightSparkClusterWorkerNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightSparkClusterWorkerNode(vmSize: .standardD3V2, ...)` |
+| `HdinsightSparkClusterZookeeperNode(vmSize: .literal('Standard_D3_V2'), ...)` | `HdinsightSparkClusterZookeeperNode(vmSize: .standardD3V2, ...)` |
+
 ### Cloudflare provider 5.29.0
 
 **Breaking (`terradart_cloudflare`).** Provider 5.29.0 introduces several schema

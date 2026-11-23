@@ -10,7 +10,9 @@ export 'src/consumption/azurerm_consumption_budget_management_group.dart'
         ConsumptionBudgetManagementGroupDimension,
         ConsumptionBudgetManagementGroupFilter,
         ConsumptionBudgetManagementGroupNotification,
+        ConsumptionBudgetManagementGroupOperator,
         ConsumptionBudgetManagementGroupTag,
+        ConsumptionBudgetManagementGroupThresholdType,
         ConsumptionBudgetManagementGroupTimePeriod;
 export 'src/consumption/azurerm_consumption_budget_resource_group.dart'
     show

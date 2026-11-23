@@ -139,6 +139,7 @@ final class AzurermDataProtectionBackupVault extends Resource {
 
   AzurermDataProtectionBackupVault(
     super.localName, {
+    TfArg<bool>? alertsForAllJobFailuresEnabled,
     TfArg<bool>? crossRegionRestoreEnabled,
     required DataProtectionBackupVaultDatastoreType datastoreType,
     DataProtectionBackupVaultImmutability? immutability,
@@ -157,6 +158,8 @@ final class AzurermDataProtectionBackupVault extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
+           'alerts_for_all_job_failures_enabled':
+               ?alertsForAllJobFailuresEnabled,
            'cross_region_restore_enabled': ?crossRegionRestoreEnabled,
            'datastore_type': datastoreType,
            'immutability': ?immutability,
@@ -183,6 +186,10 @@ final class AzurermDataProtectionBackupVault extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `alerts_for_all_job_failures_enabled` attribute.
+  TfRef<bool> get alertsForAllJobFailuresEnabled =>
+      TfRef.attribute<bool>(this, 'alerts_for_all_job_failures_enabled');
 
   /// Reference to `cross_region_restore_enabled` attribute.
   TfRef<bool> get crossRegionRestoreEnabled =>

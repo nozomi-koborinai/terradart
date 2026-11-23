@@ -50,6 +50,7 @@ export 'src/oracle/azurerm_oracle_autonomous_database.dart'
         OracleAutonomousDatabaseDbWorkload,
         OracleAutonomousDatabaseLicenseModel,
         OracleAutonomousDatabaseLongTermBackupSchedule,
+        OracleAutonomousDatabaseMaintenancePatchLevel,
         OracleAutonomousDatabaseRepeatCadence;
 export 'src/oracle/azurerm_oracle_autonomous_database_backup.dart'
     show

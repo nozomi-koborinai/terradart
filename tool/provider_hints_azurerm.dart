@@ -389,6 +389,28 @@ int? _mapOpen(List<GoToken> t, int from, int end) {
   return null;
 }
 
+/// Returns the `{` index of a `map[string]*[pkg.]Schema{` literal starting at
+/// [at], or null if [at] does not open a schema map.
+int? _schemaMapOpen(List<GoToken> t, int at, int end) {
+  if (at + 6 >= end ||
+      t[at].text != 'map' ||
+      t[at + 1].text != '[' ||
+      t[at + 2].text != 'string' ||
+      t[at + 3].text != ']' ||
+      t[at + 4].text != '*') {
+    return null;
+  }
+  if (t[at + 5].text == 'Schema' && t[at + 6].text == '{') return at + 6;
+  if (at + 8 < end &&
+      t[at + 5].kind == GoTok.ident &&
+      t[at + 6].text == '.' &&
+      t[at + 7].text == 'Schema' &&
+      t[at + 8].text == '{') {
+    return at + 8;
+  }
+  return null;
+}
+
 void _walk(
   List<GoToken> t,
   int start,
@@ -464,6 +486,38 @@ void _walk(
         final target = lookup(ref, null, t[i + 2].text);
         if (target != null) follow(target, path);
         i += 5;
+        continue;
+      }
+      if (i + 6 < end &&
+          t[i + 1].text == ':' &&
+          t[i + 2].kind == GoTok.ident &&
+          t[i + 3].text == '.' &&
+          t[i + 4].kind == GoTok.ident &&
+          t[i + 5].text == '(' &&
+          t[i + 6].text == ')') {
+        final target = lookup(ref, t[i + 2].text, t[i + 4].text);
+        if (target != null) follow(target, path);
+        i += 7;
+        continue;
+      }
+    }
+    if (tok.kind == GoTok.ident && tok.text == 'map' && !schemaMap) {
+      final open = _schemaMapOpen(t, i, end);
+      if (open != null) {
+        final close = _matchBrace(t, open);
+        _walk(
+          t,
+          open + 1,
+          close,
+          path,
+          found,
+          index,
+          ref,
+          lookup,
+          follow,
+          schemaMap: true,
+        );
+        i = close + 1;
         continue;
       }
     }
@@ -760,6 +814,9 @@ List<String>? _elements(
   Map<String, String> imports = const {},
 ]) {
   final close = _matchBrace(t, brace);
+  for (var k = brace + 1; k < close; k++) {
+    if (t[k].text == '+') return null;
+  }
   final out = <String>[];
   for (var k = brace + 1; k < close; k++) {
     if (t[k].kind == GoTok.string) {

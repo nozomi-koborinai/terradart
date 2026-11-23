@@ -1068,7 +1068,7 @@ final class HdinsightHadoopClusterHeadNode {
 
   final TfArg<String>? virtualNetworkId;
 
-  final TfArg<String> vmSize;
+  final HdinsightHadoopClusterVmSize vmSize;
 
   final List<HdinsightHadoopClusterScriptActions>? scriptActions;
 
@@ -1138,7 +1138,7 @@ final class HdinsightHadoopClusterWorkerNode {
 
   final TfArg<String>? virtualNetworkId;
 
-  final TfArg<String> vmSize;
+  final HdinsightHadoopClusterVmSize vmSize;
 
   final HdinsightHadoopClusterAutoscale? autoscale;
 
@@ -1264,7 +1264,7 @@ final class HdinsightHadoopClusterZookeeperNode {
 
   final TfArg<String>? virtualNetworkId;
 
-  final TfArg<String> vmSize;
+  final HdinsightHadoopClusterVmSize vmSize;
 
   final List<HdinsightHadoopClusterScriptActions>? scriptActions;
 
