@@ -39,6 +39,40 @@ final class WorkersDeploymentAnnotations {
   };
 }
 
+/// Typed helper for the `code_update_strategy` block of
+/// `cloudflare_workers_deployment` (derived from provider schema).
+@immutable
+final class WorkersDeploymentCodeUpdateStrategy {
+  const WorkersDeploymentCodeUpdateStrategy({
+    this.maxDelay,
+    required this.mode,
+  });
+
+  final TfArg<num>? maxDelay;
+
+  final WorkersDeploymentMode mode;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'max_delay': ?maxDelay?.toTfJson(),
+    'mode': mode.toTfJson(),
+  };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const WorkersDeploymentMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersDeploymentMode.variable(String name) : this._(TfArg.variable(name));
+  WorkersDeploymentMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersDeploymentMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const immediate = WorkersDeploymentMode._(TfArgLiteral('immediate'));
+  static const deferred = WorkersDeploymentMode._(TfArgLiteral('deferred'));
+
+  static const List<WorkersDeploymentMode> values = [immediate, deferred];
+}
+
 /// Typed helper for the `versions` block of
 /// `cloudflare_workers_deployment` (derived from provider schema).
 @immutable
@@ -63,7 +97,11 @@ final class WorkersDeploymentVersions {
 ///
 /// Accepted Permissions
 ///
-/// - `Workers Scripts Read` - `Workers Scripts Write` - `Workers Tail Read`
+/// - `Individual Workers Admin` - `Individual Workers Content Read-Only` -
+/// `Individual Workers Editor` - `Individual Workers Metadata Read-Only` -
+/// `Workers Admin` - `Workers Content Read-Only` - `Workers Editor` - `Workers
+/// Metadata Read-Only` - `Workers Scripts Read` - `Workers Scripts Write` -
+/// `Workers Tail Read`
 final class CloudflareWorkersDeployment extends Resource {
   static const String tfType = 'cloudflare_workers_deployment';
 
@@ -74,6 +112,7 @@ final class CloudflareWorkersDeployment extends Resource {
     required TfArg<String> scriptName,
     required WorkersDeploymentStrategy strategy,
     WorkersDeploymentAnnotations? annotations,
+    WorkersDeploymentCodeUpdateStrategy? codeUpdateStrategy,
     required List<WorkersDeploymentVersions> versions,
     super.lifecycle,
     super.dependsOn,
@@ -88,6 +127,8 @@ final class CloudflareWorkersDeployment extends Resource {
            'strategy': strategy,
            if (annotations != null)
              'annotations': TfArg.literal(annotations.encode()),
+           if (codeUpdateStrategy != null)
+             'code_update_strategy': TfArg.literal(codeUpdateStrategy.encode()),
            'versions': TfArg.literal([for (final e in versions) e.encode()]),
          },
        );

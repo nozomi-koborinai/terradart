@@ -200,13 +200,19 @@ final class ZeroTrustDeviceCustomProfileExclude {
 @immutable
 final class ZeroTrustDeviceCustomProfileGlobalAcceleration {
   const ZeroTrustDeviceCustomProfileGlobalAcceleration({
+    this.allowManualOverride,
     required this.apiEndpoints,
+    this.autoswitch,
     required this.enabled,
     required this.masqueEndpoints,
     required this.wireguardEndpoints,
   });
 
+  final TfArg<bool>? allowManualOverride;
+
   final TfArg<List<String>> apiEndpoints;
+
+  final TfArg<bool>? autoswitch;
 
   final TfArg<bool> enabled;
 
@@ -216,7 +222,9 @@ final class ZeroTrustDeviceCustomProfileGlobalAcceleration {
 
   @internal
   Map<String, Object?> encode() => {
+    'allow_manual_override': ?allowManualOverride?.toTfJson(),
     'api_endpoints': apiEndpoints.toTfJson(),
+    'autoswitch': ?autoswitch?.toTfJson(),
     'enabled': enabled.toTfJson(),
     'masque_endpoints': masqueEndpoints.toTfJson(),
     'wireguard_endpoints': wireguardEndpoints.toTfJson(),
@@ -302,6 +310,7 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
     TfArg<num>? captivePortal,
     TfArg<String>? description,
     TfArg<bool>? disableAutoFallback,
+    TfArg<bool>? enableDeviceCredentialAuthentication,
     TfArg<bool>? enabled,
     TfArg<bool>? excludeOfficeIps,
     TfArg<num>? lanAllowMinutes,
@@ -337,6 +346,8 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
            'captive_portal': ?captivePortal,
            'description': ?description,
            'disable_auto_fallback': ?disableAutoFallback,
+           'enable_device_credential_authentication':
+               ?enableDeviceCredentialAuthentication,
            'enabled': ?enabled,
            'exclude_office_ips': ?excludeOfficeIps,
            'lan_allow_minutes': ?lanAllowMinutes,
@@ -419,6 +430,10 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
   /// Reference to `disable_auto_fallback` attribute.
   TfRef<bool> get disableAutoFallback =>
       TfRef.attribute<bool>(this, 'disable_auto_fallback');
+
+  /// Reference to `enable_device_credential_authentication` attribute.
+  TfRef<bool> get enableDeviceCredentialAuthentication =>
+      TfRef.attribute<bool>(this, 'enable_device_credential_authentication');
 
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');

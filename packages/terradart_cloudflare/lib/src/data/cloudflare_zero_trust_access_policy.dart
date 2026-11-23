@@ -61,6 +61,10 @@ final class DataCloudflareZeroTrustAccessPolicy extends Data {
   TfRef<bool> get isolationRequired =>
       TfRef.attribute<bool>(this, 'isolation_required');
 
+  /// Reference to `policy_resolution_account_id` attribute.
+  TfRef<String> get policyResolutionAccountId =>
+      TfRef.attribute<String>(this, 'policy_resolution_account_id');
+
   /// Reference to `purpose_justification_prompt` attribute.
   TfRef<String> get purposeJustificationPrompt =>
       TfRef.attribute<String>(this, 'purpose_justification_prompt');

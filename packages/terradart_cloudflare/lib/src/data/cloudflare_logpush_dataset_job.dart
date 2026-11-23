@@ -25,6 +25,9 @@ extension type const DataLogpushDatasetJobDatasetId._(TfArg<String> _)
   static const accountAbuseProtectionEvents = DataLogpushDatasetJobDatasetId._(
     TfArgLiteral('account_abuse_protection_events'),
   );
+  static const aiGatewayEvents = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('ai_gateway_events'),
+  );
   static const auditLogs = DataLogpushDatasetJobDatasetId._(
     TfArgLiteral('audit_logs'),
   );
@@ -135,6 +138,7 @@ extension type const DataLogpushDatasetJobDatasetId._(TfArg<String> _)
   static const List<DataLogpushDatasetJobDatasetId> values = [
     accessRequests,
     accountAbuseProtectionEvents,
+    aiGatewayEvents,
     auditLogs,
     auditLogsV2,
     bisoUserActions,

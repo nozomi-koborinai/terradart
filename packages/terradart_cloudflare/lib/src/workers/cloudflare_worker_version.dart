@@ -23,8 +23,11 @@ extension type const WorkerVersionInclude._(TfArg<String> _)
   const WorkerVersionInclude.arg(TfArg<String> arg) : this._(arg);
 
   static const modules = WorkerVersionInclude._(TfArgLiteral('modules'));
+  static const modulesSourcemaps = WorkerVersionInclude._(
+    TfArgLiteral('modules,sourcemaps'),
+  );
 
-  static const List<WorkerVersionInclude> values = [modules];
+  static const List<WorkerVersionInclude> values = [modules, modulesSourcemaps];
 }
 
 /// Worker Version Usage enum for `usage_model`.
@@ -263,7 +266,6 @@ final class WorkerVersionBindings {
     this.versionId,
     this.workflowName,
     this.outbound,
-    this.retry,
     this.simple,
   });
 
@@ -353,8 +355,6 @@ final class WorkerVersionBindings {
 
   final WorkerVersionOutbound? outbound;
 
-  final WorkerVersionRetry? retry;
-
   final WorkerVersionSimple? simple;
 
   @internal
@@ -402,7 +402,6 @@ final class WorkerVersionBindings {
     'version_id': ?versionId?.toTfJson(),
     'workflow_name': ?workflowName?.toTfJson(),
     'outbound': ?outbound?.encode(),
-    'retry': ?retry?.encode(),
     'simple': ?simple?.encode(),
   };
 }
@@ -559,6 +558,9 @@ extension type const WorkerVersionBindingsType._(TfArg<String> _)
   static const vpcNetwork = WorkerVersionBindingsType._(
     TfArgLiteral('vpc_network'),
   );
+  static const workerLoader = WorkerVersionBindingsType._(
+    TfArgLiteral('worker_loader'),
+  );
 
   static const List<WorkerVersionBindingsType> values = [
     ai,
@@ -599,6 +601,7 @@ extension type const WorkerVersionBindingsType._(TfArg<String> _)
     wasmModule,
     vpcService,
     vpcNetwork,
+    workerLoader,
   ];
 }
 
@@ -648,23 +651,6 @@ final class WorkerVersionWorker {
     'entrypoint': ?entrypoint?.toTfJson(),
     'environment': ?environment?.toTfJson(),
     'service': ?service?.toTfJson(),
-  };
-}
-
-/// Typed helper for the `bindings.retry` block of
-/// `cloudflare_worker_version` (derived from provider schema).
-@immutable
-final class WorkerVersionRetry {
-  const WorkerVersionRetry({this.maxAttempts, this.timeoutMs});
-
-  final TfArg<num>? maxAttempts;
-
-  final TfArg<num>? timeoutMs;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'max_attempts': ?maxAttempts?.toTfJson(),
-    'timeout_ms': ?timeoutMs?.toTfJson(),
   };
 }
 
@@ -726,6 +712,7 @@ final class WorkerVersionContainers {
 @immutable
 final class WorkerVersionExports {
   const WorkerVersionExports({
+    this.container,
     this.renamedTo,
     this.state,
     this.storage,
@@ -734,6 +721,8 @@ final class WorkerVersionExports {
     required this.type,
     this.cache,
   });
+
+  final TfArg<String>? container;
 
   final TfArg<String>? renamedTo;
 
@@ -751,6 +740,7 @@ final class WorkerVersionExports {
 
   @internal
   Map<String, Object?> encode() => {
+    'container': ?container?.toTfJson(),
     'renamed_to': ?renamedTo?.toTfJson(),
     'state': ?state?.toTfJson(),
     'storage': ?storage?.toTfJson(),
@@ -1136,7 +1126,10 @@ final class WorkerVersionTarget {
 ///
 /// Accepted Permissions
 ///
-/// - `Workers Scripts Read` - `Workers Scripts Write` - `Workers Tail Read`
+/// - `Individual Workers Admin` - `Individual Workers Content Read-Only` -
+/// `Individual Workers Editor` - `Workers Admin` - `Workers Content Read-Only`
+/// - `Workers Editor` - `Workers Scripts Read` - `Workers Scripts Write` -
+/// `Workers Tail Read`
 final class CloudflareWorkerVersion extends Resource {
   static const String tfType = 'cloudflare_worker_version';
 

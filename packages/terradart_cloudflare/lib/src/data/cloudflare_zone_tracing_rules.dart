@@ -9,6 +9,10 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareZoneTracingRulesSensitive = <String>{};
 
 /// Factory wrapper for `cloudflare_zone_tracing_rules`.
+///
+/// Accepted Permissions
+///
+/// - `Zone Observability Read` - `Zone Observability Write`
 final class DataCloudflareZoneTracingRules extends Data {
   static const String tfType = 'cloudflare_zone_tracing_rules';
 

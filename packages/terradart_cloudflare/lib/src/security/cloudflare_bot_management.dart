@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../zone/cloudflare_zone.dart' show CloudflareZone;
@@ -226,6 +227,146 @@ extension type const BotManagementSbfmVerifiedBots._(TfArg<String> _)
   static const List<BotManagementSbfmVerifiedBots> values = [allow, block];
 }
 
+/// Typed helper for the `ai_agents` block of
+/// `cloudflare_bot_management` (derived from provider schema).
+@immutable
+final class BotManagementAiAgents {
+  const BotManagementAiAgents({
+    this.anthropicAgent,
+    this.googleAgent,
+    this.instinct,
+    this.muse,
+    this.openaiAgent,
+  });
+
+  final BotManagementAnthropicAgent? anthropicAgent;
+
+  final BotManagementGoogleAgent? googleAgent;
+
+  final BotManagementInstinct? instinct;
+
+  final BotManagementMuse? muse;
+
+  final BotManagementOpenaiAgent? openaiAgent;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'anthropic_agent': ?anthropicAgent?.toTfJson(),
+    'google_agent': ?googleAgent?.toTfJson(),
+    'instinct': ?instinct?.toTfJson(),
+    'muse': ?muse?.toTfJson(),
+    'openai_agent': ?openaiAgent?.toTfJson(),
+  };
+}
+
+/// `anthropic_agent` — derived from the provider schema description.
+extension type const BotManagementAnthropicAgent._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementAnthropicAgent.variable(String name)
+    : this._(TfArg.variable(name));
+  BotManagementAnthropicAgent.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementAnthropicAgent.arg(TfArg<String> arg) : this._(arg);
+
+  static const disabled = BotManagementAnthropicAgent._(
+    TfArgLiteral('disabled'),
+  );
+  static const block = BotManagementAnthropicAgent._(TfArgLiteral('block'));
+  static const onlyOnAdPages = BotManagementAnthropicAgent._(
+    TfArgLiteral('only_on_ad_pages'),
+  );
+
+  static const List<BotManagementAnthropicAgent> values = [
+    disabled,
+    block,
+    onlyOnAdPages,
+  ];
+}
+
+/// `google_agent` — derived from the provider schema description.
+extension type const BotManagementGoogleAgent._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementGoogleAgent.variable(String name) : this._(TfArg.variable(name));
+  BotManagementGoogleAgent.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementGoogleAgent.arg(TfArg<String> arg) : this._(arg);
+
+  static const disabled = BotManagementGoogleAgent._(TfArgLiteral('disabled'));
+  static const block = BotManagementGoogleAgent._(TfArgLiteral('block'));
+  static const onlyOnAdPages = BotManagementGoogleAgent._(
+    TfArgLiteral('only_on_ad_pages'),
+  );
+
+  static const List<BotManagementGoogleAgent> values = [
+    disabled,
+    block,
+    onlyOnAdPages,
+  ];
+}
+
+/// `instinct` — derived from the provider schema description.
+extension type const BotManagementInstinct._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementInstinct.variable(String name) : this._(TfArg.variable(name));
+  BotManagementInstinct.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementInstinct.arg(TfArg<String> arg) : this._(arg);
+
+  static const disabled = BotManagementInstinct._(TfArgLiteral('disabled'));
+  static const block = BotManagementInstinct._(TfArgLiteral('block'));
+  static const onlyOnAdPages = BotManagementInstinct._(
+    TfArgLiteral('only_on_ad_pages'),
+  );
+
+  static const List<BotManagementInstinct> values = [
+    disabled,
+    block,
+    onlyOnAdPages,
+  ];
+}
+
+/// `muse` — derived from the provider schema description.
+extension type const BotManagementMuse._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementMuse.variable(String name) : this._(TfArg.variable(name));
+  BotManagementMuse.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementMuse.arg(TfArg<String> arg) : this._(arg);
+
+  static const disabled = BotManagementMuse._(TfArgLiteral('disabled'));
+  static const block = BotManagementMuse._(TfArgLiteral('block'));
+  static const onlyOnAdPages = BotManagementMuse._(
+    TfArgLiteral('only_on_ad_pages'),
+  );
+
+  static const List<BotManagementMuse> values = [
+    disabled,
+    block,
+    onlyOnAdPages,
+  ];
+}
+
+/// `openai_agent` — derived from the provider schema description.
+extension type const BotManagementOpenaiAgent._(TfArg<String> _)
+    implements TfArg<String> {
+  BotManagementOpenaiAgent.variable(String name) : this._(TfArg.variable(name));
+  BotManagementOpenaiAgent.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotManagementOpenaiAgent.arg(TfArg<String> arg) : this._(arg);
+
+  static const disabled = BotManagementOpenaiAgent._(TfArgLiteral('disabled'));
+  static const block = BotManagementOpenaiAgent._(TfArgLiteral('block'));
+  static const onlyOnAdPages = BotManagementOpenaiAgent._(
+    TfArgLiteral('only_on_ad_pages'),
+  );
+
+  static const List<BotManagementOpenaiAgent> values = [
+    disabled,
+    block,
+    onlyOnAdPages,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_bot_management`.
 ///
 /// Accepted Permissions
@@ -258,6 +399,7 @@ final class CloudflareBotManagement extends Resource {
     BotManagementSbfmVerifiedBots? sbfmVerifiedBots,
     TfArg<bool>? suppressSessionScore,
     required RefTo<CloudflareZone> zoneId,
+    BotManagementAiAgents? aiAgents,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -287,6 +429,7 @@ final class CloudflareBotManagement extends Resource {
            'sbfm_verified_bots': ?sbfmVerifiedBots,
            'suppress_session_score': ?suppressSessionScore,
            'zone_id': zoneId.encodeAs('id'),
+           if (aiAgents != null) 'ai_agents': TfArg.literal(aiAgents.encode()),
          },
        );
 

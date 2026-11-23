@@ -10,6 +10,11 @@ const Set<String> _cloudflareZeroTrustResourceLibraryApplicationSensitive =
     <String>{};
 
 /// Factory wrapper for `cloudflare_zero_trust_resource_library_application`.
+///
+/// Accepted Permissions
+///
+/// - `Resource Library Read` - `Resource Library Write` - `Zero Trust Read` -
+/// `Zero Trust Write`
 final class CloudflareZeroTrustResourceLibraryApplication extends Resource {
   static const String tfType =
       'cloudflare_zero_trust_resource_library_application';

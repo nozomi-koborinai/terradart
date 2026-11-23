@@ -99,13 +99,16 @@ export 'src/data/cloudflare_ai_search_instances.dart'
         DataAiSearchInstancesOrderByDirection,
         DataCloudflareAiSearchInstances;
 export 'src/data/cloudflare_ai_search_namespace.dart'
-    show DataCloudflareAiSearchNamespace;
+    show DataAiSearchNamespaceFilter, DataCloudflareAiSearchNamespace;
 export 'src/data/cloudflare_ai_search_namespaces.dart'
     show DataCloudflareAiSearchNamespaces;
 export 'src/data/cloudflare_ai_search_token.dart'
     show DataAiSearchTokenFilter, DataCloudflareAiSearchToken;
 export 'src/data/cloudflare_ai_search_tokens.dart'
     show DataCloudflareAiSearchTokens;
+export 'src/data/cloudflare_ai_security.dart' show DataCloudflareAiSecurity;
+export 'src/data/cloudflare_ai_security_custom_topics.dart'
+    show DataCloudflareAiSecurityCustomTopics;
 export 'src/data/cloudflare_api_shield.dart' show DataCloudflareApiShield;
 export 'src/data/cloudflare_api_shield_discovery_operations.dart'
     show
@@ -468,6 +471,8 @@ export 'src/data/cloudflare_load_balancer_pools.dart'
     show DataCloudflareLoadBalancerPools;
 export 'src/data/cloudflare_load_balancers.dart'
     show DataCloudflareLoadBalancers;
+export 'src/data/cloudflare_log_explorer_datasets.dart'
+    show DataCloudflareLogExplorerDatasets;
 export 'src/data/cloudflare_logpull_retention.dart'
     show DataCloudflareLogpullRetention;
 export 'src/data/cloudflare_logpush_dataset_field.dart'
@@ -554,8 +559,11 @@ export 'src/data/cloudflare_organization.dart'
     show
         DataCloudflareOrganization,
         DataOrganizationContaining,
+        DataOrganizationDirection,
         DataOrganizationFilter,
         DataOrganizationFilterName,
+        DataOrganizationMember,
+        DataOrganizationOrderBy,
         DataOrganizationParent;
 export 'src/data/cloudflare_organization_profile.dart'
     show DataCloudflareOrganizationProfile;
@@ -563,7 +571,10 @@ export 'src/data/cloudflare_organizations.dart'
     show
         DataCloudflareOrganizations,
         DataOrganizationsContaining,
+        DataOrganizationsDirection,
+        DataOrganizationsMember,
         DataOrganizationsName,
+        DataOrganizationsOrderBy,
         DataOrganizationsParent;
 export 'src/data/cloudflare_origin_ca_certificate.dart'
     show DataCloudflareOriginCaCertificate, DataOriginCaCertificateFilter;
@@ -615,13 +626,27 @@ export 'src/data/cloudflare_pages_projects.dart'
     show DataCloudflarePagesProjects;
 export 'src/data/cloudflare_pipeline.dart' show DataCloudflarePipeline;
 export 'src/data/cloudflare_pipeline_sink.dart'
-    show DataCloudflarePipelineSink, DataPipelineSinkFilter;
+    show
+        DataCloudflarePipelineSink,
+        DataPipelineSinkDirection,
+        DataPipelineSinkFilter,
+        DataPipelineSinkOrderBy;
 export 'src/data/cloudflare_pipeline_sinks.dart'
-    show DataCloudflarePipelineSinks;
+    show
+        DataCloudflarePipelineSinks,
+        DataPipelineSinksDirection,
+        DataPipelineSinksOrderBy;
 export 'src/data/cloudflare_pipeline_stream.dart'
-    show DataCloudflarePipelineStream, DataPipelineStreamFilter;
+    show
+        DataCloudflarePipelineStream,
+        DataPipelineStreamDirection,
+        DataPipelineStreamFilter,
+        DataPipelineStreamOrderBy;
 export 'src/data/cloudflare_pipeline_streams.dart'
-    show DataCloudflarePipelineStreams;
+    show
+        DataCloudflarePipelineStreams,
+        DataPipelineStreamsDirection,
+        DataPipelineStreamsOrderBy;
 export 'src/data/cloudflare_precursor.dart' show DataCloudflarePrecursor;
 export 'src/data/cloudflare_queue.dart' show DataCloudflareQueue;
 export 'src/data/cloudflare_queue_consumer.dart'
@@ -696,9 +721,11 @@ export 'src/data/cloudflare_share.dart'
         DataCloudflareShare,
         DataShareDirection,
         DataShareFilter,
+        DataShareFilterIncludeTagsFrom,
         DataShareFilterKind,
         DataShareFilterStatus,
         DataShareFilterTargetType,
+        DataShareIncludeTagsFrom,
         DataShareOrder;
 export 'src/data/cloudflare_share_recipient.dart'
     show DataCloudflareShareRecipient;
@@ -719,6 +746,7 @@ export 'src/data/cloudflare_shares.dart'
     show
         DataCloudflareShares,
         DataSharesDirection,
+        DataSharesIncludeTagsFrom,
         DataSharesKind,
         DataSharesOrder,
         DataSharesStatus,
@@ -956,6 +984,17 @@ export 'src/data/cloudflare_zero_trust_access_tag.dart'
     show DataCloudflareZeroTrustAccessTag;
 export 'src/data/cloudflare_zero_trust_access_tags.dart'
     show DataCloudflareZeroTrustAccessTags;
+export 'src/data/cloudflare_zero_trust_casb_finding_type.dart'
+    show
+        DataCloudflareZeroTrustCasbFindingType,
+        DataZeroTrustCasbFindingTypeDirection,
+        DataZeroTrustCasbFindingTypeFilter,
+        DataZeroTrustCasbFindingTypeOrder;
+export 'src/data/cloudflare_zero_trust_casb_finding_types.dart'
+    show
+        DataCloudflareZeroTrustCasbFindingTypes,
+        DataZeroTrustCasbFindingTypesDirection,
+        DataZeroTrustCasbFindingTypesOrder;
 export 'src/data/cloudflare_zero_trust_casb_integration.dart'
     show
         DataCloudflareZeroTrustCasbIntegration,
@@ -979,6 +1018,127 @@ export 'src/data/cloudflare_zero_trust_casb_webhooks.dart'
     show DataCloudflareZeroTrustCasbWebhooks;
 export 'src/data/cloudflare_zero_trust_connectivity_settings.dart'
     show DataCloudflareZeroTrustConnectivitySettings;
+export 'src/data/cloudflare_zero_trust_cws_basic_auth_credential.dart'
+    show
+        DataCloudflareZeroTrustCwsBasicAuthCredential,
+        DataZeroTrustCwsBasicAuthCredentialDirection,
+        DataZeroTrustCwsBasicAuthCredentialFilter,
+        DataZeroTrustCwsBasicAuthCredentialOrder;
+export 'src/data/cloudflare_zero_trust_cws_basic_auth_credentials.dart'
+    show
+        DataCloudflareZeroTrustCwsBasicAuthCredentials,
+        DataZeroTrustCwsBasicAuthCredentialsDirection,
+        DataZeroTrustCwsBasicAuthCredentialsOrder;
+export 'src/data/cloudflare_zero_trust_cws_basic_auth_secret.dart'
+    show
+        DataCloudflareZeroTrustCwsBasicAuthSecret,
+        DataZeroTrustCwsBasicAuthSecretDirection,
+        DataZeroTrustCwsBasicAuthSecretFilter,
+        DataZeroTrustCwsBasicAuthSecretOrder;
+export 'src/data/cloudflare_zero_trust_cws_basic_auth_secrets.dart'
+    show
+        DataCloudflareZeroTrustCwsBasicAuthSecrets,
+        DataZeroTrustCwsBasicAuthSecretsDirection,
+        DataZeroTrustCwsBasicAuthSecretsOrder;
+export 'src/data/cloudflare_zero_trust_cws_deployment.dart'
+    show
+        DataCloudflareZeroTrustCwsDeployment,
+        DataZeroTrustCwsDeploymentDirection,
+        DataZeroTrustCwsDeploymentFilter,
+        DataZeroTrustCwsDeploymentOrder;
+export 'src/data/cloudflare_zero_trust_cws_deployments.dart'
+    show
+        DataCloudflareZeroTrustCwsDeployments,
+        DataZeroTrustCwsDeploymentsDirection,
+        DataZeroTrustCwsDeploymentsOrder;
+export 'src/data/cloudflare_zero_trust_cws_domain_acl.dart'
+    show
+        DataCloudflareZeroTrustCwsDomainAcl,
+        DataZeroTrustCwsDomainAclDirection,
+        DataZeroTrustCwsDomainAclFilter,
+        DataZeroTrustCwsDomainAclOrder;
+export 'src/data/cloudflare_zero_trust_cws_domain_acls.dart'
+    show
+        DataCloudflareZeroTrustCwsDomainAcls,
+        DataZeroTrustCwsDomainAclsDirection,
+        DataZeroTrustCwsDomainAclsOrder;
+export 'src/data/cloudflare_zero_trust_cws_policies.dart'
+    show
+        DataCloudflareZeroTrustCwsPolicies,
+        DataZeroTrustCwsPoliciesDirection,
+        DataZeroTrustCwsPoliciesOrder;
+export 'src/data/cloudflare_zero_trust_cws_policy.dart'
+    show
+        DataCloudflareZeroTrustCwsPolicy,
+        DataZeroTrustCwsPolicyDirection,
+        DataZeroTrustCwsPolicyFindOneBy,
+        DataZeroTrustCwsPolicyOrder;
+export 'src/data/cloudflare_zero_trust_cws_policy_set.dart'
+    show
+        DataCloudflareZeroTrustCwsPolicySet,
+        DataZeroTrustCwsPolicySetDirection,
+        DataZeroTrustCwsPolicySetFilter,
+        DataZeroTrustCwsPolicySetOrder;
+export 'src/data/cloudflare_zero_trust_cws_policy_sets.dart'
+    show
+        DataCloudflareZeroTrustCwsPolicySets,
+        DataZeroTrustCwsPolicySetsDirection,
+        DataZeroTrustCwsPolicySetsOrder;
+export 'src/data/cloudflare_zero_trust_cws_rego_metadata.dart'
+    show
+        DataCloudflareZeroTrustCwsRegoMetadata,
+        DataZeroTrustCwsRegoMetadataDirection,
+        DataZeroTrustCwsRegoMetadataFilter,
+        DataZeroTrustCwsRegoMetadataOrder;
+export 'src/data/cloudflare_zero_trust_cws_rego_metadata_list.dart'
+    show
+        DataCloudflareZeroTrustCwsRegoMetadataList,
+        DataZeroTrustCwsRegoMetadataListDirection,
+        DataZeroTrustCwsRegoMetadataListOrder;
+export 'src/data/cloudflare_zero_trust_cws_rego_module.dart'
+    show
+        DataCloudflareZeroTrustCwsRegoModule,
+        DataZeroTrustCwsRegoModuleDirection,
+        DataZeroTrustCwsRegoModuleFilter,
+        DataZeroTrustCwsRegoModuleOrder;
+export 'src/data/cloudflare_zero_trust_cws_rego_modules.dart'
+    show
+        DataCloudflareZeroTrustCwsRegoModules,
+        DataZeroTrustCwsRegoModulesDirection,
+        DataZeroTrustCwsRegoModulesOrder;
+export 'src/data/cloudflare_zero_trust_cws_tenant_structure.dart'
+    show
+        DataCloudflareZeroTrustCwsTenantStructure,
+        DataZeroTrustCwsTenantStructureDirection,
+        DataZeroTrustCwsTenantStructureFilter,
+        DataZeroTrustCwsTenantStructureOrder;
+export 'src/data/cloudflare_zero_trust_cws_tenant_structure_node.dart'
+    show
+        DataCloudflareZeroTrustCwsTenantStructureNode,
+        DataZeroTrustCwsTenantStructureNodeDirection,
+        DataZeroTrustCwsTenantStructureNodeFilter,
+        DataZeroTrustCwsTenantStructureNodeOrder;
+export 'src/data/cloudflare_zero_trust_cws_tenant_structure_nodes.dart'
+    show
+        DataCloudflareZeroTrustCwsTenantStructureNodes,
+        DataZeroTrustCwsTenantStructureNodesDirection,
+        DataZeroTrustCwsTenantStructureNodesOrder;
+export 'src/data/cloudflare_zero_trust_cws_tenant_structures.dart'
+    show
+        DataCloudflareZeroTrustCwsTenantStructures,
+        DataZeroTrustCwsTenantStructuresDirection,
+        DataZeroTrustCwsTenantStructuresOrder;
+export 'src/data/cloudflare_zero_trust_cws_workload.dart'
+    show
+        DataCloudflareZeroTrustCwsWorkload,
+        DataZeroTrustCwsWorkloadDirection,
+        DataZeroTrustCwsWorkloadFindOneBy,
+        DataZeroTrustCwsWorkloadOrder;
+export 'src/data/cloudflare_zero_trust_cws_workloads.dart'
+    show
+        DataCloudflareZeroTrustCwsWorkloads,
+        DataZeroTrustCwsWorkloadsDirection,
+        DataZeroTrustCwsWorkloadsOrder;
 export 'src/data/cloudflare_zero_trust_device_custom_profile.dart'
     show
         DataCloudflareZeroTrustDeviceCustomProfile,
@@ -1077,6 +1237,10 @@ export 'src/data/cloudflare_zero_trust_dlp_predefined_entry.dart'
     show DataCloudflareZeroTrustDlpPredefinedEntry;
 export 'src/data/cloudflare_zero_trust_dlp_predefined_profile.dart'
     show DataCloudflareZeroTrustDlpPredefinedProfile;
+export 'src/data/cloudflare_zero_trust_dlp_proximity_validator.dart'
+    show DataCloudflareZeroTrustDlpProximityValidator;
+export 'src/data/cloudflare_zero_trust_dlp_proximity_validators.dart'
+    show DataCloudflareZeroTrustDlpProximityValidators;
 export 'src/data/cloudflare_zero_trust_dlp_sensitivity_group.dart'
     show DataCloudflareZeroTrustDlpSensitivityGroup;
 export 'src/data/cloudflare_zero_trust_dlp_sensitivity_groups.dart'
@@ -1108,6 +1272,8 @@ export 'src/data/cloudflare_zero_trust_gateway_certificate.dart'
     show DataCloudflareZeroTrustGatewayCertificate;
 export 'src/data/cloudflare_zero_trust_gateway_certificates.dart'
     show DataCloudflareZeroTrustGatewayCertificates;
+export 'src/data/cloudflare_zero_trust_gateway_dns_destination_ips_list.dart'
+    show DataCloudflareZeroTrustGatewayDnsDestinationIpsList;
 export 'src/data/cloudflare_zero_trust_gateway_logging.dart'
     show DataCloudflareZeroTrustGatewayLogging;
 export 'src/data/cloudflare_zero_trust_gateway_pacfile.dart'
@@ -1159,6 +1325,8 @@ export 'src/data/cloudflare_zero_trust_network_hostname_routes.dart'
     show DataCloudflareZeroTrustNetworkHostnameRoutes;
 export 'src/data/cloudflare_zero_trust_organization.dart'
     show DataCloudflareZeroTrustOrganization;
+export 'src/data/cloudflare_zero_trust_organization_trust_settings.dart'
+    show DataCloudflareZeroTrustOrganizationTrustSettings;
 export 'src/data/cloudflare_zero_trust_resource_library_application.dart'
     show
         DataCloudflareZeroTrustResourceLibraryApplication,

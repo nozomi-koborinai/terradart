@@ -354,6 +354,8 @@ final class RulesetActionParameters {
     this.stripLastModified,
     this.stripSetCookie,
     this.sxg,
+    this.webmcpEnabled,
+    this.webmcpPacks,
     this.algorithms,
     this.autominify,
     this.browserTtl,
@@ -475,6 +477,10 @@ final class RulesetActionParameters {
 
   final TfArg<bool>? sxg;
 
+  final TfArg<bool>? webmcpEnabled;
+
+  final TfArg<List<String>>? webmcpPacks;
+
   final List<RulesetAlgorithms>? algorithms;
 
   final RulesetAutominify? autominify;
@@ -589,6 +595,8 @@ final class RulesetActionParameters {
     'strip_last_modified': ?stripLastModified?.toTfJson(),
     'strip_set_cookie': ?stripSetCookie?.toTfJson(),
     'sxg': ?sxg?.toTfJson(),
+    'webmcp_enabled': ?webmcpEnabled?.toTfJson(),
+    'webmcp_packs': ?webmcpPacks?.toTfJson(),
     if (algorithms != null)
       'algorithms': [for (final e in algorithms!) e.encode()],
     'autominify': ?autominify?.encode(),

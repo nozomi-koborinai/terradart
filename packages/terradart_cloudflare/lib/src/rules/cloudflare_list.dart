@@ -27,105 +27,32 @@ extension type const ListKind._(TfArg<String> _) implements TfArg<String> {
 /// `cloudflare_list` (derived from provider schema).
 @immutable
 final class ListItems {
-  const ListItems({this.value, this.comment});
+  const ListItems({
+    this.asn,
+    this.comment,
+    this.ip,
+    this.hostname,
+    this.redirect,
+  });
 
-  final ListValue? value;
+  final TfArg<num>? asn;
 
   final TfArg<String>? comment;
 
+  final TfArg<String>? ip;
+
+  final ListHostname? hostname;
+
+  final ListRedirect? redirect;
+
   @internal
   Map<String, Object?> encode() => {
-    ...?value?.encode(),
+    'asn': ?asn?.toTfJson(),
     'comment': ?comment?.toTfJson(),
+    'ip': ?ip?.toTfJson(),
+    'hostname': ?hostname?.encode(),
+    'redirect': ?redirect?.encode(),
   };
-}
-
-/// At most one of `asn`, `ip`, `hostname`, `redirect` on the `items` block of `cloudflare_list`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.asn(...)`.
-sealed class ListValue {
-  const ListValue();
-
-  /// Sets `asn`.
-  const factory ListValue.asn(TfArg<num> asn) = ListValueAsn;
-
-  /// Sets `ip`.
-  const factory ListValue.ip(TfArg<String> ip) = ListValueIp;
-
-  /// Sets `hostname`.
-  const factory ListValue.hostname(ListHostname hostname) = ListValueHostname;
-
-  /// Sets `redirect`.
-  const factory ListValue.redirect(ListRedirect redirect) = ListValueRedirect;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [ListValue.asn] choice: sets `asn`.
-final class ListValueAsn extends ListValue {
-  const ListValueAsn(this.asn);
-
-  final TfArg<num> asn;
-
-  @internal
-  @override
-  String get blockKey => 'asn';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'asn': asn.toTfJson()};
-}
-
-/// The [ListValue.ip] choice: sets `ip`.
-final class ListValueIp extends ListValue {
-  const ListValueIp(this.ip);
-
-  final TfArg<String> ip;
-
-  @internal
-  @override
-  String get blockKey => 'ip';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'ip': ip.toTfJson()};
-}
-
-/// The [ListValue.hostname] choice: sets `hostname`.
-final class ListValueHostname extends ListValue {
-  const ListValueHostname(this.hostname);
-
-  final ListHostname hostname;
-
-  @internal
-  @override
-  String get blockKey => 'hostname';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'hostname': hostname.encode()};
-}
-
-/// The [ListValue.redirect] choice: sets `redirect`.
-final class ListValueRedirect extends ListValue {
-  const ListValueRedirect(this.redirect);
-
-  final ListRedirect redirect;
-
-  @internal
-  @override
-  String get blockKey => 'redirect';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'redirect': redirect.encode()};
 }
 
 /// Typed helper for the `items.hostname` block of

@@ -6,8 +6,4 @@ library;
 export 'package:terradart_core/terradart_core.dart';
 export 'src/data/cloudflare_precursor.dart' show DataCloudflarePrecursor;
 export 'src/precursor/cloudflare_precursor.dart'
-    show
-        CloudflarePrecursor,
-        PrecursorDefaultMode,
-        PrecursorEnforcementRules,
-        PrecursorMode;
+    show CloudflarePrecursor, PrecursorMode, PrecursorRules;

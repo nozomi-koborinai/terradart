@@ -13,15 +13,22 @@ const Set<String> _cloudflareOrganizationSensitive = <String>{};
 @immutable
 final class DataOrganizationFilter {
   const DataOrganizationFilter({
+    this.direction,
     this.id,
+    this.orderBy,
     this.pageSize,
     this.pageToken,
     this.containing,
+    this.member,
     this.name,
     this.parent,
   });
 
+  final DataOrganizationDirection? direction;
+
   final TfArg<List<String>>? id;
+
+  final DataOrganizationOrderBy? orderBy;
 
   final TfArg<num>? pageSize;
 
@@ -29,19 +36,52 @@ final class DataOrganizationFilter {
 
   final DataOrganizationContaining? containing;
 
+  final DataOrganizationMember? member;
+
   final DataOrganizationFilterName? name;
 
   final DataOrganizationParent? parent;
 
   @internal
   Map<String, Object?> encode() => {
+    'direction': ?direction?.toTfJson(),
     'id': ?id?.toTfJson(),
+    'order_by': ?orderBy?.toTfJson(),
     'page_size': ?pageSize?.toTfJson(),
     'page_token': ?pageToken?.toTfJson(),
     'containing': ?containing?.encode(),
+    'member': ?member?.encode(),
     'name': ?name?.encode(),
     'parent': ?parent?.encode(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+extension type const DataOrganizationDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataOrganizationDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataOrganizationDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataOrganizationDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataOrganizationDirection._(TfArgLiteral('asc'));
+  static const desc = DataOrganizationDirection._(TfArgLiteral('desc'));
+
+  static const List<DataOrganizationDirection> values = [asc, desc];
+}
+
+/// `order_by` — derived from the provider schema description.
+extension type const DataOrganizationOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataOrganizationOrderBy.variable(String name) : this._(TfArg.variable(name));
+  DataOrganizationOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataOrganizationOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const name = DataOrganizationOrderBy._(TfArgLiteral('name'));
+
+  static const List<DataOrganizationOrderBy> values = [name];
 }
 
 /// Typed helper for the `filter.containing` block of
@@ -66,6 +106,18 @@ final class DataOrganizationContaining {
     'organization': ?organization?.toTfJson(),
     'user': ?user?.toTfJson(),
   };
+}
+
+/// Typed helper for the `filter.member` block of
+/// `cloudflare_organization` (derived from provider schema).
+@immutable
+final class DataOrganizationMember {
+  const DataOrganizationMember({this.email});
+
+  final TfArg<String>? email;
+
+  @internal
+  Map<String, Object?> encode() => {'email': ?email?.toTfJson()};
 }
 
 /// Typed helper for the `filter.name` block of
@@ -109,6 +161,17 @@ final class DataOrganizationParent {
 /// Accepted Permissions
 ///
 /// - `User Details Read` - `User Details Write`
+///
+/// User API tokens can list and create Organizations, but reading, updating, or
+/// deleting an Organization requires a Global API key and your registered email
+/// address. The `cloudflare_organization` Terraform resource therefore requires
+/// a Global API key for its full lifecycle.
+///
+/// See [Organizations authentication
+/// limitations](https://developers.cloudflare.com/fundamentals/organizations/limitations/#api-authentication)
+/// for credential compatibility by operation. Each endpoint’s **Security**
+/// section lists its supported authentication methods, with **Accepted
+/// Permissions** where applicable.
 final class DataCloudflareOrganization extends Data {
   static const String tfType = 'cloudflare_organization';
 

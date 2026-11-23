@@ -629,6 +629,111 @@ void main() {
     expect(rendered, contains('this.classification'));
     expect(rendered, contains('this.properties'));
   });
+
+  group('computed-only top-level attributes do not own nested type names', () {
+    List<String>? modeValues(List<String> path, String? description) =>
+        switch (path.join('.')) {
+          'code_update_strategy.mode' => const ['immediate', 'deferred'],
+          'placement.mode' => const ['smart', 'targeted'],
+          _ => null,
+        };
+
+    Map<String, dynamic> twoModesBlock({required bool computedOnly}) => {
+      'attributes': {
+        'placement_mode': {
+          'type': 'string',
+          'computed': true,
+          if (!computedOnly) 'optional': true,
+        },
+        'code_update_strategy': {
+          'optional': true,
+          'nested_type': {
+            'nesting_mode': 'single',
+            'attributes': {
+              'mode': {'type': 'string', 'optional': true},
+            },
+          },
+        },
+        'placement': {
+          'optional': true,
+          'nested_type': {
+            'nesting_mode': 'single',
+            'attributes': {
+              'mode': {'type': 'string', 'optional': true},
+            },
+          },
+        },
+      },
+    };
+
+    test(
+      'nested enum falls back to a computed-only top-level attribute name',
+      () {
+        final specs = collectNestedTypes(
+          resourceBlock: twoModesBlock(computedOnly: true),
+          resourcePrefix: 'WorkersScript',
+          customSlotKeys: const {},
+          excludedPaths: const {},
+          enumValues: modeValues,
+        );
+        final byName = {for (final s in specs) s.tfName: s};
+        expect(
+          byName['placement']!.attrs.single.dartType,
+          'WorkersScriptPlacementMode',
+        );
+        expect(
+          byName['code_update_strategy']!.attrs.single.dartType,
+          'WorkersScriptCodeUpdateStrategyMode',
+        );
+      },
+    );
+
+    test(
+      'nested enum still avoids a computed-only name when a deeper candidate exists',
+      () {
+        final specs = collectNestedTypes(
+          resourceBlock: {
+            'attributes': {
+              'mode': {'type': 'string', 'computed': true},
+              'placement': {
+                'optional': true,
+                'nested_type': {
+                  'nesting_mode': 'single',
+                  'attributes': {
+                    'mode': {'type': 'string', 'optional': true},
+                  },
+                },
+              },
+            },
+          },
+          resourcePrefix: 'WorkersScript',
+          customSlotKeys: const {},
+          excludedPaths: const {},
+          enumValues: modeValues,
+        );
+        expect(
+          specs.single.attrs.single.dartType,
+          'WorkersScriptPlacementMode',
+        );
+      },
+    );
+
+    test(
+      'optional top-level attribute still owns its name and rejects collision',
+      () {
+        expect(
+          () => collectNestedTypes(
+            resourceBlock: twoModesBlock(computedOnly: false),
+            resourcePrefix: 'WorkersScript',
+            customSlotKeys: const {},
+            excludedPaths: const {},
+            enumValues: modeValues,
+          ),
+          throwsStateError,
+        );
+      },
+    );
+  });
 }
 
 NestedBlockSpec? _blockAt(List<NestedBlockSpec> specs, List<String> path) {

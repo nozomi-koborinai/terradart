@@ -113,6 +113,9 @@ final class CloudflareEmailSecurityAllowPolicy extends Resource {
   /// Reference to `comments` attribute.
   TfRef<String> get comments => TfRef.attribute<String>(this, 'comments');
 
+  /// Reference to `expires_at` attribute.
+  TfRef<String> get expiresAt => TfRef.attribute<String>(this, 'expires_at');
+
   /// Reference to `is_acceptable_sender` attribute.
   TfRef<bool> get isAcceptableSender =>
       TfRef.attribute<bool>(this, 'is_acceptable_sender');

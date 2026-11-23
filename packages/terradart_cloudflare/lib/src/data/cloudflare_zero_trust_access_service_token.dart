@@ -80,6 +80,22 @@ final class DataCloudflareZeroTrustAccessServiceToken extends Data {
   /// Reference to `expires_at` attribute.
   TfRef<String> get expiresAt => TfRef.attribute<String>(this, 'expires_at');
 
+  /// Reference to `leak_report_url` attribute.
+  TfRef<String> get leakReportUrl =>
+      TfRef.attribute<String>(this, 'leak_report_url');
+
+  /// Reference to `leak_reported_at` attribute.
+  TfRef<String> get leakReportedAt =>
+      TfRef.attribute<String>(this, 'leak_reported_at');
+
+  /// Reference to `leak_reporter` attribute.
+  TfRef<String> get leakReporter =>
+      TfRef.attribute<String>(this, 'leak_reporter');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tags =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
   /// Reference to `account_id` attribute.
   TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 

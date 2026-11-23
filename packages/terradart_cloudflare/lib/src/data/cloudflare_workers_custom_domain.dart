@@ -15,16 +15,22 @@ const Set<String> _cloudflareWorkersCustomDomainSensitive = <String>{};
 @immutable
 final class DataWorkersCustomDomainFilter {
   const DataWorkersCustomDomainFilter({
+    this.enabled,
     this.environment,
     this.hostname,
+    this.previewsEnabled,
     this.service,
     this.zoneId,
     this.zoneName,
   });
 
+  final TfArg<bool>? enabled;
+
   final TfArg<String>? environment;
 
   final TfArg<String>? hostname;
+
+  final TfArg<bool>? previewsEnabled;
 
   final TfArg<String>? service;
 
@@ -34,8 +40,10 @@ final class DataWorkersCustomDomainFilter {
 
   @internal
   Map<String, Object?> encode() => {
+    'enabled': ?enabled?.toTfJson(),
     'environment': ?environment?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
+    'previews_enabled': ?previewsEnabled?.toTfJson(),
     'service': ?service?.toTfJson(),
     'zone_id': ?zoneId?.encodeAs('id').toTfJson(),
     'zone_name': ?zoneName?.toTfJson(),
@@ -52,7 +60,7 @@ final class DataCloudflareWorkersCustomDomain extends Data {
 
   DataCloudflareWorkersCustomDomain(
     super.localName, {
-    RefTo<CloudflareAccount>? accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? domainId,
     DataWorkersCustomDomainFilter? filter,
     super.provider,
@@ -60,7 +68,7 @@ final class DataCloudflareWorkersCustomDomain extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId?.encodeAs('id'),
+           'account_id': accountId.encodeAs('id'),
            'domain_id': ?domainId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
@@ -80,11 +88,18 @@ final class DataCloudflareWorkersCustomDomain extends Data {
   /// Reference to `cert_id` attribute.
   TfRef<String> get certId => TfRef.attribute<String>(this, 'cert_id');
 
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
+
   /// Reference to `environment` attribute.
   TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
 
   /// Reference to `hostname` attribute.
   TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
+
+  /// Reference to `previews_enabled` attribute.
+  TfRef<bool> get previewsEnabled =>
+      TfRef.attribute<bool>(this, 'previews_enabled');
 
   /// Reference to `service` attribute.
   TfRef<String> get service => TfRef.attribute<String>(this, 'service');

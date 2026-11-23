@@ -151,7 +151,6 @@ final class CloudflareZoneDnsSettings extends Resource {
   CloudflareZoneDnsSettings(
     super.localName, {
     TfArg<bool>? flattenAllCnames,
-    TfArg<bool>? foundationDns,
     TfArg<bool>? multiProvider,
     TfArg<num>? nsTtl,
     TfArg<bool>? secondaryOverrides,
@@ -168,7 +167,6 @@ final class CloudflareZoneDnsSettings extends Resource {
          terraformType: tfType,
          argMap: {
            'flatten_all_cnames': ?flattenAllCnames,
-           'foundation_dns': ?foundationDns,
            'multi_provider': ?multiProvider,
            'ns_ttl': ?nsTtl,
            'secondary_overrides': ?secondaryOverrides,
@@ -192,10 +190,6 @@ final class CloudflareZoneDnsSettings extends Resource {
   /// Reference to `flatten_all_cnames` attribute.
   TfRef<bool> get flattenAllCnames =>
       TfRef.attribute<bool>(this, 'flatten_all_cnames');
-
-  /// Reference to `foundation_dns` attribute.
-  TfRef<bool> get foundationDns =>
-      TfRef.attribute<bool>(this, 'foundation_dns');
 
   /// Reference to `multi_provider` attribute.
   TfRef<bool> get multiProvider =>

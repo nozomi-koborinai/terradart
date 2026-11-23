@@ -15,6 +15,7 @@ const Set<String> _cloudflareEmailSecurityAllowPolicySensitive = <String>{};
 final class DataEmailSecurityAllowPolicyFilter {
   const DataEmailSecurityAllowPolicyFilter({
     this.direction,
+    this.expired,
     this.isAcceptableSender,
     this.isExemptRecipient,
     this.isTrustedSender,
@@ -26,6 +27,8 @@ final class DataEmailSecurityAllowPolicyFilter {
   });
 
   final DataEmailSecurityAllowPolicyDirection? direction;
+
+  final TfArg<bool>? expired;
 
   final TfArg<bool>? isAcceptableSender;
 
@@ -46,6 +49,7 @@ final class DataEmailSecurityAllowPolicyFilter {
   @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
+    'expired': ?expired?.toTfJson(),
     'is_acceptable_sender': ?isAcceptableSender?.toTfJson(),
     'is_exempt_recipient': ?isExemptRecipient?.toTfJson(),
     'is_trusted_sender': ?isTrustedSender?.toTfJson(),
@@ -173,6 +177,9 @@ final class DataCloudflareEmailSecurityAllowPolicy extends Data {
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
+
+  /// Reference to `expires_at` attribute.
+  TfRef<String> get expiresAt => TfRef.attribute<String>(this, 'expires_at');
 
   /// Reference to `is_acceptable_sender` attribute.
   TfRef<bool> get isAcceptableSender =>

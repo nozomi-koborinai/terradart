@@ -30,9 +30,12 @@ final class DataCloudflarePrecursor extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `default_mode` attribute.
-  TfRef<String> get defaultMode =>
-      TfRef.attribute<String>(this, 'default_mode');
+  /// Reference to `mode` attribute.
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `show_interstitial` attribute.
+  TfRef<bool> get showInterstitial =>
+      TfRef.attribute<bool>(this, 'show_interstitial');
 
   /// Reference to `zone_id` attribute.
   TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');

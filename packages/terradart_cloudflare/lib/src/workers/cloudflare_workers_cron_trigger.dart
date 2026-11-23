@@ -25,7 +25,10 @@ final class WorkersCronTriggerSchedules {
 ///
 /// Accepted Permissions
 ///
-/// - `Workers Scripts Read` - `Workers Scripts Write`
+/// - `Individual Workers Admin` - `Individual Workers Content Read-Only` -
+/// `Individual Workers Editor` - `Individual Workers Metadata Read-Only` -
+/// `Workers Admin` - `Workers Content Read-Only` - `Workers Editor` - `Workers
+/// Metadata Read-Only` - `Workers Scripts Read` - `Workers Scripts Write`
 final class CloudflareWorkersCronTrigger extends Resource {
   static const String tfType = 'cloudflare_workers_cron_trigger';
 

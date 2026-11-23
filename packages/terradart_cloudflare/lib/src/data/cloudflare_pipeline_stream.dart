@@ -13,17 +13,60 @@ const Set<String> _cloudflarePipelineStreamSensitive = <String>{};
 /// `cloudflare_pipeline_stream` (derived from provider schema).
 @immutable
 final class DataPipelineStreamFilter {
-  const DataPipelineStreamFilter({this.name, this.pipelineId});
+  const DataPipelineStreamFilter({
+    this.direction,
+    this.name,
+    this.orderBy,
+    this.pipelineId,
+  });
+
+  final DataPipelineStreamDirection? direction;
 
   final TfArg<String>? name;
+
+  final DataPipelineStreamOrderBy? orderBy;
 
   final TfArg<String>? pipelineId;
 
   @internal
   Map<String, Object?> encode() => {
+    'direction': ?direction?.toTfJson(),
     'name': ?name?.toTfJson(),
+    'order_by': ?orderBy?.toTfJson(),
     'pipeline_id': ?pipelineId?.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+extension type const DataPipelineStreamDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPipelineStreamDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPipelineStreamDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPipelineStreamDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataPipelineStreamDirection._(TfArgLiteral('asc'));
+  static const desc = DataPipelineStreamDirection._(TfArgLiteral('desc'));
+
+  static const List<DataPipelineStreamDirection> values = [asc, desc];
+}
+
+/// `order_by` — derived from the provider schema description.
+extension type const DataPipelineStreamOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPipelineStreamOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPipelineStreamOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPipelineStreamOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const name = DataPipelineStreamOrderBy._(TfArgLiteral('name'));
+  static const createdAt = DataPipelineStreamOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataPipelineStreamOrderBy> values = [name, createdAt];
 }
 
 /// Factory wrapper for `cloudflare_pipeline_stream`.

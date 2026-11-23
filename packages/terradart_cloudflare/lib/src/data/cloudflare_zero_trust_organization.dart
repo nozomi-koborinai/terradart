@@ -66,6 +66,10 @@ final class DataCloudflareZeroTrustOrganization extends Data {
         'deny_unmatched_requests_exempted_zone_names',
       );
 
+  /// Reference to `disable_end_user_app_creation` attribute.
+  TfRef<bool> get disableEndUserAppCreation =>
+      TfRef.attribute<bool>(this, 'disable_end_user_app_creation');
+
   /// Reference to `is_ui_read_only` attribute.
   TfRef<bool> get isUiReadOnly =>
       TfRef.attribute<bool>(this, 'is_ui_read_only');

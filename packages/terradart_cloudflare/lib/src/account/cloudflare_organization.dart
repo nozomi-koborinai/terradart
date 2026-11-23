@@ -24,30 +24,30 @@ final class OrganizationParent {
 @immutable
 final class OrganizationProfile {
   const OrganizationProfile({
-    required this.businessAddress,
-    required this.businessEmail,
-    required this.businessName,
-    required this.businessPhone,
-    required this.externalMetadata,
+    this.businessAddress,
+    this.businessEmail,
+    this.businessName,
+    this.businessPhone,
+    this.externalMetadata,
   });
 
-  final TfArg<String> businessAddress;
+  final TfArg<String>? businessAddress;
 
-  final TfArg<String> businessEmail;
+  final TfArg<String>? businessEmail;
 
-  final TfArg<String> businessName;
+  final TfArg<String>? businessName;
 
-  final TfArg<String> businessPhone;
+  final TfArg<String>? businessPhone;
 
-  final TfArg<String> externalMetadata;
+  final TfArg<String>? externalMetadata;
 
   @internal
   Map<String, Object?> encode() => {
-    'business_address': businessAddress.toTfJson(),
-    'business_email': businessEmail.toTfJson(),
-    'business_name': businessName.toTfJson(),
-    'business_phone': businessPhone.toTfJson(),
-    'external_metadata': externalMetadata.toTfJson(),
+    'business_address': ?businessAddress?.toTfJson(),
+    'business_email': ?businessEmail?.toTfJson(),
+    'business_name': ?businessName?.toTfJson(),
+    'business_phone': ?businessPhone?.toTfJson(),
+    'external_metadata': ?externalMetadata?.toTfJson(),
   };
 }
 
@@ -56,12 +56,24 @@ final class OrganizationProfile {
 /// Accepted Permissions
 ///
 /// - `User Details Write`
+///
+/// User API tokens can list and create Organizations, but reading, updating, or
+/// deleting an Organization requires a Global API key and your registered email
+/// address. The `cloudflare_organization` Terraform resource therefore requires
+/// a Global API key for its full lifecycle.
+///
+/// See [Organizations authentication
+/// limitations](https://developers.cloudflare.com/fundamentals/organizations/limitations/#api-authentication)
+/// for credential compatibility by operation. Each endpoint’s **Security**
+/// section lists its supported authentication methods, with **Accepted
+/// Permissions** where applicable.
 final class CloudflareOrganization extends Resource {
   static const String tfType = 'cloudflare_organization';
 
   CloudflareOrganization(
     super.localName, {
     required TfArg<String> name,
+    TfArg<String>? parentId,
     OrganizationParent? parent,
     OrganizationProfile? profile,
     super.lifecycle,
@@ -72,6 +84,7 @@ final class CloudflareOrganization extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
+           'parent_id': ?parentId,
            if (parent != null) 'parent': TfArg.literal(parent.encode()),
            if (profile != null) 'profile': TfArg.literal(profile.encode()),
          },
@@ -92,4 +105,7 @@ final class CloudflareOrganization extends Resource {
 
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `parent_id` attribute.
+  TfRef<String> get parentId => TfRef.attribute<String>(this, 'parent_id');
 }

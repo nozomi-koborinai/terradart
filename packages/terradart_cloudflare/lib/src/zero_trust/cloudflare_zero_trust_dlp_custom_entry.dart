@@ -55,6 +55,7 @@ final class CloudflareZeroTrustDlpCustomEntry extends Resource {
     required TfArg<bool> enabled,
     required TfArg<String> name,
     TfArg<String>? profileId,
+    TfArg<List<String>>? validatorIds,
     required ZeroTrustDlpCustomEntryPattern pattern,
     super.lifecycle,
     super.dependsOn,
@@ -68,6 +69,7 @@ final class CloudflareZeroTrustDlpCustomEntry extends Resource {
            'enabled': enabled,
            'name': name,
            'profile_id': ?profileId,
+           'validator_ids': ?validatorIds,
            'pattern': TfArg.literal(pattern.encode()),
          },
        );
@@ -124,4 +126,8 @@ final class CloudflareZeroTrustDlpCustomEntry extends Resource {
 
   /// Reference to `profile_id` attribute.
   TfRef<String> get profileId => TfRef.attribute<String>(this, 'profile_id');
+
+  /// Reference to `validator_ids` attribute.
+  TfRef<List<String>> get validatorIds =>
+      TfRef.attribute<List<String>>(this, 'validator_ids');
 }

@@ -20,8 +20,10 @@ final class CloudflareWorkersCustomDomain extends Resource {
   CloudflareWorkersCustomDomain(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
+    TfArg<bool>? enabled,
     TfArg<String>? environment,
     required TfArg<String> hostname,
+    TfArg<bool>? previewsEnabled,
     required TfArg<String> service,
     RefTo<CloudflareZone>? zoneId,
     TfArg<String>? zoneName,
@@ -33,8 +35,10 @@ final class CloudflareWorkersCustomDomain extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
+           'enabled': ?enabled,
            'environment': ?environment,
            'hostname': hostname,
+           'previews_enabled': ?previewsEnabled,
            'service': service,
            'zone_id': ?zoneId?.encodeAs('id'),
            'zone_name': ?zoneName,
@@ -57,11 +61,18 @@ final class CloudflareWorkersCustomDomain extends Resource {
   /// Reference to `account_id` attribute.
   TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
+
   /// Reference to `environment` attribute.
   TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
 
   /// Reference to `hostname` attribute.
   TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
+
+  /// Reference to `previews_enabled` attribute.
+  TfRef<bool> get previewsEnabled =>
+      TfRef.attribute<bool>(this, 'previews_enabled');
 
   /// Reference to `service` attribute.
   TfRef<String> get service => TfRef.attribute<String>(this, 'service');

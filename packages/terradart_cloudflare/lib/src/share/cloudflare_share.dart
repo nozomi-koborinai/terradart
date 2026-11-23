@@ -9,6 +9,34 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_share`.
 const Set<String> _cloudflareShareSensitive = <String>{};
 
+/// Share Include Tags enum for `include_tags_from`.
+extension type const ShareIncludeTagsFrom._(TfArg<String> _)
+    implements TfArg<String> {
+  ShareIncludeTagsFrom.variable(String name) : this._(TfArg.variable(name));
+  ShareIncludeTagsFrom.expression(String template)
+    : this._(TfArg.expression(template));
+  const ShareIncludeTagsFrom.arg(TfArg<String> arg) : this._(arg);
+
+  static const api = ShareIncludeTagsFrom._(TfArgLiteral('api'));
+  static const mirror = ShareIncludeTagsFrom._(TfArgLiteral('mirror'));
+
+  static const List<ShareIncludeTagsFrom> values = [api, mirror];
+}
+
+/// Typed helper for the `excluded_recipients` block of
+/// `cloudflare_share` (derived from provider schema).
+@immutable
+final class ShareExcludedRecipients {
+  const ShareExcludedRecipients({required this.accountId});
+
+  final RefTo<CloudflareAccount> accountId;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'account_id': accountId.encodeAs('id').toTfJson(),
+  };
+}
+
 /// Typed helper for the `recipients` block of
 /// `cloudflare_share` (derived from provider schema).
 @immutable
@@ -94,6 +122,10 @@ extension type const ShareResourceType._(TfArg<String> _)
 }
 
 /// Factory wrapper for `cloudflare_share`.
+///
+/// Accepted Permissions
+///
+/// - `Resource Sharing Read`
 final class CloudflareShare extends Resource {
   static const String tfType = 'cloudflare_share';
 
@@ -102,9 +134,12 @@ final class CloudflareShare extends Resource {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? includeRecipientCounts,
     TfArg<bool>? includeResources,
+    ShareIncludeTagsFrom? includeTagsFrom,
     required TfArg<String> name,
-    required List<ShareRecipients> recipients,
-    required List<ShareResources> resources,
+    TfArg<Map<String, String>>? tags,
+    List<ShareExcludedRecipients>? excludedRecipients,
+    List<ShareRecipients>? recipients,
+    List<ShareResources>? resources,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -115,11 +150,21 @@ final class CloudflareShare extends Resource {
            'account_id': accountId.encodeAs('id'),
            'include_recipient_counts': ?includeRecipientCounts,
            'include_resources': ?includeResources,
+           'include_tags_from': ?includeTagsFrom,
            'name': name,
-           'recipients': TfArg.literal([
-             for (final e in recipients) e.encode(),
-           ]),
-           'resources': TfArg.literal([for (final e in resources) e.encode()]),
+           'tags': ?tags,
+           if (excludedRecipients != null)
+             'excluded_recipients': TfArg.literal([
+               for (final e in excludedRecipients) e.encode(),
+             ]),
+           if (recipients != null)
+             'recipients': TfArg.literal([
+               for (final e in recipients) e.encode(),
+             ]),
+           if (resources != null)
+             'resources': TfArg.literal([
+               for (final e in resources) e.encode(),
+             ]),
          },
        );
 
@@ -185,4 +230,12 @@ final class CloudflareShare extends Resource {
   /// Reference to `include_resources` attribute.
   TfRef<bool> get includeResources =>
       TfRef.attribute<bool>(this, 'include_resources');
+
+  /// Reference to `include_tags_from` attribute.
+  TfRef<String> get includeTagsFrom =>
+      TfRef.attribute<String>(this, 'include_tags_from');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tags =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

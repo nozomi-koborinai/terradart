@@ -38,6 +38,7 @@ extension type const ZeroTrustRiskBehaviorRiskLevel._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const ZeroTrustRiskBehaviorRiskLevel.arg(TfArg<String> arg) : this._(arg);
 
+  static const info = ZeroTrustRiskBehaviorRiskLevel._(TfArgLiteral('info'));
   static const low = ZeroTrustRiskBehaviorRiskLevel._(TfArgLiteral('low'));
   static const medium = ZeroTrustRiskBehaviorRiskLevel._(
     TfArgLiteral('medium'),
@@ -45,6 +46,7 @@ extension type const ZeroTrustRiskBehaviorRiskLevel._(TfArg<String> _)
   static const high = ZeroTrustRiskBehaviorRiskLevel._(TfArgLiteral('high'));
 
   static const List<ZeroTrustRiskBehaviorRiskLevel> values = [
+    info,
     low,
     medium,
     high,

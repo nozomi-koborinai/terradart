@@ -171,6 +171,7 @@ final class CloudflareZeroTrustDnsLocation extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? clientDefault,
+    TfArg<bool>? dns64Enabled,
     TfArg<String>? dnsDestinationIpsId,
     TfArg<bool>? ecsSupport,
     required TfArg<String> name,
@@ -186,6 +187,7 @@ final class CloudflareZeroTrustDnsLocation extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'client_default': ?clientDefault,
+           'dns64_enabled': ?dns64Enabled,
            'dns_destination_ips_id': ?dnsDestinationIpsId,
            'ecs_support': ?ecsSupport,
            'name': name,
@@ -241,6 +243,9 @@ final class CloudflareZeroTrustDnsLocation extends Resource {
   /// Reference to `client_default` attribute.
   TfRef<bool> get clientDefault =>
       TfRef.attribute<bool>(this, 'client_default');
+
+  /// Reference to `dns64_enabled` attribute.
+  TfRef<bool> get dns64Enabled => TfRef.attribute<bool>(this, 'dns64_enabled');
 
   /// Reference to `dns_destination_ips_id` attribute.
   TfRef<String> get dnsDestinationIpsId =>

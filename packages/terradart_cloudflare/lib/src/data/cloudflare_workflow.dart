@@ -69,6 +69,10 @@ final class DataCloudflareWorkflow extends Data {
   TfRef<Map<String, num>> get instances =>
       TfRef.attribute<Map<String, num>>(this, 'instances');
 
+  /// Reference to `jurisdiction` attribute.
+  TfRef<String> get jurisdiction =>
+      TfRef.attribute<String>(this, 'jurisdiction');
+
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 

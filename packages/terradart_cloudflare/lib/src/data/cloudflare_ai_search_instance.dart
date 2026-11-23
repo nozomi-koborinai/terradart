@@ -15,15 +15,12 @@ const Set<String> _cloudflareAiSearchInstanceSensitive = <String>{};
 final class DataAiSearchInstanceFilter {
   const DataAiSearchInstanceFilter({
     this.hostname,
-    this.namespace,
     this.orderBy,
     this.orderByDirection,
     this.search,
   });
 
   final TfArg<String>? hostname;
-
-  final TfArg<String>? namespace;
 
   final DataAiSearchInstanceOrderBy? orderBy;
 
@@ -34,7 +31,6 @@ final class DataAiSearchInstanceFilter {
   @internal
   Map<String, Object?> encode() => {
     'hostname': ?hostname?.toTfJson(),
-    'namespace': ?namespace?.toTfJson(),
     'order_by': ?orderBy?.toTfJson(),
     'order_by_direction': ?orderByDirection?.toTfJson(),
     'search': ?search?.toTfJson(),
@@ -84,6 +80,7 @@ final class DataCloudflareAiSearchInstance extends Data {
   DataCloudflareAiSearchInstance(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    TfArg<String>? namespace,
     DataAiSearchInstanceFilter? filter,
     super.provider,
     super.timeouts,
@@ -91,6 +88,7 @@ final class DataCloudflareAiSearchInstance extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': ?accountId?.encodeAs('id'),
+           'namespace': ?namespace,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );
@@ -167,9 +165,6 @@ final class DataCloudflareAiSearchInstance extends Data {
   /// Reference to `modified_by` attribute.
   TfRef<String> get modifiedBy => TfRef.attribute<String>(this, 'modified_by');
 
-  /// Reference to `namespace` attribute.
-  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
-
   /// Reference to `paused` attribute.
   TfRef<bool> get paused => TfRef.attribute<bool>(this, 'paused');
 
@@ -212,4 +207,7 @@ final class DataCloudflareAiSearchInstance extends Data {
 
   /// Reference to `account_id` attribute.
   TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `namespace` attribute.
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 }

@@ -139,6 +139,177 @@ extension type const LoadBalancerPreferEcs._(TfArg<String> _)
   ];
 }
 
+/// Typed helper for the `pool_sets` block of
+/// `cloudflare_load_balancer` (derived from provider schema).
+@immutable
+final class LoadBalancerPoolSets {
+  const LoadBalancerPoolSets({
+    this.disabled,
+    this.name,
+    this.fixedResponse,
+    this.match,
+    this.overrides,
+  });
+
+  final TfArg<bool>? disabled;
+
+  final TfArg<String>? name;
+
+  final LoadBalancerFixedResponse? fixedResponse;
+
+  final LoadBalancerMatch? match;
+
+  final LoadBalancerPoolSetsOverrides? overrides;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'disabled': ?disabled?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'fixed_response': ?fixedResponse?.encode(),
+    'match': ?match?.encode(),
+    'overrides': ?overrides?.encode(),
+  };
+}
+
+/// Typed helper for the `pool_sets.fixed_response` block of
+/// `cloudflare_load_balancer` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class LoadBalancerFixedResponse {
+  const LoadBalancerFixedResponse({
+    this.contentType,
+    this.location,
+    this.messageBody,
+    this.statusCode,
+  });
+
+  final TfArg<String>? contentType;
+
+  final TfArg<String>? location;
+
+  final TfArg<String>? messageBody;
+
+  final TfArg<num>? statusCode;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'content_type': ?contentType?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'message_body': ?messageBody?.toTfJson(),
+    'status_code': ?statusCode?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `pool_sets.match` block of
+/// `cloudflare_load_balancer` (derived from provider schema).
+@immutable
+final class LoadBalancerMatch {
+  const LoadBalancerMatch({this.defaultCase, this.topology});
+
+  final TfArg<bool>? defaultCase;
+
+  final LoadBalancerTopology? topology;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'default': ?defaultCase?.toTfJson(),
+    'topology': ?topology?.encode(),
+  };
+}
+
+/// Typed helper for the `pool_sets.match.topology` block of
+/// `cloudflare_load_balancer` (derived from provider schema).
+@immutable
+final class LoadBalancerTopology {
+  const LoadBalancerTopology({this.countries, this.pops, this.regions});
+
+  final TfArg<List<String>>? countries;
+
+  final TfArg<List<String>>? pops;
+
+  final TfArg<List<String>>? regions;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'countries': ?countries?.toTfJson(),
+    'pops': ?pops?.toTfJson(),
+    'regions': ?regions?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `pool_sets.overrides` block of
+/// `cloudflare_load_balancer` (derived from provider schema).
+@immutable
+final class LoadBalancerPoolSetsOverrides {
+  const LoadBalancerPoolSetsOverrides({
+    this.fallbackPool,
+    this.poolDefaultWeight,
+    this.poolWeights,
+    this.pools,
+    this.steeringPolicy,
+  });
+
+  final TfArg<String>? fallbackPool;
+
+  final TfArg<num>? poolDefaultWeight;
+
+  final TfArg<Map<String, num>>? poolWeights;
+
+  final TfArg<List<String>>? pools;
+
+  final LoadBalancerOverridesSteeringPolicy? steeringPolicy;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'fallback_pool': ?fallbackPool?.toTfJson(),
+    'pool_default_weight': ?poolDefaultWeight?.toTfJson(),
+    'pool_weights': ?poolWeights?.toTfJson(),
+    'pools': ?pools?.toTfJson(),
+    'steering_policy': ?steeringPolicy?.toTfJson(),
+  };
+}
+
+/// `steering_policy` — derived from the provider schema description.
+extension type const LoadBalancerOverridesSteeringPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  LoadBalancerOverridesSteeringPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  LoadBalancerOverridesSteeringPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LoadBalancerOverridesSteeringPolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const off = LoadBalancerOverridesSteeringPolicy._(TfArgLiteral('off'));
+  static const geo = LoadBalancerOverridesSteeringPolicy._(TfArgLiteral('geo'));
+  static const random = LoadBalancerOverridesSteeringPolicy._(
+    TfArgLiteral('random'),
+  );
+  static const dynamicLatency = LoadBalancerOverridesSteeringPolicy._(
+    TfArgLiteral('dynamic_latency'),
+  );
+  static const proximity = LoadBalancerOverridesSteeringPolicy._(
+    TfArgLiteral('proximity'),
+  );
+  static const leastOutstandingRequests = LoadBalancerOverridesSteeringPolicy._(
+    TfArgLiteral('least_outstanding_requests'),
+  );
+  static const leastConnections = LoadBalancerOverridesSteeringPolicy._(
+    TfArgLiteral('least_connections'),
+  );
+  static const empty = LoadBalancerOverridesSteeringPolicy._(TfArgLiteral(''));
+
+  static const List<LoadBalancerOverridesSteeringPolicy> values = [
+    off,
+    geo,
+    random,
+    dynamicLatency,
+    proximity,
+    leastOutstandingRequests,
+    leastConnections,
+    empty,
+  ];
+}
+
 /// Typed helper for the `random_steering` block of
 /// `cloudflare_load_balancer` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
@@ -183,7 +354,7 @@ final class LoadBalancerRules {
 
   final LoadBalancerFixedResponse? fixedResponse;
 
-  final LoadBalancerOverrides? overrides;
+  final LoadBalancerRulesOverrides? overrides;
 
   @internal
   Map<String, Object?> encode() => {
@@ -197,39 +368,11 @@ final class LoadBalancerRules {
   };
 }
 
-/// Typed helper for the `rules.fixed_response` block of
-/// `cloudflare_load_balancer` (derived from provider schema).
-@immutable
-final class LoadBalancerFixedResponse {
-  const LoadBalancerFixedResponse({
-    this.contentType,
-    this.location,
-    this.messageBody,
-    this.statusCode,
-  });
-
-  final TfArg<String>? contentType;
-
-  final TfArg<String>? location;
-
-  final TfArg<String>? messageBody;
-
-  final TfArg<num>? statusCode;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'content_type': ?contentType?.toTfJson(),
-    'location': ?location?.toTfJson(),
-    'message_body': ?messageBody?.toTfJson(),
-    'status_code': ?statusCode?.toTfJson(),
-  };
-}
-
 /// Typed helper for the `rules.overrides` block of
 /// `cloudflare_load_balancer` (derived from provider schema).
 @immutable
-final class LoadBalancerOverrides {
-  const LoadBalancerOverrides({
+final class LoadBalancerRulesOverrides {
+  const LoadBalancerRulesOverrides({
     this.countryPools,
     this.defaultPools,
     this.fallbackPool,
@@ -317,47 +460,6 @@ extension type const LoadBalancerOverridesSessionAffinity._(TfArg<String> _)
     cookie,
     ipCookie,
     header,
-  ];
-}
-
-/// `steering_policy` — derived from the provider schema description.
-extension type const LoadBalancerOverridesSteeringPolicy._(TfArg<String> _)
-    implements TfArg<String> {
-  LoadBalancerOverridesSteeringPolicy.variable(String name)
-    : this._(TfArg.variable(name));
-  LoadBalancerOverridesSteeringPolicy.expression(String template)
-    : this._(TfArg.expression(template));
-  const LoadBalancerOverridesSteeringPolicy.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const off = LoadBalancerOverridesSteeringPolicy._(TfArgLiteral('off'));
-  static const geo = LoadBalancerOverridesSteeringPolicy._(TfArgLiteral('geo'));
-  static const random = LoadBalancerOverridesSteeringPolicy._(
-    TfArgLiteral('random'),
-  );
-  static const dynamicLatency = LoadBalancerOverridesSteeringPolicy._(
-    TfArgLiteral('dynamic_latency'),
-  );
-  static const proximity = LoadBalancerOverridesSteeringPolicy._(
-    TfArgLiteral('proximity'),
-  );
-  static const leastOutstandingRequests = LoadBalancerOverridesSteeringPolicy._(
-    TfArgLiteral('least_outstanding_requests'),
-  );
-  static const leastConnections = LoadBalancerOverridesSteeringPolicy._(
-    TfArgLiteral('least_connections'),
-  );
-  static const empty = LoadBalancerOverridesSteeringPolicy._(TfArgLiteral(''));
-
-  static const List<LoadBalancerOverridesSteeringPolicy> values = [
-    off,
-    geo,
-    random,
-    dynamicLatency,
-    proximity,
-    leastOutstandingRequests,
-    leastConnections,
-    empty,
   ];
 }
 
@@ -480,6 +582,7 @@ final class CloudflareLoadBalancer extends Resource {
     required RefTo<CloudflareZone> zoneId,
     LoadBalancerAdaptiveRouting? adaptiveRouting,
     LoadBalancerLocationStrategy? locationStrategy,
+    List<LoadBalancerPoolSets>? poolSets,
     LoadBalancerRandomSteering? randomSteering,
     List<LoadBalancerRules>? rules,
     LoadBalancerSessionAffinityAttributes? sessionAffinityAttributes,
@@ -509,6 +612,8 @@ final class CloudflareLoadBalancer extends Resource {
              'adaptive_routing': TfArg.literal(adaptiveRouting.encode()),
            if (locationStrategy != null)
              'location_strategy': TfArg.literal(locationStrategy.encode()),
+           if (poolSets != null)
+             'pool_sets': TfArg.literal([for (final e in poolSets) e.encode()]),
            if (randomSteering != null)
              'random_steering': TfArg.literal(randomSteering.encode()),
            if (rules != null)

@@ -39,10 +39,6 @@ final class DataCloudflareZoneDnsSettings extends Data {
   TfRef<bool> get flattenAllCnames =>
       TfRef.attribute<bool>(this, 'flatten_all_cnames');
 
-  /// Reference to `foundation_dns` attribute.
-  TfRef<bool> get foundationDns =>
-      TfRef.attribute<bool>(this, 'foundation_dns');
-
   /// Reference to `multi_provider` attribute.
   TfRef<bool> get multiProvider =>
       TfRef.attribute<bool>(this, 'multi_provider');

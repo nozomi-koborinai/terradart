@@ -25,7 +25,11 @@ final class DataWorkersScriptFilter {
 ///
 /// Accepted Permissions
 ///
-/// - `Workers Scripts Read` - `Workers Scripts Write` - `Workers Tail Read`
+/// - `Individual Workers Admin` - `Individual Workers Content Read-Only` -
+/// `Individual Workers Editor` - `Individual Workers Metadata Read-Only` -
+/// `Workers Admin` - `Workers Content Read-Only` - `Workers Editor` - `Workers
+/// Metadata Read-Only` - `Workers Scripts Read` - `Workers Scripts Write` -
+/// `Workers Tail Read`
 final class DataCloudflareWorkersScript extends Data {
   static const String tfType = 'cloudflare_workers_script';
 

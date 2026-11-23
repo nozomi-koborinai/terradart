@@ -190,7 +190,7 @@ barrels:
       /// Cloudflare Load Balancing pools, monitors, and balancers.
   logs:
     doc: |-
-      /// Cloudflare Logpush jobs and Logpull retention.
+      /// Cloudflare Log Explorer datasets, Logpush jobs, and Logpull retention.
   magic:
     doc: |-
       /// Cloudflare Magic WAN, Magic Transit, and Magic Network Monitoring.

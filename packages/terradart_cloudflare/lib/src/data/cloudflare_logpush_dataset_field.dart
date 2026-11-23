@@ -24,6 +24,9 @@ extension type const DataLogpushDatasetFieldDatasetId._(TfArg<String> _)
       DataLogpushDatasetFieldDatasetId._(
         TfArgLiteral('account_abuse_protection_events'),
       );
+  static const aiGatewayEvents = DataLogpushDatasetFieldDatasetId._(
+    TfArgLiteral('ai_gateway_events'),
+  );
   static const auditLogs = DataLogpushDatasetFieldDatasetId._(
     TfArgLiteral('audit_logs'),
   );
@@ -134,6 +137,7 @@ extension type const DataLogpushDatasetFieldDatasetId._(TfArg<String> _)
   static const List<DataLogpushDatasetFieldDatasetId> values = [
     accessRequests,
     accountAbuseProtectionEvents,
+    aiGatewayEvents,
     auditLogs,
     auditLogsV2,
     bisoUserActions,

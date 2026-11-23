@@ -39,6 +39,7 @@ final class MagicTransitSiteWanStaticAddressing {
     required this.address,
     required this.gatewayAddress,
     this.secondaryAddress,
+    this.secondaryGatewayAddress,
   });
 
   final TfArg<String> address;
@@ -47,11 +48,14 @@ final class MagicTransitSiteWanStaticAddressing {
 
   final TfArg<String>? secondaryAddress;
 
+  final TfArg<String>? secondaryGatewayAddress;
+
   @internal
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'gateway_address': gatewayAddress.toTfJson(),
     'secondary_address': ?secondaryAddress?.toTfJson(),
+    'secondary_gateway_address': ?secondaryGatewayAddress?.toTfJson(),
   };
 }
 
@@ -72,6 +76,8 @@ final class CloudflareMagicTransitSiteWan extends Resource {
     TfArg<String>? name,
     required TfArg<num> physport,
     TfArg<num>? priority,
+    TfArg<num>? provisionedDownloadKbps,
+    TfArg<num>? provisionedUploadKbps,
     required TfArg<String> siteId,
     TfArg<num>? vlanTag,
     MagicTransitSiteWanStaticAddressing? staticAddressing,
@@ -88,6 +94,8 @@ final class CloudflareMagicTransitSiteWan extends Resource {
            'name': ?name,
            'physport': physport,
            'priority': ?priority,
+           'provisioned_download_kbps': ?provisionedDownloadKbps,
+           'provisioned_upload_kbps': ?provisionedUploadKbps,
            'site_id': siteId,
            'vlan_tag': ?vlanTag,
            if (staticAddressing != null)
@@ -124,6 +132,14 @@ final class CloudflareMagicTransitSiteWan extends Resource {
 
   /// Reference to `priority` attribute.
   TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `provisioned_download_kbps` attribute.
+  TfRef<num> get provisionedDownloadKbps =>
+      TfRef.attribute<num>(this, 'provisioned_download_kbps');
+
+  /// Reference to `provisioned_upload_kbps` attribute.
+  TfRef<num> get provisionedUploadKbps =>
+      TfRef.attribute<num>(this, 'provisioned_upload_kbps');
 
   /// Reference to `site_id` attribute.
   TfRef<String> get siteId => TfRef.attribute<String>(this, 'site_id');

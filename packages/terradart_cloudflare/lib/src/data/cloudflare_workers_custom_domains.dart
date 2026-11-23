@@ -18,10 +18,12 @@ final class DataCloudflareWorkersCustomDomains extends Data {
 
   DataCloudflareWorkersCustomDomains(
     super.localName, {
-    RefTo<CloudflareAccount>? accountId,
+    required RefTo<CloudflareAccount> accountId,
+    TfArg<bool>? enabled,
     TfArg<String>? environment,
     TfArg<String>? hostname,
     TfArg<num>? maxItems,
+    TfArg<bool>? previewsEnabled,
     TfArg<String>? service,
     RefTo<CloudflareZone>? zoneId,
     TfArg<String>? zoneName,
@@ -30,10 +32,12 @@ final class DataCloudflareWorkersCustomDomains extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId?.encodeAs('id'),
+           'account_id': accountId.encodeAs('id'),
+           'enabled': ?enabled,
            'environment': ?environment,
            'hostname': ?hostname,
            'max_items': ?maxItems,
+           'previews_enabled': ?previewsEnabled,
            'service': ?service,
            'zone_id': ?zoneId?.encodeAs('id'),
            'zone_name': ?zoneName,
@@ -46,6 +50,9 @@ final class DataCloudflareWorkersCustomDomains extends Data {
   /// Reference to `account_id` attribute.
   TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
+
   /// Reference to `environment` attribute.
   TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
 
@@ -54,6 +61,10 @@ final class DataCloudflareWorkersCustomDomains extends Data {
 
   /// Reference to `max_items` attribute.
   TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `previews_enabled` attribute.
+  TfRef<bool> get previewsEnabled =>
+      TfRef.attribute<bool>(this, 'previews_enabled');
 
   /// Reference to `service` attribute.
   TfRef<String> get service => TfRef.attribute<String>(this, 'service');

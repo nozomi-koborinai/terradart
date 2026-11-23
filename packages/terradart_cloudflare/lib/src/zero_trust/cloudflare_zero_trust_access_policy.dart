@@ -112,9 +112,13 @@ extension type const ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats._
       ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats._(
         TfArgLiteral('text'),
       );
+  static const file =
+      ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats._(
+        TfArgLiteral('file'),
+      );
 
   static const List<ZeroTrustAccessPolicyAllowedClipboardLocalToRemoteFormats>
-  values = [text];
+  values = [text, file];
 }
 
 /// `allowed_clipboard_remote_to_local_formats` — derived from the provider schema description.
@@ -136,9 +140,13 @@ extension type const ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats._
       ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats._(
         TfArgLiteral('text'),
       );
+  static const file =
+      ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats._(
+        TfArgLiteral('file'),
+      );
 
   static const List<ZeroTrustAccessPolicyAllowedClipboardRemoteToLocalFormats>
-  values = [text];
+  values = [text, file];
 }
 
 /// Typed helper for the `exclude` block of
@@ -171,6 +179,7 @@ final class ZeroTrustAccessPolicyExclude {
     this.okta,
     this.saml,
     this.serviceToken,
+    this.serviceTokenTag,
     this.userRiskScore,
   });
 
@@ -224,6 +233,8 @@ final class ZeroTrustAccessPolicyExclude {
 
   final ZeroTrustAccessPolicyServiceToken? serviceToken;
 
+  final ZeroTrustAccessPolicyServiceTokenTag? serviceTokenTag;
+
   final ZeroTrustAccessPolicyUserRiskScore? userRiskScore;
 
   @internal
@@ -253,6 +264,7 @@ final class ZeroTrustAccessPolicyExclude {
     'okta': ?okta?.encode(),
     'saml': ?saml?.encode(),
     'service_token': ?serviceToken?.encode(),
+    'service_token_tag': ?serviceTokenTag?.encode(),
     'user_risk_score': ?userRiskScore?.encode(),
   };
 }
@@ -666,6 +678,27 @@ final class ZeroTrustAccessPolicyServiceToken {
   Map<String, Object?> encode() => {'token_id': tokenId.toTfJson()};
 }
 
+/// Typed helper for the `exclude.service_token_tag` block of
+/// `cloudflare_zero_trust_access_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class ZeroTrustAccessPolicyServiceTokenTag {
+  const ZeroTrustAccessPolicyServiceTokenTag({
+    required this.key,
+    required this.value,
+  });
+
+  final TfArg<String> key;
+
+  final TfArg<String> value;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'key': key.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
+
 /// Typed helper for the `exclude.user_risk_score` block of
 /// `cloudflare_zero_trust_access_policy` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
@@ -744,6 +777,7 @@ final class ZeroTrustAccessPolicyInclude {
     this.okta,
     this.saml,
     this.serviceToken,
+    this.serviceTokenTag,
     this.userRiskScore,
   });
 
@@ -797,6 +831,8 @@ final class ZeroTrustAccessPolicyInclude {
 
   final ZeroTrustAccessPolicyServiceToken? serviceToken;
 
+  final ZeroTrustAccessPolicyServiceTokenTag? serviceTokenTag;
+
   final ZeroTrustAccessPolicyUserRiskScore? userRiskScore;
 
   @internal
@@ -826,6 +862,7 @@ final class ZeroTrustAccessPolicyInclude {
     'okta': ?okta?.encode(),
     'saml': ?saml?.encode(),
     'service_token': ?serviceToken?.encode(),
+    'service_token_tag': ?serviceTokenTag?.encode(),
     'user_risk_score': ?userRiskScore?.encode(),
   };
 }
@@ -914,6 +951,7 @@ final class ZeroTrustAccessPolicyRequire {
     this.okta,
     this.saml,
     this.serviceToken,
+    this.serviceTokenTag,
     this.userRiskScore,
   });
 
@@ -967,6 +1005,8 @@ final class ZeroTrustAccessPolicyRequire {
 
   final ZeroTrustAccessPolicyServiceToken? serviceToken;
 
+  final ZeroTrustAccessPolicyServiceTokenTag? serviceTokenTag;
+
   final ZeroTrustAccessPolicyUserRiskScore? userRiskScore;
 
   @internal
@@ -996,6 +1036,7 @@ final class ZeroTrustAccessPolicyRequire {
     'okta': ?okta?.encode(),
     'saml': ?saml?.encode(),
     'service_token': ?serviceToken?.encode(),
+    'service_token_tag': ?serviceTokenTag?.encode(),
     'user_risk_score': ?userRiskScore?.encode(),
   };
 }
@@ -1015,6 +1056,7 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
     required ZeroTrustAccessPolicyDecision decision,
     TfArg<bool>? isolationRequired,
     required TfArg<String> name,
+    TfArg<String>? policyResolutionAccountId,
     TfArg<String>? purposeJustificationPrompt,
     TfArg<bool>? purposeJustificationRequired,
     TfArg<String>? sessionDuration,
@@ -1036,6 +1078,7 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
            'decision': decision,
            'isolation_required': ?isolationRequired,
            'name': name,
+           'policy_resolution_account_id': ?policyResolutionAccountId,
            'purpose_justification_prompt': ?purposeJustificationPrompt,
            'purpose_justification_required': ?purposeJustificationRequired,
            'session_duration': ?sessionDuration,
@@ -1069,9 +1112,6 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `app_count` attribute.
-  TfRef<num> get appCount => TfRef.attribute<num>(this, 'app_count');
-
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 
@@ -1094,6 +1134,10 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
   /// Reference to `isolation_required` attribute.
   TfRef<bool> get isolationRequired =>
       TfRef.attribute<bool>(this, 'isolation_required');
+
+  /// Reference to `policy_resolution_account_id` attribute.
+  TfRef<String> get policyResolutionAccountId =>
+      TfRef.attribute<String>(this, 'policy_resolution_account_id');
 
   /// Reference to `purpose_justification_prompt` attribute.
   TfRef<String> get purposeJustificationPrompt =>

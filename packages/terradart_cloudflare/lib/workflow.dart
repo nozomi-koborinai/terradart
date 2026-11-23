@@ -11,5 +11,6 @@ export 'src/workflow/cloudflare_workflow.dart'
         CloudflareWorkflow,
         WorkflowConcurrency,
         WorkflowDefaultRetention,
+        WorkflowJurisdiction,
         WorkflowLimits,
         WorkflowSchedules;

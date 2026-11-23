@@ -13,17 +13,59 @@ const Set<String> _cloudflarePipelineSinkSensitive = <String>{};
 /// `cloudflare_pipeline_sink` (derived from provider schema).
 @immutable
 final class DataPipelineSinkFilter {
-  const DataPipelineSinkFilter({this.name, this.pipelineId});
+  const DataPipelineSinkFilter({
+    this.direction,
+    this.name,
+    this.orderBy,
+    this.pipelineId,
+  });
+
+  final DataPipelineSinkDirection? direction;
 
   final TfArg<String>? name;
+
+  final DataPipelineSinkOrderBy? orderBy;
 
   final TfArg<String>? pipelineId;
 
   @internal
   Map<String, Object?> encode() => {
+    'direction': ?direction?.toTfJson(),
     'name': ?name?.toTfJson(),
+    'order_by': ?orderBy?.toTfJson(),
     'pipeline_id': ?pipelineId?.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+extension type const DataPipelineSinkDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPipelineSinkDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPipelineSinkDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPipelineSinkDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataPipelineSinkDirection._(TfArgLiteral('asc'));
+  static const desc = DataPipelineSinkDirection._(TfArgLiteral('desc'));
+
+  static const List<DataPipelineSinkDirection> values = [asc, desc];
+}
+
+/// `order_by` — derived from the provider schema description.
+extension type const DataPipelineSinkOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPipelineSinkOrderBy.variable(String name) : this._(TfArg.variable(name));
+  DataPipelineSinkOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPipelineSinkOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const name = DataPipelineSinkOrderBy._(TfArgLiteral('name'));
+  static const createdAt = DataPipelineSinkOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataPipelineSinkOrderBy> values = [name, createdAt];
 }
 
 /// Factory wrapper for `cloudflare_pipeline_sink`.

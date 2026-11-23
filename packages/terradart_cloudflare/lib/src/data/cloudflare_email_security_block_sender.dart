@@ -15,6 +15,7 @@ const Set<String> _cloudflareEmailSecurityBlockSenderSensitive = <String>{};
 final class DataEmailSecurityBlockSenderFilter {
   const DataEmailSecurityBlockSenderFilter({
     this.direction,
+    this.expired,
     this.order,
     this.pattern,
     this.patternType,
@@ -22,6 +23,8 @@ final class DataEmailSecurityBlockSenderFilter {
   });
 
   final DataEmailSecurityBlockSenderDirection? direction;
+
+  final TfArg<bool>? expired;
 
   final DataEmailSecurityBlockSenderOrder? order;
 
@@ -34,6 +37,7 @@ final class DataEmailSecurityBlockSenderFilter {
   @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
+    'expired': ?expired?.toTfJson(),
     'order': ?order?.toTfJson(),
     'pattern': ?pattern?.toTfJson(),
     'pattern_type': ?patternType?.toTfJson(),
@@ -157,6 +161,9 @@ final class DataCloudflareEmailSecurityBlockSender extends Data {
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
+
+  /// Reference to `expires_at` attribute.
+  TfRef<String> get expiresAt => TfRef.attribute<String>(this, 'expires_at');
 
   /// Reference to `is_regex` attribute.
   TfRef<bool> get isRegex => TfRef.attribute<bool>(this, 'is_regex');

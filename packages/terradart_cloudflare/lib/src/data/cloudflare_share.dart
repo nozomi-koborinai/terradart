@@ -9,12 +9,27 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_share`.
 const Set<String> _cloudflareShareSensitive = <String>{};
 
+/// Data Share Include Tags enum for `include_tags_from`.
+extension type const DataShareIncludeTagsFrom._(TfArg<String> _)
+    implements TfArg<String> {
+  DataShareIncludeTagsFrom.variable(String name) : this._(TfArg.variable(name));
+  DataShareIncludeTagsFrom.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareIncludeTagsFrom.arg(TfArg<String> arg) : this._(arg);
+
+  static const api = DataShareIncludeTagsFrom._(TfArgLiteral('api'));
+  static const mirror = DataShareIncludeTagsFrom._(TfArgLiteral('mirror'));
+
+  static const List<DataShareIncludeTagsFrom> values = [api, mirror];
+}
+
 /// Typed helper for the `filter` block of
 /// `cloudflare_share` (derived from provider schema).
 @immutable
 final class DataShareFilter {
   const DataShareFilter({
     this.direction,
+    this.includeTagsFrom,
     this.kind,
     this.order,
     this.resourceTypes,
@@ -24,6 +39,8 @@ final class DataShareFilter {
   });
 
   final DataShareDirection? direction;
+
+  final DataShareFilterIncludeTagsFrom? includeTagsFrom;
 
   final DataShareFilterKind? kind;
 
@@ -40,6 +57,7 @@ final class DataShareFilter {
   @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
+    'include_tags_from': ?includeTagsFrom?.toTfJson(),
     'kind': ?kind?.toTfJson(),
     'order': ?order?.toTfJson(),
     'resource_types': ?resourceTypes?.toTfJson(),
@@ -61,6 +79,23 @@ extension type const DataShareDirection._(TfArg<String> _)
   static const desc = DataShareDirection._(TfArgLiteral('desc'));
 
   static const List<DataShareDirection> values = [asc, desc];
+}
+
+/// `include_tags_from` — derived from the provider schema description.
+extension type const DataShareFilterIncludeTagsFrom._(TfArg<String> _)
+    implements TfArg<String> {
+  DataShareFilterIncludeTagsFrom.variable(String name)
+    : this._(TfArg.variable(name));
+  DataShareFilterIncludeTagsFrom.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareFilterIncludeTagsFrom.arg(TfArg<String> arg) : this._(arg);
+
+  static const api = DataShareFilterIncludeTagsFrom._(TfArgLiteral('api'));
+  static const mirror = DataShareFilterIncludeTagsFrom._(
+    TfArgLiteral('mirror'),
+  );
+
+  static const List<DataShareFilterIncludeTagsFrom> values = [api, mirror];
 }
 
 /// `kind` — derived from the provider schema description.
@@ -124,6 +159,10 @@ extension type const DataShareFilterTargetType._(TfArg<String> _)
 }
 
 /// Factory wrapper for `cloudflare_share`.
+///
+/// Accepted Permissions
+///
+/// - `Resource Sharing Read`
 final class DataCloudflareShare extends Data {
   static const String tfType = 'cloudflare_share';
 
@@ -132,6 +171,7 @@ final class DataCloudflareShare extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? includeRecipientCounts,
     TfArg<bool>? includeResources,
+    DataShareIncludeTagsFrom? includeTagsFrom,
     TfArg<String>? shareId,
     DataShareFilter? filter,
     super.provider,
@@ -142,6 +182,7 @@ final class DataCloudflareShare extends Data {
            'account_id': accountId.encodeAs('id'),
            'include_recipient_counts': ?includeRecipientCounts,
            'include_resources': ?includeResources,
+           'include_tags_from': ?includeTagsFrom,
            'share_id': ?shareId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
@@ -197,6 +238,10 @@ final class DataCloudflareShare extends Data {
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tags =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
   /// Reference to `target_type` attribute.
   TfRef<String> get targetType => TfRef.attribute<String>(this, 'target_type');
 
@@ -210,6 +255,10 @@ final class DataCloudflareShare extends Data {
   /// Reference to `include_resources` attribute.
   TfRef<bool> get includeResources =>
       TfRef.attribute<bool>(this, 'include_resources');
+
+  /// Reference to `include_tags_from` attribute.
+  TfRef<String> get includeTagsFrom =>
+      TfRef.attribute<String>(this, 'include_tags_from');
 
   /// Reference to `share_id` attribute.
   TfRef<String> get shareId => TfRef.attribute<String>(this, 'share_id');

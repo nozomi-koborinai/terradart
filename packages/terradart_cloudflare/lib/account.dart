@@ -129,8 +129,11 @@ export 'src/data/cloudflare_organization.dart'
     show
         DataCloudflareOrganization,
         DataOrganizationContaining,
+        DataOrganizationDirection,
         DataOrganizationFilter,
         DataOrganizationFilterName,
+        DataOrganizationMember,
+        DataOrganizationOrderBy,
         DataOrganizationParent;
 export 'src/data/cloudflare_organization_profile.dart'
     show DataCloudflareOrganizationProfile;

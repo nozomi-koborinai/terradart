@@ -74,6 +74,14 @@ final class DataCloudflareAiGateway extends Data {
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 
+  /// Reference to `fedramp_level` attribute.
+  TfRef<String> get fedrampLevel =>
+      TfRef.attribute<String>(this, 'fedramp_level');
+
+  /// Reference to `fedramp_mode` attribute.
+  TfRef<String> get fedrampMode =>
+      TfRef.attribute<String>(this, 'fedramp_mode');
+
   /// Reference to `is_default` attribute.
   TfRef<bool> get isDefault => TfRef.attribute<bool>(this, 'is_default');
 

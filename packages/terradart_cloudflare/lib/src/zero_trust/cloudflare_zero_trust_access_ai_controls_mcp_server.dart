@@ -190,6 +190,10 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
   TfRef<List<Map<String, String>>> get prompts =>
       TfRef.attribute<List<Map<String, String>>>(this, 'prompts');
 
+  /// Reference to `registered_at` attribute.
+  TfRef<String> get registeredAt =>
+      TfRef.attribute<String>(this, 'registered_at');
+
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 

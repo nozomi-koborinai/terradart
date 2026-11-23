@@ -1,12 +1,27 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_r2_data_catalog`.
-const Set<String> _cloudflareR2DataCatalogSensitive = <String>{};
+const Set<String> _cloudflareR2DataCatalogSensitive = <String>{
+  'credential.token',
+};
+
+/// Typed helper for the `credential` block of
+/// `cloudflare_r2_data_catalog` (derived from provider schema).
+@immutable
+final class R2DataCatalogCredential {
+  const R2DataCatalogCredential({required this.token});
+
+  final Sensitive<String> token;
+
+  @internal
+  Map<String, Object?> encode() => {'token': token.toTfJson()};
+}
 
 /// Factory wrapper for `cloudflare_r2_data_catalog`.
 ///
@@ -20,6 +35,7 @@ final class CloudflareR2DataCatalog extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
+    R2DataCatalogCredential? credential,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -29,6 +45,8 @@ final class CloudflareR2DataCatalog extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
+           if (credential != null)
+             'credential': TfArg.literal(credential.encode()),
          },
        );
 
@@ -51,6 +69,10 @@ final class CloudflareR2DataCatalog extends Resource {
   /// Reference to `credential_status` attribute.
   TfRef<String> get credentialStatus =>
       TfRef.attribute<String>(this, 'credential_status');
+
+  /// Reference to `jurisdiction` attribute.
+  TfRef<String> get jurisdiction =>
+      TfRef.attribute<String>(this, 'jurisdiction');
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');

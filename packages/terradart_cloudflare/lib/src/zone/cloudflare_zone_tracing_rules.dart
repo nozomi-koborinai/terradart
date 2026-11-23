@@ -69,6 +69,10 @@ final class ZoneTracingRulesActionParameters {
 }
 
 /// Factory wrapper for `cloudflare_zone_tracing_rules`.
+///
+/// Accepted Permissions
+///
+/// - `Zone Observability Read` - `Zone Observability Write`
 final class CloudflareZoneTracingRules extends Resource {
   static const String tfType = 'cloudflare_zone_tracing_rules';
 

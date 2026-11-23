@@ -71,6 +71,9 @@ final class DataCloudflareFlagshipFlag extends Data {
   /// Reference to `key` attribute.
   TfRef<String> get key => TfRef.attribute<String>(this, 'key');
 
+  /// Reference to `metadata` attribute.
+  TfRef<Object?> get metadata => TfRef.attribute<Object?>(this, 'metadata');
+
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 

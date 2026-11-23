@@ -13,7 +13,7 @@ Each provider package wraps its provider's catalog at the pinned release. Its pa
 | [Google Cloud (beta-only)](/docs/coverage/google-beta/) | `terradart_google_beta` | 107 | 0 | 107 |
 | [AWS](/docs/coverage/aws/) | `terradart_aws` | 1766 | 689 | 2450 |
 | [Azure](/docs/coverage/azure/) | `terradart_azure` | 1108 | 398 | 1306 |
-| [Cloudflare](/docs/coverage/cloudflare/) | `terradart_cloudflare` | 272 | 468 | 739 |
+| [Cloudflare](/docs/coverage/cloudflare/) | `terradart_cloudflare` | 289 | 499 | 787 |
 | [Appwrite](/docs/coverage/appwrite/) | `terradart_appwrite` | 64 | 29 | 92 |
 
 A factory without an example is recorded with a reason in [`tool/example_debt.yaml`](https://github.com/nozomi-koborinai/terradart/blob/main/tool/example_debt.yaml).

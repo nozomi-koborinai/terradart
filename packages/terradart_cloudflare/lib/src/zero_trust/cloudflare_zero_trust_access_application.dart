@@ -591,6 +591,7 @@ final class ZeroTrustAccessApplicationLandingPageDesign {
 
 /// Typed helper for the `mfa_config` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
 @immutable
 final class ZeroTrustAccessApplicationMfaConfig {
   const ZeroTrustAccessApplicationMfaConfig({
@@ -635,11 +636,19 @@ extension type const ZeroTrustAccessApplicationAllowedAuthenticators._(
   static const securityKey = ZeroTrustAccessApplicationAllowedAuthenticators._(
     TfArgLiteral('security_key'),
   );
+  static const pivKey = ZeroTrustAccessApplicationAllowedAuthenticators._(
+    TfArgLiteral('piv_key'),
+  );
+  static const sshFido2Key = ZeroTrustAccessApplicationAllowedAuthenticators._(
+    TfArgLiteral('ssh_fido2_key'),
+  );
 
   static const List<ZeroTrustAccessApplicationAllowedAuthenticators> values = [
     totp,
     biometrics,
     securityKey,
+    pivKey,
+    sshFido2Key,
   ];
 }
 
@@ -743,7 +752,7 @@ final class ZeroTrustAccessApplicationPolicies {
 
   final List<ZeroTrustAccessApplicationPoliciesExclude>? exclude;
 
-  final ZeroTrustAccessApplicationPoliciesMfaConfig? mfaConfig;
+  final ZeroTrustAccessApplicationMfaConfig? mfaConfig;
 
   final List<ZeroTrustAccessApplicationPoliciesRequire>? require;
 
@@ -1575,66 +1584,6 @@ final class ZeroTrustAccessApplicationPoliciesInclude {
     'saml': ?saml?.encode(),
     'service_token': ?serviceToken?.encode(),
   };
-}
-
-/// Typed helper for the `policies.mfa_config` block of
-/// `cloudflare_zero_trust_access_application` (derived from provider schema).
-@immutable
-final class ZeroTrustAccessApplicationPoliciesMfaConfig {
-  const ZeroTrustAccessApplicationPoliciesMfaConfig({
-    this.allowedAuthenticators,
-    this.mfaDisabled,
-    this.sessionDuration,
-  });
-
-  final EnumList<ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators>?
-  allowedAuthenticators;
-
-  final TfArg<bool>? mfaDisabled;
-
-  final TfArg<String>? sessionDuration;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'allowed_authenticators': ?allowedAuthenticators?.toTfJson(),
-    'mfa_disabled': ?mfaDisabled?.toTfJson(),
-    'session_duration': ?sessionDuration?.toTfJson(),
-  };
-}
-
-/// `allowed_authenticators` — derived from the provider schema description.
-extension type const ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
-  TfArg<String> _
-)
-    implements TfArg<String> {
-  ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators.variable(String name)
-    : this._(TfArg.variable(name));
-  ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators.expression(
-    String template,
-  ) : this._(TfArg.expression(template));
-  const ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
-
-  static const totp =
-      ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
-        TfArgLiteral('totp'),
-      );
-  static const biometrics =
-      ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
-        TfArgLiteral('biometrics'),
-      );
-  static const securityKey =
-      ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
-        TfArgLiteral('security_key'),
-      );
-  static const sshPivKey =
-      ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
-        TfArgLiteral('ssh_piv_key'),
-      );
-
-  static const List<ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators>
-  values = [totp, biometrics, securityKey, sshPivKey];
 }
 
 /// Typed helper for the `policies.require` block of

@@ -261,10 +261,26 @@ List<NestedBlockSpec> collectNestedTypes({
           context: 'block_types',
         ).keys,
       ]);
-  return _renameConcisely(specs, resourcePrefix, laneInputs, reserved, named, {
-    for (final MapEntry(:key, :value) in attributes.entries)
-      if (value is! Map || !value.containsKey('nested_type')) topLevel[key]!,
-  });
+  final owned = <String>{};
+  final topReserved = <String>{};
+  for (final MapEntry(:key, :value) in attributes.entries) {
+    if (value is Map && value.containsKey('nested_type')) continue;
+    // Computed-only attributes never emit a top-level enum or input type, so
+    // they only reserve their name as a soft preference rather than owning it.
+    if (value is Map && _isComputedOnly(value.cast<String, dynamic>())) {
+      topReserved.add(topLevel[key]!);
+    } else {
+      owned.add(topLevel[key]!);
+    }
+  }
+  return _renameConcisely(
+    specs,
+    resourcePrefix,
+    laneInputs,
+    {...reserved, ...topReserved},
+    named,
+    owned,
+  );
 }
 
 /// The dotted path of every class and enum input in [specs], recursively,

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_origin_ca_certificate`.
 const Set<String> _cloudflareOriginCaCertificateSensitive = <String>{};
 
@@ -42,6 +44,7 @@ final class CloudflareOriginCaCertificate extends Resource {
     required TfArg<List<String>> hostnames,
     required OriginCaCertificateRequestType requestType,
     TfArg<num>? requestedValidity,
+    RefTo<CloudflareZone>? zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -53,6 +56,7 @@ final class CloudflareOriginCaCertificate extends Resource {
            'hostnames': hostnames,
            'request_type': requestType,
            'requested_validity': ?requestedValidity,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 
@@ -72,6 +76,9 @@ final class CloudflareOriginCaCertificate extends Resource {
   /// Reference to `expires_on` attribute.
   TfRef<String> get expiresOn => TfRef.attribute<String>(this, 'expires_on');
 
+  /// Reference to `revoked_at` attribute.
+  TfRef<String> get revokedAt => TfRef.attribute<String>(this, 'revoked_at');
+
   /// Reference to `csr` attribute.
   TfRef<String> get csr => TfRef.attribute<String>(this, 'csr');
 
@@ -86,4 +93,7 @@ final class CloudflareOriginCaCertificate extends Resource {
   /// Reference to `requested_validity` attribute.
   TfRef<num> get requestedValidity =>
       TfRef.attribute<num>(this, 'requested_validity');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');
 }

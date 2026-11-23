@@ -13,33 +13,20 @@ final class DataCloudflareOriginCaCertificates extends Data {
 
   DataCloudflareOriginCaCertificates(
     super.localName, {
-    TfArg<num>? limit,
     TfArg<num>? maxItems,
-    TfArg<num>? offset,
     required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'limit': ?limit,
-           'max_items': ?maxItems,
-           'offset': ?offset,
-           'zone_id': zoneId.encodeAs('id'),
-         },
+         argMap: {'max_items': ?maxItems, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override
   Set<String> get sensitiveFields => _cloudflareOriginCaCertificatesSensitive;
 
-  /// Reference to `limit` attribute.
-  TfRef<num> get limit => TfRef.attribute<num>(this, 'limit');
-
   /// Reference to `max_items` attribute.
   TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
-
-  /// Reference to `offset` attribute.
-  TfRef<num> get offset => TfRef.attribute<num>(this, 'offset');
 
   /// Reference to `zone_id` attribute.
   TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');

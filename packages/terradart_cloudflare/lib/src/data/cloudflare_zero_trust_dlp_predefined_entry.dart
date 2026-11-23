@@ -77,6 +77,10 @@ final class DataCloudflareZeroTrustDlpPredefinedEntry extends Data {
   TfRef<String> get uploadStatus =>
       TfRef.attribute<String>(this, 'upload_status');
 
+  /// Reference to `validator_ids` attribute.
+  TfRef<List<String>> get validatorIds =>
+      TfRef.attribute<List<String>>(this, 'validator_ids');
+
   /// Reference to `word_list` attribute.
   TfRef<List<String>> get wordList =>
       TfRef.attribute<List<String>>(this, 'word_list');

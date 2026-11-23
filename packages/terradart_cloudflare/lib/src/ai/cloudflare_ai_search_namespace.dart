@@ -174,6 +174,9 @@ final class CloudflareAiSearchNamespace extends Resource {
   /// Reference to `name` attribute.
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 

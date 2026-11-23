@@ -6,9 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_custom_hostnames`.
-const Set<String> _cloudflareCustomHostnamesSensitive = <String>{
-  'result.ssl.custom_key',
-};
+const Set<String> _cloudflareCustomHostnamesSensitive = <String>{};
 
 /// Data Custom Hostnames Certificate enum for `certificate_authority`.
 extension type const DataCustomHostnamesCertificateAuthority._(TfArg<String> _)

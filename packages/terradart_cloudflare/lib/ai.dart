@@ -32,6 +32,7 @@ export 'src/ai/cloudflare_ai_gateway.dart'
         AiGatewayS11,
         AiGatewayS12,
         AiGatewayS13,
+        AiGatewayS14,
         AiGatewayS2,
         AiGatewayS3,
         AiGatewayS4,
@@ -100,6 +101,9 @@ export 'src/ai/cloudflare_ai_search_namespace.dart'
         AiSearchNamespaceTechnique,
         CloudflareAiSearchNamespace;
 export 'src/ai/cloudflare_ai_search_token.dart' show CloudflareAiSearchToken;
+export 'src/ai/cloudflare_ai_security.dart' show CloudflareAiSecurity;
+export 'src/ai/cloudflare_ai_security_custom_topics.dart'
+    show AiSecurityCustomTopics, CloudflareAiSecurityCustomTopics;
 export 'src/data/cloudflare_ai_gateway.dart'
     show DataAiGatewayFilter, DataCloudflareAiGateway;
 export 'src/data/cloudflare_ai_gateway_dynamic_routing.dart'
@@ -117,10 +121,13 @@ export 'src/data/cloudflare_ai_search_instances.dart'
         DataAiSearchInstancesOrderByDirection,
         DataCloudflareAiSearchInstances;
 export 'src/data/cloudflare_ai_search_namespace.dart'
-    show DataCloudflareAiSearchNamespace;
+    show DataAiSearchNamespaceFilter, DataCloudflareAiSearchNamespace;
 export 'src/data/cloudflare_ai_search_namespaces.dart'
     show DataCloudflareAiSearchNamespaces;
 export 'src/data/cloudflare_ai_search_token.dart'
     show DataAiSearchTokenFilter, DataCloudflareAiSearchToken;
 export 'src/data/cloudflare_ai_search_tokens.dart'
     show DataCloudflareAiSearchTokens;
+export 'src/data/cloudflare_ai_security.dart' show DataCloudflareAiSecurity;
+export 'src/data/cloudflare_ai_security_custom_topics.dart'
+    show DataCloudflareAiSecurityCustomTopics;
