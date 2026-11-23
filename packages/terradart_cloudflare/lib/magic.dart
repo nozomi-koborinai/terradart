@@ -83,6 +83,7 @@ export 'src/magic/cloudflare_magic_transit_site_lan.dart'
         MagicTransitSiteLanDhcpRelay,
         MagicTransitSiteLanDhcpServer,
         MagicTransitSiteLanNat,
+        MagicTransitSiteLanRemoteSubnets,
         MagicTransitSiteLanRoutedSubnets,
         MagicTransitSiteLanStaticAddressing,
         MagicTransitSiteLanType;

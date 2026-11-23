@@ -52,6 +52,9 @@ extension type const ZeroTrustGatewayPolicyAction._(TfArg<String> _)
   static const redirect = ZeroTrustGatewayPolicyAction._(
     TfArgLiteral('redirect'),
   );
+  static const forward = ZeroTrustGatewayPolicyAction._(
+    TfArgLiteral('forward'),
+  );
 
   static const List<ZeroTrustGatewayPolicyAction> values = [
     on,
@@ -70,6 +73,7 @@ extension type const ZeroTrustGatewayPolicyAction._(TfArg<String> _)
     resolve,
     quarantine,
     redirect,
+    forward,
   ];
 }
 
@@ -138,13 +142,13 @@ final class ZeroTrustGatewayPolicyRuleSettings {
     this.overrideIps,
     this.resolveDnsThroughCloudflare,
     this.setHeaders,
-    this.auditSsh,
     this.bisoAdminControls,
     this.blockPage,
     this.checkSession,
     this.dnsResolvers,
     this.egress,
     this.forensicCopy,
+    this.forward,
     this.l4override,
     this.notificationSettings,
     this.payloadLog,
@@ -182,8 +186,6 @@ final class ZeroTrustGatewayPolicyRuleSettings {
 
   final TfArg<Map<String, dynamic>>? setHeaders;
 
-  final ZeroTrustGatewayPolicyAuditSsh? auditSsh;
-
   final ZeroTrustGatewayPolicyBisoAdminControls? bisoAdminControls;
 
   final ZeroTrustGatewayPolicyBlockPage? blockPage;
@@ -195,6 +197,8 @@ final class ZeroTrustGatewayPolicyRuleSettings {
   final ZeroTrustGatewayPolicyEgress? egress;
 
   final ZeroTrustGatewayPolicyForensicCopy? forensicCopy;
+
+  final ZeroTrustGatewayPolicyForward? forward;
 
   final ZeroTrustGatewayPolicyL4override? l4override;
 
@@ -227,13 +231,13 @@ final class ZeroTrustGatewayPolicyRuleSettings {
     'override_ips': ?overrideIps?.toTfJson(),
     'resolve_dns_through_cloudflare': ?resolveDnsThroughCloudflare?.toTfJson(),
     'set_headers': ?setHeaders?.toTfJson(),
-    'audit_ssh': ?auditSsh?.encode(),
     'biso_admin_controls': ?bisoAdminControls?.encode(),
     'block_page': ?blockPage?.encode(),
     'check_session': ?checkSession?.encode(),
     'dns_resolvers': ?dnsResolvers?.encode(),
     'egress': ?egress?.encode(),
     'forensic_copy': ?forensicCopy?.encode(),
+    'forward': ?forward?.encode(),
     'l4override': ?l4override?.encode(),
     'notification_settings': ?notificationSettings?.encode(),
     'payload_log': ?payloadLog?.encode(),
@@ -241,20 +245,6 @@ final class ZeroTrustGatewayPolicyRuleSettings {
     'redirect': ?redirect?.encode(),
     'resolve_dns_internally': ?resolveDnsInternally?.encode(),
     'untrusted_cert': ?untrustedCert?.encode(),
-  };
-}
-
-/// Typed helper for the `rule_settings.audit_ssh` block of
-/// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
-@immutable
-final class ZeroTrustGatewayPolicyAuditSsh {
-  const ZeroTrustGatewayPolicyAuditSsh({this.commandLogging});
-
-  final TfArg<bool>? commandLogging;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'command_logging': ?commandLogging?.toTfJson(),
   };
 }
 
@@ -387,10 +377,14 @@ extension type const ZeroTrustGatewayPolicyKeyboard._(TfArg<String> _)
   static const disabled = ZeroTrustGatewayPolicyKeyboard._(
     TfArgLiteral('disabled'),
   );
+  static const enableReadOnlyActions = ZeroTrustGatewayPolicyKeyboard._(
+    TfArgLiteral('enable_read_only_actions'),
+  );
 
   static const List<ZeroTrustGatewayPolicyKeyboard> values = [
     enabled,
     disabled,
+    enableReadOnlyActions,
   ];
 }
 
@@ -624,6 +618,18 @@ final class ZeroTrustGatewayPolicyForensicCopy {
 
   @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
+}
+
+/// Typed helper for the `rule_settings.forward` block of
+/// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
+@immutable
+final class ZeroTrustGatewayPolicyForward {
+  const ZeroTrustGatewayPolicyForward({required this.workerId});
+
+  final TfArg<String> workerId;
+
+  @internal
+  Map<String, Object?> encode() => {'worker_id': workerId.toTfJson()};
 }
 
 /// Typed helper for the `rule_settings.l4override` block of

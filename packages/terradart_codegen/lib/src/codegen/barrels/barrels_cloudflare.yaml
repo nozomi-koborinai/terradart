@@ -188,12 +188,9 @@ barrels:
   load_balancer:
     doc: |-
       /// Cloudflare Load Balancing pools, monitors, and balancers.
-  log:
-    doc: |-
-      /// `log` factories, added by the weekly schema bump.
   logs:
     doc: |-
-      /// Cloudflare Logpush jobs and Logpull retention.
+      /// Cloudflare Log Explorer datasets, Logpush jobs, and Logpull retention.
   magic:
     doc: |-
       /// Cloudflare Magic WAN, Magic Transit, and Magic Network Monitoring.

@@ -40,6 +40,7 @@ final class ZeroTrustAccessGroupExclude {
     this.okta,
     this.saml,
     this.serviceToken,
+    this.serviceTokenTag,
     this.userRiskScore,
   });
 
@@ -93,6 +94,8 @@ final class ZeroTrustAccessGroupExclude {
 
   final ZeroTrustAccessGroupServiceToken? serviceToken;
 
+  final ZeroTrustAccessGroupServiceTokenTag? serviceTokenTag;
+
   final ZeroTrustAccessGroupUserRiskScore? userRiskScore;
 
   @internal
@@ -122,6 +125,7 @@ final class ZeroTrustAccessGroupExclude {
     'okta': ?okta?.encode(),
     'saml': ?saml?.encode(),
     'service_token': ?serviceToken?.encode(),
+    'service_token_tag': ?serviceTokenTag?.encode(),
     'user_risk_score': ?userRiskScore?.encode(),
   };
 }
@@ -535,6 +539,27 @@ final class ZeroTrustAccessGroupServiceToken {
   Map<String, Object?> encode() => {'token_id': tokenId.toTfJson()};
 }
 
+/// Typed helper for the `exclude.service_token_tag` block of
+/// `cloudflare_zero_trust_access_group` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class ZeroTrustAccessGroupServiceTokenTag {
+  const ZeroTrustAccessGroupServiceTokenTag({
+    required this.key,
+    required this.value,
+  });
+
+  final TfArg<String> key;
+
+  final TfArg<String> value;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'key': key.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
+
 /// Typed helper for the `exclude.user_risk_score` block of
 /// `cloudflare_zero_trust_access_group` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
@@ -613,6 +638,7 @@ final class ZeroTrustAccessGroupInclude {
     this.okta,
     this.saml,
     this.serviceToken,
+    this.serviceTokenTag,
     this.userRiskScore,
   });
 
@@ -666,6 +692,8 @@ final class ZeroTrustAccessGroupInclude {
 
   final ZeroTrustAccessGroupServiceToken? serviceToken;
 
+  final ZeroTrustAccessGroupServiceTokenTag? serviceTokenTag;
+
   final ZeroTrustAccessGroupUserRiskScore? userRiskScore;
 
   @internal
@@ -695,6 +723,7 @@ final class ZeroTrustAccessGroupInclude {
     'okta': ?okta?.encode(),
     'saml': ?saml?.encode(),
     'service_token': ?serviceToken?.encode(),
+    'service_token_tag': ?serviceTokenTag?.encode(),
     'user_risk_score': ?userRiskScore?.encode(),
   };
 }
@@ -729,6 +758,7 @@ final class ZeroTrustAccessGroupRequire {
     this.okta,
     this.saml,
     this.serviceToken,
+    this.serviceTokenTag,
     this.userRiskScore,
   });
 
@@ -782,6 +812,8 @@ final class ZeroTrustAccessGroupRequire {
 
   final ZeroTrustAccessGroupServiceToken? serviceToken;
 
+  final ZeroTrustAccessGroupServiceTokenTag? serviceTokenTag;
+
   final ZeroTrustAccessGroupUserRiskScore? userRiskScore;
 
   @internal
@@ -811,6 +843,7 @@ final class ZeroTrustAccessGroupRequire {
     'okta': ?okta?.encode(),
     'saml': ?saml?.encode(),
     'service_token': ?serviceToken?.encode(),
+    'service_token_tag': ?serviceTokenTag?.encode(),
     'user_risk_score': ?userRiskScore?.encode(),
   };
 }

@@ -18,6 +18,56 @@ and run `dart pub upgrade`. Install or update the CLI with
 `dart install terradart_cli` (or run one-off commands without installing via
 `dart run terradart_cli:terradart@ <command>`).
 
+### Cloudflare provider 5.29.0
+
+**Breaking (`terradart_cloudflare`).** Provider 5.29.0 introduces several schema
+changes and removes two upstream enum/conflict constraints:
+
+- `CloudflareSecretsStoreSecret.scopes` is now optional `TfArg<List<String>>?`
+  instead of required `EnumList<SecretsStoreSecretScopes>`, and
+  `SecretsStoreSecretScopes` is removed.
+- `LoadBalancerRules.overrides` now takes `LoadBalancerRulesOverrides` instead
+  of `LoadBalancerOverrides` (disambiguated from `LoadBalancerPoolSetsOverrides`).
+- `WorkersScriptPlacement.mode` now takes `WorkersScriptPlacementMode` instead
+  of `WorkersScriptMode` (disambiguated from `WorkersScriptCodeUpdateStrategyMode`).
+- `ZeroTrustAccessApplicationPolicies.mfaConfig` now shares
+  `ZeroTrustAccessApplicationMfaConfig` (removing
+  `ZeroTrustAccessApplicationPoliciesMfaConfig` and
+  `ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators`; `allowedAuthenticators`
+  replaces `sshPivKey` with `pivKey` and `sshFido2Key` on
+  `ZeroTrustAccessApplicationAllowedAuthenticators`).
+- `ListItems` replaces its sealed `value` (`ListValue`) with plain `asn`,
+  `hostname`, `ip`, and `redirect` fields because the provider dropped the
+  mutual-exclusion constraint.
+- `CloudflarePrecursor` replaces `defaultMode` (`PrecursorDefaultMode`) and
+  `enforcementRules` (`PrecursorEnforcementRules`) with `mode` (`PrecursorMode`
+  values `off`, `monitor`, `arm`), `showInterstitial`, and `rules`
+  (`PrecursorRules`). `DataCloudflarePrecursor.defaultMode` is also removed.
+- `DataCloudflareWorkersCustomDomain` and `DataCloudflareWorkersCustomDomains`
+  now require `accountId`.
+- `FlagshipFlagClausesClausesClauses` now requires `attribute`, `operator`, and
+  `value`, and removes `clauses` and `logicalOperator`.
+- Upstream also removed `WorkerVersionBindings.retry` (`WorkerVersionRetry`),
+  `ZeroTrustGatewayPolicyRuleSettings.auditSsh`
+  (`ZeroTrustGatewayPolicyAuditSsh`), `foundationDns` on
+  `AccountDnsSettingsZoneDefaults`, `CloudflareZoneDnsSettings`, and
+  `DataCloudflareZoneDnsSettings`, `organizationId` on
+  `CloudflareShareRecipient`, `appCount` on `CloudflareZeroTrustAccessPolicy`,
+  `limit` and `offset` on `DataCloudflareOriginCaCertificates` and
+  `DataOriginCaCertificateFilter`, and `namespace` on
+  `DataAiSearchInstanceFilter`.
+
+| Before | After |
+|---|---|
+| `CloudflareSecretsStoreSecret('s', scopes: .literal([.workers]), ...)` | `CloudflareSecretsStoreSecret('s', scopes: .literal(['workers']), ...)` |
+| `LoadBalancerRules(overrides: LoadBalancerOverrides(ttl: .literal(30)))` | `LoadBalancerRules(overrides: LoadBalancerRulesOverrides(ttl: .literal(30)))` |
+| `WorkersScriptPlacement(mode: WorkersScriptMode.smart)` | `WorkersScriptPlacement(mode: WorkersScriptPlacementMode.smart)` |
+| `ZeroTrustAccessApplicationPolicies(mfaConfig: ZeroTrustAccessApplicationPoliciesMfaConfig(allowedAuthenticators: .literal([.totp])), ...)` | `ZeroTrustAccessApplicationPolicies(mfaConfig: ZeroTrustAccessApplicationMfaConfig(allowedAuthenticators: .literal([.totp])), ...)` |
+| `ListItems(value: .ip(.literal('192.0.2.1')))` | `ListItems(ip: .literal('192.0.2.1'))` |
+| `CloudflarePrecursor('p', defaultMode: .minFriction, enforcementRules: [PrecursorEnforcementRules(expression: .literal('true'), mode: .maxSecurity)], ...)` | `CloudflarePrecursor('p', mode: .monitor, rules: [PrecursorRules(expression: .literal('true'), showInterstitial: .literal(false))], ...)` |
+| `DataCloudflareWorkersCustomDomain('d')` | `DataCloudflareWorkersCustomDomain('d', accountId: .literal('00000000000000000000000000000001'))` |
+| `DataCloudflareWorkersCustomDomains('d')` | `DataCloudflareWorkersCustomDomains('d', accountId: .literal('00000000000000000000000000000001'))` |
+
 ### Google provider 8.11.0
 
 **Breaking (`terradart_google`).** Provider 8.11.0 promotes `vpc_access`

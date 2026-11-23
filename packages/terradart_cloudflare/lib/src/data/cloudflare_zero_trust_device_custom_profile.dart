@@ -107,6 +107,10 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
   TfRef<bool> get disableAutoFallback =>
       TfRef.attribute<bool>(this, 'disable_auto_fallback');
 
+  /// Reference to `enable_device_credential_authentication` attribute.
+  TfRef<bool> get enableDeviceCredentialAuthentication =>
+      TfRef.attribute<bool>(this, 'enable_device_credential_authentication');
+
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 

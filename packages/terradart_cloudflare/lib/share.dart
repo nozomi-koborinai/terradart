@@ -9,9 +9,11 @@ export 'src/data/cloudflare_share.dart'
         DataCloudflareShare,
         DataShareDirection,
         DataShareFilter,
+        DataShareFilterIncludeTagsFrom,
         DataShareFilterKind,
         DataShareFilterStatus,
         DataShareFilterTargetType,
+        DataShareIncludeTagsFrom,
         DataShareOrder;
 export 'src/data/cloudflare_share_recipient.dart'
     show DataCloudflareShareRecipient;
@@ -29,7 +31,13 @@ export 'src/data/cloudflare_share_resources.dart'
         DataShareResourcesResourceType,
         DataShareResourcesStatus;
 export 'src/share/cloudflare_share.dart'
-    show CloudflareShare, ShareRecipients, ShareResourceType, ShareResources;
+    show
+        CloudflareShare,
+        ShareExcludedRecipients,
+        ShareIncludeTagsFrom,
+        ShareRecipients,
+        ShareResourceType,
+        ShareResources;
 export 'src/share/cloudflare_share_recipient.dart'
     show CloudflareShareRecipient;
 export 'src/share/cloudflare_share_resource.dart'

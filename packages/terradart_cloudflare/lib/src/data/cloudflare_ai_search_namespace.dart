@@ -1,12 +1,25 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ai/cloudflare_ai_search_namespace.dart';
 import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_ai_search_namespace`.
 const Set<String> _cloudflareAiSearchNamespaceSensitive = <String>{};
+
+/// Typed helper for the `filter` block of
+/// `cloudflare_ai_search_namespace` (derived from provider schema).
+@immutable
+final class DataAiSearchNamespaceFilter {
+  const DataAiSearchNamespaceFilter({this.search});
+
+  final TfArg<String>? search;
+
+  @internal
+  Map<String, Object?> encode() => {'search': ?search?.toTfJson()};
+}
 
 /// Factory wrapper for `cloudflare_ai_search_namespace`.
 final class DataCloudflareAiSearchNamespace extends Data {
@@ -15,12 +28,17 @@ final class DataCloudflareAiSearchNamespace extends Data {
   DataCloudflareAiSearchNamespace(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    required TfArg<String> name,
+    TfArg<String>? name,
+    DataAiSearchNamespaceFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId.encodeAs('id'), 'name': name},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'name': ?name,
+           if (filter != null) 'filter': TfArg.literal(filter.encode()),
+         },
        );
 
   @override
@@ -33,6 +51,9 @@ final class DataCloudflareAiSearchNamespace extends Data {
 
   /// Reference to `name` attribute.
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');

@@ -135,6 +135,15 @@ final class CloudflareLeftoverStack extends Stack {
       ),
     );
 
+    add(CloudflareAiSecurity('ai_security', zoneId: .literal(zoneId)));
+
+    add(
+      CloudflareAiSecurityCustomTopics(
+        'ai_security_custom_topics',
+        zoneId: .literal(zoneId),
+      ),
+    );
+
     add(
       CloudflareApiShield(
         'api_shield',
@@ -826,6 +835,15 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
+      CloudflareLogExplorerDataset(
+        'log_explorer_dataset',
+        scope: .accountId(.literal(accountId)),
+        dataset: .literal(leftover),
+        filter: .literal(leftover),
+      ),
+    );
+
+    add(
       CloudflareLogpullRetention('logpull_retention', zoneId: .literal(zoneId)),
     );
 
@@ -1057,11 +1075,6 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareOrganizationProfile(
         'organization_profile',
-        businessAddress: .literal('192.0.2.1'),
-        businessEmail: .literal('leftover@example.com'),
-        businessName: .literal(leftover),
-        businessPhone: .literal(leftover),
-        externalMetadata: .literal(leftover),
         organizationId: .literal('00000000000000000000000000000001'),
       ),
     );
@@ -1072,6 +1085,7 @@ final class CloudflareLeftoverStack extends Stack {
         csr: .literal(leftover),
         hostnames: .literal([leftover]),
         requestType: .originRsa,
+        zoneId: .literal(zoneId),
       ),
     );
 
@@ -1335,7 +1349,6 @@ final class CloudflareLeftoverStack extends Stack {
         'secrets_store_secret',
         accountId: .literal(accountId),
         name: .literal(leftover),
-        scopes: .literal([.workers]),
         storeId: .literal('00000000000000000000000000000001'),
         value: leftoverSecret,
       ),
@@ -1346,19 +1359,6 @@ final class CloudflareLeftoverStack extends Stack {
         'share',
         accountId: .literal(accountId),
         name: .literal(leftover),
-        recipients: [
-          ShareRecipients(
-            organizationId: .literal('00000000000000000000000000000001'),
-          ),
-        ],
-        resources: [
-          ShareResources(
-            meta: .literal('{}'),
-            resourceAccountId: .literal('00000000000000000000000000000001'),
-            resourceId: .literal('00000000000000000000000000000001'),
-            resourceType: .customRuleset,
-          ),
-        ],
       ),
     );
 
@@ -1930,6 +1930,20 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
+      CloudflareZeroTrustCasbFindingType(
+        'zero_trust_casb_finding_type',
+        accountId: .literal(accountId),
+        appliesToAllIntegrations: .literal(true),
+        assetClass: .literal(leftover),
+        assetVendor: .anthropic,
+        description: .literal(leftover),
+        expression: .literal(leftover),
+        name: .literal(leftover),
+        severity: .critical,
+      ),
+    );
+
+    add(
       CloudflareZeroTrustCasbIntegration(
         'zero_trust_casb_integration',
         accountId: .literal(accountId),
@@ -1973,6 +1987,119 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustConnectivitySettings(
         'zero_trust_connectivity_settings',
         accountId: .literal(accountId),
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsBasicAuthCredential(
+        'zero_trust_cws_basic_auth_credential',
+        accountId: .literal(accountId),
+        username: .literal(leftover),
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsBasicAuthSecret(
+        'zero_trust_cws_basic_auth_secret',
+        accountId: .literal(accountId),
+        credentialId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsDeployment(
+        'zero_trust_cws_deployment',
+        accountId: .literal(accountId),
+        basicAuthCredentialIds: .literal([leftover]),
+        defaultMode: .allow,
+        name: .literal(leftover),
+        policySetIds: .literal([leftover]),
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsDomainAcl(
+        'zero_trust_cws_domain_acl',
+        accountId: .literal(accountId),
+        defaultAction: .allow,
+        name: .literal(leftover),
+        entries: [
+          ZeroTrustCwsDomainAclEntries(
+            action: .allow,
+            domain: .literal(leftover),
+          ),
+        ],
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsPolicy(
+        'zero_trust_cws_policy',
+        accountId: .literal(accountId),
+        entrypoint: .literal(leftover),
+        filter: .literal(leftover),
+        name: .literal(leftover),
+        regoSource: .literal(leftover),
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsPolicySet(
+        'zero_trust_cws_policy_set',
+        accountId: .literal(accountId),
+        name: .literal(leftover),
+        policies: [
+          ZeroTrustCwsPolicySetPolicies(
+            policyId: .literal('00000000000000000000000000000001'),
+          ),
+        ],
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsRegoMetadata(
+        'zero_trust_cws_rego_metadata',
+        accountId: .literal(accountId),
+        data: .literal('{}'),
+        importPath: .literal(leftover),
+        name: .literal(leftover),
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsRegoModule(
+        'zero_trust_cws_rego_module',
+        accountId: .literal(accountId),
+        name: .literal(leftover),
+        regoSource: .literal(leftover),
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsTenantStructure(
+        'zero_trust_cws_tenant_structure',
+        accountId: .literal(accountId),
+        application: .aws,
+        name: .literal(leftover),
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsTenantStructureNode(
+        'zero_trust_cws_tenant_structure_node',
+        accountId: .literal(accountId),
+        nativeId: .literal('00000000000000000000000000000001'),
+        nodeKind: .literal(leftover),
+        structureId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCwsWorkload(
+        'zero_trust_cws_workload',
+        accountId: .literal(accountId),
+        filter: .literal(leftover),
+        name: .literal(leftover),
       ),
     );
 
@@ -2214,6 +2341,20 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
+      CloudflareZeroTrustDlpProximityValidator(
+        'zero_trust_dlp_proximity_validator',
+        accountId: .literal(accountId),
+        name: .literal(leftover),
+        words: [
+          ZeroTrustDlpProximityValidatorWords(
+            weight: .strong,
+            word: .literal(leftover),
+          ),
+        ],
+      ),
+    );
+
+    add(
       CloudflareZeroTrustDlpSensitivityGroup(
         'zero_trust_dlp_sensitivity_group',
         accountId: .literal(accountId),
@@ -2325,6 +2466,14 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
+      CloudflareZeroTrustOrganizationTrustSettings(
+        'zero_trust_organization_trust_settings',
+        accountId: .literal(accountId),
+        grantTrustToAllAccountsInOrg: .literal(true),
+      ),
+    );
+
+    add(
       CloudflareZeroTrustResourceLibraryApplication(
         'zero_trust_resource_library_application',
         accountId: .literal(accountId),
@@ -2338,7 +2487,7 @@ final class CloudflareLeftoverStack extends Stack {
         behaviors: {
           'k': ZeroTrustRiskBehaviorBehaviors(
             enabled: .literal(true),
-            riskLevel: .low,
+            riskLevel: .info,
           ),
         },
       ),
@@ -2651,7 +2800,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareAiSearchNamespace(
         'd_ai_search_namespace',
         accountId: .literal(accountId),
-        name: .literal(leftover),
+        filter: DataAiSearchNamespaceFilter(search: .literal(leftover)),
       ),
     );
 
@@ -2674,6 +2823,15 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareAiSearchTokens(
         'd_ai_search_tokens',
         accountId: .literal(accountId),
+      ),
+    );
+
+    add(DataCloudflareAiSecurity('d_ai_security', zoneId: .literal(zoneId)));
+
+    add(
+      DataCloudflareAiSecurityCustomTopics(
+        'd_ai_security_custom_topics',
+        zoneId: .literal(zoneId),
       ),
     );
 
@@ -3572,6 +3730,13 @@ final class CloudflareLeftoverStack extends Stack {
 
     add(
       DataCloudflareLoadBalancers('d_load_balancers', zoneId: .literal(zoneId)),
+    );
+
+    add(
+      DataCloudflareLogExplorerDatasets(
+        'd_log_explorer_datasets',
+        accountId: .literal(accountId),
+      ),
     );
 
     add(
@@ -4744,6 +4909,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareWorkersCustomDomains(
         'd_workers_custom_domains',
         accountId: .literal(accountId),
+        zoneId: .literal(zoneId),
       ),
     );
 
@@ -5048,6 +5214,21 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
+      DataCloudflareZeroTrustCasbFindingType(
+        'd_zero_trust_casb_finding_type',
+        accountId: .literal(accountId),
+        findingTypeId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCasbFindingTypes(
+        'd_zero_trust_casb_finding_types',
+        accountId: .literal(accountId),
+      ),
+    );
+
+    add(
       DataCloudflareZeroTrustCasbIntegration(
         'd_zero_trust_casb_integration',
         accountId: .literal(accountId),
@@ -5098,6 +5279,181 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustConnectivitySettings(
         'd_zero_trust_connectivity_settings',
         accountId: .literal(accountId),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsBasicAuthCredential(
+        'd_zero_trust_cws_basic_auth_credential',
+        accountId: .literal(accountId),
+        credentialId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsBasicAuthCredentials(
+        'd_zero_trust_cws_basic_auth_credentials',
+        accountId: .literal(accountId),
+        deploymentId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsBasicAuthSecret(
+        'd_zero_trust_cws_basic_auth_secret',
+        accountId: .literal(accountId),
+        credentialId: .literal('00000000000000000000000000000001'),
+        secretId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsBasicAuthSecrets(
+        'd_zero_trust_cws_basic_auth_secrets',
+        accountId: .literal(accountId),
+        credentialId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsDeployment(
+        'd_zero_trust_cws_deployment',
+        accountId: .literal(accountId),
+        deploymentId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsDeployments(
+        'd_zero_trust_cws_deployments',
+        accountId: .literal(accountId),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsDomainAcl(
+        'd_zero_trust_cws_domain_acl',
+        accountId: .literal(accountId),
+        domainAclId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsDomainAcls(
+        'd_zero_trust_cws_domain_acls',
+        accountId: .literal(accountId),
+        deploymentId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsPolicies(
+        'd_zero_trust_cws_policies',
+        accountId: .literal(accountId),
+        policySetId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsPolicy(
+        'd_zero_trust_cws_policy',
+        accountId: .literal(accountId),
+        policyId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsPolicySet(
+        'd_zero_trust_cws_policy_set',
+        accountId: .literal(accountId),
+        policySetId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsPolicySets(
+        'd_zero_trust_cws_policy_sets',
+        accountId: .literal(accountId),
+        deploymentId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsRegoMetadata(
+        'd_zero_trust_cws_rego_metadata',
+        accountId: .literal(accountId),
+        regoMetadataId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsRegoMetadataList(
+        'd_zero_trust_cws_rego_metadata_list',
+        accountId: .literal(accountId),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsRegoModule(
+        'd_zero_trust_cws_rego_module',
+        accountId: .literal(accountId),
+        regoModuleId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsRegoModules(
+        'd_zero_trust_cws_rego_modules',
+        accountId: .literal(accountId),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsTenantStructure(
+        'd_zero_trust_cws_tenant_structure',
+        accountId: .literal(accountId),
+        structureId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsTenantStructureNode(
+        'd_zero_trust_cws_tenant_structure_node',
+        accountId: .literal(accountId),
+        structureId: .literal('00000000000000000000000000000001'),
+        nodeId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsTenantStructureNodes(
+        'd_zero_trust_cws_tenant_structure_nodes',
+        accountId: .literal(accountId),
+        structureId: .literal('00000000000000000000000000000001'),
+        nativeId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsTenantStructures(
+        'd_zero_trust_cws_tenant_structures',
+        accountId: .literal(accountId),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsWorkload(
+        'd_zero_trust_cws_workload',
+        accountId: .literal(accountId),
+        workloadId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCwsWorkloads(
+        'd_zero_trust_cws_workloads',
+        accountId: .literal(accountId),
+        policySetId: .literal('00000000000000000000000000000001'),
       ),
     );
 
@@ -5419,6 +5775,21 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
+      DataCloudflareZeroTrustDlpProximityValidator(
+        'd_zero_trust_dlp_proximity_validator',
+        accountId: .literal(accountId),
+        validatorId: .literal('00000000000000000000000000000001'),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustDlpProximityValidators(
+        'd_zero_trust_dlp_proximity_validators',
+        accountId: .literal(accountId),
+      ),
+    );
+
+    add(
       DataCloudflareZeroTrustDlpSensitivityGroup(
         'd_zero_trust_dlp_sensitivity_group',
         accountId: .literal(accountId),
@@ -5506,6 +5877,13 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       DataCloudflareZeroTrustGatewayCertificates(
         'd_zero_trust_gateway_certificates',
+        accountId: .literal(accountId),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustGatewayDnsDestinationIpsList(
+        'd_zero_trust_gateway_dns_destination_ips_list',
         accountId: .literal(accountId),
       ),
     );
@@ -5606,6 +5984,13 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       DataCloudflareZeroTrustOrganization(
         'd_zero_trust_organization',
+        accountId: .literal(accountId),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustOrganizationTrustSettings(
+        'd_zero_trust_organization_trust_settings',
         accountId: .literal(accountId),
       ),
     );

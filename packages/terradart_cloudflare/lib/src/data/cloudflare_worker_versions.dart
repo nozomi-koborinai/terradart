@@ -16,7 +16,11 @@ const Set<String> _cloudflareWorkerVersionsSensitive = <String>{
 ///
 /// Accepted Permissions
 ///
-/// - `Workers Scripts Read` - `Workers Scripts Write` - `Workers Tail Read`
+/// - `Individual Workers Admin` - `Individual Workers Content Read-Only` -
+/// `Individual Workers Editor` - `Individual Workers Metadata Read-Only` -
+/// `Workers Admin` - `Workers Content Read-Only` - `Workers Editor` - `Workers
+/// Metadata Read-Only` - `Workers Scripts Read` - `Workers Scripts Write` -
+/// `Workers Tail Read`
 final class DataCloudflareWorkerVersions extends Data {
   static const String tfType = 'cloudflare_worker_versions';
 

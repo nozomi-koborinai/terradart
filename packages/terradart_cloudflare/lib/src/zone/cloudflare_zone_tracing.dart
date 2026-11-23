@@ -32,6 +32,10 @@ extension type const ZoneTracingPropagationPolicy._(TfArg<String> _)
 
 /// Factory wrapper for `cloudflare_zone_tracing`.
 ///
+/// Accepted Permissions
+///
+/// - `Zone Observability Read` - `Zone Observability Write`
+///
 /// Cloudflare Traces for a zone: samples `samplingRatio` (0 to 1) of
 /// requests and sends the traces to up to 100 OpenTelemetry
 /// `destinations`. Per-request overrides live on

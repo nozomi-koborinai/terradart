@@ -103,6 +103,10 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpServer extends Data {
   TfRef<List<Map<String, String>>> get prompts =>
       TfRef.attribute<List<Map<String, String>>>(this, 'prompts');
 
+  /// Reference to `registered_at` attribute.
+  TfRef<String> get registeredAt =>
+      TfRef.attribute<String>(this, 'registered_at');
+
   /// Reference to `secure_web_gateway` attribute.
   TfRef<bool> get secureWebGateway =>
       TfRef.attribute<bool>(this, 'secure_web_gateway');

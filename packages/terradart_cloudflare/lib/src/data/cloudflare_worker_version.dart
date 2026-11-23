@@ -30,7 +30,10 @@ extension type const DataWorkerVersionInclude._(TfArg<String> _)
 ///
 /// Accepted Permissions
 ///
-/// - `Workers Scripts Read` - `Workers Scripts Write` - `Workers Tail Read`
+/// - `Individual Workers Admin` - `Individual Workers Content Read-Only` -
+/// `Individual Workers Editor` - `Workers Admin` - `Workers Content Read-Only`
+/// - `Workers Editor` - `Workers Scripts Read` - `Workers Scripts Write` -
+/// `Workers Tail Read`
 final class DataCloudflareWorkerVersion extends Data {
   static const String tfType = 'cloudflare_worker_version';
 

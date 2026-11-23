@@ -49,6 +49,7 @@ final class CloudflareEmailSecurityBlockSender extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comments,
+    TfArg<String>? expiresAt,
     required TfArg<bool> isRegex,
     required TfArg<String> pattern,
     required EmailSecurityBlockSenderPatternType patternType,
@@ -61,6 +62,7 @@ final class CloudflareEmailSecurityBlockSender extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'comments': ?comments,
+           'expires_at': ?expiresAt,
            'is_regex': isRegex,
            'pattern': pattern,
            'pattern_type': patternType,
@@ -93,6 +95,9 @@ final class CloudflareEmailSecurityBlockSender extends Resource {
 
   /// Reference to `comments` attribute.
   TfRef<String> get comments => TfRef.attribute<String>(this, 'comments');
+
+  /// Reference to `expires_at` attribute.
+  TfRef<String> get expiresAt => TfRef.attribute<String>(this, 'expires_at');
 
   /// Reference to `is_regex` attribute.
   TfRef<bool> get isRegex => TfRef.attribute<bool>(this, 'is_regex');

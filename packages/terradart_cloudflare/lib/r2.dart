@@ -72,6 +72,7 @@ export 'src/r2/cloudflare_r2_custom_domain.dart'
         CloudflareR2CustomDomain,
         R2CustomDomainJurisdiction,
         R2CustomDomainMinTls;
-export 'src/r2/cloudflare_r2_data_catalog.dart' show CloudflareR2DataCatalog;
+export 'src/r2/cloudflare_r2_data_catalog.dart'
+    show CloudflareR2DataCatalog, R2DataCatalogCredential;
 export 'src/r2/cloudflare_r2_managed_domain.dart'
     show CloudflareR2ManagedDomain, R2ManagedDomainJurisdiction;

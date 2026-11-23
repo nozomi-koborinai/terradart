@@ -545,11 +545,13 @@ extension type const WorkersScriptJurisdiction._(TfArg<String> _)
   static const fedrampHigh = WorkersScriptJurisdiction._(
     TfArgLiteral('fedramp-high'),
   );
+  static const us = WorkersScriptJurisdiction._(TfArgLiteral('us'));
 
   static const List<WorkersScriptJurisdiction> values = [
     eu,
     fedramp,
     fedrampHigh,
+    us,
   ];
 }
 
@@ -779,6 +781,46 @@ final class WorkersScriptCacheOptions {
     'cross_version_cache': ?crossVersionCache?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
   };
+}
+
+/// Typed helper for the `code_update_strategy` block of
+/// `cloudflare_workers_script` (derived from provider schema).
+@immutable
+final class WorkersScriptCodeUpdateStrategy {
+  const WorkersScriptCodeUpdateStrategy({this.maxDelay, required this.mode});
+
+  final TfArg<num>? maxDelay;
+
+  final WorkersScriptCodeUpdateStrategyMode mode;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'max_delay': ?maxDelay?.toTfJson(),
+    'mode': mode.toTfJson(),
+  };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const WorkersScriptCodeUpdateStrategyMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptCodeUpdateStrategyMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkersScriptCodeUpdateStrategyMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptCodeUpdateStrategyMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const immediate = WorkersScriptCodeUpdateStrategyMode._(
+    TfArgLiteral('immediate'),
+  );
+  static const deferred = WorkersScriptCodeUpdateStrategyMode._(
+    TfArgLiteral('deferred'),
+  );
+
+  static const List<WorkersScriptCodeUpdateStrategyMode> values = [
+    immediate,
+    deferred,
+  ];
 }
 
 /// Typed helper for the `exports` block of
@@ -1178,24 +1220,27 @@ final class WorkersScriptPackageDependencies {
 final class WorkersScriptPlacement {
   const WorkersScriptPlacement({this.mode});
 
-  final WorkersScriptMode? mode;
+  final WorkersScriptPlacementMode? mode;
 
   @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-extension type const WorkersScriptMode._(TfArg<String> _)
+extension type const WorkersScriptPlacementMode._(TfArg<String> _)
     implements TfArg<String> {
-  WorkersScriptMode.variable(String name) : this._(TfArg.variable(name));
-  WorkersScriptMode.expression(String template)
+  WorkersScriptPlacementMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkersScriptPlacementMode.expression(String template)
     : this._(TfArg.expression(template));
-  const WorkersScriptMode.arg(TfArg<String> arg) : this._(arg);
+  const WorkersScriptPlacementMode.arg(TfArg<String> arg) : this._(arg);
 
-  static const smart = WorkersScriptMode._(TfArgLiteral('smart'));
-  static const targeted = WorkersScriptMode._(TfArgLiteral('targeted'));
+  static const smart = WorkersScriptPlacementMode._(TfArgLiteral('smart'));
+  static const targeted = WorkersScriptPlacementMode._(
+    TfArgLiteral('targeted'),
+  );
 
-  static const List<WorkersScriptMode> values = [smart, targeted];
+  static const List<WorkersScriptPlacementMode> values = [smart, targeted];
 }
 
 /// Typed helper for the `tail_consumers` block of
@@ -1226,7 +1271,10 @@ final class WorkersScriptTailConsumers {
 ///
 /// Accepted Permissions
 ///
-/// - `Workers Scripts Read` - `Workers Scripts Write` - `Workers Tail Read`
+/// - `Workers Scripts Read` - `Workers Scripts Write` - `Individual Workers
+/// Admin` - `Individual Workers Content Read-Only` - `Individual Workers
+/// Editor` - `Workers Admin` - `Workers Content Read-Only` - `Workers Editor` -
+/// `Workers Tail Read`
 final class CloudflareWorkersScript extends Resource {
   static const String tfType = 'cloudflare_workers_script';
 
@@ -1251,6 +1299,7 @@ final class CloudflareWorkersScript extends Resource {
     WorkersScriptAssets? assets,
     List<WorkersScriptBindings>? bindings,
     WorkersScriptCacheOptions? cacheOptions,
+    WorkersScriptCodeUpdateStrategy? codeUpdateStrategy,
     Map<String, WorkersScriptExports>? exports,
     Map<String, WorkersScriptFiles>? files,
     WorkersScriptLimits? limits,
@@ -1288,6 +1337,8 @@ final class CloudflareWorkersScript extends Resource {
              'bindings': TfArg.literal([for (final e in bindings) e.encode()]),
            if (cacheOptions != null)
              'cache_options': TfArg.literal(cacheOptions.encode()),
+           if (codeUpdateStrategy != null)
+             'code_update_strategy': TfArg.literal(codeUpdateStrategy.encode()),
            if (exports != null)
              'exports': TfArg.literal({
                for (final e in exports.entries) e.key: e.value.encode(),

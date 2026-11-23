@@ -13,22 +13,12 @@ const Set<String> _cloudflareOriginCaCertificateSensitive = <String>{};
 /// `cloudflare_origin_ca_certificate` (derived from provider schema).
 @immutable
 final class DataOriginCaCertificateFilter {
-  const DataOriginCaCertificateFilter({
-    this.limit,
-    this.offset,
-    required this.zoneId,
-  });
-
-  final TfArg<num>? limit;
-
-  final TfArg<num>? offset;
+  const DataOriginCaCertificateFilter({required this.zoneId});
 
   final RefTo<CloudflareZone> zoneId;
 
   @internal
   Map<String, Object?> encode() => {
-    'limit': ?limit?.toTfJson(),
-    'offset': ?offset?.toTfJson(),
     'zone_id': zoneId.encodeAs('id').toTfJson(),
   };
 }
@@ -82,6 +72,9 @@ final class DataCloudflareOriginCaCertificate extends Data {
   /// Reference to `requested_validity` attribute.
   TfRef<num> get requestedValidity =>
       TfRef.attribute<num>(this, 'requested_validity');
+
+  /// Reference to `revoked_at` attribute.
+  TfRef<String> get revokedAt => TfRef.attribute<String>(this, 'revoked_at');
 
   /// Reference to `certificate_id` attribute.
   TfRef<String> get certificateId =>

@@ -21,6 +21,21 @@ extension type const DataSharesDirection._(TfArg<String> _)
   static const List<DataSharesDirection> values = [asc, desc];
 }
 
+/// Data Shares Include Tags enum for `include_tags_from`.
+extension type const DataSharesIncludeTagsFrom._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSharesIncludeTagsFrom.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSharesIncludeTagsFrom.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSharesIncludeTagsFrom.arg(TfArg<String> arg) : this._(arg);
+
+  static const api = DataSharesIncludeTagsFrom._(TfArgLiteral('api'));
+  static const mirror = DataSharesIncludeTagsFrom._(TfArgLiteral('mirror'));
+
+  static const List<DataSharesIncludeTagsFrom> values = [api, mirror];
+}
+
 /// Data Shares enum for `kind`.
 extension type const DataSharesKind._(TfArg<String> _)
     implements TfArg<String> {
@@ -81,6 +96,10 @@ extension type const DataSharesTargetType._(TfArg<String> _)
 }
 
 /// Factory wrapper for `cloudflare_shares`.
+///
+/// Accepted Permissions
+///
+/// - `Resource Sharing Read`
 final class DataCloudflareShares extends Data {
   static const String tfType = 'cloudflare_shares';
 
@@ -90,6 +109,7 @@ final class DataCloudflareShares extends Data {
     DataSharesDirection? direction,
     TfArg<bool>? includeRecipientCounts,
     TfArg<bool>? includeResources,
+    DataSharesIncludeTagsFrom? includeTagsFrom,
     DataSharesKind? kind,
     TfArg<num>? maxItems,
     DataSharesOrder? order,
@@ -106,6 +126,7 @@ final class DataCloudflareShares extends Data {
            'direction': ?direction,
            'include_recipient_counts': ?includeRecipientCounts,
            'include_resources': ?includeResources,
+           'include_tags_from': ?includeTagsFrom,
            'kind': ?kind,
            'max_items': ?maxItems,
            'order': ?order,
@@ -135,6 +156,10 @@ final class DataCloudflareShares extends Data {
   /// Reference to `include_resources` attribute.
   TfRef<bool> get includeResources =>
       TfRef.attribute<bool>(this, 'include_resources');
+
+  /// Reference to `include_tags_from` attribute.
+  TfRef<String> get includeTagsFrom =>
+      TfRef.attribute<String>(this, 'include_tags_from');
 
   /// Reference to `max_items` attribute.
   TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');

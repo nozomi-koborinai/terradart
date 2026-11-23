@@ -9,6 +9,10 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareDlsPrefixBindingSensitive = <String>{};
 
 /// Factory wrapper for `cloudflare_dls_prefix_binding`.
+///
+/// Accepted Permissions
+///
+/// - `DLS: Read` - `DLS: Write`
 final class DataCloudflareDlsPrefixBinding extends Data {
   static const String tfType = 'cloudflare_dls_prefix_binding';
 

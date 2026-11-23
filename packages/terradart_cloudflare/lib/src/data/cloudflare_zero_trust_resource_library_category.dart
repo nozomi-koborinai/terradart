@@ -9,6 +9,11 @@ const Set<String> _cloudflareZeroTrustResourceLibraryCategorySensitive =
     <String>{};
 
 /// Factory wrapper for `cloudflare_zero_trust_resource_library_category`.
+///
+/// Accepted Permissions
+///
+/// - `Resource Library Read` - `Resource Library Write` - `Zero Trust Read` -
+/// `Zero Trust Write`
 final class DataCloudflareZeroTrustResourceLibraryCategory extends Data {
   static const String tfType =
       'cloudflare_zero_trust_resource_library_category';

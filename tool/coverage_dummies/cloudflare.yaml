@@ -104,6 +104,9 @@ CloudflareZeroTrustAccessIdentityProvider.type:
   value: 'google-apps'
   why: 'The dummy config sets apps_domain, which only google-apps accepts.'
 CloudflareZeroTrustCasbWebhook.authenticationType: 'None'
+CloudflareZeroTrustCwsRegoMetadata.data:
+  value: '{}'
+  why: 'The provider validates data as RFC 7159 JSON.'
 CloudflareZeroTrustDeviceManagedNetworks.type: 'tls'
 CloudflareZeroTrustDevicePostureIntegration.type: 'workspace_one'
 CloudflareZeroTrustDevicePostureRule.type: 'file'

@@ -218,6 +218,7 @@ final class AiGatewayPrompt {
     this.s11,
     this.s12,
     this.s13,
+    this.s14,
     this.s2,
     this.s3,
     this.s4,
@@ -239,6 +240,8 @@ final class AiGatewayPrompt {
   final AiGatewayS12? s12;
 
   final AiGatewayS13? s13;
+
+  final AiGatewayS14? s14;
 
   final AiGatewayS2? s2;
 
@@ -264,6 +267,7 @@ final class AiGatewayPrompt {
     's11': ?s11?.toTfJson(),
     's12': ?s12?.toTfJson(),
     's13': ?s13?.toTfJson(),
+    's14': ?s14?.toTfJson(),
     's2': ?s2?.toTfJson(),
     's3': ?s3?.toTfJson(),
     's4': ?s4?.toTfJson(),
@@ -345,6 +349,18 @@ extension type const AiGatewayS13._(TfArg<String> _) implements TfArg<String> {
   static const block = AiGatewayS13._(TfArgLiteral('BLOCK'));
 
   static const List<AiGatewayS13> values = [flag, block];
+}
+
+/// `s14` — derived from the provider schema description.
+extension type const AiGatewayS14._(TfArg<String> _) implements TfArg<String> {
+  AiGatewayS14.variable(String name) : this._(TfArg.variable(name));
+  AiGatewayS14.expression(String template) : this._(TfArg.expression(template));
+  const AiGatewayS14.arg(TfArg<String> arg) : this._(arg);
+
+  static const flag = AiGatewayS14._(TfArgLiteral('FLAG'));
+  static const block = AiGatewayS14._(TfArgLiteral('BLOCK'));
+
+  static const List<AiGatewayS14> values = [flag, block];
 }
 
 /// `s2` — derived from the provider schema description.
@@ -454,6 +470,7 @@ final class AiGatewayResponse {
     this.s11,
     this.s12,
     this.s13,
+    this.s14,
     this.s2,
     this.s3,
     this.s4,
@@ -475,6 +492,8 @@ final class AiGatewayResponse {
   final AiGatewayS12? s12;
 
   final AiGatewayS13? s13;
+
+  final AiGatewayS14? s14;
 
   final AiGatewayS2? s2;
 
@@ -500,6 +519,7 @@ final class AiGatewayResponse {
     's11': ?s11?.toTfJson(),
     's12': ?s12?.toTfJson(),
     's13': ?s13?.toTfJson(),
+    's14': ?s14?.toTfJson(),
     's2': ?s2?.toTfJson(),
     's3': ?s3?.toTfJson(),
     's4': ?s4?.toTfJson(),
@@ -843,6 +863,14 @@ final class CloudflareAiGateway extends Resource {
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
+
+  /// Reference to `fedramp_level` attribute.
+  TfRef<String> get fedrampLevel =>
+      TfRef.attribute<String>(this, 'fedramp_level');
+
+  /// Reference to `fedramp_mode` attribute.
+  TfRef<String> get fedrampMode =>
+      TfRef.attribute<String>(this, 'fedramp_mode');
 
   /// Reference to `is_default` attribute.
   TfRef<bool> get isDefault => TfRef.attribute<bool>(this, 'is_default');

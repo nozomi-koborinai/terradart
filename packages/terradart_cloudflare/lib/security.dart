@@ -66,13 +66,19 @@ export 'src/data/cloudflare_vulnerability_scanner_target_environments.dart'
     show DataCloudflareVulnerabilityScannerTargetEnvironments;
 export 'src/security/cloudflare_bot_management.dart'
     show
+        BotManagementAiAgents,
         BotManagementAiBotsProtection,
         BotManagementAiTraining,
         BotManagementAiUser,
         BotManagementAisearch,
+        BotManagementAnthropicAgent,
         BotManagementCfRobotsVariant,
         BotManagementContentBotsProtection,
         BotManagementCrawlerProtection,
+        BotManagementGoogleAgent,
+        BotManagementInstinct,
+        BotManagementMuse,
+        BotManagementOpenaiAgent,
         BotManagementSbfmDefinitelyAutomated,
         BotManagementSbfmLikelyAutomated,
         BotManagementSbfmVerifiedBots,

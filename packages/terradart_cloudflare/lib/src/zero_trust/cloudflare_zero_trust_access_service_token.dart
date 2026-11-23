@@ -27,6 +27,7 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
     TfArg<bool>? enabled,
     required TfArg<String> name,
     TfArg<String>? previousClientSecretExpiresAt,
+    TfArg<Map<String, String>>? tags,
     RefTo<CloudflareZone>? zoneId,
     super.lifecycle,
     super.dependsOn,
@@ -41,6 +42,7 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
            'enabled': ?enabled,
            'name': name,
            'previous_client_secret_expires_at': ?previousClientSecretExpiresAt,
+           'tags': ?tags,
            'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
@@ -69,6 +71,18 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
   /// Reference to `expires_at` attribute.
   TfRef<String> get expiresAt => TfRef.attribute<String>(this, 'expires_at');
 
+  /// Reference to `leak_report_url` attribute.
+  TfRef<String> get leakReportUrl =>
+      TfRef.attribute<String>(this, 'leak_report_url');
+
+  /// Reference to `leak_reported_at` attribute.
+  TfRef<String> get leakReportedAt =>
+      TfRef.attribute<String>(this, 'leak_reported_at');
+
+  /// Reference to `leak_reporter` attribute.
+  TfRef<String> get leakReporter =>
+      TfRef.attribute<String>(this, 'leak_reporter');
+
   /// Reference to `account_id` attribute.
   TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
 
@@ -85,6 +99,10 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
   /// Reference to `previous_client_secret_expires_at` attribute.
   TfRef<String> get previousClientSecretExpiresAt =>
       TfRef.attribute<String>(this, 'previous_client_secret_expires_at');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tags =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 
   /// Reference to `zone_id` attribute.
   TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');

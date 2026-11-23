@@ -51,6 +51,7 @@ extension type const ZeroTrustAccessIdentityProviderType._(TfArg<String> _)
   static const oidc = ZeroTrustAccessIdentityProviderType._(
     TfArgLiteral('oidc'),
   );
+  static const duo = ZeroTrustAccessIdentityProviderType._(TfArgLiteral('duo'));
   static const okta = ZeroTrustAccessIdentityProviderType._(
     TfArgLiteral('okta'),
   );
@@ -81,6 +82,7 @@ extension type const ZeroTrustAccessIdentityProviderType._(TfArg<String> _)
     google,
     linkedin,
     oidc,
+    duo,
     okta,
     onelogin,
     pingone,

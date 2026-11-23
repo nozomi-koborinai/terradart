@@ -122,6 +122,9 @@ final class DataCloudflareZeroTrustDnsLocation extends Data {
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 
+  /// Reference to `dns64_enabled` attribute.
+  TfRef<bool> get dns64Enabled => TfRef.attribute<bool>(this, 'dns64_enabled');
+
   /// Reference to `dns_destination_ips_id` attribute.
   TfRef<String> get dnsDestinationIpsId =>
       TfRef.attribute<String>(this, 'dns_destination_ips_id');

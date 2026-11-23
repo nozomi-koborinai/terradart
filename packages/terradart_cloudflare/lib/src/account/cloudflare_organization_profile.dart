@@ -12,11 +12,11 @@ final class CloudflareOrganizationProfile extends Resource {
 
   CloudflareOrganizationProfile(
     super.localName, {
-    required TfArg<String> businessAddress,
-    required TfArg<String> businessEmail,
-    required TfArg<String> businessName,
-    required TfArg<String> businessPhone,
-    required TfArg<String> externalMetadata,
+    TfArg<String>? businessAddress,
+    TfArg<String>? businessEmail,
+    TfArg<String>? businessName,
+    TfArg<String>? businessPhone,
+    TfArg<String>? externalMetadata,
     required TfArg<String> organizationId,
     super.lifecycle,
     super.dependsOn,
@@ -25,11 +25,11 @@ final class CloudflareOrganizationProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'business_address': businessAddress,
-           'business_email': businessEmail,
-           'business_name': businessName,
-           'business_phone': businessPhone,
-           'external_metadata': externalMetadata,
+           'business_address': ?businessAddress,
+           'business_email': ?businessEmail,
+           'business_name': ?businessName,
+           'business_phone': ?businessPhone,
+           'external_metadata': ?externalMetadata,
            'organization_id': organizationId,
          },
        );

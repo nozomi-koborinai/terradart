@@ -1,6 +1,9 @@
-outputDir: log
+outputDir: logs
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "account_id, zone_id": scope

@@ -16,7 +16,6 @@ final class CloudflareShareRecipient extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? includeResources,
-    TfArg<String>? organizationId,
     TfArg<String>? recipientAccountId,
     required TfArg<String> shareId,
     super.lifecycle,
@@ -28,7 +27,6 @@ final class CloudflareShareRecipient extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'include_resources': ?includeResources,
-           'organization_id': ?organizationId,
            'recipient_account_id': ?recipientAccountId,
            'share_id': shareId,
          },
@@ -60,10 +58,6 @@ final class CloudflareShareRecipient extends Resource {
   /// Reference to `include_resources` attribute.
   TfRef<bool> get includeResources =>
       TfRef.attribute<bool>(this, 'include_resources');
-
-  /// Reference to `organization_id` attribute.
-  TfRef<String> get organizationId =>
-      TfRef.attribute<String>(this, 'organization_id');
 
   /// Reference to `recipient_account_id` attribute.
   TfRef<String> get recipientAccountId =>

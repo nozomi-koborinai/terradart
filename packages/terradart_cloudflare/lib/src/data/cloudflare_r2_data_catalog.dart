@@ -51,6 +51,10 @@ final class DataCloudflareR2DataCatalog extends Data {
   TfRef<String> get credentialStatus =>
       TfRef.attribute<String>(this, 'credential_status');
 
+  /// Reference to `jurisdiction` attribute.
+  TfRef<String> get jurisdiction =>
+      TfRef.attribute<String>(this, 'jurisdiction');
+
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 

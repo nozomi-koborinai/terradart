@@ -61,6 +61,14 @@ final class DataCloudflareMagicTransitSiteWan extends Data {
   /// Reference to `priority` attribute.
   TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
 
+  /// Reference to `provisioned_download_kbps` attribute.
+  TfRef<num> get provisionedDownloadKbps =>
+      TfRef.attribute<num>(this, 'provisioned_download_kbps');
+
+  /// Reference to `provisioned_upload_kbps` attribute.
+  TfRef<num> get provisionedUploadKbps =>
+      TfRef.attribute<num>(this, 'provisioned_upload_kbps');
+
   /// Reference to `vlan_tag` attribute.
   TfRef<num> get vlanTag => TfRef.attribute<num>(this, 'vlan_tag');
 

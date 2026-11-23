@@ -9,6 +9,21 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_workflow`.
 const Set<String> _cloudflareWorkflowSensitive = <String>{};
 
+/// Workflow enum for `jurisdiction`.
+extension type const WorkflowJurisdiction._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkflowJurisdiction.variable(String name) : this._(TfArg.variable(name));
+  WorkflowJurisdiction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkflowJurisdiction.arg(TfArg<String> arg) : this._(arg);
+
+  static const eu = WorkflowJurisdiction._(TfArgLiteral('eu'));
+  static const fedramp = WorkflowJurisdiction._(TfArgLiteral('fedramp'));
+  static const us = WorkflowJurisdiction._(TfArgLiteral('us'));
+
+  static const List<WorkflowJurisdiction> values = [eu, fedramp, us];
+}
+
 /// Typed helper for the `concurrency` block of
 /// `cloudflare_workflow` (derived from provider schema).
 @immutable
@@ -74,6 +89,7 @@ final class CloudflareWorkflow extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> className,
+    WorkflowJurisdiction? jurisdiction,
     required TfArg<String> scriptName,
     required TfArg<String> workflowName,
     WorkflowConcurrency? concurrency,
@@ -89,6 +105,7 @@ final class CloudflareWorkflow extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'class_name': className,
+           'jurisdiction': ?jurisdiction,
            'script_name': scriptName,
            'workflow_name': workflowName,
            if (concurrency != null)
@@ -149,6 +166,10 @@ final class CloudflareWorkflow extends Resource {
 
   /// Reference to `class_name` attribute.
   TfRef<String> get className => TfRef.attribute<String>(this, 'class_name');
+
+  /// Reference to `jurisdiction` attribute.
+  TfRef<String> get jurisdiction =>
+      TfRef.attribute<String>(this, 'jurisdiction');
 
   /// Reference to `script_name` attribute.
   TfRef<String> get scriptName => TfRef.attribute<String>(this, 'script_name');

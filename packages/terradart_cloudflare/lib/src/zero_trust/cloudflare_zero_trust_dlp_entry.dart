@@ -77,6 +77,7 @@ final class CloudflareZeroTrustDlpEntry extends Resource {
     required TfArg<String> name,
     TfArg<String>? profileId,
     ZeroTrustDlpEntryType? type,
+    TfArg<List<String>>? validatorIds,
     required ZeroTrustDlpEntryPattern pattern,
     super.lifecycle,
     super.dependsOn,
@@ -91,6 +92,7 @@ final class CloudflareZeroTrustDlpEntry extends Resource {
            'name': name,
            'profile_id': ?profileId,
            'type': ?type,
+           'validator_ids': ?validatorIds,
            'pattern': TfArg.literal(pattern.encode()),
          },
        );
@@ -146,4 +148,8 @@ final class CloudflareZeroTrustDlpEntry extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `validator_ids` attribute.
+  TfRef<List<String>> get validatorIds =>
+      TfRef.attribute<List<String>>(this, 'validator_ids');
 }

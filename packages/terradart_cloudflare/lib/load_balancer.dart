@@ -23,18 +23,22 @@ export 'src/load_balancer/cloudflare_load_balancer.dart'
         LoadBalancerAdaptiveRouting,
         LoadBalancerFixedResponse,
         LoadBalancerLocationStrategy,
+        LoadBalancerMatch,
         LoadBalancerMode,
-        LoadBalancerOverrides,
         LoadBalancerOverridesSessionAffinity,
         LoadBalancerOverridesSteeringPolicy,
+        LoadBalancerPoolSets,
+        LoadBalancerPoolSetsOverrides,
         LoadBalancerPreferEcs,
         LoadBalancerRandomSteering,
         LoadBalancerRules,
+        LoadBalancerRulesOverrides,
         LoadBalancerSamesite,
         LoadBalancerSecure,
         LoadBalancerSessionAffinity,
         LoadBalancerSessionAffinityAttributes,
         LoadBalancerSteeringPolicy,
+        LoadBalancerTopology,
         LoadBalancerZeroDowntimeFailover;
 export 'src/load_balancer/cloudflare_load_balancer_monitor.dart'
     show CloudflareLoadBalancerMonitor, LoadBalancerMonitorType;

@@ -56,6 +56,14 @@ final class DataCloudflareByoIpPrefix extends Data {
   /// Reference to `asn` attribute.
   TfRef<num> get asn => TfRef.attribute<num>(this, 'asn');
 
+  /// Reference to `asn_ownership_validation_state` attribute.
+  TfRef<String> get asnOwnershipValidationState =>
+      TfRef.attribute<String>(this, 'asn_ownership_validation_state');
+
+  /// Reference to `aspa_validation_state` attribute.
+  TfRef<String> get aspaValidationState =>
+      TfRef.attribute<String>(this, 'aspa_validation_state');
+
   /// Reference to `cidr` attribute.
   TfRef<String> get cidr => TfRef.attribute<String>(this, 'cidr');
 

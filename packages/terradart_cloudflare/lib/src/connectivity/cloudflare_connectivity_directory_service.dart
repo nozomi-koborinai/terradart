@@ -117,13 +117,21 @@ final class ConnectivityDirectoryServiceResolverNetwork {
 final class ConnectivityDirectoryServiceTlsSettings {
   const ConnectivityDirectoryServiceTlsSettings({
     required this.certVerificationMode,
+    this.certificateAuthority,
+    this.clientCertificate,
   });
 
   final TfArg<String> certVerificationMode;
 
+  final TfArg<String>? certificateAuthority;
+
+  final TfArg<String>? clientCertificate;
+
   @internal
   Map<String, Object?> encode() => {
     'cert_verification_mode': certVerificationMode.toTfJson(),
+    'certificate_authority': ?certificateAuthority?.toTfJson(),
+    'client_certificate': ?clientCertificate?.toTfJson(),
   };
 }
 

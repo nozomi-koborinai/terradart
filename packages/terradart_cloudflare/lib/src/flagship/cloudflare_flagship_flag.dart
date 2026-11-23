@@ -278,30 +278,22 @@ final class FlagshipFlagRulesClauses {
 @immutable
 final class FlagshipFlagClausesClausesClauses {
   const FlagshipFlagClausesClausesClauses({
-    this.attribute,
-    this.clauses,
-    this.logicalOperator,
-    this.operator,
-    this.value,
+    required this.attribute,
+    required this.operator,
+    required this.value,
   });
 
-  final TfArg<String>? attribute;
+  final TfArg<String> attribute;
 
-  final TfArg<List<String>>? clauses;
+  final FlagshipFlagOperator operator;
 
-  final FlagshipFlagLogicalOperator? logicalOperator;
-
-  final FlagshipFlagOperator? operator;
-
-  final TfArg<String>? value;
+  final TfArg<String> value;
 
   @internal
   Map<String, Object?> encode() => {
-    'attribute': ?attribute?.toTfJson(),
-    'clauses': ?clauses?.toTfJson(),
-    'logical_operator': ?logicalOperator?.toTfJson(),
-    'operator': ?operator?.toTfJson(),
-    'value': ?value?.toTfJson(),
+    'attribute': attribute.toTfJson(),
+    'operator': operator.toTfJson(),
+    'value': value.toTfJson(),
   };
 }
 
@@ -338,6 +330,7 @@ final class CloudflareFlagshipFlag extends Resource {
     TfArg<String>? description,
     required TfArg<bool> enabled,
     required TfArg<String> key,
+    TfArg<Object?>? metadata,
     FlagshipFlagType? type,
     required TfArg<Map<String, String>> variations,
     required List<FlagshipFlagRules> rules,
@@ -354,6 +347,7 @@ final class CloudflareFlagshipFlag extends Resource {
            'description': ?description,
            'enabled': enabled,
            'key': key,
+           'metadata': ?metadata,
            'type': ?type,
            'variations': variations,
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
@@ -394,6 +388,9 @@ final class CloudflareFlagshipFlag extends Resource {
 
   /// Reference to `key` attribute.
   TfRef<String> get key => TfRef.attribute<String>(this, 'key');
+
+  /// Reference to `metadata` attribute.
+  TfRef<Object?> get metadata => TfRef.attribute<Object?>(this, 'metadata');
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');

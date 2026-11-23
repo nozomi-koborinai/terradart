@@ -62,6 +62,14 @@ final class CloudflareByoIpPrefix extends Resource {
   /// Reference to `approved` attribute.
   TfRef<String> get approved => TfRef.attribute<String>(this, 'approved');
 
+  /// Reference to `asn_ownership_validation_state` attribute.
+  TfRef<String> get asnOwnershipValidationState =>
+      TfRef.attribute<String>(this, 'asn_ownership_validation_state');
+
+  /// Reference to `aspa_validation_state` attribute.
+  TfRef<String> get aspaValidationState =>
+      TfRef.attribute<String>(this, 'aspa_validation_state');
+
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 

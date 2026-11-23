@@ -274,6 +274,14 @@ final class CloudflareSpectrumApplication extends Resource {
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 
+  /// Reference to `origin_worker_name` attribute.
+  TfRef<String> get originWorkerName =>
+      TfRef.attribute<String>(this, 'origin_worker_name');
+
+  /// Reference to `origin_worker_status` attribute.
+  TfRef<String> get originWorkerStatus =>
+      TfRef.attribute<String>(this, 'origin_worker_status');
+
   /// Reference to `argo_smart_routing` attribute.
   TfRef<bool> get argoSmartRouting =>
       TfRef.attribute<bool>(this, 'argo_smart_routing');

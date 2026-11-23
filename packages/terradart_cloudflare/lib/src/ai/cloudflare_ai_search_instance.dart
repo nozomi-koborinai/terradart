@@ -113,19 +113,16 @@ extension type const AiSearchInstanceDataType._(TfArg<String> _)
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
 final class AiSearchInstanceIndexMethod {
-  const AiSearchInstanceIndexMethod({
-    required this.keyword,
-    required this.vector,
-  });
+  const AiSearchInstanceIndexMethod({this.keyword, this.vector});
 
-  final TfArg<bool> keyword;
+  final TfArg<bool>? keyword;
 
-  final TfArg<bool> vector;
+  final TfArg<bool>? vector;
 
   @internal
   Map<String, Object?> encode() => {
-    'keyword': keyword.toTfJson(),
-    'vector': vector.toTfJson(),
+    'keyword': ?keyword?.toTfJson(),
+    'vector': ?vector?.toTfJson(),
   };
 }
 
@@ -641,6 +638,7 @@ final class CloudflareAiSearchInstance extends Resource {
     TfArg<bool>? hybridSearchEnabled,
     required TfArg<String> id,
     TfArg<num>? maxNumResults,
+    TfArg<String>? namespace,
     TfArg<bool>? paused,
     TfArg<bool>? reranking,
     TfArg<String>? rerankingModel,
@@ -684,6 +682,7 @@ final class CloudflareAiSearchInstance extends Resource {
            'hybrid_search_enabled': ?hybridSearchEnabled,
            'id': id,
            'max_num_results': ?maxNumResults,
+           'namespace': ?namespace,
            'paused': ?paused,
            'reranking': ?reranking,
            'reranking_model': ?rerankingModel,
@@ -751,9 +750,6 @@ final class CloudflareAiSearchInstance extends Resource {
   /// Reference to `modified_by` attribute.
   TfRef<String> get modifiedBy => TfRef.attribute<String>(this, 'modified_by');
 
-  /// Reference to `namespace` attribute.
-  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
-
   /// Reference to `public_endpoint_id` attribute.
   TfRef<String> get publicEndpointId =>
       TfRef.attribute<String>(this, 'public_endpoint_id');
@@ -805,6 +801,9 @@ final class CloudflareAiSearchInstance extends Resource {
 
   /// Reference to `max_num_results` attribute.
   TfRef<num> get maxNumResults => TfRef.attribute<num>(this, 'max_num_results');
+
+  /// Reference to `namespace` attribute.
+  TfRef<String> get namespace => TfRef.attribute<String>(this, 'namespace');
 
   /// Reference to `paused` attribute.
   TfRef<bool> get paused => TfRef.attribute<bool>(this, 'paused');

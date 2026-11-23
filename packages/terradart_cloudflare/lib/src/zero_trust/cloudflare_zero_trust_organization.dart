@@ -284,6 +284,7 @@ final class CloudflareZeroTrustOrganization extends Resource {
     TfArg<bool>? autoRedirectToIdentity,
     TfArg<bool>? denyUnmatchedRequests,
     TfArg<List<String>>? denyUnmatchedRequestsExemptedZoneNames,
+    TfArg<bool>? disableEndUserAppCreation,
     TfArg<bool>? isUiReadOnly,
     TfArg<bool>? mfaConfigurationAllowed,
     TfArg<bool>? mfaRequiredForAllApps,
@@ -314,6 +315,7 @@ final class CloudflareZeroTrustOrganization extends Resource {
            'deny_unmatched_requests': ?denyUnmatchedRequests,
            'deny_unmatched_requests_exempted_zone_names':
                ?denyUnmatchedRequestsExemptedZoneNames,
+           'disable_end_user_app_creation': ?disableEndUserAppCreation,
            'is_ui_read_only': ?isUiReadOnly,
            'mfa_configuration_allowed': ?mfaConfigurationAllowed,
            'mfa_required_for_all_apps': ?mfaRequiredForAllApps,
@@ -381,6 +383,10 @@ final class CloudflareZeroTrustOrganization extends Resource {
         this,
         'deny_unmatched_requests_exempted_zone_names',
       );
+
+  /// Reference to `disable_end_user_app_creation` attribute.
+  TfRef<bool> get disableEndUserAppCreation =>
+      TfRef.attribute<bool>(this, 'disable_end_user_app_creation');
 
   /// Reference to `is_ui_read_only` attribute.
   TfRef<bool> get isUiReadOnly =>

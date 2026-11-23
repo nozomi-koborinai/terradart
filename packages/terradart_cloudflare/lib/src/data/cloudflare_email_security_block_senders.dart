@@ -95,6 +95,7 @@ final class DataCloudflareEmailSecurityBlockSenders extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     DataEmailSecurityBlockSendersDirection? direction,
+    TfArg<bool>? expired,
     TfArg<num>? maxItems,
     DataEmailSecurityBlockSendersOrder? order,
     TfArg<String>? pattern,
@@ -107,6 +108,7 @@ final class DataCloudflareEmailSecurityBlockSenders extends Data {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'direction': ?direction,
+           'expired': ?expired,
            'max_items': ?maxItems,
            'order': ?order,
            'pattern': ?pattern,
@@ -124,6 +126,9 @@ final class DataCloudflareEmailSecurityBlockSenders extends Data {
 
   /// Reference to `direction` attribute.
   TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `expired` attribute.
+  TfRef<bool> get expired => TfRef.attribute<bool>(this, 'expired');
 
   /// Reference to `max_items` attribute.
   TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');

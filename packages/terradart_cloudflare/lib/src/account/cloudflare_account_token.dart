@@ -172,6 +172,14 @@ final class CloudflareAccountToken extends Resource {
   TfRef<String> get provisionerType =>
       TfRef.attribute<String>(this, 'provisioner_type');
 
+  /// Reference to `token_prefix` attribute.
+  TfRef<String> get tokenPrefix =>
+      TfRef.attribute<String>(this, 'token_prefix');
+
+  /// Reference to `token_suffix` attribute.
+  TfRef<String> get tokenSuffix =>
+      TfRef.attribute<String>(this, 'token_suffix');
+
   /// Reference to `value` attribute.
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');
 

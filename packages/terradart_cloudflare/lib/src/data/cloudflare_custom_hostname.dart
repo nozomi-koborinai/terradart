@@ -7,9 +7,7 @@ import '../custom_hostname/cloudflare_custom_hostname.dart';
 import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_custom_hostname`.
-const Set<String> _cloudflareCustomHostnameSensitive = <String>{
-  'ssl.custom_key',
-};
+const Set<String> _cloudflareCustomHostnameSensitive = <String>{};
 
 /// Typed helper for the `filter` block of
 /// `cloudflare_custom_hostname` (derived from provider schema).

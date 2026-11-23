@@ -15,7 +15,6 @@ const Set<String> _cloudflareAccountDnsSettingsSensitive = <String>{};
 final class AccountDnsSettingsZoneDefaults {
   const AccountDnsSettingsZoneDefaults({
     this.flattenAllCnames,
-    this.foundationDns,
     this.multiProvider,
     this.nsTtl,
     this.secondaryOverrides,
@@ -26,8 +25,6 @@ final class AccountDnsSettingsZoneDefaults {
   });
 
   final TfArg<bool>? flattenAllCnames;
-
-  final TfArg<bool>? foundationDns;
 
   final TfArg<bool>? multiProvider;
 
@@ -46,7 +43,6 @@ final class AccountDnsSettingsZoneDefaults {
   @internal
   Map<String, Object?> encode() => {
     'flatten_all_cnames': ?flattenAllCnames?.toTfJson(),
-    'foundation_dns': ?foundationDns?.toTfJson(),
     'multi_provider': ?multiProvider?.toTfJson(),
     'ns_ttl': ?nsTtl?.toTfJson(),
     'secondary_overrides': ?secondaryOverrides?.toTfJson(),
@@ -116,6 +112,9 @@ extension type const AccountDnsSettingsType._(TfArg<String> _)
   static const cloudflareStandard = AccountDnsSettingsType._(
     TfArgLiteral('cloudflare.standard'),
   );
+  static const cloudflareAdvanced = AccountDnsSettingsType._(
+    TfArgLiteral('cloudflare.advanced'),
+  );
   static const cloudflareStandardRandom = AccountDnsSettingsType._(
     TfArgLiteral('cloudflare.standard.random'),
   );
@@ -128,6 +127,7 @@ extension type const AccountDnsSettingsType._(TfArg<String> _)
 
   static const List<AccountDnsSettingsType> values = [
     cloudflareStandard,
+    cloudflareAdvanced,
     cloudflareStandardRandom,
     customAccount,
     customTenant,

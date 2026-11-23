@@ -98,6 +98,7 @@ final class DataCloudflareEmailSecurityAllowPolicies extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     DataEmailSecurityAllowPoliciesDirection? direction,
+    TfArg<bool>? expired,
     TfArg<bool>? isAcceptableSender,
     TfArg<bool>? isExemptRecipient,
     TfArg<bool>? isTrustedSender,
@@ -114,6 +115,7 @@ final class DataCloudflareEmailSecurityAllowPolicies extends Data {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'direction': ?direction,
+           'expired': ?expired,
            'is_acceptable_sender': ?isAcceptableSender,
            'is_exempt_recipient': ?isExemptRecipient,
            'is_trusted_sender': ?isTrustedSender,
@@ -135,6 +137,9 @@ final class DataCloudflareEmailSecurityAllowPolicies extends Data {
 
   /// Reference to `direction` attribute.
   TfRef<String> get direction => TfRef.attribute<String>(this, 'direction');
+
+  /// Reference to `expired` attribute.
+  TfRef<bool> get expired => TfRef.attribute<bool>(this, 'expired');
 
   /// Reference to `is_acceptable_sender` attribute.
   TfRef<bool> get isAcceptableSender =>

@@ -9,38 +9,29 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_precursor`.
 const Set<String> _cloudflarePrecursorSensitive = <String>{};
 
-/// Precursor Default enum for `default_mode`.
-extension type const PrecursorDefaultMode._(TfArg<String> _)
-    implements TfArg<String> {
-  PrecursorDefaultMode.variable(String name) : this._(TfArg.variable(name));
-  PrecursorDefaultMode.expression(String template)
+/// Precursor enum for `mode`.
+extension type const PrecursorMode._(TfArg<String> _) implements TfArg<String> {
+  PrecursorMode.variable(String name) : this._(TfArg.variable(name));
+  PrecursorMode.expression(String template)
     : this._(TfArg.expression(template));
-  const PrecursorDefaultMode.arg(TfArg<String> arg) : this._(arg);
+  const PrecursorMode.arg(TfArg<String> arg) : this._(arg);
 
-  static const off = PrecursorDefaultMode._(TfArgLiteral('off'));
-  static const minFriction = PrecursorDefaultMode._(
-    TfArgLiteral('min-friction'),
-  );
-  static const maxSecurity = PrecursorDefaultMode._(
-    TfArgLiteral('max-security'),
-  );
+  static const off = PrecursorMode._(TfArgLiteral('off'));
+  static const monitor = PrecursorMode._(TfArgLiteral('monitor'));
+  static const arm = PrecursorMode._(TfArgLiteral('arm'));
 
-  static const List<PrecursorDefaultMode> values = [
-    off,
-    minFriction,
-    maxSecurity,
-  ];
+  static const List<PrecursorMode> values = [off, monitor, arm];
 }
 
-/// Typed helper for the `enforcement_rules` block of
+/// Typed helper for the `rules` block of
 /// `cloudflare_precursor` (derived from provider schema).
 @immutable
-final class PrecursorEnforcementRules {
-  const PrecursorEnforcementRules({
+final class PrecursorRules {
+  const PrecursorRules({
     this.description,
     this.enabled,
     required this.expression,
-    required this.mode,
+    required this.showInterstitial,
   });
 
   final TfArg<String>? description;
@@ -49,43 +40,31 @@ final class PrecursorEnforcementRules {
 
   final TfArg<String> expression;
 
-  final PrecursorMode mode;
+  final TfArg<bool> showInterstitial;
 
   @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
     'expression': expression.toTfJson(),
-    'mode': mode.toTfJson(),
+    'show_interstitial': showInterstitial.toTfJson(),
   };
-}
-
-/// `mode` — derived from the provider schema description.
-extension type const PrecursorMode._(TfArg<String> _) implements TfArg<String> {
-  PrecursorMode.variable(String name) : this._(TfArg.variable(name));
-  PrecursorMode.expression(String template)
-    : this._(TfArg.expression(template));
-  const PrecursorMode.arg(TfArg<String> arg) : this._(arg);
-
-  static const minFriction = PrecursorMode._(TfArgLiteral('min-friction'));
-  static const maxSecurity = PrecursorMode._(TfArgLiteral('max-security'));
-
-  static const List<PrecursorMode> values = [minFriction, maxSecurity];
 }
 
 /// Factory wrapper for `cloudflare_precursor`.
 ///
-/// Precursor enforcement for a zone: `defaultMode` applies to every
-/// request no `enforcementRules` entry matches; rules are evaluated in
-/// order and cannot use `off`.
+/// Precursor detection for a zone: `mode` controls zone-level detection
+/// (`off`, `monitor`, or `arm`), `showInterstitial` controls whether an
+/// interstitial is shown on action, and `rules` holds the ordered filter rules.
 final class CloudflarePrecursor extends Resource {
   static const String tfType = 'cloudflare_precursor';
 
   CloudflarePrecursor(
     super.localName, {
     required RefTo<CloudflareZone> zoneId,
-    PrecursorDefaultMode? defaultMode,
-    List<PrecursorEnforcementRules>? enforcementRules,
+    PrecursorMode? mode,
+    TfArg<bool>? showInterstitial,
+    List<PrecursorRules>? rules,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -94,11 +73,10 @@ final class CloudflarePrecursor extends Resource {
          terraformType: tfType,
          argMap: {
            'zone_id': zoneId.encodeAs('id'),
-           'default_mode': ?defaultMode,
-           if (enforcementRules != null)
-             'enforcement_rules': TfArg.literal([
-               for (final e in enforcementRules) e.encode(),
-             ]),
+           'mode': ?mode,
+           'show_interstitial': ?showInterstitial,
+           if (rules != null)
+             'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },
        );
 
@@ -112,9 +90,12 @@ final class CloudflarePrecursor extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `default_mode` attribute.
-  TfRef<String> get defaultMode =>
-      TfRef.attribute<String>(this, 'default_mode');
+  /// Reference to `mode` attribute.
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `show_interstitial` attribute.
+  TfRef<bool> get showInterstitial =>
+      TfRef.attribute<bool>(this, 'show_interstitial');
 
   /// Reference to `zone_id` attribute.
   TfRef<String> get zoneId => TfRef.attribute<String>(this, 'zone_id');

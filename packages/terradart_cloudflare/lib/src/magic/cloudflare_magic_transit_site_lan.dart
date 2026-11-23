@@ -22,6 +22,26 @@ final class MagicTransitSiteLanNat {
   Map<String, Object?> encode() => {'static_prefix': ?staticPrefix?.toTfJson()};
 }
 
+/// Typed helper for the `remote_subnets` block of
+/// `cloudflare_magic_transit_site_lan` (derived from provider schema).
+@immutable
+final class MagicTransitSiteLanRemoteSubnets {
+  const MagicTransitSiteLanRemoteSubnets({
+    required this.localAliasPrefix,
+    required this.remotePrefix,
+  });
+
+  final TfArg<String> localAliasPrefix;
+
+  final TfArg<String> remotePrefix;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'local_alias_prefix': localAliasPrefix.toTfJson(),
+    'remote_prefix': remotePrefix.toTfJson(),
+  };
+}
+
 /// Typed helper for the `routed_subnets` block of
 /// `cloudflare_magic_transit_site_lan` (derived from provider schema).
 @immutable
@@ -199,6 +219,7 @@ final class CloudflareMagicTransitSiteLan extends Resource {
     required TfArg<String> siteId,
     TfArg<num>? vlanTag,
     MagicTransitSiteLanNat? nat,
+    List<MagicTransitSiteLanRemoteSubnets>? remoteSubnets,
     List<MagicTransitSiteLanRoutedSubnets>? routedSubnets,
     MagicTransitSiteLanStaticAddressing? staticAddressing,
     super.lifecycle,
@@ -218,6 +239,10 @@ final class CloudflareMagicTransitSiteLan extends Resource {
            'site_id': siteId,
            'vlan_tag': ?vlanTag,
            if (nat != null) 'nat': TfArg.literal(nat.encode()),
+           if (remoteSubnets != null)
+             'remote_subnets': TfArg.literal([
+               for (final e in remoteSubnets) e.encode(),
+             ]),
            if (routedSubnets != null)
              'routed_subnets': TfArg.literal([
                for (final e in routedSubnets) e.encode(),
