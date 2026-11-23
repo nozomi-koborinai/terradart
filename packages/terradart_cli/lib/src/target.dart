@@ -40,10 +40,10 @@ final class Request {
     this.envSource = EnvSource.flag,
     this.workspace,
     this.backendConfig = const [],
-    List<String> entryArgs = const [],
+    this._entryArgs = const [],
     this.defineOutput,
     this.defineFile,
-  }) : _entryArgs = entryArgs {
+  }) {
     if (env case final env?) {
       _checkName(env, envSource == EnvSource.variable ? envVariable : '--env');
     }

@@ -117,15 +117,13 @@ typedef DroppedGroup = ({
 final class ProviderEnums {
   const ProviderEnums._({
     required this.enabled,
-    required ByKind<KindHints> tables,
+    required this._tables,
     this.caseInsensitive = false,
     this.availableValuesDialect = false,
     required this.hasGroupSource,
-    DiscoveryEnums? discovery,
-    Map<String, MmResourceOverrides> mm = const {},
-  }) : _tables = tables,
-       _discovery = discovery,
-       _mm = mm;
+    this._discovery,
+    this._mm = const {},
+  });
 
   /// The gate closed: no enrichment, the default description resolver.
   static const ProviderEnums off = ProviderEnums._(

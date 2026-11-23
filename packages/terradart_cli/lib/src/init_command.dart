@@ -21,14 +21,11 @@ import 'workflow.dart';
 /// already holds Terraform is pointed at `terradart migrate` instead.
 final class InitCommand extends Command<int> {
   InitCommand({
-    required Console console,
-    required String cwd,
-    required ProcessRunner runner,
+    required this._console,
+    required this._cwd,
+    required this._runner,
     String? dartExecutable,
-  }) : _console = console,
-       _cwd = cwd,
-       _runner = runner,
-       _dart = dartExecutable {
+  }) : _dart = dartExecutable {
     argParser
       ..addMultiOption(
         'provider',
