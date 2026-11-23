@@ -1,8 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.37.0 - 2026-11-23
 
-- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.11.0`). Install with `dart install terradart_codegen`.
+- **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.11.0`). Install with `dart install terradart_codegen`. See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).
+- Move computed-only top-level attributes from owned to reserved in `collectNestedTypes` so nested block enums do not collide with computed top-level attributes (fixed `WorkersScriptPlacementMode` on `cloudflare_workers_script`).
+- Updated provider schemas, fixtures, and wrapper overrides for `hashicorp/google` / `google-beta` 8.12.0, `hashicorp/aws` 6.73.0, `hashicorp/azurerm` 5.14.0, `cloudflare/cloudflare` 5.29.0, and `appwrite/appwrite` 2.7.0.
 
 ## 0.36.0 - 2026-11-01
 

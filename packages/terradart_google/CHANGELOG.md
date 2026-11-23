@@ -1,8 +1,13 @@
 # Changelog
 
-## Unreleased
+## 0.37.0 - 2026-11-23
 
-- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+- **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).
+- **Breaking (provider 8.12.0):** `GoogleComputeGlobalForwardingRule.target` now takes the required sealed `ComputeGlobalForwardingRuleTarget` choice (`.target(...)` or `.backendService(...)`). See [MIGRATING.md](../../MIGRATING.md#google-provider-8120).
+- **Breaking (provider 8.11.0):** `GoogleAppEngineStandardAppVersion.vpcAccessConnector` moves onto the nullable sealed `connectivity` choice (`.vpcAccessConnector(...)` or `.vpcAccess(...)`), `CesDeploymentWebWidgetConfig.modality` takes `CesDeploymentWebWidgetConfigModality`, and 46 unused output-only enum types are removed. See [MIGRATING.md](../../MIGRATING.md#google-provider-8110).
+- **Breaking (provider 8.10.0):** Magic Modules 8.10.0 removed `exactly_one_of` from 23 resources (returning those arguments and blocks to plain fields and helper classes), `DataLossPreventionDeidentifyTemplateDeidentifyConfig` becomes a helper class with a sealed `transformation` field, and `SqlDatabaseInstanceIpConfiguration.pscConfig` takes a single `SqlDatabaseInstancePscConfig`. See [MIGRATING.md](../../MIGRATING.md#google-provider-8100).
+- **Breaking (provider 8.9.0):** `GoogleBigqueryReservationAssignment.jobType` is replaced by the required sealed `workload` choice, and `ColabNotebookExecutionWorkbenchRuntime` is sealed. See [MIGRATING.md](../../MIGRATING.md#google-provider-890).
+- Follows `hashicorp/google` 8.12.0 (was 8.8.1). Adds 42 resource factories and 4 data sources, including 13 promoted from `terradart_google_beta` (`GoogleDataflowFlexTemplateJob`, `GoogleNetworkServicesServiceLbPolicies`, `GoogleDataformConfig`, `GoogleDataformRepositoryReleaseConfig`, `GoogleDataformRepositoryWorkflowConfig`, `GoogleCloudIdentityPolicy`, and seven `GoogleSaasRuntime*` resources) and `GoogleVertexAiEvaluationItem` (with sealed `source` and golden-response `content`). The catalog is **1422 curated resource factories + 476 data sources**.
 
 ## 0.36.0 - 2026-11-01
 

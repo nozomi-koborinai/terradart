@@ -1,8 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.37.0 - 2026-11-23
 
-- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+- **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).
+- **Breaking:** 13 beta-only factories promoted to GA in `hashicorp/google` 8.9.0, 8.11.0, and 8.12.0 move to `terradart_google`: `GoogleDataflowFlexTemplateJob`, `GoogleNetworkServicesServiceLbPolicies`, `GoogleDataformConfig`, `GoogleDataformRepositoryReleaseConfig`, `GoogleDataformRepositoryWorkflowConfig`, `GoogleCloudIdentityPolicy`, and the seven `GoogleSaasRuntime*` resources. `dataflow.dart`, `dataform.dart`, `identity.dart`, and `saas_runtime.dart` are removed from this package. See [MIGRATING.md](../../MIGRATING.md#google-provider-8120).
+- **Breaking (provider 8.11.0):** removes 6 unused output-only enum types (`FirebaseDatabaseInstanceState`, `FirebaseExtensionsInstanceState`, `FirebaseHostingCustomDomainOwnershipState`, `NetworkSecuritySacAttachmentState`, `NetworkSecuritySacRealmState`, `VertexAiModelGardenEnableModelEnablementState`). See [MIGRATING.md](../../MIGRATING.md#google-provider-8110).
+- Follows `hashicorp/google-beta` 8.12.0 (was 8.8.1). The beta-only catalog is now **99 resource factories**.
 
 ## 0.36.0 - 2026-11-01
 

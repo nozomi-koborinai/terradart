@@ -1,6 +1,6 @@
 # Migrating terradart
 
-## Unreleased
+## 0.36.x → 0.37.0
 
 ### Dart 3.12 is the minimum SDK
 

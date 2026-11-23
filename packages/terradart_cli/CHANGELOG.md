@@ -1,9 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.37.0 - 2026-11-23
 
-- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). `terradart init` writes `sdk: ^3.12.0`. Install with `dart install terradart_cli` (or run one-off commands without installing via `dart run terradart_cli:terradart@ <command>`). CLI upgrade hints and the bundled agent skill use `dart install terradart_cli`.
-- `terradart --version` prints the CLI version (`terradart <version>`) and exits 0; with `--json`, prints a `schemaVersion` 1 JSON result carrying `version`.
+- **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). `terradart init` writes `sdk: ^3.12.0`. Install with `dart install terradart_cli` (or run one-off commands without installing via `dart run terradart_cli:terradart@ <command>`). CLI upgrade hints, README install and PATH notes, and the bundled agent skill use `dart install terradart_cli`. See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).
+- Added `terradart --version`, which prints `terradart <version>` and exits 0 (or prints a `schemaVersion` 1 JSON result carrying `version` with `--json`).
 
 ## 0.36.0 - 2026-11-01
 

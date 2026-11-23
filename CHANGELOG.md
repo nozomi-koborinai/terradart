@@ -4,16 +4,43 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
-## [Unreleased]
+## [0.37.0] - 2026-11-23
+
+Lockstep release across the twelve packages. Every package raises its minimum Dart SDK to **3.12** (`sdk: ^3.12.0`), CLI installs move to `dart install terradart_cli`, and `terradart --version` is added. All six provider packages advance to the latest upstream schemas.
+
+**Breaking** for the Dart SDK floor across every package and for the Dart APIs of `terradart_google`, `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare`, `terradart_appwrite`, and `terradart_azure`. Read [MIGRATING.md](MIGRATING.md#036x--0370) before bumping.
+
+Provider pins move:
+- `hashicorp/google` and `hashicorp/google-beta`: 8.8.1 to 8.12.0;
+- `hashicorp/aws`: 6.70.0 to 6.73.0;
+- `hashicorp/azurerm`: 5.12.0 to 5.14.0;
+- `cloudflare/cloudflare`: 5.28.1 to 5.29.0;
+- `appwrite/appwrite`: 2.3.0 to 2.7.0.
+
+The `terradart_google` catalog grows to **1422 curated resource factories + 476 data sources** (1898 entries), `terradart_google_beta` moves to **99 beta-only resource factories** (13 promoted to GA), `terradart_aws` grows to **1766 resources + 689 data sources**, `terradart_azure` grows to **1109 resources + 398 data sources**, `terradart_cloudflare` grows to **289 resources + 499 data sources**, and `terradart_appwrite` grows to **64 resources + 29 data sources**.
 
 ### Added
 
-- **`terradart --version`** (`terradart_cli`) — prints the CLI version (`terradart <version>`) and exits 0, or a JSON result carrying `version` with `--json`.
+- **`terradart --version`** (`terradart_cli`, #1014) — prints the CLI version (`terradart <version>`) and exits 0, or a `schemaVersion` 1 JSON result carrying `version` with `--json`.
+- **New factories from the provider bumps.** Google adds 42 resource factories and 4 data sources (including 13 promotions from `terradart_google_beta`: `GoogleDataflowFlexTemplateJob`, `GoogleNetworkServicesServiceLbPolicies`, three `GoogleDataform*` resources, `GoogleCloudIdentityPolicy`, and seven `GoogleSaasRuntime*` resources). AWS adds 24 resources and 4 data sources (Bedrock Data Automation, Lambda Web, Network Security Manager, CloudWatch Omni, DevOps Agent, DSQL streams, RDS tenant databases, QuickSight account custom permissions, and more). Azure adds `AzurermDataProtectionBackupInstanceCosmosdbAccount` and `AzurermCognitiveAccountProjectConnectionEntraId`. Cloudflare adds 17 resources and 31 data sources across AI Security, Log Explorer datasets, Zero Trust CASB finding types, Zero Trust CWS, and Zero Trust DLP proximity validators. Appwrite adds 18 resources and 1 data source covering domains, WAF rules, analytics properties, auth team memberships and user targets, and project settings.
+- **Self-healing weekly schema bumps** (`tool/`, #1012) — repairs mechanical override, coverage-stack, fixture-pin, and `MIGRATING.md` drift during weekly schema bumps.
 
 ### Changed
 
-- **Minimum Dart SDK is 3.12** (**breaking**) — every package, example, and cookbook stack declares `sdk: ^3.12.0` (was `^3.10.0`; `terradart_codegen` was `^3.11.0`). `terradart init` and `terradart migrate` write `sdk: ^3.12.0` into generated packages. See [MIGRATING.md](MIGRATING.md#dart-312-is-the-minimum-sdk).
-- **CLI installs with `dart install terradart_cli`** — install instructions and CLI upgrade hints move to `dart install terradart_cli`, with one-off remote runs via `dart run terradart_cli:terradart@ <command>`.
+- **Minimum Dart SDK is 3.12** (**breaking**, #1013) — every package, example, and cookbook stack declares `sdk: ^3.12.0` (was `^3.10.0`; `terradart_codegen` was `^3.11.0`). `terradart init` and `terradart migrate` write `sdk: ^3.12.0` into generated packages. See [MIGRATING.md](MIGRATING.md#dart-312-is-the-minimum-sdk).
+- **CLI installs with `dart install terradart_cli`** (#1013, #1015) — install instructions, PATH and startup notes, and CLI upgrade hints move to `dart install terradart_cli`, with one-off remote runs via `dart run terradart_cli:terradart@ <command>`.
+- **Breaking: provider schema bumps** (`terradart_google`, `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare`, `terradart_appwrite`, `terradart_azure`) — `GoogleComputeGlobalForwardingRule.target` takes the sealed `ComputeGlobalForwardingRuleTarget` choice (8.12.0), `GoogleAppEngineStandardAppVersion.vpcAccessConnector` moves onto sealed `connectivity` and 46 unused output-only Google enums (plus 6 beta ones) are removed (8.11.0), 23 Google resources drop `exactly_one_of` and `SqlDatabaseInstanceIpConfiguration.pscConfig` becomes a single block (8.10.0), `GoogleBigqueryReservationAssignment` seals `workload` and `ColabNotebookExecutionWorkbenchRuntime` is sealed (8.9.0), 13 beta-only Google factories move from `terradart_google_beta` to `terradart_google`, AWS updates `SecurityhubConnectorV2ConnectorProvider`, `aws_wafv2_web_acl_rule` nested statements, and `NetworkfirewallFirewallPolicyOverride.action`, Azure 5.14.0 types local-map enums and seals `AzurermStorageShareFile.source`, Cloudflare 5.29.0 updates Secrets Store, Load Balancer, Workers Script, Access, Lists, Precursor, and Flagship types, and Appwrite 2.7.0 changes `AppwriteProxyRule.type` from `ProxyRuleType` to `TfArg<String>`. See [MIGRATING.md](MIGRATING.md#036x--0370).
+
+### Fixed
+
+- **Release-reading doc gates** (`tool/`, #994) — pin release checks to the release `MIGRATING.md` upgrades from.
+- **Dependency security fixes** — bumped Astro to 7.4.7 in `website/` (#1005) and replaced `jose` with `crypto_keys` in `cookbook/lunch-concierge` (#1006).
+
+### Docs
+
+- Noted on `terradart.dev` that TerraDart output is plain Terraform JSON (#1000).
+- Updated docs to reflect `terradart_azure` published as of 0.36.0 (#993) and listed providers in consistent order (Google Cloud, AWS, Azure, Cloudflare, Appwrite; #997).
+- Added per-page `og:image` generation on `terradart.dev` (#995) and `dart install` PATH and startup notes (#1015).
 
 ## [0.36.0] - 2026-11-01
 
