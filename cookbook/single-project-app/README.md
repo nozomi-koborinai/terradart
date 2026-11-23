@@ -46,7 +46,7 @@ This recipe provisions billable resources. Rough estimates if left running 24h i
 
 ## Run
 
-Prerequisites: `gcloud auth application-default login` for an account with Owner on the target project, and the `terradart` command (`dart install terradart_cli`). It plans and applies with the OpenTofu release it pins, which supports the write-only attributes this recipe uses.
+Prerequisites: `gcloud auth application-default login` for an account with Owner on the target project, and the [`terradart` command](https://terradart.dev/docs/cli/#install) (`dart install terradart_cli`, with `$DART_DATA_HOME/install/bin` on your `PATH`). It plans and applies with the OpenTofu release it pins, which supports the write-only attributes this recipe uses.
 
 ```bash
 export GCP_PROJECT_ID=terradart-validate

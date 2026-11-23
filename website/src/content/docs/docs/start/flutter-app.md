@@ -34,7 +34,7 @@ dart install terradart_cli
 terradart --help
 ```
 
-If the second line is not found, add the bin directory `dart install` prints to your `PATH`.
+If the second line is not found, add `$DART_DATA_HOME/install/bin` to your `PATH` — see [Install](/docs/cli/#install) for per-platform defaults, the macOS zsh snippet, and `dart uninstall terradart_cli`.
 
 ## 2. Create `infra/`
 

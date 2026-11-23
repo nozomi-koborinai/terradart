@@ -14,7 +14,7 @@ terradart outputs --env prd
 flutter build web --dart-define-from-file=.terradart/dart_defines.prd.json
 ```
 
-To pin the version per project, `dart pub add --dev terradart_cli` and run each command as `dart run terradart_cli:terradart <command>`.
+Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for per-platform defaults and `dart uninstall terradart_cli`). To pin the version per project, `dart pub add --dev terradart_cli` and run each command as `dart run terradart_cli:terradart <command>`.
 
 `terradart migrate` does not need a project. From any directory:
 

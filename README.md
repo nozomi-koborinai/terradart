@@ -134,6 +134,8 @@ dart install terradart_cli
 terradart apply
 ```
 
+`dart install` puts `terradart` in `$DART_DATA_HOME/install/bin`, which must be on your `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for macOS, Linux, and Windows defaults, the macOS zsh snippet, and `dart uninstall terradart_cli`).
+
 `terradart apply` runs `bin/infra.dart`, which writes `tf-out/main.tf.json` and `lib/generated/orders_stack.app.dart`, then `init` and `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH` — or a checksum-verified OpenTofu it downloads when there is neither. `terradart plan`, `destroy` and `outputs` work the same way; environments are a Dart enum `bin/infra.dart` hands to `runEnvironments` (`terradart apply --env prod`), and a Stack with `addDartDefineOutput()` gets the define file a Flutter client builds with. See [The terradart command](https://terradart.dev/docs/cli/), [Environments](https://terradart.dev/docs/environments/) and [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
 
 Already have `tofu` or `terraform` installed, or a pipeline that runs one? `terradart` uses the engine on your `PATH` (`--engine` picks one), and `tf-out/` is standard Terraform JSON any of them can apply. The default path is still the `terradart` command, which needs neither.
@@ -287,7 +289,7 @@ terradart migrate --dir infra --out infra_dart
 cd infra_dart && dart pub get && terradart plan
 ```
 
-`terradart migrate --report` sizes a tree without writing anything. `--merge-envs` folds sibling environments into one Stack, and `terradart plan --env <name>` runs one of them. Guide: [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/).
+Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` ([Install](https://terradart.dev/docs/cli/#install)). `terradart migrate --report` sizes a tree without writing anything. `--merge-envs` folds sibling environments into one Stack, and `terradart plan --env <name>` runs one of them. Guide: [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/).
 
 ---
 

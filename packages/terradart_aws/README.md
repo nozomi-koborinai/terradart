@@ -74,6 +74,8 @@ dart install terradart_cli
 AWS_PROFILE=... terradart apply
 ```
 
+Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for per-platform defaults and `dart uninstall terradart_cli`).
+
 ## Curated surface
 
 Every resource and data source of the pinned provider, across per-service barrels (`ec2`, `iam`, `lambda`, `s3`, `rds`, …) plus `data`. The provider is pinned exactly (`kAwsProviderVersionConstraint`, the release the wrappers were generated from). Start with [`examples/aws_lambda_quickstart`](../../examples/aws_lambda_quickstart), which builds the `bootstrap` zip from a Dart handler. [`examples/aws_serverless_api_quickstart`](../../examples/aws_serverless_api_quickstart) is the full stack: that handler behind an API Gateway HTTP API and a DynamoDB table, with a least-privilege role and the API URL and table name read back through the generated outputs reader. [`examples/aws_static_site_quickstart`](../../examples/aws_static_site_quickstart) hosts a Flutter Web build on S3 + CloudFront with a custom domain, and [`examples/aws_ecs_express_quickstart`](../../examples/aws_ecs_express_quickstart) runs a Dart server on ECS Express Mode; both need real AWS setup to apply (their READMEs' "Before you apply"). The rest of the catalog is exercised by [`examples/aws_leftover_quickstart`](../../examples/aws_leftover_quickstart) (synth only; CI validates it against the provider).

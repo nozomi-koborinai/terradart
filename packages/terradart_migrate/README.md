@@ -18,7 +18,7 @@ dart install terradart_cli
 terradart migrate --version
 ```
 
-Add the bin directory `dart install` prints to your `PATH` if it asks you to. For a one-off run without installing globally, run `dart run terradart_cli:terradart@ migrate --dir infra --out infra_dart`. It needs a Dart SDK (3.12 or later) — the one the migrated package needs anyway.
+Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` (see [The terradart command — Install](https://terradart.dev/docs/cli/#install) for per-platform defaults, the macOS zsh snippet, and `dart uninstall terradart_cli`). For a one-off run without installing globally, run `dart run terradart_cli:terradart@ migrate --dir infra --out infra_dart`. It needs a Dart SDK (3.12 or later) — the one the migrated package needs anyway.
 
 **From a checkout:** `dart run bin/terradart.dart migrate --help` in `packages/terradart_cli`.
 

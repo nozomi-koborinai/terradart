@@ -27,7 +27,7 @@ terradart apply
 terradart destroy
 ```
 
-`terradart` synthesizes the Stack into `tf-out/` and runs OpenTofu there (or the `tofu` / `terraform` on your `PATH`), so there is no Terraform to install.
+Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for per-platform defaults and `dart uninstall terradart_cli`). `terradart` synthesizes the Stack into `tf-out/` and runs OpenTofu there (or the `tofu` / `terraform` on your `PATH`), so there is no Terraform to install.
 
 Each recipe's README documents required env vars (e.g. `GCP_PROJECT_ID`, secrets).
 

@@ -36,6 +36,8 @@ cd infra
 terradart plan --env dev
 ```
 
+`dart install` puts `terradart` in `$DART_DATA_HOME/install/bin`, which must be on your `PATH` — see [The terradart command — Install](/docs/cli/#install) for per-platform defaults, the macOS zsh setup, and `dart uninstall terradart_cli`.
+
 For a one-off run without installing globally, Dart 3.12+ runs the remote package executable directly: `dart run terradart_cli:terradart@ init ...`.
 
 `terradart init` writes `infra/` (or the directory you name), runs `dart pub get` in it, and prints what to run next. The project plans as it is:
@@ -159,7 +161,7 @@ dart pub get
 dart install terradart_cli
 ```
 
-The second line installs the [`terradart` command](/docs/cli/), which synthesizes the Stack and runs `plan` or `apply` for you. For a one-off run without installing it, run `dart run terradart_cli:terradart@ <command>`. To pin it per project instead, `dart pub add --dev terradart_cli` and run it as `dart run terradart_cli:terradart`.
+The second line installs the [`terradart` command](/docs/cli/#install) into `$DART_DATA_HOME/install/bin` (which must be on your `PATH`); it synthesizes the Stack and runs `plan` or `apply` for you. For a one-off run without installing it, run `dart run terradart_cli:terradart@ <command>`. To pin it per project instead, `dart pub add --dev terradart_cli` and run it as `dart run terradart_cli:terradart`.
 
 Each provider package wraps the whole catalog of its Terraform provider (Google's beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)), so any resource the provider documents has a factory. One Stack can mix packages.
 

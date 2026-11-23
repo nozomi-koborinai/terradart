@@ -10,7 +10,7 @@ name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_azure` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
   terradart-version: "0.36.0"
-  terradart-sha256: "a92803b84336530a1999cfc8eca7672cc81ab5f76fa6efd821a6f881cb4b1e18"
+  terradart-sha256: "ded5a637fcdf26832b0de1c4a64bbab2ed7fe98c2224cae60154480426608ad7"
 ---
 
 # TerraDart
@@ -19,7 +19,7 @@ TerraDart factories are generated Dart classes, one per Terraform resource or da
 
 ## Start a new project
 
-`terradart init` (from `dart install terradart_cli`, or one-off `dart run terradart_cli:terradart@ init ...`) writes a project that plans as it is. Without a terminal it never asks and never picks a provider, the environments or the state backend for you. **Ask the human for all three before you run it**, then pass them as flags:
+`terradart init` (from `dart install terradart_cli` — with `$DART_DATA_HOME/install/bin` on `PATH`, see [Install](https://terradart.dev/docs/cli/#install) — or one-off `dart run terradart_cli:terradart@ init ...`) writes a project that plans as it is. Without a terminal it never asks and never picks a provider, the environments or the state backend for you. **Ask the human for all three before you run it**, then pass them as flags:
 
 ```bash
 terradart init --provider google --env dev,prd --backend local --agent-skill
@@ -224,7 +224,7 @@ terradart destroy    # synth, init, destroy
 terradart outputs    # synth, init, then writes the define file from the applied state; no plan, no apply
 ```
 
-Arguments after `--` go to the engine (`terradart plan -- -target=...`), and `--no-synth` reuses the last synth.
+`dart install` puts `terradart` in `$DART_DATA_HOME/install/bin`, which must be on `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for macOS, Linux, and Windows defaults, the macOS zsh snippet, and `dart uninstall terradart_cli`). Arguments after `--` go to the engine (`terradart plan -- -target=...`), and `--no-synth` reuses the last synth.
 
 Run every `terradart` command with `--no-input --json`: it then never waits for an answer (it also stops asking in `CI` and in an agent's shell it recognizes), and stdout is one JSON object — read `ok`, `error.code`, `error.choices` and `next` from it instead of parsing the log on stderr. Where it needs an answer, it exits 3 (`apply` / `destroy` without `--auto-approve`) or 64 (no `--env`) and `next` holds the command to run; never add `--auto-approve` unless the user asked for the apply. `terradart help agents` and `terradart help exit-codes` print the same rules in the terminal. `terradart apply --dry-run` (and `destroy --dry-run`) stops after the plan, and `terradart outputs --dry-run` lists the define keys without writing them. `terradart plan --detailed-exitcode` exits 2 when there are changes; 10 is the entry point failing (fix the Dart), 12 the engine (`error.engineExitCode`).
 
@@ -312,7 +312,7 @@ Do not rewrite an existing Terraform tree by hand. Run the migrator first; it tr
    terradart migrate --dir infra --out infra_dart
    ```
 
-   The package has one `Stack` per module directory (`lib/`) and a `tf-out/` tree that mirrors the source. Beside each `main.tf.json` is the **sidecar**: `terradart_leftover.tf`, `backend.tf`, `variables.tf`, `locals.tf` and `outputs.tf`, holding what did not translate. `MIGRATION.md` lists every kept block with its reason.
+   Make sure `$DART_DATA_HOME/install/bin` is on `PATH` ([Install](https://terradart.dev/docs/cli/#install)). The package has one `Stack` per module directory (`lib/`) and a `tf-out/` tree that mirrors the source. Beside each `main.tf.json` is the **sidecar**: `terradart_leftover.tf`, `backend.tf`, `variables.tf`, `locals.tf` and `outputs.tf`, holding what did not translate. `MIGRATION.md` lists every kept block with its reason.
 
 3. **Port the leftovers, one block at a time.** For each block in `MIGRATION.md` whose reason you can resolve (an argument the migrator had no typed slot for, a `depends_on` on a block you have since ported), look the factory up (sections 1–2), add it to the Stack with the **same `localName`** so the address does not change, and delete the block from the sidecar, along with its `addExternalBlock('<address>')` line when the Stack has one (the migrator declares every kept block the Stack reads external, or synth would report the reference as unregistered). A `locals` entry with a literal value can become a Dart `final`; drop it from `locals.tf` only once nothing left in the sidecar reads it. Leave a block in the sidecar when it has no factory (`not in any catalog`). Never copy a sensitive literal into Dart; pass it as a variable instead.
 

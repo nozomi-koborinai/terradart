@@ -15,8 +15,9 @@ environment:
 ```
 
 and run `dart pub upgrade`. Install or update the CLI with
-`dart install terradart_cli` (or run one-off commands without installing via
-`dart run terradart_cli:terradart@ <command>`).
+`dart install terradart_cli` ([PATH setup](https://terradart.dev/docs/cli/#install)),
+or run one-off commands without installing via
+`dart run terradart_cli:terradart@ <command>`.
 
 ### Azure provider 5.14.0
 

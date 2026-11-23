@@ -53,6 +53,8 @@ dart install terradart_cli
 terradart apply
 ```
 
+Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for per-platform defaults and `dart uninstall terradart_cli`).
+
 Wrappers in this package automatically pin the `provider = google-beta` meta-argument. Pass a registered `GoogleBetaProvider` with an `alias` as the `provider` argument to select that aliased configuration instead.
 
 ## Curated surface

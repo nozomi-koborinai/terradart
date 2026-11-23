@@ -51,7 +51,7 @@ terradart apply --env dev
 terradart outputs --env dev
 ```
 
-`terradart apply --env dev` synthesizes `tf-out/dev`, applies it, and writes `.terradart/dart_defines.dev.json`. `terradart outputs --env dev` writes that file from the applied state without planning or applying — the command a client's build job runs.
+Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for per-platform defaults and `dart uninstall terradart_cli`). `terradart apply --env dev` synthesizes `tf-out/dev`, applies it, and writes `.terradart/dart_defines.dev.json`. `terradart outputs --env dev` writes that file from the applied state without planning or applying — the command a client's build job runs.
 
 Then, from `app/`:
 
