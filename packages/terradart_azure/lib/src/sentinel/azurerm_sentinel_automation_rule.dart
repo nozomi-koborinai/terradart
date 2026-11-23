@@ -7,6 +7,50 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_sentinel_automation_rule`.
 const Set<String> _azurermSentinelAutomationRuleSensitive = <String>{};
 
+/// Sentinel Automation Rule Triggers enum for `triggers_on`.
+extension type const SentinelAutomationRuleTriggersOn._(TfArg<String> _)
+    implements TfArg<String> {
+  SentinelAutomationRuleTriggersOn.variable(String name)
+    : this._(TfArg.variable(name));
+  SentinelAutomationRuleTriggersOn.expression(String template)
+    : this._(TfArg.expression(template));
+  const SentinelAutomationRuleTriggersOn.arg(TfArg<String> arg) : this._(arg);
+
+  static const alerts = SentinelAutomationRuleTriggersOn._(
+    TfArgLiteral('Alerts'),
+  );
+  static const incidents = SentinelAutomationRuleTriggersOn._(
+    TfArgLiteral('Incidents'),
+  );
+
+  static const List<SentinelAutomationRuleTriggersOn> values = [
+    alerts,
+    incidents,
+  ];
+}
+
+/// Sentinel Automation Rule Triggers enum for `triggers_when`.
+extension type const SentinelAutomationRuleTriggersWhen._(TfArg<String> _)
+    implements TfArg<String> {
+  SentinelAutomationRuleTriggersWhen.variable(String name)
+    : this._(TfArg.variable(name));
+  SentinelAutomationRuleTriggersWhen.expression(String template)
+    : this._(TfArg.expression(template));
+  const SentinelAutomationRuleTriggersWhen.arg(TfArg<String> arg) : this._(arg);
+
+  static const created = SentinelAutomationRuleTriggersWhen._(
+    TfArgLiteral('Created'),
+  );
+  static const updated = SentinelAutomationRuleTriggersWhen._(
+    TfArgLiteral('Updated'),
+  );
+
+  static const List<SentinelAutomationRuleTriggersWhen> values = [
+    created,
+    updated,
+  ];
+}
+
 /// Typed helper for the `action_incident` block of
 /// `azurerm_sentinel_automation_rule` (derived from provider schema).
 @immutable
@@ -21,7 +65,7 @@ final class SentinelAutomationRuleActionIncident {
     this.status,
   });
 
-  final TfArg<String>? classification;
+  final SentinelAutomationRuleClassification? classification;
 
   final TfArg<String>? classificationComment;
 
@@ -31,9 +75,9 @@ final class SentinelAutomationRuleActionIncident {
 
   final TfArg<String>? ownerId;
 
-  final TfArg<String>? severity;
+  final SentinelAutomationRuleSeverity? severity;
 
-  final TfArg<String>? status;
+  final SentinelAutomationRuleStatus? status;
 
   @internal
   Map<String, Object?> encode() => {
@@ -45,6 +89,91 @@ final class SentinelAutomationRuleActionIncident {
     'severity': ?severity?.toTfJson(),
     'status': ?status?.toTfJson(),
   };
+}
+
+/// `classification` — derived from the provider schema description.
+extension type const SentinelAutomationRuleClassification._(TfArg<String> _)
+    implements TfArg<String> {
+  SentinelAutomationRuleClassification.variable(String name)
+    : this._(TfArg.variable(name));
+  SentinelAutomationRuleClassification.expression(String template)
+    : this._(TfArg.expression(template));
+  const SentinelAutomationRuleClassification.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const undetermined = SentinelAutomationRuleClassification._(
+    TfArgLiteral('Undetermined'),
+  );
+  static const benignpositiveSuspiciousbutexpected =
+      SentinelAutomationRuleClassification._(
+        TfArgLiteral('BenignPositive_SuspiciousButExpected'),
+      );
+  static const falsepositiveIncorrectalertlogic =
+      SentinelAutomationRuleClassification._(
+        TfArgLiteral('FalsePositive_IncorrectAlertLogic'),
+      );
+  static const falsepositiveInaccuratedata =
+      SentinelAutomationRuleClassification._(
+        TfArgLiteral('FalsePositive_InaccurateData'),
+      );
+  static const truepositiveSuspiciousactivity =
+      SentinelAutomationRuleClassification._(
+        TfArgLiteral('TruePositive_SuspiciousActivity'),
+      );
+
+  static const List<SentinelAutomationRuleClassification> values = [
+    undetermined,
+    benignpositiveSuspiciousbutexpected,
+    falsepositiveIncorrectalertlogic,
+    falsepositiveInaccuratedata,
+    truepositiveSuspiciousactivity,
+  ];
+}
+
+/// `severity` — derived from the provider schema description.
+extension type const SentinelAutomationRuleSeverity._(TfArg<String> _)
+    implements TfArg<String> {
+  SentinelAutomationRuleSeverity.variable(String name)
+    : this._(TfArg.variable(name));
+  SentinelAutomationRuleSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const SentinelAutomationRuleSeverity.arg(TfArg<String> arg) : this._(arg);
+
+  static const high = SentinelAutomationRuleSeverity._(TfArgLiteral('High'));
+  static const informational = SentinelAutomationRuleSeverity._(
+    TfArgLiteral('Informational'),
+  );
+  static const low = SentinelAutomationRuleSeverity._(TfArgLiteral('Low'));
+  static const medium = SentinelAutomationRuleSeverity._(
+    TfArgLiteral('Medium'),
+  );
+
+  static const List<SentinelAutomationRuleSeverity> values = [
+    high,
+    informational,
+    low,
+    medium,
+  ];
+}
+
+/// `status` — derived from the provider schema description.
+extension type const SentinelAutomationRuleStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  SentinelAutomationRuleStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  SentinelAutomationRuleStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const SentinelAutomationRuleStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = SentinelAutomationRuleStatus._(TfArgLiteral('Active'));
+  static const closed = SentinelAutomationRuleStatus._(TfArgLiteral('Closed'));
+  static const newCase = SentinelAutomationRuleStatus._(TfArgLiteral('New'));
+
+  static const List<SentinelAutomationRuleStatus> values = [
+    active,
+    closed,
+    newCase,
+  ];
 }
 
 /// Typed helper for the `action_incident_task` block of
@@ -108,8 +237,8 @@ final class AzurermSentinelAutomationRule extends Resource {
     required TfArg<String> logAnalyticsWorkspaceId,
     required TfArg<String> name,
     required TfArg<num> order,
-    TfArg<String>? triggersOn,
-    TfArg<String>? triggersWhen,
+    SentinelAutomationRuleTriggersOn? triggersOn,
+    SentinelAutomationRuleTriggersWhen? triggersWhen,
     List<SentinelAutomationRuleActionIncident>? actionIncident,
     List<SentinelAutomationRuleActionIncidentTask>? actionIncidentTask,
     List<SentinelAutomationRuleActionPlaybook>? actionPlaybook,

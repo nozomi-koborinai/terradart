@@ -80,6 +80,10 @@ final class AzurermDatabaseMigrationService extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `network_interface_id` attribute.
+  TfRef<String> get networkInterfaceId =>
+      TfRef.attribute<String>(this, 'network_interface_id');
+
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 

@@ -44,6 +44,10 @@ final class DataAzurermVirtualNetwork extends Data {
   TfRef<List<String>> get addressSpace =>
       TfRef.attribute<List<String>>(this, 'address_space');
 
+  /// Reference to `advertised_gateway_prefixes` attribute.
+  TfRef<List<String>> get advertisedGatewayPrefixes =>
+      TfRef.attribute<List<String>>(this, 'advertised_gateway_prefixes');
+
   /// Reference to `dns_servers` attribute.
   TfRef<List<String>> get dnsServers =>
       TfRef.attribute<List<String>>(this, 'dns_servers');

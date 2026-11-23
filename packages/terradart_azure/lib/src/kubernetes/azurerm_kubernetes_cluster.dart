@@ -546,6 +546,7 @@ final class KubernetesClusterDefaultNodePool {
     this.kubeletConfig,
     this.linuxOsConfig,
     this.nodeNetworkProfile,
+    this.security,
     this.upgradeSettings,
   });
 
@@ -621,6 +622,8 @@ final class KubernetesClusterDefaultNodePool {
 
   final KubernetesClusterNodeNetworkProfile? nodeNetworkProfile;
 
+  final KubernetesClusterSecurity? security;
+
   final KubernetesClusterUpgradeSettings? upgradeSettings;
 
   @internal
@@ -661,6 +664,7 @@ final class KubernetesClusterDefaultNodePool {
     'kubelet_config': ?kubeletConfig?.encode(),
     'linux_os_config': ?linuxOsConfig?.encode(),
     'node_network_profile': ?nodeNetworkProfile?.encode(),
+    'security': ?security?.encode(),
     'upgrade_settings': ?upgradeSettings?.encode(),
   };
 }
@@ -923,6 +927,23 @@ final class KubernetesClusterAllowedHostPorts {
     'port_end': ?portEnd?.toTfJson(),
     'port_start': ?portStart?.toTfJson(),
     'protocol': ?protocol?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_node_pool.security` block of
+/// `azurerm_kubernetes_cluster` (derived from provider schema).
+@immutable
+final class KubernetesClusterSecurity {
+  const KubernetesClusterSecurity({this.secureBootEnabled, this.vtpmEnabled});
+
+  final TfArg<bool>? secureBootEnabled;
+
+  final TfArg<bool>? vtpmEnabled;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'secure_boot_enabled': ?secureBootEnabled?.toTfJson(),
+    'vtpm_enabled': ?vtpmEnabled?.toTfJson(),
   };
 }
 

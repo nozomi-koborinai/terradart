@@ -92,7 +92,12 @@ export 'src/sentinel/azurerm_sentinel_automation_rule.dart'
         AzurermSentinelAutomationRule,
         SentinelAutomationRuleActionIncident,
         SentinelAutomationRuleActionIncidentTask,
-        SentinelAutomationRuleActionPlaybook;
+        SentinelAutomationRuleActionPlaybook,
+        SentinelAutomationRuleClassification,
+        SentinelAutomationRuleSeverity,
+        SentinelAutomationRuleStatus,
+        SentinelAutomationRuleTriggersOn,
+        SentinelAutomationRuleTriggersWhen;
 export 'src/sentinel/azurerm_sentinel_data_connector_aws_cloud_trail.dart'
     show AzurermSentinelDataConnectorAwsCloudTrail;
 export 'src/sentinel/azurerm_sentinel_data_connector_aws_s3.dart'

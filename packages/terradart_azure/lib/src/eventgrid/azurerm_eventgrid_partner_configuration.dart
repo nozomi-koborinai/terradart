@@ -15,22 +15,22 @@ const Set<String> _azurermEventgridPartnerConfigurationSensitive = <String>{};
 final class EventgridPartnerConfigurationPartnerAuthorization {
   const EventgridPartnerConfigurationPartnerAuthorization({
     this.authorizationExpirationTimeInUtc,
-    required this.partnerName,
-    required this.partnerRegistrationId,
+    this.partnerName,
+    this.partnerRegistrationId,
   });
 
   final TfArg<String>? authorizationExpirationTimeInUtc;
 
-  final TfArg<String> partnerName;
+  final TfArg<String>? partnerName;
 
-  final TfArg<String> partnerRegistrationId;
+  final TfArg<String>? partnerRegistrationId;
 
   @internal
   Map<String, Object?> encode() => {
     'authorization_expiration_time_in_utc': ?authorizationExpirationTimeInUtc
         ?.toTfJson(),
-    'partner_name': partnerName.toTfJson(),
-    'partner_registration_id': partnerRegistrationId.toTfJson(),
+    'partner_name': ?partnerName?.toTfJson(),
+    'partner_registration_id': ?partnerRegistrationId?.toTfJson(),
   };
 }
 

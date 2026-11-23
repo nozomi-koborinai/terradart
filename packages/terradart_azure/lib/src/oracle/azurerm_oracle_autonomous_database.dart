@@ -62,6 +62,31 @@ extension type const OracleAutonomousDatabaseLicenseModel._(TfArg<String> _)
   ];
 }
 
+/// Oracle Autonomous Database Maintenance Patch enum for `maintenance_patch_level`.
+extension type const OracleAutonomousDatabaseMaintenancePatchLevel._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  OracleAutonomousDatabaseMaintenancePatchLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleAutonomousDatabaseMaintenancePatchLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleAutonomousDatabaseMaintenancePatchLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const early = OracleAutonomousDatabaseMaintenancePatchLevel._(
+    TfArgLiteral('Early'),
+  );
+  static const regular = OracleAutonomousDatabaseMaintenancePatchLevel._(
+    TfArgLiteral('Regular'),
+  );
+
+  static const List<OracleAutonomousDatabaseMaintenancePatchLevel> values = [
+    early,
+    regular,
+  ];
+}
+
 /// Typed helper for the `long_term_backup_schedule` block of
 /// `azurerm_oracle_autonomous_database` (derived from provider schema).
 @immutable
@@ -142,6 +167,7 @@ final class AzurermOracleAutonomousDatabase extends Resource {
     required TfArg<String> displayName,
     required OracleAutonomousDatabaseLicenseModel licenseModel,
     required TfArg<String> location,
+    OracleAutonomousDatabaseMaintenancePatchLevel? maintenancePatchLevel,
     required TfArg<bool> mtlsConnectionRequired,
     required TfArg<String> name,
     required TfArg<String> nationalCharacterSet,
@@ -172,6 +198,7 @@ final class AzurermOracleAutonomousDatabase extends Resource {
            'display_name': displayName,
            'license_model': licenseModel,
            'location': location,
+           'maintenance_patch_level': ?maintenancePatchLevel,
            'mtls_connection_required': mtlsConnectionRequired,
            'name': name,
            'national_character_set': nationalCharacterSet,
@@ -257,6 +284,10 @@ final class AzurermOracleAutonomousDatabase extends Resource {
 
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `maintenance_patch_level` attribute.
+  TfRef<String> get maintenancePatchLevel =>
+      TfRef.attribute<String>(this, 'maintenance_patch_level');
 
   /// Reference to `mtls_connection_required` attribute.
   TfRef<bool> get mtlsConnectionRequired =>

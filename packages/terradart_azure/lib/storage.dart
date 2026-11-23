@@ -188,7 +188,11 @@ export 'src/storage/azurerm_storage_share.dart'
 export 'src/storage/azurerm_storage_share_directory.dart'
     show AzurermStorageShareDirectory;
 export 'src/storage/azurerm_storage_share_file.dart'
-    show AzurermStorageShareFile;
+    show
+        AzurermStorageShareFile,
+        StorageShareFileSource,
+        StorageShareFileSourceChoice,
+        StorageShareFileSourceContent;
 export 'src/storage/azurerm_storage_sync.dart'
     show AzurermStorageSync, StorageSyncIncomingTrafficPolicy;
 export 'src/storage/azurerm_storage_sync_cloud_endpoint.dart'

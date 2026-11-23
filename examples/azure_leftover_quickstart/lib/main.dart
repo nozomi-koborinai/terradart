@@ -1908,6 +1908,18 @@ final class AzureLeftoverStack extends Stack {
     );
 
     add(
+      AzurermCognitiveAccountProjectConnectionEntraId(
+        'cognitive_account_project_connection_entra_id',
+        category: .aiservices,
+        cognitiveAccountProjectId: .literal(
+          '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/projects/projectName',
+        ),
+        name: .literal(leftover),
+        target: .literal(leftover),
+      ),
+    );
+
+    add(
       AzurermCognitiveAccountRaiBlocklist(
         'cognitive_account_rai_blocklist',
         cognitiveAccountId: .literal(
@@ -2519,7 +2531,6 @@ final class AzureLeftoverStack extends Stack {
       AzurermCostManagementScheduledAction(
         'cost_management_scheduled_action',
         displayName: .literal(leftover),
-        emailAddressSender: .literal('leftover@example.com'),
         emailAddresses: .literal([leftover]),
         emailSubject: .literal('leftover@example.com'),
         endDate: .literal('2024-01-01T00:00:00Z'),
@@ -4432,18 +4443,15 @@ final class AzureLeftoverStack extends Stack {
           username: .literal(leftover),
         ),
         roles: HdinsightHadoopClusterRoles(
-          headNode: .new(
-            username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
-          ),
+          headNode: .new(username: .literal(leftover), vmSize: .extrasmall),
           workerNode: .new(
             targetInstanceCount: .literal(200),
             username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
+            vmSize: .extrasmall,
           ),
           zookeeperNode: .new(
             username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
+            vmSize: .extrasmall,
           ),
         ),
       ),
@@ -4466,18 +4474,15 @@ final class AzureLeftoverStack extends Stack {
           username: .literal(leftover),
         ),
         roles: HdinsightHbaseClusterRoles(
-          headNode: .new(
-            username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
-          ),
+          headNode: .new(username: .literal(leftover), vmSize: .extrasmall),
           workerNode: .new(
             targetInstanceCount: .literal(200),
             username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
+            vmSize: .extrasmall,
           ),
           zookeeperNode: .new(
             username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
+            vmSize: .extrasmall,
           ),
         ),
       ),
@@ -4500,18 +4505,15 @@ final class AzureLeftoverStack extends Stack {
           username: .literal(leftover),
         ),
         roles: HdinsightInteractiveQueryClusterRoles(
-          headNode: .new(
-            username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
-          ),
+          headNode: .new(username: .literal(leftover), vmSize: .extrasmall),
           workerNode: .new(
             targetInstanceCount: .literal(200),
             username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
+            vmSize: .extrasmall,
           ),
           zookeeperNode: .new(
             username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
+            vmSize: .extrasmall,
           ),
         ),
       ),
@@ -4534,19 +4536,16 @@ final class AzureLeftoverStack extends Stack {
           username: .literal(leftover),
         ),
         roles: HdinsightKafkaClusterRoles(
-          headNode: .new(
-            username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
-          ),
+          headNode: .new(username: .literal(leftover), vmSize: .extrasmall),
           workerNode: .new(
             numberOfDisksPerNode: .literal(1),
             targetInstanceCount: .literal(200),
             username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
+            vmSize: .extrasmall,
           ),
           zookeeperNode: .new(
             username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
+            vmSize: .extrasmall,
           ),
         ),
       ),
@@ -4569,18 +4568,15 @@ final class AzureLeftoverStack extends Stack {
           username: .literal(leftover),
         ),
         roles: HdinsightSparkClusterRoles(
-          headNode: .new(
-            username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
-          ),
+          headNode: .new(username: .literal(leftover), vmSize: .extrasmall),
           workerNode: .new(
             targetInstanceCount: .literal(200),
             username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
+            vmSize: .extrasmall,
           ),
           zookeeperNode: .new(
             username: .literal(leftover),
-            vmSize: .literal('ExtraSmall'),
+            vmSize: .extrasmall,
           ),
         ),
       ),

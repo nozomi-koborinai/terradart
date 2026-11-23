@@ -42,6 +42,10 @@ export 'src/cognitive/azurerm_cognitive_account_customer_managed_key.dart'
     show AzurermCognitiveAccountCustomerManagedKey;
 export 'src/cognitive/azurerm_cognitive_account_project.dart'
     show AzurermCognitiveAccountProject, CognitiveAccountProjectIdentity;
+export 'src/cognitive/azurerm_cognitive_account_project_connection_entra_id.dart'
+    show
+        AzurermCognitiveAccountProjectConnectionEntraId,
+        CognitiveAccountProjectConnectionEntraIdCategory;
 export 'src/cognitive/azurerm_cognitive_account_rai_blocklist.dart'
     show AzurermCognitiveAccountRaiBlocklist;
 export 'src/cognitive/azurerm_cognitive_account_rai_policy.dart'

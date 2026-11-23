@@ -305,6 +305,7 @@ export 'src/network/azurerm_private_endpoint.dart'
     show
         AzurermPrivateEndpoint,
         PrivateEndpointIpConfiguration,
+        PrivateEndpointIpVersionType,
         PrivateEndpointPrivateConnectionResource,
         PrivateEndpointPrivateConnectionResourceAlias,
         PrivateEndpointPrivateConnectionResourceId,

@@ -464,6 +464,9 @@ AzurermCognitiveAccountCustomerManagedKey.cognitiveAccountId:
 AzurermCognitiveAccountProject.cognitiveAccountId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName'
   why: 'azurerm_cognitive_account_project.cognitive_account_project.cognitive_account_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the Account ID: the number of segments didn''t match (family azure-resource-id)'
+AzurermCognitiveAccountProjectConnectionEntraId.cognitiveAccountProjectId:
+  value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName/projects/projectName'
+  why: 'azurerm_cognitive_account_project_connection_entra_id.cognitive_account_project_connection_entra_id.cognitive_account_project_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the Project ID: the number of segments didn''t match (family azure-resource-id)'
 AzurermCognitiveAccountRaiBlocklist.cognitiveAccountId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/accountName'
   why: 'azurerm_cognitive_account_rai_blocklist.cognitive_account_rai_blocklist.cognitive_account_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the Account ID: the number of segments didn''t match (family azure-resource-id)'

@@ -677,6 +677,26 @@ extension type const KubernetesClusterNodePoolProtocol._(TfArg<String> _)
   static const List<KubernetesClusterNodePoolProtocol> values = [tcp, udp];
 }
 
+/// Typed helper for the `security` block of
+/// `azurerm_kubernetes_cluster_node_pool` (derived from provider schema).
+@immutable
+final class KubernetesClusterNodePoolSecurity {
+  const KubernetesClusterNodePoolSecurity({
+    this.secureBootEnabled,
+    this.vtpmEnabled,
+  });
+
+  final TfArg<bool>? secureBootEnabled;
+
+  final TfArg<bool>? vtpmEnabled;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'secure_boot_enabled': ?secureBootEnabled?.toTfJson(),
+    'vtpm_enabled': ?vtpmEnabled?.toTfJson(),
+  };
+}
+
 /// Typed helper for the `upgrade_settings` block of
 /// `azurerm_kubernetes_cluster_node_pool` (derived from provider schema).
 @immutable
@@ -854,6 +874,7 @@ final class AzurermKubernetesClusterNodePool extends Resource {
     KubernetesClusterNodePoolKubeletConfig? kubeletConfig,
     KubernetesClusterNodePoolLinuxOsConfig? linuxOsConfig,
     KubernetesClusterNodePoolNodeNetworkProfile? nodeNetworkProfile,
+    KubernetesClusterNodePoolSecurity? security,
     KubernetesClusterNodePoolUpgradeSettings? upgradeSettings,
     KubernetesClusterNodePoolWindowsProfile? windowsProfile,
     super.lifecycle,
@@ -907,6 +928,7 @@ final class AzurermKubernetesClusterNodePool extends Resource {
              'linux_os_config': TfArg.literal(linuxOsConfig.encode()),
            if (nodeNetworkProfile != null)
              'node_network_profile': TfArg.literal(nodeNetworkProfile.encode()),
+           if (security != null) 'security': TfArg.literal(security.encode()),
            if (upgradeSettings != null)
              'upgrade_settings': TfArg.literal(upgradeSettings.encode()),
            if (windowsProfile != null)

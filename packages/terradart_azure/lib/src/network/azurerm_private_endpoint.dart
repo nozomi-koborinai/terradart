@@ -10,6 +10,28 @@ import '../subnet/azurerm_subnet.dart' show AzurermSubnet;
 /// Sensitive field paths for `azurerm_private_endpoint`.
 const Set<String> _azurermPrivateEndpointSensitive = <String>{};
 
+/// Private Endpoint Ip Version enum for `ip_version_type`.
+extension type const PrivateEndpointIpVersionType._(TfArg<String> _)
+    implements TfArg<String> {
+  PrivateEndpointIpVersionType.variable(String name)
+    : this._(TfArg.variable(name));
+  PrivateEndpointIpVersionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const PrivateEndpointIpVersionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const dualstack = PrivateEndpointIpVersionType._(
+    TfArgLiteral('DualStack'),
+  );
+  static const ipv4 = PrivateEndpointIpVersionType._(TfArgLiteral('IPv4'));
+  static const ipv6 = PrivateEndpointIpVersionType._(TfArgLiteral('IPv6'));
+
+  static const List<PrivateEndpointIpVersionType> values = [
+    dualstack,
+    ipv4,
+    ipv6,
+  ];
+}
+
 /// Typed helper for the `ip_configuration` block of
 /// `azurerm_private_endpoint` (derived from provider schema).
 @immutable
@@ -164,6 +186,7 @@ final class AzurermPrivateEndpoint extends Resource {
     super.localName, {
     TfArg<String>? customNetworkInterfaceName,
     TfArg<String>? edgeZone,
+    PrivateEndpointIpVersionType? ipVersionType,
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
@@ -181,6 +204,7 @@ final class AzurermPrivateEndpoint extends Resource {
          argMap: {
            'custom_network_interface_name': ?customNetworkInterfaceName,
            'edge_zone': ?edgeZone,
+           'ip_version_type': ?ipVersionType,
            'location': location,
            'name': name,
            'resource_group_name': resourceGroupName.encodeAs('name'),
@@ -234,6 +258,10 @@ final class AzurermPrivateEndpoint extends Resource {
 
   /// Reference to `edge_zone` attribute.
   TfRef<String> get edgeZone => TfRef.attribute<String>(this, 'edge_zone');
+
+  /// Reference to `ip_version_type` attribute.
+  TfRef<String> get ipVersionType =>
+      TfRef.attribute<String>(this, 'ip_version_type');
 
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');
