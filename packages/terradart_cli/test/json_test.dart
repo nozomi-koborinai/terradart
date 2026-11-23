@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_cli/src/output/exit_codes.dart';
+import 'package:terradart_cli/src/version.dart';
 import 'package:test/test.dart';
 
 import 'support.dart';
@@ -295,5 +296,37 @@ void main() {
     ], FakeRunner(synth: (_) => runStackEntry()));
     expect(r.code, 3, reason: r.err);
     expect(result(r)['command'], 'state migrate');
+  });
+
+  test('--version with --json returns a schemaVersion 1 result', () async {
+    final project = TestProject.create();
+    for (final args in [
+      ['--version', '--json'],
+      ['--json', '--version'],
+      ['--json', '--no-input', '-q', '--version'],
+    ]) {
+      final r = await project.run(args, FakeRunner());
+      expect(r.code, 0, reason: '$args\n${r.err}');
+      expect(result(r), {
+        'schemaVersion': 1,
+        'command': 'terradart',
+        'ok': true,
+        'exitCode': 0,
+        'version': cliVersion,
+        'notices': <Object?>[],
+        'next': <Object?>[],
+      });
+      expect(r.err, 'terradart $cliVersion\n');
+    }
+  });
+
+  test('--json without a command or --version still exits 64', () async {
+    final project = TestProject.create();
+    final r = await project.run(['--json'], FakeRunner());
+    expect(r.code, 64);
+    expect(result(r)['error'], {
+      'code': 'usage',
+      'message': '--json needs a command.',
+    });
   });
 }

@@ -45,7 +45,7 @@ dart run terradart_cli:terradart apply
 | `terradart migrate` | turns a Terraform tree into a Dart package. No project is required — it does not look for a `pubspec.yaml` |
 | `terradart skill install` / `update` / `status` | writes, updates and checks the [agent skill](#the-agent-skill) this CLI bundles |
 
-`--no-synth` reuses what the last synth wrote, `--project <dir>` (`-C`) runs against another package, and `--engine tofu|terraform` or `--engine-path <file>` picks the engine for one run. `--json` prints one result object on stdout, and every exit code means one thing: [JSON and exit codes](#json-and-exit-codes).
+`--no-synth` reuses what the last synth wrote, `--project <dir>` (`-C`) runs against another package, and `--engine tofu|terraform` or `--engine-path <file>` picks the engine for one run. `terradart --version` prints the CLI version (`terradart <version>`), `--json` prints one result object on stdout, and every exit code means one thing: [JSON and exit codes](#json-and-exit-codes).
 
 Every command's `--help` ends with examples — the simplest use first, the one an agent runs last — and the topics to read next. `terradart help <topic>` prints a short guide in the terminal, and `terradart help --list` lists them: `environments`, `outputs`, `backends`, `engines`, `migrate`, `exit-codes`, `json` and `agents`. Each ends with the page here that covers it in full. `terradart help migrate` prints the command's usage, then the topic under `Guide:`. With `--json` the guide goes to stderr, like `--help`'s usage.
 
@@ -171,6 +171,7 @@ terradart plan --env dev --json --detailed-exitcode
 |---|---|
 | `schemaVersion` | `1`; raised only for a change that breaks a reader |
 | `command`, `ok`, `exitCode` | the command path (`state migrate`), whether it succeeded, and the exit code |
+| `version` | `--version`: the CLI version |
 | `env` | the environment and why: `flag`, `variable` (`TERRADART_ENV`), `default`, `only`, `prompt` |
 | `engine` | `kind` (`tofu`, `terraform`), `version`, `path`, and why: `engine_path`, `setting` (`--engine` or `pubspec.yaml`), `state` (the engine that last applied it), `path`, `managed` (the OpenTofu download) |
 | `outDir` | the Terraform directory |
