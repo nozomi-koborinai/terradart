@@ -183,7 +183,7 @@ void _project(String root, String packages) {
 name: e2e_app
 publish_to: none
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 dependencies:
 ${[for (final d in deps) '  $d: any'].join('\n')}
 dependency_overrides:

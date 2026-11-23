@@ -286,8 +286,8 @@ final class _SkillStatusCommand extends _SkillSubcommand {
     SkillState.outdated =>
       '${i.version} → $cliVersion. Run: terradart skill update',
     SkillState.newer =>
-      '${i.version}, newer than this CLI ($cliVersion). Run: dart pub '
-          'global activate terradart_cli',
+      '${i.version}, newer than this CLI ($cliVersion). Run: dart install '
+          'terradart_cli',
     SkillState.edited => 'local changes; update needs --force',
     SkillState.missing => 'not installed',
     SkillState.foreign => 'no terradart marker; update needs --force',

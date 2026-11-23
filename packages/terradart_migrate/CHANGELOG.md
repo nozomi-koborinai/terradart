@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). A migrated package's generated `pubspec.yaml` declares `sdk: ^3.12.0`, and the deprecated `terradart-migrate` notice points to `dart install terradart_cli`.
+
 ## 0.36.0 - 2026-11-01
 
 - `migrateModule` translates `hashicorp/azurerm` into `terradart_azure` factories through a sixth generated manifest. A migrated `azurerm` provider becomes `AzureProvider` and keeps `subscription_id` and `features`, and its `client_id` and `client_secret` are dropped. An `azurerm` backend that sets only `resource_group_name`, `storage_account_name`, `container_name` and `key` becomes an `AzurermBackend`, and its credential arguments are dropped with a warning. One that sets another argument stays in `backend.tf`.

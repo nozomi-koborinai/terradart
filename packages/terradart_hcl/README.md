@@ -1,6 +1,6 @@
 # terradart_hcl
 
-[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.12-blue.svg)](https://dart.dev)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
 
 A pure Dart front-end for Terraform configurations: an HCL native-syntax

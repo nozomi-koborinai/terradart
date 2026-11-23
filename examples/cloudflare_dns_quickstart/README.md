@@ -11,8 +11,8 @@ The stack uses demo literals. Apply needs a domain you own and the Cloudflare ac
 
 ## Prerequisites
 
-- Dart SDK >= 3.10
-- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
+- Dart SDK >= 3.12
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A Cloudflare API token that can edit zones and DNS, in `CLOUDFLARE_API_TOKEN`; none is needed for synth
 
 ## Usage

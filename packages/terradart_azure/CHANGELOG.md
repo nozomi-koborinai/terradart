@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+
 ## 0.36.0 - 2026-11-01
 
 First release on pub.dev, in lockstep with the other packages.

@@ -298,7 +298,7 @@ const _pubspecHead = '''
 name: migrating_cells
 publish_to: none
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 ''';
 
 /// The outcome of [checkMigratingCells]: its failures, the version each

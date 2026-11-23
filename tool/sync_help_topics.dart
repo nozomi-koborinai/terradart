@@ -2,7 +2,7 @@
 // their sources, packages/terradart_cli/help/<topic>.md.
 //
 // The CLI carries them as Dart constants (lib/src/assets/help_topics.g.dart)
-// because `dart pub global activate` and `dart compile exe` cannot read a
+// because `dart install` and `dart compile exe` cannot read a
 // file outside the package at run time.
 //
 //   dart tool/sync_help_topics.dart        # list what is stale, exit 1

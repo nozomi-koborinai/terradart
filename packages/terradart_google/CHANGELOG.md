@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+
 ## 0.36.0 - 2026-11-01
 
 - **Breaking:** exclusive groups are one sealed argument named for the concept. Database Migration Service private connections take `connectivity`, Dialogflow generators `context`, regional secret versions `payload`, BigQuery Cloud SQL credentials `password`, Spanner instances `capacity` and Developer Connect insights configs `scope`. Seven groups Magic Modules wrote from another block's path seal in their own block, such as `event` and `revision` on Cloud Build Developer Connect triggers. `CloudbuildTriggerBitbucketServerTriggerConfigPush` is `CloudbuildTriggerPush`, which every `push` block of the trigger shares. See [MIGRATING.md](../../MIGRATING.md#exclusive-groups-are-one-sealed-argument).

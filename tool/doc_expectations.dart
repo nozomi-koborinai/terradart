@@ -125,7 +125,7 @@ String fixGoogleCounts(String text) => text
 /// package README and the website guide must all carry it. Migration runs
 /// before a Dart project exists, so the install is the user CLI, not
 /// `terradart_migrate` (the library the command calls).
-const migrateInstallPhrase = 'dart pub global activate terradart_cli';
+const migrateInstallPhrase = 'dart install terradart_cli';
 
 class _CatalogCounts {
   const _CatalogCounts({

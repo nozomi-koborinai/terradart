@@ -14,7 +14,7 @@
 **Alpha** is where TerraDart gets into people's hands and their feedback shapes the API. There is no SemVer until v1.0.0. Breaking changes land only on **minor** bumps. Pin `^0.36.0`, read [`MIGRATING.md`](MIGRATING.md) before a minor bump, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
 [![CI](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml)
-[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.12-blue.svg)](https://dart.dev)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-terradart.dev-blue.svg)](https://terradart.dev)
 
@@ -26,7 +26,7 @@
 # pubspec.yaml
 name: my_app
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 dependencies:
   terradart_core: ^0.36.0
   terradart_google: ^0.36.0  # or terradart_aws / terradart_azure / terradart_cloudflare / terradart_appwrite
@@ -130,7 +130,7 @@ Future<void> main(List<String> args) =>
 
 ```bash
 dart pub get
-dart pub global activate terradart_cli
+dart install terradart_cli
 terradart apply
 ```
 
@@ -282,7 +282,7 @@ Credentials never enter the synthesized JSON: each provider authenticates at app
 [`terradart migrate`](packages/terradart_cli/) turns an existing Terraform source tree into a TerraDart package: one `Stack` per module directory, a `tf-out/` tree mirroring the source, and a **leftover sidecar** beside each `main.tf.json` holding, verbatim and with a reason, every block it cannot translate yet. Resource addresses are preserved, so `terradart plan` against your existing state reports *No changes* — move one resource at a time, no big-bang rewrite. It reads `.tf` / `.tf.json` only: no Terraform run, no state access.
 
 ```sh
-dart pub global activate terradart_cli
+dart install terradart_cli
 terradart migrate --dir infra --out infra_dart
 cd infra_dart && dart pub get && terradart plan
 ```

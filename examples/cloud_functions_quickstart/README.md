@@ -8,8 +8,8 @@ Stage a real function source zip in the source bucket before applying; synth doe
 
 ## Prerequisites
 
-- Dart SDK >= 3.10
-- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
+- Dart SDK >= 3.12
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - A GCP project with the Cloud Functions API, Cloud Build API, Cloud Run Admin API, and IAM API enabled, and credentials configured (`gcloud auth application-default login`).
 - A `hello-http.zip` source archive next to `tf-out/` (the example references it as `./hello-http.zip`).
 

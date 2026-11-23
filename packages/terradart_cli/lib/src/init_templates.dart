@@ -350,7 +350,7 @@ description: Infrastructure in Dart, planned and applied with the terradart comm
 publish_to: none
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 
 dependencies:
 ${[for (final p in plan.packages) '  $p: ^$packageVersion'].join('\n')}

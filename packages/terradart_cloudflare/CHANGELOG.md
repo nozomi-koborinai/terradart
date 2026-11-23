@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+
 ## 0.36.0 - 2026-11-01
 
 - **Breaking:** follows `cloudflare/cloudflare` 5.28.1 (was 5.26.0), and synth output pins that version. 5.28.0 removes `CloudflareRegistrarDomain`, `DataCloudflareRegistrarDomain`, `DataCloudflareRegistrarDomains` and `registrar.dart`. Access application policy helpers take the `Policies` name, some arguments are required, and some members are gone or retyped. See [MIGRATING.md](../../MIGRATING.md#terradart_cloudflare-follows-cloudflarecloudflare-5280).

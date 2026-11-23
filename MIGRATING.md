@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+### Dart 3.12 is the minimum SDK
+
+**Breaking (every package).** All `terradart_*` packages declare
+`sdk: ^3.12.0` (was `^3.10.0`; `terradart_codegen` was `^3.11.0`). Upgrade the
+Dart SDK to 3.12 or later (`dart --version`), raise the lower bound in your
+stack's `pubspec.yaml`:
+
+```yaml
+environment:
+  sdk: ^3.12.0
+```
+
+and run `dart pub upgrade`. Install or update the CLI with
+`dart install terradart_cli` (or run one-off commands without installing via
+`dart run terradart_cli:terradart@ <command>`).
+
 ### Google provider 8.11.0
 
 **Breaking (`terradart_google`).** Provider 8.11.0 promotes `vpc_access`

@@ -3,7 +3,7 @@ description: Flutter client for the TerraDart flutter_client_quickstart. Not a w
 publish_to: none
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 
 dependencies:
   flutter:

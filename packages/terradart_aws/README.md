@@ -1,7 +1,7 @@
 # terradart_aws
 
 [![pub: terradart_aws](https://img.shields.io/pub/v/terradart_aws.svg?label=pub%3A%20aws)](https://pub.dev/packages/terradart_aws)
-[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.12-blue.svg)](https://dart.dev)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
 
 Curated factory wrappers for **AWS** resources (the [`hashicorp/aws`](https://registry.terraform.io/providers/hashicorp/aws) Terraform provider) for Dart-first Terraform stacks.
@@ -70,7 +70,7 @@ final class HelloStack extends Stack {
 
 ```bash
 dart pub get
-dart pub global activate terradart_cli
+dart install terradart_cli
 AWS_PROFILE=... terradart apply
 ```
 

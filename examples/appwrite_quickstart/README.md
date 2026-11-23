@@ -10,8 +10,8 @@ Four sensitive values are Terraform variables, so they never appear in `tf-out/`
 
 ## Prerequisites
 
-- Dart SDK >= 3.10
-- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
+- Dart SDK >= 3.12
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
 - An Appwrite API key in `APPWRITE_API_KEY` (project resources) or `APPWRITE_ORGANIZATION_API_KEY` (organization resources); none is needed for synth
 
 ## Usage

@@ -23,12 +23,12 @@ import 'package:test/test.dart';
 /// inspects `<tmp>` recursively.
 String _libSrcOut(Directory tmp) => p.join(tmp.path, 'lib', 'src');
 
-/// Makes [root] a package whose language version, 3.10, wrap formats at.
+/// Makes [root] a package whose language version, 3.12, wrap formats at.
 void _writePubspec(Directory root, String name) {
   root.createSync(recursive: true);
   File(
     p.join(root.path, 'pubspec.yaml'),
-  ).writeAsStringSync('name: $name\nenvironment:\n  sdk: ^3.10.0\n');
+  ).writeAsStringSync('name: $name\nenvironment:\n  sdk: ^3.12.0\n');
 }
 
 void main() {
@@ -1289,7 +1289,7 @@ barrels:
           // `dart format` formats it, so a `--check` diff against the
           // committed copy is byte-exact.
           final formatted = DartFormatter(
-            languageVersion: Version(3, 10, 0),
+            languageVersion: Version(3, 12, 0),
           ).format(src);
           expect(formatted, src);
 

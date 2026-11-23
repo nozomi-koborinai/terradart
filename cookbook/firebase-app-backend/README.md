@@ -43,8 +43,8 @@ graph TB
 
 ## Prerequisites
 
-- Dart SDK ≥ 3.10
-- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`
+- Dart SDK ≥ 3.12
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`
 - Google Cloud project with Application Default Credentials configured (`gcloud auth application-default login`)
 
 ## Run

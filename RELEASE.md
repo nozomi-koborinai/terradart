@@ -1,6 +1,6 @@
 # Release Checklist
 
-terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core` and `terradart_hcl`, `terradart_codegen`, `terradart_time`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws`, `terradart_azure`, `terradart_migrate`, and last `terradart_cli`, whose `terradart` command users install with `dart pub global activate terradart_cli`.
+terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core` and `terradart_hcl`, `terradart_codegen`, `terradart_time`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws`, `terradart_azure`, `terradart_migrate`, and last `terradart_cli`, whose `terradart` command users install with `dart install terradart_cli`.
 
 ## Pre-flight (local)
 
@@ -26,9 +26,9 @@ terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); al
 - [ ] Run pana score check on each package:
 
   ```bash
-  dart pub global activate pana
+  dart install pana
   for pkg in terradart_core terradart_hcl terradart_codegen terradart_time terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_azure terradart_migrate terradart_cli; do
-    (cd "packages/$pkg" && dart pub global run pana --no-warning --exit-code-threshold 100)
+    (cd "packages/$pkg" && pana --no-warning --exit-code-threshold 100)
   done
   ```
 
@@ -118,5 +118,5 @@ If a phase succeeds for some packages but fails for the next (e.g. `publish-code
 - [ ] All 12 listings on pub.dev show the correct version
 - [ ] GitHub Release created (`gh release create v0.X.Y --notes ...`)
 - [ ] Verified publisher badge appears on all 12 pub.dev pages
-- [ ] `terradart` install verified on a clean machine: `dart pub global activate terradart_cli && terradart migrate --version`, then one real tree migrates and plans with *No changes* per [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/)
+- [ ] `terradart` install verified on a clean machine: `dart install terradart_cli && terradart migrate --version`, then one real tree migrates and plans with *No changes* per [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/)
 - [ ] No doc still calls a package this release first published unpublished. Search with `rg -n -i 'not on pub\.dev|unpublished|not in the published|arrives in the next release|until its first publish' website/src/content/docs/docs README.md packages/*/README.md skills/` and fix every hit about that package in a docs PR. Leave historical upgrade sections as written.

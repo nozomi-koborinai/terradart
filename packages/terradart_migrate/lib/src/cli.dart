@@ -34,7 +34,7 @@ abstract final class MigrateExitCodes {
 /// keeps working; a later release removes it.
 const migrateExecutableDeprecation =
     'terradart-migrate is deprecated and will be removed in a later release. '
-    'Use `terradart migrate` (`dart pub global activate terradart_cli`).';
+    'Use `terradart migrate` (`dart install terradart_cli`).';
 
 /// Runs `terradart migrate` with [argv]; returns the exit code. [out] and
 /// [err] default to stdout and stderr.

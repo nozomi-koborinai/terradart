@@ -7,17 +7,17 @@ From an empty directory to applied infrastructure, with nothing to install but t
 
 You need:
 
-- the Dart SDK, 3.10 or later;
+- the Dart SDK, 3.12 or later;
 - credentials for your provider when you plan and apply — not before. The steps use Google Cloud and two projects, one per environment; [other providers](#other-providers) take a different flag at step 2.
 
 ## 1. Install the command
 
 ```bash
-dart pub global activate terradart_cli
+dart install terradart_cli
 terradart --help
 ```
 
-`terradart` lands in `~/.pub-cache/bin`. If the second line is not found, add that directory to your `PATH`, as `dart pub global activate` says.
+If the second line is not found, add the bin directory `dart install` prints to your `PATH`.
 
 ## 2. Create the project
 

@@ -224,7 +224,7 @@ MigrationResult migrateModule(
 String packageNameFor(String name) => snakeCase(name);
 
 /// The SDK floor of a migrated package's pubspec.
-final Version _migratedSdkFloor = Version(3, 10, 0);
+final Version _migratedSdkFloor = Version(3, 12, 0);
 
 /// `dart_style` at the language version of a migrated package, which is
 /// what `dart format` formats its files at.

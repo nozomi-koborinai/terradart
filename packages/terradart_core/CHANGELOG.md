@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`).
+
 ## 0.36.0 - 2026-11-01
 
 - `EnumList<E>` is the type of a list-valued enum input, a `TfArg<List<E>>`. Pass the members with `.literal([...])`, or the whole list with `.variable(...)` or `.expression(...)`. A member of a literal list takes its enum's own `.variable(...)`, `.expression(...)` or `.arg(...)`. The provider packages type every enum list with it.

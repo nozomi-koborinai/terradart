@@ -334,7 +334,7 @@ final class PublicApi {
           'name: doc_renames_release',
           'publish_to: none',
           'environment:',
-          '  sdk: ^3.10.0',
+          '  sdk: ^3.12.0',
           'dependencies:',
           for (final MapEntry(key: pkg, value: version) in pins.entries)
             '  $pkg: $version',

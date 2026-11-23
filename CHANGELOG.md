@@ -4,6 +4,13 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## [Unreleased]
+
+### Changed
+
+- **Minimum Dart SDK is 3.12** (**breaking**) — every package, example, and cookbook stack declares `sdk: ^3.12.0` (was `^3.10.0`; `terradart_codegen` was `^3.11.0`). `terradart init` and `terradart migrate` write `sdk: ^3.12.0` into generated packages. See [MIGRATING.md](MIGRATING.md#dart-312-is-the-minimum-sdk).
+- **CLI installs with `dart install terradart_cli`** — install instructions and CLI upgrade hints move to `dart install terradart_cli`, with one-off remote runs via `dart run terradart_cli:terradart@ <command>`.
+
 ## [0.36.0] - 2026-11-01
 
 Lockstep release across the twelve packages, the first with **`terradart_azure`**, the factories for `hashicorp/azurerm`. TerraDart stays in alpha, so feedback on this release shapes the API ([status](https://terradart.dev/docs/status/)). On every provider package:

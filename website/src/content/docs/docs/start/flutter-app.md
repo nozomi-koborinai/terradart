@@ -30,11 +30,11 @@ It is a package of its own because it runs on the Dart VM (`dart run`, through t
 ## 1. Install the command
 
 ```bash
-dart pub global activate terradart_cli
+dart install terradart_cli
 terradart --help
 ```
 
-`terradart` lands in `~/.pub-cache/bin`. If the second line is not found, add that directory to your `PATH`, as `dart pub global activate` says.
+If the second line is not found, add the bin directory `dart install` prints to your `PATH`.
 
 ## 2. Create `infra/`
 

@@ -5,8 +5,9 @@
 /// `--dart-define-from-file` JSON a Flutter or Dart client builds with.
 ///
 /// Run it as `dart run terradart_cli:terradart <command>` from a project
-/// that lists `terradart_cli` in `dev_dependencies`, or as
-/// `terradart <command>` after `dart pub global activate terradart_cli`.
+/// that lists `terradart_cli` in `dev_dependencies`, as `terradart <command>`
+/// after `dart install terradart_cli`, or as a one-off remote run with
+/// `dart run terradart_cli:terradart@ <command>`.
 library;
 
 export 'src/cli.dart' show runTerradart;

@@ -17,12 +17,7 @@ import 'target.dart';
 /// through [ask]; with `--json` ([result]) progress goes to [err] too, and
 /// stdout carries the result alone.
 final class Console {
-  Console({
-    required void Function(String) out,
-    required this.err,
-    String? Function(String question)? ask,
-  }) : _out = out,
-       _ask = ask;
+  Console({required this._out, required this.err, this._ask});
 
   /// [stdout] and [stderr]; questions read [stdin] when both it and
   /// [stdout] are a terminal (`stdin.hasTerminal` alone is also true for
@@ -119,9 +114,9 @@ final class Workflow {
     required this.runner,
     required this.console,
     required this.cwd,
-    required EngineResolver resolver,
+    required this._resolver,
     this.dartExecutable,
-  }) : _resolver = resolver;
+  });
 
   /// What the command line asks for; an answer to the environment
   /// question replaces it.
