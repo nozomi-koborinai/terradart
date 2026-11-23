@@ -29,7 +29,7 @@
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta + terradart_appwrite + terradart_cloudflare + terradart_aws + terradart_azure + terradart_time carets)
 #   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google + terradart_time carets on
 #     cookbook/*/*/pubspec.yaml                    workspace-member cookbook recipes)
-#   - README.md                                   (Quickstart pubspec sample + `dart pub global activate terradart_codegen ^...` line + status blurb)
+#   - README.md                                   (Quickstart pubspec sample + status blurb)
 #   - CONTRIBUTING.md                             (minor-line caret references)
 #   - SECURITY.md                                 (supported-versions pin + table)
 #   - packages/terradart_core/README.md           (pubspec sample caret)
@@ -40,8 +40,8 @@
 #   - packages/terradart_aws/README.md            (pubspec sample carets)
 #   - packages/terradart_azure/README.md          (pubspec sample carets)
 #   - packages/terradart_time/README.md           (pubspec sample carets)
-#   - packages/terradart_codegen/README.md        (`dart pub global activate` caret)
-#   - packages/terradart_codegen/example/main.dart (`dart pub global activate` caret)
+#   - packages/terradart_codegen/README.md        (`dart install` caret)
+#   - packages/terradart_codegen/example/main.dart (`dart install` caret)
 #   (doc pins are the minor-line caret ^X.Y.0: minor bumps move them, patch bumps do not)
 #   - website/src/content/docs/docs/getting-started.mdx  (pubspec sample caret note + version line)
 #   - website/src/content/docs/docs/providers/*.md                (pubspec sample carets)
@@ -260,7 +260,7 @@ for tpl in .github/ISSUE_TEMPLATE/bug.yml \
 done
 
 # Minor-line caret samples + alpha banner: the pubspec samples, the
-# `dart pub global activate` lines and the "Pin `^X.Y.0`" prose in the
+# `dart install` lines and the "Pin `^X.Y.0`" prose in the
 # READMEs, the website and the codegen example.
 echo "  Minor-line (^X.Y.0) caret samples + banner:"
 for f in README.md \

@@ -7,7 +7,7 @@
 //                    [--rehearse-packages DIR]
 //
 // --bin-dir       a directory holding the `terradart` to record (default:
-//                 the one on PATH, i.e. `dart pub global activate terradart_cli`)
+//                 the one on PATH, i.e. `dart install terradart_cli`)
 // --sandbox-path  record with a PATH that leaves out terraform and tofu
 //                 instead of requiring them to be absent; for rehearsals only,
 //                 since the clip then shows "command not found" on a machine
@@ -86,7 +86,7 @@ if (flag("--sandbox-path")) {
     }
   }
 }
-if (!which("terradart", shellPath)) die("no terradart on PATH (dart pub global activate terradart_cli, or --bin-dir)");
+if (!which("terradart", shellPath)) die("no terradart on PATH (dart install terradart_cli, or --bin-dir)");
 
 const awsPlaceholder = "AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY";
 
@@ -96,7 +96,7 @@ const app = path.join(work, "my_app");
 fs.mkdirSync(path.join(app, "lib"), { recursive: true });
 fs.writeFileSync(
   path.join(app, "pubspec.yaml"),
-  "name: my_app\npublish_to: none\n\nenvironment:\n  sdk: ^3.10.0\n\ndependencies:\n  flutter:\n    sdk: flutter\n\nflutter:\n  uses-material-design: true\n",
+  "name: my_app\npublish_to: none\n\nenvironment:\n  sdk: ^3.12.0\n\ndependencies:\n  flutter:\n    sdk: flutter\n\nflutter:\n  uses-material-design: true\n",
 );
 fs.writeFileSync(
   path.join(app, "lib", "main.dart"),
@@ -270,7 +270,7 @@ class MyApp extends StatelessWidget {
 fs.writeFileSync(path.join(app, "lib", "main.dart"), mainDart);
 const check = path.join(work, "outputs_check");
 fs.mkdirSync(path.join(check, "lib", "generated"), { recursive: true });
-fs.writeFileSync(path.join(check, "pubspec.yaml"), "name: outputs_check\npublish_to: none\n\nenvironment:\n  sdk: ^3.10.0\n");
+fs.writeFileSync(path.join(check, "pubspec.yaml"), "name: outputs_check\npublish_to: none\n\nenvironment:\n  sdk: ^3.12.0\n");
 fs.copyFileSync(path.join(app, "lib", "generated", "infra.g.dart"), path.join(check, "lib", "generated", "infra.g.dart"));
 fs.writeFileSync(
   path.join(check, "lib", "check.dart"),

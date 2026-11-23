@@ -311,14 +311,14 @@ void _checkNoExactPinCopies(List<String> errors, ExactPinLane lane) {
 }
 
 /// A version constraint a reader copies into `pubspec.yaml` or onto a
-/// `dart pub global activate` line must be one pub accepts: `^0.33.x` is not
+/// `dart install` line must be one pub accepts: `^0.33.x` is not
 /// (`dart pub get` fails), `^0.33.0` is. Prose such as "the 0.33.x line" has
 /// no caret and is fine. History (CHANGELOG, MIGRATING) is exempt.
 void _checkCopyPasteConstraints(List<String> errors) {
   final caretX = RegExp(r'\^\d+\.\d+\.x\b');
   final fence = RegExp(r'^\s*```+\s*(\w*)');
   final dependency = RegExp(r'^\s*#?\s*terradart_\w+:\s*([^\s#`]+)');
-  final activate = RegExp(r'dart pub global activate terradart_\w+ ([^\s`]+)');
+  final install = RegExp(r'dart install terradart_\w+@([^\s`]+)');
   final files = {
     ..._proseFiles(),
     ..._filesUnder('skills', (p) => p.endsWith('.md')),
@@ -348,7 +348,7 @@ void _checkCopyPasteConstraints(List<String> errors) {
       }
       final constraints = [
         if (fenceLang == 'yaml') dependency.firstMatch(line)?.group(1),
-        activate.firstMatch(line)?.group(1),
+        install.firstMatch(line)?.group(1),
       ].nonNulls;
       for (final constraint in constraints) {
         try {

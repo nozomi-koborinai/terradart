@@ -188,8 +188,7 @@ bool skillsCliManages(String root) {
           code: 'skill_newer',
           message:
               'the terradart agent skill in $where is $version, newer than '
-              'this CLI ($cliVersion). Run: dart pub global activate '
-              'terradart_cli',
+              'this CLI ($cliVersion). Run: dart install terradart_cli',
         );
       }
     }

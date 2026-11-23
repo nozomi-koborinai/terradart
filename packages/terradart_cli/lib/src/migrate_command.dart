@@ -7,7 +7,8 @@ import 'workflow.dart';
 /// `terradart migrate`: the user-facing front end of `terradart_migrate`.
 ///
 /// It does not look for a `pubspec.yaml`. Migration runs before a Dart
-/// project exists, so `dart pub global activate terradart_cli` is enough.
+/// project exists, so `dart install terradart_cli` (or
+/// `dart run terradart_cli:terradart@ migrate ...`) is enough.
 final class MigrateCommand extends Command<int> {
   /// Forwards what the migrator prints to [console].
   MigrateCommand(this._console) {

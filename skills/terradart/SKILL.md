@@ -3,7 +3,7 @@ name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_azure` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
   terradart-version: "0.36.0"
-  terradart-sha256: "4afd42278099dfdff77641dc341f770d3ded609c1b1ff7093a47787c7b4fbcf1"
+  terradart-sha256: "a92803b84336530a1999cfc8eca7672cc81ab5f76fa6efd821a6f881cb4b1e18"
 ---
 
 # TerraDart
@@ -12,7 +12,7 @@ TerraDart factories are generated Dart classes, one per Terraform resource or da
 
 ## Start a new project
 
-`terradart init` (from `dart pub global activate terradart_cli`) writes a project that plans as it is. Without a terminal it never asks and never picks a provider, the environments or the state backend for you. **Ask the human for all three before you run it**, then pass them as flags:
+`terradart init` (from `dart install terradart_cli`, or one-off `dart run terradart_cli:terradart@ init ...`) writes a project that plans as it is. Without a terminal it never asks and never picks a provider, the environments or the state backend for you. **Ask the human for all three before you run it**, then pass them as flags:
 
 ```bash
 terradart init --provider google --env dev,prd --backend local --agent-skill
@@ -207,7 +207,8 @@ Synth reports every issue that keeps the Stack from synthesizing (an unregistere
 The `terradart` command runs the whole loop: the entry point, then `init` and `plan` or `apply` in the directory it wrote. It runs the `tofu` or `terraform` on `PATH`; with neither, it downloads the OpenTofu release it pins and checks its SHA-256, so the user installs nothing but Dart. Never tell the user to install Terraform or to run it by hand.
 
 ```bash
-dart pub global activate terradart_cli   # or: dart pub add --dev terradart_cli, then dart run terradart_cli:terradart <command>
+dart install terradart_cli   # or one-off: dart run terradart_cli:terradart@ <command>
+                             # or per project: dart pub add --dev terradart_cli, then dart run terradart_cli:terradart <command>
 terradart synth      # the entry point only: writes tf-out/
 terradart validate   # synth, init -backend=false, validate — no credentials, backend or state
 terradart plan       # synth, init, plan
@@ -300,7 +301,7 @@ Do not rewrite an existing Terraform tree by hand. Run the migrator first; it tr
 2. **Migrate.**
 
    ```bash
-   dart pub global activate terradart_cli
+   dart install terradart_cli
    terradart migrate --dir infra --out infra_dart
    ```
 

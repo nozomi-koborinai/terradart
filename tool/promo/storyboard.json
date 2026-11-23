@@ -134,7 +134,7 @@
         { "from": 0.3, "to": 4.5, "text": "Docs and guides: terradart.dev", "say": "Docs and guides: terradart dot dev." }
       ]
     },
-    { "id": "end", "kind": "end", "duration": 4.0, "install": "dart pub global activate terradart_cli", "url": "terradart.dev" }
+    { "id": "end", "kind": "end", "duration": 4.0, "install": "dart install terradart_cli", "url": "terradart.dev" }
   ],
   "poster": { "scene": "title", "at": 2.4 },
   "stills": [
