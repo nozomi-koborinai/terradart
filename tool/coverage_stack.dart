@@ -237,7 +237,7 @@ Future<CoverageVerdict> runCoverageStack(
       <DummyKey, (LearnedInclude, BlockRejection, AttrPath, Set<TfAddress>)>{};
   try {
     for (var pass = 1; ; pass++) {
-      final dummies = lane.dummies.revised(
+      var dummies = lane.dummies.revised(
         {for (final MapEntry(:key, :value) in learned.entries) key: value.$1},
         included: {
           for (final MapEntry(:key, :value) in learnedIncludes.entries)
@@ -247,14 +247,35 @@ Future<CoverageVerdict> runCoverageStack(
       try {
         var rendered = lane.generator.render(dummies, exclude: exclude);
         while (rendered.unplaceable.isNotEmpty) {
+          var prunedInclude = false;
           for (final MapEntry(key: className, value: why)
               in rendered.unplaceable.entries) {
             if (!exclude.add(className)) {
               throw StateError('the generator rendered excluded $className');
             }
-            excluded[className] = lane
-                .factoryNamed(className)
-                .excluded(GeneratorCannotPlace(why));
+            final factory = lane.factoryNamed(className);
+            final isData = factory.kind == FactoryKind.dataSource;
+            learnedIncludes.removeWhere((_, v) {
+              final beforeCount = v.$4.length;
+              v.$4.removeWhere(
+                (a) => a.type == factory.tfType && a.dataSource == isData,
+              );
+              if (v.$4.length != beforeCount) prunedInclude = true;
+              return v.$4.isEmpty;
+            });
+            excluded[className] = factory.excluded(GeneratorCannotPlace(why));
+          }
+          if (prunedInclude) {
+            dummies = lane.dummies.revised(
+              {
+                for (final MapEntry(:key, :value) in learned.entries)
+                  key: value.$1,
+              },
+              included: {
+                for (final MapEntry(:key, :value) in learnedIncludes.entries)
+                  key: value.$1,
+              },
+            );
           }
           rendered = lane.generator.render(dummies, exclude: exclude);
         }
@@ -344,7 +365,8 @@ Future<CoverageVerdict> runCoverageStack(
           }
 
           final groups = <DummyKey, List<ValueRejection>>{};
-          final blockGroups = <DummyKey, List<(BlockRejection, AttrPath)>>{};
+          final blockGroups =
+              <DummyKey, List<(BlockRejection, AttrPath, String?)>>{};
           final learnedAddresses = <TfAddress>{};
           final pendingLeaveOut = <(TfAddress, ProviderRejected)>[];
           for (final r in rejections) {
@@ -361,14 +383,15 @@ Future<CoverageVerdict> runCoverageStack(
                 }
               case BlockRejection():
                 final reqPath = requiredPathNamedBy(r.message);
-                final key = reqPath == null
+                final target = reqPath == null
                     ? null
-                    : dummies.slotKeyAt(r.address, reqPath);
+                    : dummies.slotTargetAt(r.address, reqPath);
+                final key = target?.key;
                 if (pass <= kLearnPasses &&
                     key != null &&
                     !learnedIncludes.containsKey(key) &&
                     !dummies.includesParam(key)) {
-                  (blockGroups[key] ??= []).add((r, reqPath!));
+                  (blockGroups[key] ??= []).add((r, reqPath!, target!.variant));
                 } else {
                   if (key != null) {
                     final existing = learnedIncludes[key];
@@ -383,10 +406,13 @@ Future<CoverageVerdict> runCoverageStack(
             }
           }
           for (final MapEntry(key: key, value: items) in blockGroups.entries) {
-            final (first, reqPath) = items.first;
-            final addresses = {for (final (r, _) in items) r.address};
+            final (first, reqPath, variant) = items.first;
+            final addresses = {for (final (r, _, _) in items) r.address};
             learnedIncludes[key] = (
-              LearnedInclude('${first.address}: ${_firstLine(first.message)}'),
+              LearnedInclude(
+                '${first.address}: ${_firstLine(first.message)}',
+                variant: variant,
+              ),
               first,
               reqPath,
               addresses,

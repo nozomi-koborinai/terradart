@@ -939,7 +939,130 @@ AwsVpclatticeListenerRule.forward:
         );
       },
     );
+
+    test(
+      'unused helper include still falls back to first optional helper parameter',
+      () {
+        final allOtherAws = {
+          for (final e in awsMigrateManifest.entries)
+            if (e.className != 'AwsDsqlStream') e.className,
+        };
+        final dummies = CoverageDummies.parse(
+          '''
+DsqlStreamTargetDefinition.nonExistent:
+  include: true
+''',
+          path: 'aws.yaml',
+          manifest: awsMigrateManifest,
+          bindings: awsLeftoverStack.bindings,
+        );
+        final rendered = awsLeftoverStack.render(dummies, exclude: allOtherAws);
+        expect(
+          rendered.source,
+          contains('DsqlStreamTargetDefinition(kinesis:'),
+        );
+      },
+    );
+
+    test(
+      'unplaceable factory after learning an include prunes the learned include',
+      () async {
+        final ledgerFile = File('${tmp.path}/unplaceable_ledger.yaml')
+          ..writeAsStringSync("# ledger\nname: 'leftover'\n");
+        final stackFile = File('${tmp.path}/unplaceable_main.dart');
+        final lane = CoverageLane(
+          name: 'test',
+          generator: _UnplaceableOnIncludeStack(),
+          manifest: blockManifest,
+          dummies: CoverageDummies.parse(
+            ledgerFile.readAsStringSync(),
+            path: ledgerFile.path,
+            manifest: blockManifest,
+            bindings: const {},
+          ),
+          debtListed: const {},
+          stackPath: stackFile.path,
+        );
+
+        final verdict = await run(
+          lane,
+          _FakeOracle(
+            stackFile,
+            onRun: (source) {
+              if (!source.contains('ExampleDeployment(')) {
+                return const OracleGreen('tofu 1.13.1', {
+                  'appwrite/appwrite': '2.7.0',
+                });
+              }
+              return OracleRejected([
+                BlockRejection(
+                  address,
+                  'Missing Configuration for Required Attribute',
+                  'Block configuration must have a configuration value as the '
+                      'provider has marked it as required',
+                ),
+              ], '{}');
+            },
+            onRevalidate: (_) => const [],
+          ),
+        );
+
+        expect(verdict, isA<CoverageGreen>());
+        final green = verdict as CoverageGreen;
+        expect(green.excluded.map((e) => e.className), ['ExampleDeployment']);
+        expect(green.learned, isEmpty);
+        expect(ledgerFile.readAsStringSync(), isNot(contains('include: true')));
+      },
+    );
+
+    test(
+      'sealed include with variant picks the named variant on that slot',
+      () {
+        final allOtherAws = {
+          for (final e in awsMigrateManifest.entries)
+            if (e.className != 'AwsVpclatticeListenerRule') e.className,
+        };
+        final dummies = CoverageDummies.parse(
+          '''
+AwsVpclatticeListenerRule.action:
+  include: true
+  variant: forward
+''',
+          path: 'aws.yaml',
+          manifest: awsMigrateManifest,
+          bindings: awsLeftoverStack.bindings,
+        );
+        final rendered = awsLeftoverStack.render(dummies, exclude: allOtherAws);
+        expect(rendered.source, contains('action: .forward('));
+        expect(rendered.source, isNot(contains('action: .fixedResponse(')));
+      },
+    );
   });
+}
+
+final class _UnplaceableOnIncludeStack implements CoverageStackGenerator {
+  @override
+  String get slug => 'unplaceable_leftover';
+
+  @override
+  Set<String> get bindings => const {};
+
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    if (exclude.contains('ExampleDeployment')) return const RenderedStack('');
+    if (dummies.includedParams('ExampleDeployment').contains('configuration')) {
+      return const RenderedStack(
+        '',
+        unplaceable: {
+          'ExampleDeployment': 'cannot construct helper configuration',
+        },
+      );
+    }
+    return const RenderedStack("ExampleDeployment(name: 'leftover')\n");
+  }
 }
 
 final class _SharedBlockStack implements CoverageStackGenerator {

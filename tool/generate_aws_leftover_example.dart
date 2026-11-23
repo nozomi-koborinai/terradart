@@ -913,6 +913,7 @@ String _sealedChoice(
   required int depth,
   required Set<String> sensitive,
   required String owner,
+  String? preferredVariant,
 }) {
   final ownExtras = _requiredAtValidate[sealed];
   if (ownExtras != null) _usedKeys.add(sealed);
@@ -922,10 +923,15 @@ String _sealedChoice(
       (v, helpers[v]!.requiredParams.single),
   ];
   final (variant, member) = variants.firstWhere(
-    (v) => extras.contains(v.$2.name),
-    orElse: () => variants.isEmpty
-        ? throw StateError('$sealed declares no variants')
-        : variants.first,
+    (v) => preferredVariant != null
+        ? v.$2.name == preferredVariant
+        : extras.contains(v.$2.name),
+    orElse: () => variants.firstWhere(
+      (v) => extras.contains(v.$2.name),
+      orElse: () => variants.isEmpty
+          ? throw StateError('$sealed declares no variants')
+          : variants.first,
+    ),
   );
   if (_dummies.ownsValue(variant, member.name)) {
     owner = variant;
@@ -1314,6 +1320,7 @@ String _dummyForType(
       depth: depth,
       sensitive: sensitive,
       owner: owner,
+      preferredVariant: _dummies.includedVariant(owner, name),
     );
   }
   if (helpers.containsKey(t)) {
@@ -1559,12 +1566,10 @@ String _constructHelper(
     ...info.requiredParams,
     for (final p in extraParams)
       if (seen.add(p.name)) p,
-    if (extras == null &&
-        learned.isEmpty &&
-        info.requiredParams.isEmpty &&
-        info.optionalParams.isNotEmpty)
-      info.optionalParams.first,
   ];
+  if (params.isEmpty && info.optionalParams.isNotEmpty) {
+    params.add(info.optionalParams.first);
+  }
   if (params.isEmpty) {
     return '$ctor()';
   }

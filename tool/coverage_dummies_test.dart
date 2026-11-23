@@ -303,6 +303,10 @@ ExampleQueueScope.zoneId: 'unjudged'
         dummies.slotKeyAt(route, const AttrPath(['cidr_ip', 0]))?.value,
         'ExampleRoute.cidr',
       );
+      expect(dummies.slotTargetAt(route, const AttrPath(['cidr_ip', 0])), (
+        key: dummies.slotKeyAt(route, const AttrPath(['cidr_ip']))!,
+        variant: 'cidrIp',
+      ));
     });
 
     test('include: true round-trips through save and includedParams', () {
@@ -326,7 +330,7 @@ ExampleQueueScope.zoneId: 'unjudged'
       );
       expect(updated.includedParams('ExampleRoute'), ['config']);
       expect(updated.includesParam(key), isTrue);
-      expect(updated.ownsValue('ExampleRoute', 'config'), isTrue);
+      expect(updated.ownsValue('ExampleRoute', 'config'), isFalse);
       expect(updated.valueFor('ExampleRoute', 'config'), isNull);
 
       updated.save();
@@ -346,6 +350,47 @@ ExampleQueueScope.zoneId: 'unjudged'
         () => _parse('ExampleQueue.directoryId:\n  include: false\n'),
         throwsFormatException,
       );
+      expect(
+        () => _parse("ExampleQueue.directoryId:\n  value: 'x'\n  variant: a\n"),
+        throwsFormatException,
+      );
     });
+
+    test(
+      'include: true with variant round-trips through save and includedVariant',
+      () {
+        final tmp = Directory.systemTemp.createTempSync('include_variant_');
+        addTearDown(() => tmp.deleteSync(recursive: true));
+        final path = '${tmp.path}/ledger.yaml';
+        final parsed = CoverageDummies.parse(
+          "subnetIds: ['fallback']\n",
+          path: path,
+          manifest: manifest,
+          bindings: const {},
+        );
+        final target = parsed.slotTargetAt(
+          route,
+          const AttrPath(['cidr_ip', 0]),
+        )!;
+        final updated = parsed.revised(
+          const {},
+          included: {
+            target.key: LearnedInclude(
+              'example_route.route: Block cidr_ip must have a configuration value',
+              variant: target.variant,
+            ),
+          },
+        );
+        expect(updated.includedVariant('ExampleRoute', 'cidr'), 'cidrIp');
+        updated.save();
+        final reloaded = CoverageDummies.parse(
+          File(path).readAsStringSync(),
+          path: path,
+          manifest: manifest,
+          bindings: const {},
+        );
+        expect(reloaded.includedVariant('ExampleRoute', 'cidr'), 'cidrIp');
+      },
+    );
   });
 }

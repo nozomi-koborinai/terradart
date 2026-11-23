@@ -378,14 +378,16 @@ String _sealedChoice(
   Map<String, _ClassInfo> helpers, {
   required int depth,
   required Set<String> sensitive,
+  String? preferredVariant,
 }) {
   final variants = [
     for (final v in _sealedVariants[sealed]!)
       (v, helpers[v]!.requiredParams.single),
   ];
   if (variants.isEmpty) throw StateError('$sealed declares no variants');
+  final want = preferredVariant ?? _sealedMember[sealed];
   final (variant, member) = variants.firstWhere(
-    (v) => v.$2.name == _sealedMember[sealed],
+    (v) => v.$2.name == want,
     orElse: () => variants.first,
   );
   final outer = _insideHelper;
@@ -600,7 +602,13 @@ String _dummyForType(
     return "{'k': leftover}";
   }
   if (_sealedVariants.containsKey(t)) {
-    return _sealedChoice(t, helpers, depth: depth, sensitive: sensitive);
+    return _sealedChoice(
+      t,
+      helpers,
+      depth: depth,
+      sensitive: sensitive,
+      preferredVariant: _dummies.includedVariant(owner, name),
+    );
   }
   if (helpers.containsKey(t)) {
     return _constructHelper(
