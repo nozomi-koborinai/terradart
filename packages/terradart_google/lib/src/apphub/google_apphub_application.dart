@@ -7,29 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_apphub_application`.
 const Set<String> _googleApphubApplicationSensitive = <String>{};
 
-/// Apphub Application enum for `state`.
-extension type const ApphubApplicationState._(TfArg<String> _)
-    implements TfArg<String> {
-  ApphubApplicationState.variable(String name) : this._(TfArg.variable(name));
-  ApphubApplicationState.expression(String template)
-    : this._(TfArg.expression(template));
-  const ApphubApplicationState.arg(TfArg<String> arg) : this._(arg);
-
-  static const stateUnspecified = ApphubApplicationState._(
-    TfArgLiteral('STATE_UNSPECIFIED'),
-  );
-  static const creating = ApphubApplicationState._(TfArgLiteral('CREATING'));
-  static const active = ApphubApplicationState._(TfArgLiteral('ACTIVE'));
-  static const deleting = ApphubApplicationState._(TfArgLiteral('DELETING'));
-
-  static const List<ApphubApplicationState> values = [
-    stateUnspecified,
-    creating,
-    active,
-    deleting,
-  ];
-}
-
 /// Typed helper for the `attributes` block of
 /// `google_apphub_application` (derived from provider schema).
 @immutable

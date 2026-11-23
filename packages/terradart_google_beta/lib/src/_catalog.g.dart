@@ -994,77 +994,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_region_network_policy_traffic_classification_rule`.\n\nRepresents a traffic classification rule that describes one or more match\nconditions along with the action to be taken when traffic matches this\ncondition.',
   ),
   CatalogEntry(
-    tfType: 'google_dataform_config',
-    className: 'GoogleDataformConfig',
-    barrel: 'dataform',
-    kind: CatalogKind.resource,
-    summary: 'Factory wrapper for `google_dataform_config`.',
-    constructorParams: <String>[
-      'localName',
-      'defaultKmsKeyName',
-      'project',
-      'region',
-    ],
-    nestedTypes: <String>[],
-    sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_dataform_config`.\n\nConfig is a singleton resource used to configure the default Dataform\nsettings for a specified location.',
-  ),
-  CatalogEntry(
-    tfType: 'google_dataform_repository_release_config',
-    className: 'GoogleDataformRepositoryReleaseConfig',
-    barrel: 'dataform',
-    kind: CatalogKind.resource,
-    summary: 'Factory wrapper for `google_dataform_repository_release_config`.',
-    constructorParams: <String>[
-      'localName',
-      'cronSchedule',
-      'deletionPolicy',
-      'disabled',
-      'gitCommitish',
-      'name',
-      'project',
-      'region',
-      'repository',
-      'timeZone',
-      'codeCompilationConfig',
-    ],
-    nestedTypes: <String>[
-      'DataformRepositoryReleaseConfigCodeCompilationConfig',
-    ],
-    sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_dataform_repository_release_config`.\n\nA resource represents a Dataform release configuration',
-  ),
-  CatalogEntry(
-    tfType: 'google_dataform_repository_workflow_config',
-    className: 'GoogleDataformRepositoryWorkflowConfig',
-    barrel: 'dataform',
-    kind: CatalogKind.resource,
-    summary:
-        'Factory wrapper for `google_dataform_repository_workflow_config`.',
-    constructorParams: <String>[
-      'localName',
-      'cronSchedule',
-      'deletionPolicy',
-      'disabled',
-      'name',
-      'project',
-      'region',
-      'releaseConfig',
-      'repository',
-      'timeZone',
-      'invocationConfig',
-    ],
-    nestedTypes: <String>[
-      'DataformRepositoryWorkflowConfigInvocationConfig',
-      'DataformRepositoryWorkflowConfigIncludedTargets',
-    ],
-    sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_dataform_repository_workflow_config`.\n\nA resource represents a Dataform workflow configuration',
-  ),
-  CatalogEntry(
     tfType: 'google_dataplex_data_asset',
     className: 'GoogleDataplexDataAsset',
     barrel: 'dataplex',
@@ -1214,7 +1143,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'FirebaseDatabaseInstanceDesiredState',
-      'FirebaseDatabaseInstanceState',
       'FirebaseDatabaseInstanceType',
     ],
     sensitiveFields: <String>[],
@@ -1234,10 +1162,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'config',
     ],
-    nestedTypes: <String>[
-      'FirebaseExtensionsInstanceState',
-      'FirebaseExtensionsInstanceConfig',
-    ],
+    nestedTypes: <String>['FirebaseExtensionsInstanceConfig'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_firebase_extensions_instance`.\n\nAn Instance is an installation of an Extension into a user\'s project.',
@@ -1282,10 +1207,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'siteId',
       'waitDnsVerification',
     ],
-    nestedTypes: <String>[
-      'FirebaseHostingCustomDomainCertPreference',
-      'FirebaseHostingCustomDomainOwnershipState',
-    ],
+    nestedTypes: <String>['FirebaseHostingCustomDomainCertPreference'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_firebase_hosting_custom_domain`.\n\nManages Custom Domains for Firebase Hosting. Custom Domains link your domain\nnames with Firebase Hosting sites, allowing Hosting to serve content on\nthose domain names.',
@@ -1551,10 +1473,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'timeZone',
       'symantecOptions',
     ],
-    nestedTypes: <String>[
-      'NetworkSecuritySacAttachmentState',
-      'NetworkSecuritySacAttachmentSymantecOptions',
-    ],
+    nestedTypes: <String>['NetworkSecuritySacAttachmentSymantecOptions'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_security_sac_attachment`.\n\nRepresents a Secure Access Connect (SAC) attachment resource',
@@ -1576,7 +1495,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'NetworkSecuritySacRealmSecurityService',
-      'NetworkSecuritySacRealmState',
       'NetworkSecuritySacRealmSymantecOptions',
     ],
     sensitiveFields: <String>[],
@@ -2518,7 +2436,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary:
         'Factory wrapper for `google_vertex_ai_model_garden_enable_model`.',
     constructorParams: <String>['localName', 'project', 'publisherModelName'],
-    nestedTypes: <String>['VertexAiModelGardenEnableModelEnablementState'],
+    nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_vertex_ai_model_garden_enable_model`.\n\nEnables a Model Garden publisher model for a project so that it can be\ndeployed. This calls the synchronous `ModelGardenService.EnableModel`\nmethod, which checks that the prerequisites for the model are met (for\nexample, a completed questionnaire and accepted consents, or an active\nPrivate Offer) before enabling it.\n\n~> **Note:** The underlying API does not provide a way to disable a model\nonce it has been enabled, so destroying this resource only removes it from\nTerraform state and does not affect the project\'s enablement status.',

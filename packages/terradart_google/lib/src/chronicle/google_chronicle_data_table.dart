@@ -7,28 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_chronicle_data_table`.
 const Set<String> _googleChronicleDataTableSensitive = <String>{};
 
-/// Chronicle Data Table Update enum for `update_source`.
-extension type const ChronicleDataTableUpdateSource._(TfArg<String> _)
-    implements TfArg<String> {
-  ChronicleDataTableUpdateSource.variable(String name)
-    : this._(TfArg.variable(name));
-  ChronicleDataTableUpdateSource.expression(String template)
-    : this._(TfArg.expression(template));
-  const ChronicleDataTableUpdateSource.arg(TfArg<String> arg) : this._(arg);
-
-  static const user = ChronicleDataTableUpdateSource._(TfArgLiteral('USER'));
-  static const rule = ChronicleDataTableUpdateSource._(TfArgLiteral('RULE'));
-  static const search = ChronicleDataTableUpdateSource._(
-    TfArgLiteral('SEARCH'),
-  );
-
-  static const List<ChronicleDataTableUpdateSource> values = [
-    user,
-    rule,
-    search,
-  ];
-}
-
 /// Typed helper for the `column_info` block of
 /// `google_chronicle_data_table` (derived from provider schema).
 @immutable

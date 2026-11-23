@@ -1,7 +1,7 @@
 {
   "name": "artifactregistry",
   "version": "v1",
-  "revision": "20261106",
+  "revision": "20261107",
   "sourceUrl": "https://artifactregistry.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AptRepository": {
@@ -13,15 +13,15 @@
     },
     "CleanupPolicy": {
       "properties": {
-        "condition": {
-          "$ref": "CleanupPolicyCondition"
-        },
         "action": {
           "enum": [
             "ACTION_UNSPECIFIED",
             "DELETE",
             "KEEP"
           ]
+        },
+        "condition": {
+          "$ref": "CleanupPolicyCondition"
         }
       }
     },
@@ -165,28 +165,37 @@
     },
     "RemoteRepositoryConfig": {
       "properties": {
-        "mavenRepository": {
-          "$ref": "MavenRepository"
-        },
-        "dockerRepository": {
-          "$ref": "DockerRepository"
-        },
         "pythonRepository": {
           "$ref": "PythonRepository"
-        },
-        "aptRepository": {
-          "$ref": "AptRepository"
         },
         "npmRepository": {
           "$ref": "NpmRepository"
         },
         "yumRepository": {
           "$ref": "YumRepository"
+        },
+        "mavenRepository": {
+          "$ref": "MavenRepository"
+        },
+        "dockerRepository": {
+          "$ref": "DockerRepository"
+        },
+        "aptRepository": {
+          "$ref": "AptRepository"
         }
       }
     },
     "Repository": {
       "properties": {
+        "remoteRepositoryConfig": {
+          "$ref": "RemoteRepositoryConfig"
+        },
+        "platformLogsConfig": {
+          "$ref": "PlatformLogsConfig"
+        },
+        "mavenConfig": {
+          "$ref": "MavenRepositoryConfig"
+        },
         "mode": {
           "enum": [
             "MODE_UNSPECIFIED",
@@ -196,20 +205,6 @@
             "AOSS_REPOSITORY",
             "ASSURED_OSS_REPOSITORY"
           ]
-        },
-        "vulnerabilityScanningConfig": {
-          "$ref": "VulnerabilityScanningConfig"
-        },
-        "remoteRepositoryConfig": {
-          "$ref": "RemoteRepositoryConfig"
-        },
-        "mavenConfig": {
-          "$ref": "MavenRepositoryConfig"
-        },
-        "cleanupPolicies": {
-          "additionalProperties": {
-            "$ref": "CleanupPolicy"
-          }
         },
         "format": {
           "enum": [
@@ -228,8 +223,13 @@
             "CONDA"
           ]
         },
-        "platformLogsConfig": {
-          "$ref": "PlatformLogsConfig"
+        "vulnerabilityScanningConfig": {
+          "$ref": "VulnerabilityScanningConfig"
+        },
+        "cleanupPolicies": {
+          "additionalProperties": {
+            "$ref": "CleanupPolicy"
+          }
         }
       }
     },

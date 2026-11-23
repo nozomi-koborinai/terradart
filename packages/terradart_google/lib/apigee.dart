@@ -121,7 +121,6 @@ export 'src/apigee/google_apigee_keystores_aliases_self_signed_cert.dart'
         ApigeeKeystoresAliasesSelfSignedCertSigAlg,
         ApigeeKeystoresAliasesSelfSignedCertSubject,
         ApigeeKeystoresAliasesSelfSignedCertSubjectAlternativeDnsNames,
-        ApigeeKeystoresAliasesSelfSignedCertType,
         GoogleApigeeKeystoresAliasesSelfSignedCert;
 export 'src/apigee/google_apigee_nat_address.dart' show GoogleApigeeNatAddress;
 export 'src/apigee/google_apigee_organization.dart'

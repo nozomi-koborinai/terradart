@@ -1,7 +1,7 @@
 {
   "name": "networksecurity",
   "version": "v1",
-  "revision": "20261104",
+  "revision": "20261109",
   "sourceUrl": "https://networksecurity.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "AddressGroup": {
@@ -26,6 +26,15 @@
     },
     "AntivirusOverride": {
       "properties": {
+        "action": {
+          "enum": [
+            "THREAT_ACTION_UNSPECIFIED",
+            "DEFAULT_ACTION",
+            "ALLOW",
+            "ALERT",
+            "DENY"
+          ]
+        },
         "protocol": {
           "enum": [
             "PROTOCOL_UNSPECIFIED",
@@ -37,31 +46,17 @@
             "HTTP",
             "FTP"
           ]
-        },
-        "action": {
-          "enum": [
-            "THREAT_ACTION_UNSPECIFIED",
-            "DEFAULT_ACTION",
-            "ALLOW",
-            "ALERT",
-            "DENY"
-          ]
         }
       }
     },
     "AuthzPolicy": {
       "properties": {
-        "action": {
+        "policyProfile": {
           "enum": [
-            "AUTHZ_ACTION_UNSPECIFIED",
-            "ALLOW",
-            "DENY",
-            "CUSTOM",
-            "DENY_BY_DEFAULT"
+            "POLICY_PROFILE_UNSPECIFIED",
+            "REQUEST_AUTHZ",
+            "CONTENT_AUTHZ"
           ]
-        },
-        "target": {
-          "$ref": "AuthzPolicyTarget"
         },
         "httpRules": {
           "items": {
@@ -73,22 +68,27 @@
             "$ref": "AuthzPolicyAuthzRule"
           }
         },
-        "policyProfile": {
+        "target": {
+          "$ref": "AuthzPolicyTarget"
+        },
+        "action": {
           "enum": [
-            "POLICY_PROFILE_UNSPECIFIED",
-            "REQUEST_AUTHZ",
-            "CONTENT_AUTHZ"
+            "AUTHZ_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY",
+            "CUSTOM",
+            "DENY_BY_DEFAULT"
           ]
         }
       }
     },
     "AuthzPolicyAuthzRule": {
       "properties": {
-        "to": {
-          "$ref": "AuthzPolicyAuthzRuleTo"
-        },
         "from": {
           "$ref": "AuthzPolicyAuthzRuleFrom"
+        },
+        "to": {
+          "$ref": "AuthzPolicyAuthzRuleTo"
         }
       }
     },
@@ -197,9 +197,6 @@
     },
     "FirewallEndpoint": {
       "properties": {
-        "wildfireSettings": {
-          "$ref": "FirewallEndpointWildfireSettings"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -211,6 +208,9 @@
         },
         "endpointSettings": {
           "$ref": "FirewallEndpointEndpointSettings"
+        },
+        "wildfireSettings": {
+          "$ref": "FirewallEndpointWildfireSettings"
         }
       }
     },
@@ -332,11 +332,6 @@
     },
     "InterceptDeploymentGroup": {
       "properties": {
-        "nestedDeployments": {
-          "items": {
-            "$ref": "InterceptDeploymentGroupDeployment"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -348,6 +343,11 @@
         "locations": {
           "items": {
             "$ref": "InterceptLocation"
+          }
+        },
+        "nestedDeployments": {
+          "items": {
+            "$ref": "InterceptDeploymentGroupDeployment"
           }
         }
       }
@@ -371,6 +371,11 @@
         "connectedDeploymentGroup": {
           "$ref": "InterceptEndpointGroupConnectedDeploymentGroup"
         },
+        "associations": {
+          "items": {
+            "$ref": "InterceptEndpointGroupAssociationDetails"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -381,19 +386,14 @@
             "OUT_OF_SYNC",
             "DELETE_FAILED"
           ]
-        },
-        "associations": {
-          "items": {
-            "$ref": "InterceptEndpointGroupAssociationDetails"
-          }
         }
       }
     },
     "InterceptEndpointGroupAssociation": {
       "properties": {
-        "locationsDetails": {
+        "locations": {
           "items": {
-            "$ref": "InterceptEndpointGroupAssociationLocationDetails"
+            "$ref": "InterceptLocation"
           }
         },
         "state": {
@@ -407,9 +407,9 @@
             "DELETE_FAILED"
           ]
         },
-        "locations": {
+        "locationsDetails": {
           "items": {
-            "$ref": "InterceptLocation"
+            "$ref": "InterceptEndpointGroupAssociationLocationDetails"
           }
         }
       }
@@ -462,14 +462,6 @@
     },
     "MTLSPolicy": {
       "properties": {
-        "clientValidationMode": {
-          "enum": [
-            "CLIENT_VALIDATION_MODE_UNSPECIFIED",
-            "ALLOW_INVALID_OR_MISSING_CLIENT_CERT",
-            "REJECT_INVALID",
-            "ALLOW_VALIDATION_RELAXATIONS"
-          ]
-        },
         "clientValidationRelaxations": {
           "items": {
             "enum": [
@@ -479,6 +471,14 @@
               "ALLOW_EXPIRED_LEAF_CERTIFICATE"
             ]
           }
+        },
+        "clientValidationMode": {
+          "enum": [
+            "CLIENT_VALIDATION_MODE_UNSPECIFIED",
+            "ALLOW_INVALID_OR_MISSING_CLIENT_CERT",
+            "REJECT_INVALID",
+            "ALLOW_VALIDATION_RELAXATIONS"
+          ]
         }
       }
     },
@@ -498,6 +498,15 @@
     },
     "MirroringDeploymentGroup": {
       "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "CLOSED"
+          ]
+        },
         "nestedDeployments": {
           "items": {
             "$ref": "MirroringDeploymentGroupDeployment"
@@ -507,15 +516,6 @@
           "items": {
             "$ref": "MirroringLocation"
           }
-        },
-        "state": {
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "CREATING",
-            "DELETING",
-            "CLOSED"
-          ]
         }
       }
     },
@@ -535,12 +535,6 @@
     },
     "MirroringEndpointGroup": {
       "properties": {
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "DIRECT"
-          ]
-        },
         "associations": {
           "items": {
             "$ref": "MirroringEndpointGroupAssociationDetails"
@@ -555,6 +549,12 @@
             "DELETING",
             "OUT_OF_SYNC",
             "DELETE_FAILED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "DIRECT"
           ]
         },
         "connectedDeploymentGroups": {
@@ -637,12 +637,6 @@
     },
     "SecurityProfile": {
       "properties": {
-        "wildfireAnalysisProfile": {
-          "$ref": "WildfireAnalysisProfile"
-        },
-        "urlFilteringProfile": {
-          "$ref": "UrlFilteringProfile"
-        },
         "threatPreventionProfile": {
           "$ref": "ThreatPreventionProfile"
         },
@@ -655,6 +649,12 @@
             "URL_FILTERING",
             "WILDFIRE_ANALYSIS"
           ]
+        },
+        "urlFilteringProfile": {
+          "$ref": "UrlFilteringProfile"
+        },
+        "wildfireAnalysisProfile": {
+          "$ref": "WildfireAnalysisProfile"
         }
       }
     },
@@ -693,6 +693,15 @@
     },
     "ThreatOverride": {
       "properties": {
+        "action": {
+          "enum": [
+            "THREAT_ACTION_UNSPECIFIED",
+            "DEFAULT_ACTION",
+            "ALLOW",
+            "ALERT",
+            "DENY"
+          ]
+        },
         "type": {
           "enum": [
             "THREAT_TYPE_UNSPECIFIED",
@@ -702,25 +711,11 @@
             "SPYWARE",
             "DNS"
           ]
-        },
-        "action": {
-          "enum": [
-            "THREAT_ACTION_UNSPECIFIED",
-            "DEFAULT_ACTION",
-            "ALLOW",
-            "ALERT",
-            "DENY"
-          ]
         }
       }
     },
     "ThreatPreventionProfile": {
       "properties": {
-        "threatOverrides": {
-          "items": {
-            "$ref": "ThreatOverride"
-          }
-        },
         "severityOverrides": {
           "items": {
             "$ref": "SeverityOverride"
@@ -729,6 +724,11 @@
         "antivirusOverrides": {
           "items": {
             "$ref": "AntivirusOverride"
+          }
+        },
+        "threatOverrides": {
+          "items": {
+            "$ref": "ThreatOverride"
           }
         }
       }
@@ -744,13 +744,6 @@
             "PROFILE_CUSTOM"
           ]
         },
-        "certificateIssuanceMode": {
-          "enum": [
-            "CERTIFICATE_ISSUANCE_MODE_UNSPECIFIED",
-            "DIRECT_LEAF_PROVISIONING",
-            "LOCAL_INTERMEDIATE_CA_SIGNING"
-          ]
-        },
         "minTlsVersion": {
           "enum": [
             "TLS_VERSION_UNSPECIFIED",
@@ -758,6 +751,13 @@
             "TLS_1_1",
             "TLS_1_2",
             "TLS_1_3"
+          ]
+        },
+        "certificateIssuanceMode": {
+          "enum": [
+            "CERTIFICATE_ISSUANCE_MODE_UNSPECIFIED",
+            "DIRECT_LEAF_PROVISIONING",
+            "LOCAL_INTERMEDIATE_CA_SIGNING"
           ]
         }
       }
@@ -792,22 +792,9 @@
             "$ref": "WildfireThreatOverride"
           }
         },
-        "wildfireOverrides": {
+        "wildfireInlineCloudAnalysisRules": {
           "items": {
-            "$ref": "WildfireOverride"
-          }
-        },
-        "wildfireSubmissionRules": {
-          "items": {
-            "$ref": "WildfireSubmissionRule"
-          }
-        },
-        "wildfireInlineMlSetting": {
-          "$ref": "WildfireInlineMlSettings"
-        },
-        "wildfireInlineMlSettings": {
-          "items": {
-            "$ref": "WildfireInlineMlSettings"
+            "$ref": "WildfireInlineCloudAnalysisRule"
           }
         },
         "wildfireInlineMlOverrides": {
@@ -815,21 +802,33 @@
             "$ref": "WildfireInlineMlOverride"
           }
         },
-        "wildfireInlineCloudAnalysisRules": {
+        "wildfireInlineMlSettings": {
           "items": {
-            "$ref": "WildfireInlineCloudAnalysisRule"
+            "$ref": "WildfireInlineMlSettings"
+          }
+        },
+        "wildfireInlineMlSetting": {
+          "$ref": "WildfireInlineMlSettings"
+        },
+        "wildfireSubmissionRules": {
+          "items": {
+            "$ref": "WildfireSubmissionRule"
+          }
+        },
+        "wildfireOverrides": {
+          "items": {
+            "$ref": "WildfireOverride"
           }
         }
       }
     },
     "WildfireInlineCloudAnalysisRule": {
       "properties": {
-        "action": {
+        "fileSelectionMode": {
           "enum": [
-            "WILDFIRE_INLINE_CLOUD_ANALYSIS_ACTION_UNSPECIFIED",
-            "ALLOW",
-            "DENY",
-            "ALERT"
+            "FILE_SELECTION_MODE_UNSPECIFIED",
+            "ALL_FILE_TYPES",
+            "CUSTOM_FILE_TYPES"
           ]
         },
         "direction": {
@@ -843,11 +842,12 @@
         "customFileTypes": {
           "$ref": "WildfireInlineCloudAnalysisRuleCustomFileTypes"
         },
-        "fileSelectionMode": {
+        "action": {
           "enum": [
-            "FILE_SELECTION_MODE_UNSPECIFIED",
-            "ALL_FILE_TYPES",
-            "CUSTOM_FILE_TYPES"
+            "WILDFIRE_INLINE_CLOUD_ANALYSIS_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY",
+            "ALERT"
           ]
         }
       }
@@ -900,6 +900,14 @@
     },
     "WildfireInlineMlSettingsInlineMlConfig": {
       "properties": {
+        "action": {
+          "enum": [
+            "INLINE_ML_ACTION_UNSPECIFIED",
+            "DISABLE",
+            "ALERT",
+            "ENABLE"
+          ]
+        },
         "fileType": {
           "enum": [
             "INLINE_ML_CONFIG_UNSPECIFIED",
@@ -912,28 +920,11 @@
             "OOXML",
             "MACHO"
           ]
-        },
-        "action": {
-          "enum": [
-            "INLINE_ML_ACTION_UNSPECIFIED",
-            "DISABLE",
-            "ALERT",
-            "ENABLE"
-          ]
         }
       }
     },
     "WildfireOverride": {
       "properties": {
-        "action": {
-          "enum": [
-            "WILDFIRE_THREAT_ACTION_UNSPECIFIED",
-            "WILDFIRE_DEFAULT_ACTION",
-            "WILDFIRE_ALLOW",
-            "WILDFIRE_ALERT",
-            "WILDFIRE_DENY"
-          ]
-        },
         "protocol": {
           "enum": [
             "WILDFIRE_PROTOCOL_UNSPECIFIED",
@@ -944,6 +935,15 @@
             "WILDFIRE_HTTP2",
             "WILDFIRE_HTTP",
             "WILDFIRE_FTP"
+          ]
+        },
+        "action": {
+          "enum": [
+            "WILDFIRE_THREAT_ACTION_UNSPECIFIED",
+            "WILDFIRE_DEFAULT_ACTION",
+            "WILDFIRE_ALLOW",
+            "WILDFIRE_ALERT",
+            "WILDFIRE_DENY"
           ]
         }
       }

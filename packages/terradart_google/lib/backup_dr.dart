@@ -5,6 +5,13 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
+export 'src/backup_dr/google_backup_dr_auto_protection_policy.dart'
+    show
+        BackupDrAutoProtectionPolicyBackupPlanDetails,
+        BackupDrAutoProtectionPolicyCriteria,
+        BackupDrAutoProtectionPolicyLabelCondition,
+        BackupDrAutoProtectionPolicyMatchingConditions,
+        GoogleBackupDrAutoProtectionPolicy;
 export 'src/backup_dr/google_backup_dr_backup_plan.dart'
     show
         BackupDrBackupPlanBackupRules,

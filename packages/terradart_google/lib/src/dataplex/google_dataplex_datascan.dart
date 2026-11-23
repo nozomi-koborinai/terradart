@@ -9,66 +9,6 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_dataplex_datascan`.
 const Set<String> _googleDataplexDatascanSensitive = <String>{};
 
-/// Dataplex Datascan enum for `state`.
-extension type const DataplexDatascanState._(TfArg<String> _)
-    implements TfArg<String> {
-  DataplexDatascanState.variable(String name) : this._(TfArg.variable(name));
-  DataplexDatascanState.expression(String template)
-    : this._(TfArg.expression(template));
-  const DataplexDatascanState.arg(TfArg<String> arg) : this._(arg);
-
-  static const stateUnspecified = DataplexDatascanState._(
-    TfArgLiteral('STATE_UNSPECIFIED'),
-  );
-  static const active = DataplexDatascanState._(TfArgLiteral('ACTIVE'));
-  static const creating = DataplexDatascanState._(TfArgLiteral('CREATING'));
-  static const deleting = DataplexDatascanState._(TfArgLiteral('DELETING'));
-  static const actionRequired = DataplexDatascanState._(
-    TfArgLiteral('ACTION_REQUIRED'),
-  );
-
-  static const List<DataplexDatascanState> values = [
-    stateUnspecified,
-    active,
-    creating,
-    deleting,
-    actionRequired,
-  ];
-}
-
-/// Dataplex Datascan enum for `type`.
-extension type const DataplexDatascanType._(TfArg<String> _)
-    implements TfArg<String> {
-  DataplexDatascanType.variable(String name) : this._(TfArg.variable(name));
-  DataplexDatascanType.expression(String template)
-    : this._(TfArg.expression(template));
-  const DataplexDatascanType.arg(TfArg<String> arg) : this._(arg);
-
-  static const dataScanTypeUnspecified = DataplexDatascanType._(
-    TfArgLiteral('DATA_SCAN_TYPE_UNSPECIFIED'),
-  );
-  static const dataQuality = DataplexDatascanType._(
-    TfArgLiteral('DATA_QUALITY'),
-  );
-  static const dataProfile = DataplexDatascanType._(
-    TfArgLiteral('DATA_PROFILE'),
-  );
-  static const dataDiscovery = DataplexDatascanType._(
-    TfArgLiteral('DATA_DISCOVERY'),
-  );
-  static const dataDocumentation = DataplexDatascanType._(
-    TfArgLiteral('DATA_DOCUMENTATION'),
-  );
-
-  static const List<DataplexDatascanType> values = [
-    dataScanTypeUnspecified,
-    dataQuality,
-    dataProfile,
-    dataDiscovery,
-    dataDocumentation,
-  ];
-}
-
 /// Exactly one of `data_quality_spec`, `data_profile_spec`, `data_discovery_spec`, `data_documentation_spec` on `google_dataplex_datascan`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///

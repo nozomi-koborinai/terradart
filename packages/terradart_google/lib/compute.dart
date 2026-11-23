@@ -484,14 +484,17 @@ export 'src/compute/google_compute_instant_snapshot_iam_policy.dart'
     show GoogleComputeInstantSnapshotIamPolicy;
 export 'src/compute/google_compute_interconnect.dart'
     show
-        ComputeInterconnectAvailableFeatures,
+        ComputeInterconnectApplicationAwareInterconnect,
+        ComputeInterconnectBandwidthPercentage,
+        ComputeInterconnectBandwidthPercentagePolicy,
         ComputeInterconnectLinkType,
         ComputeInterconnectMacsec,
-        ComputeInterconnectOperationalStatus,
         ComputeInterconnectParams,
         ComputeInterconnectPreSharedKeys,
         ComputeInterconnectRequestedFeatures,
-        ComputeInterconnectState,
+        ComputeInterconnectShapeAveragePercentage,
+        ComputeInterconnectStrictPriorityPolicy,
+        ComputeInterconnectTrafficClass,
         ComputeInterconnectType,
         GoogleComputeInterconnect;
 export 'src/compute/google_compute_interconnect_attachment.dart'
@@ -506,7 +509,6 @@ export 'src/compute/google_compute_interconnect_attachment.dart'
         ComputeInterconnectAttachmentMtu,
         ComputeInterconnectAttachmentParams,
         ComputeInterconnectAttachmentStackType,
-        ComputeInterconnectAttachmentState,
         ComputeInterconnectAttachmentType,
         GoogleComputeInterconnectAttachment;
 export 'src/compute/google_compute_interconnect_attachment_group.dart'
@@ -689,10 +691,7 @@ export 'src/compute/google_compute_public_advertised_prefix.dart'
         ComputePublicAdvertisedPrefixPdpScope,
         GoogleComputePublicAdvertisedPrefix;
 export 'src/compute/google_compute_public_delegated_prefix.dart'
-    show
-        ComputePublicDelegatedPrefixIpv6AccessType,
-        ComputePublicDelegatedPrefixMode,
-        GoogleComputePublicDelegatedPrefix;
+    show ComputePublicDelegatedPrefixMode, GoogleComputePublicDelegatedPrefix;
 export 'src/compute/google_compute_region_autoscaler.dart'
     show
         ComputeRegionAutoscalerAutoscalingPolicy,
@@ -757,7 +756,6 @@ export 'src/compute/google_compute_region_commitment.dart'
         ComputeRegionCommitmentPlan,
         ComputeRegionCommitmentResources,
         ComputeRegionCommitmentResourcesType,
-        ComputeRegionCommitmentStatus,
         ComputeRegionCommitmentType,
         GoogleComputeRegionCommitment;
 export 'src/compute/google_compute_region_composite_health_check.dart'
@@ -1324,7 +1322,6 @@ export 'src/compute/google_compute_storage_pool_iam_policy.dart'
     show GoogleComputeStoragePoolIamPolicy;
 export 'src/compute/google_compute_subnetwork.dart'
     show
-        ComputeSubnetworkIpv6GceEndpoint,
         ComputeSubnetworkLogConfig,
         ComputeSubnetworkParams,
         ComputeSubnetworkPrivateIpv6GoogleAccess,
@@ -1396,6 +1393,7 @@ export 'src/compute/google_compute_url_map.dart'
         ComputeUrlMapHeaderMatches,
         ComputeUrlMapHeaders,
         ComputeUrlMapHostRule,
+        ComputeUrlMapImageOptimizationPolicy,
         ComputeUrlMapIncludedQueryParameters,
         ComputeUrlMapMatchRules,
         ComputeUrlMapMaxStreamDuration,
@@ -1411,6 +1409,7 @@ export 'src/compute/google_compute_url_map.dart'
         ComputeUrlMapPathRuleRouteAction,
         ComputeUrlMapPathRuleUrlRedirect,
         ComputeUrlMapPerTryTimeout,
+        ComputeUrlMapQueryParameterInterpretation,
         ComputeUrlMapQueryParameterMatches,
         ComputeUrlMapQueryParameters,
         ComputeUrlMapRangeMatch,

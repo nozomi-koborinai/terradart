@@ -6,27 +6,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_dialogflow_cx_version`.
 const Set<String> _googleDialogflowCxVersionSensitive = <String>{};
 
-/// Dialogflow Cx Version enum for `state`.
-extension type const DialogflowCxVersionState._(TfArg<String> _)
-    implements TfArg<String> {
-  DialogflowCxVersionState.variable(String name) : this._(TfArg.variable(name));
-  DialogflowCxVersionState.expression(String template)
-    : this._(TfArg.expression(template));
-  const DialogflowCxVersionState.arg(TfArg<String> arg) : this._(arg);
-
-  static const running = DialogflowCxVersionState._(TfArgLiteral('RUNNING'));
-  static const succeeded = DialogflowCxVersionState._(
-    TfArgLiteral('SUCCEEDED'),
-  );
-  static const failed = DialogflowCxVersionState._(TfArgLiteral('FAILED'));
-
-  static const List<DialogflowCxVersionState> values = [
-    running,
-    succeeded,
-    failed,
-  ];
-}
-
 /// Factory wrapper for `google_dialogflow_cx_version`.
 ///
 /// You can create multiple versions of your agent flows and deploy them to

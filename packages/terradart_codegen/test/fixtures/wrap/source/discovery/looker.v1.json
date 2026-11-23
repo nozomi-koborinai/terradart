@@ -1,7 +1,7 @@
 {
   "name": "looker",
   "version": "v1",
-  "revision": "20261020",
+  "revision": "20261108",
   "sourceUrl": "https://looker.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "CustomDomain": {
@@ -32,16 +32,8 @@
     },
     "Instance": {
       "properties": {
-        "releaseChannel": {
-          "enum": [
-            "RELEASE_CHANNEL_UNSPECIFIED",
-            "RAPID",
-            "REGULAR",
-            "STABLE"
-          ]
-        },
-        "encryptionConfig": {
-          "$ref": "EncryptionConfig"
+        "maintenanceWindow": {
+          "$ref": "MaintenanceWindow"
         },
         "state": {
           "enum": [
@@ -56,6 +48,9 @@
             "IMPORTING"
           ]
         },
+        "pscConfig": {
+          "$ref": "PscConfig"
+        },
         "softDeleteReason": {
           "enum": [
             "SOFT_DELETE_REASON_UNSPECIFIED",
@@ -63,6 +58,19 @@
             "TRIAL_EXPIRED",
             "CUSTOMER_REQUEST"
           ]
+        },
+        "classType": {
+          "enum": [
+            "CLASS_TYPE_UNSPECIFIED",
+            "R1",
+            "P1"
+          ]
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig"
+        },
+        "customDomain": {
+          "$ref": "CustomDomain"
         },
         "platformEdition": {
           "enum": [
@@ -80,21 +88,13 @@
             "LOOKER_CORE_TRIAL_EMBED"
           ]
         },
-        "maintenanceWindow": {
-          "$ref": "MaintenanceWindow"
-        },
-        "classType": {
+        "releaseChannel": {
           "enum": [
-            "CLASS_TYPE_UNSPECIFIED",
-            "R1",
-            "P1"
+            "RELEASE_CHANNEL_UNSPECIFIED",
+            "RAPID",
+            "REGULAR",
+            "STABLE"
           ]
-        },
-        "customDomain": {
-          "$ref": "CustomDomain"
-        },
-        "pscConfig": {
-          "$ref": "PscConfig"
         }
       }
     },

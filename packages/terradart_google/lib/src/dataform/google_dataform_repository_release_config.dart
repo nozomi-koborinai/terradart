@@ -96,9 +96,6 @@ final class GoogleDataformRepositoryReleaseConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataformRepositoryReleaseConfigSensitive;
 
-  @override
-  String get defaultProvider => 'google-beta';
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleDataformRepositoryReleaseConfig>`.
   RefTo<GoogleDataformRepositoryReleaseConfig> get ref => RefTo.of(this);

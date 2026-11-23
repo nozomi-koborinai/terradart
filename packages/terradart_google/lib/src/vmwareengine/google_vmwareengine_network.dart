@@ -6,27 +6,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_vmwareengine_network`.
 const Set<String> _googleVmwareengineNetworkSensitive = <String>{};
 
-/// Vmwareengine Network enum for `state`.
-extension type const VmwareengineNetworkState._(TfArg<String> _)
-    implements TfArg<String> {
-  VmwareengineNetworkState.variable(String name) : this._(TfArg.variable(name));
-  VmwareengineNetworkState.expression(String template)
-    : this._(TfArg.expression(template));
-  const VmwareengineNetworkState.arg(TfArg<String> arg) : this._(arg);
-
-  static const creating = VmwareengineNetworkState._(TfArgLiteral('CREATING'));
-  static const active = VmwareengineNetworkState._(TfArgLiteral('ACTIVE'));
-  static const updating = VmwareengineNetworkState._(TfArgLiteral('UPDATING'));
-  static const deleting = VmwareengineNetworkState._(TfArgLiteral('DELETING'));
-
-  static const List<VmwareengineNetworkState> values = [
-    creating,
-    active,
-    updating,
-    deleting,
-  ];
-}
-
 /// Vmwareengine Network enum for `type`.
 extension type const VmwareengineNetworkType._(TfArg<String> _)
     implements TfArg<String> {

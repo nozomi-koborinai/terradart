@@ -1,14 +1,11 @@
 {
   "name": "bigtableadmin",
   "version": "v2",
-  "revision": "20261106",
+  "revision": "20261112",
   "sourceUrl": "https://bigtableadmin.googleapis.com/$discovery/rest?version=v2",
   "schemas": {
     "AppProfile": {
       "properties": {
-        "dataBoostIsolationReadOnly": {
-          "$ref": "DataBoostIsolationReadOnly"
-        },
         "standardIsolation": {
           "$ref": "StandardIsolation"
         },
@@ -19,6 +16,9 @@
             "PRIORITY_MEDIUM",
             "PRIORITY_HIGH"
           ]
+        },
+        "dataBoostIsolationReadOnly": {
+          "$ref": "DataBoostIsolationReadOnly"
         }
       }
     },
@@ -45,18 +45,18 @@
     },
     "Instance": {
       "properties": {
-        "type": {
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "PRODUCTION",
-            "DEVELOPMENT"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_NOT_KNOWN",
             "READY",
             "CREATING"
+          ]
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PRODUCTION",
+            "DEVELOPMENT"
           ]
         },
         "edition": {

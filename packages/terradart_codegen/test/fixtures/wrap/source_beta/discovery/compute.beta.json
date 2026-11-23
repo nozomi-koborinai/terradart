@@ -1,23 +1,23 @@
 {
   "name": "compute",
   "version": "beta",
-  "revision": "20261026",
+  "revision": "20261106",
   "sourceUrl": "https://compute.googleapis.com/$discovery/rest?version=beta",
   "schemas": {
     "AccessConfig": {
       "properties": {
+        "type": {
+          "enum": [
+            "DIRECT_IPV6",
+            "ONE_TO_ONE_NAT"
+          ]
+        },
         "networkTier": {
           "enum": [
             "FIXED_STANDARD",
             "PREMIUM",
             "STANDARD",
             "STANDARD_OVERRIDES_FIXED_STANDARD"
-          ]
-        },
-        "type": {
-          "enum": [
-            "DIRECT_IPV6",
-            "ONE_TO_ONE_NAT"
           ]
         }
       }
@@ -36,28 +36,16 @@
     },
     "AttachedDisk": {
       "properties": {
-        "initializeParams": {
-          "$ref": "AttachedDiskInitializeParams"
-        },
-        "shieldedInstanceInitialState": {
-          "$ref": "InitialStateConfig"
-        },
-        "savedState": {
+        "mode": {
           "enum": [
-            "DISK_SAVED_STATE_UNSPECIFIED",
-            "PRESERVED"
+            "READ_ONLY",
+            "READ_WRITE"
           ]
         },
         "guestOsFeatures": {
           "items": {
             "$ref": "GuestOsFeature"
           }
-        },
-        "mode": {
-          "enum": [
-            "READ_ONLY",
-            "READ_WRITE"
-          ]
         },
         "architecture": {
           "enum": [
@@ -72,6 +60,18 @@
             "SCRATCH"
           ]
         },
+        "initializeParams": {
+          "$ref": "AttachedDiskInitializeParams"
+        },
+        "shieldedInstanceInitialState": {
+          "$ref": "InitialStateConfig"
+        },
+        "savedState": {
+          "enum": [
+            "DISK_SAVED_STATE_UNSPECIFIED",
+            "PRESERVED"
+          ]
+        },
         "interface": {
           "enum": [
             "NVME",
@@ -82,18 +82,18 @@
     },
     "AttachedDiskInitializeParams": {
       "properties": {
-        "architecture": {
-          "enum": [
-            "ARCHITECTURE_UNSPECIFIED",
-            "ARM64",
-            "X86_64"
-          ]
-        },
         "onUpdateAction": {
           "enum": [
             "RECREATE_DISK",
             "RECREATE_DISK_IF_SOURCE_CHANGED",
             "USE_EXISTING_DISK"
+          ]
+        },
+        "architecture": {
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "ARM64",
+            "X86_64"
           ]
         },
         "guestOsFeatures": {
@@ -156,7 +156,7 @@
     },
     "InitialStateConfig": {
       "properties": {
-        "dbxs": {
+        "dbs": {
           "items": {
             "$ref": "FileContentBuffer"
           }
@@ -164,7 +164,7 @@
         "pk": {
           "$ref": "FileContentBuffer"
         },
-        "dbs": {
+        "dbxs": {
           "items": {
             "$ref": "FileContentBuffer"
           }
@@ -178,6 +178,41 @@
     },
     "Instance": {
       "properties": {
+        "privateIpv6GoogleAccess": {
+          "enum": [
+            "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
+            "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
+            "INHERIT_FROM_SUBNETWORK"
+          ]
+        },
+        "confidentialInstanceConfig": {
+          "$ref": "ConfidentialInstanceConfig"
+        },
+        "resourceStatus": {
+          "$ref": "ResourceStatus"
+        },
+        "reservationAffinity": {
+          "$ref": "ReservationAffinity"
+        },
+        "keyRevocationActionType": {
+          "enum": [
+            "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
+            "NONE",
+            "STOP"
+          ]
+        },
+        "postKeyRevocationActionType": {
+          "enum": [
+            "NOOP",
+            "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
+            "SHUTDOWN"
+          ]
+        },
+        "disks": {
+          "items": {
+            "$ref": "AttachedDisk"
+          }
+        },
         "status": {
           "enum": [
             "DEPROVISIONING",
@@ -194,28 +229,6 @@
             "TERMINATED"
           ]
         },
-        "advancedMachineFeatures": {
-          "$ref": "AdvancedMachineFeatures"
-        },
-        "networkInterfaces": {
-          "items": {
-            "$ref": "NetworkInterface"
-          }
-        },
-        "networkPerformanceConfig": {
-          "$ref": "NetworkPerformanceConfig"
-        },
-        "workloadIdentityConfig": {
-          "$ref": "WorkloadIdentityConfig"
-        },
-        "reservationAffinity": {
-          "$ref": "ReservationAffinity"
-        },
-        "disks": {
-          "items": {
-            "$ref": "AttachedDisk"
-          }
-        },
         "localSsdEncryptionMode": {
           "enum": [
             "CMEK_ENCRYPTION",
@@ -224,58 +237,27 @@
             "STANDARD_ENCRYPTION"
           ]
         },
-        "postKeyRevocationActionType": {
-          "enum": [
-            "NOOP",
-            "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
-            "SHUTDOWN"
-          ]
+        "networkInterfaces": {
+          "items": {
+            "$ref": "NetworkInterface"
+          }
         },
-        "resourceStatus": {
-          "$ref": "ResourceStatus"
+        "advancedMachineFeatures": {
+          "$ref": "AdvancedMachineFeatures"
         },
-        "keyRevocationActionType": {
-          "enum": [
-            "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
-            "NONE",
-            "STOP"
-          ]
+        "workloadIdentityConfig": {
+          "$ref": "WorkloadIdentityConfig"
         },
         "scheduling": {
           "$ref": "Scheduling"
         },
-        "privateIpv6GoogleAccess": {
-          "enum": [
-            "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
-            "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
-            "INHERIT_FROM_SUBNETWORK"
-          ]
-        },
-        "confidentialInstanceConfig": {
-          "$ref": "ConfidentialInstanceConfig"
+        "networkPerformanceConfig": {
+          "$ref": "NetworkPerformanceConfig"
         }
       }
     },
     "NetworkInterface": {
       "properties": {
-        "stackType": {
-          "enum": [
-            "IPV4_IPV6",
-            "IPV4_ONLY",
-            "IPV6_ONLY"
-          ]
-        },
-        "accessConfigs": {
-          "items": {
-            "$ref": "AccessConfig"
-          }
-        },
-        "ipv6AccessType": {
-          "enum": [
-            "EXTERNAL",
-            "INTERNAL"
-          ]
-        },
         "igmpQuery": {
           "enum": [
             "IGMP_QUERY_DISABLED",
@@ -295,6 +277,24 @@
             "MRDMA",
             "UNSPECIFIED_NIC_TYPE",
             "VIRTIO_NET"
+          ]
+        },
+        "stackType": {
+          "enum": [
+            "IPV4_IPV6",
+            "IPV4_ONLY",
+            "IPV6_ONLY"
+          ]
+        },
+        "accessConfigs": {
+          "items": {
+            "$ref": "AccessConfig"
+          }
+        },
+        "ipv6AccessType": {
+          "enum": [
+            "EXTERNAL",
+            "INTERNAL"
           ]
         }
       }
@@ -326,11 +326,11 @@
     },
     "ResourceStatus": {
       "properties": {
-        "shutdownDetails": {
-          "$ref": "ResourceStatusShutdownDetails"
-        },
         "upcomingMaintenance": {
           "$ref": "UpcomingMaintenance"
+        },
+        "shutdownDetails": {
+          "$ref": "ResourceStatusShutdownDetails"
         }
       }
     },
@@ -352,29 +352,24 @@
     },
     "Scheduling": {
       "properties": {
-        "instanceTerminationAction": {
-          "enum": [
-            "DELETE",
-            "INSTANCE_TERMINATION_ACTION_UNSPECIFIED",
-            "STOP"
-          ]
-        },
         "onHostMaintenance": {
           "enum": [
             "MIGRATE",
             "TERMINATE"
           ]
         },
-        "nodeAffinities": {
-          "items": {
-            "$ref": "SchedulingNodeAffinity"
-          }
-        },
         "maintenanceInterval": {
           "enum": [
             "AS_NEEDED",
             "PERIODIC",
             "RECURRENT"
+          ]
+        },
+        "instanceTerminationAction": {
+          "enum": [
+            "DELETE",
+            "INSTANCE_TERMINATION_ACTION_UNSPECIFIED",
+            "STOP"
           ]
         },
         "provisioningModel": {
@@ -384,6 +379,11 @@
             "SPOT",
             "STANDARD"
           ]
+        },
+        "nodeAffinities": {
+          "items": {
+            "$ref": "SchedulingNodeAffinity"
+          }
         }
       }
     },
@@ -400,13 +400,6 @@
     },
     "UpcomingMaintenance": {
       "properties": {
-        "maintenanceStatus": {
-          "enum": [
-            "ONGOING",
-            "PENDING",
-            "UNKNOWN"
-          ]
-        },
         "type": {
           "enum": [
             "MULTIPLE",
@@ -437,6 +430,13 @@
               "PLANNED_UPDATE"
             ]
           }
+        },
+        "maintenanceStatus": {
+          "enum": [
+            "ONGOING",
+            "PENDING",
+            "UNKNOWN"
+          ]
         }
       }
     },

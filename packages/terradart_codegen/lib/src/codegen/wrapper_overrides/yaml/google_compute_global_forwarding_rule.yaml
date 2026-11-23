@@ -3,6 +3,12 @@ outputDir: compute
 deriveClassDoc: true
 deriveExactlyOne: true
 
+unsealedGroups:
+  "backend_service, target": >-
+    Magic Modules declares backend_service under api_version ga 2026-11-01,
+    but hashicorp/google 8.11.0 does not expose backend_service in the GA
+    schema and still requires target.
+
 curatedDoc: |-
   /// The entry point ("frontend") of a GCP global load balancer. A global
   /// forwarding rule binds a public anycast VIP + port range to a target
@@ -195,8 +201,9 @@ prelude: |
     /// for a standard global LB frontend will fail at apply time.
     static const internalManaged = GlobalForwardingRuleLoadBalancingScheme._(TfArgLiteral('INTERNAL_MANAGED'));
     static const internalSelfManaged = GlobalForwardingRuleLoadBalancingScheme._(TfArgLiteral('INTERNAL_SELF_MANAGED'));
+    static const externalPassthrough = GlobalForwardingRuleLoadBalancingScheme._(TfArgLiteral('EXTERNAL_PASSTHROUGH'));
 
-    static const List<GlobalForwardingRuleLoadBalancingScheme> values = [external, externalManaged, internalManaged, internalSelfManaged];
+    static const List<GlobalForwardingRuleLoadBalancingScheme> values = [external, externalManaged, internalManaged, internalSelfManaged, externalPassthrough];
   }
 
   /// `network_tier`. For global forwarding rules GCP only accepts

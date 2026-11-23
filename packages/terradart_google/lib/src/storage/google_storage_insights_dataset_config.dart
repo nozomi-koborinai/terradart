@@ -9,41 +9,6 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 /// Sensitive field paths for `google_storage_insights_dataset_config`.
 const Set<String> _googleStorageInsightsDatasetConfigSensitive = <String>{};
 
-/// Storage Insights Dataset Config enum for `dataset_config_state`.
-extension type const StorageInsightsDatasetConfigState._(TfArg<String> _)
-    implements TfArg<String> {
-  StorageInsightsDatasetConfigState.variable(String name)
-    : this._(TfArg.variable(name));
-  StorageInsightsDatasetConfigState.expression(String template)
-    : this._(TfArg.expression(template));
-  const StorageInsightsDatasetConfigState.arg(TfArg<String> arg) : this._(arg);
-
-  static const configStateUnspecified = StorageInsightsDatasetConfigState._(
-    TfArgLiteral('CONFIG_STATE_UNSPECIFIED'),
-  );
-  static const configStateActive = StorageInsightsDatasetConfigState._(
-    TfArgLiteral('CONFIG_STATE_ACTIVE'),
-  );
-  static const configStateVerificationInProgress =
-      StorageInsightsDatasetConfigState._(
-        TfArgLiteral('CONFIG_STATE_VERIFICATION_IN_PROGRESS'),
-      );
-  static const configStateCreated = StorageInsightsDatasetConfigState._(
-    TfArgLiteral('CONFIG_STATE_CREATED'),
-  );
-  static const configStateProcessing = StorageInsightsDatasetConfigState._(
-    TfArgLiteral('CONFIG_STATE_PROCESSING'),
-  );
-
-  static const List<StorageInsightsDatasetConfigState> values = [
-    configStateUnspecified,
-    configStateActive,
-    configStateVerificationInProgress,
-    configStateCreated,
-    configStateProcessing,
-  ];
-}
-
 /// Exactly one dataset source scope (MM `exactly_one_of`:
 /// `source_projects` / `source_folders` / `organization_scope`).
 sealed class StorageInsightsDatasetConfigSource {

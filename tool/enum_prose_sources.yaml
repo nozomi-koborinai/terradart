@@ -311,10 +311,6 @@ google:
   google_cloud_tasks_queue.desired_state:
     values: [RUNNING, PAUSED]
     source: no-enum
-  google_cloudfunctions_function.status:
-    values: [CLOUD_FUNCTION_STATUS_UNSPECIFIED, ACTIVE, OFFLINE, DEPLOY_IN_PROGRESS, DELETE_IN_PROGRESS, UNKNOWN]
-    upstream: [CLOUD_FUNCTION_STATUS_UNSPECIFIED, ACTOVE, OFFLINE, DEPLOY_IN_PROGRESS, DELETE_IN_PROGRESS, UNKNOWN]
-    disagrees: 'Magic Modules misspells ACTIVE as ACTOVE; the Cloud Functions v1 API (CloudFunction.status) and the provider report ACTIVE'
   google_colab_runtime.desired_state:
     values: [RUNNING, STOPPED]
     source: no-enum
@@ -343,8 +339,8 @@ google:
     disagrees: 'Address.purpose is shared by regional and global addresses; the API description and the provider document only VPC_PEERING and PRIVATE_SERVICE_CONNECT for a global address, and the other purposes are regional'
   google_compute_health_check.type:
     values: [HTTP, HTTPS, TCP, SSL, HTTP2, GRPC, GRPC_WITH_TLS]
-    upstream: [TCP, SSL, HTTP, HTTPS, HTTP2]
-    disagrees: 'the Magic Modules output enum predates gRPC checks; the resource takes grpc_health_check and grpc_tls_health_check blocks, which the API reports as GRPC and GRPC_WITH_TLS (compute v1 HealthCheck.type)'
+    upstream: [GRPC, GRPC_WITH_TLS, HTTP, HTTP2, HTTPS, INVALID, SSL, TCP]
+    disagrees: 'INVALID is a compute v1 HealthCheck.type error sentinel; every ComputeHealthCheckProtocol block produces one of the seven valid types'
   google_compute_instance.desired_status:
     values: [RUNNING, SUSPENDED, TERMINATED]
     source: no-enum
@@ -388,8 +384,8 @@ google:
     disagrees: 'the hand-written provider resource validates PREMIUM and STANDARD only (resource_compute_project_default_network_tier.go StringInSlice), as the API description says; STANDARD_OVERRIDES_FIXED_STANDARD is output only'
   google_compute_region_health_check.type:
     values: [HTTP, HTTPS, TCP, SSL, HTTP2, GRPC, GRPC_WITH_TLS]
-    upstream: [TCP, SSL, HTTP, HTTPS, HTTP2]
-    disagrees: 'the Magic Modules output enum predates gRPC checks; the resource takes grpc_health_check and grpc_tls_health_check blocks, which the API reports as GRPC and GRPC_WITH_TLS (compute v1 HealthCheck.type)'
+    upstream: [GRPC, GRPC_WITH_TLS, HTTP, HTTP2, HTTPS, INVALID, SSL, TCP]
+    disagrees: 'INVALID is a compute v1 HealthCheck.type error sentinel; every ComputeRegionHealthCheckProtocol block produces one of the seven valid types'
   google_compute_region_instant_snapshot.deletion_policy:
     values: [DELETE, PREVENT, ABANDON]
     source: no-document
@@ -435,14 +431,6 @@ google:
   google_compute_security_policy.rule.action:
     values: [allow, 'deny(403)', 'deny(404)', 'deny(502)', rate_based_ban, redirect, throttle]
     source: no-enum
-  google_compute_security_policy.rule.rate_limit_options.enforce_on_key:
-    values: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP]
-    upstream: [ALL, ASN, HTTP_COOKIE, HTTP_HEADER, HTTP_PATH, IP, REGION_CODE, SNI, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP, XFF_IP]
-    disagrees: 'the hand-written provider resource validates the list without ASN (resource_compute_security_policy.go StringInSlice), and the enum type is shared with the Magic Modules security policy resources, whose generated validator omits ASN too'
-  google_compute_security_policy.rule.rate_limit_options.enforce_on_key_configs.enforce_on_key_type:
-    values: [ALL, IP, HTTP_HEADER, XFF_IP, HTTP_COOKIE, HTTP_PATH, SNI, REGION_CODE, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP]
-    upstream: [ALL, ASN, HTTP_COOKIE, HTTP_HEADER, HTTP_PATH, IP, REGION_CODE, SNI, TLS_JA3_FINGERPRINT, TLS_JA4_FINGERPRINT, USER_IP, XFF_IP]
-    disagrees: 'the hand-written provider resource validates the list without ASN (resource_compute_security_policy.go StringInSlice), and the enum type is shared with the Magic Modules security policy resources, whose generated validator omits ASN too'
   google_compute_security_policy.rule.rate_limit_options.exceed_action:
     values: [redirect, 'deny(403)', 'deny(404)', 'deny(429)', 'deny(502)']
     source: no-enum

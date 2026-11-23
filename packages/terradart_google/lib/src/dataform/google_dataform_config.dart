@@ -34,9 +34,6 @@ final class GoogleDataformConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataformConfigSensitive;
 
-  @override
-  String get defaultProvider => 'google-beta';
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleDataformConfig>`.
   RefTo<GoogleDataformConfig> get ref => RefTo.of(this);

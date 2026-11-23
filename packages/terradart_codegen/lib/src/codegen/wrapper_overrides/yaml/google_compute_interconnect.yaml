@@ -24,6 +24,8 @@ paramOrder:
   - requested_features
   - labels
   - macsec
+  - aai_enabled
+  - application_aware_interconnect
   - params
   - deletion_policy
   - project

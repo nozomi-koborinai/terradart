@@ -6,35 +6,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_cloud_quotas_quota_adjuster_settings`.
 const Set<String> _googleCloudQuotasQuotaAdjusterSettingsSensitive = <String>{};
 
-/// Cloud Quotas Quota Adjuster Settings Effective enum for `effective_enablement`.
-extension type const CloudQuotasQuotaAdjusterSettingsEffectiveEnablement._(
-  TfArg<String> _
-)
-    implements TfArg<String> {
-  CloudQuotasQuotaAdjusterSettingsEffectiveEnablement.variable(String name)
-    : this._(TfArg.variable(name));
-  CloudQuotasQuotaAdjusterSettingsEffectiveEnablement.expression(
-    String template,
-  ) : this._(TfArg.expression(template));
-  const CloudQuotasQuotaAdjusterSettingsEffectiveEnablement.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
-
-  static const defaultCase =
-      CloudQuotasQuotaAdjusterSettingsEffectiveEnablement._(
-        TfArgLiteral('DEFAULT'),
-      );
-  static const enabled = CloudQuotasQuotaAdjusterSettingsEffectiveEnablement._(
-    TfArgLiteral('ENABLED'),
-  );
-  static const disabled = CloudQuotasQuotaAdjusterSettingsEffectiveEnablement._(
-    TfArgLiteral('DISABLED'),
-  );
-
-  static const List<CloudQuotasQuotaAdjusterSettingsEffectiveEnablement>
-  values = [defaultCase, enabled, disabled];
-}
-
 /// Cloud Quotas Quota Adjuster Settings enum for `enablement`.
 extension type const CloudQuotasQuotaAdjusterSettingsEnablement._(
   TfArg<String> _

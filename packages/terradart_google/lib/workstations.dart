@@ -11,7 +11,7 @@ export 'src/data/google_workstations_workstation_config_iam_policy.dart'
 export 'src/data/google_workstations_workstation_iam_policy.dart'
     show DataGoogleWorkstationsWorkstationIamPolicy;
 export 'src/workstations/google_workstations_workstation.dart'
-    show GoogleWorkstationsWorkstation, WorkstationsWorkstationState;
+    show GoogleWorkstationsWorkstation;
 export 'src/workstations/google_workstations_workstation_cluster.dart'
     show
         GoogleWorkstationsWorkstationCluster,

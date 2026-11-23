@@ -16,7 +16,6 @@ export 'src/cloudfunctions/google_cloudfunctions_function.dart'
         CloudfunctionsFunctionSecretEnvironmentVariables,
         CloudfunctionsFunctionSecretVolumes,
         CloudfunctionsFunctionSourceRepository,
-        CloudfunctionsFunctionStatus,
         CloudfunctionsFunctionVersions,
         CloudfunctionsFunctionVpcConnectorEgressSettings,
         GoogleCloudfunctionsFunction;

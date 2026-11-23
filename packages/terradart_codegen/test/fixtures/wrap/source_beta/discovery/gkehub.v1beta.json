@@ -1,16 +1,16 @@
 {
   "name": "gkehub",
   "version": "v1beta",
-  "revision": "20261025",
+  "revision": "20261031",
   "sourceUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1beta",
   "schemas": {
     "RBACRoleBinding": {
       "properties": {
-        "state": {
-          "$ref": "RBACRoleBindingLifecycleState"
-        },
         "role": {
           "$ref": "Role"
+        },
+        "state": {
+          "$ref": "RBACRoleBindingLifecycleState"
         }
       }
     },

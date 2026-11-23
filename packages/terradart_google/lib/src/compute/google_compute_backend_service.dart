@@ -83,12 +83,16 @@ extension type const LoadBalancingScheme._(TfArg<String> _)
   static const internalManaged = LoadBalancingScheme._(
     TfArgLiteral('INTERNAL_MANAGED'),
   );
+  static const externalPassthrough = LoadBalancingScheme._(
+    TfArgLiteral('EXTERNAL_PASSTHROUGH'),
+  );
 
   static const List<LoadBalancingScheme> values = [
     external,
     externalManaged,
     internalSelfManaged,
     internalManaged,
+    externalPassthrough,
   ];
 }
 

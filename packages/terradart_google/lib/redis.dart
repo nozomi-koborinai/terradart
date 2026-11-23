@@ -7,6 +7,8 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/data/google_redis_cluster.dart' show DataGoogleRedisCluster;
 export 'src/data/google_redis_cluster_acl_policy.dart'
     show DataGoogleRedisClusterAclPolicy;
+export 'src/data/google_redis_cluster_token_auth_user.dart'
+    show DataGoogleRedisClusterTokenAuthUser;
 export 'src/data/google_redis_instance.dart' show DataGoogleRedisInstance;
 export 'src/redis/google_redis_cluster.dart'
     show
@@ -35,7 +37,6 @@ export 'src/redis/google_redis_cluster.dart'
         RedisClusterSecondaryClusters,
         RedisClusterServerCaMode,
         RedisClusterSource,
-        RedisClusterState,
         RedisClusterTransitEncryptionMode,
         RedisClusterWeeklyMaintenanceWindow,
         RedisClusterWeeklyMaintenanceWindowStartTime,
@@ -43,6 +44,8 @@ export 'src/redis/google_redis_cluster.dart'
         RedisClusterZoneDistributionConfigMode;
 export 'src/redis/google_redis_cluster_acl_policy.dart'
     show GoogleRedisClusterAclPolicy, RedisClusterAclPolicyRules;
+export 'src/redis/google_redis_cluster_token_auth_user.dart'
+    show GoogleRedisClusterTokenAuthUser;
 export 'src/redis/google_redis_cluster_user_created_connections.dart'
     show
         GoogleRedisClusterUserCreatedConnections,

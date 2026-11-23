@@ -1,7 +1,7 @@
 {
   "name": "bigqueryconnection",
   "version": "v1",
-  "revision": "20261009",
+  "revision": "20261107",
   "sourceUrl": "https://bigqueryconnection.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "CloudSqlProperties": {
@@ -27,28 +27,28 @@
     },
     "ConnectorConfiguration": {
       "properties": {
-        "parameters": {
-          "additionalProperties": {
-            "$ref": "ConnectorConfigurationParameterValue"
-          }
+        "tls": {
+          "$ref": "ConnectorConfigurationTls"
         },
         "authentication": {
           "$ref": "ConnectorConfigurationAuthentication"
         },
-        "tls": {
-          "$ref": "ConnectorConfigurationTls"
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "ConnectorConfigurationParameterValue"
+          }
         }
       }
     },
     "ConnectorConfigurationAuthentication": {
       "properties": {
+        "usernamePassword": {
+          "$ref": "ConnectorConfigurationUsernamePassword"
+        },
         "parameters": {
           "additionalProperties": {
             "$ref": "ConnectorConfigurationParameterValue"
           }
-        },
-        "usernamePassword": {
-          "$ref": "ConnectorConfigurationUsernamePassword"
         }
       }
     },

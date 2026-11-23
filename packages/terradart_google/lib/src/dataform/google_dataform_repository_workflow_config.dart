@@ -4,8 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/terradart_google.dart'
-    show GoogleServiceAccount;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
 
 /// Sensitive field paths for `google_dataform_repository_workflow_config`.
 const Set<String> _googleDataformRepositoryWorkflowConfigSensitive = <String>{};
@@ -115,9 +114,6 @@ final class GoogleDataformRepositoryWorkflowConfig extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleDataformRepositoryWorkflowConfigSensitive;
-
-  @override
-  String get defaultProvider => 'google-beta';
 
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleDataformRepositoryWorkflowConfig>`.

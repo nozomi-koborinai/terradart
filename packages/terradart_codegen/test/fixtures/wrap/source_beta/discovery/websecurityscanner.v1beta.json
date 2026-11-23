@@ -1,7 +1,7 @@
 {
   "name": "websecurityscanner",
   "version": "v1beta",
-  "revision": "20261104",
+  "revision": "20261108",
   "sourceUrl": "https://websecurityscanner.googleapis.com/$discovery/rest?version=v1beta",
   "schemas": {
     "ScanConfig": {
@@ -13,9 +13,6 @@
             "LOW"
           ]
         },
-        "latestRun": {
-          "$ref": "ScanRun"
-        },
         "userAgent": {
           "enum": [
             "USER_AGENT_UNSPECIFIED",
@@ -23,6 +20,9 @@
             "CHROME_ANDROID",
             "SAFARI_IPHONE"
           ]
+        },
+        "latestRun": {
+          "$ref": "ScanRun"
         },
         "exportToSecurityCommandCenter": {
           "enum": [
@@ -105,20 +105,20 @@
             "$ref": "ScanRunWarningTrace"
           }
         },
-        "executionState": {
-          "enum": [
-            "EXECUTION_STATE_UNSPECIFIED",
-            "QUEUED",
-            "SCANNING",
-            "FINISHED"
-          ]
-        },
         "resultState": {
           "enum": [
             "RESULT_STATE_UNSPECIFIED",
             "SUCCESS",
             "ERROR",
             "KILLED"
+          ]
+        },
+        "executionState": {
+          "enum": [
+            "EXECUTION_STATE_UNSPECIFIED",
+            "QUEUED",
+            "SCANNING",
+            "FINISHED"
           ]
         }
       }

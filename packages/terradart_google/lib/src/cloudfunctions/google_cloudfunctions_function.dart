@@ -60,42 +60,6 @@ extension type const CloudfunctionsFunctionIngressSettings._(TfArg<String> _)
   ];
 }
 
-/// Cloudfunctions Function enum for `status`.
-extension type const CloudfunctionsFunctionStatus._(TfArg<String> _)
-    implements TfArg<String> {
-  CloudfunctionsFunctionStatus.variable(String name)
-    : this._(TfArg.variable(name));
-  CloudfunctionsFunctionStatus.expression(String template)
-    : this._(TfArg.expression(template));
-  const CloudfunctionsFunctionStatus.arg(TfArg<String> arg) : this._(arg);
-
-  static const cloudFunctionStatusUnspecified = CloudfunctionsFunctionStatus._(
-    TfArgLiteral('CLOUD_FUNCTION_STATUS_UNSPECIFIED'),
-  );
-  static const active = CloudfunctionsFunctionStatus._(TfArgLiteral('ACTIVE'));
-  static const offline = CloudfunctionsFunctionStatus._(
-    TfArgLiteral('OFFLINE'),
-  );
-  static const deployInProgress = CloudfunctionsFunctionStatus._(
-    TfArgLiteral('DEPLOY_IN_PROGRESS'),
-  );
-  static const deleteInProgress = CloudfunctionsFunctionStatus._(
-    TfArgLiteral('DELETE_IN_PROGRESS'),
-  );
-  static const unknown = CloudfunctionsFunctionStatus._(
-    TfArgLiteral('UNKNOWN'),
-  );
-
-  static const List<CloudfunctionsFunctionStatus> values = [
-    cloudFunctionStatusUnspecified,
-    active,
-    offline,
-    deployInProgress,
-    deleteInProgress,
-    unknown,
-  ];
-}
-
 /// Cloudfunctions Function Vpc Connector Egress enum for `vpc_connector_egress_settings`.
 extension type const CloudfunctionsFunctionVpcConnectorEgressSettings._(
   TfArg<String> _

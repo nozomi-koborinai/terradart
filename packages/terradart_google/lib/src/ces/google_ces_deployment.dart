@@ -14,6 +14,31 @@ const Set<String> _googleCesDeploymentSensitive = <String>{
   'whatsapp_credentials.pin',
 };
 
+/// Ces Deployment enum for `modality`.
+extension type const CesDeploymentModality._(TfArg<String> _)
+    implements TfArg<String> {
+  CesDeploymentModality.variable(String name) : this._(TfArg.variable(name));
+  CesDeploymentModality.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesDeploymentModality.arg(TfArg<String> arg) : this._(arg);
+
+  static const modalityText = CesDeploymentModality._(
+    TfArgLiteral('MODALITY_TEXT'),
+  );
+  static const modalityVoice = CesDeploymentModality._(
+    TfArgLiteral('MODALITY_VOICE'),
+  );
+  static const modalityVideo = CesDeploymentModality._(
+    TfArgLiteral('MODALITY_VIDEO'),
+  );
+
+  static const List<CesDeploymentModality> values = [
+    modalityText,
+    modalityVoice,
+    modalityVideo,
+  ];
+}
+
 /// Typed helper for the `channel_profile` block of
 /// `google_ces_deployment` (derived from provider schema).
 @immutable
@@ -137,7 +162,7 @@ final class CesDeploymentWebWidgetConfig {
     this.securitySettings,
   });
 
-  final CesDeploymentModality? modality;
+  final CesDeploymentWebWidgetConfigModality? modality;
 
   final CesDeploymentTheme? theme;
 
@@ -155,23 +180,29 @@ final class CesDeploymentWebWidgetConfig {
 }
 
 /// `modality` — derived from the provider schema description.
-extension type const CesDeploymentModality._(TfArg<String> _)
+extension type const CesDeploymentWebWidgetConfigModality._(TfArg<String> _)
     implements TfArg<String> {
-  CesDeploymentModality.variable(String name) : this._(TfArg.variable(name));
-  CesDeploymentModality.expression(String template)
+  CesDeploymentWebWidgetConfigModality.variable(String name)
+    : this._(TfArg.variable(name));
+  CesDeploymentWebWidgetConfigModality.expression(String template)
     : this._(TfArg.expression(template));
-  const CesDeploymentModality.arg(TfArg<String> arg) : this._(arg);
+  const CesDeploymentWebWidgetConfigModality.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const chatAndVoice = CesDeploymentModality._(
+  static const chatAndVoice = CesDeploymentWebWidgetConfigModality._(
     TfArgLiteral('CHAT_AND_VOICE'),
   );
-  static const voiceOnly = CesDeploymentModality._(TfArgLiteral('VOICE_ONLY'));
-  static const chatOnly = CesDeploymentModality._(TfArgLiteral('CHAT_ONLY'));
-  static const chatVoiceAndVideo = CesDeploymentModality._(
+  static const voiceOnly = CesDeploymentWebWidgetConfigModality._(
+    TfArgLiteral('VOICE_ONLY'),
+  );
+  static const chatOnly = CesDeploymentWebWidgetConfigModality._(
+    TfArgLiteral('CHAT_ONLY'),
+  );
+  static const chatVoiceAndVideo = CesDeploymentWebWidgetConfigModality._(
     TfArgLiteral('CHAT_VOICE_AND_VIDEO'),
   );
 
-  static const List<CesDeploymentModality> values = [
+  static const List<CesDeploymentWebWidgetConfigModality> values = [
     chatAndVoice,
     voiceOnly,
     chatOnly,
@@ -324,6 +355,54 @@ final class CesDeploymentInstagramCredentialsAuthCodeWo
   @internal
   @override
   Map<String, Object?> encode() => {'auth_code_wo': authCodeWo.toTfJson()};
+}
+
+/// Typed helper for the `model_settings` block of
+/// `google_ces_deployment` (derived from provider schema).
+@immutable
+final class CesDeploymentModelSettings {
+  const CesDeploymentModelSettings({
+    this.model,
+    this.temperature,
+    this.thinkingLevel,
+  });
+
+  final TfArg<String>? model;
+
+  final TfArg<num>? temperature;
+
+  final CesDeploymentThinkingLevel? thinkingLevel;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'model': ?model?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'thinking_level': ?thinkingLevel?.toTfJson(),
+  };
+}
+
+/// `thinking_level` — derived from the provider schema description.
+extension type const CesDeploymentThinkingLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  CesDeploymentThinkingLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  CesDeploymentThinkingLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesDeploymentThinkingLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = CesDeploymentThinkingLevel._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const low = CesDeploymentThinkingLevel._(TfArgLiteral('LOW'));
+  static const medium = CesDeploymentThinkingLevel._(TfArgLiteral('MEDIUM'));
+  static const high = CesDeploymentThinkingLevel._(TfArgLiteral('HIGH'));
+
+  static const List<CesDeploymentThinkingLevel> values = [
+    defaultCase,
+    low,
+    medium,
+    high,
+  ];
 }
 
 /// Typed helper for the `whatsapp_credentials` block of
@@ -536,6 +615,8 @@ final class GoogleCesDeployment extends Resource {
     TfArg<String>? project,
     CesDeploymentInstagramCredentials? instagramCredentials,
     CesDeploymentWhatsappCredentials? whatsappCredentials,
+    CesDeploymentModality? modality,
+    CesDeploymentModelSettings? modelSettings,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -558,6 +639,9 @@ final class GoogleCesDeployment extends Resource {
              'whatsapp_credentials': TfArg.literal(
                whatsappCredentials.encode(),
              ),
+           'modality': ?modality,
+           if (modelSettings != null)
+             'model_settings': TfArg.literal(modelSettings.encode()),
          },
        );
 
@@ -599,6 +683,9 @@ final class GoogleCesDeployment extends Resource {
 
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `modality` attribute.
+  TfRef<String> get modality => TfRef.attribute<String>(this, 'modality');
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');

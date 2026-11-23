@@ -9,94 +9,6 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_integrations_auth_config`.
 const Set<String> _googleIntegrationsAuthConfigSensitive = <String>{};
 
-/// Integrations Auth Config Credential enum for `credential_type`.
-extension type const IntegrationsAuthConfigCredentialType._(TfArg<String> _)
-    implements TfArg<String> {
-  IntegrationsAuthConfigCredentialType.variable(String name)
-    : this._(TfArg.variable(name));
-  IntegrationsAuthConfigCredentialType.expression(String template)
-    : this._(TfArg.expression(template));
-  const IntegrationsAuthConfigCredentialType.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const usernameAndPassword = IntegrationsAuthConfigCredentialType._(
-    TfArgLiteral('USERNAME_AND_PASSWORD'),
-  );
-  static const oauth2AuthorizationCode = IntegrationsAuthConfigCredentialType._(
-    TfArgLiteral('OAUTH2_AUTHORIZATION_CODE'),
-  );
-  static const oauth2Implicit = IntegrationsAuthConfigCredentialType._(
-    TfArgLiteral('OAUTH2_IMPLICIT'),
-  );
-  static const oauth2ClientCredentials = IntegrationsAuthConfigCredentialType._(
-    TfArgLiteral('OAUTH2_CLIENT_CREDENTIALS'),
-  );
-  static const oauth2ResoruceOwnerCredentials =
-      IntegrationsAuthConfigCredentialType._(
-        TfArgLiteral('OAUTH2_RESORUCE_OWNER_CREDENTIALS'),
-      );
-  static const jwt = IntegrationsAuthConfigCredentialType._(
-    TfArgLiteral('JWT'),
-  );
-  static const authToken = IntegrationsAuthConfigCredentialType._(
-    TfArgLiteral('AUTH_TOKEN'),
-  );
-  static const serviceAccount = IntegrationsAuthConfigCredentialType._(
-    TfArgLiteral('SERVICE_ACCOUNT'),
-  );
-  static const clientCertificateOnly = IntegrationsAuthConfigCredentialType._(
-    TfArgLiteral('CLIENT_CERTIFICATE_ONLY'),
-  );
-  static const oidcToken = IntegrationsAuthConfigCredentialType._(
-    TfArgLiteral('OIDC_TOKEN'),
-  );
-
-  static const List<IntegrationsAuthConfigCredentialType> values = [
-    usernameAndPassword,
-    oauth2AuthorizationCode,
-    oauth2Implicit,
-    oauth2ClientCredentials,
-    oauth2ResoruceOwnerCredentials,
-    jwt,
-    authToken,
-    serviceAccount,
-    clientCertificateOnly,
-    oidcToken,
-  ];
-}
-
-/// Integrations Auth Config enum for `state`.
-extension type const IntegrationsAuthConfigState._(TfArg<String> _)
-    implements TfArg<String> {
-  IntegrationsAuthConfigState.variable(String name)
-    : this._(TfArg.variable(name));
-  IntegrationsAuthConfigState.expression(String template)
-    : this._(TfArg.expression(template));
-  const IntegrationsAuthConfigState.arg(TfArg<String> arg) : this._(arg);
-
-  static const valid = IntegrationsAuthConfigState._(TfArgLiteral('VALID'));
-  static const invalid = IntegrationsAuthConfigState._(TfArgLiteral('INVALID'));
-  static const softDeleted = IntegrationsAuthConfigState._(
-    TfArgLiteral('SOFT_DELETED'),
-  );
-  static const expired = IntegrationsAuthConfigState._(TfArgLiteral('EXPIRED'));
-  static const unauthorized = IntegrationsAuthConfigState._(
-    TfArgLiteral('UNAUTHORIZED'),
-  );
-  static const unsupported = IntegrationsAuthConfigState._(
-    TfArgLiteral('UNSUPPORTED'),
-  );
-
-  static const List<IntegrationsAuthConfigState> values = [
-    valid,
-    invalid,
-    softDeleted,
-    expired,
-    unauthorized,
-    unsupported,
-  ];
-}
-
 /// Integrations Auth Config enum for `visibility`.
 extension type const IntegrationsAuthConfigVisibility._(TfArg<String> _)
     implements TfArg<String> {
@@ -389,12 +301,18 @@ final class IntegrationsAuthConfigJwt {
 @immutable
 final class IntegrationsAuthConfigOauth2AuthorizationCode {
   const IntegrationsAuthConfigOauth2AuthorizationCode({
+    this.applyReauthPolicy,
     this.authEndpoint,
     this.clientId,
     this.clientSecret,
+    this.requestType,
     this.scope,
     this.tokenEndpoint,
+    this.authParams,
+    this.tokenParams,
   });
+
+  final TfArg<bool>? applyReauthPolicy;
 
   final TfArg<String>? authEndpoint;
 
@@ -402,17 +320,144 @@ final class IntegrationsAuthConfigOauth2AuthorizationCode {
 
   final TfArg<String>? clientSecret;
 
+  final IntegrationsAuthConfigOauth2AuthorizationCodeRequestType? requestType;
+
   final TfArg<String>? scope;
 
   final TfArg<String>? tokenEndpoint;
 
+  final IntegrationsAuthConfigAuthParams? authParams;
+
+  final IntegrationsAuthConfigTokenParams? tokenParams;
+
   @internal
   Map<String, Object?> encode() => {
+    'apply_reauth_policy': ?applyReauthPolicy?.toTfJson(),
     'auth_endpoint': ?authEndpoint?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
+    'request_type': ?requestType?.toTfJson(),
     'scope': ?scope?.toTfJson(),
     'token_endpoint': ?tokenEndpoint?.toTfJson(),
+    'auth_params': ?authParams?.encode(),
+    'token_params': ?tokenParams?.encode(),
+  };
+}
+
+/// `request_type` — derived from the provider schema description.
+extension type const IntegrationsAuthConfigOauth2AuthorizationCodeRequestType._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  IntegrationsAuthConfigOauth2AuthorizationCodeRequestType.variable(String name)
+    : this._(TfArg.variable(name));
+  IntegrationsAuthConfigOauth2AuthorizationCodeRequestType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const IntegrationsAuthConfigOauth2AuthorizationCodeRequestType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const requestBody =
+      IntegrationsAuthConfigOauth2AuthorizationCodeRequestType._(
+        TfArgLiteral('REQUEST_BODY'),
+      );
+  static const queryParameters =
+      IntegrationsAuthConfigOauth2AuthorizationCodeRequestType._(
+        TfArgLiteral('QUERY_PARAMETERS'),
+      );
+  static const encodedHeader =
+      IntegrationsAuthConfigOauth2AuthorizationCodeRequestType._(
+        TfArgLiteral('ENCODED_HEADER'),
+      );
+
+  static const List<IntegrationsAuthConfigOauth2AuthorizationCodeRequestType>
+  values = [requestBody, queryParameters, encodedHeader];
+}
+
+/// Typed helper for the `decrypted_credential.oauth2_authorization_code.auth_params` block of
+/// `google_integrations_auth_config` (derived from provider schema).
+@immutable
+final class IntegrationsAuthConfigAuthParams {
+  const IntegrationsAuthConfigAuthParams({this.entries});
+
+  final List<IntegrationsAuthConfigEntries>? entries;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (entries != null) 'entries': [for (final e in entries!) e.encode()],
+  };
+}
+
+/// Typed helper for the `decrypted_credential.oauth2_authorization_code.auth_params.entries` block of
+/// `google_integrations_auth_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class IntegrationsAuthConfigEntries {
+  const IntegrationsAuthConfigEntries({this.key, this.value});
+
+  final IntegrationsAuthConfigKey? key;
+
+  final IntegrationsAuthConfigValue? value;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'key': ?key?.encode(),
+    'value': ?value?.encode(),
+  };
+}
+
+/// Typed helper for the `decrypted_credential.oauth2_authorization_code.auth_params.entries.key` block of
+/// `google_integrations_auth_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class IntegrationsAuthConfigKey {
+  const IntegrationsAuthConfigKey({this.literalValue});
+
+  final IntegrationsAuthConfigLiteralValue? literalValue;
+
+  @internal
+  Map<String, Object?> encode() => {'literal_value': ?literalValue?.encode()};
+}
+
+/// Typed helper for the `decrypted_credential.oauth2_authorization_code.auth_params.entries.key.literal_value` block of
+/// `google_integrations_auth_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class IntegrationsAuthConfigLiteralValue {
+  const IntegrationsAuthConfigLiteralValue({this.stringValue});
+
+  final TfArg<String>? stringValue;
+
+  @internal
+  Map<String, Object?> encode() => {'string_value': ?stringValue?.toTfJson()};
+}
+
+/// Typed helper for the `decrypted_credential.oauth2_authorization_code.auth_params.entries.value` block of
+/// `google_integrations_auth_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class IntegrationsAuthConfigValue {
+  const IntegrationsAuthConfigValue({this.literalValue});
+
+  final IntegrationsAuthConfigLiteralValue? literalValue;
+
+  @internal
+  Map<String, Object?> encode() => {'literal_value': ?literalValue?.encode()};
+}
+
+/// Typed helper for the `decrypted_credential.oauth2_authorization_code.token_params` block of
+/// `google_integrations_auth_config` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class IntegrationsAuthConfigTokenParams {
+  const IntegrationsAuthConfigTokenParams({this.entries});
+
+  final List<IntegrationsAuthConfigEntries>? entries;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (entries != null) 'entries': [for (final e in entries!) e.encode()],
   };
 }
 
@@ -480,74 +525,6 @@ extension type const IntegrationsAuthConfigRequestType._(TfArg<String> _)
     queryParameters,
     encodedHeader,
   ];
-}
-
-/// Typed helper for the `decrypted_credential.oauth2_client_credentials.token_params` block of
-/// `google_integrations_auth_config` (derived from provider schema).
-@immutable
-final class IntegrationsAuthConfigTokenParams {
-  const IntegrationsAuthConfigTokenParams({this.entries});
-
-  final List<IntegrationsAuthConfigEntries>? entries;
-
-  @internal
-  Map<String, Object?> encode() => {
-    if (entries != null) 'entries': [for (final e in entries!) e.encode()],
-  };
-}
-
-/// Typed helper for the `decrypted_credential.oauth2_client_credentials.token_params.entries` block of
-/// `google_integrations_auth_config` (derived from provider schema).
-@immutable
-final class IntegrationsAuthConfigEntries {
-  const IntegrationsAuthConfigEntries({this.key, this.value});
-
-  final IntegrationsAuthConfigKey? key;
-
-  final IntegrationsAuthConfigValue? value;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'key': ?key?.encode(),
-    'value': ?value?.encode(),
-  };
-}
-
-/// Typed helper for the `decrypted_credential.oauth2_client_credentials.token_params.entries.key` block of
-/// `google_integrations_auth_config` (derived from provider schema).
-@immutable
-final class IntegrationsAuthConfigKey {
-  const IntegrationsAuthConfigKey({this.literalValue});
-
-  final IntegrationsAuthConfigLiteralValue? literalValue;
-
-  @internal
-  Map<String, Object?> encode() => {'literal_value': ?literalValue?.encode()};
-}
-
-/// Typed helper for the `decrypted_credential.oauth2_client_credentials.token_params.entries.key.literal_value` block of
-/// `google_integrations_auth_config` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
-@immutable
-final class IntegrationsAuthConfigLiteralValue {
-  const IntegrationsAuthConfigLiteralValue({this.stringValue});
-
-  final TfArg<String>? stringValue;
-
-  @internal
-  Map<String, Object?> encode() => {'string_value': ?stringValue?.toTfJson()};
-}
-
-/// Typed helper for the `decrypted_credential.oauth2_client_credentials.token_params.entries.value` block of
-/// `google_integrations_auth_config` (derived from provider schema).
-@immutable
-final class IntegrationsAuthConfigValue {
-  const IntegrationsAuthConfigValue({this.literalValue});
-
-  final IntegrationsAuthConfigLiteralValue? literalValue;
-
-  @internal
-  Map<String, Object?> encode() => {'literal_value': ?literalValue?.encode()};
 }
 
 /// Typed helper for the `decrypted_credential.oidc_token` block of

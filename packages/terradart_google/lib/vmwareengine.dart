@@ -45,7 +45,6 @@ export 'src/vmwareengine/google_vmwareengine_cluster.dart'
         VmwareengineClusterDatastoreNetwork,
         VmwareengineClusterNfsVersion,
         VmwareengineClusterNodeTypeConfigs,
-        VmwareengineClusterState,
         VmwareengineClusterStorageThresholds;
 export 'src/vmwareengine/google_vmwareengine_datastore.dart'
     show
@@ -62,10 +61,7 @@ export 'src/vmwareengine/google_vmwareengine_external_access_rule.dart'
 export 'src/vmwareengine/google_vmwareengine_external_address.dart'
     show GoogleVmwareengineExternalAddress;
 export 'src/vmwareengine/google_vmwareengine_network.dart'
-    show
-        GoogleVmwareengineNetwork,
-        VmwareengineNetworkState,
-        VmwareengineNetworkType;
+    show GoogleVmwareengineNetwork, VmwareengineNetworkType;
 export 'src/vmwareengine/google_vmwareengine_network_peering.dart'
     show
         GoogleVmwareengineNetworkPeering,
@@ -85,7 +81,6 @@ export 'src/vmwareengine/google_vmwareengine_private_cloud.dart'
         VmwareenginePrivateCloudManagementCluster,
         VmwareenginePrivateCloudNetworkConfig,
         VmwareenginePrivateCloudNodeTypeConfigs,
-        VmwareenginePrivateCloudState,
         VmwareenginePrivateCloudStorageThresholds,
         VmwareenginePrivateCloudStretchedClusterConfig,
         VmwareenginePrivateCloudType;

@@ -6,15 +6,6 @@
   "schemas": {
     "Application": {
       "properties": {
-        "applicationType": {
-          "$ref": "ApplicationType"
-        },
-        "attributes": {
-          "$ref": "Attributes"
-        },
-        "scope": {
-          "$ref": "Scope"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -22,6 +13,15 @@
             "ACTIVE",
             "DELETING"
           ]
+        },
+        "attributes": {
+          "$ref": "Attributes"
+        },
+        "applicationType": {
+          "$ref": "ApplicationType"
+        },
+        "scope": {
+          "$ref": "Scope"
         }
       }
     },
@@ -119,6 +119,9 @@
     },
     "Service": {
       "properties": {
+        "serviceProperties": {
+          "$ref": "ServiceProperties"
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -127,9 +130,6 @@
             "DELETING",
             "DETACHED"
           ]
-        },
-        "serviceProperties": {
-          "$ref": "ServiceProperties"
         },
         "attributes": {
           "$ref": "Attributes"
@@ -160,12 +160,6 @@
     },
     "Workload": {
       "properties": {
-        "attributes": {
-          "$ref": "Attributes"
-        },
-        "workloadProperties": {
-          "$ref": "WorkloadProperties"
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -174,6 +168,12 @@
             "DELETING",
             "DETACHED"
           ]
+        },
+        "workloadProperties": {
+          "$ref": "WorkloadProperties"
+        },
+        "attributes": {
+          "$ref": "Attributes"
         }
       }
     },

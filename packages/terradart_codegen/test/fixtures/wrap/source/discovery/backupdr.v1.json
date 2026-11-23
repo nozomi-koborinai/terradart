@@ -1,11 +1,29 @@
 {
   "name": "backupdr",
   "version": "v1",
-  "revision": "20261028",
+  "revision": "20261105",
   "sourceUrl": "https://backupdr.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
+    "AutoProtectionPolicy": {
+      "properties": {
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ]
+        }
+      }
+    },
     "BackupPlan": {
       "properties": {
+        "backupRules": {
+          "items": {
+            "$ref": "BackupRule"
+          }
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -15,21 +33,11 @@
             "INACTIVE",
             "UPDATING"
           ]
-        },
-        "backupRules": {
-          "items": {
-            "$ref": "BackupRule"
-          }
         }
       }
     },
     "BackupPlanAssociation": {
       "properties": {
-        "rulesConfigInfo": {
-          "items": {
-            "$ref": "RuleConfigInfo"
-          }
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -40,6 +48,11 @@
             "UPDATING",
             "PAUSED"
           ]
+        },
+        "rulesConfigInfo": {
+          "items": {
+            "$ref": "RuleConfigInfo"
+          }
         }
       }
     },
@@ -142,6 +155,9 @@
             "YEARLY"
           ]
         },
+        "weekDayOfMonth": {
+          "$ref": "WeekDayOfMonth"
+        },
         "daysOfWeek": {
           "items": {
             "enum": [
@@ -174,9 +190,6 @@
               "DECEMBER"
             ]
           }
-        },
-        "weekDayOfMonth": {
-          "$ref": "WeekDayOfMonth"
         }
       }
     },

@@ -23,12 +23,8 @@
             "UNAVAILABLE"
           ]
         },
-        "executionHistoryLevel": {
-          "enum": [
-            "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
-            "EXECUTION_HISTORY_BASIC",
-            "EXECUTION_HISTORY_DETAILED"
-          ]
+        "stateError": {
+          "$ref": "StateError"
         },
         "callLogLevel": {
           "enum": [
@@ -38,8 +34,12 @@
             "LOG_NONE"
           ]
         },
-        "stateError": {
-          "$ref": "StateError"
+        "executionHistoryLevel": {
+          "enum": [
+            "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
+            "EXECUTION_HISTORY_BASIC",
+            "EXECUTION_HISTORY_DETAILED"
+          ]
         }
       }
     }

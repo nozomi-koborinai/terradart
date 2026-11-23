@@ -1,24 +1,24 @@
 {
   "name": "modelarmor",
   "version": "v1",
-  "revision": "20261028",
+  "revision": "20261104",
   "sourceUrl": "https://modelarmor.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "CsamFilterSettings": {
       "properties": {
+        "filterEnforcement": {
+          "enum": [
+            "CSAM_FILTER_ENFORCEMENT_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
         "confidenceLevel": {
           "enum": [
             "DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED",
             "LOW_AND_ABOVE",
             "MEDIUM_AND_ABOVE",
             "HIGH"
-          ]
-        },
-        "filterEnforcement": {
-          "enum": [
-            "CSAM_FILTER_ENFORCEMENT_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
           ]
         }
       }
@@ -36,23 +36,23 @@
     },
     "FilterConfig": {
       "properties": {
-        "csamFilterSettings": {
-          "$ref": "CsamFilterSettings"
-        },
-        "maliciousUriFilterSettings": {
-          "$ref": "MaliciousUriFilterSettings"
-        },
-        "raiSettings": {
-          "$ref": "RaiFilterSettings"
-        },
-        "sdpSettings": {
-          "$ref": "SdpFilterSettings"
-        },
         "piAndJailbreakFilterSettings": {
           "$ref": "PiAndJailbreakFilterSettings"
         },
         "filterRuleSettings": {
           "$ref": "FilterRuleSettings"
+        },
+        "maliciousUriFilterSettings": {
+          "$ref": "MaliciousUriFilterSettings"
+        },
+        "csamFilterSettings": {
+          "$ref": "CsamFilterSettings"
+        },
+        "sdpSettings": {
+          "$ref": "SdpFilterSettings"
+        },
+        "raiSettings": {
+          "$ref": "RaiFilterSettings"
         }
       }
     },
@@ -105,9 +105,6 @@
     },
     "FloorSetting": {
       "properties": {
-        "filterConfig": {
-          "$ref": "FilterConfig"
-        },
         "integratedServices": {
           "items": {
             "enum": [
@@ -116,6 +113,9 @@
               "GOOGLE_MCP_SERVER"
             ]
           }
+        },
+        "filterConfig": {
+          "$ref": "FilterConfig"
         }
       }
     },
@@ -199,16 +199,19 @@
     },
     "Template": {
       "properties": {
-        "filterConfig": {
-          "$ref": "FilterConfig"
-        },
         "templateMetadata": {
           "$ref": "TemplateMetadata"
+        },
+        "filterConfig": {
+          "$ref": "FilterConfig"
         }
       }
     },
     "TemplateMetadata": {
       "properties": {
+        "filterVersionSelector": {
+          "$ref": "FilterVersionSelector"
+        },
         "enforcementType": {
           "enum": [
             "ENFORCEMENT_TYPE_UNSPECIFIED",
@@ -224,9 +227,6 @@
               "MODALITY_IMAGE"
             ]
           }
-        },
-        "filterVersionSelector": {
-          "$ref": "FilterVersionSelector"
         }
       }
     }

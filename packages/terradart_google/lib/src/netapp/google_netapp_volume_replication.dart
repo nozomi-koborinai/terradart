@@ -74,16 +74,20 @@ final class NetappVolumeReplicationDestinationVolumeParameters {
 final class NetappVolumeReplicationTieringPolicy {
   const NetappVolumeReplicationTieringPolicy({
     this.coolingThresholdDays,
+    this.hotTierBypassModeEnabled,
     this.tierAction,
   });
 
   final TfArg<num>? coolingThresholdDays;
+
+  final TfArg<bool>? hotTierBypassModeEnabled;
 
   final NetappVolumeReplicationTierAction? tierAction;
 
   @internal
   Map<String, Object?> encode() => {
     'cooling_threshold_days': ?coolingThresholdDays?.toTfJson(),
+    'hot_tier_bypass_mode_enabled': ?hotTierBypassModeEnabled?.toTfJson(),
     'tier_action': ?tierAction?.toTfJson(),
   };
 }

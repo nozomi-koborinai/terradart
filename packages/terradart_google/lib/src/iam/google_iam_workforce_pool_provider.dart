@@ -27,10 +27,14 @@ extension type const IamWorkforcePoolProviderScimUsage._(TfArg<String> _)
   static const enabledForGroups = IamWorkforcePoolProviderScimUsage._(
     TfArgLiteral('ENABLED_FOR_GROUPS'),
   );
+  static const enabledForUsersGroups = IamWorkforcePoolProviderScimUsage._(
+    TfArgLiteral('ENABLED_FOR_USERS_GROUPS'),
+  );
 
   static const List<IamWorkforcePoolProviderScimUsage> values = [
     scimUsageUnspecified,
     enabledForGroups,
+    enabledForUsersGroups,
   ];
 }
 

@@ -17,7 +17,7 @@
     },
     "ExportConfig": {
       "properties": {
-        "currentState": {
+        "desiredState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -26,7 +26,7 @@
             "NOT_FOUND"
           ]
         },
-        "desiredState": {
+        "currentState": {
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -42,11 +42,11 @@
     },
     "Subscription": {
       "properties": {
-        "deliveryConfig": {
-          "$ref": "DeliveryConfig"
-        },
         "exportConfig": {
           "$ref": "ExportConfig"
+        },
+        "deliveryConfig": {
+          "$ref": "DeliveryConfig"
         }
       }
     },

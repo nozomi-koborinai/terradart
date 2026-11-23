@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 
 /// Sensitive field paths for `google_app_engine_standard_app_version`.
@@ -277,6 +279,87 @@ final class AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'app_engine_bundled_services': appEngineBundledServices,
+  };
+}
+
+/// At most one of `vpc_access_connector`, `vpc_access` on `google_app_engine_standard_app_version`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.vpcAccessConnector(...)`.
+sealed class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess {
+  const AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess();
+
+  /// Sets `vpc_access_connector`.
+  const factory AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccessConnector(
+    AppEngineStandardAppVersionVpcAccessConnector vpcAccessConnector,
+  ) = AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector;
+
+  /// Sets `vpc_access`.
+  const factory AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccess(
+    AppEngineStandardAppVersionVpcAccess vpcAccess,
+  ) = AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccessConnector] choice: sets `vpc_access_connector`.
+final class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector
+    extends AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess {
+  const AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessConnector(
+    this.vpcAccessConnector,
+  );
+
+  final AppEngineStandardAppVersionVpcAccessConnector vpcAccessConnector;
+
+  @internal
+  @override
+  String get blockKey => 'vpc_access_connector';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'vpc_access_connector': vpcAccessConnector.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc_access_connector': TfArg.literal(vpcAccessConnector.encode()),
+  };
+}
+
+/// The [AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess.vpcAccess] choice: sets `vpc_access`.
+final class AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice
+    extends AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess {
+  const AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccessChoice(
+    this.vpcAccess,
+  );
+
+  final AppEngineStandardAppVersionVpcAccess vpcAccess;
+
+  @internal
+  @override
+  String get blockKey => 'vpc_access';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'vpc_access': vpcAccess.encode()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc_access': TfArg.literal(vpcAccess.encode()),
   };
 }
 
@@ -790,6 +873,74 @@ final class AppEngineStandardAppVersionManualScaling {
   Map<String, Object?> encode() => {'instances': instances.toTfJson()};
 }
 
+/// Typed helper for the `vpc_access` block of
+/// `google_app_engine_standard_app_version` (derived from provider schema).
+@immutable
+final class AppEngineStandardAppVersionVpcAccess {
+  const AppEngineStandardAppVersionVpcAccess({
+    this.vpcEgress,
+    this.networkInterfaces,
+  });
+
+  final AppEngineStandardAppVersionVpcEgress? vpcEgress;
+
+  final List<AppEngineStandardAppVersionNetworkInterfaces>? networkInterfaces;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'vpc_egress': ?vpcEgress?.toTfJson(),
+    if (networkInterfaces != null)
+      'network_interfaces': [for (final e in networkInterfaces!) e.encode()],
+  };
+}
+
+/// `vpc_egress` — derived from the provider schema description.
+extension type const AppEngineStandardAppVersionVpcEgress._(TfArg<String> _)
+    implements TfArg<String> {
+  AppEngineStandardAppVersionVpcEgress.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionVpcEgress.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionVpcEgress.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allTraffic = AppEngineStandardAppVersionVpcEgress._(
+    TfArgLiteral('ALL_TRAFFIC'),
+  );
+  static const privateIpRanges = AppEngineStandardAppVersionVpcEgress._(
+    TfArgLiteral('PRIVATE_IP_RANGES'),
+  );
+
+  static const List<AppEngineStandardAppVersionVpcEgress> values = [
+    allTraffic,
+    privateIpRanges,
+  ];
+}
+
+/// Typed helper for the `vpc_access.network_interfaces` block of
+/// `google_app_engine_standard_app_version` (derived from provider schema).
+@immutable
+final class AppEngineStandardAppVersionNetworkInterfaces {
+  const AppEngineStandardAppVersionNetworkInterfaces({
+    this.network,
+    this.subnetwork,
+    this.tags,
+  });
+
+  final RefTo<GoogleComputeNetwork>? network;
+
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
+
+  final TfArg<List<String>>? tags;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
+    'tags': ?tags?.toTfJson(),
+  };
+}
+
 /// Typed helper for the `vpc_access_connector` block of
 /// `google_app_engine_standard_app_version` (derived from provider schema).
 @immutable
@@ -855,7 +1006,8 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     required AppEngineStandardAppVersionDeployment deployment,
     required AppEngineStandardAppVersionEntrypoint entrypoint,
     AppEngineStandardAppVersionScaling? scaling,
-    AppEngineStandardAppVersionVpcAccessConnector? vpcAccessConnector,
+    AppEngineStandardAppVersionVpcAccessConnectorOrVpcAccess?
+    vpcAccessConnectorOrVpcAccess,
     AppEngineStandardAppVersionLegacyServices? legacyServices,
     TfArg<bool>? deleteServiceOnDestroy,
     TfArg<String>? deletionPolicy,
@@ -883,8 +1035,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
            'deployment': TfArg.literal(deployment.encode()),
            'entrypoint': TfArg.literal(entrypoint.encode()),
            ...?scaling?.argMap,
-           if (vpcAccessConnector != null)
-             'vpc_access_connector': TfArg.literal(vpcAccessConnector.encode()),
+           ...?vpcAccessConnectorOrVpcAccess?.argMap,
            ...?legacyServices?.argMap,
            'delete_service_on_destroy': ?deleteServiceOnDestroy,
            'deletion_policy': ?deletionPolicy,

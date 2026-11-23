@@ -1,7 +1,7 @@
 {
   "name": "datapipelines",
   "version": "v1",
-  "revision": "20261107",
+  "revision": "20261112",
   "sourceUrl": "https://datapipelines.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironment": {
@@ -55,13 +55,6 @@
         "workload": {
           "$ref": "GoogleCloudDatapipelinesV1Workload"
         },
-        "type": {
-          "enum": [
-            "PIPELINE_TYPE_UNSPECIFIED",
-            "PIPELINE_TYPE_BATCH",
-            "PIPELINE_TYPE_STREAMING"
-          ]
-        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -70,6 +63,13 @@
             "STATE_STOPPING",
             "STATE_ARCHIVED",
             "STATE_PAUSED"
+          ]
+        },
+        "type": {
+          "enum": [
+            "PIPELINE_TYPE_UNSPECIFIED",
+            "PIPELINE_TYPE_BATCH",
+            "PIPELINE_TYPE_STREAMING"
           ]
         }
       }
@@ -87,11 +87,11 @@
     },
     "GoogleCloudDatapipelinesV1Workload": {
       "properties": {
-        "dataflowLaunchTemplateRequest": {
-          "$ref": "GoogleCloudDatapipelinesV1LaunchTemplateRequest"
-        },
         "dataflowFlexTemplateRequest": {
           "$ref": "GoogleCloudDatapipelinesV1LaunchFlexTemplateRequest"
+        },
+        "dataflowLaunchTemplateRequest": {
+          "$ref": "GoogleCloudDatapipelinesV1LaunchTemplateRequest"
         }
       }
     }

@@ -87,6 +87,10 @@ final class GoogleResourceManagerCapabilityConfig extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `boundaries` attribute.
+  TfRef<List<String>> get boundaries =>
+      TfRef.attribute<List<String>>(this, 'boundaries');
+
   /// Reference to `capability_config_id` attribute.
   TfRef<String> get capabilityConfigId =>
       TfRef.attribute<String>(this, 'capability_config_id');

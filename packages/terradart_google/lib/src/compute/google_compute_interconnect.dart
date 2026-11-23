@@ -7,37 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_interconnect`.
 const Set<String> _googleComputeInterconnectSensitive = <String>{};
 
-/// Compute Interconnect Available enum for `available_features`.
-extension type const ComputeInterconnectAvailableFeatures._(TfArg<String> _)
-    implements TfArg<String> {
-  ComputeInterconnectAvailableFeatures.variable(String name)
-    : this._(TfArg.variable(name));
-  ComputeInterconnectAvailableFeatures.expression(String template)
-    : this._(TfArg.expression(template));
-  const ComputeInterconnectAvailableFeatures.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const ifCrossSiteNetwork = ComputeInterconnectAvailableFeatures._(
-    TfArgLiteral('IF_CROSS_SITE_NETWORK'),
-  );
-  static const ifMacsec = ComputeInterconnectAvailableFeatures._(
-    TfArgLiteral('IF_MACSEC'),
-  );
-  static const macsec = ComputeInterconnectAvailableFeatures._(
-    TfArgLiteral('MACSEC'),
-  );
-  static const ifL2Forwarding = ComputeInterconnectAvailableFeatures._(
-    TfArgLiteral('IF_L2_FORWARDING'),
-  );
-
-  static const List<ComputeInterconnectAvailableFeatures> values = [
-    ifCrossSiteNetwork,
-    ifMacsec,
-    macsec,
-    ifL2Forwarding,
-  ];
-}
-
 /// Compute Interconnect enum for `interconnect_type`.
 extension type const ComputeInterconnectType._(TfArg<String> _)
     implements TfArg<String> {
@@ -85,33 +54,6 @@ extension type const ComputeInterconnectLinkType._(TfArg<String> _)
   ];
 }
 
-/// Compute Interconnect Operational enum for `operational_status`.
-extension type const ComputeInterconnectOperationalStatus._(TfArg<String> _)
-    implements TfArg<String> {
-  ComputeInterconnectOperationalStatus.variable(String name)
-    : this._(TfArg.variable(name));
-  ComputeInterconnectOperationalStatus.expression(String template)
-    : this._(TfArg.expression(template));
-  const ComputeInterconnectOperationalStatus.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const osActive = ComputeInterconnectOperationalStatus._(
-    TfArgLiteral('OS_ACTIVE'),
-  );
-  static const osUnprovisioned = ComputeInterconnectOperationalStatus._(
-    TfArgLiteral('OS_UNPROVISIONED'),
-  );
-  static const osUnderMaintenance = ComputeInterconnectOperationalStatus._(
-    TfArgLiteral('OS_UNDER_MAINTENANCE'),
-  );
-
-  static const List<ComputeInterconnectOperationalStatus> values = [
-    osActive,
-    osUnprovisioned,
-    osUnderMaintenance,
-  ];
-}
-
 /// Compute Interconnect Requested enum for `requested_features`.
 extension type const ComputeInterconnectRequestedFeatures._(TfArg<String> _)
     implements TfArg<String> {
@@ -143,27 +85,134 @@ extension type const ComputeInterconnectRequestedFeatures._(TfArg<String> _)
   ];
 }
 
-/// Compute Interconnect enum for `state`.
-extension type const ComputeInterconnectState._(TfArg<String> _)
+/// Typed helper for the `application_aware_interconnect` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectApplicationAwareInterconnect {
+  const ComputeInterconnectApplicationAwareInterconnect({
+    this.profileDescription,
+    this.bandwidthPercentagePolicy,
+    this.shapeAveragePercentage,
+    this.strictPriorityPolicy,
+  });
+
+  final TfArg<String>? profileDescription;
+
+  final ComputeInterconnectBandwidthPercentagePolicy? bandwidthPercentagePolicy;
+
+  final List<ComputeInterconnectShapeAveragePercentage>? shapeAveragePercentage;
+
+  final ComputeInterconnectStrictPriorityPolicy? strictPriorityPolicy;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'profile_description': ?profileDescription?.toTfJson(),
+    'bandwidth_percentage_policy': ?bandwidthPercentagePolicy?.encode(),
+    if (shapeAveragePercentage != null)
+      'shape_average_percentage': [
+        for (final e in shapeAveragePercentage!) e.encode(),
+      ],
+    'strict_priority_policy': ?strictPriorityPolicy?.encode(),
+  };
+}
+
+/// Typed helper for the `application_aware_interconnect.bandwidth_percentage_policy` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectBandwidthPercentagePolicy {
+  const ComputeInterconnectBandwidthPercentagePolicy({
+    this.bandwidthPercentage,
+  });
+
+  final List<ComputeInterconnectBandwidthPercentage>? bandwidthPercentage;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (bandwidthPercentage != null)
+      'bandwidth_percentage': [
+        for (final e in bandwidthPercentage!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `application_aware_interconnect.bandwidth_percentage_policy.bandwidth_percentage` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectBandwidthPercentage {
+  const ComputeInterconnectBandwidthPercentage({
+    this.percentage,
+    this.trafficClass,
+  });
+
+  final TfArg<num>? percentage;
+
+  final ComputeInterconnectTrafficClass? trafficClass;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'percentage': ?percentage?.toTfJson(),
+    'traffic_class': ?trafficClass?.toTfJson(),
+  };
+}
+
+/// `traffic_class` — derived from the provider schema description.
+extension type const ComputeInterconnectTrafficClass._(TfArg<String> _)
     implements TfArg<String> {
-  ComputeInterconnectState.variable(String name) : this._(TfArg.variable(name));
-  ComputeInterconnectState.expression(String template)
+  ComputeInterconnectTrafficClass.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectTrafficClass.expression(String template)
     : this._(TfArg.expression(template));
-  const ComputeInterconnectState.arg(TfArg<String> arg) : this._(arg);
+  const ComputeInterconnectTrafficClass.arg(TfArg<String> arg) : this._(arg);
 
-  static const active = ComputeInterconnectState._(TfArgLiteral('ACTIVE'));
-  static const unprovisioned = ComputeInterconnectState._(
-    TfArgLiteral('UNPROVISIONED'),
+  static const tcUnspecified = ComputeInterconnectTrafficClass._(
+    TfArgLiteral('TC_UNSPECIFIED'),
   );
-  static const underMaintenance = ComputeInterconnectState._(
-    TfArgLiteral('UNDER_MAINTENANCE'),
-  );
+  static const tc1 = ComputeInterconnectTrafficClass._(TfArgLiteral('TC1'));
+  static const tc2 = ComputeInterconnectTrafficClass._(TfArgLiteral('TC2'));
+  static const tc3 = ComputeInterconnectTrafficClass._(TfArgLiteral('TC3'));
+  static const tc4 = ComputeInterconnectTrafficClass._(TfArgLiteral('TC4'));
+  static const tc5 = ComputeInterconnectTrafficClass._(TfArgLiteral('TC5'));
+  static const tc6 = ComputeInterconnectTrafficClass._(TfArgLiteral('TC6'));
 
-  static const List<ComputeInterconnectState> values = [
-    active,
-    unprovisioned,
-    underMaintenance,
+  static const List<ComputeInterconnectTrafficClass> values = [
+    tcUnspecified,
+    tc1,
+    tc2,
+    tc3,
+    tc4,
+    tc5,
+    tc6,
   ];
+}
+
+/// Typed helper for the `application_aware_interconnect.shape_average_percentage` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectShapeAveragePercentage {
+  const ComputeInterconnectShapeAveragePercentage({
+    this.percentage,
+    this.trafficClass,
+  });
+
+  final TfArg<num>? percentage;
+
+  final ComputeInterconnectTrafficClass? trafficClass;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'percentage': ?percentage?.toTfJson(),
+    'traffic_class': ?trafficClass?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `application_aware_interconnect.strict_priority_policy` block of
+/// `google_compute_interconnect` (derived from provider schema).
+@immutable
+final class ComputeInterconnectStrictPriorityPolicy {
+  const ComputeInterconnectStrictPriorityPolicy();
+
+  @internal
+  Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `macsec` block of
@@ -244,6 +293,9 @@ final class GoogleComputeInterconnect extends Resource {
     EnumList<ComputeInterconnectRequestedFeatures>? requestedFeatures,
     TfArg<Map<String, String>>? labels,
     ComputeInterconnectMacsec? macsec,
+    TfArg<bool>? aaiEnabled,
+    ComputeInterconnectApplicationAwareInterconnect?
+    applicationAwareInterconnect,
     ComputeInterconnectParams? params,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -268,6 +320,11 @@ final class GoogleComputeInterconnect extends Resource {
            'requested_features': ?requestedFeatures,
            'labels': ?labels,
            if (macsec != null) 'macsec': TfArg.literal(macsec.encode()),
+           'aai_enabled': ?aaiEnabled,
+           if (applicationAwareInterconnect != null)
+             'application_aware_interconnect': TfArg.literal(
+               applicationAwareInterconnect.encode(),
+             ),
            if (params != null) 'params': TfArg.literal(params.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
@@ -353,6 +410,9 @@ final class GoogleComputeInterconnect extends Resource {
   /// Reference to `wire_groups` attribute.
   TfRef<List<String>> get wireGroups =>
       TfRef.attribute<List<String>>(this, 'wire_groups');
+
+  /// Reference to `aai_enabled` attribute.
+  TfRef<bool> get aaiEnabled => TfRef.attribute<bool>(this, 'aai_enabled');
 
   /// Reference to `admin_enabled` attribute.
   TfRef<bool> get adminEnabled => TfRef.attribute<bool>(this, 'admin_enabled');

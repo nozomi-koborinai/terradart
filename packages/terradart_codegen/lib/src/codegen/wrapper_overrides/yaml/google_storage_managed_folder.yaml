@@ -8,3 +8,4 @@ paramOrder:
   - bucket
   - force_destroy
   - name
+  - rapid_cache_config

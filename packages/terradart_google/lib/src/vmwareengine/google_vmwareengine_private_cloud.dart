@@ -7,40 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_vmwareengine_private_cloud`.
 const Set<String> _googleVmwareenginePrivateCloudSensitive = <String>{};
 
-/// Vmwareengine Private Cloud enum for `state`.
-extension type const VmwareenginePrivateCloudState._(TfArg<String> _)
-    implements TfArg<String> {
-  VmwareenginePrivateCloudState.variable(String name)
-    : this._(TfArg.variable(name));
-  VmwareenginePrivateCloudState.expression(String template)
-    : this._(TfArg.expression(template));
-  const VmwareenginePrivateCloudState.arg(TfArg<String> arg) : this._(arg);
-
-  static const active = VmwareenginePrivateCloudState._(TfArgLiteral('ACTIVE'));
-  static const creating = VmwareenginePrivateCloudState._(
-    TfArgLiteral('CREATING'),
-  );
-  static const updating = VmwareenginePrivateCloudState._(
-    TfArgLiteral('UPDATING'),
-  );
-  static const failed = VmwareenginePrivateCloudState._(TfArgLiteral('FAILED'));
-  static const deleted = VmwareenginePrivateCloudState._(
-    TfArgLiteral('DELETED'),
-  );
-  static const purging = VmwareenginePrivateCloudState._(
-    TfArgLiteral('PURGING'),
-  );
-
-  static const List<VmwareenginePrivateCloudState> values = [
-    active,
-    creating,
-    updating,
-    failed,
-    deleted,
-    purging,
-  ];
-}
-
 /// Vmwareengine Private Cloud enum for `type`.
 extension type const VmwareenginePrivateCloudType._(TfArg<String> _)
     implements TfArg<String> {

@@ -1,9 +1,19 @@
 {
   "name": "dataform",
   "version": "v1",
-  "revision": "20261030",
+  "revision": "20261108",
   "sourceUrl": "https://dataform.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
+    "CodeCompilationConfig": {
+      "properties": {
+        "pipelineConfig": {
+          "$ref": "PipelineConfig"
+        }
+      }
+    },
+    "Config": {
+      "properties": {}
+    },
     "Folder": {
       "properties": {}
     },
@@ -19,6 +29,44 @@
         }
       }
     },
+    "InvocationConfig": {
+      "properties": {
+        "queryPriority": {
+          "enum": [
+            "QUERY_PRIORITY_UNSPECIFIED",
+            "INTERACTIVE",
+            "BATCH"
+          ]
+        },
+        "executionMode": {
+          "enum": [
+            "EXECUTION_MODE_UNSPECIFIED",
+            "DEFAULT",
+            "ALL_EXCEPT_UNIT_TESTS",
+            "UNIT_TESTS_ONLY"
+          ]
+        }
+      }
+    },
+    "PipelineConfig": {
+      "properties": {
+        "pipelineType": {
+          "enum": [
+            "PIPELINE_TYPE_UNSPECIFIED",
+            "DATAFORM",
+            "SQL",
+            "NOTEBOOK"
+          ]
+        }
+      }
+    },
+    "ReleaseConfig": {
+      "properties": {
+        "codeCompilationConfig": {
+          "$ref": "CodeCompilationConfig"
+        }
+      }
+    },
     "Repository": {
       "properties": {
         "gitRemoteSettings": {
@@ -28,6 +76,13 @@
     },
     "TeamFolder": {
       "properties": {}
+    },
+    "WorkflowConfig": {
+      "properties": {
+        "invocationConfig": {
+          "$ref": "InvocationConfig"
+        }
+      }
     }
   }
 }

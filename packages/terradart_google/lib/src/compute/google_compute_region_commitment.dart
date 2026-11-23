@@ -51,30 +51,6 @@ extension type const ComputeRegionCommitmentPlan._(TfArg<String> _)
   ];
 }
 
-/// Compute Region Commitment enum for `status`.
-extension type const ComputeRegionCommitmentStatus._(TfArg<String> _)
-    implements TfArg<String> {
-  ComputeRegionCommitmentStatus.variable(String name)
-    : this._(TfArg.variable(name));
-  ComputeRegionCommitmentStatus.expression(String template)
-    : this._(TfArg.expression(template));
-  const ComputeRegionCommitmentStatus.arg(TfArg<String> arg) : this._(arg);
-
-  static const notYetActive = ComputeRegionCommitmentStatus._(
-    TfArgLiteral('NOT_YET_ACTIVE'),
-  );
-  static const active = ComputeRegionCommitmentStatus._(TfArgLiteral('ACTIVE'));
-  static const expired = ComputeRegionCommitmentStatus._(
-    TfArgLiteral('EXPIRED'),
-  );
-
-  static const List<ComputeRegionCommitmentStatus> values = [
-    notYetActive,
-    active,
-    expired,
-  ];
-}
-
 /// Compute Region Commitment enum for `type`.
 extension type const ComputeRegionCommitmentType._(TfArg<String> _)
     implements TfArg<String> {

@@ -1,25 +1,11 @@
 {
   "name": "bigquerydatatransfer",
   "version": "v1",
-  "revision": "20261027",
+  "revision": "20261110",
   "sourceUrl": "https://bigquerydatatransfer.googleapis.com/$discovery/rest?version=v1",
   "schemas": {
     "DataSource": {
       "properties": {
-        "transferType": {
-          "enum": [
-            "TRANSFER_TYPE_UNSPECIFIED",
-            "BATCH",
-            "STREAMING"
-          ]
-        },
-        "dataRefreshType": {
-          "enum": [
-            "DATA_REFRESH_TYPE_UNSPECIFIED",
-            "SLIDING_WINDOW",
-            "CUSTOM_SLIDING_WINDOW"
-          ]
-        },
         "parameters": {
           "items": {
             "$ref": "DataSourceParameter"
@@ -31,6 +17,20 @@
             "AUTHORIZATION_CODE",
             "GOOGLE_PLUS_AUTHORIZATION_CODE",
             "FIRST_PARTY_OAUTH"
+          ]
+        },
+        "dataRefreshType": {
+          "enum": [
+            "DATA_REFRESH_TYPE_UNSPECIFIED",
+            "SLIDING_WINDOW",
+            "CUSTOM_SLIDING_WINDOW"
+          ]
+        },
+        "transferType": {
+          "enum": [
+            "TRANSFER_TYPE_UNSPECIFIED",
+            "BATCH",
+            "STREAMING"
           ]
         }
       }
@@ -58,13 +58,6 @@
     },
     "TransferConfig": {
       "properties": {
-        "managedTableType": {
-          "enum": [
-            "MANAGED_TABLE_TYPE_UNSPECIFIED",
-            "NATIVE",
-            "BIGLAKE"
-          ]
-        },
         "state": {
           "enum": [
             "TRANSFER_STATE_UNSPECIFIED",
@@ -73,6 +66,13 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLED"
+          ]
+        },
+        "managedTableType": {
+          "enum": [
+            "MANAGED_TABLE_TYPE_UNSPECIFIED",
+            "NATIVE",
+            "BIGLAKE"
           ]
         }
       }

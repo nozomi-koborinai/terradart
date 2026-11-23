@@ -1,7 +1,7 @@
 {
   "name": "privilegedaccessmanager",
   "version": "v1beta",
-  "revision": "20261028",
+  "revision": "20261109",
   "sourceUrl": "https://privilegedaccessmanager.googleapis.com/$discovery/rest?version=v1beta",
   "schemas": {
     "Settings": {
@@ -13,14 +13,7 @@
     },
     "SettingsEmailNotificationSettingsCustomNotificationBehavior_AdminNotifications": {
       "properties": {
-        "grantActivated": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantEnded": {
+        "grantActivationScheduled": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -34,14 +27,21 @@
             "DISABLED"
           ]
         },
-        "grantActivationScheduled": {
+        "grantExternallyModified": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
             "DISABLED"
           ]
         },
-        "grantExternallyModified": {
+        "grantActivated": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantEnded": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -63,7 +63,49 @@
     },
     "SettingsEmailNotificationSettingsCustomNotificationBehavior_RequesterNotifications": {
       "properties": {
+        "grantExternallyModified": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
         "grantActivationFailed": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "entitlementAssigned": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantActivated": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantActivationScheduled": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantExpired": {
+          "enum": [
+            "NOTIFICATION_MODE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "grantRevoked": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",
@@ -78,48 +120,6 @@
           ]
         },
         "grantEnded": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantActivated": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "entitlementAssigned": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantExternallyModified": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantActivationScheduled": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantRevoked": {
-          "enum": [
-            "NOTIFICATION_MODE_UNSPECIFIED",
-            "ENABLED",
-            "DISABLED"
-          ]
-        },
-        "grantExpired": {
           "enum": [
             "NOTIFICATION_MODE_UNSPECIFIED",
             "ENABLED",

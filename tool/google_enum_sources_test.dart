@@ -88,10 +88,18 @@ void main() {
         expect(universe.failures, isEmpty);
         final emitted = emittedEnums(coordinates.outputPackage);
         expect(emitted.map((e) => e.name).toSet(), manifest.enums.keys.toSet());
+        final unreached = emitted
+            .map((e) => e.name)
+            .toSet()
+            .difference(reachedEnums(manifest));
         expect(
           inputs.length,
-          greaterThan(stringInputs(manifest).length),
-          reason: 'the wrappers emit enums no manifest slot reaches',
+          unreached.isNotEmpty
+              ? greaterThan(stringInputs(manifest).length)
+              : equals(stringInputs(manifest).length),
+          reason: unreached.isNotEmpty
+              ? 'the wrappers emit enums no manifest slot reaches'
+              : 'every emitted enum is reached by a manifest slot',
         );
       });
 

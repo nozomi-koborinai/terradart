@@ -36,8 +36,7 @@ export 'src/network/google_network_connectivity_destination.dart'
 export 'src/network/google_network_connectivity_gateway_advertised_route.dart'
     show
         GoogleNetworkConnectivityGatewayAdvertisedRoute,
-        NetworkConnectivityGatewayAdvertisedRouteRecipient,
-        NetworkConnectivityGatewayAdvertisedRouteState;
+        NetworkConnectivityGatewayAdvertisedRouteRecipient;
 export 'src/network/google_network_connectivity_group.dart'
     show
         GoogleNetworkConnectivityGroup,
@@ -119,8 +118,7 @@ export 'src/network/google_network_connectivity_transport.dart'
         GoogleNetworkConnectivityTransport,
         NetworkConnectivityTransportBandwidth,
         NetworkConnectivityTransportDeletionPolicy,
-        NetworkConnectivityTransportStackType,
-        NetworkConnectivityTransportState;
+        NetworkConnectivityTransportStackType;
 export 'src/network/google_network_management_connectivity_test.dart'
     show
         GoogleNetworkManagementConnectivityTest,
@@ -230,9 +228,7 @@ export 'src/network/google_network_security_firewall_endpoint.dart'
         NetworkSecurityFirewallEndpointWildfireRegion,
         NetworkSecurityFirewallEndpointWildfireSettings;
 export 'src/network/google_network_security_firewall_endpoint_association.dart'
-    show
-        GoogleNetworkSecurityFirewallEndpointAssociation,
-        NetworkSecurityFirewallEndpointAssociationState;
+    show GoogleNetworkSecurityFirewallEndpointAssociation;
 export 'src/network/google_network_security_gateway_security_policy.dart'
     show GoogleNetworkSecurityGatewaySecurityPolicy;
 export 'src/network/google_network_security_gateway_security_policy_rule.dart'
