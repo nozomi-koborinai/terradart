@@ -451,6 +451,247 @@ String _literal(String className, String name) {
     expect(chosen.patches.single.$1, path);
     expect(chosen.patches.single.$2, '10.0.0.2');
   });
+
+  group('required-block learning', () {
+    const blockManifest = MigrateManifest(
+      package: 'terradart_example',
+      entries: [
+        MigrateEntry(
+          tfType: 'example_deployment',
+          className: 'ExampleDeployment',
+          barrel: 'example',
+          kind: CatalogKind.resource,
+          slots: [
+            MigrateSlot(
+              tfName: 'name',
+              dartName: 'name',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'configuration',
+              dartName: 'configuration',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              helper: 'ExampleDeploymentConfiguration',
+            ),
+          ],
+          getters: [],
+        ),
+      ],
+      helpers: {
+        'ExampleDeploymentConfiguration': MigrateHelper(
+          className: 'ExampleDeploymentConfiguration',
+          slots: [
+            MigrateSlot(
+              tfName: 'mode',
+              dartName: 'mode',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+      },
+      enums: {},
+    );
+
+    final address = TfAddress.parse('example_deployment.dep')!;
+
+    test(
+      'learns a required block and then an inner scalar value across passes',
+      () async {
+        final ledgerFile = File('${tmp.path}/block_ledger.yaml')
+          ..writeAsStringSync("# block ledger\nname: 'leftover'\n");
+        final stackFile = File('${tmp.path}/block_main.dart');
+        final generator = _BlockStack();
+        final lane = CoverageLane(
+          name: 'test',
+          generator: generator,
+          manifest: blockManifest,
+          dummies: CoverageDummies.parse(
+            ledgerFile.readAsStringSync(),
+            path: ledgerFile.path,
+            manifest: blockManifest,
+            bindings: const {},
+          ),
+          debtListed: const {},
+          stackPath: stackFile.path,
+        );
+
+        final mainTfWithConfig = jsonEncode({
+          'resource': {
+            'example_deployment': {
+              'dep': {
+                'name': 'leftover',
+                'configuration': [
+                  {'mode': 'leftover'},
+                ],
+              },
+            },
+          },
+        });
+
+        final verdict = await run(
+          lane,
+          _FakeOracle(
+            stackFile,
+            onRun: (source) {
+              if (!source.contains('configuration:')) {
+                return OracleRejected([
+                  BlockRejection(
+                    address,
+                    'Missing Configuration for Required Attribute',
+                    'Block configuration must have a configuration value as the '
+                        'provider has marked it as required',
+                  ),
+                ], '{}');
+              }
+              if (!source.contains("mode: 'ACTIVE'")) {
+                return OracleRejected([
+                  ValueRejection(
+                    address,
+                    const AttrPath(['configuration', 0, 'mode']),
+                    'leftover',
+                    'Invalid Attribute Value Match',
+                    'Attribute mode value must be one of: ["ACTIVE"], got: "leftover"',
+                  ),
+                ], mainTfWithConfig);
+              }
+              return const OracleGreen('tofu 1.13.1', {
+                'hashicorp/aws': '6.73.0',
+              });
+            },
+            onRevalidate: (patched) {
+              final res = patched['resource']! as Map<String, Object?>;
+              final dep =
+                  (res['example_deployment']! as Map<String, Object?>)['dep']!
+                      as Map<String, Object?>;
+              final cfg =
+                  (dep['configuration']! as List).first as Map<String, Object?>;
+              return cfg['mode'] == 'ACTIVE'
+                  ? const []
+                  : [
+                      ValueRejection(
+                        address,
+                        const AttrPath(['configuration', 0, 'mode']),
+                        cfg['mode']!,
+                        'Invalid Attribute Value Match',
+                        'Attribute mode value must be one of: ["ACTIVE"]',
+                      ),
+                    ];
+            },
+          ),
+        );
+
+        expect(verdict, isA<CoverageGreen>());
+        final green = verdict as CoverageGreen;
+        expect(green.excluded, isEmpty);
+        expect(
+          green.learned.map((l) => (l.key, l.value, l.source)),
+          unorderedEquals([
+            ('ExampleDeployment.configuration', 'include', 'required block'),
+            ('ExampleDeploymentConfiguration.mode', 'ACTIVE', 'family one-of'),
+          ]),
+        );
+        final saved = ledgerFile.readAsStringSync();
+        expect(
+          saved,
+          contains('ExampleDeployment.configuration:\n  include: true'),
+        );
+        expect(
+          saved,
+          contains("ExampleDeploymentConfiguration.mode:\n  value: 'ACTIVE'"),
+        );
+      },
+    );
+
+    test(
+      'leaves factory out and drops learned include when provider still rejects',
+      () async {
+        final ledgerFile = File('${tmp.path}/fail_ledger.yaml')
+          ..writeAsStringSync("# fail ledger\nname: 'leftover'\n");
+        final stackFile = File('${tmp.path}/fail_main.dart');
+        final lane = CoverageLane(
+          name: 'test',
+          generator: _BlockStack(),
+          manifest: blockManifest,
+          dummies: CoverageDummies.parse(
+            ledgerFile.readAsStringSync(),
+            path: ledgerFile.path,
+            manifest: blockManifest,
+            bindings: const {},
+          ),
+          debtListed: const {},
+          stackPath: stackFile.path,
+        );
+
+        final verdict = await run(
+          lane,
+          _FakeOracle(
+            stackFile,
+            onRun: (source) {
+              if (!source.contains('ExampleDeployment(')) {
+                return const OracleGreen('tofu 1.13.1', {
+                  'hashicorp/aws': '6.73.0',
+                });
+              }
+              if (!source.contains('configuration:')) {
+                return OracleRejected([
+                  BlockRejection(
+                    address,
+                    'Missing Configuration for Required Attribute',
+                    'Block configuration must have a configuration value as the '
+                        'provider has marked it as required',
+                  ),
+                ], '{}');
+              }
+              return OracleRejected([
+                BlockRejection(
+                  address,
+                  'Invalid Configuration',
+                  'Conflicting attributes inside configuration',
+                ),
+              ], '{}');
+            },
+            onRevalidate: (_) => const [],
+          ),
+        );
+
+        expect(verdict, isA<CoverageGreen>());
+        final green = verdict as CoverageGreen;
+        expect(green.excluded.map((e) => e.className), ['ExampleDeployment']);
+        expect(green.learned, isEmpty);
+        expect(ledgerFile.readAsStringSync(), isNot(contains('include: true')));
+      },
+    );
+  });
+}
+
+final class _BlockStack implements CoverageStackGenerator {
+  @override
+  String get slug => 'block_leftover';
+
+  @override
+  Set<String> get bindings => const {};
+
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    if (exclude.contains('ExampleDeployment')) return const RenderedStack('');
+    final hasConfig = dummies
+        .includedParams('ExampleDeployment')
+        .contains('configuration');
+    final mode =
+        dummies.valueFor('ExampleDeploymentConfiguration', 'mode')?.dart ??
+        "'leftover'";
+    final configArg = hasConfig ? ', configuration: [Config(mode: $mode)]' : '';
+    return RenderedStack("ExampleDeployment(name: 'leftover'$configArg)\n");
+  }
 }
 
 /// What a coverage-stack generator may not do: declare `main` (only

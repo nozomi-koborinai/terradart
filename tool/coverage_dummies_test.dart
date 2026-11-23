@@ -281,5 +281,63 @@ ExampleQueueScope.zoneId: 'unjudged'
         "['subnet-1']",
       );
     });
+
+    test('slotKeyAt resolves helper and sealed block slots', () {
+      expect(
+        dummies.slotKeyAt(route, const AttrPath(['config']))?.value,
+        'ExampleRoute.config',
+      );
+      expect(
+        dummies.slotKeyAt(route, const AttrPath(['config', 0, 'mode']))?.value,
+        'ExampleRouteConfig.mode',
+      );
+      expect(
+        dummies.slotKeyAt(route, const AttrPath(['cidr_ip']))?.value,
+        'ExampleRoute.cidr',
+      );
+    });
+
+    test('include: true round-trips through save and includedParams', () {
+      final tmp = Directory.systemTemp.createTempSync('include_dummy_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      final path = '${tmp.path}/ledger.yaml';
+      final parsed = CoverageDummies.parse(
+        "subnetIds: ['fallback']\n",
+        path: path,
+        manifest: manifest,
+        bindings: const {},
+      );
+      final key = parsed.slotKeyAt(route, const AttrPath(['config']))!;
+      final updated = parsed.revised(
+        const {},
+        included: {
+          key: const LearnedInclude(
+            'example_route.route: Block config must have a configuration value',
+          ),
+        },
+      );
+      expect(updated.includedParams('ExampleRoute'), ['config']);
+      expect(updated.includesParam(key), isTrue);
+      expect(updated.ownsValue('ExampleRoute', 'config'), isTrue);
+      expect(updated.valueFor('ExampleRoute', 'config'), isNull);
+
+      updated.save();
+      final reloaded = CoverageDummies.parse(
+        File(path).readAsStringSync(),
+        path: path,
+        manifest: manifest,
+        bindings: const {},
+      );
+      expect(reloaded.includedParams('ExampleRoute'), ['config']);
+      expect(reloaded.stale, isEmpty);
+    });
+
+    test('include: true rejects non-exact keys and false values', () {
+      expect(() => _parse('config:\n  include: true\n'), throwsFormatException);
+      expect(
+        () => _parse('ExampleQueue.directoryId:\n  include: false\n'),
+        throwsFormatException,
+      );
+    });
   });
 }

@@ -916,7 +916,12 @@ String _sealedChoice(
 }) {
   final ownExtras = _requiredAtValidate[sealed];
   if (ownExtras != null) _usedKeys.add(sealed);
-  final extras = ownExtras ?? _requiredAtValidate[owner] ?? const <String>[];
+  final extras = [
+    ...?ownExtras,
+    ..._dummies.includedParams(sealed),
+    if (ownExtras == null) ...?_requiredAtValidate[owner],
+    ..._dummies.includedParams(owner),
+  ];
   final variants = [
     for (final v in _sealedVariants[sealed]!)
       (v, helpers[v]!.requiredParams.single),
@@ -968,47 +973,65 @@ List<_Param> _extraSlots(
   Iterable<String> extras,
   List<_Param> required,
   List<_Param> optional,
-  Map<String, _ClassInfo> helpers,
-) {
+  Map<String, _ClassInfo> helpers, {
+  bool strict = true,
+}) {
   final out = <_Param>[];
   for (final name in extras) {
     if (_isSealedMember(required, name, helpers)) continue;
     if (required.any((p) => p.name == name)) {
-      throw StateError('$owner.$name is not an optional parameter');
+      if (strict) throw StateError('$owner.$name is not an optional parameter');
+      continue;
     }
     final slot =
         optional.where((p) => p.name == name).firstOrNull ??
-        optional
-            .where((p) => _isSealedMember([p], name, helpers))
-            .firstOrNull ??
-        (throw StateError('$owner.$name is not an optional parameter'));
+        optional.where((p) => _isSealedMember([p], name, helpers)).firstOrNull;
+    if (slot == null) {
+      if (strict) throw StateError('$owner.$name is not an optional parameter');
+      continue;
+    }
     if (!out.contains(slot)) out.add(slot);
   }
   return out;
 }
 
 List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
-  final extras = _requiredAtValidate[f.className];
-  if (extras == null) return const [];
-  _usedKeys.add(f.className);
-  return [
-    for (final p in _extraSlots(
+  final fixed = _requiredAtValidate[f.className];
+  if (fixed != null) _usedKeys.add(f.className);
+  final learned = _dummies.includedParams(f.className);
+  if (fixed == null && learned.isEmpty) return const [];
+  final slots = <_Param>[
+    if (fixed != null)
+      ..._extraSlots(
+        f.className,
+        fixed,
+        f.requiredParams,
+        f.optionalParams,
+        helpers,
+      ),
+    ..._extraSlots(
       f.className,
-      extras,
+      learned,
       f.requiredParams,
       f.optionalParams,
       helpers,
-    ))
-      _Extra(
-        p.name,
-        _dummy(
-          p,
-          helpers,
-          sensitive: f.sensitiveLeaves,
-          depth: 0,
-          owner: f.className,
+      strict: false,
+    ),
+  ];
+  final seen = <String>{};
+  return [
+    for (final p in slots)
+      if (seen.add(p.name))
+        _Extra(
+          p.name,
+          _dummy(
+            p,
+            helpers,
+            sensitive: f.sensitiveLeaves,
+            depth: 0,
+            owner: f.className,
+          ),
         ),
-      ),
   ];
 }
 
@@ -1161,7 +1184,7 @@ String? _fitInner(DummyValue value, String type) {
   final json = switch (value) {
     LiteralDummy(:final json) => json,
     BoundDummy(:final template) => template,
-    DartDummy() => null,
+    DartDummy() || IncludeDummy() => null,
   };
   if (t == 'String' || t == 'Object' || t == 'dynamic') {
     return json is String || t != 'String' ? dart : null;
@@ -1513,8 +1536,8 @@ String _constructHelper(
   if (info == null) return '$ctor()';
   final extras = _requiredAtValidate[className];
   if (extras != null) _usedKeys.add(className);
-  final params = [
-    ...info.requiredParams,
+  final learned = _dummies.includedParams(className);
+  final extraParams = <_Param>[
     if (extras != null)
       ..._extraSlots(
         className,
@@ -1522,8 +1545,25 @@ String _constructHelper(
         info.requiredParams,
         info.optionalParams,
         helpers,
-      )
-    else if (info.requiredParams.isEmpty && info.optionalParams.isNotEmpty)
+      ),
+    ..._extraSlots(
+      className,
+      learned,
+      info.requiredParams,
+      info.optionalParams,
+      helpers,
+      strict: false,
+    ),
+  ];
+  final seen = <String>{for (final p in info.requiredParams) p.name};
+  final params = [
+    ...info.requiredParams,
+    for (final p in extraParams)
+      if (seen.add(p.name)) p,
+    if (extras == null &&
+        learned.isEmpty &&
+        info.requiredParams.isEmpty &&
+        info.optionalParams.isNotEmpty)
       info.optionalParams.first,
   ];
   if (params.isEmpty) {

@@ -196,9 +196,9 @@ final class OracleBroken extends OracleRun {
   final String log;
 }
 
-/// Passes that may learn values. Later passes only leave factories out, so
-/// the run ends.
-const kLearnPasses = 3;
+/// Passes that may learn values or required blocks. Later passes only leave
+/// factories out, so the run ends.
+const kLearnPasses = 5;
 
 /// Trial rounds one search may spend, and the wall time it may take.
 const kMaxRounds = 6;
@@ -233,11 +233,17 @@ Future<CoverageVerdict> runCoverageStack(
   final exclude = {...lane.debtListed};
   final excluded = <String, ExcludedFactory>{};
   final learned = <DummyKey, (LearnedDummy, ValueRejection)>{};
+  final learnedIncludes =
+      <DummyKey, (LearnedInclude, BlockRejection, AttrPath)>{};
   try {
     for (var pass = 1; ; pass++) {
-      final dummies = lane.dummies.revised({
-        for (final MapEntry(:key, :value) in learned.entries) key: value.$1,
-      });
+      final dummies = lane.dummies.revised(
+        {for (final MapEntry(:key, :value) in learned.entries) key: value.$1},
+        included: {
+          for (final MapEntry(:key, :value) in learnedIncludes.entries)
+            key: value.$1,
+        },
+      );
       try {
         var rendered = lane.generator.render(dummies, exclude: exclude);
         while (rendered.unplaceable.isNotEmpty) {
@@ -268,7 +274,11 @@ Future<CoverageVerdict> runCoverageStack(
       switch (await oracle.run(slug)) {
         case OracleGreen(:final engine, :final providers):
           final pruned = [for (final k in lane.dummies.stale) k.value]..sort();
-          if (learned.isNotEmpty || pruned.isNotEmpty) dummies.save();
+          if (learned.isNotEmpty ||
+              learnedIncludes.isNotEmpty ||
+              pruned.isNotEmpty) {
+            dummies.save();
+          }
           return CoverageGreen(
             slug: slug,
             engine: engine,
@@ -281,6 +291,16 @@ Future<CoverageVerdict> runCoverageStack(
                   source: l.candidate.source,
                   rejected: r.rejected,
                   at: r.at,
+                  detail: r.message,
+                ),
+              for (final MapEntry(:key, value: (inc, r, reqPath))
+                  in learnedIncludes.entries)
+                LearnedEntry(
+                  key: key.value,
+                  value: 'include',
+                  source: inc.source,
+                  rejected: '(missing)',
+                  at: '${r.address}.${reqPath.text}',
                   detail: r.message,
                 ),
             ],
@@ -312,6 +332,7 @@ Future<CoverageVerdict> runCoverageStack(
           }
           var progressed = false;
           void leaveOut(TfAddress address, ProviderRejected cause) {
+            learnedIncludes.removeWhere((_, v) => v.$2.address == address);
             final factory = lane.factoryAt(address)!;
             if (exclude.add(factory.className)) {
               excluded[factory.className] = factory.excluded(cause);
@@ -320,6 +341,8 @@ Future<CoverageVerdict> runCoverageStack(
           }
 
           final groups = <DummyKey, List<ValueRejection>>{};
+          final learnedAddresses = <TfAddress>{};
+          final pendingLeaveOut = <(TfAddress, ProviderRejected)>[];
           for (final r in rejections) {
             switch (r) {
               case ValueRejection():
@@ -330,10 +353,28 @@ Future<CoverageVerdict> runCoverageStack(
                   (groups[key] ??= []).add(r);
                 } else {
                   learned.remove(key);
-                  leaveOut(r.address, _cause(r));
+                  pendingLeaveOut.add((r.address, _cause(r)));
                 }
               case BlockRejection():
-                leaveOut(r.address, _cause(r));
+                final reqPath = requiredPathNamedBy(r.message);
+                final key = reqPath == null
+                    ? null
+                    : dummies.slotKeyAt(r.address, reqPath);
+                if (pass <= kLearnPasses &&
+                    key != null &&
+                    !learnedIncludes.containsKey(key) &&
+                    !dummies.includesParam(key)) {
+                  learnedIncludes[key] = (
+                    LearnedInclude('${r.address}: ${_firstLine(r.message)}'),
+                    r,
+                    reqPath!,
+                  );
+                  learnedAddresses.add(r.address);
+                  progressed = true;
+                } else {
+                  if (key != null) learnedIncludes.remove(key);
+                  pendingLeaveOut.add((r.address, _cause(r)));
+                }
               case StackRejection():
             }
           }
@@ -341,11 +382,19 @@ Future<CoverageVerdict> runCoverageStack(
           for (final MapEntry(key: key, value: at) in groups.entries) {
             if (found[key] case final l?) {
               learned[key] = (l, at.first);
+              for (final r in at) {
+                learnedAddresses.add(r.address);
+              }
               progressed = true;
             } else {
               for (final r in at) {
-                leaveOut(r.address, _cause(r));
+                pendingLeaveOut.add((r.address, _cause(r)));
               }
+            }
+          }
+          for (final (address, cause) in pendingLeaveOut) {
+            if (!learnedAddresses.contains(address)) {
+              leaveOut(address, cause);
             }
           }
           if (!progressed) {

@@ -18,10 +18,24 @@ List<StaleSealedName> staleSealedNamesIn(String log) => [
     (type: m.group(1)!, key: m.group(2)!),
 ];
 
-/// Removes [keys] from the `sealedNames:` section of an override. Drops the
-/// section header when that was its last entry. Other sections stay.
-String dropSealedNames(String source, Set<String> keys) {
+/// Removes [keys] from the `sealedNames:` section of an override. Keys are
+/// matched by their canonical sorted member set (`"b, a"` matches `"a, b"`).
+/// Drops the section header when that was its last entry. Other sections stay.
+String dropSealedNames(String source, Set<String> keys) =>
+    dropGroupMapSection(source, 'sealedNames', keys);
+
+/// Canonical sorted member key (`"b, a"` -> `"a, b"`).
+String canonicalGroupKey(String key) => ([
+  for (final part in key.split(','))
+    if (part.trim().isNotEmpty) part.trim(),
+]..sort()).join(', ');
+
+/// Removes entries matching [keys] (by [canonicalGroupKey]) from the top-level
+/// YAML map [section]. Drops the section header when its last entry is
+/// removed. Other sections stay untouched.
+String dropGroupMapSection(String source, String section, Set<String> keys) {
   if (keys.isEmpty) return source;
+  final targets = {for (final k in keys) canonicalGroupKey(k)};
   final lines = source.split('\n');
   final out = <String>[];
   var inSection = false;
@@ -29,14 +43,23 @@ String dropSealedNames(String source, Set<String> keys) {
   var keptEntry = false;
   var headerAt = -1;
   void dropEmptyHeader() {
-    if (!keptEntry && headerAt >= 0) out.removeRange(headerAt, out.length);
+    if (!keptEntry && headerAt >= 0) {
+      out.removeRange(headerAt, out.length);
+      while (out.length >= 2 &&
+          out.last.isEmpty &&
+          out[out.length - 2].isEmpty) {
+        out.removeLast();
+      }
+    }
   }
 
   for (final line in lines) {
     if (!inSection) {
-      if (line == 'sealedNames:') {
+      if (line == '$section:') {
         inSection = true;
         headerAt = out.length;
+        keptEntry = false;
+        skipping = false;
         out.add(line);
         continue;
       }
@@ -54,28 +77,50 @@ String dropSealedNames(String source, Set<String> keys) {
       continue;
     }
     final quoted = RegExp('''^  ["'](.+)["']\\s*:''').firstMatch(line);
-    if (quoted != null) {
-      skipping = keys.contains(quoted.group(1));
-      if (!skipping) keptEntry = true;
-      if (!skipping) out.add(line);
-      continue;
-    }
-    if (skipping && (line.startsWith('   ') || line.trim().isEmpty)) {
-      if (line.trim().isEmpty) {
-        skipping = false;
+    final unquoted = quoted == null
+        ? RegExp(r'^  ([^\s:#][^:]*?)\s*:').firstMatch(line)
+        : null;
+    final rawKey = quoted?.group(1) ?? unquoted?.group(1)?.trim();
+    if (rawKey != null) {
+      skipping = targets.contains(canonicalGroupKey(rawKey));
+      if (!skipping) {
+        keptEntry = true;
         out.add(line);
       }
       continue;
     }
+    if (skipping) {
+      if (line.startsWith('   ')) continue;
+      if (line.trim().isEmpty) {
+        if (keptEntry) out.add(line);
+        continue;
+      }
+    }
     skipping = false;
     out.add(line);
   }
-  if (inSection) dropEmptyHeader();
+  if (inSection) {
+    dropEmptyHeader();
+    if (!keptEntry &&
+        source.endsWith('\n') &&
+        (out.isEmpty || out.last.isNotEmpty)) {
+      out.add('');
+    }
+  }
   return out.join('\n');
 }
 
-/// Writes the drops into the resource and data-source override files for
-/// each name. Returns the `type key` lines that changed a file.
+/// Resolves an override YAML file under [overridesRoot] for a wrap diagnostic
+/// label (`google_foo` for resources, `data.azurerm_foo` for data sources).
+File overrideFileForLabel(String overridesRoot, String label) {
+  if (label.startsWith('data.')) {
+    return File(p.join(overridesRoot, 'data_${label.substring(5)}.yaml'));
+  }
+  return File(p.join(overridesRoot, '$label.yaml'));
+}
+
+/// Writes the drops into the override file for each name. Returns the
+/// `type key` lines that changed a file.
 List<String> retireStaleSealedNames(
   String overridesRoot,
   List<StaleSealedName> stale,
@@ -86,17 +131,20 @@ List<String> retireStaleSealedNames(
   }
   final dropped = <String>[];
   for (final MapEntry(:key, :value) in byType.entries) {
-    for (final file in [
-      File(p.join(overridesRoot, '$key.yaml')),
-      File(p.join(overridesRoot, 'data_$key.yaml')),
-    ]) {
+    final files = key.startsWith('data.')
+        ? [overrideFileForLabel(overridesRoot, key)]
+        : [
+            File(p.join(overridesRoot, '$key.yaml')),
+            File(p.join(overridesRoot, 'data_$key.yaml')),
+          ];
+    for (final file in files) {
       if (!file.existsSync()) continue;
       final original = file.readAsStringSync();
       final updated = dropSealedNames(original, value);
       if (updated == original) continue;
       file.writeAsStringSync(updated);
       for (final k in value) {
-        if (original.contains('"$k"') || original.contains("'$k'")) {
+        if (dropSealedNames(original, {k}) != original) {
           dropped.add('$key $k');
         }
       }

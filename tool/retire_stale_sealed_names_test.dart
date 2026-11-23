@@ -96,4 +96,29 @@ paramOrder:
       'kind: data_source\n',
     );
   });
+
+  test('retireStaleSealedNames resolves data.<type> to data_<type>.yaml', () {
+    final root = Directory.systemTemp.createTempSync('stale_sealed_data_');
+    addTearDown(() => root.deleteSync(recursive: true));
+    final file = File(p.join(root.path, 'data_azurerm_policy_definition.yaml'))
+      ..writeAsStringSync('''
+kind: data_source
+outputDir: data
+
+sealedNames:
+  "display_name, name": identifier
+''');
+
+    final stale = staleSealedNamesIn(
+      '[E406] terradart wrap: data.azurerm_policy_definition sealedNames '
+      '"display_name, name" matches no sealed group',
+    );
+    expect(retireStaleSealedNames(root.path, stale), [
+      'data.azurerm_policy_definition display_name, name',
+    ]);
+    expect(file.readAsStringSync(), '''
+kind: data_source
+outputDir: data
+''');
+  });
 }
