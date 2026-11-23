@@ -335,10 +335,6 @@ entries:
   - resource: aws_sagemaker_inference_component
     detected_at: 2026-10-27
     provider_version: 6.70.0
-  - resource: aws_securityhub_connector_v2
-    detected_at: 2026-11-17
-    provider_version: 6.73.0
-    note: the coverage stack left this factory out (its awaiting-example line in tool/example_debt.yaml says why); give its dummy value in tool/coverage_dummies/aws.yaml, delete that line, and run dart tool/coverage_stack.dart --lane aws
   - resource: azurerm_data_protection_backup_instance_cosmosdb_account
     detected_at: 2026-11-06
     provider_version: 5.13.0

@@ -3619,6 +3619,22 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsConfigConnector(
+        'config_connector',
+        connectorConfiguration: [
+          ConfigConnectorConfiguration(
+            azure: [
+              .new(
+                clientIdentifier: .literal(leftover),
+                tenantIdentifier: .literal(leftover),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+
+    add(
       AwsConfigDeliveryChannel(
         'config_delivery_channel',
         s3BucketName: .literal(leftover),
@@ -4814,6 +4830,25 @@ final class AwsLeftoverStack extends Stack {
         'dsql_cluster_policy',
         identifier: .literal('abcdefghijklmnopqrstuvwxyz'),
         policy: .literal(policy),
+      ),
+    );
+
+    add(
+      AwsDsqlStream(
+        'dsql_stream',
+        clusterIdentifier: .literal('00000000000000000000000000'),
+        format: .json,
+        ordering: .unordered,
+        targetDefinition: [
+          DsqlStreamTargetDefinition(
+            kinesis: [
+              .new(
+                roleArn: .literal(arn),
+                streamArn: .literal('arn:awsa:kinesis:a:000000000000:stream/0'),
+              ),
+            ],
+          ),
+        ],
       ),
     );
 
@@ -9551,6 +9586,35 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsNetworksecuritymanagerDeployment(
+        'networksecuritymanager_deployment',
+        name: .literal(leftover),
+        policyArns: .literal([arn]),
+        scopeArn: .literal(arn),
+        configuration: [
+          NetworksecuritymanagerDeploymentConfiguration(
+            enableCrossAccountVisibility: .literal(true),
+          ),
+        ],
+      ),
+    );
+
+    add(
+      AwsNetworksecuritymanagerPolicy(
+        'networksecuritymanager_policy',
+        firewallType: .waf,
+        name: .literal(leftover),
+        priority: .literal(200),
+        configuration: [
+          NetworksecuritymanagerPolicyConfiguration(
+            remediationEnabled: .literal(true),
+            resourcesCleanUp: .literal(true),
+          ),
+        ],
+      ),
+    );
+
+    add(
       AwsNetworksecuritymanagerTemplate(
         'networksecuritymanager_template',
         firewallType: .waf,
@@ -12723,6 +12787,24 @@ final class AwsLeftoverStack extends Stack {
         'securityhub_configuration_policy_association',
         policyId: .literal('SELF_MANAGED_SECURITY_HUB'),
         targetId: .literal('123456789012'),
+      ),
+    );
+
+    add(
+      AwsSecurityhubConnectorV2(
+        'securityhub_connector_v2',
+        name: .literal(leftover),
+        connectorProvider: [
+          SecurityhubConnectorV2ConnectorProvider(
+            azure: [
+              .new(
+                awsConfigConnectorArn: .literal(arn),
+                azureRegions: .literal([leftover]),
+                scopeConfiguration: [.new(scopeType: .tenant)],
+              ),
+            ],
+          ),
+        ],
       ),
     );
 
