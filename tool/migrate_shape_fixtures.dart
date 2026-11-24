@@ -103,12 +103,15 @@ Set<String> renamedTypes(String migratingMd) {
 /// renamed type the manifest declares. The renamed-type checks apply only
 /// when the lane is [published] before the release MIGRATING.md upgrades
 /// from: a package with no such release has had no upgrade, so MIGRATING.md
-/// has no rename row about it.
+/// has no rename row about it. When a published lane has never renamed a
+/// helper or enum type across its upgrades, pass [allowNoRename] as `true`;
+/// it fails as stale as soon as MIGRATING.md records a rename for that lane.
 List<String> shapeFixtureFindings(
   MigrateManifest manifest,
   MigrationReport report, {
   required Set<String> renamed,
   required bool published,
+  bool allowNoRename = false,
 }) {
   final lane = shapeFixtureLane(manifest.package);
   final findings = <String>[
@@ -123,17 +126,26 @@ List<String> shapeFixtureFindings(
   final types = {...manifest.helpers.keys, ...manifest.enums.keys};
   final declared = renamed.intersection(types).toList();
   if (declared.isEmpty && types.isNotEmpty) {
-    findings.add(
-      '$lane: no Before / After row in MIGRATING.md renames a $lane type, '
-      'so the fixture cannot check one; a rename table this lane has is '
-      'not being read',
-    );
-  } else if (declared.isNotEmpty &&
-      report.types.intersection(renamed).isEmpty) {
-    findings.add(
-      '$lane: the fixture uses none of the renamed types '
-      '${(declared..sort()).join(', ')}',
-    );
+    if (!allowNoRename) {
+      findings.add(
+        '$lane: no Before / After row in MIGRATING.md renames a $lane type, '
+        'so the fixture cannot check one; a rename table this lane has is '
+        'not being read',
+      );
+    }
+  } else if (declared.isNotEmpty) {
+    if (allowNoRename) {
+      findings.add(
+        '$lane: MIGRATING.md now renames ${(declared..sort()).join(', ')}; '
+        'remove $lane from the no-rename allowlist',
+      );
+    }
+    if (report.types.intersection(renamed).isEmpty) {
+      findings.add(
+        '$lane: the fixture uses none of the renamed types '
+        '${(declared..sort()).join(', ')}',
+      );
+    }
   }
   return findings;
 }

@@ -196,6 +196,9 @@ extension type const LambdaLayerVersionCompatibleRuntimes._(TfArg<String> _)
   static const java17Al2023 = LambdaLayerVersionCompatibleRuntimes._(
     TfArgLiteral('java17.al2023'),
   );
+  static const custom = LambdaLayerVersionCompatibleRuntimes._(
+    TfArgLiteral('custom'),
+  );
 
   static const List<LambdaLayerVersionCompatibleRuntimes> values = [
     nodejs,
@@ -249,6 +252,7 @@ extension type const LambdaLayerVersionCompatibleRuntimes._(TfArg<String> _)
     java8Al2023,
     java11Al2023,
     java17Al2023,
+    custom,
   ];
 }
 

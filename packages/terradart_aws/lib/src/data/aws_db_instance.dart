@@ -173,6 +173,10 @@ final class DataAwsDbInstance extends Data {
   TfRef<String> get replicateSourceDb =>
       TfRef.attribute<String>(this, 'replicate_source_db');
 
+  /// Reference to `replicate_source_db_cluster` attribute.
+  TfRef<String> get replicateSourceDbCluster =>
+      TfRef.attribute<String>(this, 'replicate_source_db_cluster');
+
   /// Reference to `resource_id` attribute.
   TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
 

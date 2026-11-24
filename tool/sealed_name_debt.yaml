@@ -7,4 +7,5 @@
 # `sealedNames: {"<members>": <concept>}` to the override and
 # re-running wrap, which drops the entry. `wrap --check` fails
 # on a missing or stale entry.
-{}
+aws_fsx_s3_access_point_attachment:
+  "ontap_configuration, openzfs_configuration": "awaiting-name: hashicorp/aws 6.74.0"

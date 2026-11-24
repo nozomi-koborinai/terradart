@@ -19,8 +19,14 @@ extension type const NetworksecuritymanagerRuleFirewallType._(TfArg<String> _)
   static const waf = NetworksecuritymanagerRuleFirewallType._(
     TfArgLiteral('WAF'),
   );
+  static const igwFirewall = NetworksecuritymanagerRuleFirewallType._(
+    TfArgLiteral('IGW_FIREWALL'),
+  );
 
-  static const List<NetworksecuritymanagerRuleFirewallType> values = [waf];
+  static const List<NetworksecuritymanagerRuleFirewallType> values = [
+    waf,
+    igwFirewall,
+  ];
 }
 
 /// Networksecuritymanager Rule enum for `type`.

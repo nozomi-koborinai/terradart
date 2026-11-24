@@ -25,8 +25,12 @@ export 'src/networksecuritymanager/aws_networksecuritymanager_policy.dart'
         AwsNetworksecuritymanagerPolicy,
         NetworksecuritymanagerPolicyConfiguration,
         NetworksecuritymanagerPolicyConflictResolution,
+        NetworksecuritymanagerPolicyConnectivityType,
+        NetworksecuritymanagerPolicyDefaultSubnetConnectivity,
         NetworksecuritymanagerPolicyExistingCustomerWebAclResolution,
         NetworksecuritymanagerPolicyFirewallType,
+        NetworksecuritymanagerPolicyIgwFirewallConfig,
+        NetworksecuritymanagerPolicySubnetConnectivityOverride,
         NetworksecuritymanagerPolicyTemplateOrRule,
         NetworksecuritymanagerPolicyTemplateOrRuleIdentifier,
         NetworksecuritymanagerPolicyTemplateOrRuleTemplateIdentifier,
@@ -54,7 +58,8 @@ export 'src/networksecuritymanager/aws_networksecuritymanager_scope.dart'
         NetworksecuritymanagerScopeResourceScopeExclude,
         NetworksecuritymanagerScopeResourceScopeInclude,
         NetworksecuritymanagerScopeResourceType,
-        NetworksecuritymanagerScopeScheme;
+        NetworksecuritymanagerScopeScheme,
+        NetworksecuritymanagerScopeSpecializedScopeType;
 export 'src/networksecuritymanager/aws_networksecuritymanager_template.dart'
     show
         AwsNetworksecuritymanagerTemplate,

@@ -15,11 +15,15 @@ final class AwsPinpointsmsvoicev2ProtectConfiguration extends Resource {
     super.localName, {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<Map<String, String>>? mmsCountryRules,
+    TfArg<String>? mmsDefaultStatus,
     TfArg<Map<String, String>>? rcsCountryRules,
+    TfArg<String>? rcsDefaultStatus,
     TfArg<String>? region,
     TfArg<Map<String, String>>? smsCountryRules,
+    TfArg<String>? smsDefaultStatus,
     TfArg<Map<String, String>>? tags,
     TfArg<Map<String, String>>? voiceCountryRules,
+    TfArg<String>? voiceDefaultStatus,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -29,11 +33,15 @@ final class AwsPinpointsmsvoicev2ProtectConfiguration extends Resource {
          argMap: {
            'deletion_protection_enabled': ?deletionProtectionEnabled,
            'mms_country_rules': ?mmsCountryRules,
+           'mms_default_status': ?mmsDefaultStatus,
            'rcs_country_rules': ?rcsCountryRules,
+           'rcs_default_status': ?rcsDefaultStatus,
            'region': ?region,
            'sms_country_rules': ?smsCountryRules,
+           'sms_default_status': ?smsDefaultStatus,
            'tags': ?tags,
            'voice_country_rules': ?voiceCountryRules,
+           'voice_default_status': ?voiceDefaultStatus,
          },
        );
 
@@ -71,9 +79,17 @@ final class AwsPinpointsmsvoicev2ProtectConfiguration extends Resource {
   TfRef<Map<String, String>> get mmsCountryRules =>
       TfRef.attribute<Map<String, String>>(this, 'mms_country_rules');
 
+  /// Reference to `mms_default_status` attribute.
+  TfRef<String> get mmsDefaultStatus =>
+      TfRef.attribute<String>(this, 'mms_default_status');
+
   /// Reference to `rcs_country_rules` attribute.
   TfRef<Map<String, String>> get rcsCountryRules =>
       TfRef.attribute<Map<String, String>>(this, 'rcs_country_rules');
+
+  /// Reference to `rcs_default_status` attribute.
+  TfRef<String> get rcsDefaultStatus =>
+      TfRef.attribute<String>(this, 'rcs_default_status');
 
   /// Reference to `region` attribute.
   TfRef<String> get region => TfRef.attribute<String>(this, 'region');
@@ -82,6 +98,10 @@ final class AwsPinpointsmsvoicev2ProtectConfiguration extends Resource {
   TfRef<Map<String, String>> get smsCountryRules =>
       TfRef.attribute<Map<String, String>>(this, 'sms_country_rules');
 
+  /// Reference to `sms_default_status` attribute.
+  TfRef<String> get smsDefaultStatus =>
+      TfRef.attribute<String>(this, 'sms_default_status');
+
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
@@ -89,4 +109,8 @@ final class AwsPinpointsmsvoicev2ProtectConfiguration extends Resource {
   /// Reference to `voice_country_rules` attribute.
   TfRef<Map<String, String>> get voiceCountryRules =>
       TfRef.attribute<Map<String, String>>(this, 'voice_country_rules');
+
+  /// Reference to `voice_default_status` attribute.
+  TfRef<String> get voiceDefaultStatus =>
+      TfRef.attribute<String>(this, 'voice_default_status');
 }

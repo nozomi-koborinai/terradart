@@ -533,6 +533,7 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? region,
     DbInstanceReplicaMode? replicaMode,
     TfArg<String>? replicateSourceDb,
+    TfArg<String>? replicateSourceDbCluster,
     TfArg<bool>? skipFinalSnapshot,
     TfArg<String>? snapshotIdentifier,
     TfArg<bool>? storageEncrypted,
@@ -614,6 +615,7 @@ final class AwsDbInstance extends Resource {
            'region': ?region,
            'replica_mode': ?replicaMode,
            'replicate_source_db': ?replicateSourceDb,
+           'replicate_source_db_cluster': ?replicateSourceDbCluster,
            'skip_final_snapshot': ?skipFinalSnapshot,
            'snapshot_identifier': ?snapshotIdentifier,
            'storage_encrypted': ?storageEncrypted,
@@ -913,6 +915,10 @@ final class AwsDbInstance extends Resource {
   /// Reference to `replicate_source_db` attribute.
   TfRef<String> get replicateSourceDb =>
       TfRef.attribute<String>(this, 'replicate_source_db');
+
+  /// Reference to `replicate_source_db_cluster` attribute.
+  TfRef<String> get replicateSourceDbCluster =>
+      TfRef.attribute<String>(this, 'replicate_source_db_cluster');
 
   /// Reference to `skip_final_snapshot` attribute.
   TfRef<bool> get skipFinalSnapshot =>

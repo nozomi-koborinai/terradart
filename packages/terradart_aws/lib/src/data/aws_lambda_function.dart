@@ -40,6 +40,10 @@ final class DataAwsLambdaFunction extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `accelerator_config` attribute.
+  TfRef<List<Map<String, Object?>>> get acceleratorConfig =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'accelerator_config');
+
   /// Reference to `architectures` attribute.
   TfRef<List<String>> get architectures =>
       TfRef.attribute<List<String>>(this, 'architectures');

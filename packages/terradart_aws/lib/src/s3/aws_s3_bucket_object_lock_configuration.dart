@@ -53,16 +53,20 @@ final class S3BucketObjectLockConfigurationDefaultRetention {
   const S3BucketObjectLockConfigurationDefaultRetention({
     this.period,
     this.mode,
+    this.defaultEventHold,
   });
 
   final S3BucketObjectLockConfigurationPeriod? period;
 
   final S3BucketObjectLockConfigurationMode? mode;
 
+  final S3BucketObjectLockConfigurationDefaultEventHold? defaultEventHold;
+
   @internal
   Map<String, Object?> encode() => {
     ...?period?.encode(),
     'mode': ?mode?.toTfJson(),
+    'default_event_hold': ?defaultEventHold?.encode(),
   };
 }
 
@@ -143,6 +147,64 @@ extension type const S3BucketObjectLockConfigurationMode._(TfArg<String> _)
     governance,
     compliance,
   ];
+}
+
+/// At most one of `days`, `years` on the `rule.default_retention.default_event_hold` block of `aws_s3_bucket_object_lock_configuration`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.days(...)`.
+sealed class S3BucketObjectLockConfigurationDefaultEventHold {
+  const S3BucketObjectLockConfigurationDefaultEventHold();
+
+  /// Sets `days`.
+  const factory S3BucketObjectLockConfigurationDefaultEventHold.days(
+    TfArg<num> days,
+  ) = S3BucketObjectLockConfigurationDefaultEventHoldDays;
+
+  /// Sets `years`.
+  const factory S3BucketObjectLockConfigurationDefaultEventHold.years(
+    TfArg<num> years,
+  ) = S3BucketObjectLockConfigurationDefaultEventHoldYears;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [S3BucketObjectLockConfigurationDefaultEventHold.days] choice: sets `days`.
+final class S3BucketObjectLockConfigurationDefaultEventHoldDays
+    extends S3BucketObjectLockConfigurationDefaultEventHold {
+  const S3BucketObjectLockConfigurationDefaultEventHoldDays(this.days);
+
+  final TfArg<num> days;
+
+  @internal
+  @override
+  String get blockKey => 'days';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'days': days.toTfJson()};
+}
+
+/// The [S3BucketObjectLockConfigurationDefaultEventHold.years] choice: sets `years`.
+final class S3BucketObjectLockConfigurationDefaultEventHoldYears
+    extends S3BucketObjectLockConfigurationDefaultEventHold {
+  const S3BucketObjectLockConfigurationDefaultEventHoldYears(this.years);
+
+  final TfArg<num> years;
+
+  @internal
+  @override
+  String get blockKey => 'years';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'years': years.toTfJson()};
 }
 
 /// Factory wrapper for `aws_s3_bucket_object_lock_configuration`.

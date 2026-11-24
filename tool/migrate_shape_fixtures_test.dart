@@ -8,6 +8,16 @@ import 'package:test/test.dart';
 import 'migrate_shape_fixtures.dart';
 import 'migrating_cells.dart' show previousRelease, publishedVersions;
 
+/// Published lanes that have had at least one upgrade before the release
+/// MIGRATING.md upgrades from, yet have never renamed a helper or enum type
+/// in any upgrade. Stale as soon as MIGRATING.md records a type rename for
+/// the lane.
+const _lanesWithoutTypeRenames = <String, String>{
+  'azure':
+      'terradart_azure first released in 0.36.0 (after the 0.33/0.35 type-name '
+      'renames) and renamed no helper or enum type in 0.36.0 → 0.37.0',
+};
+
 void main() {
   final migrating = File('MIGRATING.md').readAsStringSync();
   final renamed = renamedTypes(migrating);
@@ -99,11 +109,19 @@ void main() {
             versions[manifest.package] ?? const [],
             previous[manifest.package],
           ),
+          allowNoRename: _lanesWithoutTypeRenames.containsKey(lane),
         ),
         isEmpty,
       );
     });
   }
+
+  test('every no-rename allowlist entry names a real lane', () {
+    final lanes = {
+      for (final m in allMigrateManifests) shapeFixtureLane(m.package),
+    };
+    expect(_lanesWithoutTypeRenames.keys, everyElement(isIn(lanes)));
+  });
 
   group('seeded failures', () {
     final google = allMigrateManifests.firstWhere(
@@ -187,6 +205,45 @@ void main() {
         [contains('no Before / After row in MIGRATING.md renames a google')],
       );
     });
+
+    test(
+      'allowNoRename excuses a lane without renames and fails once one lands',
+      () {
+        expect(
+          shapeFixtureFindings(
+            google,
+            result.report,
+            renamed: {'NotAType'},
+            published: true,
+            allowNoRename: true,
+          ),
+          isEmpty,
+        );
+        expect(
+          shapeFixtureFindings(
+            google,
+            result.report,
+            renamed: renamed,
+            published: true,
+            allowNoRename: true,
+          ),
+          [contains('remove google from the no-rename allowlist')],
+        );
+        expect(
+          shapeFixtureFindings(
+            google,
+            without(types: renamed),
+            renamed: renamed,
+            published: true,
+            allowNoRename: true,
+          ),
+          containsAll([
+            contains('remove google from the no-rename allowlist'),
+            contains('none of the renamed types'),
+          ]),
+        );
+      },
+    );
 
     test('a fixture that keeps a block in Terraform fails', () {
       expect(

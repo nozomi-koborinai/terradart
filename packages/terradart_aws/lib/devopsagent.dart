@@ -19,3 +19,9 @@ export 'src/devopsagent/aws_devopsagent_asset.dart'
         DevopsagentAssetFile,
         DevopsagentAssetSourceUrl,
         DevopsagentAssetZip;
+export 'src/devopsagent/aws_devopsagent_asset_file.dart'
+    show
+        AwsDevopsagentAssetFile,
+        DevopsagentAssetFileContent,
+        DevopsagentAssetFileContentBytes,
+        DevopsagentAssetFileContentText;

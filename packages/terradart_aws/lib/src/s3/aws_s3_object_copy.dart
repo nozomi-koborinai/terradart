@@ -109,6 +109,21 @@ extension type const S3ObjectCopyMetadataDirective._(TfArg<String> _)
   static const List<S3ObjectCopyMetadataDirective> values = [copy, replace];
 }
 
+/// S3 Object Copy Object Lock Event enum for `object_lock_event_hold`.
+extension type const S3ObjectCopyObjectLockEventHold._(TfArg<String> _)
+    implements TfArg<String> {
+  S3ObjectCopyObjectLockEventHold.variable(String name)
+    : this._(TfArg.variable(name));
+  S3ObjectCopyObjectLockEventHold.expression(String template)
+    : this._(TfArg.expression(template));
+  const S3ObjectCopyObjectLockEventHold.arg(TfArg<String> arg) : this._(arg);
+
+  static const on = S3ObjectCopyObjectLockEventHold._(TfArgLiteral('ON'));
+  static const off = S3ObjectCopyObjectLockEventHold._(TfArgLiteral('OFF'));
+
+  static const List<S3ObjectCopyObjectLockEventHold> values = [on, off];
+}
+
 /// S3 Object Copy Object Lock Legal Hold enum for `object_lock_legal_hold_status`.
 extension type const S3ObjectCopyObjectLockLegalHoldStatus._(TfArg<String> _)
     implements TfArg<String> {
@@ -349,6 +364,91 @@ final class S3ObjectCopyAccessGrant extends S3ObjectCopyAccess {
   };
 }
 
+/// At most one of `object_lock_event_hold_duration_days`, `object_lock_event_hold_duration_years` on `aws_s3_object_copy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.objectLockEventHoldDurationDays(...)`.
+sealed class S3ObjectCopyObjectLockEventHoldDuration {
+  const S3ObjectCopyObjectLockEventHoldDuration();
+
+  /// Sets `object_lock_event_hold_duration_days`.
+  const factory S3ObjectCopyObjectLockEventHoldDuration.objectLockEventHoldDurationDays(
+    TfArg<num> objectLockEventHoldDurationDays,
+  ) = S3ObjectCopyObjectLockEventHoldDurationDays;
+
+  /// Sets `object_lock_event_hold_duration_years`.
+  const factory S3ObjectCopyObjectLockEventHoldDuration.objectLockEventHoldDurationYears(
+    TfArg<num> objectLockEventHoldDurationYears,
+  ) = S3ObjectCopyObjectLockEventHoldDurationYears;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [S3ObjectCopyObjectLockEventHoldDuration.objectLockEventHoldDurationDays] choice: sets `object_lock_event_hold_duration_days`.
+final class S3ObjectCopyObjectLockEventHoldDurationDays
+    extends S3ObjectCopyObjectLockEventHoldDuration {
+  const S3ObjectCopyObjectLockEventHoldDurationDays(
+    this.objectLockEventHoldDurationDays,
+  );
+
+  final TfArg<num> objectLockEventHoldDurationDays;
+
+  @internal
+  @override
+  String get blockKey => 'object_lock_event_hold_duration_days';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'object_lock_event_hold_duration_days': objectLockEventHoldDurationDays
+        .toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'object_lock_event_hold_duration_days': objectLockEventHoldDurationDays,
+  };
+}
+
+/// The [S3ObjectCopyObjectLockEventHoldDuration.objectLockEventHoldDurationYears] choice: sets `object_lock_event_hold_duration_years`.
+final class S3ObjectCopyObjectLockEventHoldDurationYears
+    extends S3ObjectCopyObjectLockEventHoldDuration {
+  const S3ObjectCopyObjectLockEventHoldDurationYears(
+    this.objectLockEventHoldDurationYears,
+  );
+
+  final TfArg<num> objectLockEventHoldDurationYears;
+
+  @internal
+  @override
+  String get blockKey => 'object_lock_event_hold_duration_years';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'object_lock_event_hold_duration_years': objectLockEventHoldDurationYears
+        .toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'object_lock_event_hold_duration_years': objectLockEventHoldDurationYears,
+  };
+}
+
 /// Typed helper for the `grant` block of
 /// `aws_s3_object_copy` (derived from provider schema).
 @immutable
@@ -482,6 +582,8 @@ final class AwsS3ObjectCopy extends Resource {
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<Map<String, String>>? metadata,
     S3ObjectCopyMetadataDirective? metadataDirective,
+    S3ObjectCopyObjectLockEventHold? objectLockEventHold,
+    S3ObjectCopyObjectLockEventHoldDuration? objectLockEventHoldDuration,
     S3ObjectCopyObjectLockLegalHoldStatus? objectLockLegalHoldStatus,
     S3ObjectCopyObjectLockMode? objectLockMode,
     TfArg<String>? objectLockRetainUntilDate,
@@ -529,6 +631,8 @@ final class AwsS3ObjectCopy extends Resource {
            'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'metadata': ?metadata,
            'metadata_directive': ?metadataDirective,
+           'object_lock_event_hold': ?objectLockEventHold,
+           ...?objectLockEventHoldDuration?.argMap,
            'object_lock_legal_hold_status': ?objectLockLegalHoldStatus,
            'object_lock_mode': ?objectLockMode,
            'object_lock_retain_until_date': ?objectLockRetainUntilDate,
@@ -695,6 +799,18 @@ final class AwsS3ObjectCopy extends Resource {
   /// Reference to `metadata_directive` attribute.
   TfRef<String> get metadataDirective =>
       TfRef.attribute<String>(this, 'metadata_directive');
+
+  /// Reference to `object_lock_event_hold` attribute.
+  TfRef<String> get objectLockEventHold =>
+      TfRef.attribute<String>(this, 'object_lock_event_hold');
+
+  /// Reference to `object_lock_event_hold_duration_days` attribute.
+  TfRef<num> get objectLockEventHoldDurationDays =>
+      TfRef.attribute<num>(this, 'object_lock_event_hold_duration_days');
+
+  /// Reference to `object_lock_event_hold_duration_years` attribute.
+  TfRef<num> get objectLockEventHoldDurationYears =>
+      TfRef.attribute<num>(this, 'object_lock_event_hold_duration_years');
 
   /// Reference to `object_lock_legal_hold_status` attribute.
   TfRef<String> get objectLockLegalHoldStatus =>

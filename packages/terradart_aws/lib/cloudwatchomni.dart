@@ -19,6 +19,24 @@ export 'src/cloudwatchomni/aws_cloudwatchomni_access_grant.dart'
         CloudwatchomniAccessGrantSignalTypes;
 export 'src/cloudwatchomni/aws_cloudwatchomni_access_profile.dart'
     show AwsCloudwatchomniAccessProfile;
+export 'src/cloudwatchomni/aws_cloudwatchomni_alert.dart'
+    show
+        AwsCloudwatchomniAlert,
+        CloudwatchomniAlertComparator,
+        CloudwatchomniAlertCondition,
+        CloudwatchomniAlertEvaluation,
+        CloudwatchomniAlertLanguage,
+        CloudwatchomniAlertNoData,
+        CloudwatchomniAlertNotificationRule,
+        CloudwatchomniAlertQuery,
+        CloudwatchomniAlertRule,
+        CloudwatchomniAlertStateValues,
+        CloudwatchomniAlertTarget,
+        CloudwatchomniAlertTelemetryRule,
+        CloudwatchomniAlertThresholdMode,
+        CloudwatchomniAlertTreatAs,
+        CloudwatchomniAlertTrigger,
+        CloudwatchomniAlertType;
 export 'src/cloudwatchomni/aws_cloudwatchomni_dashboard.dart'
     show AwsCloudwatchomniDashboard;
 export 'src/cloudwatchomni/aws_cloudwatchomni_domain.dart'
@@ -27,6 +45,13 @@ export 'src/cloudwatchomni/aws_cloudwatchomni_domain.dart'
         CloudwatchomniDomainIdentityCenterConfiguration,
         CloudwatchomniDomainIdentityProviderConfiguration,
         CloudwatchomniDomainIdentityProviders;
+export 'src/cloudwatchomni/aws_cloudwatchomni_organization_access_grant.dart'
+    show
+        AwsCloudwatchomniOrganizationAccessGrant,
+        CloudwatchomniOrganizationAccessGrantPermission,
+        CloudwatchomniOrganizationAccessGrantPrincipal,
+        CloudwatchomniOrganizationAccessGrantPrincipalAttribute,
+        CloudwatchomniOrganizationAccessGrantPrincipalType;
 export 'src/cloudwatchomni/aws_cloudwatchomni_organization_domain.dart'
     show
         AwsCloudwatchomniOrganizationDomain,

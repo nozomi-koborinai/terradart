@@ -27,11 +27,17 @@ extension type const NetworkfirewallRuleGroupType._(TfArg<String> _)
   static const statefulDomain = NetworkfirewallRuleGroupType._(
     TfArgLiteral('STATEFUL_DOMAIN'),
   );
+  static const firewall = NetworkfirewallRuleGroupType._(
+    TfArgLiteral('FIREWALL'),
+  );
+  static const ips = NetworkfirewallRuleGroupType._(TfArgLiteral('IPS'));
 
   static const List<NetworkfirewallRuleGroupType> values = [
     stateless,
     stateful,
     statefulDomain,
+    firewall,
+    ips,
   ];
 }
 

@@ -26,6 +26,242 @@ extension type const FsxS3AccessPointAttachmentType._(TfArg<String> _)
   static const List<FsxS3AccessPointAttachmentType> values = [openzfs, ontap];
 }
 
+/// Exactly one of `ontap_configuration`, `openzfs_configuration` on `aws_fsx_s3_access_point_attachment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.ontapConfiguration(...)`.
+sealed class FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration {
+  const FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration();
+
+  /// Sets `ontap_configuration`.
+  const factory FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration.ontapConfiguration(
+    List<FsxS3AccessPointAttachmentOntapConfiguration> ontapConfiguration,
+  ) = FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOntapConfiguration;
+
+  /// Sets `openzfs_configuration`.
+  const factory FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration.openzfsConfiguration(
+    List<FsxS3AccessPointAttachmentOpenzfsConfiguration> openzfsConfiguration,
+  ) = FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration.ontapConfiguration] choice: sets `ontap_configuration`.
+final class FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOntapConfiguration
+    extends FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration {
+  const FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOntapConfiguration(
+    this.ontapConfiguration,
+  );
+
+  final List<FsxS3AccessPointAttachmentOntapConfiguration> ontapConfiguration;
+
+  @internal
+  @override
+  String get blockKey => 'ontap_configuration';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'ontap_configuration': [for (final e in ontapConfiguration) e.encode()],
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'ontap_configuration': TfArg.literal([
+      for (final e in ontapConfiguration) e.encode(),
+    ]),
+  };
+}
+
+/// The [FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration.openzfsConfiguration] choice: sets `openzfs_configuration`.
+final class FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationChoice
+    extends FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration {
+  const FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationChoice(
+    this.openzfsConfiguration,
+  );
+
+  final List<FsxS3AccessPointAttachmentOpenzfsConfiguration>
+  openzfsConfiguration;
+
+  @internal
+  @override
+  String get blockKey => 'openzfs_configuration';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'openzfs_configuration': [for (final e in openzfsConfiguration) e.encode()],
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'openzfs_configuration': TfArg.literal([
+      for (final e in openzfsConfiguration) e.encode(),
+    ]),
+  };
+}
+
+/// Typed helper for the `ontap_configuration` block of
+/// `aws_fsx_s3_access_point_attachment` (derived from provider schema).
+@immutable
+final class FsxS3AccessPointAttachmentOntapConfiguration {
+  const FsxS3AccessPointAttachmentOntapConfiguration({
+    required this.volumeId,
+    this.fileSystemIdentity,
+  });
+
+  final TfArg<String> volumeId;
+
+  final List<FsxS3AccessPointAttachmentOntapConfigurationFileSystemIdentity>?
+  fileSystemIdentity;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'volume_id': volumeId.toTfJson(),
+    if (fileSystemIdentity != null)
+      'file_system_identity': [for (final e in fileSystemIdentity!) e.encode()],
+  };
+}
+
+/// Typed helper for the `ontap_configuration.file_system_identity` block of
+/// `aws_fsx_s3_access_point_attachment` (derived from provider schema).
+@immutable
+final class FsxS3AccessPointAttachmentOntapConfigurationFileSystemIdentity {
+  const FsxS3AccessPointAttachmentOntapConfigurationFileSystemIdentity({
+    required this.type,
+    required this.user,
+  });
+
+  final FsxS3AccessPointAttachmentOntapConfigurationType type;
+
+  final FsxS3AccessPointAttachmentUser user;
+
+  @internal
+  Map<String, Object?> encode() => {'type': type.toTfJson(), ...user.encode()};
+}
+
+/// Exactly one of `unix_user`, `windows_user` on the `ontap_configuration.file_system_identity` block of `aws_fsx_s3_access_point_attachment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.unixUser(...)`.
+sealed class FsxS3AccessPointAttachmentUser {
+  const FsxS3AccessPointAttachmentUser();
+
+  /// Sets `unix_user`.
+  const factory FsxS3AccessPointAttachmentUser.unixUser(
+    List<FsxS3AccessPointAttachmentUnixUser> unixUser,
+  ) = FsxS3AccessPointAttachmentUnixUserChoice;
+
+  /// Sets `windows_user`.
+  const factory FsxS3AccessPointAttachmentUser.windowsUser(
+    List<FsxS3AccessPointAttachmentWindowsUser> windowsUser,
+  ) = FsxS3AccessPointAttachmentWindowsUserChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [FsxS3AccessPointAttachmentUser.unixUser] choice: sets `unix_user`.
+final class FsxS3AccessPointAttachmentUnixUserChoice
+    extends FsxS3AccessPointAttachmentUser {
+  const FsxS3AccessPointAttachmentUnixUserChoice(this.unixUser);
+
+  final List<FsxS3AccessPointAttachmentUnixUser> unixUser;
+
+  @internal
+  @override
+  String get blockKey => 'unix_user';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'unix_user': [for (final e in unixUser) e.encode()],
+  };
+}
+
+/// The [FsxS3AccessPointAttachmentUser.windowsUser] choice: sets `windows_user`.
+final class FsxS3AccessPointAttachmentWindowsUserChoice
+    extends FsxS3AccessPointAttachmentUser {
+  const FsxS3AccessPointAttachmentWindowsUserChoice(this.windowsUser);
+
+  final List<FsxS3AccessPointAttachmentWindowsUser> windowsUser;
+
+  @internal
+  @override
+  String get blockKey => 'windows_user';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'windows_user': [for (final e in windowsUser) e.encode()],
+  };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const FsxS3AccessPointAttachmentOntapConfigurationType._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  FsxS3AccessPointAttachmentOntapConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  FsxS3AccessPointAttachmentOntapConfigurationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FsxS3AccessPointAttachmentOntapConfigurationType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const unix = FsxS3AccessPointAttachmentOntapConfigurationType._(
+    TfArgLiteral('UNIX'),
+  );
+  static const windows = FsxS3AccessPointAttachmentOntapConfigurationType._(
+    TfArgLiteral('WINDOWS'),
+  );
+
+  static const List<FsxS3AccessPointAttachmentOntapConfigurationType> values = [
+    unix,
+    windows,
+  ];
+}
+
+/// Typed helper for the `ontap_configuration.file_system_identity.unix_user` block of
+/// `aws_fsx_s3_access_point_attachment` (derived from provider schema).
+@immutable
+final class FsxS3AccessPointAttachmentUnixUser {
+  const FsxS3AccessPointAttachmentUnixUser({required this.name});
+
+  final TfArg<String> name;
+
+  @internal
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+}
+
+/// Typed helper for the `ontap_configuration.file_system_identity.windows_user` block of
+/// `aws_fsx_s3_access_point_attachment` (derived from provider schema).
+@immutable
+final class FsxS3AccessPointAttachmentWindowsUser {
+  const FsxS3AccessPointAttachmentWindowsUser({required this.name});
+
+  final TfArg<String> name;
+
+  @internal
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+}
+
 /// Typed helper for the `openzfs_configuration` block of
 /// `aws_fsx_s3_access_point_attachment` (derived from provider schema).
 @immutable
@@ -37,7 +273,8 @@ final class FsxS3AccessPointAttachmentOpenzfsConfiguration {
 
   final TfArg<String> volumeId;
 
-  final List<FsxS3AccessPointAttachmentFileSystemIdentity>? fileSystemIdentity;
+  final List<FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity>?
+  fileSystemIdentity;
 
   @internal
   Map<String, Object?> encode() => {
@@ -50,13 +287,13 @@ final class FsxS3AccessPointAttachmentOpenzfsConfiguration {
 /// Typed helper for the `openzfs_configuration.file_system_identity` block of
 /// `aws_fsx_s3_access_point_attachment` (derived from provider schema).
 @immutable
-final class FsxS3AccessPointAttachmentFileSystemIdentity {
-  const FsxS3AccessPointAttachmentFileSystemIdentity({
+final class FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity {
+  const FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity({
     required this.type,
     this.posixUser,
   });
 
-  final FsxS3AccessPointAttachmentFileSystemIdentityType type;
+  final FsxS3AccessPointAttachmentOpenzfsConfigurationType type;
 
   final List<FsxS3AccessPointAttachmentPosixUser>? posixUser;
 
@@ -69,24 +306,24 @@ final class FsxS3AccessPointAttachmentFileSystemIdentity {
 }
 
 /// `type` — derived from the provider schema description.
-extension type const FsxS3AccessPointAttachmentFileSystemIdentityType._(
+extension type const FsxS3AccessPointAttachmentOpenzfsConfigurationType._(
   TfArg<String> _
 )
     implements TfArg<String> {
-  FsxS3AccessPointAttachmentFileSystemIdentityType.variable(String name)
+  FsxS3AccessPointAttachmentOpenzfsConfigurationType.variable(String name)
     : this._(TfArg.variable(name));
-  FsxS3AccessPointAttachmentFileSystemIdentityType.expression(String template)
+  FsxS3AccessPointAttachmentOpenzfsConfigurationType.expression(String template)
     : this._(TfArg.expression(template));
-  const FsxS3AccessPointAttachmentFileSystemIdentityType.arg(TfArg<String> arg)
-    : this._(arg);
+  const FsxS3AccessPointAttachmentOpenzfsConfigurationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  static const posix = FsxS3AccessPointAttachmentFileSystemIdentityType._(
+  static const posix = FsxS3AccessPointAttachmentOpenzfsConfigurationType._(
     TfArgLiteral('POSIX'),
   );
 
-  static const List<FsxS3AccessPointAttachmentFileSystemIdentityType> values = [
-    posix,
-  ];
+  static const List<FsxS3AccessPointAttachmentOpenzfsConfigurationType> values =
+      [posix];
 }
 
 /// Typed helper for the `openzfs_configuration.file_system_identity.posix_user` block of
@@ -157,7 +394,8 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     required FsxS3AccessPointAttachmentType type,
-    List<FsxS3AccessPointAttachmentOpenzfsConfiguration>? openzfsConfiguration,
+    required FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration
+    ontapConfigurationOrOpenzfsConfiguration,
     List<FsxS3AccessPointAttachmentS3AccessPoint>? s3AccessPoint,
     super.lifecycle,
     super.dependsOn,
@@ -169,10 +407,7 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
            'name': name,
            'region': ?region,
            'type': type,
-           if (openzfsConfiguration != null)
-             'openzfs_configuration': TfArg.literal([
-               for (final e in openzfsConfiguration) e.encode(),
-             ]),
+           ...ontapConfigurationOrOpenzfsConfiguration.argMap,
            if (s3AccessPoint != null)
              's3_access_point': TfArg.literal([
                for (final e in s3AccessPoint) e.encode(),

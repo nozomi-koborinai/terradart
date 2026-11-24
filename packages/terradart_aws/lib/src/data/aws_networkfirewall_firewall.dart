@@ -14,6 +14,7 @@ final class DataAwsNetworkfirewallFirewall extends Data {
   DataAwsNetworkfirewallFirewall(
     super.localName, {
     TfArg<String>? arn,
+    TfArg<String>? firewallType,
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -21,7 +22,13 @@ final class DataAwsNetworkfirewallFirewall extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'arn': ?arn, 'name': ?name, 'region': ?region, 'tags': ?tags},
+         argMap: {
+           'arn': ?arn,
+           'firewall_type': ?firewallType,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
+         },
        );
 
   @override
@@ -79,6 +86,13 @@ final class DataAwsNetworkfirewallFirewall extends Data {
   TfRef<List<Map<String, Object?>>> get firewallStatus =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'firewall_status');
 
+  /// Reference to `igw_firewall_configuration` attribute.
+  TfRef<List<Map<String, Object?>>> get igwFirewallConfiguration =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'igw_firewall_configuration',
+      );
+
   /// Reference to `subnet_change_protection` attribute.
   TfRef<bool> get subnetChangeProtection =>
       TfRef.attribute<bool>(this, 'subnet_change_protection');
@@ -104,6 +118,10 @@ final class DataAwsNetworkfirewallFirewall extends Data {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `firewall_type` attribute.
+  TfRef<String> get firewallType =>
+      TfRef.attribute<String>(this, 'firewall_type');
 
   /// Reference to `region` attribute.
   TfRef<String> get region => TfRef.attribute<String>(this, 'region');

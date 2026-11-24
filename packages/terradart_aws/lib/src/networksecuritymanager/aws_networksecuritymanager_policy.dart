@@ -23,10 +23,14 @@ extension type const NetworksecuritymanagerPolicyFirewallType._(TfArg<String> _)
   static const shieldAdvanced = NetworksecuritymanagerPolicyFirewallType._(
     TfArgLiteral('SHIELD_ADVANCED'),
   );
+  static const igwFirewall = NetworksecuritymanagerPolicyFirewallType._(
+    TfArgLiteral('IGW_FIREWALL'),
+  );
 
   static const List<NetworksecuritymanagerPolicyFirewallType> values = [
     waf,
     shieldAdvanced,
+    igwFirewall,
   ];
 }
 
@@ -37,6 +41,7 @@ final class NetworksecuritymanagerPolicyConfiguration {
   const NetworksecuritymanagerPolicyConfiguration({
     required this.remediationEnabled,
     required this.resourcesCleanUp,
+    this.igwFirewallConfig,
     this.wafConfig,
   });
 
@@ -44,15 +49,128 @@ final class NetworksecuritymanagerPolicyConfiguration {
 
   final TfArg<bool> resourcesCleanUp;
 
+  final List<NetworksecuritymanagerPolicyIgwFirewallConfig>? igwFirewallConfig;
+
   final List<NetworksecuritymanagerPolicyWafConfig>? wafConfig;
 
   @internal
   Map<String, Object?> encode() => {
     'remediation_enabled': remediationEnabled.toTfJson(),
     'resources_clean_up': resourcesCleanUp.toTfJson(),
+    if (igwFirewallConfig != null)
+      'igw_firewall_config': [for (final e in igwFirewallConfig!) e.encode()],
     if (wafConfig != null)
       'waf_config': [for (final e in wafConfig!) e.encode()],
   };
+}
+
+/// Typed helper for the `configuration.igw_firewall_config` block of
+/// `aws_networksecuritymanager_policy` (derived from provider schema).
+@immutable
+final class NetworksecuritymanagerPolicyIgwFirewallConfig {
+  const NetworksecuritymanagerPolicyIgwFirewallConfig({
+    required this.defaultSubnetConnectivity,
+    this.subnetConnectivityOverride,
+  });
+
+  final NetworksecuritymanagerPolicyDefaultSubnetConnectivity
+  defaultSubnetConnectivity;
+
+  final List<NetworksecuritymanagerPolicySubnetConnectivityOverride>?
+  subnetConnectivityOverride;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'default_subnet_connectivity': defaultSubnetConnectivity.toTfJson(),
+    if (subnetConnectivityOverride != null)
+      'subnet_connectivity_override': [
+        for (final e in subnetConnectivityOverride!) e.encode(),
+      ],
+  };
+}
+
+/// `default_subnet_connectivity` — derived from the provider schema description.
+extension type const NetworksecuritymanagerPolicyDefaultSubnetConnectivity._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworksecuritymanagerPolicyDefaultSubnetConnectivity.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworksecuritymanagerPolicyDefaultSubnetConnectivity.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworksecuritymanagerPolicyDefaultSubnetConnectivity.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const flexible =
+      NetworksecuritymanagerPolicyDefaultSubnetConnectivity._(
+        TfArgLiteral('flexible'),
+      );
+  static const bidirectional =
+      NetworksecuritymanagerPolicyDefaultSubnetConnectivity._(
+        TfArgLiteral('bidirectional'),
+      );
+  static const outboundOnly =
+      NetworksecuritymanagerPolicyDefaultSubnetConnectivity._(
+        TfArgLiteral('outbound-only'),
+      );
+
+  static const List<NetworksecuritymanagerPolicyDefaultSubnetConnectivity>
+  values = [flexible, bidirectional, outboundOnly];
+}
+
+/// Typed helper for the `configuration.igw_firewall_config.subnet_connectivity_override` block of
+/// `aws_networksecuritymanager_policy` (derived from provider schema).
+@immutable
+final class NetworksecuritymanagerPolicySubnetConnectivityOverride {
+  const NetworksecuritymanagerPolicySubnetConnectivityOverride({
+    required this.connectivityType,
+    required this.scopeArn,
+  });
+
+  final NetworksecuritymanagerPolicyConnectivityType connectivityType;
+
+  final TfArg<List<String>> scopeArn;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'connectivity_type': connectivityType.toTfJson(),
+    'scope_arn': scopeArn.toTfJson(),
+  };
+}
+
+/// `connectivity_type` — derived from the provider schema description.
+extension type const NetworksecuritymanagerPolicyConnectivityType._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworksecuritymanagerPolicyConnectivityType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworksecuritymanagerPolicyConnectivityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworksecuritymanagerPolicyConnectivityType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const flexible = NetworksecuritymanagerPolicyConnectivityType._(
+    TfArgLiteral('flexible'),
+  );
+  static const bidirectional = NetworksecuritymanagerPolicyConnectivityType._(
+    TfArgLiteral('bidirectional'),
+  );
+  static const outboundOnly = NetworksecuritymanagerPolicyConnectivityType._(
+    TfArgLiteral('outbound-only'),
+  );
+  static const exclude = NetworksecuritymanagerPolicyConnectivityType._(
+    TfArgLiteral('exclude'),
+  );
+
+  static const List<NetworksecuritymanagerPolicyConnectivityType> values = [
+    flexible,
+    bidirectional,
+    outboundOnly,
+    exclude,
+  ];
 }
 
 /// Typed helper for the `configuration.waf_config` block of

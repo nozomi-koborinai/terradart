@@ -3019,6 +3019,33 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsCloudwatchomniAlert(
+        'cloudwatchomni_alert',
+        name: .literal(leftover),
+        profileId: .literal(leftover),
+        spaceId: .literal('12345678-1234-1234-1234-123456789012'),
+        rule: [
+          CloudwatchomniAlertRule(
+            telemetryRule: [
+              .new(
+                condition: [
+                  .new(
+                    comparator: .gt,
+                    thresholdMode: .countOfResults,
+                    criticalThreshold: .literal(200),
+                  ),
+                ],
+                evaluation: [.new(intervalSeconds: .literal(60))],
+                noData: [.new(treatAs: .ok)],
+                query: [.new(expression: .literal(leftover), language: .sql)],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+
+    add(
       AwsCloudwatchomniDashboard(
         'cloudwatchomni_dashboard',
         body: .literal('{"widgets":[]}'),
@@ -3032,6 +3059,21 @@ final class AwsLeftoverStack extends Stack {
         'cloudwatchomni_domain',
         identityProviders: .literal([.iam]),
         name: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsCloudwatchomniOrganizationAccessGrant(
+        'cloudwatchomni_organization_access_grant',
+        domainId: .literal('d-leftover'),
+        name: .literal(leftover),
+        permission: .admin,
+        principal: [
+          CloudwatchomniOrganizationAccessGrantPrincipal(
+            principalType: .idcUser,
+            principalId: .literal(leftover),
+          ),
+        ],
       ),
     );
 
@@ -4454,6 +4496,16 @@ final class AwsLeftoverStack extends Stack {
             ),
           ]),
         ],
+      ),
+    );
+
+    add(
+      AwsDevopsagentAssetFile(
+        'devopsagent_asset_file',
+        agentSpaceId: .literal(leftover),
+        assetId: .literal(leftover),
+        path: .literal(leftover),
+        content: [.bytes(.literal(leftover))],
       ),
     );
 
@@ -6448,12 +6500,12 @@ final class AwsLeftoverStack extends Stack {
         'fsx_s3_access_point_attachment',
         name: .literal(leftover),
         type: .openzfs,
-        openzfsConfiguration: [
-          FsxS3AccessPointAttachmentOpenzfsConfiguration(
+        ontapConfigurationOrOpenzfsConfiguration: .openzfsConfiguration([
+          .new(
             volumeId: .literal(leftover),
             fileSystemIdentity: [.new(type: .posix)],
           ),
-        ],
+        ]),
       ),
     );
 
@@ -10249,6 +10301,13 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsPinpointsmsvoicev2AccountDefaultProtectConfiguration(
+        'pinpointsmsvoicev2_account_default_protect_confi',
+        protectConfigurationId: .literal(leftover),
+      ),
+    );
+
+    add(
       AwsPinpointsmsvoicev2ConfigurationSet(
         'pinpointsmsvoicev2_configuration_set',
         name: .literal(leftover),
@@ -10304,6 +10363,14 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsPinpointsmsvoicev2ProtectConfiguration(
         'pinpointsmsvoicev2_protect_configuration',
+      ),
+    );
+
+    add(
+      AwsPinpointsmsvoicev2ProtectConfigurationAssociation(
+        'pinpointsmsvoicev2_protect_configuration_associa',
+        configurationSetName: .literal(leftover),
+        protectConfigurationId: .literal(leftover),
       ),
     );
 
