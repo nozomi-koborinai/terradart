@@ -164,12 +164,24 @@ AwsCloudwatchLogStorageTierPolicy.storageTier: 'STANDARD'
 AwsCloudwatchMetricStream.outputFormat: 'json'
 AwsCloudwatchomniAccessGrant.domainId: 'd-leftover'
 AwsCloudwatchomniAccessGrant.spaceId: '12345678-1234-1234-1234-123456789012'
+AwsCloudwatchomniAlert.rule:
+  include: true
+  why: 'aws_cloudwatchomni_alert.cloudwatchomni_alert: Block rule must have a configuration value as the provider has marked it as required'
+AwsCloudwatchomniAlert.spaceId:
+  value: '12345678-1234-1234-1234-123456789012'
+  why: 'aws_cloudwatchomni_alert.cloudwatchomni_alert.space_id rejected leftover: Attribute space_id must be a space ID, got: leftover (sibling AwsCloudwatchomniAccessGrant.spaceId)'
 AwsCloudwatchomniDashboard.body:
   value: '{"widgets":[]}'
   why: 'aws_cloudwatchomni_dashboard.cloudwatchomni_dashboard.body rejected leftover: A string value was provided that is not valid JSON string format (RFC 7159).'
 AwsCloudwatchomniDashboard.spaceId:
   value: '12345678-1234-1234-1234-123456789012'
   why: 'aws_cloudwatchomni_dashboard.cloudwatchomni_dashboard.space_id rejected leftover: Attribute space_id must be a space ID, got: leftover (sibling AwsCloudwatchomniAccessGrant.spaceId)'
+AwsCloudwatchomniOrganizationAccessGrant.domainId:
+  value: 'd-leftover'
+  why: 'aws_cloudwatchomni_organization_access_grant.cloudwatchomni_organization_access_grant.domain_id rejected leftover: Attribute domain_id must be a CloudWatch Omni domain ID, got: leftover (sibling AwsCloudwatchomniAccessGrant.domainId)'
+AwsCloudwatchomniOrganizationAccessGrant.principal:
+  include: true
+  why: 'aws_cloudwatchomni_organization_access_grant.cloudwatchomni_organization_access_grant: Block principal must have a configuration value as the provider has marked it as required'
 AwsCloudwatchomniView.name:
   value: 'view.leftover'
   why: 'A view name starts with `view.` and then a lowercase letter or digit.'
@@ -678,6 +690,27 @@ CloudfrontVpcOriginSslProtocols.items: ['SSLv3']
 CloudwatchEventEndpointPrimary.healthCheck: '${arn}'
 CloudwatchEventEndpointSecondary.route: 'us-east-1'
 CloudwatchomniAccessGrantPrincipal.principalId: '123456789012'
+CloudwatchomniAlertCondition.criticalThreshold:
+  include: true
+  why: 'aws_cloudwatchomni_alert.cloudwatchomni_alert: At least one of [rule[0].telemetry_rule[0].condition[0].critical_threshold,rule[0].telemetry_rule[0].condition[0].warning_threshold] must be configured. No attribute configured.'
+CloudwatchomniAlertEvaluation.intervalSeconds:
+  value: 60
+  why: 'aws_cloudwatchomni_alert.cloudwatchomni_alert.rule[0].telemetry_rule[0].evaluation[0].interval_seconds rejected 200: Attribute rule[0].telemetry_rule[0].evaluation[0].interval_seconds value must be one of: ["30" "60" "120" "300" "600" "900" "1800" "3600"], got: 200'
+CloudwatchomniAlertTelemetryRule.condition:
+  include: true
+  why: 'aws_cloudwatchomni_alert.cloudwatchomni_alert: Block rule[0].telemetry_rule[0].condition must have a configuration value as the provider has marked it as required'
+CloudwatchomniAlertTelemetryRule.evaluation:
+  include: true
+  why: 'aws_cloudwatchomni_alert.cloudwatchomni_alert: Block rule[0].telemetry_rule[0].evaluation must have a configuration value as the provider has marked it as required'
+CloudwatchomniAlertTelemetryRule.noData:
+  include: true
+  why: 'aws_cloudwatchomni_alert.cloudwatchomni_alert: Block rule[0].telemetry_rule[0].no_data must have a configuration value as the provider has marked it as required'
+CloudwatchomniAlertTelemetryRule.query:
+  include: true
+  why: 'aws_cloudwatchomni_alert.cloudwatchomni_alert: Block rule[0].telemetry_rule[0].query must have a configuration value as the provider has marked it as required'
+CloudwatchomniOrganizationAccessGrantPrincipal.principalId:
+  include: true
+  why: 'aws_cloudwatchomni_organization_access_grant.cloudwatchomni_organization_access_grant: At least one of [principal[0].principal_attribute,principal[0].principal_id] must be configured. No attribute configured.'
 CodebuildProjectArtifacts.type: 'CODEPIPELINE'
 CodebuildProjectEnvironment.computeType: 'BUILD_GENERAL1_SMALL'
 CodebuildProjectEnvironment.type: 'WINDOWS_CONTAINER'
@@ -784,7 +817,6 @@ EvidentlyFeatureValue.boolValue: 'true'
 FinspaceKxClusterVpcConfiguration.ipAddressType: 'IP_V4'
 FisExperimentTemplateAction.actionId: 'aws:ec2:stop-instances'
 FisExperimentTemplateStopCondition.source: 'aws:cloudwatch:alarm'
-FsxS3AccessPointAttachmentFileSystemIdentity.type: 'POSIX'
 GameliftAliasRoutingStrategy.type: 'SIMPLE'
 GameliftGameServerGroupLaunchTemplate.id: 'lt-0123456789abcdef0'
 GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration.protocols: ['TCP']

@@ -3019,6 +3019,33 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsCloudwatchomniAlert(
+        'cloudwatchomni_alert',
+        name: .literal(leftover),
+        profileId: .literal(leftover),
+        spaceId: .literal('12345678-1234-1234-1234-123456789012'),
+        rule: [
+          CloudwatchomniAlertRule(
+            telemetryRule: [
+              .new(
+                condition: [
+                  .new(
+                    comparator: .gt,
+                    thresholdMode: .countOfResults,
+                    criticalThreshold: .literal(200),
+                  ),
+                ],
+                evaluation: [.new(intervalSeconds: .literal(60))],
+                noData: [.new(treatAs: .ok)],
+                query: [.new(expression: .literal(leftover), language: .sql)],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+
+    add(
       AwsCloudwatchomniDashboard(
         'cloudwatchomni_dashboard',
         body: .literal('{"widgets":[]}'),
@@ -3032,6 +3059,21 @@ final class AwsLeftoverStack extends Stack {
         'cloudwatchomni_domain',
         identityProviders: .literal([.iam]),
         name: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsCloudwatchomniOrganizationAccessGrant(
+        'cloudwatchomni_organization_access_grant',
+        domainId: .literal('d-leftover'),
+        name: .literal(leftover),
+        permission: .admin,
+        principal: [
+          CloudwatchomniOrganizationAccessGrantPrincipal(
+            principalType: .idcUser,
+            principalId: .literal(leftover),
+          ),
+        ],
       ),
     );
 

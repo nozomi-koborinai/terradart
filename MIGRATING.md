@@ -1,5 +1,34 @@
 # Migrating terradart
 
+## Unreleased
+
+### AWS provider 6.74.0
+
+**Breaking (`terradart_aws`).** Provider 6.74.0 adds `ontap_configuration` to
+`aws_fsx_s3_access_point_attachment` and requires exactly one of
+`ontap_configuration` and `openzfs_configuration`.
+`AwsFsxS3AccessPointAttachment.openzfsConfiguration` moves onto the required
+sealed argument `ontapConfigurationOrOpenzfsConfiguration`
+(`FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration`, with
+`.ontapConfiguration(...)` and `.openzfsConfiguration(...)`).
+
+Because `ontap_configuration` and `openzfs_configuration` have different
+`file_system_identity` block shapes, the OpenZFS identity helper and its `type`
+enum are disambiguated:
+`FsxS3AccessPointAttachmentOpenzfsConfiguration.fileSystemIdentity` takes
+`FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity` (previously
+`FsxS3AccessPointAttachmentFileSystemIdentity`), and its `type` field takes
+`FsxS3AccessPointAttachmentOpenzfsConfigurationType` (previously
+`FsxS3AccessPointAttachmentFileSystemIdentityType`). The helper fields (`type`
+and `posixUser`) and the `.posix` value are unchanged, so `.new(...)` and
+`.posix` dot shorthands compile unchanged. The Terraform JSON for existing
+OpenZFS attachments is unchanged.
+
+| Before | After |
+|---|---|
+| `AwsFsxS3AccessPointAttachment('a', name: .literal('a'), type: .openzfs, openzfsConfiguration: [FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'))])` | `AwsFsxS3AccessPointAttachment('a', name: .literal('a'), type: .openzfs, ontapConfigurationOrOpenzfsConfiguration: .openzfsConfiguration([FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'))]))` |
+| `FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'), fileSystemIdentity: [FsxS3AccessPointAttachmentFileSystemIdentity(type: FsxS3AccessPointAttachmentFileSystemIdentityType.posix)])` | `FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'), fileSystemIdentity: [FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity(type: FsxS3AccessPointAttachmentOpenzfsConfigurationType.posix)])` |
+
 ## 0.36.x → 0.37.0
 
 ### Dart 3.12 is the minimum SDK
