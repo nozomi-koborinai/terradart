@@ -292,6 +292,10 @@ final class AwsRoute extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `igw_firewall` attribute.
+  TfRef<List<Map<String, Object?>>> get igwFirewall =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'igw_firewall');
+
   /// Reference to `instance_id` attribute.
   TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
 

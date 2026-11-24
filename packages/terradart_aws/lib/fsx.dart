@@ -123,13 +123,24 @@ export 'src/fsx/aws_fsx_openzfs_volume.dart'
 export 'src/fsx/aws_fsx_s3_access_point_attachment.dart'
     show
         AwsFsxS3AccessPointAttachment,
-        FsxS3AccessPointAttachmentFileSystemIdentity,
-        FsxS3AccessPointAttachmentFileSystemIdentityType,
+        FsxS3AccessPointAttachmentOntapConfiguration,
+        FsxS3AccessPointAttachmentOntapConfigurationFileSystemIdentity,
+        FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration,
+        FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationChoice,
+        FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOntapConfiguration,
+        FsxS3AccessPointAttachmentOntapConfigurationType,
         FsxS3AccessPointAttachmentOpenzfsConfiguration,
+        FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity,
+        FsxS3AccessPointAttachmentOpenzfsConfigurationType,
         FsxS3AccessPointAttachmentPosixUser,
         FsxS3AccessPointAttachmentS3AccessPoint,
         FsxS3AccessPointAttachmentType,
-        FsxS3AccessPointAttachmentVpcConfiguration;
+        FsxS3AccessPointAttachmentUnixUser,
+        FsxS3AccessPointAttachmentUnixUserChoice,
+        FsxS3AccessPointAttachmentUser,
+        FsxS3AccessPointAttachmentVpcConfiguration,
+        FsxS3AccessPointAttachmentWindowsUser,
+        FsxS3AccessPointAttachmentWindowsUserChoice;
 export 'src/fsx/aws_fsx_windows_file_system.dart'
     show
         AwsFsxWindowsFileSystem,

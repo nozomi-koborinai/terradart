@@ -173,6 +173,13 @@ final class AwsVpc extends Resource {
   TfRef<String> get mainRouteTableId =>
       TfRef.attribute<String>(this, 'main_route_table_id');
 
+  /// Reference to `network_firewall_association` attribute.
+  TfRef<List<Map<String, Object?>>> get networkFirewallAssociation =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'network_firewall_association',
+      );
+
   /// Reference to `owner_id` attribute.
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
 

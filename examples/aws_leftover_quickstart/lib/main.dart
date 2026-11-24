@@ -4458,6 +4458,16 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsDevopsagentAssetFile(
+        'devopsagent_asset_file',
+        agentSpaceId: .literal(leftover),
+        assetId: .literal(leftover),
+        path: .literal(leftover),
+        content: [.bytes(.literal(leftover))],
+      ),
+    );
+
+    add(
       AwsDevopsguruEventSourcesConfig(
         'devopsguru_event_sources_config',
         eventSources: [
@@ -6448,12 +6458,12 @@ final class AwsLeftoverStack extends Stack {
         'fsx_s3_access_point_attachment',
         name: .literal(leftover),
         type: .openzfs,
-        openzfsConfiguration: [
-          FsxS3AccessPointAttachmentOpenzfsConfiguration(
+        ontapConfigurationOrOpenzfsConfiguration: .openzfsConfiguration([
+          .new(
             volumeId: .literal(leftover),
             fileSystemIdentity: [.new(type: .posix)],
           ),
-        ],
+        ]),
       ),
     );
 
@@ -10249,6 +10259,13 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsPinpointsmsvoicev2AccountDefaultProtectConfiguration(
+        'pinpointsmsvoicev2_account_default_protect_confi',
+        protectConfigurationId: .literal(leftover),
+      ),
+    );
+
+    add(
       AwsPinpointsmsvoicev2ConfigurationSet(
         'pinpointsmsvoicev2_configuration_set',
         name: .literal(leftover),
@@ -10304,6 +10321,14 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsPinpointsmsvoicev2ProtectConfiguration(
         'pinpointsmsvoicev2_protect_configuration',
+      ),
+    );
+
+    add(
+      AwsPinpointsmsvoicev2ProtectConfigurationAssociation(
+        'pinpointsmsvoicev2_protect_configuration_associa',
+        configurationSetName: .literal(leftover),
+        protectConfigurationId: .literal(leftover),
       ),
     );
 

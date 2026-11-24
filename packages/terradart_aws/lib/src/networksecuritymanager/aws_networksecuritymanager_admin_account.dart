@@ -70,10 +70,14 @@ extension type const NetworksecuritymanagerAdminAccountFirewallTypes._(
       NetworksecuritymanagerAdminAccountFirewallTypes._(
         TfArgLiteral('SHIELD_ADVANCED'),
       );
+  static const igwFirewall = NetworksecuritymanagerAdminAccountFirewallTypes._(
+    TfArgLiteral('IGW_FIREWALL'),
+  );
 
   static const List<NetworksecuritymanagerAdminAccountFirewallTypes> values = [
     waf,
     shieldAdvanced,
+    igwFirewall,
   ];
 }
 

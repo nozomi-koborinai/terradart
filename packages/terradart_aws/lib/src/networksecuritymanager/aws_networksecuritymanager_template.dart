@@ -21,8 +21,14 @@ extension type const NetworksecuritymanagerTemplateFirewallType._(
   static const waf = NetworksecuritymanagerTemplateFirewallType._(
     TfArgLiteral('WAF'),
   );
+  static const igwFirewall = NetworksecuritymanagerTemplateFirewallType._(
+    TfArgLiteral('IGW_FIREWALL'),
+  );
 
-  static const List<NetworksecuritymanagerTemplateFirewallType> values = [waf];
+  static const List<NetworksecuritymanagerTemplateFirewallType> values = [
+    waf,
+    igwFirewall,
+  ];
 }
 
 /// Factory wrapper for `aws_networksecuritymanager_template`.

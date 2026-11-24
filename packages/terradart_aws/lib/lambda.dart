@@ -60,6 +60,7 @@ export 'src/lambda/aws_lambda_event_source_mapping.dart'
 export 'src/lambda/aws_lambda_function.dart'
     show
         AwsLambdaFunction,
+        LambdaFunctionAcceleratorConfig,
         LambdaFunctionApplicationLogLevel,
         LambdaFunctionApplyOn,
         LambdaFunctionArchitectures,

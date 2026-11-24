@@ -122,6 +122,10 @@ final class DataAwsSubnet extends Data {
   TfRef<bool> get mapPublicIpOnLaunch =>
       TfRef.attribute<bool>(this, 'map_public_ip_on_launch');
 
+  /// Reference to `network_firewall_connectivity_type` attribute.
+  TfRef<String> get networkFirewallConnectivityType =>
+      TfRef.attribute<String>(this, 'network_firewall_connectivity_type');
+
   /// Reference to `outpost_arn` attribute.
   TfRef<String> get outpostArn => TfRef.attribute<String>(this, 'outpost_arn');
 

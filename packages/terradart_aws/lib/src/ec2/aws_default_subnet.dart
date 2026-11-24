@@ -110,6 +110,10 @@ final class AwsDefaultSubnet extends Resource {
   TfRef<String> get ipv6CidrBlockAssociationId =>
       TfRef.attribute<String>(this, 'ipv6_cidr_block_association_id');
 
+  /// Reference to `network_firewall_connectivity_type` attribute.
+  TfRef<String> get networkFirewallConnectivityType =>
+      TfRef.attribute<String>(this, 'network_firewall_connectivity_type');
+
   /// Reference to `outpost_arn` attribute.
   TfRef<String> get outpostArn => TfRef.attribute<String>(this, 'outpost_arn');
 

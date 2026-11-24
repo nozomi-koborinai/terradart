@@ -56,6 +56,9 @@ extension type const Ec2DefaultCreditSpecificationInstanceFamily._(
   static const t8i = Ec2DefaultCreditSpecificationInstanceFamily._(
     TfArgLiteral('t8i'),
   );
+  static const t9g = Ec2DefaultCreditSpecificationInstanceFamily._(
+    TfArgLiteral('t9g'),
+  );
 
   static const List<Ec2DefaultCreditSpecificationInstanceFamily> values = [
     t2,
@@ -63,6 +66,7 @@ extension type const Ec2DefaultCreditSpecificationInstanceFamily._(
     t3a,
     t4g,
     t8i,
+    t9g,
   ];
 }
 

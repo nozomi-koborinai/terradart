@@ -228,6 +228,9 @@ AwsDevicefarmUpload.type: 'ANDROID_APP'
 AwsDevopsagentAsset.content:
   dart: '[.file([DevopsagentAssetFile(path: .literal(''leftover.md''), body: [.text(.literal(leftover))])])]'
   why: 'aws_devopsagent_asset.devopsagent_asset: Block content[0].file[0].body must have a configuration value as the provider has marked it as required'
+AwsDevopsagentAssetFile.content:
+  include: true
+  why: 'aws_devopsagent_asset_file.devopsagent_asset_file: Block content must have a configuration value as the provider has marked it as required'
 AwsDevopsguruResourceCollection.type: 'AWS_CLOUD_FORMATION'
 AwsDirectoryServiceConditionalForwarder.remoteDomainName: 'example.com'
 AwsDirectoryServiceDirectory.name: 'example.com'

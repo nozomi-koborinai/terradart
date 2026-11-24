@@ -64,6 +64,10 @@ final class DataAwsRoute extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `igw_firewall` attribute.
+  TfRef<List<Map<String, Object?>>> get igwFirewall =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'igw_firewall');
+
   /// Reference to `carrier_gateway_id` attribute.
   TfRef<String> get carrierGatewayId =>
       TfRef.attribute<String>(this, 'carrier_gateway_id');

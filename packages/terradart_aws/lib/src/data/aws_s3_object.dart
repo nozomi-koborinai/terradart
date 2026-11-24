@@ -122,6 +122,18 @@ final class DataAwsS3Object extends Data {
   TfRef<Map<String, String>> get metadata =>
       TfRef.attribute<Map<String, String>>(this, 'metadata');
 
+  /// Reference to `object_lock_event_hold` attribute.
+  TfRef<String> get objectLockEventHold =>
+      TfRef.attribute<String>(this, 'object_lock_event_hold');
+
+  /// Reference to `object_lock_event_hold_duration_days` attribute.
+  TfRef<num> get objectLockEventHoldDurationDays =>
+      TfRef.attribute<num>(this, 'object_lock_event_hold_duration_days');
+
+  /// Reference to `object_lock_event_hold_duration_years` attribute.
+  TfRef<num> get objectLockEventHoldDurationYears =>
+      TfRef.attribute<num>(this, 'object_lock_event_hold_duration_years');
+
   /// Reference to `object_lock_legal_hold_status` attribute.
   TfRef<String> get objectLockLegalHoldStatus =>
       TfRef.attribute<String>(this, 'object_lock_legal_hold_status');

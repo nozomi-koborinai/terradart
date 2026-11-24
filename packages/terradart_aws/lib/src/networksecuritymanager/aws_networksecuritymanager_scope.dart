@@ -7,6 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_networksecuritymanager_scope`.
 const Set<String> _awsNetworksecuritymanagerScopeSensitive = <String>{};
 
+/// Networksecuritymanager Scope Specialized Scope enum for `specialized_scope_type`.
+extension type const NetworksecuritymanagerScopeSpecializedScopeType._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  NetworksecuritymanagerScopeSpecializedScopeType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworksecuritymanagerScopeSpecializedScopeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworksecuritymanagerScopeSpecializedScopeType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const igwFirewallSubnetConnectivityOverride =
+      NetworksecuritymanagerScopeSpecializedScopeType._(
+        TfArgLiteral('IGW_FIREWALL_SUBNET_CONNECTIVITY_OVERRIDE'),
+      );
+
+  static const List<NetworksecuritymanagerScopeSpecializedScopeType> values = [
+    igwFirewallSubnetConnectivityOverride,
+  ];
+}
+
 /// Typed helper for the `scope_configuration` block of
 /// `aws_networksecuritymanager_scope` (derived from provider schema).
 @immutable
@@ -149,6 +171,12 @@ extension type const NetworksecuritymanagerScopeResourceType._(TfArg<String> _)
       NetworksecuritymanagerScopeResourceType._(
         TfArgLiteral('AWS::ElasticLoadBalancing::LoadBalancer'),
       );
+  static const awsEc2Vpc = NetworksecuritymanagerScopeResourceType._(
+    TfArgLiteral('AWS::EC2::VPC'),
+  );
+  static const awsEc2Subnet = NetworksecuritymanagerScopeResourceType._(
+    TfArgLiteral('AWS::EC2::Subnet'),
+  );
 
   static const List<NetworksecuritymanagerScopeResourceType> values = [
     awsApigatewayStage,
@@ -156,6 +184,8 @@ extension type const NetworksecuritymanagerScopeResourceType._(TfArg<String> _)
     awsEc2Eip,
     awsElasticloadbalancingv2LoadbalancerApplication,
     awsElasticloadbalancingLoadbalancer,
+    awsEc2Vpc,
+    awsEc2Subnet,
   ];
 }
 
@@ -384,6 +414,7 @@ final class AwsNetworksecuritymanagerScope extends Resource {
     TfArg<bool>? isPublished,
     required TfArg<String> name,
     TfArg<String>? region,
+    NetworksecuritymanagerScopeSpecializedScopeType? specializedScopeType,
     TfArg<Map<String, String>>? tags,
     List<NetworksecuritymanagerScopeConfiguration>? scopeConfiguration,
     super.lifecycle,
@@ -397,6 +428,7 @@ final class AwsNetworksecuritymanagerScope extends Resource {
            'is_published': ?isPublished,
            'name': name,
            'region': ?region,
+           'specialized_scope_type': ?specializedScopeType,
            'tags': ?tags,
            if (scopeConfiguration != null)
              'scope_configuration': TfArg.literal([
@@ -430,6 +462,10 @@ final class AwsNetworksecuritymanagerScope extends Resource {
 
   /// Reference to `region` attribute.
   TfRef<String> get region => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `specialized_scope_type` attribute.
+  TfRef<String> get specializedScopeType =>
+      TfRef.attribute<String>(this, 'specialized_scope_type');
 
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>

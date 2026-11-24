@@ -138,6 +138,7 @@ extension type const LambdaFunctionRuntime._(TfArg<String> _)
   static const java17Al2023 = LambdaFunctionRuntime._(
     TfArgLiteral('java17.al2023'),
   );
+  static const custom = LambdaFunctionRuntime._(TfArgLiteral('custom'));
 
   static const List<LambdaFunctionRuntime> values = [
     nodejs,
@@ -191,6 +192,7 @@ extension type const LambdaFunctionRuntime._(TfArg<String> _)
     java8Al2023,
     java11Al2023,
     java17Al2023,
+    custom,
   ];
 }
 
@@ -284,6 +286,20 @@ final class LambdaFunctionCodeS3Bucket extends LambdaFunctionCode {
   @override
   Map<String, TfArg<Object?>> get argMap => {
     's3_bucket': s3Bucket.encodeAs('id'),
+  };
+}
+
+/// Typed helper for the `accelerator_config` block of
+/// `aws_lambda_function` (derived from provider schema).
+@immutable
+final class LambdaFunctionAcceleratorConfig {
+  const LambdaFunctionAcceleratorConfig({required this.acceleratorMemorySize});
+
+  final TfArg<num> acceleratorMemorySize;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'accelerator_memory_size': acceleratorMemorySize.toTfJson(),
   };
 }
 
@@ -678,6 +694,7 @@ final class AwsLambdaFunction extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<num>? timeout,
     TfArg<bool>? useResourceTimeoutForPropagation,
+    LambdaFunctionAcceleratorConfig? acceleratorConfig,
     LambdaFunctionCapacityProviderConfig? capacityProviderConfig,
     LambdaFunctionDeadLetterConfig? deadLetterConfig,
     LambdaFunctionDurableConfig? durableConfig,
@@ -726,6 +743,8 @@ final class AwsLambdaFunction extends Resource {
            'timeout': ?timeout,
            'use_resource_timeout_for_propagation':
                ?useResourceTimeoutForPropagation,
+           if (acceleratorConfig != null)
+             'accelerator_config': TfArg.literal(acceleratorConfig.encode()),
            if (capacityProviderConfig != null)
              'capacity_provider_config': TfArg.literal(
                capacityProviderConfig.encode(),

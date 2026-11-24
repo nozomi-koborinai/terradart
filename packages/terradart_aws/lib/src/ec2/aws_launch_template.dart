@@ -2236,6 +2236,9 @@ extension type const LaunchTemplateResourceType._(TfArg<String> _)
   static const exportInstanceTask = LaunchTemplateResourceType._(
     TfArgLiteral('export-instance-task'),
   );
+  static const fcaPolicy = LaunchTemplateResourceType._(
+    TfArgLiteral('fca-policy'),
+  );
   static const fleet = LaunchTemplateResourceType._(TfArgLiteral('fleet'));
   static const fpgaImage = LaunchTemplateResourceType._(
     TfArgLiteral('fpga-image'),
@@ -2528,6 +2531,9 @@ extension type const LaunchTemplateResourceType._(TfArg<String> _)
       LaunchTemplateResourceType._(
         TfArgLiteral('capacity-reservation-modification-quote'),
       );
+  static const metricCategory = LaunchTemplateResourceType._(
+    TfArgLiteral('metric-category'),
+  );
 
   static const List<LaunchTemplateResourceType> values = [
     capacityReservation,
@@ -2543,6 +2549,7 @@ extension type const LaunchTemplateResourceType._(TfArg<String> _)
     elasticGpu,
     exportImageTask,
     exportInstanceTask,
+    fcaPolicy,
     fleet,
     fpgaImage,
     hostReservation,
@@ -2642,6 +2649,7 @@ extension type const LaunchTemplateResourceType._(TfArg<String> _)
     capacityReservationCancellationQuote,
     applicationStatusCheck,
     capacityReservationModificationQuote,
+    metricCategory,
   ];
 }
 
