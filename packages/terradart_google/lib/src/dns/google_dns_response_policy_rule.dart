@@ -77,13 +77,13 @@ class DnsResponsePolicyRuleLocalDataEntry {
   final TfArg<String> name;
   final DnsResponsePolicyRuleRecordType type;
   final TfArg<int> ttl;
-  final List<String> rrdatas;
+  final TfArg<List<String>> rrdatas;
 
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
     'ttl': ttl.toTfJson(),
-    'rrdatas': rrdatas,
+    'rrdatas': rrdatas.toTfJson(),
   };
 }
 

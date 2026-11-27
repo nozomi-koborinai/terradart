@@ -239,9 +239,9 @@ class ComputeRegionSecurityPolicyRulesMatchConfig {
     required this.srcIpRanges,
   });
 
-  final List<String> srcIpRanges;
+  final TfArg<List<String>> srcIpRanges;
 
-  Map<String, Object?> toArgMap() => {'src_ip_ranges': srcIpRanges};
+  Map<String, Object?> toArgMap() => {'src_ip_ranges': srcIpRanges.toTfJson()};
 }
 
 @immutable
@@ -427,7 +427,7 @@ class ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusion {
   });
 
   final TfArg<String> targetRuleSet;
-  final List<String>? targetRuleIds;
+  final TfArg<List<String>>? targetRuleIds;
   final ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch?
   requestCookie;
   final ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusionMatch?
@@ -439,7 +439,7 @@ class ComputeRegionSecurityPolicyRulesPreconfiguredWafExclusion {
 
   Map<String, Object?> toArgMap() => {
     'target_rule_set': targetRuleSet.toTfJson(),
-    if (targetRuleIds != null) 'target_rule_ids': targetRuleIds,
+    if (targetRuleIds != null) 'target_rule_ids': targetRuleIds!.toTfJson(),
     if (requestCookie != null) 'request_cookie': [requestCookie!.toArgMap()],
     if (requestHeader != null) 'request_header': [requestHeader!.toArgMap()],
     if (requestQueryParam != null)
@@ -479,14 +479,14 @@ class ComputeRegionSecurityPolicyAdvancedOptionsConfig {
 
   final RegionSecurityPolicyJsonParsing? jsonParsing;
   final SecurityPolicyLogLevel? logLevel;
-  final List<String>? userIpRequestHeaders;
+  final TfArg<List<String>>? userIpRequestHeaders;
   final ComputeRegionSecurityPolicyJsonCustomConfig? jsonCustomConfig;
 
   Map<String, Object?> toArgMap() => {
     if (jsonParsing != null) 'json_parsing': jsonParsing!.toTfJson(),
     if (logLevel != null) 'log_level': logLevel!.toTfJson(),
     if (userIpRequestHeaders != null)
-      'user_ip_request_headers': userIpRequestHeaders,
+      'user_ip_request_headers': userIpRequestHeaders!.toTfJson(),
     if (jsonCustomConfig != null)
       'json_custom_config': [jsonCustomConfig!.toArgMap()],
   };
@@ -498,9 +498,9 @@ class ComputeRegionSecurityPolicyJsonCustomConfig {
     required this.contentTypes,
   });
 
-  final List<String> contentTypes;
+  final TfArg<List<String>> contentTypes;
 
-  Map<String, Object?> toArgMap() => {'content_types': contentTypes};
+  Map<String, Object?> toArgMap() => {'content_types': contentTypes.toTfJson()};
 }
 
 // ===========================================================================

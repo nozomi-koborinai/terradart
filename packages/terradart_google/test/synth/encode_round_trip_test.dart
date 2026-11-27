@@ -85,7 +85,9 @@ final Map<String, Object Function()> _syntheticInstances = {
   'ComputeSecurityPolicyRulesMatchConfigChoice': () =>
       const ComputeSecurityPolicyRulesMatchConfigChoice(
         versionedExpr: .srcIpsV1,
-        config: ComputeSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
+        config: ComputeSecurityPolicyRulesMatchConfig(
+          srcIpRanges: .literal(['*']),
+        ),
       ),
   'ComputeSecurityPolicyRulesMatchExprChoice': () =>
       const ComputeSecurityPolicyRulesMatchExprChoice(
@@ -94,7 +96,9 @@ final Map<String, Object Function()> _syntheticInstances = {
   'ComputeRegionSecurityPolicyRulesMatchConfigChoice': () =>
       const ComputeRegionSecurityPolicyRulesMatchConfigChoice(
         versionedExpr: .srcIpsV1,
-        config: ComputeRegionSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
+        config: ComputeRegionSecurityPolicyRulesMatchConfig(
+          srcIpRanges: .literal(['*']),
+        ),
       ),
   'ComputeRegionSecurityPolicyRulesMatchExprChoice': () =>
       const ComputeRegionSecurityPolicyRulesMatchExprChoice(

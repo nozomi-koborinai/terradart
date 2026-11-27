@@ -71,9 +71,9 @@ class ComputeRegionSecurityPolicyRuleMatch {
 class ComputeRegionSecurityPolicyRuleMatchConfig {
   const ComputeRegionSecurityPolicyRuleMatchConfig({required this.srcIpRanges});
 
-  final List<String> srcIpRanges;
+  final TfArg<List<String>> srcIpRanges;
 
-  Map<String, Object?> toArgMap() => {'src_ip_ranges': srcIpRanges};
+  Map<String, Object?> toArgMap() => {'src_ip_ranges': srcIpRanges.toTfJson()};
 }
 
 /// Action for requests over a `rate_limit_options` threshold.

@@ -44,9 +44,9 @@ class ComputeManagedSslCertificateConfig {
   const ComputeManagedSslCertificateConfig({required this.domains});
 
   /// Domain names to include on the certificate. Required.
-  final List<String> domains;
+  final TfArg<List<String>> domains;
 
-  Map<String, Object?> toArgMap() => {'domains': domains};
+  Map<String, Object?> toArgMap() => {'domains': domains.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_managed_ssl_certificate`.
@@ -93,7 +93,7 @@ class ComputeManagedSslCertificateConfig {
 ///   'lb_cert',
 ///   name: TfArg.literal('lb-managed-cert'),
 ///   managed: const ComputeManagedSslCertificateConfig(
-///     domains: ['api.example.com', 'www.example.com'],
+///     domains: .literal(['api.example.com', 'www.example.com']),
 ///   ),
 /// );
 /// ```

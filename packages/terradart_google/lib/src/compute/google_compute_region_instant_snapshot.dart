@@ -45,11 +45,11 @@ extension type const ComputeRegionInstantSnapshotDeletionPolicy._(
 class ComputeRegionInstantSnapshotParams {
   const ComputeRegionInstantSnapshotParams({this.resourceManagerTags});
 
-  final Map<String, String>? resourceManagerTags;
+  final TfArg<Map<String, String>>? resourceManagerTags;
 
   Map<String, Object?> toArgMap() => {
     if (resourceManagerTags != null)
-      'resource_manager_tags': resourceManagerTags,
+      'resource_manager_tags': resourceManagerTags!.toTfJson(),
   };
 }
 

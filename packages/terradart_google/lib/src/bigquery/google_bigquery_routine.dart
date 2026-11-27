@@ -236,13 +236,14 @@ class BigqueryRoutineRemoteFunctionOptions {
 
   final TfArg<String>? endpoint;
   final TfArg<String>? connection;
-  final Map<String, String>? userDefinedContext;
+  final TfArg<Map<String, String>>? userDefinedContext;
   final TfArg<String>? maxBatchingRows;
 
   Map<String, Object?> toArgMap() => {
     if (endpoint != null) 'endpoint': endpoint!.toTfJson(),
     if (connection != null) 'connection': connection!.toTfJson(),
-    if (userDefinedContext != null) 'user_defined_context': userDefinedContext,
+    if (userDefinedContext != null)
+      'user_defined_context': userDefinedContext!.toTfJson(),
     if (maxBatchingRows != null)
       'max_batching_rows': maxBatchingRows!.toTfJson(),
   };
@@ -275,24 +276,24 @@ class BigqueryRoutineSparkOptions {
   final TfArg<String>? connection;
   final TfArg<String>? runtimeVersion;
   final TfArg<String>? containerImage;
-  final Map<String, String>? properties;
+  final TfArg<Map<String, String>>? properties;
   final TfArg<String>? mainFileUri;
-  final List<String>? pyFileUris;
-  final List<String>? jarUris;
-  final List<String>? fileUris;
-  final List<String>? archiveUris;
+  final TfArg<List<String>>? pyFileUris;
+  final TfArg<List<String>>? jarUris;
+  final TfArg<List<String>>? fileUris;
+  final TfArg<List<String>>? archiveUris;
   final TfArg<String>? mainClass;
 
   Map<String, Object?> toArgMap() => {
     if (connection != null) 'connection': connection!.toTfJson(),
     if (runtimeVersion != null) 'runtime_version': runtimeVersion!.toTfJson(),
     if (containerImage != null) 'container_image': containerImage!.toTfJson(),
-    if (properties != null) 'properties': properties,
+    if (properties != null) 'properties': properties!.toTfJson(),
     if (mainFileUri != null) 'main_file_uri': mainFileUri!.toTfJson(),
-    if (pyFileUris != null) 'py_file_uris': pyFileUris,
-    if (jarUris != null) 'jar_uris': jarUris,
-    if (fileUris != null) 'file_uris': fileUris,
-    if (archiveUris != null) 'archive_uris': archiveUris,
+    if (pyFileUris != null) 'py_file_uris': pyFileUris!.toTfJson(),
+    if (jarUris != null) 'jar_uris': jarUris!.toTfJson(),
+    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
+    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
     if (mainClass != null) 'main_class': mainClass!.toTfJson(),
   };
 }

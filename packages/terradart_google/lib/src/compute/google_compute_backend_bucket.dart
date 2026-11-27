@@ -214,17 +214,18 @@ class ComputeBackendBucketCdnCacheKeyPolicy {
 
   /// Allows HTTP request headers (by name) to be used in the cache
   /// key.
-  final List<String>? includeHttpHeaders;
+  final TfArg<List<String>>? includeHttpHeaders;
 
   /// Names of query-string parameters to include in cache keys.
   /// Default parameters are always included. `&` and `=` are
   /// percent-encoded rather than treated as delimiters.
-  final List<String>? queryStringWhitelist;
+  final TfArg<List<String>>? queryStringWhitelist;
 
   Map<String, Object?> toArgMap() => {
-    if (includeHttpHeaders != null) 'include_http_headers': includeHttpHeaders,
+    if (includeHttpHeaders != null)
+      'include_http_headers': includeHttpHeaders!.toTfJson(),
     if (queryStringWhitelist != null)
-      'query_string_whitelist': queryStringWhitelist,
+      'query_string_whitelist': queryStringWhitelist!.toTfJson(),
   };
 }
 

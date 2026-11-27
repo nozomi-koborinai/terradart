@@ -158,7 +158,7 @@ final class ComputeLbStack extends Stack {
         'lb_cert',
         name: .literal('app-lb-cert'),
         managed: ComputeManagedSslCertificateConfig(
-          domains: ['app.example.com'],
+          domains: .literal(['app.example.com']),
         ),
       ),
     );
@@ -421,7 +421,7 @@ final class ComputeLbStack extends Stack {
             action: SecurityPolicyRuleAction.allow,
             match: ComputeSecurityPolicyRulesMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-              config: .new(srcIpRanges: ['*']),
+              config: .new(srcIpRanges: .literal(['*'])),
             ),
             description: .literal('default allow-all'),
           ),
@@ -550,7 +550,7 @@ final class ComputeLbStack extends Stack {
         description: .literal('Block example CIDR'),
         match: const ComputeSecurityPolicyRuleMatch(
           versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-          config: .new(srcIpRanges: ['203.0.113.0/24']),
+          config: .new(srcIpRanges: .literal(['203.0.113.0/24'])),
         ),
       ),
     );
@@ -650,7 +650,7 @@ final class ComputeLbStack extends Stack {
             action: .allow,
             match: ComputeRegionSecurityPolicyRulesMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-              config: .new(srcIpRanges: const ['*']),
+              config: .new(srcIpRanges: .literal(['*'])),
             ),
             description: .literal('default allow-all'),
           ),
@@ -668,7 +668,7 @@ final class ComputeLbStack extends Stack {
         description: .literal('Block example CIDR (regional)'),
         match: const ComputeRegionSecurityPolicyRuleMatch(
           versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-          config: .new(srcIpRanges: ['198.51.100.0/24']),
+          config: .new(srcIpRanges: .literal(['198.51.100.0/24'])),
         ),
       ),
     );

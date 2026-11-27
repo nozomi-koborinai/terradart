@@ -55,7 +55,7 @@ curatedDoc: |-
   ///       action: SecurityPolicyRuleAction.deny403,
   ///       match: ComputeSecurityPolicyRulesMatch.config(
   ///         versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-  ///         config: .new(srcIpRanges: ['*']),
+  ///         config: .new(srcIpRanges: .literal(['*'])),
   ///       ),
   ///       description: TfArg.literal('default deny'),
   ///     ),
@@ -398,17 +398,19 @@ prelude: |
 
   /// `match.config` -- payload for the `SRC_IPS_V1` predicate. The only
   /// field today is [srcIpRanges]; the schema limits this to 10 entries
-  /// per rule. Pass `['*']` to match ALL inbound IPs (the canonical
-  /// default-deny / default-allow shape).
+  /// per rule. Pass `.literal(['*'])` to match ALL inbound IPs (the
+  /// canonical default-deny / default-allow shape).
   @immutable
   class ComputeSecurityPolicyRulesMatchConfig {
     const ComputeSecurityPolicyRulesMatchConfig({required this.srcIpRanges});
 
     /// IPv4/IPv6 CIDR ranges to match against the request's source IP.
     /// Max 10 entries. Use `'*'` to match any.
-    final List<String> srcIpRanges;
+    final TfArg<List<String>> srcIpRanges;
 
-    Map<String, Object?> toArgMap() => {'src_ip_ranges': srcIpRanges};
+    Map<String, Object?> toArgMap() => {
+      'src_ip_ranges': srcIpRanges.toTfJson(),
+    };
   }
 
   /// `match.expr` -- a user-defined Common Expression Language (CEL)
@@ -693,7 +695,7 @@ prelude: |
     /// Headers Cloud Armor consults to derive the client IP (in addition
     /// to the L4 source). Case-insensitive header names; typically
     /// `'X-Forwarded-For'` or a vendor-specific equivalent.
-    final List<String>? userIpRequestHeaders;
+    final TfArg<List<String>>? userIpRequestHeaders;
 
     /// Custom Content-Type → JSON parser mapping. Only honored when
     /// [jsonParsing] is [SecurityPolicyJsonParsing.standard].
@@ -705,7 +707,7 @@ prelude: |
       if (requestBodyInspectionSize != null)
         'request_body_inspection_size': requestBodyInspectionSize!.toTfJson(),
       if (userIpRequestHeaders != null)
-        'user_ip_request_headers': userIpRequestHeaders,
+        'user_ip_request_headers': userIpRequestHeaders!.toTfJson(),
       if (jsonCustomConfig != null)
         'json_custom_config': [jsonCustomConfig!.toArgMap()],
     };
@@ -719,9 +721,11 @@ prelude: |
     const ComputeSecurityPolicyJsonCustomConfig({required this.contentTypes});
 
     /// Additional Content-Type header values to apply JSON parsing to.
-    final List<String> contentTypes;
+    final TfArg<List<String>> contentTypes;
 
-    Map<String, Object?> toArgMap() => {'content_types': contentTypes};
+    Map<String, Object?> toArgMap() => {
+      'content_types': contentTypes.toTfJson(),
+    };
   }
 
   // ===========================================================================

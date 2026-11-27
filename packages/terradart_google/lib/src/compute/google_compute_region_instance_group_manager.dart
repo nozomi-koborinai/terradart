@@ -502,12 +502,12 @@ class ComputeRegionInstanceGroupManagerAllInstancesConfig {
     this.metadata,
   });
 
-  final Map<String, String>? labels;
-  final Map<String, String>? metadata;
+  final TfArg<Map<String, String>>? labels;
+  final TfArg<Map<String, String>>? metadata;
 
   Map<String, Object?> toArgMap() => {
-    if (labels != null) 'labels': labels,
-    if (metadata != null) 'metadata': metadata,
+    if (labels != null) 'labels': labels!.toTfJson(),
+    if (metadata != null) 'metadata': metadata!.toTfJson(),
   };
 }
 
@@ -670,7 +670,7 @@ class ComputeRegionInstanceGroupManagerInstanceSelection {
   final TfArg<String> name;
 
   /// Required. Full machine-type names (e.g. `n1-standard-16`).
-  final List<String> machineTypes;
+  final TfArg<List<String>> machineTypes;
 
   /// Lower number = higher preference. Selections with the same rank
   /// are treated equally.
@@ -678,7 +678,7 @@ class ComputeRegionInstanceGroupManagerInstanceSelection {
 
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
-    'machine_types': machineTypes,
+    'machine_types': machineTypes.toTfJson(),
     if (rank != null) 'rank': rank!.toTfJson(),
   };
 }
