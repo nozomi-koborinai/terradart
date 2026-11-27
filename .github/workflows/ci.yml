@@ -130,14 +130,9 @@ jobs:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: ${{ steps.plugins.outputs.cache-primary-key }}
 
-  test:
-    name: test (${{ matrix.package }})
+  format_analyze:
+    name: format and analyze
     runs-on: ubuntu-latest
-    needs: workspace_packages
-    strategy:
-      fail-fast: false
-      matrix:
-        package: ${{ fromJson(needs.workspace_packages.outputs.packages) }}
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -152,12 +147,34 @@ jobs:
       # can drift from the SDK-bundled `dart format` CLI; wrap output is the
       # authoritative format there, guarded byte-for-byte by the `wrap_check`
       # job (`terradart wrap --check`).
-      - if: matrix.package == 'terradart_core'
-        run: tool/format_check.sh
-      - if: matrix.package == 'terradart_core'
-        run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
-      - if: matrix.package == 'terradart_core'
-        run: dart test tool/*_test.dart
+      - run: tool/format_check.sh
+      - run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
+
+  tool_tests:
+    name: tool tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - run: dart test tool/*_test.dart
+
+  test:
+    name: test (${{ matrix.package }})
+    runs-on: ubuntu-latest
+    needs: workspace_packages
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJson(needs.workspace_packages.outputs.packages) }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
       - run: dart test --reporter=github
         working-directory: packages/${{ matrix.package }}
 
@@ -188,7 +205,6 @@ jobs:
   wrap_check:
     name: terradart wrap --check
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -257,7 +273,6 @@ jobs:
   cli_e2e:
     name: terradart cli e2e (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    needs: test
     # The user-facing `terradart` command end to end on each OS it ships
     # for: download the pinned OpenTofu into an empty cache (checksum
     # verified), synthesize a Stack per environment with `dart run`, then
@@ -280,7 +295,6 @@ jobs:
   wrap_init_check:
     name: terradart wrap-init smoke
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -294,7 +308,6 @@ jobs:
   wrap_promote_check:
     name: terradart wrap-promote smoke
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -566,6 +579,8 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - changes
+      - format_analyze
+      - tool_tests
       - test
       - example_gates
       - wrap_check
@@ -592,6 +607,8 @@ jobs:
         env:
           RESULTS: |
             select examples=${{ needs.changes.result }}
+            format and analyze=${{ needs.format_analyze.result }}
+            tool tests=${{ needs.tool_tests.result }}
             test=${{ needs.test.result }}
             example gates=${{ needs.example_gates.result }}
             terradart wrap --check=${{ needs.wrap_check.result }}
