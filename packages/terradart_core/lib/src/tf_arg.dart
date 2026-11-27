@@ -97,6 +97,16 @@ sealed class TfArg<T> {
   /// A Dart value: `.literal('orders')`, `TfArg.literal('orders')` (T
   /// inferred) or `TfArg<String?>.literal(null)` (explicit). A const
   /// constructor, so a helper built from literals can be `const`.
+  ///
+  /// Terraform reads every string in tf.json as a template, so a `${ ... }`
+  /// or `%{ ... }` inside a literal string is evaluated like an
+  /// [expression]'s, and synth checks each `var.<name>` it reads. Write
+  /// `$${` / `%%{` where the text holds those characters itself, such as an
+  /// AWS policy variable:
+  ///
+  /// ```dart
+  /// final resource = TfArg.literal(r'arn:aws:iam::*:user/$${aws:username}');
+  /// ```
   const factory TfArg.literal(T value) = TfArgLiteral<T>;
 
   /// `var.<name>` by name: `.variable('db_password')`.

@@ -22,9 +22,18 @@ void main() {
     });
   });
 
-  group('TfRef.data', () {
+  group('an attribute of a data source', () {
     final project = _FakeAddressed('data.google_project.current');
-    final ref = TfRef.data<String>(project, 'project_id');
+    final ref = TfRef.attribute<String>(project, 'project_id');
+
+    test('is an AttributeRef', () {
+      expect(
+        ref,
+        isA<AttributeRef<String>>()
+            .having((r) => r.owner, 'owner', same(project))
+            .having((r) => r.attr, 'attr', 'project_id'),
+      );
+    });
 
     test('interpolation wraps the data address', () {
       expect(ref.interpolation, r'${data.google_project.current.project_id}');
@@ -50,11 +59,10 @@ void main() {
   });
 
   group('sealed exhaustiveness', () {
-    test('switch covers AttributeRef, DataRef, ResourceRef', () {
+    test('switch covers AttributeRef and ResourceRef', () {
       final ref = TfRef.attribute<int>(_FakeAddressed('a.b'), 'c');
       final tag = switch (ref) {
         AttributeRef<int>() => 'attr',
-        DataRef<int>() => 'data',
         ResourceRef() => 'res',
       };
       expect(tag, 'attr');

@@ -15,16 +15,18 @@ import 'dart_source.dart';
 /// ```
 ///
 /// Fields left null are omitted so Terraform's own default applies. A
-/// variable with no [defaultValue] is required when the engine runs
-/// (`terradart apply -- -var '<name>=...'`, or `TF_VAR_<name>`), which is
-/// the point for secrets: the value never enters synth
-/// output or any Dart-side artifact.
+/// variable without a default ([hasDefault] false) is required when the
+/// engine runs (`terradart apply -- -var '<name>=...'`, or
+/// `TF_VAR_<name>`), which is the point for secrets: the value never
+/// enters synth output or any Dart-side artifact. Passing `null` as
+/// `defaultValue` is a default: it writes `"default": null`, and the
+/// variable becomes optional.
 @immutable
 final class TfVariable {
   const TfVariable({
     this.type,
     this.description,
-    this.defaultValue,
+    this._defaultValue = omitted,
     this.sensitive,
     this.nullable,
   });
@@ -35,10 +37,16 @@ final class TfVariable {
   /// Human-readable description, surfaced by `terraform plan` prompts.
   final String? description;
 
-  /// Default value, making the variable optional. Omitted when null —
-  /// so a variable with no default is required, which is what a
-  /// secret-bearing variable wants.
-  final Object? defaultValue;
+  final Object? _defaultValue;
+
+  /// Whether the block has a `default`, making the variable optional. A
+  /// variable with none is required, which is what a secret-bearing
+  /// variable wants.
+  bool get hasDefault => !identical(_defaultValue, omitted);
+
+  /// The `default`, which may be `null`; `null` too when [hasDefault] is
+  /// false.
+  Object? get defaultValue => hasDefault ? _defaultValue : null;
 
   /// Marks the value as sensitive so Terraform redacts it from plan and
   /// apply output. Set this on a variable that feeds a sensitive field, the
@@ -53,7 +61,7 @@ final class TfVariable {
   Map<String, Object?> toTfJson() => {
     if (type != null) 'type': type!.expression,
     if (description != null) 'description': description,
-    if (defaultValue != null) 'default': _jsonValue(defaultValue),
+    if (hasDefault) 'default': _jsonValue(_defaultValue),
     if (sensitive != null) 'sensitive': sensitive,
     if (nullable != null) 'nullable': nullable,
   };
@@ -92,7 +100,8 @@ sealed class TfType {
   const factory TfType.tuple(List<TfType> elements) = TfTupleType;
 
   /// `optional(<type>[, <default>])`, an [object] attribute the caller
-  /// may leave out.
+  /// may leave out. A `null` [defaultValue] is written:
+  /// `optional(string, null)`.
   const factory TfType.optional(TfType type, [Object? defaultValue]) =
       TfOptionalType;
 
@@ -186,17 +195,31 @@ final class TfTupleType extends TfType {
 
 /// `optional(<type>[, <default>])`.
 final class TfOptionalType extends TfType {
-  const TfOptionalType(this.type, [this.defaultValue]);
+  const TfOptionalType(this.type, [Object? defaultValue = omitted])
+    : _defaultValue = defaultValue;
 
   final TfType type;
 
-  /// Written as JSON, which Terraform reads as the same value.
-  final Object? defaultValue;
+  final Object? _defaultValue;
+
+  /// Whether the attribute has a default, which may be `null`.
+  bool get hasDefault => !identical(_defaultValue, omitted);
+
+  /// The default, written as JSON, which Terraform reads as the same value;
+  /// `null` too when [hasDefault] is false.
+  Object? get defaultValue => hasDefault ? _defaultValue : null;
 
   @override
-  String get expression => defaultValue == null
-      ? 'optional(${type.expression})'
-      : 'optional(${type.expression}, ${jsonEncode(_jsonValue(defaultValue))})';
+  String get expression => hasDefault
+      ? 'optional(${type.expression}, ${jsonEncode(_jsonValue(_defaultValue))})'
+      : 'optional(${type.expression})';
+}
+
+@internal
+const Object omitted = _Omitted();
+
+final class _Omitted {
+  const _Omitted();
 }
 
 final class _DartTypeParser {

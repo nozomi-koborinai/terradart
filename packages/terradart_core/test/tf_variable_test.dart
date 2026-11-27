@@ -156,6 +156,57 @@ void main() {
       });
     });
 
+    test('a null default is a default: the variable is optional', () {
+      final stack = TestStack()
+        ..variable<String?>('suffix', defaultValue: null)
+        ..variable<String>('region');
+      expect(stack.variables['suffix']!.toTfJson(), {
+        'type': 'string',
+        'default': null,
+      });
+      expect(stack.variables['suffix']!.hasDefault, isTrue);
+      expect(stack.variables['region']!.toTfJson(), {'type': 'string'});
+      expect(stack.variables['region']!.hasDefault, isFalse);
+    });
+
+    test('a default that is not a T is rejected', () {
+      final stack = TestStack();
+      expect(
+        () => stack.variable<String>('suffix', defaultValue: null),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            contains('variable<String?>'),
+          ),
+        ),
+      );
+      expect(
+        () => stack.variable<num>('replicas', defaultValue: 'two'),
+        throwsArgumentError,
+      );
+      expect(stack.variables, isEmpty);
+    });
+
+    test('an empty list or map literal is a default of any element type', () {
+      final stack = TestStack()
+        ..variable<List<String>>('zones', defaultValue: [])
+        ..variable<Map<String, String>>('labels', defaultValue: {});
+      expect(stack.variables['zones']!.toTfJson()['default'], isEmpty);
+      expect(stack.variables['labels']!.toTfJson()['default'], isEmpty);
+    });
+
+    test('an optional object attribute writes a null default', () {
+      expect(
+        const TfType.optional(TfType.string, null).expression,
+        'optional(string, null)',
+      );
+      expect(
+        const TfType.optional(TfType.string).expression,
+        'optional(string)',
+      );
+    });
+
     test('a Set default is written as a JSON list', () {
       final stack = TestStack()
         ..variable<Set<String>>('zones', defaultValue: {'a', 'b'})

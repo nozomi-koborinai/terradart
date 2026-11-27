@@ -21,8 +21,11 @@ import '../lifecycle.dart';
 ///   }
 /// }
 /// ```
+///
+/// Only this library declares issues, and a later release may add one, so
+/// a switch over them keeps a `default`.
 @immutable
-sealed class SynthIssue {
+abstract final class SynthIssue {
   const SynthIssue();
 
   /// Where the problem is: the Terraform address of the block that holds
@@ -185,6 +188,28 @@ final class SensitiveLiteral extends SynthIssue {
   }
 }
 
+/// An output that is not marked sensitive reads a sensitive variable or a
+/// sensitive field. Terraform rejects it at plan, and the value would reach
+/// the generated reader and the dart-define file.
+final class SensitiveOutput extends SynthIssue {
+  const SensitiveOutput({required this.name, required this.reads});
+
+  /// The output's name.
+  final String name;
+
+  /// What it reads: `var.db_password` or `google_sql_user.app.password`.
+  final String reads;
+
+  @override
+  String get address => 'output.$name';
+
+  @override
+  String get message =>
+      'reads the sensitive value $reads, which Terraform only lets a '
+      'sensitive output carry. Pass sensitive: true to addOutput; a '
+      'sensitive output has no reader getter and no dart-define entry.';
+}
+
 /// A negative `timeouts` duration.
 final class InvalidTimeout extends SynthIssue {
   const InvalidTimeout({
@@ -208,8 +233,8 @@ final class InvalidTimeout extends SynthIssue {
 }
 
 /// A `lifecycle` block Terraform rejects: a data source (or one of its
-/// attributes) in `replaceTriggeredBy`, `all` inside [IgnoreChanges.of],
-/// or a condition with an empty error message.
+/// attributes) or a module output in `replaceTriggeredBy`, `all` inside
+/// [IgnoreChanges.of], or a condition with an empty error message.
 final class InvalidLifecycle extends SynthIssue {
   const InvalidLifecycle({required this.address, required this.reason});
 

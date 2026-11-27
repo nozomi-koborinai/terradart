@@ -107,16 +107,7 @@ abstract base class Stack {
     this.backend,
     this.requiredVersion = '>= 1.11.0',
     this.appExports,
-    this.devMode = false,
   }) : _providers = [...providers];
-
-  /// When true, synth-time injection flips `deletion_protection` to
-  /// `false` on any registered resource whose
-  /// `Resource.supportsDeletionProtection` is true and that did not
-  /// explicitly set the field. Intended for dogfood / sample apps;
-  /// production stacks leave this false (the provider default of
-  /// `true` then applies).
-  final bool devMode;
 
   /// The Dart file application code imports, holding the [constants].
   /// `null` writes no file, and then [addConstant] throws.
@@ -206,8 +197,9 @@ abstract base class Stack {
 
   /// Terraform version constraint for `terraform { required_version }`.
   /// Defaults to `'>= 1.11.0'`: Terraform 1.11 is the first with write-only
-  /// arguments.
-  final String requiredVersion;
+  /// arguments. `null` writes no `required_version`, so any engine version
+  /// runs the configuration.
+  final String? requiredVersion;
 
   /// Registers [provider] like an entry of the Stack's `providers` and
   /// returns it, so the constructor body holds the instance a resource
@@ -306,11 +298,12 @@ abstract base class Stack {
   /// SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID`). A sensitive output has no
   /// getter: read a secret from its secret store instead.
   ///
-  /// Throws [ArgumentError] when [name] is not a Terraform identifier, is already
-  /// registered, or [value] reads a sensitive field and [sensitive] is
-  /// `false` (Terraform rejects that output at plan); and, with [appExports]
-  /// set, when its getter is not a Dart identifier or its getter or
-  /// environment variable is another output's.
+  /// Throws [ArgumentError] when [name] is not a Terraform identifier or is
+  /// already registered; and, with [appExports] set, when its getter is not
+  /// a Dart identifier or its getter or environment variable is another
+  /// output's. Synth reports a [SensitiveOutput] when [value] reads a
+  /// sensitive variable or field and [sensitive] is `false`: Terraform
+  /// rejects that output at plan.
   void addOutput<T>(
     String name,
     TfArg<T> value, {
@@ -326,17 +319,6 @@ abstract base class Stack {
       );
     }
     _checkOutputNameFree(name);
-    if (!sensitive) {
-      final field = _sensitiveFieldRead(value);
-      if (field != null) {
-        throw ArgumentError.value(
-          name,
-          'name',
-          'Output "$name" reads the sensitive field $field; pass '
-              'sensitive: true.',
-        );
-      }
-    }
     if (appExports != null && !sensitive) _checkReaderNames(name);
     _outputs[name] = TfOutput<T>(
       value,
@@ -525,19 +507,6 @@ abstract base class Stack {
     }
   }
 
-  static String? _sensitiveFieldRead(TfArg<Object?> value) {
-    final (owner, attr) = switch (value) {
-      AttributeRef(:final owner, :final attr) => (owner, attr),
-      DataRef(:final owner, :final attr) => (owner, attr),
-      _ => (null, null),
-    };
-    // ignore: invalid_use_of_protected_member
-    if (owner is Resource && owner.sensitiveFields.contains(attr)) {
-      return '${owner.tfAddress}.$attr';
-    }
-    return null;
-  }
-
   /// Declare `static const <T> <name>` in the generated `<name>Constants`
   /// class of the [appExports] file.
   ///
@@ -618,18 +587,40 @@ abstract base class Stack {
   /// The Terraform `type` comes from [T] — `String`, `int` / `double` /
   /// `num`, `bool`, and `List` / `Set` / `Map<String, _>` of those — unless
   /// [type] says otherwise; `Object?` declares no type. Order is preserved
-  /// for deterministic output. Throws [ArgumentError] if `name` is not a
-  /// Terraform identifier or is already declared, or when [T] has no
-  /// Terraform type and [type] is not given.
+  /// for deterministic output.
+  ///
+  /// Leaving [defaultValue] out makes the variable required. Passing it,
+  /// `null` included, writes `default` and makes the variable optional; a
+  /// `null` default needs a nullable [T]:
+  ///
+  /// ```dart
+  /// final suffix = variable<String?>('suffix', defaultValue: null);
+  /// ```
+  ///
+  /// Throws [ArgumentError] if `name` is not a Terraform identifier or is
+  /// already declared, when [T] has no Terraform type and [type] is not
+  /// given, or when [defaultValue] is not a [T].
   TfArgVariable<T> variable<T>(
     String name, {
     TfType? type,
     String? description,
-    T? defaultValue,
+    Object? defaultValue = omitted,
     bool? sensitive,
     bool? nullable,
   }) {
     _declareVariableName(name);
+    if (!identical(defaultValue, omitted) &&
+        defaultValue is! T &&
+        !(DartValueType.tryParse('$T')?.conforms(defaultValue) ?? false)) {
+      final hint = defaultValue == null
+          ? ' (declare variable<$T?> for a null default)'
+          : '';
+      throw ArgumentError.value(
+        defaultValue,
+        'defaultValue',
+        'Variable "$name" is a $T; its default must be one$hint',
+      );
+    }
     final TfType? resolved;
     try {
       resolved = type ?? TfType.fromDartTypeName('$T');

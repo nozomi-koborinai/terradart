@@ -41,9 +41,9 @@ void main() {
       isEmpty,
       reason:
           'These overrides curate a resource whose schema exposes '
-          'deletion_protection but omit it from paramOrder, so the wrapper '
-          'advertises supportsDeletionProtection with no way to set the '
-          'flag: $violations. Add deletion_protection to paramOrder.',
+          'deletion_protection but omit it from paramOrder, so a caller '
+          'cannot turn it off before destroy: $violations. Add '
+          'deletion_protection to paramOrder.',
     );
   });
 }

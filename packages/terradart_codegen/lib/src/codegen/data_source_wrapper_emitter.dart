@@ -244,6 +244,7 @@ class DataSourceWrapperEmitter {
       }
       buf.writeln('    $snippet,');
     }
+    buf.writeln('    super.dependsOn,');
     buf.writeln('    super.provider,');
     buf.writeln('    super.timeouts,');
     buf.writeln('  }) : super(');
@@ -281,7 +282,7 @@ class DataSourceWrapperEmitter {
     if (principals.contains(def.terraformType)) {
       buf
         ..writeln()
-        ..write(emitPrincipalGetter(data: true));
+        ..write(emitPrincipalGetter());
     }
 
     final extraGetters = override.extraGetters;

@@ -70,7 +70,6 @@ const Set<String> _wrapperMembers = {
   'provider',
   'ref',
   'sensitiveFields',
-  'supportsDeletionProtection',
   'terraformType',
   'tfAddress',
   'timeouts',
@@ -95,11 +94,10 @@ String emitResourceRefGetter(String className) =>
     '  /// `RefTo<$className>`.\n'
     '  RefTo<$className> get ref => RefTo.of(this);\n';
 
-String emitPrincipalGetter({required bool data}) =>
+String emitPrincipalGetter() =>
     '  /// This identity as an IAM principal, for `member` / `members`.\n'
     '  IamPrincipal get principal =>\n'
-    '      IamPrincipal.arg(TfRef.${data ? 'data' : 'attribute'}<String>'
-    "(this, 'member'));\n";
+    "      IamPrincipal.arg(TfRef.attribute<String>(this, 'member'));\n";
 
 String emitDataSourceRefGetter(String resourceType, String className) =>
     '  /// A reference to the `$resourceType` this data source reads, for\n'

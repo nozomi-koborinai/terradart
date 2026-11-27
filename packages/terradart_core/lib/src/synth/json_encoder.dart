@@ -39,7 +39,7 @@ class TfJsonEncoder {
     }
 
     final out = <String, dynamic>{
-      'required_version': stack.requiredVersion,
+      'required_version': ?stack.requiredVersion,
       if (requiredProviders.isNotEmpty) 'required_providers': requiredProviders,
     };
 
@@ -228,26 +228,8 @@ class TfJsonEncoder {
 
   /// JSON for one resource block: `argMap` + optional `depends_on` +
   /// optional `lifecycle` + optional `timeouts`.
-  ///
-  /// When [devModeInjectDeletionProtection] is `true` and the resource
-  /// exposes `supportsDeletionProtection == true` and its `argMap` does
-  /// not already contain `deletion_protection`, `false` is injected so
-  /// dev stacks can be torn down without manual overrides.
-  static Map<String, dynamic> resourceBlock(
-    Resource r, {
-    bool devModeInjectDeletionProtection = false,
-  }) {
-    final argMap =
-        devModeInjectDeletionProtection &&
-            // ignore: invalid_use_of_protected_member
-            r.supportsDeletionProtection &&
-            !r.argMap.containsKey('deletion_protection')
-        ? <String, TfArg<dynamic>?>{
-            ...r.argMap,
-            'deletion_protection': const TfArgLiteral<bool>(false),
-          }
-        : r.argMap;
-    final out = encodeArgMap(argMap);
+  static Map<String, dynamic> resourceBlock(Resource r) {
+    final out = encodeArgMap(r.argMap);
     final provider = blockProvider(r);
     if (provider != null) out['provider'] = provider;
     final deps = r.dependsOn;
@@ -273,16 +255,14 @@ class TfJsonEncoder {
     for (final r in stack.resources) {
       out.putIfAbsent(r.terraformType, () => {})[r.localName] = resourceBlock(
         r,
-        devModeInjectDeletionProtection: stack.devMode,
       );
     }
     return out;
   }
 
-  /// Top-level `data { ... }` group. A data source carries its `provider`
-  /// and `timeouts` meta-arguments like a resource; it has no `lifecycle` /
-  /// `depends_on` / sensitive masking at v0.0.x — Terraform rejects
-  /// `lifecycle` on data blocks anyway.
+  /// Top-level `data { ... }` group. A data source carries its `provider`,
+  /// `depends_on` and `timeouts` meta-arguments like a resource; Terraform
+  /// rejects `lifecycle` on data blocks.
   static Map<String, dynamic>? dataGroup(Stack stack) {
     if (stack.dataSources.isEmpty) return null;
     final out = <String, Map<String, dynamic>>{};
@@ -290,6 +270,10 @@ class TfJsonEncoder {
       final block = encodeArgMap(d.argMap);
       final provider = blockProvider(d);
       if (provider != null) block['provider'] = provider;
+      if (d.dependsOn case final deps?) {
+        final dep = dependsOn(deps);
+        if (dep != null) block['depends_on'] = dep;
+      }
       final timeouts = d.timeouts?.toTfJson();
       if (timeouts != null) block['timeouts'] = timeouts;
       out.putIfAbsent(d.terraformType, () => {})[d.localName] = block;

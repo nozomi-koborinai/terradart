@@ -90,7 +90,6 @@ const Set<String> stackMemberNames = {
   'requiredVersion',
   'outputs',
   'constants',
-  'devMode',
   'runtimeType',
   'hashCode',
   'toString',

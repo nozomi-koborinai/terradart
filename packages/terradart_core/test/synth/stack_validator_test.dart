@@ -82,7 +82,7 @@ void main() {
                 r'${upper(google_pubsub_topic.gone.name)}',
               ),
               'labels': TfArg.literal({
-                'x': TfRef.data<String>(
+                'x': TfRef.attribute<String>(
                   FakeProjectData('p', argMap: const {}),
                   'project_id',
                 ),
@@ -130,7 +130,7 @@ void main() {
               ignoreChanges: const .of(['labels', 'all']),
               replaceTriggeredBy: [
                 project,
-                TfRef.data<String>(project, 'number'),
+                TfRef.attribute<String>(project, 'number'),
                 TfRef.attribute<String>(project, 'id'),
               ],
               conditions: [.pre(.expression(r'${true}'), ' ')],
@@ -425,6 +425,174 @@ void main() {
           ),
         );
       expect(missingBranch.validate(), isEmpty);
+    });
+
+    test('a sensitive input of a data source set to a literal', () {
+      final stack = TestStack(providers: const [_google])
+        ..add(
+          FakeSecretData(
+            'key',
+            argMap: const {'plaintext': TfArgLiteral<String>('hunter2')},
+          ),
+        );
+      expect(stack.validate(), [
+        isA<SensitiveLiteral>()
+            .having((i) => i.address, 'address', 'data.google_kms_secret.key')
+            .having((i) => i.field, 'field', 'plaintext'),
+      ]);
+    });
+  });
+
+  group('a literal string is a Terraform template', () {
+    test('its var.<name> must be declared', () {
+      final stack = TestStack(providers: const [_google])
+        ..add(_reader('a', .literal(r'orders-${var.suffix}')))
+        ..add(
+          FakePubsubTopic(
+            'b',
+            argMap: {
+              'labels': TfArg.literal({'env': r'${var.env}'}),
+            },
+          ),
+        );
+      expect(stack.validate(), [
+        isA<UndeclaredVariable>()
+            .having((i) => i.address, 'address', 'google_pubsub_topic.a')
+            .having((i) => i.name, 'name', 'suffix'),
+        isA<UndeclaredVariable>()
+            .having((i) => i.address, 'address', 'google_pubsub_topic.b')
+            .having((i) => i.name, 'name', 'env'),
+      ]);
+    });
+
+    test(r'$${ is the text itself, not a reference', () {
+      final stack = TestStack(providers: const [_google])
+        ..add(_reader('a', .literal(r'orders-$${var.suffix}')));
+      expect(stack.validate(), isEmpty);
+    });
+  });
+
+  group('SensitiveOutput', () {
+    test('an output of a sensitive variable must be sensitive', () {
+      final stack = TestStack(providers: const [_google]);
+      final password = stack.variable<String>('db_password', sensitive: true);
+      stack
+        ..addOutput('handle', password)
+        ..addOutput(
+          'url',
+          TfArg.expression<String>(r'postgres://app:${var.db_password}@db'),
+        )
+        ..addOutput('marked', password, sensitive: true);
+      expect(stack.validate(), [
+        isA<SensitiveOutput>()
+            .having((i) => i.address, 'address', 'output.handle')
+            .having((i) => i.reads, 'reads', 'var.db_password'),
+        isA<SensitiveOutput>()
+            .having((i) => i.address, 'address', 'output.url')
+            .having((i) => i.reads, 'reads', 'var.db_password'),
+      ]);
+    });
+
+    test('an expression reading a sensitive field must be sensitive', () {
+      final stack = TestStack(providers: const [_google])
+        ..addOutput(
+          'secret',
+          TfArg.expression<String>(
+            r'${google_secret_manager_secret_version.v.secret_data}',
+          ),
+        )
+        ..add(FakeSecretVersion('v', argMap: const {}));
+      expect(stack.validate(), [
+        isA<SensitiveOutput>().having(
+          (i) => i.reads,
+          'reads',
+          'google_secret_manager_secret_version.v.secret_data',
+        ),
+      ]);
+    });
+
+    test('a variable declared after the output counts', () {
+      final stack = TestStack(providers: const [_google])
+        ..addOutput('pw', TfArg.variable<String>('db_password'))
+        ..variable<String>('db_password', sensitive: true);
+      expect(stack.validate(), [isA<SensitiveOutput>()]);
+    });
+
+    test('a dart-define output never carries a sensitive value', () {
+      final stack = TestStack(providers: const [_google]);
+      final token = stack.variable<String>('api_token', sensitive: true);
+      stack
+        ..addOutput('api_token', token)
+        ..addDartDefineOutput();
+      expect(
+        stack.synth,
+        throwsSynthIssue<SensitiveOutput>(contains('output.api_token')),
+      );
+    });
+  });
+
+  group('references to blocks of any provider', () {
+    test('an attribute of a block never added', () {
+      final orphan = FakeResource('orphan', name: const TfArgLiteral('o'));
+      final stack = TestStack(providers: const [_google])
+        ..add(_reader('copy', TfRef.attribute(orphan, 'name')))
+        ..add(
+          FakePubsubTopic(
+            'list',
+            argMap: {
+              'ids': TfArg<List<Object?>>.literal([
+                TfRef.attribute<String>(orphan, 'id'),
+              ]),
+            },
+          ),
+        );
+      expect(stack.validate(), [
+        isA<UnregisteredReference>()
+            .having((i) => i.address, 'address', 'google_pubsub_topic.copy')
+            .having((i) => i.target, 'target', 'fake_thing.orphan'),
+        isA<UnregisteredReference>()
+            .having((i) => i.address, 'address', 'google_pubsub_topic.list')
+            .having((i) => i.target, 'target', 'fake_thing.orphan'),
+      ]);
+    });
+  });
+
+  group('InvalidLifecycle', () {
+    test('a module output is no replace trigger', () {
+      final stack = TestStack(providers: const [_google]);
+      final sa = stack.addModule(ModuleCall('sa', source: './sa'));
+      stack.add(
+        FakePubsubTopic.withMeta(
+          't',
+          argMap: const {},
+          lifecycle: LifecycleOptions(
+            replaceTriggeredBy: [sa.output<String>('member')],
+          ),
+        ),
+      );
+      expect(stack.validate(), [
+        isA<InvalidLifecycle>().having(
+          (i) => i.message,
+          'message',
+          contains('module output "module.sa.member"'),
+        ),
+      ]);
+    });
+  });
+
+  group('SynthIssue', () {
+    test('a switch handles the issues it knows and needs no other case', () {
+      final stack = TestStack(providers: const [_google])
+        ..add(_reader('a', .variable('missing')))
+        ..addMoved('google_pubsub_topic.old', 'google_pubsub_topic.nope');
+      final names = <String>[];
+      for (final issue in stack.validate()) {
+        switch (issue) {
+          case UndeclaredVariable(:final name):
+            names.add(name);
+        }
+      }
+      expect(names, ['missing']);
     });
   });
 }

@@ -48,6 +48,7 @@ GoogleSecretManagerSecret buildDbPasswordSecret() => GoogleSecretManagerSecret(
   'db_password',
   secretId: .literal('coffee-shop-db-password'),
   replication: const .auto(.new()),
+  deletionProtection: .literal(false),
 );
 
 GoogleSecretManagerSecretVersion buildDbPasswordSecretVersion(

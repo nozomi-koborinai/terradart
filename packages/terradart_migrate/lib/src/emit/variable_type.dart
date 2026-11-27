@@ -10,6 +10,10 @@ final class VariableType {
   final String dartType;
   final String? tfType;
 
+  VariableType get nullable => dartType.endsWith('?')
+      ? this
+      : VariableType('$dartType?', tfType: tfType);
+
   static const untyped = VariableType('Object?');
 }
 

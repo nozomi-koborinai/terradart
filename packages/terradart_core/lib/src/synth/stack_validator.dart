@@ -2,6 +2,7 @@ import 'package:meta/meta.dart';
 
 import '../app_constant.dart';
 import '../lifecycle.dart';
+import '../resource.dart';
 import '../stack.dart';
 import '../tf_arg.dart';
 import '../tf_template.dart';
@@ -16,6 +17,7 @@ abstract final class StackValidator {
     ..._variables(stack),
     ..._references(stack),
     ..._sensitiveLiterals(stack),
+    ..._sensitiveOutputs(stack),
     ..._timeouts(stack),
     ..._moved(stack),
     ..._constants(stack),
@@ -109,7 +111,12 @@ abstract final class StackValidator {
   static Iterable<SynthIssue> _variables(Stack stack) sync* {
     final declared = {...stack.variables.keys, ...stack.externalVariables};
     for (final (address, args) in _argumentsByBlock(stack)) {
-      final names = <String>{for (final arg in args) ..._variableNames(arg)};
+      final names = <String>{
+        for (final arg in args)
+          if (arg != null)
+            for (final s in _strings(TfJsonEncoder.encodeArg(arg)))
+              ...templateVariableNames(s),
+      };
       for (final name in names) {
         if (!declared.contains(name)) {
           yield UndeclaredVariable(address: address, name: name);
@@ -138,27 +145,6 @@ abstract final class StackValidator {
     }
     for (final MapEntry(key: name, value: o) in stack.outputs.entries) {
       yield ('output.$name', [o.value]);
-    }
-  }
-
-  static Iterable<String> _variableNames(Object? v) sync* {
-    switch (v) {
-      case TfArgVariable(:final name):
-        yield name;
-      case TfArgExpression(:final referencedVariables):
-        yield* referencedVariables;
-      case TfArgLiteral(:final value):
-        yield* _variableNames(value);
-      case List():
-        for (final e in v) {
-          yield* _variableNames(e);
-        }
-      case Map():
-        for (final e in v.values) {
-          yield* _variableNames(e);
-        }
-      default:
-        break;
     }
   }
 
@@ -200,11 +186,20 @@ abstract final class StackValidator {
       }
     }
 
+    Iterable<String> read(Iterable<TfArg<dynamic>?> args) => [
+      for (final arg in args)
+        if (arg != null) ...[
+          ..._owners(arg),
+          ...templated(TfJsonEncoder.encodeArg(arg)),
+        ],
+    ];
+
     for (final r in stack.resources) {
       yield* check(r.tfAddress, [
-        ...templated(TfJsonEncoder.encodeArgMap(r.argMap)),
-        for (final c in r.lifecycle?.conditions ?? const <LifecycleCondition>[])
-          ...templated(c.condition.toTfJson()),
+        ...read([
+          ...r.argMap.values,
+          ...?r.lifecycle?.conditions?.map((c) => c.condition),
+        ]),
         ...?r.dependsOn?.map((d) => _root(d.tfAddress)),
         ...?r.lifecycle?.replaceTriggeredBy?.map(
           (t) => _root(TfJsonEncoder.replaceTriggerAddress(t)),
@@ -213,22 +208,37 @@ abstract final class StackValidator {
     }
     for (final d in stack.dataSources) {
       yield* check(d.tfAddress, [
-        ...templated(TfJsonEncoder.encodeArgMap(d.argMap)),
+        ...read(d.argMap.values),
         ...?d.dependsOn?.map((t) => _root(t.tfAddress)),
       ]);
     }
     for (final m in stack.modules) {
       yield* check(m.tfAddress, [
-        ...templated(TfJsonEncoder.encodeArgMap(m.inputs)),
-        if (m.count case final count?)
-          ...templated(TfJsonEncoder.encodeArg(count)),
-        if (m.forEach case final forEach?)
-          ...templated(TfJsonEncoder.encodeArg(forEach)),
+        ...read([...m.inputs.values, m.count, m.forEach]),
         ...?m.dependsOn?.map((d) => _root(d.tfAddress)),
       ]);
     }
     for (final MapEntry(key: name, value: o) in stack.outputs.entries) {
-      yield* check('output.$name', templated(TfJsonEncoder.encodeArg(o.value)));
+      yield* check('output.$name', read([o.value]));
+    }
+  }
+
+  static Iterable<String> _owners(Object? v) sync* {
+    switch (v) {
+      case AttributeRef(:final owner) || ResourceRef(:final owner):
+        yield _root(owner.tfAddress);
+      case TfArgLiteral(:final value):
+        yield* _owners(value);
+      case List():
+        for (final e in v) {
+          yield* _owners(e);
+        }
+      case Map():
+        for (final e in v.values) {
+          yield* _owners(e);
+        }
+      default:
+        break;
     }
   }
 
@@ -304,7 +314,7 @@ abstract final class StackValidator {
   }
 
   static Iterable<SynthIssue> _sensitiveLiterals(Stack stack) sync* {
-    for (final r in stack.resources) {
+    for (final r in [...stack.resources, ...stack.dataSources]) {
       // ignore: invalid_use_of_protected_member
       final sensitive = r.sensitiveFields;
       if (sensitive.isEmpty) continue;
@@ -313,6 +323,59 @@ abstract final class StackValidator {
       }
     }
   }
+
+  static Iterable<SynthIssue> _sensitiveOutputs(Stack stack) sync* {
+    final blocks = {
+      for (final b in [...stack.resources, ...stack.dataSources])
+        b.tfAddress: b,
+    };
+    for (final MapEntry(key: name, value: o) in stack.outputs.entries) {
+      if (o.sensitive) continue;
+      final reads = _sensitiveRead(stack, blocks, o.value);
+      if (reads != null) yield SensitiveOutput(name: name, reads: reads);
+    }
+  }
+
+  static String? _sensitiveRead(
+    Stack stack,
+    Map<String, Resource> blocks,
+    TfArg<Object?> value,
+  ) {
+    switch (value) {
+      case AttributeRef(:final Resource owner, :final attr)
+          when _isSensitive(owner, attr):
+        return '${owner.tfAddress}.$attr';
+      case ResourceRef(:final Resource owner)
+          // ignore: invalid_use_of_protected_member
+          when owner.sensitiveFields.isNotEmpty:
+        return owner.tfAddress;
+      default:
+        break;
+    }
+    for (final s in _strings(TfJsonEncoder.encodeArg(value))) {
+      for (final name in templateVariableNames(s)) {
+        if (stack.variables[name]?.sensitive ?? false) return 'var.$name';
+      }
+      for (final body in templateSequenceBodies(s)) {
+        for (final m in _attributeReference.allMatches(body)) {
+          final block = blocks[m.group(1)];
+          if (block != null && _isSensitive(block, m.group(2)!)) {
+            return '${m.group(1)}.${m.group(2)}';
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  static final RegExp _attributeReference = RegExp(
+    r'(?<![\w.\-])((?:data\.)?[A-Za-z][\w-]*\.[A-Za-z_][\w-]*)'
+    r'(?:\[[^\]]*\])*\.([A-Za-z_][\w-]*)',
+  );
+
+  static bool _isSensitive(Resource block, String attr) =>
+      // ignore: invalid_use_of_protected_member
+      block.sensitiveFields.any((f) => f == attr || f.startsWith('$attr.'));
 
   static List<String> sensitiveLiteralFields(
     Map<String, TfArg<dynamic>?> argMap,
@@ -410,13 +473,18 @@ abstract final class StackValidator {
       final lc = r.lifecycle;
       if (lc == null) continue;
       for (final t in lc.replaceTriggeredBy ?? const <ReplaceTrigger>[]) {
-        final dataSource = TfJsonEncoder.replaceTriggerAddress(t);
-        if (dataSource.startsWith('data.')) {
+        final trigger = TfJsonEncoder.replaceTriggerAddress(t);
+        final kind = trigger.startsWith('data.')
+            ? 'data source'
+            : trigger.startsWith('module.')
+            ? 'module output'
+            : null;
+        if (kind != null) {
           yield InvalidLifecycle(
             address: r.tfAddress,
             reason:
-                'replaceTriggeredBy lists the data source "$dataSource"; '
-                'Terraform only replaces on a change to a managed resource.',
+                'replaceTriggeredBy lists the $kind "$trigger"; Terraform '
+                'only replaces on a change to a managed resource.',
           );
         }
       }

@@ -23,7 +23,6 @@ final class FirestoreSeededDataStack extends Stack {
           GoogleProvider(project: projectId, region: 'asia-northeast1'),
         ],
         backend: const LocalBackend(),
-        devMode: true,
       ) {
     final apiFirestore = add(
       GoogleProjectService(

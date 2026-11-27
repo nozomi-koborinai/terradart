@@ -3,6 +3,8 @@ import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:test/test.dart';
 
+import 'helpers/fake_resources.dart';
+
 final class _FakeResource extends Resource {
   _FakeResource(super.localName, {required TfArg<String> name, super.lifecycle})
     : super(terraformType: 'fake_thing', argMap: {'name': name});
@@ -49,27 +51,50 @@ void main() {
     });
   });
 
-  group('Resource.supportsDeletionProtection', () {
-    test('defaults to false on Resource base class', () {
-      final r = _FakeResource('a', name: const TfArgLiteral('x'));
-      // ignore: invalid_use_of_protected_member
-      expect(r.supportsDeletionProtection, isFalse);
+  group('deletion_protection', () {
+    test('synth writes deletion_protection only where a resource sets it', () {
+      final stack = TestStack(providers: const [_google])
+        ..add(FakePubsubTopic('kept', argMap: const {}))
+        ..add(
+          FakePubsubTopic(
+            'disposable',
+            argMap: const {'deletion_protection': TfArgLiteral<bool>(false)},
+          ),
+        );
+      final topics =
+          (stack.synth().tfJson['resource']
+                  as Map<String, dynamic>)['google_pubsub_topic']
+              as Map<String, dynamic>;
+      expect(topics['kept'], isNot(contains('deletion_protection')));
+      expect(topics['disposable'], {'deletion_protection': false});
     });
 
-    test('can be overridden to true', () {
-      final r = _CapableResource('b', name: const TfArgLiteral('y'));
-      expect(r.supportsDeletionProtection, isTrue);
+    test('neither Stack nor Resource has a switch that rewrites it', () {
+      expect(() => (TestStack() as dynamic).devMode, throwsNoSuchMethodError);
+      expect(
+        () => (_FakeResource('a', name: const TfArgLiteral('x')) as dynamic)
+            .supportsDeletionProtection,
+        throwsNoSuchMethodError,
+      );
+    });
+  });
+
+  group('Resource.argMap', () {
+    test('is fixed once the resource is built', () {
+      final args = <String, TfArg<dynamic>?>{'name': const TfArgLiteral('a')};
+      final r = FakePubsubTopic('t', argMap: args);
+      args['name'] = const TfArgLiteral('b');
+      expect(r.argMap['name']?.toTfJson(), 'a');
+      expect(
+        () => r.argMap['name'] = const TfArgLiteral('c'),
+        throwsUnsupportedError,
+      );
     });
   });
 }
 
-final class _CapableResource extends Resource {
-  _CapableResource(super.localName, {required TfArg<String> name})
-    : super(terraformType: 'fake_capable_thing', argMap: {'name': name});
-
-  @override
-  Set<String> get sensitiveFields => const {};
-
-  @override
-  bool get supportsDeletionProtection => true;
-}
+const _google = FakeStackProvider(
+  providerName: 'google',
+  source: 'hashicorp/google',
+  versionConstraint: '~> 7.0',
+);
