@@ -366,27 +366,44 @@ Future<MigratingReport> checkMigratingCells(
       File(file).writeAsStringSync(r.contents);
       rendered[file] = (docLines: r.docLines, cells: r.cells);
     }
-    for (final dir in dirs) {
-      var get = await Process.run('dart', [
-        'pub',
-        'get',
-        '--offline',
-      ], workingDirectory: dir);
-      if (get.exitCode != 0) {
-        get = await Process.run('dart', ['pub', 'get'], workingDirectory: dir);
-      }
-      if (get.exitCode != 0) {
+    final pubResults = await Future.wait([
+      for (final dir in dirs)
+        () async {
+          var get = await Process.run('dart', [
+            'pub',
+            'get',
+            '--offline',
+          ], workingDirectory: dir);
+          if (get.exitCode != 0) {
+            get = await Process.run('dart', [
+              'pub',
+              'get',
+            ], workingDirectory: dir);
+          }
+          return (dir: dir, result: get);
+        }(),
+    ]);
+    for (final (:dir, :result) in pubResults) {
+      if (result.exitCode != 0) {
         return failed([
           ...failures,
-          'dart pub get failed in $dir:\n${get.stderr}',
+          'dart pub get failed in $dir:\n${result.stderr}',
         ]);
       }
     }
 
-    Future<List<AnalyzerDiagnostic>> analyze() async => [
-      for (final dir in dirs) ...await analyzeDiagnostics(dir),
-    ];
-    var diagnostics = await analyze();
+    Future<Map<String, List<AnalyzerDiagnostic>>> analyzeMany(
+      List<String> targetDirs,
+    ) async {
+      final results = await Future.wait([
+        for (final dir in targetDirs)
+          analyzeDiagnostics(dir).then((d) => MapEntry(dir, d)),
+      ]);
+      return Map.fromEntries(results);
+    }
+
+    final diagByDir = await analyzeMany(dirs);
+    var diagnostics = [for (final d in dirs) ...?diagByDir[d]];
     final undefined = <String, Set<String>>{};
     for (final d in diagnostics) {
       if (!rendered.containsKey(d.file)) continue;
@@ -397,12 +414,19 @@ Future<MigratingReport> checkMigratingCells(
       if (name != null) undefined.putIfAbsent(d.file, () => {}).add(name);
     }
     if (undefined.isNotEmpty) {
+      final dirtyDirs = <String>[];
       for (final MapEntry(key: path, value: names) in undefined.entries) {
         final lines = File(path).readAsStringSync().split('\n');
         lines.add('dynamic ${(names.toList()..sort()).join(', ')};');
         File(path).writeAsStringSync(lines.join('\n'));
+        final dir = p.dirname(p.dirname(path));
+        if (dirs.contains(dir) && !dirtyDirs.contains(dir)) {
+          dirtyDirs.add(dir);
+        }
       }
-      diagnostics = await analyze();
+      final updated = await analyzeMany(dirtyDirs.isEmpty ? dirs : dirtyDirs);
+      diagByDir.addAll(updated);
+      diagnostics = [for (final d in dirs) ...?diagByDir[d]];
     }
 
     for (final d in diagnostics) {
