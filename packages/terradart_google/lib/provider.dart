@@ -9,8 +9,5 @@ library;
 
 export 'package:terradart_core/terradart_core.dart';
 export 'src/_provider_meta.dart'
-    show
-        kBetaProviderSource,
-        kGoogleProviderSource,
-        kGoogleProviderVersionConstraint;
+    show kGoogleProviderSource, kGoogleProviderVersionConstraint;
 export 'src/google_provider.dart' show GoogleProvider;

@@ -11,10 +11,11 @@
 library;
 
 import 'package:terradart_google/cloud_asset.dart';
-import 'package:terradart_google/google_beta.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
+import 'package:terradart_google_beta/project.dart';
+import 'package:terradart_google_beta/provider.dart';
 import 'package:terradart_time/terradart_time.dart';
 
 /// Cloud Asset stack: Pub/Sub topic + project feed.
