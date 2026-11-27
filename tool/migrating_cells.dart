@@ -194,17 +194,24 @@ Map<String, String> previousRelease(
   return beforeRelease(series, published);
 }
 
-/// Every version pub.dev lists for each of [packages]; none for a package
-/// pub.dev does not have.
+typedef PublishedVersionsLookup =
+    Future<Map<String, List<String>>> Function(List<String> packages);
+
+/// Every version [pubHostedUrl] (default: `https://pub.dev`) lists for each
+/// of [packages]; none for a package it does not have.
 Future<Map<String, List<String>>> publishedVersions(
-  List<String> packages,
-) async {
-  final client = HttpClient();
+  List<String> packages, {
+  Uri? pubHostedUrl,
+  HttpClient? client,
+}) async {
+  final base = pubHostedUrl ?? Uri.https('pub.dev');
+  final owned = client == null;
+  final http = client ?? HttpClient();
   final versions = <String, List<String>>{};
   try {
     for (final pkg in packages) {
-      final url = Uri.https('pub.dev', '/api/packages/$pkg');
-      final response = await getRetryingTransient(client, url);
+      final url = base.resolve('/api/packages/$pkg');
+      final response = await getRetryingTransient(http, url);
       final body = await response.transform(utf8.decoder).join();
       if (response.statusCode == HttpStatus.notFound) {
         versions[pkg] = [];
@@ -219,7 +226,7 @@ Future<Map<String, List<String>>> publishedVersions(
       ];
     }
   } finally {
-    client.close();
+    if (owned) http.close();
   }
   return versions;
 }
@@ -286,10 +293,21 @@ String _workspacePubspec(String root, List<String> packages) {
   return b.toString();
 }
 
-String _hostedPubspec(Map<String, String> versions) {
+String _hostedPubspec(
+  Map<String, String> versions, {
+  Map<String, String>? pathOverrides,
+}) {
   final b = StringBuffer(_pubspecHead)..writeln('dependencies:');
   for (final MapEntry(key: pkg, value: version) in versions.entries) {
-    b.writeln('  $pkg: $version');
+    b.writeln('  $pkg: ${pathOverrides != null ? 'any' : version}');
+  }
+  if (pathOverrides != null && pathOverrides.isNotEmpty) {
+    b.writeln('dependency_overrides:');
+    for (final MapEntry(key: pkg, value: dir) in pathOverrides.entries) {
+      b
+        ..writeln('  $pkg:')
+        ..writeln('    path: $dir');
+    }
   }
   return b.toString();
 }
@@ -325,6 +343,8 @@ const _undefinedNameCodes = {
 Future<MigratingReport> checkMigratingCells(
   String root, {
   String? migrating,
+  PublishedVersionsLookup? lookupPublished,
+  Map<String, String>? beforePathOverrides,
 }) async {
   MigratingReport failed(List<String> failures) =>
       (failures: failures, before: {}, beforeCompiled: 0, beforeFailed: 0);
@@ -345,7 +365,10 @@ Future<MigratingReport> checkMigratingCells(
   final packages = docSnippetPackages(
     File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
   );
-  final release = previousRelease(text, await publishedVersions(packages));
+  final release = previousRelease(
+    text,
+    await (lookupPublished ?? publishedVersions)(packages),
+  );
   if (release.isEmpty) return failed(['$at: pub.dev has no $series release']);
 
   final failures = <String>[];
@@ -393,7 +416,7 @@ Future<MigratingReport> checkMigratingCells(
         'before',
         before,
         barrels.where(releasedImport).toList(),
-        _hostedPubspec(release),
+        _hostedPubspec(release, pathOverrides: beforePathOverrides),
       ),
     ]) {
       if (group.isEmpty) continue;

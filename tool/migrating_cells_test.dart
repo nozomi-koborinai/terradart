@@ -1,11 +1,28 @@
 @Timeout(Duration(minutes: 10))
 library;
 
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
+import 'lane_surface.dart' show docSnippetPackages;
 import 'migrating_cells.dart';
+
+Map<String, String> _workspaceOverrides(String root) => {
+  for (final pkg in docSnippetPackages(
+    File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
+  ))
+    pkg: p.join(root, 'packages', pkg),
+};
+
+Future<Map<String, List<String>>> _fakeRelease035(
+  List<String> packages,
+) async => {
+  for (final pkg in packages)
+    pkg: pkg == 'terradart_azure' ? const [] : const ['0.35.0'],
+};
 
 void main() {
   group('extractMigratingCells', () {
@@ -154,6 +171,75 @@ void main() {
     );
   });
 
+  group('publishedVersions', () {
+    test('reads versions from a fake pub server without network', () async {
+      var transientHits = 0;
+      final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+      addTearDown(() => server.close(force: true));
+      server.listen((request) async {
+        switch (request.uri.path) {
+          case '/api/packages/terradart_google':
+            transientHits++;
+            if (transientHits == 1) {
+              request.response.statusCode = HttpStatus.serviceUnavailable;
+            } else {
+              request.response
+                ..statusCode = HttpStatus.ok
+                ..write(
+                  jsonEncode({
+                    'versions': [
+                      {'version': '0.35.0'},
+                      {'version': '0.36.0-dev'},
+                      {'version': '0.36.0'},
+                    ],
+                  }),
+                );
+            }
+          case '/api/packages/terradart_azure':
+            request.response.statusCode = HttpStatus.notFound;
+          case '/api/packages/broken_pkg':
+            request.response
+              ..statusCode = HttpStatus.badRequest
+              ..write('bad request');
+          default:
+            request.response.statusCode = HttpStatus.notFound;
+        }
+        await request.response.close();
+      });
+
+      final base = Uri.http('127.0.0.1:${server.port}', '');
+      final versions = await publishedVersions([
+        'terradart_google',
+        'terradart_azure',
+      ], pubHostedUrl: base);
+      expect(versions, {
+        'terradart_google': ['0.35.0', '0.36.0-dev', '0.36.0'],
+        'terradart_azure': <String>[],
+      });
+      expect(transientHits, 2);
+      expect(
+        previousRelease(
+          '# Migrating terradart\n\n## 0.35.x → 0.36.0\n',
+          versions,
+        ),
+        {'terradart_google': '0.35.0'},
+      );
+      await expectLater(
+        publishedVersions(['broken_pkg'], pubHostedUrl: base),
+        throwsA(isA<HttpException>()),
+      );
+    });
+
+    test('live pub.dev lookup returns published versions', () async {
+      final versions = await publishedVersions([
+        'terradart_core',
+        'terradart_google',
+      ]);
+      expect(versions['terradart_core'], contains('0.35.0'));
+      expect(versions['terradart_google'], contains('0.35.0'));
+    }, tags: ['live']);
+  });
+
   test('a section that names an unpublished package still compiles the '
       'Before cells of published packages', () async {
     const seeded = '''
@@ -172,9 +258,12 @@ void main() {
 | `AzurermResourceGroup.location` | `AzurermResourceGroup('rg')` | `AzurermResourceGroup.location` |
 | `AzurermMssqlVirtualMachine.dayOfWeek` | `MssqlVirtualMachineDayOfWeek` | `MssqlVirtualMachineScheduleDayOfWeek` |
 ''';
+    final root = Directory.current.path;
     final report = await checkMigratingCells(
-      Directory.current.path,
+      root,
       migrating: seeded,
+      lookupPublished: _fakeRelease035,
+      beforePathOverrides: _workspaceOverrides(root),
     );
     expect(report.failures, [
       allOf(
@@ -207,9 +296,12 @@ void main() {
 |---|---|
 | `GooglePubsubTopik('t')` | `ApplicationGatewayProbeProtocol` |
 ''';
+      final root = Directory.current.path;
       final failures = (await checkMigratingCells(
-        Directory.current.path,
+        root,
         migrating: seeded,
+        lookupPublished: _fakeRelease035,
+        beforePathOverrides: _workspaceOverrides(root),
       )).failures;
       expect(failures, [
         allOf(
@@ -231,9 +323,12 @@ void main() {
 |---|---|
 | `AzurermResourceGroup('rg')` | `AzurermResourceGroup.name` |
 ''';
+    final root = Directory.current.path;
     final report = await checkMigratingCells(
-      Directory.current.path,
+      root,
       migrating: seeded,
+      lookupPublished: _fakeRelease035,
+      beforePathOverrides: _workspaceOverrides(root),
     );
     expect(report.failures, [
       allOf(
@@ -326,9 +421,12 @@ void main() {
 | `GooglePubsubTopic('t', name: name, ...)` | `warmType: .literal('ultrawarm1.medium.search')` |
 | `GooglePubsubTopic.name` | `NoSuchType` |
 ''';
+    final root = Directory.current.path;
     final failures = (await checkMigratingCells(
-      Directory.current.path,
+      root,
       migrating: seeded,
+      lookupPublished: _fakeRelease035,
+      beforePathOverrides: _workspaceOverrides(root),
     )).failures;
     String at(int line) => failures.where((f) => f.contains(':$line:')).join();
     expect(at(11), contains('UNDEFINED_NAMED_PARAMETER'));
