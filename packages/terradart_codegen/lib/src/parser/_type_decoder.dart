@@ -1,12 +1,5 @@
 import '../ir/type_def.dart';
 
-/// Decodes the schema-json `type` field into a [TypeDef].
-///
-/// The wire format is:
-/// - "string" | "number" | "bool" | "dynamic"
-/// - ["list", T] | ["set", T] | ["map", T]
-/// - ["object", {name: T, ...}]
-/// - ["tuple", [T1, T2, ...]]
 TypeDef decodeSchemaJsonType(Object? raw) {
   if (raw is String) {
     return switch (raw) {

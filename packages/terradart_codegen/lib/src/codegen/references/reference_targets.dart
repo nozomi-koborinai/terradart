@@ -8,10 +8,6 @@ import 'resolved_reference.dart';
 
 export 'resolved_reference.dart';
 
-/// One rule of the reference-target ledger (`tool/reference_targets.yaml`):
-/// every string input whose dotted path matches [slots] names a [target]
-/// resource and emits its [attribute], unless [attributes] picks another
-/// attribute for that input or [exclude] leaves it a plain string.
 final class ReferenceRule {
   const ReferenceRule({
     required this.target,
@@ -24,62 +20,31 @@ final class ReferenceRule {
     this.inherited = false,
   });
 
-  /// Terraform type the inputs reference (`google_compute_network`).
   final String target;
 
-  /// The target's attribute an input emits unless [attributes] says
-  /// otherwise (`id`, `self_link`, `arn`, `email`).
   final String attribute;
 
-  /// Matched against an input's dotted path from the resource root
-  /// (`network`, `network_interface.subnetwork`).
   final RegExp slots;
 
-  /// When set, only the inputs of resource and data source types it matches
-  /// (`^appwrite_mysql_`), for a path several targets share.
   final RegExp? types;
 
-  /// `<resource type>.<path>` → the attribute that input emits instead.
-  /// The same input of the type's data source follows the entry; a
-  /// `data.<type>.<path>` key sets a data source input alone.
   final Map<String, String> attributes;
 
-  /// `<resource type>.<path>` inputs that match [slots] but name something
-  /// else (an Ethereum network, a bare contact email), for the resource and
-  /// its data source; `data.<type>.<path>` for a data source input alone.
   final Set<String> exclude;
 
-  /// `with:` — sibling top-level keys a matched top-level input also fills
-  /// from the referenced block (`location`, `project`) unless the caller
-  /// sets them; the keys the target does not export are skipped.
   final List<String> withKeys;
 
-  /// Loaded through another section's `inherit:`. The rule may match none
-  /// of this lane's inputs, and its [attributes] / [exclude] are shared by
-  /// every inherited rule, so they are checked across all of them.
   final bool inherited;
 }
 
-/// The `- mm: resource-refs` entry of a ledger section: every Magic Modules
-/// `ResourceRef` input of a curated resource names the MM resource it
-/// imports from, in the same product, and emits the attribute it imports —
-/// unless an explicit rule claims the input first, [attributes] picks
-/// another attribute or [exclude] leaves it a string.
 final class MmReferenceRule {
   const MmReferenceRule({this.attributes = const {}, this.exclude = const {}});
 
-  /// `<resource type>.<path>` → the attribute that input emits instead.
   final Map<String, String> attributes;
 
-  /// `<resource type>.<path>` inputs that stay strings.
   final Set<String> exclude;
 }
 
-/// The `- parents: iam-adjuncts` entry of a ledger section: every curated
-/// `<parent>_iam_{member,binding,policy}` whose parent is curated takes the
-/// parent as one `RefTo<Parent>` argument, which emits the adjunct's
-/// identity key and fills the keys the parent shares (`location`,
-/// `project`, a parent chain's `dataset_id`) unless the caller sets them.
 final class ParentReferenceRule {
   const ParentReferenceRule({
     this.identity = const {},
@@ -88,24 +53,15 @@ final class ParentReferenceRule {
     this.exclude = const {},
   });
 
-  /// Parent type → the adjunct key that names it, where the key cannot be
-  /// told from the schema.
   final Map<String, String> identity;
 
-  /// Parent type → the attribute the identity key emits instead of the
-  /// parent's same-named attribute (or `name`). An `id` fills no other key:
-  /// the full path already carries them.
   final Map<String, String> attributes;
 
-  /// Parent type → the Dart parameter name.
   final Map<String, String> names;
 
-  /// Parent types whose adjuncts keep their keys as they are.
   final Set<String> exclude;
 }
 
-/// The `- parents: iam-adjuncts` entry of [providerSource]'s section, or
-/// null.
 ParentReferenceRule? loadParentReferenceRule(
   String path,
   String providerSource,
@@ -154,11 +110,6 @@ ParentReferenceRule? loadParentReferenceRule(
   return null;
 }
 
-/// The `- principals: <type>` entry of a ledger section: every input whose
-/// path matches [slots], on a type [types] matches, names who a grant is for
-/// and takes the hand-written [className] (`TfArg<List<IamPrincipal>>` for a
-/// list). On Google, a curated block with a computed `member` attribute (a
-/// service account, a service agent) carries a `principal` getter.
 final class PrincipalRule {
   const PrincipalRule({
     required this.slots,
@@ -168,15 +119,11 @@ final class PrincipalRule {
 
   final RegExp slots;
 
-  /// One of [principalTypes].
   final String className;
 
-  /// Restricts [slots] to the Terraform types (`data.` prefixed for a data
-  /// source) this matches.
   final RegExp? types;
 }
 
-/// The `- principals:` entry of [providerSource]'s section, or null.
 PrincipalRule? loadPrincipalRule(String path, String providerSource) {
   final doc = loadYaml(
     File(path).readAsStringSync(),
@@ -216,7 +163,6 @@ PrincipalRule? loadPrincipalRule(String path, String providerSource) {
   return null;
 }
 
-/// The `- mm: resource-refs` entry of [providerSource]'s section, or null.
 MmReferenceRule? loadMmReferenceRule(String path, String providerSource) {
   final doc = loadYaml(
     File(path).readAsStringSync(),
@@ -241,8 +187,6 @@ MmReferenceRule? loadMmReferenceRule(String path, String providerSource) {
   return null;
 }
 
-/// Loads the rules of [providerSource] (`hashicorp/google`) from the ledger
-/// at [path]; an empty list when the ledger has no section for it.
 List<ReferenceRule> loadReferenceRules(String path, String providerSource) {
   final file = File(path);
   if (!file.existsSync()) {
@@ -266,17 +210,12 @@ List<ReferenceRule> loadReferenceRules(String path, String providerSource) {
   ];
 }
 
-/// Whether [raw] is a `- mm:`, `- parents:` or `- principals:` entry, which
-/// their own loaders read, rather than a rule.
 bool _isSectionEntry(Object? raw) =>
     raw is YamlMap &&
     (raw.containsKey('mm') ||
         raw.containsKey('parents') ||
         raw.containsKey('principals'));
 
-/// `- inherit: <provider source>`: that section's rules, targeting the
-/// other lane's resources, with this entry's `attributes` / `exclude` in
-/// place of theirs (which name the other lane's inputs).
 List<ReferenceRule> _inheritRules(
   YamlMap doc,
   YamlMap raw, {
@@ -394,8 +333,6 @@ extension on ReferenceRule {
   );
 }
 
-/// Another lane's resources that inherited rules target: its schema blocks,
-/// its wrappers' directories under `lib/src/`, and its package name.
 typedef ExternalTargets = ({
   Map<String, Map<String, dynamic>> resourceSchemas,
   Map<String, Map<String, dynamic>> dataSourceSchemas,
@@ -403,9 +340,6 @@ typedef ExternalTargets = ({
   String package,
 });
 
-/// The imports that bring [refs]' classes into a wrapper under `lib/src/`:
-/// one `show` list per other package, then the lane's own files, sorted
-/// (`directives_ordering`).
 List<String> referenceImports(Iterable<ResolvedReference> refs) {
   final byPackage = <String, Set<String>>{};
   final local = <String>{};
@@ -424,9 +358,6 @@ List<String> referenceImports(Iterable<ResolvedReference> refs) {
   ];
 }
 
-/// The ledger applied to one lane: every curated resource's and data
-/// source's reference inputs, keyed by Terraform type and then dotted input
-/// path.
 final class ReferenceResolution {
   const ReferenceResolution({
     required this.byResource,
@@ -437,12 +368,8 @@ final class ReferenceResolution {
     this.principalDataSources = const {},
   });
 
-  /// The principal type, for its import, when the section has a
-  /// `- principals:` entry.
   final ResolvedReference? principal;
 
-  /// The curated resources and data sources with a `principal` getter: a
-  /// computed `member` attribute.
   final Set<String> principalResources;
   final Set<String> principalDataSources;
 
@@ -450,7 +377,6 @@ final class ReferenceResolution {
 
   final Map<String, Map<String, ResolvedReference>> byDataSource;
 
-  /// Ledger entries that no longer describe the schema; wrap fails on any.
   final List<String> errors;
 
   int get slotCount => [
@@ -459,16 +385,6 @@ final class ReferenceResolution {
   ].fold(0, (sum, slots) => sum + slots.length);
 }
 
-/// Matches [rules] against the string inputs of every resource in
-/// [curated] and every data source in [dataSourceSchemas], read from the
-/// raw schema blocks. [targetDirs] maps each curated resource type to its
-/// wrapper `outputDir`. [dataSourceSchemas] holds the curated data sources'
-/// blocks: a data source that reads a target carries its `ref` getter, so
-/// it must expose every attribute the inputs emit; the top-level inputs of
-/// that data source are the target's lookup key, not a reference.
-///
-/// Unless [complete] (a `--only` run sees one resource), entries that match
-/// nothing are not reported: they may match a resource outside [curated].
 ReferenceResolution resolveReferences({
   required List<ReferenceRule> rules,
   required Map<String, Map<String, dynamic>> resourceSchemas,
@@ -527,8 +443,6 @@ ReferenceResolution resolveReferences({
     return null;
   }
 
-  // An attribute both the target and its data source export: what a
-  // `RefTo` built from either can read.
   bool Function(String) exportedBy(
     Map<String, dynamic> block,
     Map<String, dynamic>? data,
@@ -702,11 +616,9 @@ ReferenceResolution resolveReferences({
       for (final MapEntry(key: path, value: list) in slots.entries) {
         if (!rule.slots.hasMatch(path)) continue;
         if (rule.types case final types? when !types.hasMatch(type)) continue;
-        // The target's own top-level input is its identity, not a reference.
         if (type == rule.target && !path.contains('.')) continue;
         final key = data ? 'data.$type.$path' : '$type.$path';
         final twin = '$type.$path';
-        // An IAM adjunct's keys belong to its parent reference.
         if (claimedBy[key] case 'parents' || 'principals') continue;
         matched.add(key);
         if (rule.exclude.contains(key) || rule.exclude.contains(twin)) {
@@ -873,8 +785,6 @@ ReferenceResolution resolveReferences({
   );
 }
 
-/// Whether [block] has a computed-only string `member` attribute: the
-/// `serviceAccount:<email>` form of an identity it creates or reads.
 bool _hasPrincipal(Map<String, dynamic>? block) {
   final member = (block?['attributes'] as Map?)?['member'];
   return member is Map &&
@@ -884,10 +794,6 @@ bool _hasPrincipal(Map<String, dynamic>? block) {
       member['required'] != true;
 }
 
-/// Dotted path → whether it is a list, for every string or list/set-of-string
-/// input of [block] (attributes, `block_types` and plugin-framework
-/// `nested_type` objects, recursively). Computed-only attributes and the
-/// `timeouts` block are not inputs.
 Map<String, bool> stringInputs(Map<String, dynamic> block) {
   final out = <String, bool>{};
   void walk(Map<String, dynamic> b, String prefix) {
@@ -925,8 +831,6 @@ Map<String, bool> stringInputs(Map<String, dynamic> block) {
   return out;
 }
 
-/// `google_compute_` for `google_compute_router_nat`, whose MM `name` is
-/// `RouterNat`; null when the type does not end with the name.
 String? _mmProductPrefix(String type, String? name) {
   if (name == null) return null;
   final suffix = mmSnakeCase(name);
@@ -934,22 +838,16 @@ String? _mmProductPrefix(String type, String? name) {
   return type.substring(0, type.length - suffix.length);
 }
 
-/// Magic Modules' lowerCamel / Pascal names as Terraform snake_case
-/// (`selfLink` → `self_link`, `Hl7V2Store` → `hl7_v2_store`).
 String mmSnakeCase(String camel) => camel
     .replaceAllMapped(RegExp('(?<=[a-z0-9])([A-Z])'), (m) => '_${m[1]}')
     .toLowerCase();
 
 final _iamAdjunct = RegExp(r'^(.+)_iam_(?:member|binding|policy)$');
 
-/// An IAM adjunct's own inputs, never a key of its parent.
 const _iamKeys = {'id', 'role', 'member', 'members', 'policy_data'};
 
 const _positionalKeys = {'location', 'region', 'zone', 'project'};
 
-/// The adjunct key that names [parent]: its one key besides the location
-/// and project ones, else the one key spelled like the parent (`name`, or
-/// a trailing part of the parent type, bare or with `_id` / `_name`).
 String? _parentIdentity(String parent, List<String> keys) {
   final named = [
     for (final k in keys)
@@ -967,8 +865,6 @@ String? _parentIdentity(String parent, List<String> keys) {
   return candidates.length == 1 ? candidates.single : null;
 }
 
-/// `service` for a `google_cloud_run_v2_service` named by `name`;
-/// `serviceAccount` for a `service_account_id`.
 String _parentDartName(String parent, String identity) => identity == 'name'
     ? snakeToDartIdent(parent.split('_').last)
     : snakeToDartIdent(identity.replaceFirst(RegExp(r'_(id|name)$'), ''));

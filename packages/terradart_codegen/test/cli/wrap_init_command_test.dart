@@ -204,7 +204,6 @@ void main() {
           const originalBytes = '# hand-edited, do not clobber\n';
           yamlPath.writeAsStringSync(originalBytes);
 
-          // Without --force: refuse.
           final code1 = await buildCliRunner().run([
             'wrap-init',
             'google_pubsub_topic',
@@ -216,7 +215,6 @@ void main() {
           expect(code1, CliExitCodes.dataError);
           expect(yamlPath.readAsStringSync(), originalBytes);
 
-          // With --force: overwrite.
           final code2 = await buildCliRunner().run([
             'wrap-init',
             'google_pubsub_topic',

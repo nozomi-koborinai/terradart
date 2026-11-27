@@ -2,34 +2,9 @@ import '../../ir/nested_block.dart';
 import '../../ir/resource_def.dart';
 import '../naming.dart';
 
-/// Emits curator-facing comment hints suggesting `assert(<slot>.length >= N)`
-/// for every list-shaped nested block with `min_items >= 1 && max_items != 1`.
-///
-/// Output is comment-only — the curator must copy the suggested assert into
-/// the helper class they author in their yaml's `prelude:` block. The emitter
-/// cannot name the helper class itself because that's a curator-authored
-/// abstraction (e.g. `AppHostingTrafficTarget` vs. `TrafficSplitBundle` are
-/// both legitimate names for the same schema slot).
-///
-/// Scope per Plan 5.D-codegen PR 4:
-/// - `nested_block.nesting in {list, set}`
-/// - `nested_block.minItems != null && nested_block.minItems >= 1`
-/// - `nested_block.maxItems != 1` (max_items==1 is already encoded as a
-///   non-nullable `required SingleObj` parameter — an assert there is noise)
-/// - **Top-level `def.root.nestedBlocks` only — recursion is deliberately
-///   omitted.** Wave 4 helpers `AppHostingTrafficTarget.splits` (depth 1)
-///   and `IndexFieldTextSpec.indexSpecs` (depth 3) are NOT covered by this
-///   emitter; deeper walking is future scope. See PR 4 body for rationale.
-///
-/// Scalar attribute constraints (`min_length`, `max_length`, `min`, `max`,
-/// `regex`) are NOT covered here — they are handled at the schemantic layer
-/// via `@StringField` and similar annotations.
 class MinItemsAssertEmitter {
   const MinItemsAssertEmitter();
 
-  /// Returns a multi-line comment block of assert hints, or empty string when
-  /// the resource has no qualifying nested blocks. The result is intended to
-  /// be appended verbatim inside the wrap-promote marker section.
   String emit(ResourceDef def) {
     final hints = <String>[];
     for (final nb in def.root.nestedBlocks) {

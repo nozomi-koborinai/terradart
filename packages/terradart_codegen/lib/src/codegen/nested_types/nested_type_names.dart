@@ -2,9 +2,6 @@ import '../exactly_one_placement.dart';
 import '../exactly_one_types.dart';
 import '../naming.dart';
 
-/// The names the sealed types of a resource's root [groups] take, with
-/// their variants, as the exactly-one derivation names them when nothing
-/// clashes — reserved so that no derived helper takes one first.
 Set<String> rootSealedTypeNames(
   String stem,
   List<BlockGroup> groups, {
@@ -32,19 +29,6 @@ Set<String> rootSealedTypeNames(
   };
 }
 
-/// The type name each top-level input in [keys] — attributes and blocks
-/// alike, so an enum and a block helper never share one — takes on [stem]: [stem]
-/// joined with the input's name by [joinTypeName] (`ComputeSnapshot` +
-/// `snapshot_type` → `ComputeSnapshotType`; `Ec2InstanceState` + `state` →
-/// `Ec2InstanceState`). When inputs join alike, the one that drops the
-/// fewest words keeps the name and the others take [stem] and their name
-/// concatenated whole; on a tie all of them do.
-///
-/// An input in [named] (the override's `typeNames`) takes that name and
-/// never moves. Throws a [StateError] when another input keeps that name
-/// too.
-///
-/// [laneInputs] as for [joinStem].
 Map<String, String> topLevelTypeNames(
   String stem,
   Iterable<String> keys, {
@@ -92,13 +76,6 @@ Map<String, String> topLevelTypeNames(
   }
 }
 
-/// [segment] joined onto [stem] by [joinTypeName], unless that names a
-/// type another type of the lane takes: [laneInputs] maps every stem of the
-/// lane to the PascalCase name of every input in its schema, and when the
-/// words the join drops leave such a stem whose inputs include the rest of
-/// the join, the two are concatenated whole instead
-/// (`AutoscalingGroupTag` + `tag` → `AutoscalingGroupTagTag`, since
-/// `aws_autoscaling_group` names its own `tag` `AutoscalingGroupTag`).
 String joinStem(
   String stem,
   String segment,
@@ -118,16 +95,6 @@ String joinStem(
       : joined;
 }
 
-/// The candidate type names for the block or enum input at [path] on
-/// [stem], in order of preference: [stem] plus its own name; then plus one
-/// ancestor and its name, nearest ancestor first; then plus the last three,
-/// four, … segments of [path]. Segments are joined with [joinTypeName]
-/// (words a segment repeats from the name so far are dropped); only then
-/// come the same segment lists concatenated whole, which say a word twice.
-/// A leaf that only repeats the end of [stem] takes [stem] itself
-/// (`AccessContextManagerAccessLevels` + `access_levels`) unless
-/// [allowStem] is false. The first join onto [stem] follows [joinStem]. The
-/// last candidate is [stem] plus the whole path, concatenated.
 List<String> typeNameCandidates(
   String stem,
   List<String> path, {
@@ -169,25 +136,6 @@ List<String> typeNameCandidates(
   return {...all.where((n) => !stutters(n)), ...repeating, last}.toList();
 }
 
-/// Short, collision-free type names for the blocks and enum inputs at
-/// [paths] (each the path of a class's or an enum's shallowest occurrence),
-/// index-aligned.
-///
-/// Each takes the first of its [typeNameCandidates] that nothing else in
-/// the resource takes: no other path, and no name in [owned] or [reserved].
-/// [owned] names belong to other types outright (the top-level inputs'); a
-/// [reserved] name is one a sealed variant prefers, and a path left with no
-/// other candidate takes it (the variant then ends in `Choice`). On a
-/// collision the shorter path keeps its name and the deeper ones move to
-/// their next candidate; paths of the same depth all move. So a block
-/// named like no other block or enum input of the resource is
-/// `<stem><Name>`, and a deeper namesake is told apart by its nearest
-/// distinguishing ancestor. The paths at [stemless] (sealed types, whose
-/// variants are named after them) never take [stem] itself. Any other
-/// path in [named] (the override's `typeNames`, keyed by the dotted path)
-/// has that name as its one candidate. [laneInputs] as for [joinStem]. Throws
-/// a [StateError] when a path runs out of candidates on a name another
-/// path or [owned] holds.
 List<String> conciseTypeNames(
   String stem,
   List<List<String>> paths, {

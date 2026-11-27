@@ -7,12 +7,6 @@ import '../naming.dart';
 import '../references/reference_targets.dart';
 import 'nested_type_names.dart';
 
-/// One attribute surfaced on a derived nested-type helper class.
-///
-/// [dartType] is the *inner* type only (e.g. `'String'`, an enum class
-/// name, `'Map<String, String>'`) — the emitter wraps it in `TfArg<...>`
-/// (an `EnumList<...>` when [repeated]) and applies nullability from
-/// [required].
 final class NestedAttrSpec {
   final String tfName;
   final String dartName;
@@ -20,21 +14,10 @@ final class NestedAttrSpec {
   final bool required;
   final List<String>? enumValues;
 
-  /// Whether the underlying schema type is a `list`/`set` of [dartType]
-  /// rather than a bare scalar. Currently only ever `true` for a
-  /// list-of-enum-string attribute (`["list", "string"]` with a
-  /// `Possible values: [...]` description) — every other list shape stays
-  /// `false` and is carried whole by [dartType] instead: `List<String>`
-  /// for a plain list of strings, an opaque `List<Object?>` for a list of
-  /// objects (see `_scalarDartType`).
   final bool repeated;
 
-  /// The resource this input names, when it is typed `RefTo<...>`; its
-  /// [dartType] stays the schema's.
   final ResolvedReference? reference;
 
-  /// Whether the provider schema marks this input sensitive: its field
-  /// takes `Sensitive<...>`.
   final bool sensitive;
 
   const NestedAttrSpec({
@@ -49,44 +32,26 @@ final class NestedAttrSpec {
   });
 }
 
-/// One `block_types` entry, collected recursively from the provider-schema
-/// JSON down to (but not through) customSlot- or exclude-covered subtrees.
 final class NestedBlockSpec {
   final String tfName;
   final List<String> path;
   final String className;
   final bool repeated;
 
-  /// Whether the block is a map of [className] values keyed by an arbitrary
-  /// string (`nesting_mode: map`) rather than one value or a list. Never
-  /// combined with [repeated].
   final bool keyed;
   final bool required;
   final List<NestedAttrSpec> attrs;
   final List<NestedBlockSpec> children;
   final List<ExcludedNestedBlock> excludedChildren;
 
-  /// Whether other blocks in the same resource share this spec's
-  /// [className] (see `collectNestedTypes`'s `shareIdenticalShapes`).
   final bool shared;
 
-  /// Sets of this block's inputs (bare Terraform names) the provider
-  /// requires exactly one of; the emitter seals each one it can.
   final List<List<String>> exactlyOne;
 
-  /// Sets of this block's inputs the provider accepts at most one of (none
-  /// is valid); the emitter seals each one it can into a nullable field.
   final List<List<String>> atMostOne;
 
-  /// Human concept names for this block's sealed groups (the override's
-  /// `sealedNames` entries that sit in this block), keyed by the members'
-  /// bare names as `sealedGroupKeyOf([], members)` joins them.
   final Map<String, String> sealedNames;
 
-  /// The type each sealed group of this block takes, keyed by the group's
-  /// concept (its [sealedNames] entry, else [deriveSealedConcept]) — named
-  /// by [conciseTypeNames] with the classes. A group whose name clashes
-  /// when the emitter lays it out, or that seals the whole block, has none.
   final Map<String, String> sealedTypeNames;
 
   const NestedBlockSpec({
@@ -104,18 +69,9 @@ final class NestedBlockSpec {
     this.atMostOne = const [],
     this.sealedNames = const {},
     this.sealedTypeNames = const {},
-  });
+  }) : assert(!(repeated && keyed));
 }
 
-/// One block-type child whose dotted path was in `excludedPaths` — recorded
-/// by name, plus the same schema-derived cardinality [_buildSpec] computes
-/// for a fully-derived child, so the emitter can render an accurately
-/// shaped opaque passthrough (`TfArg<Map<String, dynamic>>` vs
-/// `TfArg<List<Map<String, dynamic>>>`, nullable vs not) instead of always
-/// forcing the conservative single-optional shape regardless of what the
-/// schema actually declares (e.g. `google_os_config_os_policy_assignment`'s
-/// excluded `os_policies.resource_groups.resources` is `nesting_mode: list`
-/// with `min_items: 1` — a required, repeated block, not a scalar one).
 final class ExcludedNestedBlock {
   final String tfName;
   final bool repeated;
@@ -127,88 +83,19 @@ final class ExcludedNestedBlock {
     required this.repeated,
     required this.required,
     this.keyed = false,
-  });
+  }) : assert(!(repeated && keyed));
 }
 
-/// Resolves one leaf attribute's enum value set, or null for a free-form
-/// value. [path] runs from the resource root to the attribute itself.
 typedef EnumValuesResolver =
     List<String>? Function(List<String> path, String? description);
 
-/// The resource a leaf input at [path] references, or null for a plain
-/// string.
 typedef ReferenceResolver = ResolvedReference? Function(List<String> path);
 
 ResolvedReference? _noReferences(List<String> path) => null;
 
-/// The default [EnumValuesResolver]: the description dialects every lane
-/// reads.
 List<String>? descriptionEnumValues(List<String> path, String? description) =>
     parseEnumValuesFromDescription(description);
 
-/// Recursively collects [NestedBlockSpec]s from [resourceBlock]'s
-/// `block_types`, for the `deriveNestedTypes` codegen gate.
-///
-/// Pure: consumes the already-decoded provider-schema JSON block map, does
-/// no I/O, and never mutates its inputs. [resourcePrefix] (e.g.
-/// `'AppEngineDomainMapping'` for `google_app_engine_domain_mapping`) is
-/// derived by the caller — see `naming.dart`'s `snakeToPascal`.
-///
-/// Filtering. The slot skip applies at the resource root. The other
-/// rules apply at every depth:
-/// - A top-level block whose name is in [customSlotKeys] is skipped, and
-///   its subtree with it. A key that names no top-level field is a virtual
-///   slot (a sealed `metric` over `metric_name` / `metric_query` / ...) and
-///   owns nothing, so a nested `metric` block keeps its helper. A deeper
-///   block that only shares the slot's name is a different input and keeps
-///   its helper too.
-/// - A block named `timeouts` is skipped entirely — Terraform's SDK-level
-///   meta-argument, not a user-facing input (same rule as
-///   `constructor_params.dart`'s `skipNestedBlock`).
-/// - A block whose dotted path from the resource root (e.g.
-///   `'basic.conditions'`) is in [excludedPaths] is recorded (by name, with
-///   its cardinality — see [ExcludedNestedBlock]) in its parent's
-///   [NestedBlockSpec.excludedChildren] and not descended into; the wrapper
-///   emitter renders it as an opaque passthrough instead of a derived class.
-///   A root-level exclusion has no parent spec to record into, so it is
-///   simply absent from the returned list (root-level slot selection is
-///   already the constructor's `paramOrder`'s job, not this collector's).
-///
-/// Blocks with the same Terraform name whose class bodies are structurally
-/// identical (same attributes, same child fields, recursively) share one
-/// helper class and its enums; with [shareIdenticalShapes], blocks of any
-/// name do. The shared class keeps the path of its shallowest occurrence,
-/// ties broken by comparing paths segment by segment.
-///
-/// Each class is named by [conciseTypeNames]: [resourcePrefix] plus the
-/// shortest trailing part of its path no other type of the resource takes
-/// — never a top-level input's name ([topLevelTypeNames]), and a name in
-/// [reserved] (a root sealed variant's, see [rootSealedTypeNames]) only
-/// when nothing shorter is left.
-///
-/// [enumValues] decides each leaf attribute's enum value set from its
-/// dotted path and description; the default reads the description with
-/// [parseEnumValuesFromDescription] (`provider_enums.dart` supplies the
-/// `--provider-enums` resolver).
-///
-/// [exactlyOneGroups] maps a block's dotted path to the member sets the
-/// provider requires exactly one of ([NestedBlockSpec.exactlyOne]), and
-/// [atMostOneGroups] to the sets it accepts at most one of
-/// ([NestedBlockSpec.atMostOne]). [sealedNames] is the override's
-/// `sealedNames` axis; each block keeps the entries whose members it holds
-/// ([NestedBlockSpec.sealedNames]).
-///
-/// [references] types a string input as a reference, unless it is an enum;
-/// a sealed variant holding it takes the reference too.
-///
-/// [typeOverrides] maps a leaf input's dotted path to the Dart type its
-/// field takes instead (a hand-written enum in the override's prelude) —
-/// the override's `dartTypeOverrides` entries whose key has a dot.
-///
-/// [laneInputs] maps every stem of the lane to its input names ([joinStem]).
-///
-/// [typeNames] is the override's `typeNames` axis: a class or enum takes
-/// the name keyed by its path ([conciseTypeNames]'s `named`).
 List<NestedBlockSpec> collectNestedTypes({
   required Map<String, dynamic> resourceBlock,
   required String resourcePrefix,
@@ -265,8 +152,6 @@ List<NestedBlockSpec> collectNestedTypes({
   final topReserved = <String>{};
   for (final MapEntry(:key, :value) in attributes.entries) {
     if (value is Map && value.containsKey('nested_type')) continue;
-    // Computed-only attributes never emit a top-level enum or input type, so
-    // they only reserve their name as a soft preference rather than owning it.
     if (value is Map && _isComputedOnly(value.cast<String, dynamic>())) {
       topReserved.add(topLevel[key]!);
     } else {
@@ -283,8 +168,6 @@ List<NestedBlockSpec> collectNestedTypes({
   );
 }
 
-/// The dotted path of every class and enum input in [specs], recursively,
-/// mapped to the type it takes: what a `typeNames` key has to match.
 Map<String, String> nestedTypeNamesByPath(List<NestedBlockSpec> specs) {
   final out = <String, String>{};
   void visit(NestedBlockSpec s) {
@@ -301,9 +184,6 @@ Map<String, String> nestedTypeNamesByPath(List<NestedBlockSpec> specs) {
   return out;
 }
 
-/// [specs] with every class and enum named by [conciseTypeNames]. Enum
-/// inputs of the same name and value set share one enum, named after its
-/// shallowest occurrence.
 List<NestedBlockSpec> _renameConcisely(
   List<NestedBlockSpec> specs,
   String stem,
@@ -435,7 +315,6 @@ List<NestedBlockSpec> _shareIdenticalShapes(
   final canonical = <int, NestedBlockSpec>{};
   final occurrences = <int, int>{};
   final names = <int, Map<String, String>>{};
-  // A shared type takes `Sensitive<...>` wherever any occurrence is.
   final sensitive = <int, Set<String>>{};
 
   int visit(NestedBlockSpec spec) {
@@ -554,14 +433,6 @@ Map<String, dynamic> _withoutRootSlotBlocks(
   };
 }
 
-/// Scans one block's nested children: SDKv2 `block_types` plus
-/// plugin-framework `nested_type` object attributes (Cloudflare v5, etc.).
-///
-/// `nested_type` attributes are synthesized into the same child-body shape
-/// `_buildSpec` already understands (`nesting_mode` / `min_items` / `block`)
-/// so one collector serves both schema dialects. Computed-only objects
-/// (no input role, e.g. Cloudflare `meta`) are skipped — the same filter
-/// `skipNestedBlock` applies after IR normalization.
 _ChildScan _scanChildren(
   Map<String, dynamic> block, {
   required List<String> path,
@@ -644,8 +515,6 @@ _ChildScan _scanChildren(
   return (children: children, excludedChildren: excludedChildren);
 }
 
-/// True when a schema attribute/block has no input role (computed, and
-/// neither optional nor required). Mirrors [Constraints.computedOnly].
 bool _isComputedOnly(Map<String, dynamic> body) {
   final computed = body['computed'] == true;
   final optional = body['optional'] == true;
@@ -653,8 +522,6 @@ bool _isComputedOnly(Map<String, dynamic> body) {
   return computed && !optional && !required;
 }
 
-/// Lifts a plugin-framework `nested_type` attribute into the
-/// `block_types`-shaped map [_buildSpec] / [_blockCardinality] consume.
 Map<String, dynamic> _nestedTypeAsBlockBody(
   Map<String, dynamic> attrBody,
   Map<String, dynamic> nestedType,
@@ -672,12 +539,6 @@ Map<String, dynamic> _nestedTypeAsBlockBody(
 
 const _knownNestingModes = {'single', 'list', 'set', 'map', 'group'};
 
-/// Computes [NestedBlockSpec.repeated] / [NestedBlockSpec.keyed] /
-/// [NestedBlockSpec.required] from a
-/// nested block's raw `nesting_mode` / `max_items` / `min_items` — shared by
-/// [_buildSpec] (a fully-derived child) and [_scanChildren]'s excluded-child
-/// branch ([ExcludedNestedBlock]), so both paths agree on what the schema
-/// actually declares instead of the excluded path silently assuming scalar.
 ({bool repeated, bool keyed, bool required}) _blockCardinality(
   Map<String, dynamic> nestedBlockBody, {
   required String tfName,
@@ -755,10 +616,6 @@ NestedBlockSpec _buildSpec(
   );
 }
 
-/// The `sealedNames` axis grouped by the dotted path of the block whose
-/// members each entry lists, re-keyed by the members' bare names. An entry
-/// whose members sit in different blocks matches no group; `wrap` reports
-/// it as unused.
 Map<String, Map<String, String>> _sealedNamesByBlock(
   Map<String, String>? names,
 ) {
@@ -790,7 +647,6 @@ List<NestedAttrSpec> _collectAttrs(
   for (final entry in attributes.entries) {
     final tfName = entry.key;
     final body = _requireMap(entry.value, context: 'attributes.$tfName');
-    // Object attributes belong to [_scanChildren], not the leaf-attr list.
     if (body.containsKey('nested_type')) continue;
 
     final isComputed = body['computed'] == true;
@@ -842,27 +698,6 @@ typedef _AttrTypeInfo = ({
   List<String>? enumValues,
 });
 
-/// Decides an attribute's [NestedAttrSpec] shape, gating enum detection on
-/// the RAW schema type rather than on `enumValues` alone.
-///
-/// A description matching `parseEnumValuesFromDescription` only produces an
-/// enum-typed [NestedAttrSpec] when the underlying type is one this
-/// collector can actually represent as an enum:
-/// - a bare `"string"` -> a scalar enum (`repeated: false`).
-/// - `["list", "string"]` / `["set", "string"]` -> a *repeated* enum
-///   (`repeated: true`) — e.g. `patch_config.windows_update.classifications`
-///   (`google_os_config_patch_deployment`) and
-///   `basic.conditions.device_policy.allowed_device_management_levels` /
-///   `allowed_encryption_statuses` (`google_access_context_manager_access_level`),
-///   3 of the 56 NESTED_THIN sites.
-///
-/// Any other shape — including a plain `["list", "string"]` with NO enum
-/// description, or an enum-shaped description on some other type entirely —
-/// ignores `enumValues` and falls back to [_scalarDartType]'s conservative
-/// mapping. This keeps `dartType`/`enumValues`/`repeated` mutually
-/// consistent: a scalar `dartType` never means "actually a list", and
-/// `enumValues` is only ever non-null when `dartType` really does name an
-/// enum class.
 _AttrTypeInfo _attrTypeInfo({
   required Object? rawType,
   required List<String>? enumValues,
@@ -898,21 +733,6 @@ bool _isListOrSetOfString(Object? rawType) =>
     (rawType[0] == 'list' || rawType[0] == 'set') &&
     rawType[1] == 'string';
 
-/// Maps a raw schema-json attribute `type` to a dartType string, for shapes
-/// [_attrTypeInfo] didn't already resolve as an enum.
-///
-/// Scalars map cleanly (`"string"`->`String`, `"bool"`->`bool`,
-/// `"number"`->`num`, `"dynamic"`->`Object?`), as do a map-of-scalar
-/// (`["map", "string"]`->`Map<String, String>`) and a list or set of
-/// scalars (`["set", "string"]`->`List<String>`, as `writeDartType` types
-/// the same shape at the top level). Everything else — a list or set of a
-/// non-scalar, a bare object type, a tuple, or a map of a non-scalar — has
-/// no single clean representation in [NestedAttrSpec] (no derived
-/// nested-class-inside-a-list shape here), so it conservatively falls back
-/// to a `Map<String, dynamic>` / `List<Object?>`-style dartType. Genuinely
-/// unrecognized shapes throw,
-/// matching `_type_decoder.dart`'s fail-fast convention for malformed
-/// schema input.
 String _scalarDartType(Object? rawType) {
   if (rawType is String) {
     return switch (rawType) {
@@ -957,16 +777,11 @@ String _scalarDartType(Object? rawType) {
   throw FormatException('Cannot map attribute type: $rawType');
 }
 
-/// Casts a required JSON-object value, failing loudly (not with a bare
-/// `TypeError`) when the schema doesn't shape up as expected.
 Map<String, dynamic> _requireMap(Object? value, {required String context}) {
   if (value is Map) return value.cast<String, dynamic>();
   throw FormatException('Expected a JSON object at $context, got: $value');
 }
 
-/// Like [_requireMap], but `null` (the key absent entirely) is a valid
-/// "nothing here" case that resolves to an empty map — schema-json omits
-/// `attributes`/`block_types` entirely on blocks that have none.
 Map<String, dynamic> _optionalMap(Object? value, {required String context}) {
   if (value == null) return const {};
   return _requireMap(value, context: context);

@@ -14,34 +14,6 @@ import 'references/reference_targets.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 import 'wrapper_overrides/yaml_loader.dart';
 
-/// The `deriveExactlyOne` gate for a factory's own arguments, resources and
-/// data sources alike: every sealable top-level group in the override's own
-/// kind's hints becomes one [SealedArgument] on the override, and its
-/// members leave the constructor. An exactly-one group's slot is required;
-/// an at-most-one group's (mutually exclusive inputs the provider also
-/// accepts none of) is nullable and spreads nothing when null.
-///
-/// A group is sealable when every member is an optional constructor input
-/// no custom slot owns and no earlier group took, and none is a keyed
-/// (`nesting_mode: map`) block, which the migration manifest has no shape
-/// for; the others are returned in `skipped` (exactly-one) or
-/// `skippedAtMostOne` with a reason and keep their plain slots. A group a
-/// hand-written sealed slot already covers ([handSealedGroups]), with none
-/// of its members a constructor input, is sealed and reported in neither. Exactly-one
-/// groups claim their members first. Exactly-one groups that share one
-/// member set and nothing else seal as one argument ([placeGroups]); any
-/// other overlap leaves the later group unsealed.
-///
-/// Every sealed group, top-level or nested, is named by
-/// [resolveSealedName] and listed in `names`; `nameErrors` lists each
-/// `sealedNames` entry that clashes, repeats the derived name, or matches
-/// no sealed group.
-///
-/// [references] (`--typed-references`: Terraform type → dotted input path →
-/// target, per kind) types a member the ledger matches: its variant holds a
-/// `RefTo<Target>`, and its [SealedArgument.references] holds that
-/// reference. Diagnostics name a data source `data.<type>`; `names` carries
-/// each override's [LoadedOverrides.lintKey], the sealed-name ledger key.
 ({
   LoadedOverrides overrides,
   List<String> skipped,
@@ -189,17 +161,13 @@ deriveExactlyOneSlots(
   );
 }
 
-/// An `unsealedGroups` entry of the override [type] names (its
-/// [LoadedOverrides.lintKey]), by its [sealedGroupKeyOf] [key].
 typedef UnsealedGroup = ({String type, String key});
 
-/// The [sealedGroupKeyOf] key of each of [o]'s `unsealedGroups` entries.
 Set<String> unsealedGroupKeys(WrapperOverride o) => {
   for (final k in (o.unsealedGroups ?? const <String, String>{}).keys)
     sealedGroupKeyOf(const [], sealedGroupKey(k)),
 };
 
-/// The meta-arguments every factory constructor takes besides its inputs.
 const _metaParams = {
   'local_name',
   'lifecycle',
@@ -210,11 +178,6 @@ const _metaParams = {
 
 final _optionalHelperParam = RegExp(r'^([A-Za-z_][\w<>, ]*)\?\s+(\w+)$');
 
-/// The variant for group member [tfName] when a custom slot holds it as an
-/// optional hand-written helper — `Helper? ident` with the argMap entry
-/// `if (ident != null) '<tfName>': TfArg.literal(<expr>),` — so the variant
-/// keeps the helper type and its encoding. Null for any other slot shape,
-/// which keeps the group unsealed.
 ExactlyOneVariant? customSlotVariant(
   String tfName,
   CustomSlot slot,
@@ -422,9 +385,6 @@ WrapperOverride _derive(
         chosenSlots.add(slot);
         taken.addAll(group);
         group.forEach(slots.remove);
-        // Only a group whose name reports an error (which fails `wrap`)
-        // reaches the plain concatenations: `clashes` vetted every name it
-        // resolves to.
         final sealed =
             sealedTypeName(prefix, slot) ?? prefix + snakeToPascal(slot);
         final variantClasses =
@@ -518,10 +478,6 @@ WrapperOverride _derive(
   );
 }
 
-/// Whether the resource declares a class for its input [name]: a block's
-/// helper, or an enum. A `List<Enum>` or `Set<Enum>` counts. The variant
-/// class is named after the member, which is also the enum's name, so the
-/// enum has to be reserved or the two types collide.
 bool _hasClass(String name, Map<String, Object> blocks, WrapperOverride o) {
   if (blocks.containsKey(name)) return true;
   final type = o.dartTypeOverrides?[name];
@@ -535,8 +491,6 @@ bool _hasClass(String name, Map<String, Object> blocks, WrapperOverride o) {
       !const {'String', 'Object'}.contains(element.group(1));
 }
 
-/// [order] with the first of [group]'s members replaced by [slot] and the
-/// others dropped.
 List<String> _replaceMembers(
   List<String> order,
   List<String> group,

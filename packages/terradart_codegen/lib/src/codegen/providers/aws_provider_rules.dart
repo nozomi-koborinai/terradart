@@ -1,14 +1,6 @@
 import '../../ir/resource_def.dart';
 import 'provider_rules.dart';
 
-/// wrap-init rules for `hashicorp/aws`.
-///
-/// No Magic Modules. Barrel folders are the terraform-type segment after
-/// `aws_`, which is the AWS service for most types (`s3`, `lambda`,
-/// `route53`). The EC2 / VPC family is the exception: the provider names
-/// those types after the resource (`aws_instance`, `aws_subnet`,
-/// `aws_route_table`), so [outputDirAliases] folds them into one `ec2`
-/// barrel instead of dozens of one-resource barrels.
 final class AwsProviderRules extends ProviderRules {
   const AwsProviderRules();
 
@@ -41,9 +33,6 @@ final class AwsProviderRules extends ProviderRules {
     ];
   }
 
-  /// Keys are first segments (or longer prefixes) after `aws_`. Segments
-  /// are whole words, so `route` never matches `route53_*` and `vpc` never
-  /// matches `vpclattice_*`.
   static const Map<String, String> _aliases = {
     'ami': 'ec2',
     'customer': 'ec2',
@@ -68,16 +57,12 @@ final class AwsProviderRules extends ProviderRules {
     'volume': 'ec2',
     'vpc': 'ec2',
     'vpn': 'ec2',
-    // Auto Scaling, not EC2, despite sharing `launch_` with launch_template.
     'launch_configuration': 'autoscaling',
-    // Classic ELB policies and ALB aliases share the Elastic Load Balancing
-    // barrel with aws_lb*.
     'alb': 'elb',
     'lb': 'elb',
     'app_cookie_stickiness_policy': 'elb',
     'load_balancer': 'elb',
     'proxy_protocol_policy': 'elb',
-    // Multi-word service names that would otherwise split on the first word.
     'api_gateway': 'api_gateway',
     'directory_service': 'directory_service',
     'elastic_beanstalk': 'elastic_beanstalk',

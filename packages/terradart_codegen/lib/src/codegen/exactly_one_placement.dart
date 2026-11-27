@@ -1,9 +1,5 @@
-/// One exactly-one group, or one at-most-one group ([optional]), of a
-/// block's inputs.
 typedef BlockGroup = ({List<String> members, bool optional});
 
-/// [exactlyOne] then [atMostOne], the order every reader takes a block's
-/// groups in.
 List<BlockGroup> blockGroups(
   List<List<String>> exactlyOne,
   List<List<String>> atMostOne,
@@ -22,8 +18,6 @@ final class SinglePlacement extends GroupPlacement {
   final BlockGroup group;
 }
 
-/// Exactly-one groups that share one member set and nothing else, sealed as
-/// one argument.
 final class JointPlacement extends GroupPlacement {
   const JointPlacement._({
     required this.groups,
@@ -31,35 +25,17 @@ final class JointPlacement extends GroupPlacement {
     required this.parts,
   });
 
-  /// The joined groups, in group order.
   final List<List<String>> groups;
-
-  /// The members every group shares, in [members] order; each is a solo
-  /// variant.
   final List<String> shared;
-
-  /// Each group minus [shared], in group order.
   final List<List<String>> parts;
 
-  /// Every member, in first appearance over [groups].
   List<String> get members => {for (final g in groups) ...g}.toList();
 
-  /// [parts] flattened.
   List<String> get jointMembers => [for (final p in parts) ...p];
 
-  /// The member of the first one-member part.
   String get keyMember => parts.firstWhere((p) => p.length == 1).single;
 }
 
-/// [groups] in order, each run of joinable exactly-one groups replaced, at
-/// its first group's place, by one [JointPlacement].
-///
-/// The exactly-one groups that share members, directly or through each
-/// other, form a run. A run joins when its groups all share one non-empty
-/// member set and nothing else, every group has a member besides that set,
-/// and at least one group has exactly one. That member is the key the joint
-/// variant always writes. Every other group, at-most-one groups included,
-/// is a [SinglePlacement] in place.
 List<GroupPlacement> placeGroups(List<BlockGroup> groups) {
   final seen = <int>{};
   final joined = <int>{};

@@ -8,10 +8,6 @@ import 'output_dir_resolver.dart';
 import 'wrap_init_draft.dart';
 import 'wrap_init_templates.dart';
 
-/// Pure axis-extraction orchestrator. No I/O.
-///
-/// `WrapInitCommand` parses inputs, then calls `generate(...)`. The
-/// resulting `WrapInitDraft` is handed to `WrapInitEmitter` to render YAML.
 class WrapInitGenerator {
   WrapInitGenerator({
     required this.clock,
@@ -23,8 +19,6 @@ class WrapInitGenerator {
   final OutputDirResolver outputDirResolver;
   final ProviderRules providerRules;
 
-  /// Returns a draft for one resource. Caller passes parsed inputs; this
-  /// function does NOT touch the filesystem.
   WrapInitDraft generate({
     required String terraformType,
     required ResourceDef def,
@@ -34,12 +28,10 @@ class WrapInitGenerator {
   }) {
     final axes = <WrapInitAxis>[];
 
-    // kind — explicit only for data sources (resource is the default).
     if (kind == WrapperOverrideKind.dataSource) {
       axes.add(const FilledAxis('kind', 'data_source'));
     }
 
-    // outputDir — always FILL.
     final outputDir = outputDirResolver.resolve(
       terraformType: terraformType,
       mmProduct: mm?.product,
@@ -47,15 +39,10 @@ class WrapInitGenerator {
     );
     axes.add(FilledAxis('outputDir', outputDir));
 
-    // schemaStubBodyMode — explicit only for data sources (`bare`).
     if (kind == WrapperOverrideKind.dataSource) {
       axes.add(const FilledAxis('schemaStubBodyMode', 'bare'));
     }
 
-    // deriveClassDoc + curatedDoc — the class doc derives from the IR
-    // (lead line + MM description injected by the merger); curatedDoc is a
-    // commented placeholder for the artisanal remainder. The hand-written
-    // classDocComment axis is retired.
     axes.add(const FilledAxis('deriveClassDoc', 'true'));
     if (providerRules.typedNestedDefaults) {
       axes.add(const FilledAxis('deriveNestedTypes', 'true'));
@@ -82,8 +69,6 @@ class WrapInitGenerator {
             ),
     );
 
-    // paramOrder — commented scaffold from schema natural order, or (when
-    // [fillParamOrder]) the constructor's own natural order, filled.
     if (fillParamOrder) {
       axes.add(
         FilledAxis(
@@ -104,10 +89,8 @@ class WrapInitGenerator {
       );
     }
 
-    // extraGetters — TODO skeleton (commented YAML key + body).
     axes.add(_buildExtraGettersAxis(def));
 
-    // deprecatedParams — TODO only when MM had deprecation_messages.
     final depAxis = _buildDeprecatedParamsAxis(mm);
     if (depAxis != null) axes.add(depAxis);
 

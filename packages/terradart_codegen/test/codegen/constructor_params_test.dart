@@ -7,7 +7,6 @@ import 'package:terradart_codegen/src/ir/type_def.dart';
 import 'package:test/test.dart';
 
 void main() {
-  // Helper to build a ResourceDef inline.
   ResourceDef makeResource({
     List<Attribute> attrs = const [],
     List<NestedBlockDef> blocks = const [],
@@ -18,16 +17,13 @@ void main() {
 
   group('orderedConstructorParams – IR-natural order (no override)', () {
     test('returns empty list for resource with no eligible slots', () {
-      // `id` is excluded; computed-only attributes are excluded.
       final def = makeResource(
         attrs: [
-          // computed-only: excluded
           const Attribute(
             name: 'effective_labels',
             type: MapType(StringType()),
             constraints: Constraints(computed: true),
           ),
-          // id: excluded
           const Attribute(
             name: 'id',
             type: StringType(),
@@ -35,7 +31,6 @@ void main() {
           ),
         ],
         blocks: [
-          // timeouts: excluded
           const NestedBlockDef(
             name: 'timeouts',
             nesting: NestingMode.single,
@@ -51,8 +46,6 @@ void main() {
     test(
       'attributes appear before nested blocks, both in IR (alphabetical) order',
       () {
-        // IR order from JSON parser is alphabetical; we mimic that by listing
-        // attrs in alphabetical order here. The helper preserves that order.
         final def = makeResource(
           attrs: [
             const Attribute(
@@ -85,19 +78,16 @@ void main() {
       () {
         final def = makeResource(
           attrs: [
-            // computed AND optional → eligible (not computed-only)
             const Attribute(
               name: 'project',
               type: StringType(),
               constraints: Constraints(optional: true, computed: true),
             ),
-            // computed-only → excluded
             const Attribute(
               name: 'terraform_labels',
               type: MapType(StringType()),
               constraints: Constraints(computed: true),
             ),
-            // required → eligible
             const Attribute(
               name: 'name',
               type: StringType(),
@@ -106,7 +96,6 @@ void main() {
           ],
         );
         final result = orderedConstructorParams(def, null);
-        // Only 'project' and 'name' are eligible (id is not in the list).
         expect(result, containsAll(['project', 'name']));
         expect(result, isNot(contains('terraform_labels')));
       },
@@ -115,9 +104,6 @@ void main() {
     test(
       'optional/computed id is excluded by name (not just computed-only)',
       () {
-        // `id` is given `optional + computed` constraints so it would NOT be
-        // caught by the computed-only branch — this isolates the synthetic-id
-        // exclusion. A required `id` is a create-time input and stays in.
         final def = makeResource(
           attrs: [
             const Attribute(
@@ -202,10 +188,6 @@ void main() {
     });
 
     test('computed-only nested block is excluded (framework nested_type)', () {
-      // A plugin-framework computed object attribute (e.g. cloudflare_zone
-      // `meta`) normalizes into a nested block with computed-only
-      // constraints — it has no input role, exactly like a computed-only
-      // attribute, and must not become a constructor slot.
       final def = makeResource(
         blocks: [
           const NestedBlockDef(
@@ -244,7 +226,6 @@ void main() {
           ),
         ],
       );
-      // Override reverses the natural order.
       final result = orderedConstructorParams(def, ['beta', 'alpha']);
       expect(result, ['beta', 'alpha']);
     });
@@ -269,16 +250,12 @@ void main() {
           ),
         ],
       );
-      // gamma is intentionally omitted (suppressed virtual-fan-out pattern).
       final result = orderedConstructorParams(def, ['alpha', 'beta']);
       expect(result, ['alpha', 'beta']);
       expect(result, isNot(contains('gamma')));
     });
 
     test('override list can include virtual slot names not in the IR', () {
-      // Virtual slots (e.g. scheduler_job's `target`) are listed in paramOrder
-      // but don't exist as IR attributes. The helper returns them verbatim —
-      // it is the caller's responsibility to resolve them via customSlots.
       final def = makeResource(
         attrs: [
           const Attribute(
@@ -288,7 +265,6 @@ void main() {
           ),
         ],
       );
-      // 'target' is a virtual slot not present in the IR.
       final result = orderedConstructorParams(def, ['name', 'target']);
       expect(result, ['name', 'target']);
     });
@@ -314,7 +290,6 @@ void main() {
         'id',
         'project_id',
       ]);
-      // Required `id` is also a resource constructor input.
       expect(orderedConstructorParams(def, null), ['id', 'project_id']);
     });
 

@@ -1,27 +1,6 @@
 import 'migrate_manifest_data.dart';
 
-/// Renders one provider package's migration manifest — a single
-/// `const MigrateManifest <package>MigrateManifest` (`googleMigrateManifest`
-/// for `terradart_google`, `googleBetaMigrateManifest` for
-/// `terradart_google_beta`, ...) built from the per-factory
-/// [MigrateEntryBuild]s `terradart wrap --migrate-manifest <file>` collects.
-/// The file lives in `terradart_migrate` (`lib/src/manifest/<registry>.g.dart`)
-/// next to the hand-written runtime types it imports (#658).
-///
-/// Output is deterministic regardless of input order: entries sort by
-/// `tfType` (resource before dataSource twin), helper and enum tables by
-/// name. Helper / enum names are unique per package (a universal invariant
-/// of the generated wrappers); a name that reaches this emitter twice with
-/// different content is a generator bug and throws rather than emitting a
-/// manifest that silently picks one.
-///
-/// Like `CatalogMetadataEmitter`, the returned source is unformatted; the
-/// wrap pipeline runs it through the same `DartFormatter` as the wrappers.
 class MigrateManifestEmitter {
-  /// [package] is the Dart package whose factories the manifest describes
-  /// (`terradart_google`); it is recorded in `MigrateManifest.package` and
-  /// names the constant. [caseInsensitiveEnums] is recorded as
-  /// `MigrateManifest.caseInsensitiveEnums`, and only written when set.
   String emit(
     List<MigrateEntryBuild> builds, {
     required String package,
@@ -83,8 +62,6 @@ class MigrateManifestEmitter {
     return buf.toString();
   }
 
-  /// `terradart_google` → `googleMigrateManifest`,
-  /// `terradart_google_beta` → `googleBetaMigrateManifest`.
   static String constNameFor(String package) {
     if (!RegExp(r'^[a-z][a-z0-9_]*$').hasMatch(package)) {
       throw ArgumentError.value(
@@ -189,8 +166,6 @@ class MigrateManifestEmitter {
     return 'MigrateSlot(${args.join(', ')})';
   }
 
-  /// Single-quoted Dart string literal (same escaping as the catalog
-  /// emitter): backslash first, then quote, `$`, and newline.
   static String _str(String s) {
     final escaped = s
         .replaceAll(r'\', r'\\')

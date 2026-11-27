@@ -15,8 +15,6 @@ import '../parser/schema_parser.dart';
 import 'exit_codes.dart';
 import 'wrap_cli_common.dart';
 
-/// `terradart wrap-init <resource>` — scaffolds a wrapper override YAML
-/// for a single Terraform resource.
 class WrapInitCommand extends Command<int> {
   WrapInitCommand({required this.providers}) {
     argParser
@@ -77,7 +75,6 @@ class WrapInitCommand extends Command<int> {
   Future<int> run() async {
     final results = argResults!;
 
-    // Positional <resource>.
     final rest = results.rest;
     if (rest.isEmpty) {
       usageException('terradart wrap-init: missing positional <resource>.');
@@ -88,7 +85,6 @@ class WrapInitCommand extends Command<int> {
       );
     }
 
-    // --provider validation + registry lookup.
     final provider = results['provider'] as String;
     if (!providerIdPattern.hasMatch(provider)) {
       usageException(
@@ -103,7 +99,6 @@ class WrapInitCommand extends Command<int> {
       );
     }
 
-    // --source / --output validation.
     final source = results['source'] as String?;
     if (source == null || source.isEmpty) {
       stderr.writeln('terradart wrap-init: --source is required.');
@@ -119,8 +114,6 @@ class WrapInitCommand extends Command<int> {
     final force = results['force'] as bool;
     final kindArg = results['kind'] as String?;
 
-    // 1. Locate the schema file (canonical <source>/schema.json, else the
-    //    per-resource fixture layout — see resolveSchemaFile).
     final schemaFile = resolveSchemaFile(source, resourceName);
     if (schemaFile == null) {
       stderr.writeln(
@@ -136,7 +129,6 @@ class WrapInitCommand extends Command<int> {
       providerVersion: readProviderVersion(source),
     );
 
-    // 2. Resolve kind from --kind or from where the type lives in the IR.
     final inResources = ir.resources.containsKey(resourceName);
     final inDataSources = ir.dataSources.containsKey(resourceName);
     if (!inResources && !inDataSources) {
@@ -177,13 +169,11 @@ class WrapInitCommand extends Command<int> {
         ? ir.resources[resourceName]!
         : ir.dataSources[resourceName]!;
 
-    // 3. Load MM YAML if present (optional).
     final mmFile = File(p.join(source, 'mm', '$resourceName.yaml'));
     final MmResourceOverrides? mm = mmFile.existsSync()
         ? const MmYamlParser().parseString(mmFile.readAsStringSync())
         : null;
 
-    // 4. E402 guard before any generation.
     final stem = overrideFileStem(terraformType: resourceName, kind: kind);
     final outFile = File(p.join(output, '$stem.yaml'));
     if (outFile.existsSync() && !force) {
@@ -193,7 +183,6 @@ class WrapInitCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
 
-    // 5. Generate + emit.
     final generator = WrapInitGenerator(
       clock: const SystemClock(),
       outputDirResolver: OutputDirResolver(
@@ -212,7 +201,6 @@ class WrapInitCommand extends Command<int> {
     );
     final yaml = emitter.emit(draft);
 
-    // 6. Write.
     outFile.parent.createSync(recursive: true);
     outFile.writeAsStringSync(yaml);
     return CliExitCodes.success;

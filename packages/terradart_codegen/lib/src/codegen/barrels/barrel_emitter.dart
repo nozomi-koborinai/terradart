@@ -1,45 +1,19 @@
-/// Derives the per-service barrels (+ the `data` barrel and the
-/// `terradart_google.dart` umbrella) from the catalog entries `terradart
-/// wrap` just built, joined with the authored [BarrelManifest].
-///
-/// The show sets are exactly `className` + `nestedTypes` per emitted wrapper
-/// — the same drift-proof source the catalog itself records — so a wrapper
-/// that grows a new public type (e.g. a `deriveEnums` flip adding an enum)
-/// updates its barrel in the same `wrap` run instead of failing the
-/// barrel-completeness test after the fact (the #248 gap).
-library;
-
 import '../catalog_metadata_emitter.dart';
 import 'barrel_manifest.dart';
 
-/// Every barrel re-exports the core API, so one service import is enough to
-/// write a Stack. The same elements arrive through every barrel, so importing
-/// several (or core itself) never makes a name ambiguous.
 const String coreExport =
     "export 'package:terradart_core/terradart_core.dart';";
 
-/// The barrel key of the data source barrel every data source lives in.
 const String dataBarrel = 'data';
 
-/// Two-line header for generated barrels. Line 1 is the E401 marker; the
-/// wrapper header's `ignore_for_file: prefer_relative_imports` third line is
-/// omitted because barrels contain only relative exports.
 const String barrelFileHeader =
     '// GENERATED FILE - DO NOT EDIT\n'
     '// Run `terradart wrap` to regenerate.\n';
 
-/// Builds every barrel file (file stem under `lib/` → raw Dart source,
-/// header included, unformatted).
-///
-/// Fail-closed in both directions:
-/// - a catalog barrel absent from the manifest throws (add it to
-///   `barrels.yaml` with a `doc:` — a reviewed decision, not a default);
-/// - a manifest barrel no longer present in the catalog throws (stale entry).
 Map<String, String> buildBarrelFiles({
   required List<CatalogEntryData> entries,
   required BarrelManifest manifest,
 }) {
-  // barrel key -> source path under lib/ -> shown names.
   final byBarrel = <String, Map<String, Set<String>>>{};
   void export(String barrel, CatalogEntryData entry) {
     final files = byBarrel.putIfAbsent(barrel, () => {});
@@ -74,8 +48,6 @@ Map<String, String> buildBarrelFiles({
     );
   }
 
-  // A data source is also exported from its service barrel, so one import
-  // covers a service's resources and data sources alike.
   final serviceBarrels = dataSourceServiceBarrels(
     entries: entries,
     manifest: manifest,
@@ -128,8 +100,6 @@ String _emitUmbrella({
   required BarrelManifest manifest,
   required List<String> barrelFileStems,
 }) {
-  // Sort per-service exports and the verbatim extras (e.g. provider.dart)
-  // together by their quoted target, matching the hand-written layout.
   final directives = <String, String>{
     for (final stem in barrelFileStems) '$stem.dart': "export '$stem.dart';",
   };
@@ -147,11 +117,6 @@ String _emitUmbrella({
   return buf.toString();
 }
 
-/// Data source type → the service barrel key that also exports it (the
-/// authored `dataSourceBarrels` entry, else [dataSourceBarrelFor]). A data
-/// source in the `data` barrel only has no entry. Throws [StateError] on an
-/// authored entry that names no data source or catalog barrel, or repeats
-/// the derived one.
 Map<String, String> dataSourceServiceBarrels({
   required List<CatalogEntryData> entries,
   required BarrelManifest manifest,
@@ -188,12 +153,6 @@ Map<String, String> dataSourceServiceBarrels({
   };
 }
 
-/// The service barrel a data source type belongs to, from the lane's
-/// resource types ([resourceBarrels], type → barrel): the barrel of the
-/// resource of the same type, else the longest barrel key the type's name
-/// starts with (`google_compute_zones` → `compute`), else the barrel of the
-/// resources sharing its first two name segments when they all sit in one.
-/// `null` when nothing matches — the type is then in the `data` barrel only.
 String? dataSourceBarrelFor(String type, Map<String, String> resourceBarrels) {
   final exact = resourceBarrels[type];
   if (exact != null) return exact;

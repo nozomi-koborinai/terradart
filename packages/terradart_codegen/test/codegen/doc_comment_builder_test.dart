@@ -89,8 +89,6 @@ void main() {
 
     test('greedily fills lines rather than one word per line', () {
       final doc = buildClassDocComment(_def(description: 'word ' * 60));
-      // At least one wrapped body line should pack close to the 76-col target,
-      // proving words are packed greedily (not emitted one per line).
       final bodyLines = doc
           .split('\n')
           .where((l) => l.startsWith('/// word'))

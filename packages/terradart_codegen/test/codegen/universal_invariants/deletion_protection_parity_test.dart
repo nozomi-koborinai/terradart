@@ -4,12 +4,6 @@ import 'dart:io';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:test/test.dart';
 
-/// Cross-wrapper invariant: a curated resource whose pinned schema exposes a
-/// `deletion_protection` attribute must curate the input. The emitter sets
-/// `supportsDeletionProtection => true` from the schema regardless of
-/// paramOrder, so omitting the slot advertises the capability (devMode
-/// injection, catalog) while giving users no way to set the flag — Wave 32
-/// shipped `google_redis_instance` in exactly that state.
 void main() {
   test('every curated resource whose schema has deletion_protection lists it '
       'in paramOrder', () {
@@ -30,8 +24,6 @@ void main() {
     final violations = <String>[];
     for (final entry in loaded.resources.entries) {
       final paramOrder = entry.value.paramOrder;
-      // Omitted paramOrder means schema-default ordering, which already
-      // includes every input attribute — nothing to check.
       if (paramOrder == null) continue;
       final res = resourceSchemas[entry.key] as Map<String, dynamic>?;
       if (res == null) continue;

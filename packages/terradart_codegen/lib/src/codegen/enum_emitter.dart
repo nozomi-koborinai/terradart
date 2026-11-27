@@ -1,10 +1,5 @@
 import 'naming.dart';
 
-/// Emits a free-standing Terraform enum declaration.
-///
-/// The enum suffix is always derived from the resource type's short name
-/// (without the `google_` prefix, e.g. `PubsubTopic`) plus the field's leaf
-/// name in PascalCase. See [enumName] in `naming.dart`.
 String emitEnumDeclaration(EnumName name) {
   final words = _splitPascalWords(name.dartName);
   final resource = words.length >= 2
@@ -19,13 +14,6 @@ String emitEnumDeclaration(EnumName name) {
   );
 }
 
-/// Renders a Terraform enum: an extension type over `TfArg<String>` whose
-/// values are `static const` members, so a parameter of the enum type takes
-/// `.member` and the `TfArg` escape hatches (`.variable(...)`,
-/// `.expression(...)`, `.arg(...)`) through the same dot shorthand.
-///
-/// Every enum the wrappers declare — derived or hand-written in a `prelude`
-/// — has exactly this shape; `EnumExtractor` reads it back.
 String renderTerraformEnum({
   required String doc,
   required String name,

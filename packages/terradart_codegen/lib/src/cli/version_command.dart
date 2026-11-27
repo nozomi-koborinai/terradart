@@ -4,8 +4,6 @@ import 'package:args/command_runner.dart';
 
 import 'exit_codes.dart';
 
-/// Single source of truth for the CLI version string. Bumped in lockstep
-/// with `pubspec.yaml`'s `version:` field.
 const String terradartCliVersion = '0.0.1-dev';
 
 class VersionCommand extends Command<int> {

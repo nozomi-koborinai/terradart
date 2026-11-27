@@ -18,12 +18,8 @@ import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
-/// Barrels are written one level above `--output` (`lib/` beside `lib/src`),
-/// so every integration test roots its output at `<tmp>/lib/src` and
-/// inspects `<tmp>` recursively.
 String _libSrcOut(Directory tmp) => p.join(tmp.path, 'lib', 'src');
 
-/// Makes [root] a package whose language version, 3.12, wrap formats at.
 void _writePubspec(Directory root, String name) {
   root.createSync(recursive: true);
   File(
@@ -59,10 +55,6 @@ void main() {
     test('emits exactly the generated files committed to terradart_google '
         '(wrappers, _catalog.g.dart, _provider_version.g.dart, barrels, '
         'umbrella)', () async {
-      // Plan 5.X (v0.5.0-dev): the schemantic Layer 1 chain
-      // (`generated/<type>.schema.dart` + `generated/<type>.schema.g.dart`
-      // + `generated/data_<type>.schema.dart`) is retired. Only Layer 2
-      // factory wrappers are emitted — one per wrapper-override YAML.
       final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_');
       try {
         final runner = buildCliRunner();
@@ -85,9 +77,6 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        // One wrapper per override plus the catalog, the provider pin, the
-        // per-catalog barrels and the umbrella: the committed package's
-        // generated files, so a catalog that grows needs no count here.
         final committedRoot = p.join('..', 'terradart_google');
         final committed = <String>[
           for (final ent in Directory(
@@ -114,14 +103,11 @@ void main() {
           files,
           contains(p.join('lib', 'src', 'data', 'google_project.dart')),
         );
-        // Derived barrels land one level up, under lib/.
         expect(files, contains(p.join('lib', 'pubsub.dart')));
         expect(files, contains(p.join('lib', 'data.dart')));
-        // The `sql` barrel keeps its authored file-name override.
         expect(files, contains(p.join('lib', 'cloud_sql.dart')));
         expect(files, isNot(contains(p.join('lib', 'sql.dart'))));
         expect(files, contains(p.join('lib', 'terradart_google.dart')));
-        // Plan 5.X: Layer 1 files are no longer emitted.
         expect(
           files,
           isNot(
@@ -141,8 +127,6 @@ void main() {
     });
 
     test('all generated files start with the generated marker', () async {
-      // The E401 guard and the format hook (tool/hook_lib.sh) both key on
-      // this exact first line.
       final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_');
       try {
         final runner = buildCliRunner();
@@ -265,7 +249,6 @@ void main() {
         for (final rel in [
           p.join('src', 'pubsub', 'google_pubsub_topic.dart'),
           p.join('src', 'data', 'google_project.dart'),
-          // A derived barrel is part of the --check surface too.
           'pubsub.dart',
         ]) {
           final f = File(p.join(tmpOut.path, 'lib', rel));
@@ -370,8 +353,6 @@ void main() {
           await tmpOut.delete(recursive: true);
         }
       },
-      // Three full wraps of the fixture: about 20s locally, over the 30s
-      // default on a busy CI runner.
       timeout: const Timeout(Duration(minutes: 3)),
     );
 
@@ -531,7 +512,6 @@ paramOrder:
     test('refuses to overwrite non-generated file by default (E401)', () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_force_');
       try {
-        // Pre-create a non-generated file at one of wrap's target paths.
         final dir = Directory(p.join(_libSrcOut(tmpOut), 'pubsub'));
         dir.createSync(recursive: true);
         const preExisting = '// hand-written, not generated\nclass Foo {}\n';
@@ -586,8 +566,6 @@ paramOrder:
 
   group('WrapCommand --only', () {
     test('emits the resource wrapper plus its data-source twin', () async {
-      // `--only <type>` loads `<type>.yaml` and `data_<type>.yaml` when
-      // both exist. Catalog / barrels stay omitted (partial regen).
       final tmpOut = await Directory.systemTemp.createTemp('phase4_only_');
       try {
         final code = await buildCliRunner().run([
@@ -686,11 +664,6 @@ paramOrder:
 
   group('WrapCommand MM YAML', () {
     test('malformed MM YAML exits with dataError (E405)', () async {
-      // Build a synthetic --source: a valid schema.json (copied from the
-      // real fixture so the schema parse succeeds) plus an mm/ directory
-      // holding one intentionally malformed YAML file. The wrap pipeline
-      // must surface the parse failure rather than silently dropping the
-      // file (which would make `deriveEnums` emit nothing).
       final tmpSrc = await Directory.systemTemp.createTemp('phase4_mm_bad_');
       final tmpOut = await Directory.systemTemp.createTemp('phase4_mm_out_');
       try {
@@ -702,7 +675,6 @@ paramOrder:
         ).writeAsStringSync(fixtureSchema.readAsStringSync());
         final mmDir = Directory(p.join(tmpSrc.path, 'mm'));
         mmDir.createSync(recursive: true);
-        // Unclosed YAML flow mapping → YamlException from loadYaml.
         File(
           p.join(mmDir.path, 'google_pubsub_schema.yaml'),
         ).writeAsStringSync('{ : : :');
@@ -732,17 +704,9 @@ paramOrder:
 
     test('valid MM enum_values flow through wrap into a derived Dart enum '
         '(happy path)', () async {
-      // Positive complement to the malformed-MM test above.
-      // Proves: valid enum_values in MM YAML → IrMerger → deriveEnums gate
-      // → derived Dart enum in wrap output.
-      //
-      // The override registry (google_pubsub_schema.yaml with deriveEnums:true)
-      // is loaded from the package, not from --source, so the gate is active.
-      // We use --only to limit output to a single file and keep the test fast.
       final tmpSrc = await Directory.systemTemp.createTemp('phase4_mm_ok_src_');
       final tmpOut = await Directory.systemTemp.createTemp('phase4_mm_ok_out_');
       try {
-        // Copy the real schema.json fixture so schema parse succeeds.
         final fixtureSchema = File(
           p.join('test', 'fixtures', 'wrap', 'source', 'schema.json'),
         );
@@ -750,7 +714,6 @@ paramOrder:
           p.join(tmpSrc.path, 'schema.json'),
         ).writeAsStringSync(fixtureSchema.readAsStringSync());
 
-        // Copy the real MM YAML fixture (has enum_values for PubsubSchemaType).
         final fixtureMm = File(
           p.join(
             'test',
@@ -866,11 +829,6 @@ paramOrder:
   });
 
   group('WrapCommand fixture-driven', () {
-    // Fixture files are stored with a `.dart.golden` suffix (matching the
-    // project-wide golden naming convention under `test/golden/`) so they
-    // are byte-frozen and not rewritten by `dart format`, while still
-    // letting the test diff bytes 1:1 against the wrap output (the
-    // `.golden` suffix is stripped when computing actualPath).
     test(
       'output matches expected_output exactly (13 files; Plan 5.X)',
       () async {
@@ -880,9 +838,6 @@ paramOrder:
           final fixtureDir = Directory(
             p.join('test', 'fixtures', 'wrap', 'expected_output'),
           );
-          // The goldens freeze the emitter without the lane's --mm-groups,
-          // and a full-catalog run without it fails on typeNames entries
-          // that name Magic Modules enums, so wrap only the golden types.
           for (final fixFile
               in fixtureDir.listSync(recursive: true).whereType<File>()) {
             final stem = p.basename(fixFile.path).split('.').first;
@@ -904,8 +859,6 @@ paramOrder:
           for (final fixFile
               in fixtureDir.listSync(recursive: true).whereType<File>()) {
             final rel = p.relative(fixFile.path, from: fixtureDir.path);
-            // Strip the trailing `.golden` so the path lines up with the
-            // wrap output on disk (`.dart.golden` → `.dart`).
             final actualRel = rel.endsWith('.golden')
                 ? rel.substring(0, rel.length - '.golden'.length)
                 : rel;
@@ -936,26 +889,6 @@ paramOrder:
   });
 
   group('WrapCommand deriveNestedTypes (dark launch)', () {
-    // Unlike every other test in this file, this one does NOT go through
-    // `buildCliRunner().run(['wrap', ...])`: `WrapCommand` resolves its
-    // override registry from the PACKAGE's own committed
-    // `lib/src/codegen/wrapper_overrides/yaml/` directory
-    // (`Isolate.resolvePackageUri` in `wrap_command.dart`), not from
-    // `--source` — there is no CLI flag to point it at a temp override
-    // directory instead. Flipping a real committed yaml (even temporarily,
-    // even restored in a `finally`) would violate the dark-launch
-    // requirement this whole PR exists to satisfy, and risks bleeding into
-    // any other test file that loads the same production directory
-    // concurrently. So this test drives the same building blocks
-    // `WrapCommand.run()` composes — `YamlOverrideLoader` ->
-    // `SchemaJsonParser` -> `WrapperEmitter` -> `DartFormatter` ->
-    // `buildCatalogEntry` -> `buildBarrelFiles` — directly, against a
-    // throwaway temp override, the same way `barrel_derivation_test.dart`
-    // exercises `buildBarrelFiles` without going through the CLI at all.
-    //
-    // The dark-launch invariant for the COMMITTED tree (byte-identical
-    // `wrap --check`) is proved by the untouched `WrapCommand --check`
-    // group above, which stays green throughout this change.
     test('a temp deriveNestedTypes:true override derives a typed nested '
         'class, narrows the ctor param, and flows into the catalog + a '
         'barrel', () async {
@@ -964,13 +897,6 @@ paramOrder:
         'phase4_nested_types_',
       );
       try {
-        // Minimal override: only the two slots this test cares about.
-        // `paramOrder` may be a subset — slots it omits are simply not
-        // emitted (see `WrapperOverride.paramOrder`'s doc) — so dropping
-        // `override_strategy` / `deletion_policy` / `project` here (present
-        // in the real committed yaml) is deliberate, not an oversight: it
-        // keeps this reproduction minimal and free of the unrelated
-        // hand-written `override_strategy` enum idiom.
         await File(
           p.join(tmpOverrideDir.path, '$terraformType.yaml'),
         ).writeAsString('''
@@ -1001,17 +927,10 @@ paramOrder:
         final formatter = packageFormatter('../terradart_google');
         final formatted = formatter.format(raw);
 
-        // The derived helper class + its attribute enum are emitted as
-        // top-level declarations. Their internal shape is byte-pinned by
-        // Task 3's emitter tests; here we only need to confirm the wiring
-        // actually reaches them.
         expect(
           formatted,
           contains('final class AppEngineDomainMappingSslSettings {'),
         );
-        // The class name is long enough that dart_style wraps `implements
-        // TfArg<String> {` onto its own line, so the two fragments are
-        // checked independently rather than as one contiguous string.
         expect(
           formatted,
           contains(
@@ -1020,11 +939,6 @@ paramOrder:
         );
         expect(formatted, contains('implements TfArg<String> {'));
 
-        // The constructor param narrows from the generic
-        // `TfArg<Map<String, dynamic>>? sslSettings` passthrough to the
-        // typed, bare (non-`TfArg`) class reference. `ssl_settings` is
-        // schema-optional (nesting_mode: list, max_items: 1, no min_items),
-        // so it stays nullable / un-`required`.
         expect(
           formatted,
           contains('AppEngineDomainMappingSslSettings? sslSettings'),
@@ -1034,21 +948,9 @@ paramOrder:
           isNot(contains('TfArg<Map<String, dynamic>>? sslSettings')),
         );
 
-        // The argMap entry wraps the typed helper's own `.encode()` in
-        // `TfArg.literal(...)` — matching the hand-written customSlot idiom
-        // (e.g. `google_pubsub_subscription.yaml`'s `bigquery_config`) —
-        // guarded since the slot is optional. No `!` on `sslSettings` inside
-        // the guard: it's a constructor PARAMETER, which the `if (sslSettings
-        // != null)` guard promotes to non-nullable (unlike a public FIELD —
-        // Dart field promotion is private-only — which is why
-        // `nested_type_emitter_test.dart`'s per-attribute/child encoding
-        // still needs `!`).
         expect(formatted, contains('if (sslSettings != null)'));
         expect(formatted, contains('TfArg.literal(sslSettings.encode())'));
 
-        // Catalog: `nestedTypes` is scanned from this SAME formatted source
-        // (`catalog_entry_builder.dart`'s `scanNestedTypes`) — there is no
-        // separate registration list to wire up or keep in sync.
         final entry = buildCatalogEntry(
           tfType: terraformType,
           override: loaded[terraformType]!,
@@ -1064,12 +966,6 @@ paramOrder:
           ]),
         );
 
-        // Barrels: `buildBarrelFiles` merges `className` + `nestedTypes`
-        // into one sorted `show` set per barrel (`barrel_emitter.dart`).
-        // Confirm the derived names reach a barrel's export line, using a
-        // minimal synthetic manifest (mirrors `barrel_derivation_test.dart`)
-        // rather than the full 66-barrel production manifest, which needs a
-        // catalog entry for every declared barrel.
         final barrelFiles = buildBarrelFiles(
           entries: [entry],
           manifest: const BarrelManifest(
@@ -1097,9 +993,6 @@ paramOrder:
         'barrels manifest, without an mm/ directory', () async {
       final tmp = await Directory.systemTemp.createTemp('wrap_beta_');
       try {
-        // Source: schema.json only — deliberately NO mm/ directory (the
-        // documented schema-only path a provider without Magic Modules
-        // metadata will take).
         final sourceDir = Directory(p.join(tmp.path, 'source'))..createSync();
         File(p.join(sourceDir.path, 'schema.json')).writeAsStringSync(
           jsonEncode({
@@ -1128,7 +1021,6 @@ paramOrder:
           }),
         );
 
-        // Overrides live OUTSIDE the package default root.
         final overridesDir = Directory(p.join(tmp.path, 'overrides'))
           ..createSync();
         File(
@@ -1143,7 +1035,6 @@ paramOrder:
   - project
 ''');
 
-        // A per-package barrels manifest that also names the umbrella.
         final manifestFile = File(p.join(tmp.path, 'barrels_beta.yaml'))
           ..writeAsStringSync('''
 umbrellaFile: terradart_google_beta
@@ -1174,9 +1065,6 @@ barrels:
         ]);
         expect(code, 0);
 
-        // Beta resources share the GA google_* type prefix, so the wrapper
-        // must pin the provider meta-argument or core's synth would
-        // attribute them to the implied google provider.
         final wrapper = File(
           p.join(
             _libSrcOut(tmp),
@@ -1187,6 +1075,9 @@ barrels:
         expect(
           wrapper,
           contains("String get defaultProvider => 'google-beta';"),
+          reason:
+              'beta resources share the google_* prefix and must pin '
+              'defaultProvider',
         );
 
         final files = <String>[];
@@ -1207,7 +1098,6 @@ barrels:
           ),
         );
         expect(files, contains(p.join('lib', 'project.dart')));
-        // The umbrella takes the manifest's name — not terradart_google.
         expect(files, contains(p.join('lib', 'terradart_google_beta.dart')));
         expect(files, isNot(contains(p.join('lib', 'terradart_google.dart'))));
       } finally {
@@ -1228,7 +1118,6 @@ barrels:
     test(
       'writes the manifest to the given file, named after the package',
       () async {
-        // Three full-fixture wrap runs (write, --check, --check after drift).
         final tmpOut = await Directory.systemTemp.createTemp(
           'migrate_manifest_',
         );
@@ -1274,7 +1163,6 @@ barrels:
             src,
             contains("'CloudSchedulerJobPubsubTarget': MigrateHelper("),
           );
-          // Nothing lands under --output besides the usual artifacts.
           expect(
             File(
               p.join(_libSrcOut(tmpOut), '_migrate_manifest.g.dart'),
@@ -1285,15 +1173,11 @@ barrels:
             File(p.join(_libSrcOut(tmpOut), '_catalog.g.dart')).existsSync(),
             isTrue,
           );
-          // Formatted at the manifest package's language version, as
-          // `dart format` formats it, so a `--check` diff against the
-          // committed copy is byte-exact.
           final formatted = DartFormatter(
             languageVersion: Version(3, 12, 0),
           ).format(src);
           expect(formatted, src);
 
-          // `--check` against the freshly written file passes ...
           final checkCode = await buildCliRunner().run([
             'wrap',
             '--provider',
@@ -1311,7 +1195,6 @@ barrels:
             '--check',
           ]);
           expect(checkCode, CliExitCodes.success);
-          // ... and fails once the manifest drifts (E301).
           manifest.writeAsStringSync('$src// drift\n');
           final driftCode = await buildCliRunner().run([
             'wrap',
@@ -1727,8 +1610,6 @@ barrels:
       if (check) '--check',
     ]);
 
-    /// Compiles and runs a Stack whose constructor body is [body] against
-    /// the generated wrappers, printing its synthesized Terraform JSON.
     Future<ProcessResult> probe(String body) async {
       final script = File(p.join(tmp.path, 'bin', 'probe.dart'))
         ..createSync(recursive: true)
@@ -2298,11 +2179,6 @@ hashicorp/google-beta:
   });
 }
 
-/// Loads `resource_schemas[terraformType].block` straight from an
-/// already-read schema.json string — the raw shape `collectNestedTypes` (via
-/// `WrapperEmitter.rawResourceSchemas`) needs. Mirrors
-/// `nested_type_collector_test.dart`'s `_blockOf` helper and
-/// `wrap_command.dart`'s own private `_rawResourceBlocks`.
 Map<String, dynamic> _rawBlockOf(String schemaJson, String terraformType) {
   final decoded = jsonDecode(schemaJson) as Map<String, dynamic>;
   final providerSchemas = (decoded['provider_schemas'] as Map)
@@ -2316,11 +2192,6 @@ Map<String, dynamic> _rawBlockOf(String schemaJson, String terraformType) {
   return (resource['block'] as Map).cast<String, dynamic>();
 }
 
-/// Minimal [Stdout] stand-in that appends every `write*` call to a
-/// [StringBuffer], so in-process tests can capture what `stderr.writeln` would
-/// have printed. `IOOverrides.runZoned`'s `stderr` factory must return a
-/// [Stdout]; only the text-writing surface is exercised by the CLI, so the
-/// remainder is routed through `noSuchMethod`.
 class _BufferSink implements Stdout {
   _BufferSink(this._buf);
 

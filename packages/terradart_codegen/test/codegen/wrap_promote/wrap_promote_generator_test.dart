@@ -15,9 +15,7 @@ void main() {
     test(
       'returns empty additions when MM has no exactly_one_of + no enum_values',
       () {
-        // Minimal MM YAML: just description.
         final mm = const MmYamlParser().parseString('description: empty\n');
-        // Use the smallest known schema fixture for a valid IR.
         final schemaSrc = File(
           p.join(
             'test',
@@ -40,8 +38,6 @@ void main() {
           def: def,
           mm: mm,
         );
-        // No exactly_one_of and no enum_values means the additions body is
-        // empty (generator returns the empty string in that case).
         expect(out, isEmpty);
       },
     );
@@ -86,8 +82,6 @@ void main() {
   group('WrapPromoteGenerator min_items assert hints (Plan 5.D PR 4)', () {
     test('includes assert hints in marker block when qualifying nested '
         'block is present', () {
-      // Synthetic ResourceDef with one list-shaped nested block that
-      // qualifies (min_items=1, no max_items).
       const def = ResourceDef(
         terraformType: 'google_synthetic',
         description: null,
@@ -124,7 +118,6 @@ void main() {
     });
 
     test('emits empty string when no qualifying nested block exists', () {
-      // single-shaped nested block (max_items==1) does NOT qualify.
       const def = ResourceDef(
         terraformType: 'google_synthetic',
         description: null,
@@ -155,7 +148,6 @@ void main() {
         mm: mm,
       );
 
-      // No qualifying nested block + no exactly_one_of + no enums ⇒ empty.
       expect(output, isEmpty);
     });
   });

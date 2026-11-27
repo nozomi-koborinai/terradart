@@ -34,18 +34,12 @@ void main() {
         }
 
         final after1 = await runOnce();
-        // Brief sleep so SystemClock COULD differ across midnight; tolerated by
-        // the assertion below (we strip the date line before byte comparison).
         await Future<void>.delayed(const Duration(milliseconds: 50));
         final after2 = await runOnce(force: true);
 
-        // No marker accumulation: exactly one begin + one end across the file.
         expect('=== wrap-promote additions'.allMatches(after2).length, 1);
         expect('=== end wrap-promote additions'.allMatches(after2).length, 1);
-        // Body above the marker is preserved verbatim.
         expect(after2, contains('outputDir: synthetic'));
-        // Date-stripped bodies are byte-identical (tolerates rare midnight
-        // crossover during the test run).
         String stripDate(String yaml) => yaml.replaceAll(
           RegExp(r'# Generated on \d{4}-\d{2}-\d{2}\..*\n'),
           '',

@@ -48,8 +48,6 @@ void main() {
     });
 
     test('flags customSlot key absent from paramOrder (rule e)', () {
-      // The Wave 32 regression shape: slots declared, paramOrder present,
-      // but the slot keys never listed -> emitter silently drops both.
       const o = WrapperOverride(
         outputDir: 'redis',
         paramOrder: ['name', 'memory_size_gb'],
@@ -210,10 +208,6 @@ void main() {
     });
 
     test('canonicalExactlyOneOfGroups skips nested-block-indexed members', () {
-      // google_vpc_access_connector: exactly_one_of [network, subnet.0.name].
-      // Collapsing `subnet.0.name` to its last segment fabricated a bogus
-      // [name, network] group; the `.0.` index marks a nested-block field
-      // reference, so the whole group must be skipped.
       expect(
         canonicalExactlyOneOfGroups([
           ['network', 'subnet.0.name'],
@@ -221,7 +215,6 @@ void main() {
         ]),
         isEmpty,
       );
-      // A flat top-level group with no index still collapses normally.
       expect(
         canonicalExactlyOneOfGroups([
           ['hostname', 'matcher'],
@@ -310,7 +303,6 @@ void main() {
       const b = WrapperOverride(outputDir: 'x', curatedDoc: '/// dead');
       final violations = lintOverrides({'google_zeta': a, 'google_alpha': b});
       expect(violations, hasLength(2));
-      // sorted by tfType: alpha before zeta
       expect(violations.first.tfType, 'google_alpha');
       expect(violations.last.tfType, 'google_zeta');
     });
@@ -550,7 +542,6 @@ class Shared {
       );
       final registry = {'google_a': declaring, 'google_b': user};
       expect(lintMigrateShapes('google_b', user, input(registry)), isEmpty);
-      // Alone, the same slot is underivable — the context is package-wide.
       expect(
         lintMigrateShapes('google_b', user, input({'google_b': user})),
         hasLength(1),

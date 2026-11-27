@@ -13,29 +13,6 @@ import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
-/// Enum-derivation probe (A1 migration, Phase 1).
-///
-/// The de-fatten discovery tracer compares hand-written prelude enums to
-/// IR-derivable enums BY NAME ONLY — the documented blind spot that hid the
-/// `bigquery_routine` constant drift. This probe goes member-level: for every
-/// hand-written prelude enum it compares the derived enum's Dart member
-/// names AND raw Terraform values, then classifies:
-///
-/// - DERIVABLE_EXACT  — name + members + raw values all match; flipping
-///   `deriveEnums: true` and deleting the hand enum changes only doc comments
-///   (the accepted A1 trade-off). These are the migration candidates.
-/// - MEMBER_DRIFT     — same name, different members/values. Flipping would
-///   change public API → stays ③ frozen.
-/// - NAME_DRIFT       — a derived enum carries the same raw values under a
-///   different Dart name (hand-curated rename) → stays ③ frozen.
-/// - NOT_DERIVABLE    — no top-level IR enumValues back this enum (nested
-///   block enum, or the schema stores the field as free-form string) —
-///   outside A1's scope by design.
-///
-/// This is a REPORT test: it always passes (modulo reconciliation) and
-/// prints/writes the classification so a migration wave can be scoped from
-/// data instead of guesses.
-
 const _overrideRoot = 'lib/src/codegen/wrapper_overrides/yaml';
 const _schemaPath = 'test/fixtures/wrap/source/schema.json';
 const _mmDir = 'test/fixtures/wrap/source/mm';
@@ -71,8 +48,6 @@ typedef _HandEnum = ({
   String block,
 });
 
-/// Extracts every `extension type const X._(TfArg<String> _)` enum
-/// declaration from [prelude] with its member names and raw values.
 List<_HandEnum> _extractHandEnums(String prelude) {
   final out = <_HandEnum>[];
   final decl = RegExp(
@@ -102,8 +77,6 @@ List<_HandEnum> _extractHandEnums(String prelude) {
   return out;
 }
 
-/// True when [prelude] contains nothing but its enum declarations, their
-/// `///` doc comments, and whitespace — i.e. deleting the enums empties it.
 bool _isEnumOnly(String prelude, List<_HandEnum> enums) {
   var rest = prelude;
   for (final e in enums) {
@@ -114,8 +87,6 @@ bool _isEnumOnly(String prelude, List<_HandEnum> enums) {
       .every((line) => line.trim().isEmpty || line.trim().startsWith('///'));
 }
 
-/// Derived top-level enums for [def], keyed by Dart enum name — exactly the
-/// set the `deriveEnums: true` gate would emit (WrapperEmitter A1 branch).
 Map<String, EnumName> _derivedEnums(ResourceDef def) {
   final out = <String, EnumName>{};
   for (final a in def.root.attributes) {

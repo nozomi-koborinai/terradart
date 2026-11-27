@@ -8,19 +8,15 @@ import 'package:terradart_codegen/src/cli/version_command.dart';
 import 'package:test/test.dart';
 
 void main() {
-  // Use a working-directory anchored entry path. `dart test` is normally run
-  // from the package root (`packages/terradart_codegen`), so a relative
-  // `bin/terradart.dart` resolves correctly. A Platform.script-based variant
-  // would also work for CI; we pick the simpler relative path here for
-  // predictability.
   const entry = 'bin/terradart.dart';
 
   group('terradart CLI subprocess', () {
     test('--version prints version and exits 0', () async {
-      final result = await Process.run(
-        Platform.resolvedExecutable, // dart
-        ['run', entry, '--version'],
-      );
+      final result = await Process.run(Platform.resolvedExecutable, [
+        'run',
+        entry,
+        '--version',
+      ]);
       expect(result.exitCode, 0, reason: result.stderr.toString());
       expect((result.stdout as String).trim(), terradartCliVersion);
     });

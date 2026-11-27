@@ -1,49 +1,19 @@
 import '../../ir/resource_def.dart';
 
-/// Provider-specific data + behaviour pulled out of the inline Google-only
-/// code in Phase 4.1–4.3. Each Terraform provider terradart supports is one
-/// concrete subclass, registered in `provider_registry.dart`.
-///
-/// The abstract base is open/closed so community adapters in separate
-/// packages can plug in without touching this file.
 abstract class ProviderRules {
   const ProviderRules();
 
-  /// Terraform provider id, e.g. `'hashicorp/google'`. Used both as the
-  /// `Map<String, ProviderRules>` registry key in `cli_runner.dart` and as
-  /// the expected value for the `--provider` CLI flag.
   String get providerId;
 
-  /// MM-product alias map + name-prefix overrides consumed by
-  /// `OutputDirResolver`. Phase 4.2's `_googleOutputDirAliases` const moves
-  /// into `GoogleProviderRules.outputDirAliases`.
   Map<String, String> get outputDirAliases;
 
-  /// Cross-resource hint getter skeleton lines (Dart source, no leading
-  /// indent) for the resource defined by [def]. Returned strings are
-  /// embedded inside the `extraGetters: |2` commented block emitted by
-  /// `WrapInitGenerator._buildExtraGettersAxis`.
-  ///
-  /// Google: 0–2 lines for `id` and `name`.
-  /// AWS: 0–2 lines for `id` and `arn`.
   List<String> universalGetters(ResourceDef def);
 
-  /// Terraform type prefix this provider uses (`google_`, `cloudflare_`, …).
-  /// [OutputDirResolver] strips it before alias / segment matching.
   String get terraformTypePrefix;
 
-  /// When true, `wrap-init` fills `deriveNestedTypes: true` and
-  /// `deriveOutputGetters: true` so plugin-framework object attributes
-  /// become typed helper classes instead of `TfArg<Map<String, dynamic>>`.
   bool get typedNestedDefaults => false;
 
-  /// When true, `wrap-init` and the lane scaffold fill `deriveEnums: true`
-  /// on resources, for a lane whose `wrap --provider-enums` supplies the
-  /// enum value sets.
   bool get derivedEnumDefaults => false;
 
-  /// When true, `wrap-init` and the lane scaffold fill
-  /// `deriveExactlyOne: true` on resources, for a lane whose hints carry
-  /// `exactly_one_of_groups`.
   bool get exactlyOneDefaults => false;
 }

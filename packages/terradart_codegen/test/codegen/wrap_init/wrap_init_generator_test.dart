@@ -159,8 +159,6 @@ void main() {
               as CommentedAxis;
       final value = axis.value as List<String>;
       expect(value, isNotEmpty);
-      // Verify first entry exists in the schema — order is schema-natural, so
-      // the first attribute should be one google_pubsub_topic actually has.
       expect(
         ['name', 'project', 'labels'].any(value.contains),
         isTrue,
@@ -179,7 +177,6 @@ void main() {
       final axis =
           draft.axes.firstWhere((WrapInitAxis a) => a.key == 'paramOrder')
               as CommentedAxis;
-      // banner comes from wrap_init_templates.paramOrderCommentedBanner
       expect(axis.banner, contains('paramOrder is commented'));
     });
   });

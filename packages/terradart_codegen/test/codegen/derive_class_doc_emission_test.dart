@@ -46,8 +46,6 @@ void main() {
     });
 
     test('emits no class doc when deriveClassDoc is false', () {
-      // The hand-written classDocComment fallback is retired (2026-07 doc
-      // wave): a gate-off override emits a bare class declaration.
       final emitter = WrapperEmitter(
         overrides: {
           'google_pubsub_schema': const WrapperOverride(outputDir: 'pubsub'),

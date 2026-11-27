@@ -28,7 +28,7 @@ class SchemaJsonParser {
         '${schemas.keys.toList()}',
       );
     }
-    final providerKey = schemas.keys.first; // 'registry.../hashicorp/google'
+    final providerKey = schemas.keys.first;
     final providerSource = _stripRegistryPrefix(providerKey);
     final providerName = providerSource.split('/').last;
     final providerBody = (schemas[providerKey] as Map).cast<String, Object?>();
@@ -75,14 +75,8 @@ class SchemaJsonParser {
     );
   }
 
-  /// Collapses the over-escaped apostrophes (`\'` → `'`) the
-  /// hashicorp/google schema occasionally ships (`instance\'s nominal CPU`
-  /// on `google_compute_instance.advanced_machine_features.visible_core_count`).
-  /// Every other character stays as the schema wrote it, because enum wire
-  /// values are read from descriptions (`Available values: "thresholds.$key"`).
-  /// An emitter that puts a description in a Dart string literal escapes it
-  /// there (`dartSingleQuotedBody`). A `///` doc comment needs no escape
-  /// for `$`.
+  // hashicorp/google schemas occasionally ship over-escaped apostrophes (\');
+  // leave $ intact because enum wire values are parsed from descriptions.
   static String? _sanitizeDescription(String? s) {
     if (s == null) return null;
     return s.replaceAll(r"\'", "'");
@@ -96,9 +90,6 @@ class SchemaJsonParser {
     for (final entry in attrMap.entries) {
       final body = (entry.value as Map).cast<String, Object?>();
       if (body.containsKey('nested_type')) {
-        // Plugin-framework object attribute. Terraform JSON erases the HCL
-        // block-vs-attribute syntax split, so it normalizes into the same
-        // IR as a block_types entry.
         nested.add(_parseNestedAttribute(entry.key, body));
       } else {
         attrs.add(_parseAttribute(entry.key, body));
@@ -138,12 +129,8 @@ class SchemaJsonParser {
     );
   }
 
-  /// Normalizes a plugin-framework `nested_type` attribute (an object
-  /// attribute, e.g. `cloudflare_zone.account`) into the same IR as a
-  /// `block_types` entry. A required object attribute maps to
-  /// `minItems: 1` so downstream required-ness checks treat both worlds
-  /// identically; recursion happens through [_parseBlock], which routes
-  /// inner `nested_type` attributes back here.
+  // Terraform Plugin Framework expresses object attributes via nested_type
+  // rather than block_types; map required to minItems: 1 to match SDKv2 blocks.
   NestedBlockDef _parseNestedAttribute(String name, Map<String, Object?> body) {
     final nestedType = (body['nested_type'] as Map).cast<String, Object?>();
     final required = body['required'] as bool? ?? false;

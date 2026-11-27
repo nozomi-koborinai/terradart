@@ -2,18 +2,10 @@ import 'dart:convert';
 
 import 'package:yaml/yaml.dart';
 
-import 'exactly_one_types.dart';
-
-/// Every reason in the sealed-name ledger starts with this: an entry only
-/// holds a new group's place until a human names it.
 const sealedNameDebtPrefix = 'awaiting-name:';
 
-/// The sealed-name ledger (`tool/sealed_name_debt.yaml`): Terraform type →
-/// group key ([sealedGroupKeyOf]) → reason. It lists the sealed groups no
-/// rule names, whose slots fall back to their members joined with `Or`.
 typedef SealedNameDebt = Map<String, Map<String, String>>;
 
-/// Parses the ledger; an empty file is an empty ledger.
 SealedNameDebt parseSealedNameDebt(String source, {String path = 'ledger'}) {
   final doc = loadYaml(source);
   if (doc == null) return {};
@@ -33,7 +25,6 @@ SealedNameDebt parseSealedNameDebt(String source, {String path = 'ledger'}) {
   return out;
 }
 
-/// Renders [debt] sorted by type and key, under the ledger's header.
 String renderSealedNameDebt(SealedNameDebt debt) {
   final buf = StringBuffer()
     ..writeln('# Sealed groups no rule names yet (terradart wrap).')
@@ -61,11 +52,6 @@ String renderSealedNameDebt(SealedNameDebt debt) {
   return buf.toString();
 }
 
-/// [debt] with the entries of [laneTypes] replaced by [fallbacks] (type →
-/// group keys that fell back), keeping each surviving entry's reason and
-/// giving a new one [reason]. `missing` and `stale` list what changed, as
-/// `<type> [<key>]`, plus each lane entry whose reason does not start with
-/// [sealedNameDebtPrefix] (in `stale`).
 ({SealedNameDebt debt, List<String> missing, List<String> stale})
 syncSealedNameDebt(
   SealedNameDebt debt, {

@@ -94,7 +94,6 @@ class MmResourceOverrides {
   });
 }
 
-/// One MM `ResourceRef`: `resource: 'Router'`, `imports: 'name'`.
 typedef MmResourceRef = ({String resource, String imports});
 
 /// Parses one Magic Modules resource YAML file.
@@ -120,7 +119,6 @@ class MmYamlParser {
       }
     }
 
-    // Top-level exactly_one_of (applies to direct children).
     final topGroup = _readExactlyOneOf(doc, prefix: '');
     if (topGroup != null) groups.add(topGroup);
     _addRelations(doc, '', null, paths);
@@ -170,9 +168,6 @@ class MmYamlParser {
     );
   }
 
-  /// Adds the Terraform path of every property under [props] to [sink]
-  /// (snake-cased `name`s below [prefix], `flatten_object` levels dropped),
-  /// and to [beta] when it or a parent is `min_version: beta`.
   void _terraformPaths(
     YamlList props,
     List<String> prefix,
@@ -203,9 +198,6 @@ class MmYamlParser {
     }
   }
 
-  /// Adds [node]'s `exactly_one_of`, `at_least_one_of` and `conflicts`,
-  /// normalized, to [sink]. [parent] is the dotted path of [node]'s parent
-  /// block and [self] the path of [node] (null for the resource root).
   void _addRelations(
     YamlMap node,
     String parent,
@@ -245,9 +237,6 @@ class MmYamlParser {
     }
   }
 
-  /// [sink] and [groupSink] are null below an `item_type`: they keep
-  /// their historical scope (the google lane's merged IR and lint read
-  /// them), while [pathSink] sees every property.
   void _walkProperty(
     YamlMap prop,
     String prefix,
@@ -257,7 +246,6 @@ class MmYamlParser {
   ) {
     final tfName = _terraformName(prop);
     final fullKey = prefix.isEmpty ? tfName : '$prefix.$tfName';
-    // Terraform lifts a `flatten_object` property's fields into its parent.
     final childPrefix = prop['flatten_object'] == true ? prefix : fullKey;
     if (prop['flatten_object'] == true) pathSink.flattened.add(fullKey);
 
@@ -273,8 +261,6 @@ class MmYamlParser {
       sink[fullKey] = c;
     }
 
-    // An output-only property is never set, so the rules it declares
-    // constrain nothing (upstream sometimes lists its enum values there).
     if (prop['output'] == true || pathSink.outputs.contains(prefix)) {
       pathSink.outputs.add(fullKey);
     } else {
@@ -288,7 +274,6 @@ class MmYamlParser {
           pathSink.exactlyOne.add([path, '${path}_wo']);
         }
       }
-      // Per-property exactly_one_of (siblings of this property's nested kids).
       final propGroup = _readExactlyOneOf(prop, prefix: childPrefix);
       if (propGroup != null) groupSink?.add(propGroup);
       _addRelations(prop, prefix, fullKey, pathSink);
@@ -299,8 +284,6 @@ class MmYamlParser {
       for (final n in nested) {
         _walkProperty(n as YamlMap, childPrefix, sink, groupSink, pathSink);
       }
-      // An object of output fields is an output itself, unless its empty
-      // form is a value the caller sends (`allow_empty_object`).
       if (nested.isNotEmpty &&
           prop['allow_empty_object'] != true &&
           nested.every(
@@ -323,11 +306,6 @@ class MmYamlParser {
     }
   }
 
-  /// Adds the `enum_values` of every property under [props] to [sink], by
-  /// Terraform path below [prefix] (snake-cased `name`s, `flatten_object`
-  /// levels dropped, as [_terraformPaths]; a `Map`'s `value_type` fields sit
-  /// in the block it becomes). `api_name` is the REST field:
-  /// `backends` with `name: backend` is the Terraform block `backend`.
   void _enumPaths(
     YamlList props,
     List<String> prefix,
@@ -353,9 +331,6 @@ class MmYamlParser {
     }
   }
 
-  /// Adds the REST field path of every property under [props] to [sink],
-  /// keyed by its Terraform path (as [_enumPaths]); [restPrefix] keeps the
-  /// `flatten_object` levels Terraform drops.
   void _restPaths(
     YamlList props,
     List<String> prefix,
@@ -381,10 +356,6 @@ class MmYamlParser {
     }
   }
 
-  /// Adds every input `ResourceRef` under [props] to [sink], keyed by its
-  /// Terraform path below [prefix] (snake-cased `name`s, `flatten_object`
-  /// levels dropped). `api_name` is the REST field and never the Terraform
-  /// one: `backendService` with `api_name: service` is `backend_service`.
   void _collectResourceRefs(
     YamlList props,
     List<String> prefix,
@@ -424,7 +395,6 @@ class MmYamlParser {
     ];
   }
 
-  /// An `Array` of `Enum` carries its values on `item_type`.
   List<String>? _enumValues(YamlMap prop) {
     final item = prop['item_type'];
     final ev =
@@ -444,16 +414,12 @@ class MmYamlParser {
       c.enumValues != null ||
       c.deprecationMessage != null;
 
-  /// The Terraform name of [prop]: its snake-cased MM `name`, else the
-  /// `api_name` a provider hint file keys its properties by.
   String _terraformName(YamlMap prop) => prop['name'] is String
       ? _toSnakeCase(prop['name'] as String)
       : prop['api_name'] as String;
 
-  /// The Terraform name of an MM `name` (lowerCamelCase; `api_name` is the
-  /// REST field, never the Terraform one), snake-cased the way the provider
-  /// generator's `google.Underscore` does, so an acronym run stays one word
-  /// (`IPProtocol` is `ip_protocol`).
+  // Matches Magic Modules' google.Underscore (keeps acronym runs together, e.g.
+  // IPProtocol -> ip_protocol).
   String _toSnakeCase(String camel) => camel
       .replaceAllMapped(
         RegExp('([A-Z]+)([A-Z][a-z])'),
@@ -465,22 +431,16 @@ class MmYamlParser {
       .toLowerCase();
 }
 
-/// The relation rules of one resource, as dotted Terraform paths.
 final class _Relations {
   final exactlyOne = <List<String>>[];
   final atLeastOne = <List<String>>[];
   final conflicts = <(String, String)>[];
-
-  /// Paths of `output: true` properties.
   final outputs = <String>{};
 
-  /// Paths of `write_only: true` properties. The provider generator gives
-  /// each one a `<name>_wo` sibling that joins the property's
-  /// `exactly_one_of` / `at_least_one_of` sets and conflicts with it; a
-  /// `required` one becomes exactly one of the two.
+  // Magic Modules generates a <name>_wo sibling for write_only properties that
+  // conflicts with and shares exclusivity groups with the original.
   final writeOnly = <String>{};
 
-  /// [groups] with each [writeOnly] member's `_wo` sibling added.
   List<List<String>> withWriteOnlySiblings(List<List<String>> groups) => [
     for (final g in groups)
       [
@@ -488,12 +448,10 @@ final class _Relations {
       ],
   ];
 
-  /// Paths of `flatten_object` properties, which Terraform does not have:
-  /// upstream rules still name them (`service_level_indicator.0.basic_sli`
-  /// for a `basic_sli` argument).
+  // Magic Modules' flatten_object levels do not exist in Terraform, but
+  // upstream relation rules still reference them.
   final flattened = <String>{};
 
-  /// [segments] as a Terraform path, without the [flattened] segments.
   String terraformPath(List<String> segments) {
     final out = <String>[];
     for (final s in segments) {
@@ -502,18 +460,10 @@ final class _Relations {
     return out.join('.');
   }
 
-  /// Terraform paths of every property, filled before the walk.
   final known = <String>{};
 
-  /// The path a relation entry of the property at [self] (in the block at
-  /// [parent]) names. A bare name is a sibling, and a dotted one starts at
-  /// the resource root. When neither is a property, upstream wrote the path
-  /// from somewhere else, and the first of these that is one wins: the
-  /// root, for a bare name; the dotted path below an ancestor block
-  /// (`ssl_config.0.server_verification` inside `postgresql_profile`); a
-  /// sibling with the entry's last name; the property's own child
-  /// (`exactly_one_of: [branch, tag]` on `push`). An entry none resolves
-  /// keeps its sibling or root reading.
+  // Upstream Magic Modules relation paths are inconsistently anchored
+  // (sibling, root, ancestor-relative, or child); probe in priority order.
   String resolve(
     List<String> segments, {
     required String parent,

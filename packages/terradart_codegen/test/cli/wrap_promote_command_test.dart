@@ -86,7 +86,6 @@ void main() {
     test('emits marker section appended to existing yaml', () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_promote_');
       try {
-        // Pre-create an existing yaml (as if from wrap-init).
         final yamlPath = File(
           p.join(tmpOut.path, 'google_synthetic_choice.yaml'),
         );
@@ -132,17 +131,13 @@ void main() {
     test('E404: MM YAML missing', () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_promote_');
       try {
-        // Pre-create the existing yaml.
         File(
           p.join(tmpOut.path, 'google_pubsub_topic.yaml'),
         ).writeAsStringSync('outputDir: pubsub\n');
-        // Point --source at a directory WITHOUT mm/google_pubsub_topic.yaml.
-        // We synthesise this by using a tmp source dir with only schema/.
         final tmpSrc = await Directory.systemTemp.createTemp(
           'phase4_promote_src_',
         );
         try {
-          // Copy the schema fixture for google_pubsub_topic into tmpSrc/schema/.
           final schemaDir = Directory(p.join(tmpSrc.path, 'schema'));
           schemaDir.createSync();
           await File(
@@ -178,7 +173,6 @@ void main() {
           p.join(tmpOut.path, 'google_synthetic_choice.yaml'),
         );
         yamlPath.writeAsStringSync('outputDir: synthetic\n');
-        // First run: creates the marker.
         final code1 = await buildCliRunner().run([
           'wrap-promote',
           'google_synthetic_choice',
@@ -188,7 +182,6 @@ void main() {
           tmpOut.path,
         ]);
         expect(code1, 0);
-        // Second run without --force: refuses.
         final code2 = await buildCliRunner().run([
           'wrap-promote',
           'google_synthetic_choice',
@@ -231,10 +224,8 @@ void main() {
           ]);
           expect(code2, 0);
           final after2 = yamlPath.readAsStringSync();
-          // Exactly one marker pair in the file.
           expect('=== wrap-promote additions'.allMatches(after2).length, 1);
           expect('=== end wrap-promote additions'.allMatches(after2).length, 1);
-          // The pre-existing outputDir line is preserved.
           expect(after2, contains('outputDir: synthetic'));
         } finally {
           await tmpOut.delete(recursive: true);

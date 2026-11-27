@@ -52,7 +52,6 @@ typedef _Derived = ({
   List<UnsealedGroup> excused,
 });
 
-/// [deriveExactlyOneSlots] over a lane of resources only.
 _Derived _derive(
   Map<String, WrapperOverride> overrides,
   Map<String, ResourceDef> defs, {

@@ -14,12 +14,6 @@ import 'package:terradart_codegen/src/ir/type_def.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
-/// Loads `google_pubsub_topic` from the v7 fixture (`~> 7.0` provider).
-///
-/// The pre-existing `google_pubsub_topic.schema.json` is a curated 6-attribute
-/// snapshot used by older parser/CLI tests. The v7 fixture is the full
-/// schema we extracted via `terraform providers schema -json` so the wrapper
-/// emitter can be byte-diffed against the hand-written reference.
 ResourceDef _loadGooglePubsubTopicV7() {
   final json = File(
     'test/fixtures/schema/google_pubsub_topic_v7.schema.json',
@@ -141,11 +135,6 @@ ResourceDef _loadGooglePubsubSubscriptionV7() {
   return ir.resources['google_pubsub_subscription']!;
 }
 
-/// Loads [terraformType] from the `terradart wrap` fixture
-/// (`test/fixtures/wrap/source/schema.json`) — the same full-catalog schema
-/// `nested_type_collector_test.dart` and `universal_invariants_test.dart` use
-/// — rather than a dedicated per-resource `schema/*_v7.schema.json` (none of
-/// the Task 5 `deriveNestedTypes` targets have one).
 ResourceDef _loadFromWrapFixture(String terraformType) {
   final json = File('test/fixtures/wrap/source/schema.json').readAsStringSync();
   final ir = const SchemaJsonParser().parseString(
@@ -155,15 +144,9 @@ ResourceDef _loadFromWrapFixture(String terraformType) {
   return ir.resources[terraformType]!;
 }
 
-/// Raw provider-schema JSON `block` maps keyed by Terraform type, mirroring
-/// `wrap_command.dart`'s private `_rawResourceBlocks` — the shape
-/// `WrapperEmitter.rawResourceSchemas` needs once an override sets
-/// `deriveNestedTypes: true`.
 Map<String, Map<String, dynamic>> _rawResourceBlocksFromWrapFixture() =>
     _rawResourceBlocks('test/fixtures/wrap/source/schema.json');
 
-/// The raw blocks of the per-resource `schema/*_v7.schema.json` fixtures the
-/// Level A goldens are emitted from.
 final Map<String, Map<String, dynamic>> _perResourceRawBlocks = {
   for (final file in Directory('test/fixtures/schema').listSync())
     if (file is File && RegExp(r'_v[78]\.schema\.json$').hasMatch(file.path))
@@ -218,10 +201,6 @@ void main() {
     });
 
     test('emit produces correct import declarations', () {
-      // Post Plan 5.X: wrapper imports only terradart_core. The legacy
-      // `.schema.dart` show clause and `terradart_annotations` import are
-      // both gone (schemantic chain retired; @TerraformResource/@ForceNew/
-      // @Sensitive annotations no longer emitted onto the wrapper).
       final emitter = WrapperEmitter(
         overrides: overrides,
         rawResourceSchemas: _perResourceRawBlocks,
@@ -244,27 +223,17 @@ void main() {
       final def = _loadGooglePubsubTopicV7();
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-      // Header — post Plan 5.X, the wrapper class extends a flat `Resource`
-      // (no `<S>` generic since the schemantic schema field is gone).
       expect(out, contains('final class GooglePubsubTopic extends Resource {'));
 
-      // v0.11.0 (ADR-0016): `tfType` carries the Terraform type string.
-      // The pre-v0.11 dollar-prefixed sigil and its `// ignore:
-      // constant_identifier_names` directive are retired.
       expect(out, isNot(contains('  // ignore: constant_identifier_names')));
       expect(
         out,
         contains("  static const String tfType = 'google_pubsub_topic';"),
       );
-      // Compose the deprecated identifier without writing it literally so
-      // repo-wide audit greps stay clean (the literal string is what
-      // ADR-0016 is retiring).
       expect(out, isNot(contains('${r'$'}tfType')));
     });
 
     test('emit derives wrapper class name from terraformType', () {
-      // Sanity check that the wrapper class name follows snakeToPascal so the
-      // emitter scales across all google_* resources without hand-curation.
       final emitter = WrapperEmitter(
         overrides: overrides,
         rawResourceSchemas: _perResourceRawBlocks,
@@ -289,8 +258,6 @@ void main() {
     test(
       'emit constructor lists required and optional attributes plus nested blocks',
       () {
-        // Use the v7 fixture (real provider schema) so the emitter is exercised
-        // against the same shape the hand-written wrapper targets.
         final def = _loadGooglePubsubTopicV7();
         final emitter = WrapperEmitter(
           overrides: overrides,
@@ -298,22 +265,16 @@ void main() {
         );
         final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-        // The constructor takes the local name first, then named arguments.
         expect(out, contains('  GooglePubsubTopic(super.localName, {'));
 
-        // Required attribute (only `name` in this resource).
         expect(out, contains('    required TfArg<String> name,'));
 
-        // Optional scalar attributes — TfArg<DartType>? per attribute. Type
-        // mapping mirrors `dart_type_writer`: MapType(value: StringType) →
-        // Map<String, String>.
         expect(out, contains('    TfArg<String>? kmsKeyName,'));
         expect(out, contains('    TfArg<Map<String, String>>? labels,'));
         expect(out, contains('    TfArg<String>? messageRetentionDuration,'));
         expect(out, contains('    TfArg<String>? project,'));
         expect(out, contains('    TfArg<Map<String, String>>? tags,'));
 
-        // Nested blocks take helpers derived from the provider schema.
         expect(
           out,
           contains(
@@ -334,7 +295,6 @@ void main() {
         );
         expect(out, contains('    PubsubTopicSchemaSettings? schemaSettings,'));
 
-        // Lifecycle / dependsOn close the parameter list as super-parameters.
         expect(out, contains('    super.lifecycle,'));
         expect(out, contains('    super.dependsOn,'));
       },
@@ -348,19 +308,13 @@ void main() {
       );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-      // Super initializer prefix + meta entries. Post Plan 5.X: no `schema:`
-      // arg (the schemantic schema field is gone from Resource).
       expect(out, contains('}) : super('));
       expect(out, contains('terraformType: tfType,'));
       expect(out, isNot(matches(RegExp(r'^\s*schema:', multiLine: true))));
       expect(out, contains('argMap: {'));
 
-      // Required attribute: unconditional entry, snake_case key, camelCase
-      // value identifier.
       expect(out, contains("'name': name,"));
 
-      // Optional scalar attributes are null-aware map elements (`'k': ?x`)
-      // so the synth pass can distinguish "unset" from "explicit null".
       expect(out, contains("'kms_key_name': ?kmsKeyName,"));
       expect(out, contains("'labels': ?labels,"));
       expect(
@@ -370,7 +324,6 @@ void main() {
       expect(out, contains("'project': ?project,"));
       expect(out, contains("'tags': ?tags,"));
 
-      // Optional nested blocks: derived helpers wrap with TfArg.literal.
       expect(
         out,
         contains(
@@ -400,13 +353,9 @@ void main() {
         ),
       );
 
-      // Initializer closes argMap and the super(...) call. The `);` is the
-      // distinctive end-of-initializer marker; `},` alone is too generic to
-      // assert against.
       expect(out, contains('},'));
       expect(out, contains(');'));
 
-      // Filtered slots must not leak into argMap either.
       expect(out, isNot(contains("'effective_labels':")));
       expect(out, isNot(contains("'terraform_labels':")));
       expect(out, isNot(contains("'id':")));
@@ -414,12 +363,6 @@ void main() {
     });
 
     test('emit sensitiveFields getter delegates to the const Set', () {
-      // The wrapper exposes the sensitive-field set via a `sensitiveFields`
-      // getter so synth can mask values without re-deriving them from the
-      // schema. Post Plan 5.X the const lives file-private at the top of
-      // the wrapper file (was: imported from .schema.dart). v0.11.0
-      // (ADR-0016) retired the `$`-prefix sigil and its
-      // `non_constant_identifier_names` ignore directive.
       final def = _loadGooglePubsubTopicV7();
       final emitter = WrapperEmitter(
         overrides: overrides,
@@ -432,16 +375,10 @@ void main() {
           '  Set<String> get sensitiveFields => _googlePubsubTopicSensitive;\n';
       expect(out, contains(expected));
       expect(out, isNot(contains('// ignore: non_constant_identifier_names')));
-      // Compose the deprecated identifier without writing it literally so
-      // repo-wide audit greps stay clean (the literal string is what
-      // ADR-0016 is retiring).
       expect(out, isNot(contains('${r'$'}sensitiveFields')));
     });
 
     test('emit sensitiveFields const name follows snake-to-camel', () {
-      // Sanity check that the getter expression uses the same identifier
-      // sensitive_set_emitter generates (file-private `_<r>Sensitive`),
-      // so the wrapper compiles against any google_* schema.
       final emitter = WrapperEmitter(
         overrides: overrides,
         rawResourceSchemas: _perResourceRawBlocks,
@@ -460,9 +397,6 @@ void main() {
     });
 
     test('emit curated TfRef getters for google_pubsub_topic', () {
-      // Phase 2.1 hard-codes the TfRef curation per resource — only
-      // google_pubsub_topic carries `name` and `id`. The general
-      // mechanism (semantic_hints.yaml) lands in Phase 3.
       final def = _loadGooglePubsubTopicV7();
       final emitter = WrapperEmitter(
         overrides: overrides,
@@ -485,8 +419,6 @@ void main() {
     });
 
     test('emit closes the wrapper class with a trailing brace', () {
-      // The class block opened at Task 5 must be closed at the very end of
-      // the file so the produced source is parseable as Dart.
       final def = _loadGooglePubsubTopicV7();
       final emitter = WrapperEmitter(
         overrides: overrides,
@@ -513,9 +445,6 @@ void main() {
     });
 
     test('emit does not curate TfRef getters for other resources yet', () {
-      // Phase 2.1 limits TfRef hard-coding to google_pubsub_topic. Other
-      // resources fall through silently until Phase 3 introduces the
-      // semantic_hints.yaml mechanism.
       final emitter = WrapperEmitter(
         overrides: overrides,
         rawResourceSchemas: _perResourceRawBlocks,
@@ -527,18 +456,10 @@ void main() {
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
       expect(out, isNot(contains('TfRef<String> get name =>')));
       expect(out, isNot(contains('TfRef<String> get id ')));
-      // The class still needs its closing brace, regardless of TfRef
-      // curation status.
       expect(out.trimRight(), endsWith('}'));
     });
 
     test('Level A: formatted emit matches hand-written golden', () {
-      // The Phase 2.1 acceptance criterion: the wrapper emitter, fed the
-      // real ~> 7.0 schema and run through dart_style, produces output
-      // byte-identical to the hand-written `GooglePubsubTopic` reference
-      // copied into the golden file at Task 1. Failures here drive the
-      // hard-curation work in Task 12 (param ordering, doc comments,
-      // provider-version literal, etc).
       final def = _loadGooglePubsubTopicV7();
       final emitter = WrapperEmitter(
         overrides: overrides,
@@ -820,10 +741,6 @@ void main() {
     test(
       'emit supportsDeletionProtection override present when schema has deletion_protection',
       () {
-        // A resource whose root block exposes a top-level `deletion_protection`
-        // attribute must emit the `@override bool get supportsDeletionProtection
-        // => true;` getter so the runtime devMode injection can opt-in.
-        // v0.11.0 (ADR-0016): the `$`-prefix sigil is retired.
         final emitter = WrapperEmitter(
           overrides: overrides,
           rawResourceSchemas: _perResourceRawBlocks,
@@ -845,8 +762,6 @@ void main() {
             '  @override\n'
             '  bool get supportsDeletionProtection => true;\n';
         expect(out, contains(expected));
-        // Compose the deprecated identifier without writing it literally so
-        // repo-wide audit gates stay clean.
         expect(out, isNot(contains('${r'$'}supportsDeletionProtection')));
       },
     );
@@ -854,8 +769,6 @@ void main() {
     test(
       'emit supportsDeletionProtection override absent when schema lacks deletion_protection',
       () {
-        // Resources without `deletion_protection` must NOT emit the override —
-        // they inherit the base-class default of false.
         final emitter = WrapperEmitter(
           overrides: overrides,
           rawResourceSchemas: _perResourceRawBlocks,
@@ -878,12 +791,6 @@ void main() {
     );
 
     test('emit constructor excludes computed-only, id, and timeouts', () {
-      // computed-only attributes (effective_labels, terraform_labels) and
-      // the synthetic `id` identity field must not appear as constructor
-      // params — they are exposed through TfRef getters in Task 9 (only
-      // `id` is curated for this resource). The Terraform internal
-      // `timeouts` block is filtered out at the emitter level because it
-      // is not a user-facing input.
       final def = _loadGooglePubsubTopicV7();
       final emitter = WrapperEmitter(
         overrides: overrides,
@@ -891,9 +798,6 @@ void main() {
       );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-      // Sanity: assert the constructor actually got emitted before checking
-      // negative cases. Without this, the `isNot(contains(...))` checks
-      // would pass vacuously when the emitter still has no constructor.
       expect(
         out,
         contains('  GooglePubsubTopic(super.localName, {'),
@@ -901,9 +805,6 @@ void main() {
             'constructor must be emitted; otherwise exclusion checks pass vacuously',
       );
 
-      // effectiveLabels / terraformLabels MUST NOT appear as constructor
-      // params (computed-only, emitted as TfRef getters, not inputs).
-      // Match the param-slot shapes; the getter declarations are fine.
       expect(
         out,
         isNot(contains('TfArg<Map<String, String>>? effectiveLabels,')),
@@ -912,23 +813,13 @@ void main() {
         out,
         isNot(contains('TfArg<Map<String, String>>? terraformLabels,')),
       );
-      // `id` cannot be matched as a bare substring — it appears inside
-      // `localName`, comments, etc. Match the constructor-param shape.
       expect(out, isNot(contains('TfArg<String>? id,')));
       expect(out, isNot(contains('TfArg<String> id,')));
-      // `timeouts` block: the snake-case Dart name would be `timeouts`,
-      // unique enough as a constructor-param token to assert directly.
       expect(out, isNot(contains('? timeouts,')));
       expect(out, isNot(contains(' timeouts,')));
     });
 
     group('deriveNestedTypes top-level slot rendering (Task 5 flip)', () {
-      // The real yaml overrides now flip `deriveNestedTypes: true` for 19
-      // resources (this branch), so `overrides` (loaded above from the real
-      // yaml dir) already exercises `_nestedTypeSlot` — no synthetic override
-      // needed. `rawResourceSchemas` mirrors `wrap_command.dart`'s
-      // `_rawResourceBlocks`, built from the same wrap-fixture schema.json
-      // `nested_type_collector_test.dart` uses.
       late final Map<String, Map<String, dynamic>> rawResourceSchemas;
       setUpAll(() {
         rawResourceSchemas = _rawResourceBlocksFromWrapFixture();
@@ -1034,8 +925,6 @@ void main() {
         expect(out, isNot(contains('osPolicies!')));
         expect(out, isNot(contains('if (osPolicies != null)')));
 
-        // The `resources` grandchild keeps its real schema cardinality
-        // (required + repeated).
         expect(
           out,
           contains(

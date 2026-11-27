@@ -53,38 +53,43 @@ void main() {
     },
   );
 
-  test('unions overlapping exactly-one pairs into one group', () {
-    // Magic Modules writes a 3-way exactly_one_of as each member listing
-    // the other two. Sealing any one pair would drop the third member.
-    final g = exclusiveGroups(
-      exactlyOne: [
-        ['psc_interface_config', 'reserved_public_ip_config'],
-        ['vpc_peering_config', 'reserved_public_ip_config'],
-        ['vpc_peering_config', 'psc_interface_config'],
-      ],
-    );
-    expect(g.exactlyOne, [
-      [
-        'psc_interface_config',
-        'reserved_public_ip_config',
-        'vpc_peering_config',
-      ],
-    ]);
-  });
+  test(
+    'unions overlapping exactly-one pairs (Magic Modules 3-way encoding) into one group',
+    () {
+      final g = exclusiveGroups(
+        exactlyOne: [
+          ['psc_interface_config', 'reserved_public_ip_config'],
+          ['vpc_peering_config', 'reserved_public_ip_config'],
+          ['vpc_peering_config', 'psc_interface_config'],
+        ],
+      );
+      expect(g.exactlyOne, [
+        [
+          'psc_interface_config',
+          'reserved_public_ip_config',
+          'vpc_peering_config',
+        ],
+      ]);
+    },
+  );
 
   test('keeps two rules that only share a member', () {
-    // {a, c} satisfies both rules. One sealed argument over all five
-    // members would reject it.
     final g = exclusiveGroups(
       exactlyOne: [
         ['a', 'b', 'shared'],
         ['c', 'd', 'shared'],
       ],
     );
-    expect(g.exactlyOne, [
-      ['a', 'b', 'shared'],
-      ['c', 'd', 'shared'],
-    ]);
+    expect(
+      g.exactlyOne,
+      [
+        ['a', 'b', 'shared'],
+        ['c', 'd', 'shared'],
+      ],
+      reason:
+          '{a, c} satisfies both rules; one sealed argument over all five '
+          'members would reject it',
+    );
   });
 
   test('keeps a chain of pairs as separate rules', () {

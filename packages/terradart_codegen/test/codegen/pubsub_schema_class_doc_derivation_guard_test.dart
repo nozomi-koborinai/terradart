@@ -22,9 +22,7 @@ void main() {
         dart,
         contains('/// A schema is a format that messages must follow,'),
       );
-      // curated artisanal block preserved verbatim
       expect(dart, contains('/// Example (Avro schema for an order event):'));
-      // dropped boilerplate (convergence-first)
       expect(dart, isNot(contains('/// Required identity:')));
       expect(dart, isNot(contains('Composition pattern:')));
     });

@@ -27,9 +27,6 @@ void main() {
         }
 
         await runInto(tmpA.path);
-        // Brief sleep to ensure a different wall-clock instant between runs.
-        // SystemClock's banner timestamp is date-only, but any non-date drift
-        // (e.g. line ordering) would still be exposed.
         await Future<void>.delayed(const Duration(milliseconds: 50));
         await runInto(tmpB.path);
 

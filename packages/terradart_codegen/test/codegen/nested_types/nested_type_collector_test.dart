@@ -10,9 +10,6 @@ import 'package:test/test.dart';
 
 const _schemaPath = 'test/fixtures/wrap/source/schema.json';
 
-/// Loads `resource_schemas[terraformType].block` as a raw decoded JSON map
-/// (the shape [collectNestedTypes] consumes), straight from the pinned
-/// provider-schema fixture — no IR parsing involved.
 Map<String, dynamic> _blockOf(
   String terraformType, {
   String schemaPath = _schemaPath,
@@ -30,12 +27,6 @@ Map<String, dynamic> _blockOf(
   return (resource['block'] as Map).cast<String, dynamic>();
 }
 
-/// `google_app_engine_domain_mapping` -> `AppEngineDomainMapping`.
-///
-/// The collector takes `resourcePrefix` as caller-supplied, so this mirrors
-/// what the real caller (the Task 4 wrapper-emitter wiring) will do: strip
-/// the `google_` provider prefix, then reuse naming.dart's existing public
-/// snake->Pascal helper rather than writing a new one here.
 String _resourcePrefixOf(String terraformType) {
   const providerPrefix = 'google_';
   final short = terraformType.startsWith(providerPrefix)
@@ -56,16 +47,12 @@ void main() {
       excludedPaths: const {},
     );
 
-    // Only `ssl_settings` should survive — the schema's other block_type,
-    // `timeouts`, is Terraform SDK metadata and is never a derivable spec.
     expect(specs, hasLength(1));
     final sslSettings = specs.single;
     expect(sslSettings.tfName, 'ssl_settings');
     expect(sslSettings.path, ['ssl_settings']);
     expect(sslSettings.className, 'AppEngineDomainMappingSslSettings');
-    // nesting_mode: list, max_items: 1 -> not a repeated collection.
     expect(sslSettings.repeated, isFalse);
-    // no min_items -> the block itself is optional.
     expect(sslSettings.required, isFalse);
     expect(sslSettings.children, isEmpty);
     expect(sslSettings.excludedChildren, isEmpty);
@@ -85,13 +72,10 @@ void main() {
       (a) => a.tfName == 'certificate_id',
     );
     expect(certificateId.dartName, 'certificateId');
-    // optional + computed -> kept, not required.
     expect(certificateId.required, isFalse);
     expect(certificateId.enumValues, isNull);
     expect(certificateId.dartType, 'String');
 
-    // pending_managed_certificate_id is computed-only (computed, neither
-    // optional nor required) and must be dropped entirely.
     expect(
       sslSettings.attrs.any(
         (a) => a.tfName == 'pending_managed_certificate_id',
@@ -163,19 +147,12 @@ void main() {
     final basic = specs.firstWhere((s) => s.tfName == 'basic');
     expect(basic.path, ['basic']);
     expect(basic.className, 'AccessContextManagerAccessLevelBasic');
-    // `basic.conditions` is excluded: recorded by name on the parent, WITH
-    // the real cardinality (repeated + required — see the unrestricted
-    // re-run below) rather than the collector silently discarding it.
     final excludedConditions = basic.excludedChildren.single;
     expect(excludedConditions.tfName, 'conditions');
     expect(excludedConditions.repeated, isTrue);
     expect(excludedConditions.required, isTrue);
-    // ...and NOT present as a child spec (the subtree is not descended).
     expect(basic.children.any((c) => c.tfName == 'conditions'), isFalse);
 
-    // Re-run unrestricted (no excludedPaths) to pin `repeated` on the same
-    // real block: `conditions` is nesting_mode list with min_items: 1 and
-    // no max_items, so it is both required and repeated.
     final unrestricted = collectNestedTypes(
       resourceBlock: block,
       resourcePrefix: resourcePrefix,
@@ -185,9 +162,6 @@ void main() {
     final unrestrictedBasic = unrestricted.firstWhere(
       (s) => s.tfName == 'basic',
     );
-    // `basic` carries both its own attribute (combining_function) AND a
-    // nested block (conditions) — the recursion must produce both from the
-    // same block map, not just one or the other.
     expect(
       unrestrictedBasic.attrs.any((a) => a.tfName == 'combining_function'),
       isTrue,
@@ -198,9 +172,6 @@ void main() {
     expect(conditions.repeated, isTrue);
     expect(conditions.required, isTrue);
 
-    // customSlot keys hide the whole subtree: no trace anywhere (contrast
-    // with excludedPaths above, which still records the bare name) — tested
-    // at the ROOT ('basic', a top-level block_types entry)...
     final withCustomSlot = collectNestedTypes(
       resourceBlock: block,
       resourcePrefix: resourcePrefix,
@@ -208,12 +179,8 @@ void main() {
       excludedPaths: const {},
     );
     expect(withCustomSlot.any((s) => s.tfName == 'basic'), isFalse);
-    // ...and an unrelated sibling block is unaffected by the customSlot skip.
     expect(withCustomSlot.any((s) => s.tfName == 'custom'), isTrue);
 
-    // ...but a key naming no top-level field is a virtual slot (a sealed
-    // concept name) that owns no block: a nested `conditions` block keeps
-    // its helper.
     final withVirtualSlot = collectNestedTypes(
       resourceBlock: block,
       resourcePrefix: resourcePrefix,
@@ -246,10 +213,6 @@ void main() {
     expect(windowsUpdate.path, ['patch_config', 'windows_update']);
     expect(windowsUpdate.className, 'OsConfigPatchDeploymentWindowsUpdate');
 
-    // `classifications` is `["list", "string"]` with a "Possible values:
-    // [...]" description — schema type AND description agree it's a
-    // repeated enum, so it must render as one (not a self-contradictory
-    // scalar enum dartType on a list-typed field).
     final classifications = windowsUpdate.attrs.firstWhere(
       (a) => a.tfName == 'classifications',
     );
@@ -323,8 +286,6 @@ void main() {
       'AccessContextManagerAccessLevelAllowedEncryptionStatuses',
     );
 
-    // A plain list(string) with NO enum description is a typed string
-    // list, not swept up by the repeated-enum branch.
     final ipSubnetworks = conditions.attrs.firstWhere(
       (a) => a.tfName == 'ip_subnetworks',
     );
@@ -348,16 +309,10 @@ void main() {
     final resourceGroups = osPolicies.children.firstWhere(
       (c) => c.tfName == 'resource_groups',
     );
-    // `resources` is NOT descended into...
     expect(
       resourceGroups.children.any((c) => c.tfName == 'resources'),
       isFalse,
     );
-    // ...but IS recorded on its parent with the real schema cardinality:
-    // nesting_mode list, min_items: 1, no max_items -> required AND
-    // repeated. Forcing this to a scalar-optional passthrough (the pre-fix
-    // behavior) would make the opaque field unable to hold more than one
-    // resource per group, silently narrowing what the API allows.
     final excludedResources = resourceGroups.excludedChildren.firstWhere(
       (c) => c.tfName == 'resources',
     );

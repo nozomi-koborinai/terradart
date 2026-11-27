@@ -7,14 +7,12 @@ import 'package:terradart_codegen/src/ir/resource_def.dart';
 import 'package:terradart_codegen/src/ir/type_def.dart';
 import 'package:test/test.dart';
 
-/// Minimal optional string attribute fixture.
 Attribute _attr(String name) => Attribute(
   name: name,
   type: const StringType(),
   constraints: const Constraints(optional: true),
 );
 
-/// Minimal single-nesting block fixture.
 NestedBlockDef _block(String name) => NestedBlockDef(
   name: name,
   nesting: NestingMode.single,
@@ -38,7 +36,6 @@ void main() {
     test(
       'prepends localName and snake→camels plain IR slots in slot order',
       () {
-        // No override paramOrder → IR-natural order (attributes then blocks).
         final def = _def(
           tfType: 'google_pubsub_topic',
           attributes: [_attr('name'), _attr('kms_key_name')],
@@ -55,7 +52,6 @@ void main() {
           'kmsKeyName',
           'messageStoragePolicy',
         ]);
-        // Universal bookends are NOT included.
         expect(params, isNot(contains('lifecycle')));
         expect(params, isNot(contains('dependsOn')));
       },
@@ -63,9 +59,6 @@ void main() {
 
     test('resolves a customSlot rename to the emitted identifier, not '
         'snakeToCamel(slotName)', () {
-      // The url_map pattern: an IR-ish slot `host_rule` whose customSlot
-      // renames the Dart param to the PLURAL `hostRules`. The catalog must
-      // record `hostRules`, never `hostRule`.
       final def = _def(
         tfType: 'google_compute_url_map',
         attributes: [_attr('name')],
@@ -95,8 +88,6 @@ void main() {
     test(
       'resolves a virtual customSlot (no IR slot) like scheduler target',
       () {
-        // `target` exists only in paramOrder + customSlots (no IR attribute /
-        // block); its identifier comes from the paramDeclaration.
         final def = _def(
           tfType: 'google_cloud_scheduler_job',
           attributes: [_attr('name'), _attr('region')],
@@ -243,8 +234,6 @@ final class GooglePubsubTopic extends Resource {
     });
 
     test('does not match indented (nested) declarations', () {
-      // A `class` token that is indented (not column 0) must be ignored — it
-      // would be a member/local, never a top-level helper.
       const source = '''
 final class GoogleZ extends Resource {
   // not a real pattern, but proves the column-0 anchor:
@@ -308,7 +297,6 @@ final class GoogleZ extends Resource {
     test(
       'a single sentence ending in an abbreviation degrades to whole doc',
       () {
-        // No real boundary after the abbreviation → return the whole thing.
         expect(firstSentence('See the docs e.g.'), 'See the docs e.g.');
       },
     );
@@ -351,12 +339,9 @@ class DemoHelper {}
       expect(entry.className, 'GoogleDemoThing');
       expect(entry.barrel, 'demo');
       expect(entry.kind, 'resource');
-      // Derived doc, markers stripped. No IR description on this def, so
-      // the doc is the factory lead alone.
       expect(entry.docComment, 'Factory wrapper for `google_demo_thing`.');
       expect(entry.summary, 'Factory wrapper for `google_demo_thing`.');
       expect(entry.constructorParams, ['localName', 'name', 'token']);
-      // schema-derived `token` + override `extra_secret`, sorted.
       expect(entry.sensitiveFields, ['extra_secret', 'token']);
       expect(entry.nestedTypes, ['DemoHelper']);
     });
@@ -442,11 +427,6 @@ class DemoHelper {}
 
     test('deriveClassDoc derives docComment from buildClassDocComment + '
         'curatedDoc', () {
-      // Phase A4: when `deriveClassDoc` is true the catalog must mirror the
-      // emitted wrapper doc (factory line + rewrapped IR description +
-      // curatedDoc verbatim). `summary` is the first sentence, which
-      // `firstSentence` terminates at the period after the backticked
-      // tfType, so it is the complete factory line.
       final def = _def(
         tfType: 'google_pubsub_schema',
         attributes: [_attr('name')],

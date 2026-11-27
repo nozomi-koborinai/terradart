@@ -4,58 +4,29 @@ import 'naming.dart';
 import 'references/resolved_reference.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
-/// The member paths a `sealedNames` key lists (`"b, a"` → `{a, b}`).
 Set<String> sealedGroupKey(String key) => {
   for (final part in key.split(','))
     if (part.trim().isNotEmpty) part.trim(),
 };
 
-/// The canonical `sealedNames` key of a group whose members sit in the
-/// block at [blockPath] (empty for the resource itself): the members'
-/// dotted paths, sorted, joined with `, `.
 String sealedGroupKeyOf(List<String> blockPath, Iterable<String> members) => ([
   for (final m in members) [...blockPath, m].join('.'),
 ]..sort()).join(', ');
 
-/// Where a sealed slot's concept name came from.
-enum SealedNameSource {
-  /// The override's `sealedNames` entry.
-  human,
+enum SealedNameSource { human, derived, fallback }
 
-  /// [deriveSealedConcept].
-  derived,
-
-  /// The members joined with `_or_`, pending a human name
-  /// (`tool/sealed_name_debt.yaml`).
-  fallback,
-}
-
-/// One sealed group's name, as `wrap` chose it.
 typedef SealedGroupName = ({
-  /// The group's canonical [sealedGroupKeyOf] key.
   String key,
-
-  /// Snake-case concept name of the slot or field.
   String concept,
   SealedNameSource source,
-
-  /// The name [deriveSealedConcept] gives the group, if any. A joint
-  /// variant's is its key member.
   String? derived,
-
-  /// Why the group's `sealedNames` entry cannot be used, if it cannot.
   String? error,
 });
 
-/// A [SealedGroupName] of the resource [type].
 typedef SealedName = ({String type, SealedGroupName name});
 
-/// Snake-case slot name of a group no rule names: its members joined with
-/// `_or_` (`filename_or_image_uri`).
 String sealedFallbackConcept(List<String> members) => members.join('_or_');
 
-/// Leading segments too generic to name a group on their own
-/// (`enable_x` / `enable_y` share `enable` but are not "an enable").
 const _genericPrefixes = {
   'allow',
   'auto',
@@ -75,8 +46,6 @@ const _genericPrefixes = {
   'use',
 };
 
-/// Trailing segments too generic to name a group on their own
-/// (`role_arn` / `user_arn` share `arn`, which says nothing about them).
 const _genericSuffixes = {
   'arn',
   'arns',
@@ -98,18 +67,6 @@ const _genericSuffixes = {
   'values',
 };
 
-/// The concept name the members of one group share, or null when nothing
-/// names them:
-///
-/// 1. their common leading segments (`content_base64`, `content_file` →
-///    `content`; `name`, `name_prefix` → `name`), unless that is one generic
-///    word (`enable`);
-/// 2. their common trailing segments (`mysql_source_config`,
-///    `oracle_source_config` → `source_config`), unless that is one generic
-///    word (`arn`).
-///
-/// A group that is all of a block's inputs needs no concept: the block's
-/// own class becomes the sealed type.
 String? deriveSealedConcept(List<String> members) {
   final split = [for (final m in members) m.split('_')];
   final prefix = _commonRun(split);
@@ -134,8 +91,6 @@ String? deriveSealedConcept(List<String> members) {
   return null;
 }
 
-/// Segments that join words and never end (or start) a name: `size_in`
-/// of `size_in_bytes` / `size_in_megabytes` is `size`.
 const _connectors = {
   'and',
   'as',
@@ -151,9 +106,6 @@ const _connectors = {
   'with',
 };
 
-/// The segments every list shares from its start. A segment matches its
-/// plural (`key` / `keys`, `address` / `addresses`) and yields the
-/// singular: `public_key` / `public_keys` share `public_key`.
 List<String> _commonRun(List<List<String>> lists) {
   final out = <String>[];
   for (var i = 0; ; i++) {
@@ -181,13 +133,6 @@ String _singular(String seg) {
   return seg;
 }
 
-/// The name one sealed group takes, and any error: a human [human] name
-/// wins; otherwise the [derived] one; otherwise [sealedFallbackConcept].
-/// [clashes] says why a candidate cannot be used (its slot or a class name
-/// is taken), or null. A derived name that clashes falls back; a human name
-/// that clashes, or repeats the derived one, is an error, and so is a
-/// fallback that clashes (it would repeat a segment or take a class), which
-/// only a `sealedNames` entry can fix.
 ({String concept, SealedNameSource source, String? error}) resolveSealedName({
   required List<String> members,
   required String? human,
@@ -226,8 +171,6 @@ String _singular(String seg) {
   );
 }
 
-/// Class names a Dart source declares (`class`, `enum`, `mixin`,
-/// `extension type`, `typedef`).
 Set<String> declaredTypeNames(String source) => {
   for (final m in RegExp(
     r'\b(?:class|enum|mixin|typedef|extension\s+type(?:\s+const)?)\s+(\w+)',
@@ -235,14 +178,10 @@ Set<String> declaredTypeNames(String source) => {
     m.group(1)!,
 };
 
-/// The PascalCase words of [name] (`RdsClusterIdentifier` → `Rds`,
-/// `Cluster`, `Identifier`).
 List<String> pascalWords(String name) => RegExp(
   r'[A-Z][a-z0-9]*|[a-z0-9]+',
 ).allMatches(name).map((m) => m[0]!).toList();
 
-/// How many leading words of [segment] repeat the trailing words of
-/// [prefix] (`RdsCluster` + `ClusterIdentifier` → 1).
 int repeatedWordCount(String prefix, String segment) {
   final p = pascalWords(prefix);
   final s = pascalWords(segment);
@@ -259,10 +198,6 @@ int repeatedWordCount(String prefix, String segment) {
   return 0;
 }
 
-/// Whether [prefix] followed by [rest] says a run of words twice in a row
-/// across the join (`AssessmentRuleSampleRule` + `Sample` →
-/// `…RuleSampleRuleSample`). Runs wholly inside [prefix] are Terraform's
-/// own block names and do not count.
 bool repeatsAcrossJoin(String prefix, String rest) {
   final w = [...pascalWords(prefix), ...pascalWords(rest)];
   final join = pascalWords(prefix).length;
@@ -282,21 +217,12 @@ bool repeatsAcrossJoin(String prefix, String rest) {
   return false;
 }
 
-/// [prefix] followed by the snake-case [segment] in PascalCase, minus the
-/// leading words of [segment] that repeat the end of [prefix]
-/// (`RdsCluster` + `cluster_identifier` → `RdsClusterIdentifier`), so no
-/// type name says one segment twice. Returns [prefix] itself when
-/// [segment] only repeats it.
 String joinTypeName(String prefix, String segment) {
   final words = pascalWords(snakeToPascal(segment));
   final repeated = repeatedWordCount(prefix, words.join());
   return prefix + words.skip(repeated).join();
 }
 
-/// The sealed type a group named [concept] takes on [prefix] (the resource
-/// stem, or the helper class of the block holding the group), or null when
-/// [concept] only repeats the end of [prefix] or the name
-/// [repeatsAcrossJoin].
 String? sealedTypeName(String prefix, String concept) {
   final name = joinTypeName(prefix, concept);
   return name == prefix ||
@@ -305,28 +231,11 @@ String? sealedTypeName(String prefix, String concept) {
       : name;
 }
 
-/// The concrete variant class of the sealed type [sealed] that sets
-/// [member] (`LambdaFunctionCode` + `image_uri` → `LambdaFunctionCodeImageUri`),
-/// with the words [member] repeats from the end of [sealed] dropped
-/// (`RdsClusterIdentifier` + `cluster_identifier_prefix` →
-/// `RdsClusterIdentifierPrefix`). When [member] ends with the whole
-/// [concept] — the trailing words of [sealed] after its owner — and says
-/// more, it takes the concept's place instead of repeating it
-/// (`…FilterCloudStorageLocations` + `excluded_cloud_storage_locations` →
-/// `…FilterExcludedCloudStorageLocations`). Callers construct it through
-/// the sealed type's factory constructor (`.imageUri(...)`); the class
-/// exists for pattern matching. [exactlyOneVariantNames] settles a name
-/// that is taken, or that [member] only repeats.
 String exactlyOneVariantName(String sealed, String member, {String? concept}) {
   final (:base, :rest) = _variantParts(sealed, member, concept).first;
   return base + rest;
 }
 
-/// The ways to name [member]'s variant on [sealed], preferred first, each
-/// split at the join into the part of [sealed] it keeps and the words it
-/// adds: taking the place of [concept] (see [exactlyOneVariantName]) when
-/// that applies and repeats no words across the join, then extending
-/// [sealed].
 List<({String base, String rest})> _variantParts(
   String sealed,
   String member,
@@ -345,18 +254,8 @@ List<({String base, String rest})> _variantParts(
   return [(base: base, rest: rest), plain];
 }
 
-/// Suffixes that set a variant apart from a taken class, in preference
-/// order.
 const _variantSuffixes = ['Choice', 'Option', 'Variant'];
 
-/// The variant class of each of [members] on the sealed type [sealed], in
-/// order: [exactlyOneVariantName] (with [concept]), or — when that is
-/// [sealed] itself, a class in [taken] (typically the member block's own
-/// class: `MonitoringSloSli` + `request_based_sli` →
-/// `MonitoringSloRequestBasedSliChoice`) or another member's
-/// variant — the same name with the first of `Choice`, `Option`, `Variant`
-/// that is free. A name that [repeatsAcrossJoin] is never free. Null when
-/// none is.
 List<String>? exactlyOneVariantNames(
   String sealed,
   List<String> members,
@@ -378,23 +277,16 @@ List<String>? exactlyOneVariantNames(
   return out;
 }
 
-/// The PascalCase [concept] when [sealed] ends with it, or null.
 String? conceptSuffix(String sealed, String concept) {
   final pascal = snakeToPascal(concept);
   return sealed.endsWith(pascal) ? pascal : null;
 }
 
-/// The trailing words of [sealed] after [owner] — the concept a variant
-/// may take the place of — or null when [sealed] does not extend [owner].
 String? sealedConcept(String owner, String sealed) =>
     sealed.length > owner.length && sealed.startsWith(owner)
     ? sealed.substring(owner.length)
     : null;
 
-/// Why the group [members] cannot take the sealed type named [concept] on
-/// [prefix] — or [named], when the type's name was chosen elsewhere — or
-/// null: the concept only repeats [prefix], or the sealed type's or a
-/// variant's class name is in [taken].
 String? sealedNameClash(
   String prefix,
   String concept,
@@ -421,19 +313,6 @@ String? sealedNameClash(
   return null;
 }
 
-/// The argument [joint] seals into, on [owner]'s types: its concept, its
-/// sealed type, its variants (a [JointVariant] for the
-/// [JointPlacement.parts], then a [SoloVariant] per shared member), and the
-/// names of the argument, the joint factory, and each nested choice, keyed
-/// at [blockPath].
-///
-/// [human] holds the block's `sealedNames` by bare [sealedGroupKeyOf] key,
-/// and [variants] each member's variant. The new types avoid [taken];
-/// [slotClash] says why the argument cannot take a concept, and [namedType]
-/// is the type a block's concise names chose for a concept, if any.
-///
-/// The joint factory takes the `sealedNames` entry for the members it sets,
-/// else its key member's name (`.adminUsername`).
 ({
   String concept,
   String sealedClass,
@@ -565,10 +444,6 @@ sealJoint(
   );
 }
 
-/// The sealed types [placement] declares when no name clashes, each as its
-/// members, its concept ([human] for those members, else
-/// [deriveSealedConcept]), and the names its variants take. A type with no
-/// concept is left out.
 List<({List<String> members, String concept, List<String> variants})>
 preferredSealedTypes(
   GroupPlacement placement,
@@ -603,20 +478,6 @@ preferredSealedTypes(
   };
 }
 
-/// Renders the sealed type for one exactly-one group — or, when [optional],
-/// one at-most-one group, held by a nullable slot — and its [variants], in
-/// order. [where] names the block the members belong to in the doc
-/// comments.
-///
-/// Each variant is reachable as a `const factory` constructor on the sealed
-/// type. A [SoloVariant]'s is named after its member and takes the member's
-/// value positionally, so a caller writes the dot shorthand
-/// `slot: .imageUri(...)`; a [JointVariant]'s takes one required named
-/// argument per part, and each [ChoicePart]'s own sealed type follows the
-/// variants. The concrete classes follow the shape
-/// `migrate/helper_class_extractor.dart` recognises: a `blockKey` getter
-/// and a field-per-key `encode()` that spreads a nested choice (plus
-/// `argMap` for a resource-level group).
 String renderExactlyOneTypes({
   required String sealed,
   required String where,
@@ -870,9 +731,6 @@ List<({String factoryParameter, String variantParameter})> _jointParameters(
   );
 }
 
-/// The prelude both wrapper emitters write for [terraformType]: the
-/// override's hand-written prelude, then each sealed argument's
-/// declarations after a blank line.
 String? emittedPrelude(WrapperOverride? override, String terraformType) {
   if (override == null || override.sealedArguments.isEmpty) {
     return override?.prelude;
@@ -893,12 +751,6 @@ String? emittedPrelude(WrapperOverride? override, String terraformType) {
   return buf.toString();
 }
 
-/// The references of [refs] (dotted input path → reference) that the
-/// prelude of [override] holds: each sealed argument's
-/// [SealedArgument.references], then each input a hand-written prelude
-/// field takes. A field takes an input when it is declared
-/// `final <type> <name>;` (or `<type>?`) with the reference's Dart type and
-/// named after the input's last path segment.
 Map<String, ResolvedReference> preludeReferences(
   WrapperOverride? override,
   Map<String, ResolvedReference> refs,

@@ -3,20 +3,8 @@ import 'migrate/helper_class_extractor.dart';
 import 'migrate/migrate_shape_analyzer.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
-/// A choice a hand-written sealed class makes: the dotted path of the block
-/// its variants set keys in (empty for the resource itself) and the
-/// Terraform key of each variant.
 typedef HandSealedGroup = ({String path, Set<String> keys});
 
-/// The choices [override]'s hand-written slots already seal: every sealed
-/// class of its `prelude` a custom slot reaches, as the slot itself or as a
-/// field of a prelude helper the slot holds (`cloud_sql.credential` inside a
-/// sealed `backend` variant). The `deriveExactlyOne` gate and the
-/// exactly-one lint treat a group one of them covers as sealed.
-///
-/// The variants and fields come from [HelperClassExtractor], the reading
-/// the migration manifest makes of the same prelude, so a variant the
-/// manifest cannot key (no `blockKey`, no single key) covers nothing.
 List<HandSealedGroup> handSealedGroups(WrapperOverride override) {
   final prelude = override.prelude;
   final slots = override.customSlots;
@@ -60,17 +48,12 @@ List<HandSealedGroup> handSealedGroups(WrapperOverride override) {
   return out;
 }
 
-/// Whether one of [sealed] sits at [path] and has a variant for every one
-/// of [members].
 bool coversGroup(
   List<HandSealedGroup> sealed,
   String path,
   Iterable<String> members,
 ) => sealed.any((g) => g.path == path && g.keys.containsAll(members));
 
-/// Walks the fields of the prelude helper [name] encoded at [path]. A
-/// variant's field may repeat its own [blockKey] (`{'weekly': {...}}`), which
-/// [path] already ends with.
 void _fields(
   HelperExtraction extraction,
   String name,
@@ -104,8 +87,6 @@ void _fields(
   }
 }
 
-/// The class a slot or field of [typeSource] holds: the type itself, or the
-/// element of a `List` / `Set` of it.
 String? _elementName(String typeSource) {
   final DartTypeShape type;
   try {

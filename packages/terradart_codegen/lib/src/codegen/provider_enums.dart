@@ -19,16 +19,12 @@ import 'nested_types/nested_type_names.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 import 'wrapper_overrides/yaml_loader.dart';
 
-/// Where [kind]'s hint files live under a lane fixture: `<sourceDir>/hints`
-/// for resources, `<sourceDir>/hints/data` for data sources. Every reader
-/// and writer of hint files goes through this.
 String providerHintsDir(String sourceDir, WrapperOverrideKind kind) =>
     switch (kind) {
       WrapperOverrideKind.resource => p.join(sourceDir, 'hints'),
       WrapperOverrideKind.dataSource => p.join(sourceDir, 'hints', 'data'),
     };
 
-/// Whether [sourceDir] has at least one data-source hint file.
 bool hasDataSourceHints(String sourceDir) {
   final dir = Directory(
     providerHintsDir(sourceDir, WrapperOverrideKind.dataSource),
@@ -37,7 +33,6 @@ bool hasDataSourceHints(String sourceDir) {
       dir.listSync().any((f) => f is File && f.path.endsWith('.yaml'));
 }
 
-/// One kind's hint table, keyed by Terraform type.
 final class KindHints {
   const KindHints({
     this.enums = const {},
@@ -47,16 +42,8 @@ final class KindHints {
 
   static const KindHints empty = KindHints();
 
-  /// Terraform type → dotted input path → the values the provider accepts.
   final Map<String, Map<String, List<String>>> enums;
-
-  /// Terraform type → each input set the provider requires exactly one of,
-  /// as dotted paths from the schema root that share one parent block
-  /// (`exactly_one_of_groups`).
   final Map<String, List<List<String>>> exactlyOne;
-
-  /// Terraform type → each mutually exclusive input set the provider also
-  /// accepts none of, shaped like [exactlyOne] (`at_most_one_of_groups`).
   final Map<String, List<List<String>>> atMostOne;
 
   bool get hasGroups => exactlyOne.isNotEmpty || atMostOne.isNotEmpty;
@@ -67,45 +54,20 @@ final class KindHints {
   ) => KindHints(enums: enums, exactlyOne: exactlyOne, atMostOne: atMostOne);
 }
 
-/// What the nested-type collector and the migration manifest read for one
-/// override's derived types.
 typedef NestedHints = ({
   EnumValuesResolver enumValues,
-
-  /// Nested blocks only (the root removed); empty unless `deriveExactlyOne`.
   Map<String, List<List<String>>> exactlyOneGroups,
   Map<String, List<List<String>>> atMostOneGroups,
-
-  /// The root sealed types' names and variants: the names helpers keep off.
   Set<String> reserved,
 });
 
 extension ProviderSchemaIRByKind on ProviderSchemaIR {
-  /// The definitions of [kind].
   Map<String, ResourceDef> of(WrapperOverrideKind kind) => switch (kind) {
     WrapperOverrideKind.resource => resources,
     WrapperOverrideKind.dataSource => dataSources,
   };
 }
 
-/// The `wrap --provider-enums` gate: enum value sets and exclusive groups a
-/// provider documents outside Magic Modules.
-///
-/// Each kind reads its own table ([KindHints]), so a resource hint never
-/// types a data source of the same Terraform type. Every lookup takes the
-/// override and reads `override.kind`. Two sources, in precedence order:
-/// 1. `providerHintsDir(<source>, kind)/<terraform_type>.yaml` — value sets
-///    extracted from the provider's Go validators
-///    (`tool/extract_provider_hints.dart`), in the MM YAML subset
-///    `properties[].api_name` / `enum_values`.
-/// 2. The attribute description: the dialects every lane reads
-///    ([parseEnumValuesFromDescription]) plus the `Available values:`
-///    dialect ([parseAvailableValues]), which the GA google schema also
-///    contains and so stays behind this gate.
-///
-/// A group [ProviderEnums.withinSchema] drops, because fewer than two of
-/// its [members] are inputs of the [type] of [kind]: the others are
-/// [missing].
 typedef DroppedGroup = ({
   WrapperOverrideKind kind,
   String type,
@@ -113,7 +75,6 @@ typedef DroppedGroup = ({
   List<String> missing,
 });
 
-/// [off] is every lane's default and changes nothing.
 final class ProviderEnums {
   const ProviderEnums._({
     required this.enabled,
@@ -125,14 +86,12 @@ final class ProviderEnums {
     this._mm = const {},
   });
 
-  /// The gate closed: no enrichment, the default description resolver.
   static const ProviderEnums off = ProviderEnums._(
     enabled: false,
     tables: (resources: KindHints.empty, dataSources: KindHints.empty),
     hasGroupSource: false,
   );
 
-  /// Opens the gate over each kind's table.
   const ProviderEnums.on({
     KindHints resources = KindHints.empty,
     KindHints dataSources = KindHints.empty,
@@ -144,14 +103,8 @@ final class ProviderEnums {
        _discovery = null,
        _mm = const {};
 
-  /// `wrap --mm-hints`: the same gate with Magic Modules YAML as the hint
-  /// source — each resource's `enum_values` by path, its `exactly_one_of`
-  /// groups ([MmResourceOverrides.exactlyOneOfPaths]) and its `conflicts`
-  /// sets ([MmResourceOverrides.atMostOneOfPaths]). Magic Modules YAML
-  /// describes resources, so the data-source table stays empty.
-  /// Magic Modules validators match case-sensitively, and the google
-  /// schema's `Available values:` prose has no validator behind it, so the
-  /// description dialects stay the ones every lane reads.
+  // hashicorp/google's "Available values:" prose has no validator behind it,
+  // and Magic Modules validators are case-sensitive.
   factory ProviderEnums.fromMm(
     Map<String, MmResourceOverrides> mm,
   ) => ProviderEnums.on(
@@ -173,21 +126,9 @@ final class ProviderEnums {
     availableValuesDialect: false,
   );
 
-  /// `wrap --mm-groups` (google GA): [ProviderEnums.fromMm] for a lane whose
-  /// merged IR already carries the top-level `enum_values`. The Magic
-  /// Modules table also types the nested inputs the merged IR does not
-  /// reach, and an input it has no values for takes the description
-  /// dialects every lane reads. [typeDerivedEnums] types each `deriveEnums`
-  /// input with the enum the wrapper declares.
   factory ProviderEnums.mmGroups(Map<String, MmResourceOverrides> mm) =>
       ProviderEnums.fromMm(mm);
 
-  /// Reads `providerHintsDir(sourceDir, kind)/*.yaml` into each kind's
-  /// table (a missing directory means no hints).
-  ///
-  /// Throws [FormatException] when a file is malformed or its
-  /// `provider_version` differs from [providerVersion] — hints extracted at
-  /// another release would type the wrappers against the wrong validators.
   factory ProviderEnums.load(
     String sourceDir, {
     required String providerVersion,
@@ -250,28 +191,12 @@ final class ProviderEnums {
   }
 
   final bool enabled;
-
-  /// Whether the provider matches enum values case-insensitively (its
-  /// validators are `OneOfCaseInsensitive`), recorded in the migration
-  /// manifest.
   final bool caseInsensitive;
-
-  /// Whether the resolver also reads the `Available values:` description
-  /// dialect ([parseAvailableValues]).
   final bool availableValuesDialect;
-
   final ByKind<KindHints> _tables;
-
-  /// `wrap --discovery-enums`: the lane's Google API Discovery copy, the
-  /// last source an input's value set comes from, and the Magic Modules
-  /// YAML whose REST paths reach it.
   final DiscoveryEnums? _discovery;
   final Map<String, MmResourceOverrides> _mm;
 
-  /// These hints with [discovery] as the last value-set source: an input
-  /// neither the hint table nor its description gives values takes the
-  /// enum its Discovery schema declares, without the `*_UNSPECIFIED`
-  /// sentinel ([discoveryInputValues]).
   ProviderEnums withDiscovery(
     DiscoveryEnums discovery,
     Map<String, MmResourceOverrides> mm,
@@ -285,11 +210,6 @@ final class ProviderEnums {
     mm: mm,
   );
 
-  /// Whether hints or Magic Modules groups were loaded, even ones that
-  /// declare no group. Without a source, a `sealedNames` key that matches
-  /// no group cannot be judged stale. Copies keep the flag, so trimming a
-  /// group leaves the source loaded, and an override's own groups are no
-  /// source.
   final bool hasGroupSource;
 
   ProviderEnums _withTables(
@@ -304,14 +224,8 @@ final class ProviderEnums {
     mm: _mm,
   );
 
-  /// Each table's groups without the members its own kind's definitions in
-  /// [ir] have no input for, and without every group that leaves fewer than
-  /// two members. Magic Modules YAML is shared by the GA and beta
-  /// providers, so a GA lane reads `conflicts` / `exactly_one_of` naming
-  /// `min_version: beta` fields, and some upstream paths name a field at
-  /// the wrong depth; neither is a constraint a constructor can express.
-  /// [dropped] hears each group no input is left of but one or none, with
-  /// the members that are not inputs.
+  // Magic Modules YAML is shared between GA and beta, so GA lanes see
+  // min_version: beta members and occasional wrong-depth upstream paths.
   ProviderEnums withinSchema(
     ProviderSchemaIR ir, {
     void Function(DroppedGroup group)? dropped,
@@ -353,12 +267,6 @@ final class ProviderEnums {
     return table._withGroups(keep(table.exactlyOne), keep(table.atMostOne));
   });
 
-  /// These groups plus each override's `exactlyOneOf` / `atMostOneOf`
-  /// entries, each added to its own kind's table. An `exactlyOneOf` entry
-  /// that matches an at-most-one group tightens it to exactly one (the API
-  /// requires a member the group source only marks exclusive). [error]
-  /// hears an entry that names no input of its kind's definitions in [ir]
-  /// or that these groups already hold, as `type [members]: reason`.
   ProviderEnums withOverrideGroups(
     LoadedOverrides overrides,
     ProviderSchemaIR ir, {
@@ -421,8 +329,6 @@ final class ProviderEnums {
     return table._withGroups(exactly, atMost);
   });
 
-  /// Whether [path] names an input: a computed-only attribute or block is
-  /// an output, which no group can constrain.
   static bool _hasInput(BlockDef block, List<String> path) {
     final [head, ...rest] = path;
     if (rest.isEmpty) {
@@ -441,8 +347,6 @@ final class ProviderEnums {
     return false;
   }
 
-  /// [groups] keyed by their parent block's dotted path (`''` for the
-  /// schema root), members as bare names.
   static Map<String, List<List<String>>> _byBlock(List<List<String>>? groups) {
     final out = <String, List<List<String>>>{};
     for (final g in groups ?? const <List<String>>[]) {
@@ -454,8 +358,6 @@ final class ProviderEnums {
     return out;
   }
 
-  /// The groups on [override]'s own arguments (the root block), for
-  /// sealing. Empty unless [override] sets `deriveExactlyOne`.
   ({List<List<String>> exactlyOne, List<List<String>> atMostOne}) rootGroups(
     String terraformType,
     WrapperOverride override,
@@ -470,7 +372,6 @@ final class ProviderEnums {
     );
   }
 
-  /// The hints [override]'s derived nested types read.
   NestedHints nestedHints(String terraformType, WrapperOverride override) {
     final table = _tables.of(override.kind);
     final derived = _resolver(override.kind, terraformType);
@@ -519,17 +420,10 @@ final class ProviderEnums {
               terraformType,
               path.join('.'),
             );
-      // The API's own enum is the source wherever one resolves: a
-      // description is prose, and an override `enumValues` entry (checked
-      // against this set) records a deliberate difference.
       return declared ?? described;
     };
   }
 
-  /// [ir] with `enumValues` filled on every top-level string or
-  /// list-of-string input that has none yet, each kind from its own table.
-  /// Computed-only attributes stay untouched: they have no constructor
-  /// parameter to type.
   ProviderSchemaIR enrich(ProviderSchemaIR ir) {
     if (!enabled) return ir;
     Map<String, ResourceDef> enriched(WrapperOverrideKind kind) => {
@@ -545,12 +439,6 @@ final class ProviderEnums {
     );
   }
 
-  /// [ir] with each override's `enumValues` in place of the value set of
-  /// the top-level attribute it names; nested paths reach the derived types
-  /// through [nestedHints]. [error] hears an entry that names no string
-  /// attribute of its kind's definition, or every one of whose values the
-  /// derivation already gives (stale once upstream fixes the value, even if
-  /// it also adds others), as `type path: reason`.
   ProviderSchemaIR withOverrideEnums(
     LoadedOverrides overrides,
     ProviderSchemaIR ir, {
@@ -631,12 +519,6 @@ final class ProviderEnums {
     return null;
   }
 
-  /// [overrides] with a `dartTypeOverrides` entry naming the derived enum
-  /// ([topLevelEnums]) for every top-level string attribute of its kind's
-  /// definition in [ir] — so the constructor parameter takes the enum the
-  /// wrapper declares — and `List<Enum>` for a list or set of strings,
-  /// which the input takes as an `EnumList` ([isEnumListType]). An explicit
-  /// `dartTypeOverrides` entry or a custom slot wins.
   LoadedOverrides typeDerivedEnums(
     LoadedOverrides overrides,
     ProviderSchemaIR ir, {
@@ -675,11 +557,6 @@ final class ProviderEnums {
   }
 }
 
-/// The values the Discovery schema of [type] declares for its input at
-/// [path], reached through the REST path its Magic Modules YAML records
-/// (a data source without its own reads its resource's), without the
-/// `*_UNSPECIFIED` sentinel no caller sets; null when none resolves or
-/// only the sentinel is left.
 List<String>? discoveryInputValues(
   DiscoveryEnums discovery,
   Map<String, MmResourceOverrides> mm,
@@ -703,11 +580,6 @@ List<String>? discoveryInputValues(
   return values.isEmpty ? null : values;
 }
 
-/// The enum every top-level input of [def] carrying `enumValues` takes when
-/// [override] sets `deriveEnums`, keyed by input name in attribute order and
-/// named on `override.kind.typeStem`. The one source for both the
-/// `dartTypeOverrides` [ProviderEnums.typeDerivedEnums] writes and the
-/// declarations both emitters write.
 Map<String, EnumName> topLevelEnums(
   ResourceDef def,
   WrapperOverride override, {
@@ -744,9 +616,6 @@ Map<String, EnumName> topLevelEnums(
   };
 }
 
-/// An input whose `dartTypeOverrides` entry names another type, or a type
-/// the hand-written [prelude] declares, never takes the enum derived for
-/// it, so the wrapper does not declare one.
 bool _takesDerivedEnum(String? explicit, String derived, String? prelude) {
   if (prelude != null &&
       RegExp(
@@ -760,10 +629,6 @@ bool _takesDerivedEnum(String? explicit, String derived, String? prelude) {
       explicit == 'List<$derived>';
 }
 
-/// Throws a [StateError] naming each `typeNames` entry of [override] that no
-/// derived type of [def] took: a key that is not the path of an enum or a
-/// helper input, or that a shared type does not take its name from.
-/// [nested] is what `collectNestedTypes` derived for [def].
 void checkTypeNames(
   ResourceDef def,
   WrapperOverride override,
@@ -807,9 +672,6 @@ ResourceDef _enrich(ResourceDef def, EnumValuesResolver resolve) {
   );
 }
 
-/// Whether a `dartTypeOverrides` value is a list of enum members
-/// (`List<Enum>`): the input takes an `EnumList<Enum>`, a literal list of
-/// members or one value that is the whole list.
 bool isEnumListType(String dartType) => _enumListElement(dartType) != null;
 
 String? _enumListElement(String dartType) {
@@ -817,20 +679,11 @@ String? _enumListElement(String dartType) {
   return m != null && isEnumTypeName(m.group(1)!) ? m.group(1) : null;
 }
 
-/// Whether [dartType] names a generated or prelude enum. Enums are the only
-/// bare type names a `dartTypeOverrides` value or a derived nested input
-/// carries; the provider schema's own types render as `String`, `int`,
-/// `num`, `bool`, `Object?` or a collection.
 bool isEnumTypeName(String dartType) =>
     RegExp(r'^[A-Z][A-Za-z0-9_]*$').hasMatch(dartType) &&
     dartType != 'String' &&
     dartType != 'Object';
 
-/// The parameter or field type for an input whose payload is [dartType]:
-/// an enum is itself a `TfArg` and goes in bare, a list of one takes an
-/// `EnumList`, and anything else is wrapped in `TfArg<...>`, or in
-/// `Sensitive<...>` when the provider schema marks the input [sensitive] —
-/// a type with no `.literal`, so a secret never lands in `main.tf.json`.
 String argTypeFor(String dartType, {bool sensitive = false}) =>
     switch (_enumListElement(dartType)) {
       final element? => 'EnumList<$element>',
@@ -839,9 +692,6 @@ String argTypeFor(String dartType, {bool sensitive = false}) =>
       null => 'TfArg<$dartType>',
     };
 
-/// Whether an input takes `Sensitive<T>`: the provider schema marks it
-/// sensitive. A write-only `_wo` input is too — its value stays out of
-/// state, not out of `main.tf.json`.
 bool takesSensitive(Attribute attr) => attr.constraints.sensitive;
 
 bool _isStringish(TypeDef t) => switch (t) {

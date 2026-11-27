@@ -4,7 +4,6 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 
-/// Repo root from `packages/terradart_codegen`.
 String get _repoRoot => p.normalize(p.join(Directory.current.path, '..', '..'));
 
 void main() {
