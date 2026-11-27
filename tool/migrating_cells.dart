@@ -145,14 +145,9 @@ Map<String, String> previousRelease(
   return beforeRelease(series, published);
 }
 
-<<<<<<< HEAD
 typedef PublishedVersionsLookup =
     Future<Map<String, List<String>>> Function(List<String> packages);
 
-/// Every version [pubHostedUrl] (default: `https://pub.dev`) lists for each
-/// of [packages]; none for a package it does not have.
-=======
->>>>>>> bdf5e2d77 (chore(tool): clean comments and dead ignores in tool scripts and tests)
 Future<Map<String, List<String>>> publishedVersions(
   List<String> packages, {
   Uri? pubHostedUrl,
