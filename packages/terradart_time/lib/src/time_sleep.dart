@@ -2,8 +2,8 @@ import 'package:terradart_core/terradart_core.dart';
 
 /// Hand-written wrapper for `time_sleep` (`hashicorp/time`).
 ///
-/// Waits after create (and optionally before destroy) — commonly inserted
-/// to absorb eventual consistency, such as GCP API enablement propagation
+/// Waits after create, before destroy, or both — commonly inserted to absorb
+/// eventual consistency, such as GCP API enablement propagation
 /// (`terradart_google`'s `enableApis` wires this automatically) or AWS IAM
 /// role propagation.
 ///
@@ -26,28 +26,51 @@ import 'package:terradart_core/terradart_core.dart';
 final class TimeSleep extends Resource {
   /// Creates a `time_sleep` resource addressed as `time_sleep.<localName>`.
   ///
-  /// [createDuration] is the wait after create (for example `'60s'`);
-  /// [destroyDuration], when set, is the wait before destroy.
+  /// [createDuration] is the wait after create (for example `'60s'`), and
+  /// [destroyDuration] the wait before destroy. Set at least one of them.
   TimeSleep(
     super.localName, {
-    required TfArg<String> createDuration,
+    TfArg<String>? createDuration,
     TfArg<String>? destroyDuration,
     TfArg<Map<String, String>>? triggers,
     super.dependsOn,
     super.lifecycle,
     super.provider,
   }) : super(
-         terraformType: 'time_sleep',
+         terraformType: tfType,
          argMap: {
-           'create_duration': createDuration,
+           'create_duration': ?createDuration,
            'destroy_duration': ?destroyDuration,
            'triggers': ?triggers,
          },
-       );
+       ) {
+    if (createDuration == null && destroyDuration == null) {
+      throw ArgumentError(
+        'TimeSleep needs createDuration, destroyDuration, or both',
+      );
+    }
+  }
+
+  static const String tfType = 'time_sleep';
 
   @override
   Set<String> get sensitiveFields => const {};
 
+  /// A reference to this resource, for arguments typed `RefTo<TimeSleep>`.
+  RefTo<TimeSleep> get ref => RefTo.of(this);
+
   /// Reference to `id` (RFC3339 timestamp of the completed wait).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_duration` attribute.
+  TfRef<String> get createDuration =>
+      TfRef.attribute<String>(this, 'create_duration');
+
+  /// Reference to `destroy_duration` attribute.
+  TfRef<String> get destroyDuration =>
+      TfRef.attribute<String>(this, 'destroy_duration');
+
+  /// Reference to `triggers` attribute.
+  TfRef<Map<String, String>> get triggers =>
+      TfRef.attribute<Map<String, String>>(this, 'triggers');
 }

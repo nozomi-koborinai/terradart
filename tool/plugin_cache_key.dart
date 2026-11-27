@@ -17,7 +17,7 @@ import 'package:terradart_google/provider.dart'
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderSource, kBetaProviderVersionConstraint;
 import 'package:terradart_time/terradart_time.dart'
-    show TimeProvider, kTimeProviderVersionConstraint;
+    show kTimeProviderSource, kTimeProviderVersionConstraint;
 
 import 'validate_engine.dart' show kNotOnOpenTofuRegistry;
 
@@ -68,7 +68,7 @@ final providerPins = <ProviderPin>[
     kAppwriteProviderSource,
     kAppwriteProviderVersionConstraint,
   ),
-  ProviderPin(const TimeProvider().source, kTimeProviderVersionConstraint),
+  const ProviderPin(kTimeProviderSource, kTimeProviderVersionConstraint),
 ];
 
 Set<PluginRegistry> registriesFor(String source) =>
