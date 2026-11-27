@@ -206,13 +206,109 @@ const _ignores =
     '// ignore_for_file: unused_import, unused_local_variable, '
     'unused_element, unused_field, dead_code';
 
-final List<String> _barrels = docSnippetBarrels(
-  parseWrapLanes(File(providersPath).readAsStringSync()),
+final List<WrapLane> _lanes = parseWrapLanes(
+  File(providersPath).readAsStringSync(),
 );
 
-SnippetFile renderSnippet(Snippet s, int index) {
-  final path = s.path ?? 'lib/snippet_$index.dart';
-  final head = <String>[_ignores, if (!s.hasDirectives) ..._barrels];
+final List<String> _barrels = docSnippetBarrels(_lanes);
+
+final Set<String> _lanePackages = {
+  for (final lane in _lanes) lane.outputPackage.split('/').last,
+};
+
+final _identifier = RegExp(r'\b[A-Za-z_]\w*\b');
+final _showClause = RegExp(r'\bshow\s+([^;]+);');
+final _topDecl = RegExp(
+  r'^(?:(?:abstract|base|final|interface|sealed|mixin)\s+)*'
+  r'(?:class|enum|mixin|typedef)\s+([A-Z]\w*)\b|'
+  r'^extension\s+type\s+(?:const\s+)?([A-Z]\w*)\b|'
+  r'^extension\s+([A-Z]\w*)\s+on\b|'
+  r'^(?:const|final)\s+(?:[\w<>?, ]+\s+)?([a-zA-Z]\w*)\s*=|'
+  r'^(?:Future(?:<[^>]+>)?|void|String|bool|int|Map<[^>]+>|List<[^>]+>|[A-Z]\w*)\s+([a-z]\w*)\s*[<(]',
+  multiLine: true,
+);
+
+final Map<String, Map<String, Set<String>>> _providerExportsCache = {};
+
+Map<String, Set<String>> _providerExports(String root) =>
+    _providerExportsCache.putIfAbsent(root, () {
+      final result = <String, Set<String>>{};
+      for (final pkg in _lanePackages) {
+        final names = <String>{};
+        final libDir = Directory(p.join(root, 'packages', pkg, 'lib'));
+        if (libDir.existsSync()) {
+          for (final ent in libDir.listSync().whereType<File>()) {
+            if (!ent.path.endsWith('.dart')) continue;
+            final text = ent.readAsStringSync();
+            for (final m in _showClause.allMatches(text)) {
+              for (final id in _identifier.allMatches(m.group(1)!)) {
+                names.add(id.group(0)!);
+              }
+            }
+            for (final m in _topDecl.allMatches(text)) {
+              for (var g = 1; g <= m.groupCount; g++) {
+                final v = m.group(g);
+                if (v != null && !v.startsWith('_')) names.add(v);
+              }
+            }
+          }
+          final srcDir = Directory(p.join(libDir.path, 'src'));
+          if (srcDir.existsSync()) {
+            for (final ent in srcDir.listSync().whereType<File>()) {
+              if (!ent.path.endsWith('.dart')) continue;
+              final text = ent.readAsStringSync();
+              for (final m in _topDecl.allMatches(text)) {
+                for (var g = 1; g <= m.groupCount; g++) {
+                  final v = m.group(g);
+                  if (v != null && !v.startsWith('_')) names.add(v);
+                }
+              }
+            }
+          }
+        }
+        result[pkg] = names;
+      }
+      return result;
+    });
+
+List<String> _barrelsFor(Snippet s, String? root) {
+  if (root == null) return _barrels;
+  final exports = _providerExports(root);
+  final ids = {for (final m in _identifier.allMatches(s.code)) m.group(0)!};
+  final docPkg = s.doc.startsWith('packages/')
+      ? p.split(s.doc).elementAtOrNull(1)
+      : null;
+  final out = <String>[];
+  for (final imp in _barrels) {
+    final m = RegExp(r"package:(\w+)/").firstMatch(imp);
+    final pkg = m?.group(1);
+    if (pkg == null || !_lanePackages.contains(pkg)) {
+      out.add(imp);
+      continue;
+    }
+    if (pkg == docPkg) {
+      out.add(imp);
+      continue;
+    }
+    final pkgNames = exports[pkg];
+    if (pkgNames == null || ids.any(pkgNames.contains)) {
+      out.add(imp);
+    }
+  }
+  return out;
+}
+
+SnippetFile renderSnippet(
+  Snippet s,
+  int index, {
+  String? root,
+  String? pathOverride,
+}) {
+  final path = pathOverride ?? s.path ?? 'lib/snippet_$index.dart';
+  final head = <String>[
+    _ignores,
+    if (!s.hasDirectives) ..._barrelsFor(s, root),
+  ];
   if (s.isLibrary) {
     return SnippetFile(path, '${head.join('\n')}\n${s.code}\n', s, head.length);
   }
@@ -331,30 +427,53 @@ Future<List<String>> checkDocSnippets(
   final sandbox = await Directory.systemTemp.createTemp('doc_snippets_');
   try {
     final files = <String, SnippetFile>{};
-    final runs = <(String, String, Snippet)>[];
+    final runsByDir = <String, List<(String, Snippet)>>{};
     final dirs = <String>[];
-    for (final unit in units) {
-      if (unit.snippets.isEmpty) continue;
-      final dir = p.join(
-        sandbox.path,
-        unit.name.replaceAll(RegExp(r'[^\w]+'), '_').toLowerCase(),
-      );
+    final workspace = workspacePackageNames(
+      File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
+    );
+    String? sharedDir;
+    var sharedUnitIndex = 0;
+
+    void ensureDir(String dir, String? extraPackage) {
+      if (Directory(dir).existsSync()) return;
       dirs.add(dir);
       Directory(dir).createSync(recursive: true);
-      final workspace = workspacePackageNames(
-        File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
-      );
       File(p.join(dir, 'pubspec.yaml')).writeAsStringSync(
         _pubspec(root, [
           ..._packages,
-          if (unit.package != null && workspace.contains(unit.package))
-            unit.package!,
+          if (extraPackage != null && workspace.contains(extraPackage))
+            extraPackage,
         ]),
       );
-      if (!unit.docComments) {
-        for (final reader in _checkedInReaders(
-          p.dirname(p.join(root, unit.name)),
-        )) {
+    }
+
+    for (final unit in units) {
+      if (unit.snippets.isEmpty) continue;
+      final readers = unit.docComments
+          ? const <File>[]
+          : _checkedInReaders(p.dirname(p.join(root, unit.name)));
+      final standalone =
+          unit.package == null &&
+          readers.isEmpty &&
+          unit.snippets.every(
+            (s) => s.path == null && !s.code.contains('package:my_app/'),
+          );
+      final String dir;
+      final int? sharedId;
+      if (standalone) {
+        sharedDir ??= p.join(sandbox.path, '_shared');
+        dir = sharedDir;
+        ensureDir(dir, null);
+        sharedId = ++sharedUnitIndex;
+      } else {
+        dir = p.join(
+          sandbox.path,
+          unit.name.replaceAll(RegExp(r'[^\w]+'), '_').toLowerCase(),
+        );
+        ensureDir(dir, unit.package);
+        sharedId = null;
+        for (final reader in readers) {
           reader.copySync(
             (File(
               p.join(dir, 'lib', 'generated', p.basename(reader.path)),
@@ -363,7 +482,14 @@ Future<List<String>> checkDocSnippets(
         }
       }
       for (final (i, s) in unit.snippets.indexed) {
-        final f = renderSnippet(s, i + 1);
+        final f = renderSnippet(
+          s,
+          i + 1,
+          root: root,
+          pathOverride: sharedId == null
+              ? null
+              : 'lib/u${sharedId}_snippet_${i + 1}.dart',
+        );
         final out = File(p.join(dir, f.path));
         if (out.existsSync()) {
           failures.add(
@@ -379,11 +505,12 @@ Future<List<String>> checkDocSnippets(
         files[key] = f;
         if (f.path.startsWith('bin/') &&
             RegExp(r'\bmain\s*\(').hasMatch(s.code)) {
-          runs.add((dir, f.path, s));
+          runsByDir.putIfAbsent(dir, () => []).add((f.path, s));
         }
       }
     }
-    for (final dir in dirs) {
+
+    final pubErrors = await _runPool(dirs, (dir) async {
       var get = await Process.run('dart', [
         'pub',
         'get',
@@ -392,25 +519,40 @@ Future<List<String>> checkDocSnippets(
       if (get.exitCode != 0) {
         get = await Process.run('dart', ['pub', 'get'], workingDirectory: dir);
       }
-      if (get.exitCode != 0) {
-        failures.add('dart pub get failed in $dir:\n${get.stderr}');
+      return get.exitCode == 0
+          ? null
+          : 'dart pub get failed in $dir:\n${get.stderr}';
+    });
+    for (final e in pubErrors) {
+      if (e != null) {
+        failures.add(e);
         return failures;
       }
     }
-    for (final (dir, path, s) in runs) {
-      final run = await Process.run('dart', [
-        'run',
-        path,
-      ], workingDirectory: dir);
-      if (run.exitCode != 0) {
-        failures.add(
-          '${s.doc}:${s.line}: `dart run $path` failed:\n'
-          '${run.stdout}${run.stderr}',
-        );
+
+    final runGroups = runsByDir.entries.toList()
+      ..sort((a, b) => b.value.length.compareTo(a.value.length));
+    final runErrorLists = await _runPool(runGroups, (entry) async {
+      final groupErrors = <String>[];
+      for (final (path, s) in entry.value) {
+        final run = await Process.run('dart', [
+          'run',
+          path,
+        ], workingDirectory: entry.key);
+        if (run.exitCode != 0) {
+          groupErrors.add(
+            '${s.doc}:${s.line}: `dart run $path` failed:\n'
+            '${run.stdout}${run.stderr}',
+          );
+        }
       }
+      return groupErrors;
+    });
+    for (final list in runErrorLists) {
+      failures.addAll(list);
     }
 
-    final diagnostics = await analyzeDiagnostics(sandbox.path);
+    final diagnostics = await _analyzeDirs(sandbox.path, dirs);
     for (final d in diagnostics) {
       if (d.severity != 'ERROR' && d.severity != 'WARNING') continue;
       final message = '${d.message} (${d.code})';
@@ -427,6 +569,47 @@ Future<List<String>> checkDocSnippets(
   return failures;
 }
 
+Future<List<T>> _runPool<I, T>(
+  List<I> items,
+  Future<T> Function(I item) task, {
+  int? concurrency,
+}) async {
+  if (items.isEmpty) return const [];
+  final workers = (concurrency ?? Platform.numberOfProcessors).clamp(
+    1,
+    items.length,
+  );
+  final results = List<T?>.filled(items.length, null);
+  var next = 0;
+  Future<void> worker() async {
+    while (true) {
+      final i = next++;
+      if (i >= items.length) return;
+      results[i] = await task(items[i]);
+    }
+  }
+
+  await Future.wait([for (var w = 0; w < workers; w++) worker()]);
+  return [for (final r in results) r as T];
+}
+
+Future<List<AnalyzerDiagnostic>> _analyzeDirs(
+  String sandboxPath,
+  List<String> dirs,
+) async {
+  if (dirs.length <= 1) return analyzeDiagnostics(sandboxPath);
+  final workers = Platform.numberOfProcessors.clamp(1, dirs.length);
+  final buckets = [for (var i = 0; i < workers; i++) <String>[]];
+  for (final (i, dir) in dirs.indexed) {
+    buckets[i % workers].add(dir);
+  }
+  final batches = await Future.wait([
+    for (final bucket in buckets)
+      analyzeDiagnostics(sandboxPath, targets: bucket),
+  ]);
+  return [for (final b in batches) ...b];
+}
+
 typedef AnalyzerDiagnostic = ({
   String severity,
   String code,
@@ -435,11 +618,15 @@ typedef AnalyzerDiagnostic = ({
   String message,
 });
 
-Future<List<AnalyzerDiagnostic>> analyzeDiagnostics(String dir) async {
+Future<List<AnalyzerDiagnostic>> analyzeDiagnostics(
+  String dir, {
+  List<String>? targets,
+}) async {
   final analyze = await Process.run('dart', [
     'analyze',
     '--format=machine',
-    dir,
+    ...?targets,
+    if (targets == null) dir,
   ], workingDirectory: dir);
   final out = <AnalyzerDiagnostic>[];
   for (final line in '${analyze.stdout}\n${analyze.stderr}'.split('\n')) {
