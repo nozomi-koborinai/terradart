@@ -236,6 +236,57 @@ resource "google_storage_bucket" "assets" {
     });
   });
 
+  group('merge-envs: provider enum arguments', () {
+    final merged = _merge(
+      {
+        for (final e in {'dev': 'public', 'prod': 'usgovernment'}.entries)
+          e.key:
+              '''
+terraform {
+  required_providers {
+    azurerm = { source = "hashicorp/azurerm", version = "$kAzureProviderVersionConstraint" }
+  }
+}
+provider "azurerm" {
+  environment = "${e.value}"
+  features {}
+}
+resource "azurerm_resource_group" "app" {
+  name     = "app"
+  location = "eastus"
+}
+''',
+      },
+      raw: const {'dev', 'prod'},
+    );
+
+    test('the provider reads the typed Env constant', () {
+      expect(merged.refusal, isNull);
+      expect(merged.fields.single.origin, 'provider.azurerm.environment');
+      expect(
+        merged.source,
+        contains(
+          'AzureProvider(environment: env.azurermEnvironment, '
+          'features: AzureFeatures())',
+        ),
+      );
+    });
+
+    test('the enum declares the member, not the wire string', () {
+      expect(
+        merged.envSource,
+        contains('final AzureEnvironment azurermEnvironment;'),
+      );
+      expect(merged.envSource, contains('azurermEnvironment: .public'));
+      expect(merged.envSource, contains('azurermEnvironment: .usgovernment'));
+      expect(merged.envSource, isNot(contains("'usgovernment'")));
+      expect(
+        merged.envSource,
+        contains("import 'package:terradart_azure/provider.dart';"),
+      );
+    });
+  });
+
   group('merge-envs: what is refused', () {
     test('a sensitive variable default is never lifted', () {
       String body(String token) =>

@@ -3406,6 +3406,204 @@ resource "time_sleep" "wait" {
       expect(infra, contains("if (args[i] == flag && i + 1 < args.length)"));
     });
   });
+
+  group('provider enums', () {
+    const azurerm =
+        '''
+terraform {
+  required_providers {
+    azurerm = { source = "hashicorp/azurerm", version = "$kAzureProviderVersionConstraint" }
+  }
+}
+resource "azurerm_resource_group" "app" {
+  name     = "app"
+  location = "eastus"
+}
+''';
+
+    test('aws retry_mode becomes an AwsRetryMode member', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    aws = { source = "hashicorp/aws", version = "$kAwsProviderVersionConstraint" }
+  }
+}
+provider "aws" {
+  retry_mode = "adaptive"
+}
+resource "aws_cloudwatch_log_group" "fn" {
+  name = "/aws/lambda/hello"
+}
+''');
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains('const AwsProvider(retryMode: .adaptive)'),
+      );
+    });
+
+    test('azurerm environment and registrations become enum members', () {
+      final r = _migrateHcl('''
+$azurerm
+provider "azurerm" {
+  environment                     = "usgovernment"
+  resource_provider_registrations = "none"
+  features {}
+}
+''');
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(
+          'const AzureProvider(environment: .usgovernment, '
+          'resourceProviderRegistrations: .none, features: AzureFeatures())',
+        ),
+      );
+    });
+
+    test('a value the enum does not list keeps the provider in Terraform', () {
+      final r = _migrateHcl('''
+$azurerm
+provider "azurerm" {
+  environment = "AzureCloud"
+  features {}
+}
+''');
+      final kept = r.report.kept.singleWhere(
+        (k) => k.address == 'provider.azurerm',
+      );
+      expect(kept.reason, contains('environment = "AzureCloud"'));
+      expect(kept.reason, contains('AzureEnvironment'));
+      expect(
+        r.stackSource,
+        contains('addExternalProvider(const AzureProvider());'),
+      );
+      expect(r.stackSource, isNot(contains('AzureCloud')));
+      expect(r.sidecar.files.values.join('\n'), contains('AzureCloud'));
+    });
+  });
+
+  group('azurerm in a child module', () {
+    late Directory tmp;
+
+    setUp(() => tmp = Directory.systemTemp.createTempSync('tdaz'));
+    tearDown(() => tmp.deleteSync(recursive: true));
+
+    const required =
+        '''
+terraform {
+  required_providers {
+    azurerm = { source = "hashicorp/azurerm", version = "$kAzureProviderVersionConstraint" }
+  }
+}
+''';
+
+    test('a child called with count registers the provider unconfigured', () {
+      for (final e in {
+        'main.tf':
+            '''
+$required
+provider "azurerm" {
+  features {}
+}
+module "c" {
+  count  = 2
+  source = "./child"
+}
+''',
+        'child/main.tf':
+            '''
+$required
+resource "azurerm_resource_group" "app" {
+  name     = "app"
+  location = "eastus"
+}
+''',
+      }.entries) {
+        File('${tmp.path}/${e.key}')
+          ..parent.createSync(recursive: true)
+          ..writeAsStringSync(e.value);
+      }
+      final project = migrateTree(
+        scanModuleTree(tmp),
+        name: 'infra',
+        format: false,
+      );
+      final child = project.files['lib/child_stack.dart']!;
+      expect(
+        child,
+        contains('providers: [const AzureProvider.unconfigured()]'),
+      );
+      expect(child, isNot(contains('const AzureProvider()')));
+      expect(
+        project.files['lib/infra_stack.dart'],
+        contains('providers: [const AzureProvider(features: AzureFeatures())]'),
+      );
+    });
+
+    test('a configuration alias registers unconfigured', () {
+      final r = migrateModule(
+        TfModule.fromHcl('''
+terraform {
+  required_providers {
+    azurerm = {
+      source                = "hashicorp/azurerm"
+      version               = "$kAzureProviderVersionConstraint"
+      configuration_aliases = [azurerm.eu]
+    }
+  }
+}
+resource "azurerm_resource_group" "eu" {
+  name     = "eu"
+  location = "westeurope"
+  provider = azurerm.eu
+}
+''', fileName: 'main.tf'),
+        name: 'demo',
+        format: false,
+        childModule: true,
+      );
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(
+          'final azurermEuProvider = addConfigurationAlias('
+          "const AzureProvider.unconfigured(alias: 'eu'));",
+        ),
+      );
+      expect(r.stackSource, contains('provider: azurermEuProvider'));
+    });
+  });
+
+  test('a destroy-only time_sleep translates, and so do its getters', () {
+    final r = _migrateHcl('''
+terraform {
+  required_providers {
+    time = { source = "hashicorp/time", version = "~> 0.12" }
+  }
+}
+resource "time_sleep" "first" {
+  destroy_duration = "10s"
+}
+resource "time_sleep" "second" {
+  create_duration = "30s"
+  triggers = {
+    after = time_sleep.first.destroy_duration
+  }
+}
+''');
+    expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+    expect(
+      r.stackSource,
+      contains("TimeSleep('first', destroyDuration: .literal('10s'))"),
+    );
+    expect(
+      r.stackSource,
+      contains(
+        "triggers: .literal({'after': first.destroyDuration.interpolation})",
+      ),
+    );
+  });
 }
 
 String _lines(List<String> lines) => '${lines.join('\n')}\n';
