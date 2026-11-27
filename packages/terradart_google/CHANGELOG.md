@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** `kProviderSource` and `kProviderVersionConstraint` are renamed `kGoogleProviderSource` and `kGoogleProviderVersionConstraint`. See [MIGRATING.md](../../MIGRATING.md#google-provider-constants-are-prefixed).
+
 ## 0.37.0 - 2026-11-23
 
 - **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).

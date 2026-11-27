@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- A migrated `aws` `retry_mode` and `azurerm` `environment` and `resource_provider_registrations` are written as members of `AwsRetryMode`, `AzureEnvironment` and `AzureResourceProviderRegistrations`. A value the enum does not list keeps that provider in Terraform, and `--merge-envs` types a value that differs between environments as the enum in the `Env` enum.
+- A child-module Stack registers `azurerm` as `AzureProvider.unconfigured`, and so does an `azurerm` configuration alias, so a child module the root calls with `count` or `for_each` carries no provider block.
+- The `hashicorp/time` manifest follows `TimeSleep`: `create_duration` is optional, and `create_duration`, `destroy_duration` and `triggers` are output getters.
+
 ## 0.37.0 - 2026-11-23
 
 - **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). A migrated package's generated `pubspec.yaml` declares `sdk: ^3.12.0`, and the deprecated `terradart-migrate` notice points to `dart install terradart_cli`. See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).
