@@ -13,9 +13,6 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
-
 jobs:
   changes:
     name: select examples
@@ -105,13 +102,13 @@ jobs:
           sdk: stable
       - run: dart pub get
       - name: Restore managed OpenTofu
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: ~/.cache/terradart/opentofu
           key: opentofu-${{ runner.os }}-${{ hashFiles('packages/terradart_cli/lib/src/opentofu.dart') }}
       - name: Restore OpenTofu providers
         id: plugins
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: tofuplugins-${{ runner.os }}-${{ needs.plugin_cache_key.outputs.tofu }}
@@ -128,7 +125,7 @@ jobs:
           (cd "$RUNNER_TEMP/tofu-providers" && "$engine" init -backend=false -input=false)
       - name: Save OpenTofu providers
         if: steps.plugins.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: ${{ steps.plugins.outputs.cache-primary-key }}
@@ -350,19 +347,18 @@ jobs:
         with:
           sdk: stable
       - name: Cache pub packages
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.pub-cache
           key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
           restore-keys: pub-${{ runner.os }}-
       - name: Cache managed OpenTofu
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/terradart/opentofu
-          # opentofu.dart holds the pin and its SHA-256s.
           key: opentofu-${{ runner.os }}-${{ hashFiles('packages/terradart_cli/lib/src/opentofu.dart') }}
       - name: Restore OpenTofu providers
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: tofuplugins-${{ runner.os }}-${{ needs.plugin_cache_key.outputs.tofu }}
@@ -401,7 +397,7 @@ jobs:
           terraform_wrapper: false
       - name: Restore Terraform providers
         if: steps.synth.outputs.needs_terraform == 'true'
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: tfplugins-${{ runner.os }}-${{ needs.plugin_cache_key.outputs.terraform }}
@@ -514,7 +510,7 @@ jobs:
           terraform_wrapper: false
       - name: Restore Terraform providers
         id: plugins
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: tfplugins-${{ runner.os }}-${{ needs.plugin_cache_key.outputs.terraform }}
@@ -526,7 +522,7 @@ jobs:
         run: dart tool/migrate_fixture_gates.dart
       - name: Save Terraform providers
         if: steps.plugins.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: ${{ steps.plugins.outputs.cache-primary-key }}
@@ -554,7 +550,7 @@ jobs:
           terraform_version: "1.15.2"
           terraform_wrapper: false
       - name: Restore Terraform providers
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: tfplugins-${{ runner.os }}-${{ needs.plugin_cache_key.outputs.terraform }}
