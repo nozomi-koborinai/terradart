@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:test/test.dart';
 
 import 'select_changed_examples.dart';
@@ -96,6 +99,103 @@ void main() {
         changed: const ['examples/README.md'],
       );
       expect(sel, isEmpty);
+    });
+  });
+
+  group('shardExamples', () {
+    test('empty list produces no shards', () {
+      expect(shardExamples(const []), isEmpty);
+    });
+
+    test('single example produces one 1-example shard', () {
+      expect(shardExamples(const ['pubsub']), [
+        {
+          'id': '1/1',
+          'examples': ['pubsub'],
+        },
+      ]);
+    });
+
+    test('up to maxPerShard examples stay in a single shard', () {
+      final slugs = [for (var i = 0; i < 10; i++) 'ex_$i'];
+      final shards = shardExamples(slugs, maxPerShard: 10);
+      expect(shards, hasLength(1));
+      expect(shards.single['id'], '1/1');
+      expect(shards.single['examples'], slugs);
+    });
+
+    test('splits into balanced contiguous shards when above maxPerShard', () {
+      final slugs = [for (var i = 0; i < 11; i++) 'ex_$i'];
+      final shards = shardExamples(slugs, maxPerShard: 10);
+      expect(shards, hasLength(2));
+      expect(shards[0]['id'], '1/2');
+      expect(shards[1]['id'], '2/2');
+      expect((shards[0]['examples']! as List<String>).length, 6);
+      expect((shards[1]['examples']! as List<String>).length, 5);
+      expect([
+        ...(shards[0]['examples']! as List<String>),
+        ...(shards[1]['examples']! as List<String>),
+      ], slugs);
+    });
+
+    test('full quickstart catalog shards into ~10-example shards', () {
+      final all = allSlugs();
+      final shards = shardExamples(all);
+      final expectedCount =
+          (all.length + kDefaultShardSize - 1) ~/ kDefaultShardSize;
+      expect(shards, hasLength(expectedCount));
+
+      final flattened = <String>[];
+      for (var i = 0; i < shards.length; i++) {
+        expect(shards[i]['id'], '${i + 1}/$expectedCount');
+        final examples = shards[i]['examples']! as List<String>;
+        expect(examples, isNotEmpty);
+        expect(examples.length, lessThanOrEqualTo(kDefaultShardSize));
+        flattened.addAll(examples);
+      }
+      expect(flattened, all);
+    });
+
+    test('rejects non-positive maxPerShard', () {
+      expect(
+        () => shardExamples(const ['a'], maxPerShard: 0),
+        throwsArgumentError,
+      );
+      expect(
+        () => shardExamples(const ['a'], maxPerShard: -2),
+        throwsArgumentError,
+      );
+    });
+
+    test('CLI --github-output writes both examples and shards', () async {
+      final tempDir = Directory.systemTemp.createTempSync('terradart_sel_');
+      addTearDown(() => tempDir.deleteSync(recursive: true));
+      final outputFile = File('${tempDir.path}/github_output');
+
+      final proc = await Process.start(Platform.resolvedExecutable, [
+        'tool/select_changed_examples.dart',
+        '--event',
+        'pull_request',
+        '--github-output',
+        outputFile.path,
+      ]);
+      proc.stdin.writeln('examples/pubsub_quickstart/bin/infra.dart');
+      await proc.stdin.close();
+      final exitCode = await proc.exitCode;
+      expect(exitCode, 0);
+
+      final lines = outputFile.readAsLinesSync();
+      final examplesLine = lines.firstWhere((l) => l.startsWith('examples='));
+      final shardsLine = lines.firstWhere((l) => l.startsWith('shards='));
+      expect(jsonDecode(examplesLine.substring('examples='.length)), [
+        'pubsub',
+      ]);
+      expect(jsonDecode(shardsLine.substring('shards='.length)), [
+        {
+          'id': '1/1',
+          'examples': ['pubsub'],
+        },
+      ]);
     });
   });
 }

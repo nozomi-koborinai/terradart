@@ -22,6 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       examples: ${{ steps.sel.outputs.examples }}
+      shards: ${{ steps.sel.outputs.shards }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -35,20 +36,22 @@ jobs:
           EVENT: ${{ github.event_name }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          # Selection logic lives in tested Dart
+          # Selection and sharding logic lives in tested Dart
           # (tool/select_changed_examples.dart + its unit test) — an earlier
           # awk regex here once fanned a pubspec-only bump out to every
           # example. The shell only feeds it the git diff. The script is
           # dart:core-only, so no `dart pub get` needed.
           if [ "$EVENT" = 'pull_request' ]; then
             base="${BASE_SHA:-origin/main}"
-            json="$(git diff --name-only "$base" HEAD \
-              | dart tool/select_changed_examples.dart --event "$EVENT")"
+            git diff --name-only "$base" HEAD \
+              | dart tool/select_changed_examples.dart \
+                --event "$EVENT" \
+                --github-output "$GITHUB_OUTPUT"
           else
-            json="$(dart tool/select_changed_examples.dart --event "$EVENT" < /dev/null)"
+            dart tool/select_changed_examples.dart \
+              --event "$EVENT" \
+              --github-output "$GITHUB_OUTPUT" < /dev/null
           fi
-          echo "examples=$json" >> "$GITHUB_OUTPUT"
-          echo "selected=$json"
 
   workspace_packages:
     name: list workspace packages
@@ -168,7 +171,7 @@ jobs:
     # API-enablement gates); the analyzer then checks the examples against
     # the files that synth regenerated (lib/generated/*.app.dart), and the
     # topology gate and the coverage-page freshness check reuse those tf-outs
-    # instead of re-synthing. Validate is skipped here — the per-example
+    # instead of re-synthing. Validate is skipped here — the sharded
     # terraform_validate matrix (OpenTofu) covers it.
     steps:
       - uses: actions/checkout@v6
@@ -306,13 +309,20 @@ jobs:
         run: dart test --run-skipped -t e2e --name 'wrap-promote'
 
   terraform_validate:
-    name: validate (${{ matrix.example }})
+    name: validate (shard ${{ matrix.shard.id }})
     runs-on: ubuntu-latest
-    needs: [test, changes, plugin_cache_key, tofu_plugin_cache]
-    # Validates with OpenTofu, the engine `terradart` gives users: the release
-    # terradart_cli pins (kOpenTofuVersion), resolved and checksum-verified by
-    # `terradart engine --engine tofu`, so the pin has one source. The job id
-    # stays `terraform_validate` for the required `terraform validate gate`.
+    needs: [changes, plugin_cache_key, tofu_plugin_cache]
+    # Validates examples in balanced shards (~10 examples per shard, ~13 shards
+    # for the full catalog; a 1-example PR runs one 1-example shard) with
+    # OpenTofu, the engine `terradart` gives users: the release terradart_cli
+    # pins (kOpenTofuVersion), resolved once per shard and checksum-verified by
+    # `terradart engine --engine tofu`, so the pin has one source. Examples
+    # requiring a provider absent from the OpenTofu registry
+    # (kNotOnOpenTofuRegistry in tool/validate_engine.dart: appwrite/appwrite)
+    # still validate with Terraform. Does not depend on `test` (it consumes no
+    # test artifacts); `ci_gate` still requires both `test` and
+    # `terraform_validate_gate`. The job id stays `terraform_validate` for the
+    # required `terraform validate gate`.
     # Skip entirely when no relevant example changed (the gate job below still
     # runs and reports success, so the required-check status stays satisfied).
     if: needs.changes.outputs.examples != '[]'
@@ -329,7 +339,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        example: ${{ fromJSON(needs.changes.outputs.examples) }}
+        shard: ${{ fromJSON(needs.changes.outputs.shards) }}
     steps:
       - name: Job start
         id: job_start
@@ -371,45 +381,26 @@ jobs:
           dart pub get
           echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
 
-      - name: Example pub get
-        id: pub_get_example
-        working-directory: examples/${{ matrix.example }}_quickstart
-        run: |
-          start=$(date +%s%N)
-          dart pub get
-          echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
-
-      - name: Placeholder synth inputs
-        # The same environment tool/example_synth_gates.dart synths every
-        # example with, whatever its provider.
-        run: dart tool/example_synth_env.dart >> "$GITHUB_ENV"
-
-      - name: Synth
+      - name: Synth shard and detect engines
         id: synth
-        working-directory: examples/${{ matrix.example }}_quickstart
+        env:
+          SHARD_ID: ${{ matrix.shard.id }}
+          SHARD_EXAMPLES_JSON: ${{ toJson(matrix.shard.examples) }}
         run: |
-          start=$(date +%s%N)
-          dart run bin/infra.dart
-          echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
+          dart tool/validate_example_shard.dart \
+            --phase synth \
+            --shard-id "$SHARD_ID" \
+            --examples-json "$SHARD_EXAMPLES_JSON" \
+            --state-file "$RUNNER_TEMP/shard-state.json" \
+            --github-output "$GITHUB_OUTPUT"
 
-      - name: Pick the validate engine
-        id: engine
-        # OpenTofu from `terradart engine --engine tofu`, unless the Stack
-        # needs a provider the OpenTofu registry lacks (kNotOnOpenTofuRegistry
-        # in tool/validate_engine.dart: appwrite/appwrite), which keeps
-        # Terraform until it is published there.
-        run: |
-          picked="$(dart tool/validate_engine.dart examples/${{ matrix.example }}_quickstart/tf-out)"
-          read -r kind path <<< "$picked"
-          echo "kind=$kind" >> "$GITHUB_OUTPUT"
-          echo "ENGINE=$path" >> "$GITHUB_ENV"
       - uses: hashicorp/setup-terraform@v4
-        if: steps.engine.outputs.kind == 'terraform'
+        if: steps.synth.outputs.needs_terraform == 'true'
         with:
           terraform_version: "1.15.2"
           terraform_wrapper: false
       - name: Restore Terraform providers
-        if: steps.engine.outputs.kind == 'terraform'
+        if: steps.synth.outputs.needs_terraform == 'true'
         uses: actions/cache/restore@v4
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
@@ -418,59 +409,42 @@ jobs:
 
       - name: Validate
         id: tf_validate
-        working-directory: examples/${{ matrix.example }}_quickstart/tf-out
+        env:
+          JOB_START_NS: ${{ steps.job_start.outputs.started_ns }}
+          AFTER_SETUP_NS: ${{ steps.after_setup.outputs.ts_ns }}
+          PUB_GET_MS: ${{ steps.pub_get_workspace.outputs.duration_ms }}
         run: |
-          start=$(date +%s%N)
-          "$ENGINE" version
-          "$ENGINE" fmt -check
-          "$ENGINE" init -backend=false -input=false
-          "$ENGINE" validate
-          echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
-
-      - name: Timing summary
-        if: always()
-        run: |
-          job_start_ns="${{ steps.job_start.outputs.started_ns }}"
-          after_setup_ns="${{ steps.after_setup.outputs.ts_ns }}"
-          setup_ms=$(( (after_setup_ns - job_start_ns) / 1000000 ))
-          {
-            echo "### ${{ matrix.example }}_quickstart timing"
-            echo ""
-            echo "| Step | Duration (ms) |"
-            echo "|---|---|"
-            echo "| Setup (checkout + Dart + caches) | $setup_ms |"
-            echo "| Workspace \`pub get\` | ${{ steps.pub_get_workspace.outputs.duration_ms }} |"
-            echo "| Example \`pub get\` | ${{ steps.pub_get_example.outputs.duration_ms }} |"
-            echo "| Synth (\`dart run bin/infra.dart\`) | ${{ steps.synth.outputs.duration_ms }} |"
-            echo "| \`${{ steps.engine.outputs.kind }} fmt + init + validate\` | ${{ steps.tf_validate.outputs.duration_ms }} |"
-          } >> "$GITHUB_STEP_SUMMARY"
+          setup_ms=$(( (AFTER_SETUP_NS - JOB_START_NS) / 1000000 ))
+          dart tool/validate_example_shard.dart \
+            --phase validate \
+            --state-file "$RUNNER_TEMP/shard-state.json" \
+            --setup-ms "$setup_ms" \
+            --pub-get-ms "$PUB_GET_MS" \
+            --step-summary "$GITHUB_STEP_SUMMARY"
 
   terraform_validate_gate:
     name: terraform validate gate
     runs-on: ubuntu-latest
-    needs: [changes, test, terraform_validate]
+    needs: [changes, plugin_cache_key, tofu_plugin_cache, terraform_validate]
     if: always()
     # Stable, always-present check that aggregates the dynamic validate matrix,
     # so a PR that validates a subset — or none — still presents a green
     # check. `skipped` is a pass ONLY when nothing was selected: the matrix is
-    # also skipped when `test` fails (it `needs: test`), and that must not
-    # read as "validated".
+    # also skipped when `plugin_cache_key` or `tofu_plugin_cache` fails, and
+    # that must not read as "validated".
     steps:
       - name: Aggregate terraform validate result
         env:
           CHANGES: ${{ needs.changes.result }}
-          TESTS: ${{ needs.test.result }}
+          CACHE_KEY: ${{ needs.plugin_cache_key.result }}
+          PLUGIN_CACHE: ${{ needs.tofu_plugin_cache.result }}
           RESULT: ${{ needs.terraform_validate.result }}
           SELECTED: ${{ needs.changes.outputs.examples }}
         run: |
           echo "selected examples: $SELECTED"
-          echo "changes: $CHANGES / test: $TESTS / terraform_validate: $RESULT"
+          echo "changes: $CHANGES / plugin_cache_key: $CACHE_KEY / tofu_plugin_cache: $PLUGIN_CACHE / terraform_validate: $RESULT"
           if [ "$CHANGES" != 'success' ]; then
             echo "::error::example-selection job did not succeed ($CHANGES)"
-            exit 1
-          fi
-          if [ "$TESTS" != 'success' ]; then
-            echo "::error::package tests did not succeed ($TESTS), so the validate matrix never ran"
             exit 1
           fi
           case "$RESULT" in
@@ -478,6 +452,14 @@ jobs:
             skipped)
               if [ "$SELECTED" = '[]' ]; then
                 echo "gate: PASS (no example selected)"; exit 0
+              fi
+              if [ "$CACHE_KEY" != 'success' ]; then
+                echo "::error::plugin cache key job did not succeed ($CACHE_KEY), so the validate matrix never ran"
+                exit 1
+              fi
+              if [ "$PLUGIN_CACHE" != 'success' ]; then
+                echo "::error::OpenTofu provider cache job did not succeed ($PLUGIN_CACHE), so the validate matrix never ran"
+                exit 1
               fi
               echo "::error::terraform validate was skipped although examples were selected"
               exit 1 ;;
@@ -487,7 +469,6 @@ jobs:
   migrate_roundtrip:
     name: migrate round-trip gate
     runs-on: ubuntu-latest
-    needs: test
     # The migrator's correctness oracle (#660): synthesize every quickstart,
     # migrate the tf.json back to Dart with terradart_migrate, analyze the
     # generated Stacks once, re-synthesize and deep-compare. Strict examples
@@ -507,7 +488,7 @@ jobs:
   migrate_fixtures:
     name: migrate fixture gate
     runs-on: ubuntu-latest
-    needs: [test, plugin_cache_key]
+    needs: plugin_cache_key
     env:
       TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
     # The migrator's end-to-end acceptance (#661): terradart-migrate the
@@ -553,7 +534,7 @@ jobs:
   migrate_moved:
     name: migrate moved gate
     runs-on: ubuntu-latest
-    needs: [test, plugin_cache_key]
+    needs: plugin_cache_key
     env:
       TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
     # The acceptance check for count / for_each unrolling (#663): migrate
