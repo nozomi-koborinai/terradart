@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_disk.dart' show GoogleComputeDisk;
+import '../compute/google_compute_instant_snapshot.dart'
+    show GoogleComputeInstantSnapshot;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_compute_snapshot`.
@@ -34,13 +37,14 @@ extension type const ComputeSnapshotType._(TfArg<String> _)
 sealed class ComputeSnapshotSource {
   const ComputeSnapshotSource();
 
-  /// Create the snapshot from a Persistent Disk (name or self-link).
-  const factory ComputeSnapshotSource.disk(TfArg<String> sourceDisk) =
-      ComputeSnapshotDiskSource;
+  /// Create the snapshot from a Persistent Disk.
+  const factory ComputeSnapshotSource.disk(
+    RefTo<GoogleComputeDisk> sourceDisk,
+  ) = ComputeSnapshotDiskSource;
 
-  /// Create the snapshot from a zonal Instant Snapshot (name or self-link).
+  /// Create the snapshot from a zonal Instant Snapshot.
   const factory ComputeSnapshotSource.instantSnapshot(
-    TfArg<String> sourceInstantSnapshot,
+    RefTo<GoogleComputeInstantSnapshot> sourceInstantSnapshot,
   ) = ComputeSnapshotInstantSource;
 
   /// Terraform attribute name (`source_disk` or `source_instant_snapshot`).
@@ -54,34 +58,34 @@ sealed class ComputeSnapshotSource {
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
 
-/// Create the snapshot from a Persistent Disk (name or self-link).
+/// Create the snapshot from a Persistent Disk.
 @immutable
 final class ComputeSnapshotDiskSource extends ComputeSnapshotSource {
   const ComputeSnapshotDiskSource(this.sourceDisk);
 
-  final TfArg<String> sourceDisk;
+  final RefTo<GoogleComputeDisk> sourceDisk;
 
   @override
   @internal
   String get blockKey => 'source_disk';
 
   @override
-  TfArg<String> get value => sourceDisk;
+  TfArg<String> get value => sourceDisk.encodeAs('name');
 }
 
-/// Create the snapshot from a zonal Instant Snapshot (name or self-link).
+/// Create the snapshot from a zonal Instant Snapshot.
 @immutable
 final class ComputeSnapshotInstantSource extends ComputeSnapshotSource {
   const ComputeSnapshotInstantSource(this.sourceInstantSnapshot);
 
-  final TfArg<String> sourceInstantSnapshot;
+  final RefTo<GoogleComputeInstantSnapshot> sourceInstantSnapshot;
 
   @override
   @internal
   String get blockKey => 'source_instant_snapshot';
 
   @override
-  TfArg<String> get value => sourceInstantSnapshot;
+  TfArg<String> get value => sourceInstantSnapshot.encodeAs('name');
 }
 
 /// Typed helper for the `params` block of

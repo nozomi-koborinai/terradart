@@ -174,27 +174,25 @@ final Map<String, Object Function()> _syntheticInstances = {
   'ComputeRouteIpNextHop': () =>
       const ComputeRouteIpNextHop(TfArg.literal('10.0.0.1')),
   'ComputeRouteInstanceNextHop': () =>
-      const ComputeRouteInstanceNextHop(TfArg.literal('mock-instance')),
+      ComputeRouteInstanceNextHop(.literal('mock-instance')),
   'ComputeRouteIlbNextHop': () => const ComputeRouteIlbNextHop(
     TfArg.literal('projects/p/regions/r/forwardingRules/fr'),
   ),
-  'ComputeRouteVpnTunnelNextHop': () => const ComputeRouteVpnTunnelNextHop(
-    TfArg.literal('projects/p/regions/r/vpnTunnels/t'),
+  'ComputeRouteVpnTunnelNextHop': () => ComputeRouteVpnTunnelNextHop(
+    .literal('projects/p/regions/r/vpnTunnels/t'),
   ),
-  'ComputeSnapshotDiskSource': () => const ComputeSnapshotDiskSource(
-    TfArg.literal('projects/p/zones/z/disks/d'),
-  ),
-  'ComputeSnapshotInstantSource': () => const ComputeSnapshotInstantSource(
-    TfArg.literal('projects/p/zones/z/instantSnapshots/s'),
+  'ComputeSnapshotDiskSource': () =>
+      ComputeSnapshotDiskSource(.literal('projects/p/zones/z/disks/d')),
+  'ComputeSnapshotInstantSource': () => ComputeSnapshotInstantSource(
+    .literal('projects/p/zones/z/instantSnapshots/s'),
   ),
   'ComputeImageSourceDisk': () =>
-      const ComputeImageSourceDisk(TfArg.literal('projects/p/zones/z/disks/d')),
+      ComputeImageSourceDisk(.literal('projects/p/zones/z/disks/d')),
   'ComputeImageSourceImage': () => const ComputeImageSourceImage(
     TfArg.literal('projects/p/global/images/i'),
   ),
-  'ComputeImageSourceSnapshot': () => const ComputeImageSourceSnapshot(
-    TfArg.literal('projects/p/global/snapshots/s'),
-  ),
+  'ComputeImageSourceSnapshot': () =>
+      ComputeImageSourceSnapshot(.literal('projects/p/global/snapshots/s')),
   'ComputeImageSourceRawDisk': () => const ComputeImageSourceRawDisk(
     ComputeImageRawDisk(source: TfArg.literal('gs://b/disk.tar.gz')),
   ),

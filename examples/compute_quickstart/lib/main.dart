@@ -482,12 +482,14 @@ final class NetworkStack extends Stack {
     );
 
     // Durable PD Snapshot of the scratch disk (Compute Snapshot IAM parent).
-    // Exactly one source: disk self-link (not the instant snapshot).
+    // Exactly one source: the disk (not the instant snapshot), which the
+    // snapshot names in its own zone.
     final scratchSnapshot = add(
       GoogleComputeSnapshot(
         'scratch_snapshot',
         name: .literal('ops-scratch-snapshot'),
-        source: .disk(scratchDisk.selfLink),
+        source: .disk(scratchDisk.ref),
+        zone: .literal('asia-northeast1-a'),
         storageLocations: .literal(['asia-northeast1']),
         dependsOn: [scratchDisk],
       ),
@@ -508,7 +510,7 @@ final class NetworkStack extends Stack {
       GoogleComputeImage(
         'scratch_image',
         name: .literal('ops-scratch-image'),
-        source: .snapshot(scratchSnapshot.selfLink),
+        source: .snapshot(scratchSnapshot.ref),
         family: .literal('ops-scratch'),
         storageLocations: .literal(['asia-northeast1']),
         dependsOn: [scratchSnapshot],
