@@ -105,6 +105,21 @@ add(
 
 An argument can only be `null` when it is optional; leave it out instead of passing `.literal(null)`.
 
+Terraform reads every string in `main.tf.json` as a template, a literal's included: a `${...}` or `%{...}` in it is evaluated, and synth reports a `var.<name>` there that the Stack does not declare. Where the text itself holds those characters, as an AWS policy variable does, write `$${` (or `%%{`):
+
+```dart
+add(
+  AwsIamPolicy(
+    'change_own_password',
+    policy: .literal(
+      r'{"Version":"2012-10-17","Statement":[{"Effect":"Allow",'
+      r'"Action":"iam:ChangePassword",'
+      r'"Resource":"arn:aws:iam::*:user/$${aws:username}"}]}',
+    ),
+  ),
+);
+```
+
 ## References
 
 An input that names another resource is typed `RefTo<R>`. Pass the resource's `ref`, and the input writes the attribute the provider expects (`self_link`, `id`, `arn`, `name`), so you never pick one, and a resource of the wrong type does not compile:
