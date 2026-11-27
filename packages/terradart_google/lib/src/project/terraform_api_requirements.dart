@@ -190,12 +190,15 @@ const Map<String, String?> _apiByTypePrefix = {
   'google_workstations_': 'workstations.googleapis.com',
 };
 
+final _iamAdjunct = RegExp(r'_iam_(member|binding|policy)$');
+
 /// The Google API a resource of [terraformType] needs enabled, such as
 /// `'redis.googleapis.com'`.
 ///
-/// Returns null for IAM adjuncts (`*_iam_member`, `*_iam_binding`,
-/// `*_iam_policy`), `google_project` and `google_project_service`, which need
-/// no API of their own, and for a type no rule covers.
+/// An IAM adjunct (`*_iam_member`, `*_iam_binding`, `*_iam_policy`) needs the
+/// API of the resource it grants on: `google_iap_tunnel_instance_iam_member`
+/// needs `'iap.googleapis.com'`. Returns null for `google_project`,
+/// `google_project_service` and their adjuncts, and for a type no rule covers.
 ///
 /// The lookup only reads: enabling the API stays a `GoogleProjectService`
 /// the stack adds.
@@ -208,17 +211,13 @@ const Map<String, String?> _apiByTypePrefix = {
 /// // api == 'redis.googleapis.com'
 /// ```
 String? requiredApiForTerraformType(String terraformType) {
-  if (terraformType == 'google_project_service' ||
-      terraformType == 'google_project' ||
-      terraformType.endsWith('_iam_member') ||
-      terraformType.endsWith('_iam_binding') ||
-      terraformType.endsWith('_iam_policy')) {
+  final type = terraformType.replaceFirst(_iamAdjunct, '');
+  if (type == 'google_project_service' || type == 'google_project') {
     return null;
   }
   String? match;
   for (final prefix in _apiByTypePrefix.keys) {
-    if (terraformType.startsWith(prefix) &&
-        prefix.length > (match?.length ?? 0)) {
+    if (type.startsWith(prefix) && prefix.length > (match?.length ?? 0)) {
       match = prefix;
     }
   }

@@ -19,7 +19,7 @@ void _testRequiredApi() {
   assert(requiredApiForTerraformType('google_project_service') == null);
   assert(
     requiredApiForTerraformType('google_gke_backup_backup_plan_iam_member') ==
-        null,
+        'gkebackup.googleapis.com',
   );
   assert(
     requiredApiForTerraformType(

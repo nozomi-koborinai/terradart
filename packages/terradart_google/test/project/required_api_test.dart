@@ -1,4 +1,5 @@
 import 'package:terradart_google/bigquery.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/iap.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/pubsub.dart';
@@ -29,12 +30,29 @@ void main() {
       );
     });
 
-    test('IAM adjuncts and project services need no API', () {
+    test('an IAM adjunct needs the API of the resource it grants on', () {
       expect(
         requiredApiForTerraformType(GooglePubsubTopicIamMember.tfType),
+        'pubsub.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType(GoogleIapTunnelInstanceIamMember.tfType),
+        'iap.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType(
+          GoogleIapWebCloudRunServiceIamMember.tfType,
+        ),
+        'iap.googleapis.com',
+      );
+    });
+
+    test('project services and project IAM need no API', () {
+      expect(requiredApiForTerraformType(GoogleProjectService.tfType), isNull);
+      expect(
+        requiredApiForTerraformType(GoogleProjectIamMember.tfType),
         isNull,
       );
-      expect(requiredApiForTerraformType(GoogleProjectService.tfType), isNull);
     });
   });
 }

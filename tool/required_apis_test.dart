@@ -39,6 +39,8 @@ String _service(String dir, String document) {
   return '${(jsonDecode(json) as Map<String, Object?>)['name']}.googleapis.com';
 }
 
+final _iamAdjunct = RegExp(r'_iam_(member|binding|policy)$');
+
 void main() {
   for (final MapEntry(key: lane, value: dir) in _lanes.entries) {
     group(lane, () {
@@ -58,19 +60,26 @@ void main() {
         expect(wrong, isEmpty, reason: wrong.join('\n'));
       });
 
-      test('IAM adjuncts and google_project_service need no API', () {
-        final adjuncts = roots.keys.where(
-          (t) =>
-              t == 'google_project_service' ||
-              t.endsWith('_iam_member') ||
-              t.endsWith('_iam_binding') ||
-              t.endsWith('_iam_policy'),
-        );
-        expect(adjuncts, isNotEmpty);
-        expect({
-          for (final t in adjuncts)
-            if (requiredApiForTerraformType(t) != null) t,
-        }, isEmpty);
+      test('an IAM adjunct needs the API of the resource it grants on', () {
+        final wrong = <String>[];
+        var checked = 0;
+        for (final type in roots.keys) {
+          final parent = type.replaceFirst(_iamAdjunct, '');
+          if (parent == type || roots[parent] == null) continue;
+          final want = _service(
+            dir,
+            (roots[parent] as YamlMap)['doc'] as String,
+          );
+          final got = requiredApiForTerraformType(type);
+          checked++;
+          if (got != want) wrong.add('$type: $got, $parent needs $want');
+        }
+        expect(checked, greaterThan(0), reason: 'no adjunct of a rooted type');
+        expect(wrong, isEmpty, reason: wrong.join('\n'));
+      });
+
+      test('google_project_service needs no API', () {
+        expect(requiredApiForTerraformType('google_project_service'), isNull);
       });
     });
   }
