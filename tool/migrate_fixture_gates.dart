@@ -323,10 +323,15 @@ Future<({bool ok, String out, String err})> _mergeEnvGate({
         keep: keep,
       );
     }
+    final plainErrors = <String>[];
+    final tempErrors = <String>[];
     final built = await Future.wait([
-      _build(plain, repoRoot, errors),
-      _build(temp, repoRoot, errors),
+      _build(plain, repoRoot, plainErrors),
+      _build(temp, repoRoot, tempErrors),
     ]);
+    errors
+      ..addAll(plainErrors)
+      ..addAll(tempErrors);
     if (built.any((ok) => !ok)) {
       return _finish(
         '$_mergeFixture --merge-envs',
