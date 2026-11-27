@@ -161,15 +161,11 @@ void main() {
       expect(normalizeRelPath('./envs/dev/'), 'envs/dev');
       expect(normalizeRelPath('.'), '.');
       expect(normalizeRelPath(''), '.');
-      // A backslash separates only on Windows; elsewhere it is part of the
-      // name.
       expect(normalizeRelPath(r'a\b'), Platform.isWindows ? 'a/b' : r'a\b');
     });
 
     test('a backslash in a directory name is not a path separator', () {
       if (Platform.isWindows) return;
-      // POSIX allows backslashes in names; one must not become `..` segments
-      // that would walk the mirrored tf-out/ path out of the package.
       const weird = r'a\..\..\..\escape';
       Directory('${dir.path}/$weird').createSync();
       File(

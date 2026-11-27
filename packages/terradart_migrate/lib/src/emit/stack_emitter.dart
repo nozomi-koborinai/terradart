@@ -1,6 +1,3 @@
-/// Emits one Terraform module as a Dart `Stack`.
-library;
-
 import 'dart:convert';
 
 import 'package:terradart_appwrite/provider.dart'
@@ -12,7 +9,6 @@ import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
 import 'package:terradart_core/internal.dart'
     show outputEnvironmentName, parseGoDuration, templateVariableNames;
-import 'package:terradart_core/terradart_core.dart' show ModuleCall;
 import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderVersionConstraint;
@@ -34,8 +30,6 @@ import 'tf_expr.dart';
 import 'value_emitter.dart';
 import 'variable_type.dart';
 
-/// One statement of the Stack constructor body, tagged with the block it
-/// came from so `--merge-envs` can line two environments' bodies up.
 final class StackStatement {
   const StackStatement({
     required this.tag,
@@ -45,32 +39,13 @@ final class StackStatement {
     this.declaresLocal = false,
   });
 
-  /// What the statement stands for: a block address
-  /// (`google_pubsub_topic.orders`, `module.sa`), `variable.<name>`,
-  /// `output.<name>`, `moved:<statement>`, `terraform.required_version`.
-  /// Two environments that produce the same tag produce the same statement,
-  /// or the merge refuses.
   final String tag;
-
-  /// The Dart source: one statement, or one `//` comment line.
   final String text;
-
-  /// The block's own HCL comments as Dart `//` lines, newline-terminated,
-  /// to write directly above [text]; empty when the block carried none.
-  /// Kept apart from [text] so `--merge-envs` compares the statements and
-  /// not the prose around them.
   final String comments;
-
-  /// Addresses whose Dart local this statement reads.
   final Set<String> uses;
-
-  /// True when the statement declares its own block's Dart local
-  /// (`final orders = add(...)`).
   final bool declaresLocal;
 }
 
-/// The Dart source of a migrated module: the Stack class body pieces the
-/// caller assembles into files, plus its report.
 final class EmittedStack {
   const EmittedStack({
     required this.stackClass,
@@ -89,52 +64,20 @@ final class EmittedStack {
   });
 
   final String stackClass;
-
-  /// The complete `lib/<stack>.dart` source (unformatted); empty when
-  /// [hasStack] is false.
   final String source;
-
-  /// False when nothing in the module translates — no resource became Dart
-  /// and no known provider is declared — so no Stack is generated and every
-  /// block stays in Terraform.
   final bool hasStack;
-
-  /// Provider packages the Stack imports, in import order.
   final List<String> packages;
-
-  /// File stems of the generated local-module wrappers this Stack imports
-  /// (`service_account_module`), for the caller to write beside it.
   final Set<String> moduleWrappers;
-
-  /// The constructor body, statement by statement, in the order [source]
-  /// writes them; the merged-environment emitter lines these up.
   final List<StackStatement> statements;
-
-  /// True when the Stack takes a `workspace` parameter: something in it
-  /// read `terraform.workspace` and `--lift-workspace` was on.
   final bool usesWorkspace;
-
-  /// The `import` lines [source] opens with, `terradart_core` included.
   final List<String> imports;
-
-  /// The `super(...)` arguments (the `providers` and the `backend`).
   final String ctorInit;
-
-  /// `env.<field>` → the Dart type the argument it filled expects.
   final Map<String, String> envSlotTypes;
-
-  /// `env.<field>` → the Dart source of this module's value for it, where a
-  /// plain literal will not do (an enum member).
   final Map<String, String> envValueSources;
-
-  /// `import` lines the constants' own types need (the barrel exporting an
-  /// enum a lifted argument takes), for the file declaring them.
   final List<String> envImports;
   final MigrationReport report;
 }
 
-/// A provider factory recipe: package, class, Terraform argument → Dart
-/// parameter (values are plain Dart literals, never `TfArg`).
 final class _ProviderRecipe {
   const _ProviderRecipe(
     this.package,
@@ -147,44 +90,30 @@ final class _ProviderRecipe {
   final String package;
   final String className;
   final Map<String, _ProviderArg> args;
-
-  /// The version constraint the package emits.
   final String pin;
-
-  /// The barrel that exports [className].
   final String barrel;
 }
 
-/// How one provider argument becomes a constructor argument. Every shape
-/// takes literals only: provider blocks do not interpolate resources.
 sealed class _ProviderArg {
   const _ProviderArg(this.param);
 
-  /// The Dart parameter name.
   final String param;
 }
 
-/// A string, number or bool (`region = "us-east-1"`).
 final class _Scalar extends _ProviderArg {
   const _Scalar(super.param);
 }
 
-/// A list of strings (`allowed_account_ids = ["111"]`).
 final class _Strings extends _ProviderArg {
   const _Strings(super.param);
 }
 
-/// A string map: an object attribute (`tags = { ... }`), a block whose
-/// attributes are the map (`endpoints { s3 = "..." }`), or the [key]
-/// attribute of a block (`default_tags { tags = { ... } }`).
 final class _StringMap extends _ProviderArg {
   const _StringMap(super.param, {this.key});
 
   final String? key;
 }
 
-/// Nested blocks as [className] instances (`assume_role { ... }`); a list
-/// when [repeated], else the one block.
 final class _Blocks extends _ProviderArg {
   const _Blocks(
     super.param,
@@ -225,9 +154,6 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'email': _Scalar('email'),
     'user_agent_operator_suffix': _Scalar('userAgentOperatorSuffix'),
   }, kCloudflareProviderVersionConstraint),
-  // Credential arguments (access_key, secret_key, token,
-  // assume_role_with_web_identity) are absent on purpose: they drop with a
-  // warning and never reach Dart.
   'aws': _ProviderRecipe('terradart_aws', 'AwsProvider', {
     'region': _Scalar('region'),
     'profile': _Scalar('profile'),
@@ -463,7 +389,6 @@ const _providerRecipes = <String, _ProviderRecipe>{
   ),
 };
 
-/// `google.eu` when [expr] is that traversal or the string `"google.eu"`.
 String? _aliasLabel(Expr expr) {
   if (expr is TraversalExpr && expr.steps.every((s) => s is AttrStep)) {
     final path = expr.dottedPath;
@@ -476,8 +401,6 @@ String? _aliasLabel(Expr expr) {
   return null;
 }
 
-/// Alias labels a resource, data source or module-call `providers` value
-/// names. Keys of that map belong to the called module, not this one.
 Iterable<String> _referencedAliasLabels(TfModule module) sync* {
   for (final block in [...module.resources, ...module.dataSources]) {
     final provider = block.argument('provider');
@@ -496,7 +419,6 @@ Iterable<String> _referencedAliasLabels(TfModule module) sync* {
   }
 }
 
-/// Labels listed in a `required_providers` entry's `configuration_aliases`.
 Iterable<String> _configurationAliasLabels(Expr pinned) sync* {
   final raw = objectMap(pinned)?['configuration_aliases'];
   if (raw is! TupleExpr) return;
@@ -506,7 +428,6 @@ Iterable<String> _configurationAliasLabels(Expr pinned) sync* {
   }
 }
 
-/// Meta-arguments and blocks a resource may carry that have no synth path.
 const _blockedMeta = <String, String>{
   'dynamic': 'dynamic blocks have no synth path',
   'provisioner': 'provisioner blocks have no synth path',
@@ -538,51 +459,23 @@ final class _Emitted {
   final String address;
   final String tfType;
   final String dartName;
-
-  /// The typed API shapes the call's arguments use.
   final Set<MigratedShape> shapes;
-
-  /// The generated types the call's arguments construct.
   final Set<String> types;
-
-  /// True for an `addModule(...)` statement: [package] / [barrel] are empty
-  /// and the type prefix implies no provider.
   final bool isModule;
-
-  /// True for a data source, which [barrel] and `data` both export.
   final bool isData;
-
-  /// Provider configurations a module call's `providers = { ... }` map
-  /// selects (`google`, `google.eu`), which the Stack must register.
   final List<String> moduleProviders;
-
-  /// The generated wrapper library the call's class comes from
-  /// (`service_account_module`), or `null` for a bare `ModuleCall`.
   final String? wrapperFile;
-
-  /// The provider the block's `provider` meta-argument selects (`google`
-  /// of `google.eu`, `google-beta`), or `null` for the type's default.
   final String? providerName;
-
-  /// The configuration the block's `provider` meta-argument selects
-  /// (`google.eu`), or `null` for the type's default.
   final String? providerLabel;
-
-  /// `add(...)` without the `final x =` prefix.
   final String call;
-
-  /// True when the block read the Stack's `workspace` parameter.
   final bool usesWorkspace;
   final Set<String> usedTargets;
   final Set<String> usedVariables;
-
-  /// Declared variables whose handle local the block reads.
   final Set<String> usedHandles;
   final String package;
   final String barrel;
 }
 
-/// Emits a [TfModule] as one Stack class.
 final class StackEmitter {
   StackEmitter(
     this.module, {
@@ -598,77 +491,38 @@ final class StackEmitter {
     this.reservedNames = const {},
     this.liftWorkspace = false,
     this.carryComments = true,
-  });
+  }) {
+    assert(
+      _providerRecipes.entries.every(
+        (e) => !e.value.args.keys.any(
+          (k) => (droppedProviderArguments[e.key] ?? const {}).contains(k),
+        ),
+      ),
+      'Provider recipe must not model a dropped credential argument',
+    );
+  }
 
   final TfModule module;
   final EmitContext ctx;
   final String moduleName;
   final String stackClass;
-
-  /// `lib/<stack_file>.dart`, for the app-exports path.
   final String stackFile;
   final String version;
-
-  /// Child-module mode, for a directory a `module` block's `source` points
-  /// at: providers are registered without configuration so synth emits only
-  /// `required_providers`, and provider configurations and a backend found
-  /// in the module stay in Terraform. An alias a resource selects
-  /// (`provider = google.eu`) with no provider block here is registered
-  /// with `addConfigurationAlias` — the caller passes that configuration.
   final bool childModule;
-
-  /// Call name → the typed wrapper of the local module directory its
-  /// `source` points at, for the calls whose callee the scan resolved. A
-  /// call with no entry here becomes a bare `ModuleCall`.
   final Map<String, LocalModule> localModules;
-
-  /// `--merge-envs`: block address → top-level argument → the Dart
-  /// expression (`env.assetsName`) to emit in place of the literal this
-  /// environment writes, for arguments the environments disagree on.
-  /// Addressed as `variable.<name>`, `provider.<name>[.<alias>]` and
-  /// `terraform.backend` too.
   final Map<String, Map<String, String>> envValues;
-
-  /// Addresses that get a Dart local even when nothing in *this* module
-  /// reads them — another merged environment does.
   final Set<String> forceLocals;
-
-  /// Identifiers no Dart local may take (`env`, in a merged Stack).
   final Set<String> reservedNames;
-
-  /// `--lift-workspace`: `terraform.workspace` becomes the Stack's
-  /// `workspace` parameter, so the synthesized JSON names one workspace
-  /// instead of deferring to `terraform workspace select`.
   final bool liftWorkspace;
-
-  /// Carry each block's leading HCL comments into the Stack as `//` lines
-  /// above its statement. Off for a merged Stack, whose bodies are lined up
-  /// statement by statement across environments that may document the same
-  /// block differently.
   final bool carryComments;
 
-  /// `env.<field>` → the Dart type of the argument it filled.
   final _envSlotTypes = <String, String>{};
-
-  /// `env.<field>` → this module's Dart source for it, and the import its
-  /// type needs; both empty unless a lifted argument takes an enum.
   final _envValueSources = <String, String>{};
   final _envImports = <String>{};
-
-  /// Wrapper libraries the Stack ended up importing.
   final _moduleWrappers = <String>{};
-
-  /// Provider local names the Stack registers (`google`, `time`, ...).
   final _registeredProviders = <String>[];
-
-  /// Alias labels (`google.eu`) a child module receives from its caller
-  /// rather than configuring itself.
   final _configurationAliases = <String>{};
 
-  /// The Dart local holding each provider configuration a block may select,
-  /// by its label (`google.eu` → `googleEuProvider`). Reserved before any
-  /// block is named. Labels that camel-case alike (`google-beta`,
-  /// `google.beta`) get numbered handles.
   late final Map<String, String> _providerHandles = () {
     final handles = <String, String>{};
     final used = <String>{};
@@ -688,12 +542,7 @@ final class StackEmitter {
     return handles;
   }();
 
-  /// Blocks unrolled from a literal `count` / `for_each`, by their address
-  /// as written; filled by [_blocksInOrder].
   final _expansions = <String, Expansion>{};
-
-  /// Points references at the unrolled instances; empty when nothing was
-  /// unrolled.
   var _rewriter = ReferenceRewriter(const []);
 
   static const _localReason = 'locals stay in Terraform';
@@ -718,10 +567,6 @@ final class StackEmitter {
       }
     }
 
-    // A literal count / for_each is unrolled into one block per instance
-    // (#663). Translation stays resource-atomic: one instance that cannot
-    // become Dart rolls the whole block back to "kept as written", and the
-    // module is emitted again without that expansion.
     final refused = <String, String>{};
     late List<_BlockInfo> blocks;
     late Map<String, String> dartNames;
@@ -752,9 +597,6 @@ final class StackEmitter {
               dartType: value.dartType,
             ),
         });
-      // Resource-atomic translation to a fixpoint: a resource that
-      // references a kept resource may need to be kept too (depends_on), so
-      // re-run until the kept set is stable.
       kept = <String, String>{};
       while (true) {
         ctx.targets.clear();
@@ -830,8 +672,6 @@ final class StackEmitter {
         ctx.import(e.package, e.barrel);
       }
     }
-    // `data.dart` exports every data source of its package, so once one
-    // data source needs it, the others come from it too.
     for (final MapEntry(key: package, value: barrels) in dataBarrels.entries) {
       for (final barrel in barrels.contains('data') ? {'data'} : barrels) {
         ctx.import(package, barrel);
@@ -843,7 +683,6 @@ final class StackEmitter {
         body.add(StackStatement(tag: tag, text: text));
     final ctorInit = StringBuffer();
 
-    // --- providers ------------------------------------------------------
     final providerNames = <String>[
       ...module.requiredProviders.keys,
       for (final p in module.providers)
@@ -851,9 +690,6 @@ final class StackEmitter {
     ];
     for (final e in emitted.values) {
       if (e.isModule) {
-        // A module call implies no provider of its own — the child module
-        // declares what it needs; only an explicit `providers = { ... }`
-        // hands one of this Stack's configurations down.
         for (final label in e.moduleProviders) {
           final name = label.split('.').first;
           if (!providerNames.contains(name)) providerNames.add(name);
@@ -863,8 +699,6 @@ final class StackEmitter {
       final needed = e.providerName ?? _defaultProviderFor(e.package, e.tfType);
       if (!providerNames.contains(needed)) providerNames.add(needed);
     }
-    // Every configuration a translated block selects with `provider` /
-    // `providers` (`google.eu`, `google-beta`).
     final selectedProviders = {
       for (final e in emitted.values) ...[
         ?e.providerLabel,
@@ -874,8 +708,6 @@ final class StackEmitter {
         if (tag.startsWith('provider.')) tag.substring('provider.'.length),
     };
     final providerExprs = <String>[];
-    // A configuration a block selects is registered in the body instead,
-    // where `addProvider` hands back the instance the block passes.
     void register(
       String label,
       String expr, {
@@ -883,10 +715,6 @@ final class StackEmitter {
       bool external = false,
     }) {
       if (configurationAlias || external) {
-        // Always a body call: the constructor's `providers:` list cannot
-        // mark an entry as a configuration alias or an external
-        // configuration. A label nothing selects is not bound, so analyze
-        // does not see an unused local.
         final selected = selectedProviders.contains(label);
         final call = configurationAlias
             ? 'addConfigurationAlias($expr)'
@@ -980,8 +808,6 @@ final class StackEmitter {
       if (!externalDefault && (!childModule || configs.isEmpty)) {
         _migrated.add(MigratedItem(address: 'provider.$name'));
       }
-      // Every aliased configuration of the name is registered too, with
-      // its alias; a resource selects it by passing its instance.
       for (final p in aliases) {
         final alias = p.alias!;
         final label = '$name.$alias';
@@ -1019,8 +845,7 @@ final class StackEmitter {
       final alias = label.substring(dot + 1);
       final recipe = _providerRecipes[name];
       if (recipe == null) continue;
-      // A provider block in this module owns the alias; declaring it as a
-      // configuration alias as well is a Terraform error.
+      // Terraform rejects declaring a configuration_alias when the module also configures that provider alias.
       final configured = module.providers.any(
         (p) => p.name == name && p.alias == alias,
       );
@@ -1037,17 +862,11 @@ final class StackEmitter {
       _migrated.add(MigratedItem(address: 'provider.$label'));
     }
     ctorInit.write('providers: [${providerExprs.join(', ')}]');
-    // No provider registered means no resource translated and no known
-    // provider declared: a Stack would synthesize an empty configuration,
-    // so the directory stays Terraform and every block is kept as written.
-    // A root that only calls modules is the exception — it declares no
-    // provider of its own, and synth accepts that.
     final noStack =
         providerExprs.isEmpty &&
         !body.any((s) => s.tag.startsWith('provider.')) &&
         !emitted.values.any((e) => e.isModule);
 
-    // --- backend ----------------------------------------------------------
     final backendExpr = noStack
         ? _keptBackend(_noStackReason)
         : childModule
@@ -1058,7 +877,6 @@ final class StackEmitter {
         : _backend();
     if (backendExpr != null) ctorInit.write(', backend: $backendExpr');
 
-    // --- terraform settings ---------------------------------------------
     for (final t in module.terraform) {
       final values = objectMap(bodyAsObject(t.body)) ?? {};
       for (final key in values.keys) {
@@ -1088,7 +906,6 @@ final class StackEmitter {
       }
     }
 
-    // --- variables ------------------------------------------------------
     for (final v in module.variables) {
       if (noStack) {
         _keep('variable.${v.name}', _noStackReason);
@@ -1125,7 +942,6 @@ final class StackEmitter {
       }
     }
 
-    // --- outputs (resolved first: an output keeps its target's Dart local) --
     final outputStatements = <StackStatement>[];
     final defineOutputs = <OutputBlock>[];
     for (final o in module.outputs) {
@@ -1161,11 +977,8 @@ final class StackEmitter {
       _migrated.add(MigratedItem(address: 'output.${o.name}'));
     }
     referenced.addAll(_outputRefs);
-    // A local another environment reads keeps its `final x =` here too, so
-    // the merged Stack's bodies still line up statement for statement.
     referenced.addAll(forceLocals);
 
-    // --- resources and data sources -------------------------------------
     final commented = <String>{};
     final keptAt = <({int at, String address})>[];
     for (final b in blocks) {
@@ -1176,8 +989,6 @@ final class StackEmitter {
         continue;
       }
       if (noStack) {
-        // A directory whose only translatable block is a `module` call has
-        // no provider to register, so there is no Stack to hold it.
         _kept.add(KeptItem(address: b.address, reason: _noStackReason));
         continue;
       }
@@ -1187,8 +998,6 @@ final class StackEmitter {
         StackStatement(
           tag: b.address,
           text: '$assign${e.call};',
-          // One source block unrolled into instances documents them all
-          // once, above the first.
           comments: commented.add(b.sourceAddress)
               ? _blockComments[b.sourceAddress] ?? ''
               : '',
@@ -1209,8 +1018,6 @@ final class StackEmitter {
       );
     }
 
-    // --- moved: unrolled instances keep their state, and the module's own
-    // moved blocks follow their targets into the Stack ---------------------
     final movedFroms = <String>{};
     for (final ex in _expansions.values) {
       if (ex.isData) continue;
@@ -1238,9 +1045,6 @@ final class StackEmitter {
 
     body.addAll(outputStatements);
 
-    // A kept block the Stack still reads lives in the sidecar beside
-    // main.tf.json; synth accepts the reference once it is declared
-    // external. It takes the place the block had in the source.
     for (final (:at, :address) in keptAt.reversed) {
       final read = RegExp(
         '(?<![\\w.\\-])${RegExp.escape(address)}(?![\\w\\-])',
@@ -1255,7 +1059,6 @@ final class StackEmitter {
       );
     }
 
-    // --- everything else stays in Terraform ------------------------------
     for (final l in module.locals) {
       _keep('local.${l.name}', _localReason);
     }
@@ -1271,7 +1074,6 @@ final class StackEmitter {
       _warnings.add(w.toString());
     }
 
-    // --- assemble ---------------------------------------------------------
     final usesWorkspace = emitted.values.any((e) => e.usesWorkspace);
     final parameters = usesWorkspace ? '{required String workspace}' : '';
     final packages = ctx.imports.keys.toList()..sort();
@@ -1279,13 +1081,11 @@ final class StackEmitter {
         ? const <String>[]
         : (_moduleWrappers.toList()..sort());
     final imports = <String>[
-      // Every provider barrel re-exports terradart_core.
       if (packages.isEmpty)
         "import 'package:terradart_core/terradart_core.dart';",
       for (final p in packages)
         for (final barrel in (ctx.imports[p]!.toList()..sort()))
           "import 'package:$p/$barrel.dart';",
-      // The wrappers live beside the Stack in `lib/` of the same package.
       for (final w in wrappers) "import '$w.dart';",
     ];
     final src = StringBuffer()
@@ -1345,14 +1145,6 @@ final class StackEmitter {
     _kept.add(KeptItem(address: address, reason: reason));
   }
 
-  // -----------------------------------------------------------------------
-  // Comments
-  // -----------------------------------------------------------------------
-
-  /// Block address → the block's own leading HCL comments as Dart `//`
-  /// lines. A comment is the author's documentation of the resource: the
-  /// sidecar keeps it for a block that stays in Terraform, and the Stack
-  /// would otherwise be the one place it is lost.
   late final Map<String, String> _blockComments = !carryComments
       ? const {}
       : {
@@ -1362,10 +1154,6 @@ final class StackEmitter {
             'module.${c.name}': _dartComments(c.block),
         };
 
-  /// [block]'s leading comments as `//` lines, newline-terminated.
-  ///
-  /// The migrator's own `# terradart-migrate:` annotations are dropped: they
-  /// are not the author's, and a sidecar migrated again is full of them.
   static String _dartComments(Block block) {
     final out = <String>[];
     for (final comment in block.leadingComments) {
@@ -1380,8 +1168,6 @@ final class StackEmitter {
     return out.isEmpty ? '' : '${out.join('\n')}\n';
   }
 
-  /// The text of one HCL comment with its delimiters removed, one entry per
-  /// line.
   static List<String> _commentLines(Comment comment) {
     var text = comment.text.trim();
     if (comment.isBlock) {
@@ -1398,8 +1184,6 @@ final class StackEmitter {
         ),
       );
     }
-    // A `/* ... */` opening or closing on a line of its own leaves a blank
-    // one at each end; the prose between them is the comment.
     while (out.isNotEmpty && out.last.isEmpty) {
       out.removeLast();
     }
@@ -1409,13 +1193,6 @@ final class StackEmitter {
     return out;
   }
 
-  /// True when [block] sets an argument [recipe] does not model, other than
-  /// a credential.
-  ///
-  /// The whole configuration then stays in Terraform: splitting the modeled
-  /// arguments onto the Stack and the rest into the sidecar would emit two
-  /// provider blocks. Credentials are still dropped, with a warning, and
-  /// the sidecar omits them.
   bool _externalizeUnmodeled(
     _ProviderRecipe recipe,
     String providerName,
@@ -1450,9 +1227,6 @@ final class StackEmitter {
     return true;
   }
 
-  /// The named arguments of [recipe]'s constructor for the provider
-  /// configuration [block] (`alias` excluded); anything the constructor
-  /// cannot take is dropped with a warning naming [label].
   ({List<String> args, bool isConst}) _providerArgs(
     _ProviderRecipe recipe,
     String label,
@@ -1484,8 +1258,6 @@ final class StackEmitter {
     return (args: args, isConst: isConst);
   }
 
-  /// Dart source for [expr] read as [arg], or `null` (with a warning naming
-  /// [label] and the dotted [path]) when it is not a literal of that shape.
   String? _providerValue(
     _ProviderArg arg,
     Expr expr,
@@ -1521,8 +1293,7 @@ final class StackEmitter {
       case _StringMap(:final key):
         var map = objectMap(expr);
         if (key == null && expr is TupleExpr && expr.elements.length > 1) {
-          // Repeated map blocks (`endpoints { s3 = ... }` twice) are one
-          // map to the provider; a key set to two values has no one-map form.
+          // Terraform allows repeated map blocks (e.g. endpoints); merge them unless keys conflict.
           final merged = <String, Expr>{};
           for (final block in expr.elements) {
             final m = objectMap(block);
@@ -1580,15 +1351,8 @@ final class StackEmitter {
     }
   }
 
-  // -----------------------------------------------------------------------
-  // Blocks
-  // -----------------------------------------------------------------------
-
   _Emitted _emitBlock(_BlockInfo b, String dartName) {
     if (b.call != null) {
-      // Same guard as the resource path below: a body the rewriter could not
-      // point at the unrolled instances still names addresses that no longer
-      // exist, so the call stays in Terraform.
       final blocker = b.expansionBlocker;
       if (blocker != null) throw MigrateBlocker(blocker);
       return _emitModuleCall(b, dartName);
@@ -1602,15 +1366,12 @@ final class StackEmitter {
     }
     final entry = hit.entry;
     final manifest = hit.manifest;
-    // A count / for_each that could not be unrolled, or a reference to an
-    // instance that does not exist.
     final expansionBlocker = b.expansionBlocker;
     if (expansionBlocker != null) throw MigrateBlocker(expansionBlocker);
     final values = objectMap(bodyAsObject(b.body)) ?? {};
     for (final meta in _blockedMeta.keys) {
       if (values.containsKey(meta)) throw MigrateBlocker(_blockedMeta[meta]!);
     }
-    // Synth enforces sensitive fields on resources only; mirror that.
     final emitter = ValueEmitter(
       ctx,
       manifest,
@@ -1621,14 +1382,12 @@ final class StackEmitter {
       liftWorkspace: liftWorkspace,
     );
 
-    // Meta-arguments the base class takes.
     final extras = <String>[];
     String? providerName;
     String? providerLabel;
     final provider = values.remove('provider');
     if (provider != null) {
-      // `provider = google.west` is a traversal in HCL and the string
-      // "google.west" in tf.json; `google-beta` parses as one root either way.
+      // Terraform HCL writes provider as a traversal (google.west); tf.json writes a string.
       final selected = provider.constantString ?? hclSource(provider);
       final own = _defaultProviderFor(manifest.package, b.type);
       if (selected != own) {
@@ -1658,8 +1417,6 @@ final class StackEmitter {
                 'block with alias = "$alias"',
               );
             }
-            // The caller passes this alias. Synth emits it as
-            // configuration_aliases, not as a provider block.
             _configurationAliases.add(selected);
           }
         }
@@ -1689,8 +1446,6 @@ final class StackEmitter {
     level.checkClaimed();
     _envSlotTypes.addAll(emitter.envSlotTypes);
     _envValueSources.addAll(emitter.envValueSources);
-    // A constant typed as one of the package's enums needs the barrel that
-    // exports it wherever it is declared, not just here.
     if (emitter.envValueSources.isNotEmpty) {
       _envImports.add(
         "import 'package:${manifest.package}/${entry.barrel}.dart';",
@@ -1719,8 +1474,6 @@ final class StackEmitter {
     );
   }
 
-  /// The empty manifest a module call's inputs are emitted against: its
-  /// slots are plain scalars, so no enum or helper table is ever consulted.
   static const _moduleManifest = MigrateManifest(
     package: '',
     entries: [],
@@ -1728,19 +1481,9 @@ final class StackEmitter {
     enums: {},
   );
 
-  /// `addModule(...)` for one `module "<name>" { ... }` call.
-  ///
-  /// The call becomes the local module's generated wrapper when the scan
-  /// resolved its `source` to a directory in the tree, and a bare
-  /// [ModuleCall] otherwise (a registry or git module, or a local path the
-  /// scan did not see): either way the `source` is copied verbatim, so
-  /// Terraform resolves it exactly as before against the mirrored `tf-out/`
-  /// tree, and the plan address keeps its `module.<name>.` prefix.
   _Emitted _emitModuleCall(_BlockInfo b, String dartName) {
     final call = b.call!;
-    // `_blockedMeta` is not consulted here: `dynamic` / `provisioner` /
-    // `connection` / `timeouts` are not module meta-arguments, so a key of
-    // that name is an ordinary input of the called module.
+    // Terraform treats dynamic, provisioner, connection, and timeouts as ordinary module inputs, not meta-arguments.
     final values = objectMap(bodyAsObject(b.body)) ?? {};
     for (final meta in const ['count', 'for_each']) {
       if (values.containsKey(meta)) {
@@ -1792,15 +1535,10 @@ final class StackEmitter {
       extras.add('dependsOn: ${_dependsOn(dependsOn, emitter)}');
     }
 
-    // Every name in `ModuleCall.reservedInputNames` is consumed or blocked
-    // above, so what is left is the module's own variables — `provider`
-    // included, which is a resource meta-argument, not a module one.
     final local = localModules[call.name];
     final level = BodyLevel(values, path: '');
     final String ctor;
     if (local == null) {
-      // No wrapper: the inputs travel as an untyped `inputs` map, which is
-      // exactly what Terraform passes down.
       final inputs = <String>[];
       for (final key in values.keys) {
         final expr = emitter.emitSlot(_input(key, 'Object?'), level);
@@ -1822,8 +1560,6 @@ final class StackEmitter {
           '${local.className}(${extras.join(', ')}'
           '${args.isEmpty ? '' : ', ${args.join(', ')}'})';
     }
-    // An argument the module does not declare as a variable: Terraform would
-    // reject it, and the wrapper has no parameter for it.
     level.checkClaimed();
     _envSlotTypes.addAll(emitter.envSlotTypes);
     return _Emitted(
@@ -1843,8 +1579,6 @@ final class StackEmitter {
     );
   }
 
-  /// One module input as a manifest slot: always a `TfArg` scalar, since a
-  /// module's variables have no nested-block structure to recover.
   static MigrateSlot _input(
     String tfName,
     String dartType, {
@@ -1858,9 +1592,6 @@ final class StackEmitter {
     dartType: dartType,
   );
 
-  /// The `providers` of a module call (`{'google': googleEuProvider}`) — the
-  /// Stack's configurations
-  /// the call hands down, recorded in [selected] so they get registered.
   String _moduleProviders(Expr value, List<String> selected) {
     final m = objectMap(value);
     if (m == null) {
@@ -1914,17 +1645,8 @@ final class StackEmitter {
     return 'providers: {${entries.join(', ')}}';
   }
 
-  /// The Dart local of the provider configuration [label] (`google.eu`),
-  /// which the Stack then registers with `addProvider`.
   String _selectProvider(String label) => _providerHandles[label]!;
 
-  /// `addMoved(...)` statements for one of the module's own `moved` blocks.
-  ///
-  /// `to` is rewritten like any reference: a block that was unrolled yields
-  /// one move per instance (`from[key]` → the instance's address). The target
-  /// must be a resource the Stack registers (or lie in a `module.` call),
-  /// since Terraform rejects a move onto an address the configuration does
-  /// not declare — a block whose target stays in Terraform stays with it.
   List<String> _moved(
     OpaqueBlock o,
     Set<String> froms,
@@ -1957,7 +1679,6 @@ final class StackEmitter {
         targets.add(hclSource(to));
         moves.add((from, hclSource(to)));
       case TupleExpr(:final elements):
-        // `to` named a block that was unrolled: one move per instance.
         for (var i = 0; i < elements.length; i++) {
           final t = hclSource(elements[i]);
           targets.add(t);
@@ -2027,10 +1748,6 @@ final class StackEmitter {
     return '[${out.join(', ')}]';
   }
 
-  /// The `timeouts` argument, a `const TfTimeouts`, for a
-  /// `timeouts { ... }`
-  /// block. Terraform forbids references here — the values are literal Go
-  /// duration strings — so nothing but a constant translates.
   String _timeouts(Expr value) {
     final m = objectMap(value);
     if (m == null) throw MigrateBlocker('timeouts is not a block');
@@ -2069,7 +1786,6 @@ final class StackEmitter {
     return 'const TfTimeouts(${args.join(', ')})';
   }
 
-  /// The `Duration` source of [d], in its largest units.
   static String _durationSource(Duration d) {
     final parts = [
       ('hours', d.inHours),
@@ -2196,12 +1912,6 @@ final class StackEmitter {
     return '.new(${args.join(', ')})';
   }
 
-  // -----------------------------------------------------------------------
-  // Module-level blocks
-  // -----------------------------------------------------------------------
-
-  /// No backend on the Stack; the block, if any, stays as written (a child
-  /// module, whose backend Terraform ignores, or a directory with no Stack).
   String? _keptBackend(String reason) {
     if (module.backend != null) _keep('terraform.backend', reason);
     return null;
@@ -2217,8 +1927,6 @@ final class StackEmitter {
     final values = objectMap(bodyAsObject(b.body)) ?? {};
     final overrides =
         envValues['terraform.backend'] ?? const <String, String>{};
-    // A backend argument the merged environments disagree on becomes an
-    // `Env` constant, and the backend is no longer a compile-time constant.
     var isConst = true;
     String? arg(String param, String key) {
       final v = values[key];
@@ -2247,8 +1955,6 @@ final class StackEmitter {
               '${extra.map((k) => '"$k"').join(', ')}',
             );
           }
-          // A partial configuration — the values come from `terraform init
-          // -backend-config` — is the block with those keys left out.
           final bucket = arg('bucket', 'bucket');
           final prefix = arg('prefix', 'prefix');
           final args = <String>[?bucket, ?prefix];
@@ -2278,7 +1984,6 @@ final class StackEmitter {
             'skip_metadata_api_check': 'skipMetadataApiCheck',
             'skip_s3_checksum': 'skipS3Checksum',
           };
-          // As for gcs: what is missing comes from `-backend-config`.
           final args = <String>[];
           for (final entry in values.entries) {
             final param = params[entry.key];
@@ -2353,8 +2058,6 @@ final class StackEmitter {
     }
   }
 
-  /// The handle type of [v], or a [MigrateBlocker] when its `type` is not
-  /// readable.
   VariableType _variableType(VariableBlock v) {
     final values = objectMap(bodyAsObject(v.body)) ?? {};
     final defaultExpr = values['default'];
@@ -2365,8 +2068,6 @@ final class StackEmitter {
   static String _externalVariable(String name) =>
       'externalVariable(${dartString(name)});';
 
-  /// `variable<T>('name', ...);` for [v], or `null` (the reason recorded)
-  /// when it stays in Terraform.
   String? _variable(VariableBlock v, VariableType type) {
     final values = objectMap(bodyAsObject(v.body)) ?? {};
     final overrides =
@@ -2501,15 +2202,8 @@ final class StackEmitter {
   }
 
   final _outputRefs = <String>{};
-
-  /// The non-sensitive migrated outputs, in order, as `outputEnvironment`
-  /// passes them: the variable and the expression of its value.
   final _environment = <({String name, String variable, String value})>[];
 
-  /// `addDartDefineOutput(...)` for an output whose value is the
-  /// environment of migrated outputs — each key the variable of one, each
-  /// value its value (a `String`) or `jsonencode` of it — or `null` when
-  /// it is any other object.
   String? _dartDefineOutput(OutputBlock o) {
     final values = objectMap(bodyAsObject(o.body)) ?? {};
     final object = values['value'];
@@ -2549,8 +2243,6 @@ final class StackEmitter {
     return 'addDartDefineOutput(${args.join(', ')});';
   }
 
-  /// The source of [value] without the `${...}` of a template that is one
-  /// interpolation.
   static String _interpolated(Expr value) => switch (value) {
     TemplateExpr(
       parts: [
@@ -2561,19 +2253,8 @@ final class StackEmitter {
     _ => hclSource(value),
   };
 
-  // -----------------------------------------------------------------------
-  // Ordering
-  // -----------------------------------------------------------------------
-
-  /// Resources and data sources in an order where every Dart local is
-  /// declared before it is used: source order, moved only where a reference
-  /// or `depends_on` forces the target first.
   List<_BlockInfo> _blocksInOrder(Map<String, String> refused) {
     _expansions.clear();
-    // Names in use per (kind, type): every block as written, plus the
-    // instances of every block unrolled so far — so an instance name can
-    // collide neither with a sibling nor with another block's instance
-    // (`svc["api/0"]` and `svc_api[0]` would both be `svc_api_0`).
     final taken = <String, Set<String>>{};
     for (final d in module.dataSources) {
       taken.putIfAbsent('data.${d.type}', () => {}).add(d.name);
@@ -2663,9 +2344,6 @@ final class StackEmitter {
         isData: false,
       );
     }
-    // Module calls take part in the same ordering: a call may pass a
-    // resource's attribute down, and a resource may read one of its outputs.
-    // They are never unrolled — a `count` on a call is a blocker.
     for (final c in module.moduleCalls) {
       collected.add(
         _BlockInfo(
@@ -2680,7 +2358,6 @@ final class StackEmitter {
       );
     }
 
-    // Point every reference at the unrolled instances.
     _rewriter = ReferenceRewriter([for (final e in _expansions.values) e.item]);
     final all = <_BlockInfo>[];
     for (final b in collected) {
@@ -2700,7 +2377,6 @@ final class StackEmitter {
       for (final b in all)
         b.address: _references(b).where(index.containsKey).toSet(),
     };
-    // Kahn with source order as the tie-break.
     final out = <_BlockInfo>[];
     final done = <String>{};
     var progress = true;
@@ -2715,7 +2391,6 @@ final class StackEmitter {
         }
       }
     }
-    // A cycle (invalid Terraform) — append the rest in source order.
     for (final b in all) {
       if (!done.contains(b.address)) out.add(b);
     }
@@ -2753,8 +2428,7 @@ final class StackEmitter {
         case 'depends_on':
           _addAddresses(entry.value, out);
         case 'lifecycle':
-          // `replace_triggered_by` holds references in HCL (which `visit`
-          // sees) and address strings in tf.json.
+          // Terraform HCL uses references in replace_triggered_by; tf.json uses address strings.
           final replace = objectMap(entry.value)?['replace_triggered_by'];
           if (replace != null) _addAddresses(replace, out);
           visit(entry.value);
@@ -2767,9 +2441,6 @@ final class StackEmitter {
   }
 }
 
-/// Adds the block addresses [list] names to [out]: bare references
-/// (`google_pubsub_topic.t`, HCL) or address strings (tf.json), as
-/// `depends_on` and `lifecycle.replace_triggered_by` write them.
 void _addAddresses(Expr list, Set<String> out) {
   if (list is! TupleExpr) return;
   for (final e in list.elements) {
@@ -2780,8 +2451,6 @@ void _addAddresses(Expr list, Set<String> out) {
   }
 }
 
-/// [source] parsed as a reference (`google_pubsub_topic.t`), or `null` when
-/// it is absent or not one.
 TraversalExpr? _traversalOf(String? source) {
   if (source == null) return null;
   try {
@@ -2792,10 +2461,6 @@ TraversalExpr? _traversalOf(String? source) {
   }
 }
 
-/// The provider a block of [tfType] from [package] uses without a `provider`
-/// argument: the type prefix (`google_pubsub_topic` → `google`, `time_sleep`
-/// → `time`), or `google-beta` for the beta package, whose types keep the
-/// `google_` prefix.
 String _defaultProviderFor(String package, String tfType) =>
     package == 'terradart_google_beta'
     ? 'google-beta'
@@ -2820,25 +2485,12 @@ final class _BlockInfo {
   final CatalogKind kind;
   final Body body;
   final bool isData;
-
-  /// Non-null when this "block" is a `module` call rather than a resource or
-  /// data source: it takes part in the ordering the same way, but is emitted
-  /// as `addModule(...)`.
   final ModuleCallBlock? call;
-
-  /// The address this block had before its `count` / `for_each` was
-  /// unrolled (`google_x.y[0]`), or `null` for a block written as-is.
   final String? expandedFrom;
 
-  /// The address of the block as written: [address], or the block an
-  /// instance was unrolled from with its key dropped.
   String get sourceAddress =>
       expandedFrom?.replaceFirst(RegExp(r'\[.*\]$'), '') ?? address;
 
-  /// Why this block cannot become Dart, decided before emission: a
-  /// `count` / `for_each` that is not a literal, an instance of it that did
-  /// not translate, or a reference to an instance another block does not
-  /// declare.
   final String? expansionBlocker;
 
   _BlockInfo withBody(Body body) => _BlockInfo(

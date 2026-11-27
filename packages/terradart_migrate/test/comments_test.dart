@@ -2,11 +2,6 @@ import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
-// Comment carry-over (#672). A block's leading HCL comments are the author's
-// documentation of the resource: the sidecar keeps them for a block that
-// stays in Terraform, and the Stack used to be the one place they were lost.
-// They now sit above the `add(...)` the block became.
-
 String _stack(String body) => migrateModule(
   TfModule.fromHcl(body, fileName: 'main.tf'),
   name: 'demo',
@@ -60,15 +55,11 @@ resource "google_pubsub_topic" "t" {
 ''');
       expect(source, contains('// A topic per region.'));
       expect(source, contains('// Fanned out from one publisher.'));
-      // The delimiters are not prose, and neither is the blank line they sat
-      // on: only the text between them comes across.
       expect(source, isNot(contains('/*')));
       expect(source, isNot(contains('* A topic')));
     });
 
     test("the migrator's own annotations never come back", () {
-      // What a sidecar carries above every kept block, which a second
-      // migration reads as its input.
       final source = _stack('''
 # terradart-migrate: no curated factory for resource type "x" (request curation)
 # A real comment under it still carries.
@@ -108,8 +99,6 @@ resource "google_pubsub_topic" "t" {
     });
 
     test('a merged Stack carries none', () {
-      // Two environments may document the same block differently, and the
-      // merge lines their bodies up statement by statement.
       String env(String note) =>
           '''
 # $note

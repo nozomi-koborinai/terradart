@@ -113,8 +113,6 @@ final class LocalModule {
   }
 }
 
-/// Parameter names [ModuleCall]'s own constructor takes, which an input may
-/// not shadow.
 const _reservedParameters = {
   'localName',
   'source',
@@ -126,8 +124,6 @@ const _reservedParameters = {
   'inputs',
 };
 
-/// `ModuleCall` members (and inherited ones) a generated getter may not
-/// shadow.
 const _reservedMembers = {
   ..._reservedParameters,
   'output',
@@ -173,7 +169,6 @@ LocalModule localModuleOf(TfModule module, {required String name}) {
     );
   }
 
-  // Required inputs first so the constructor reads like the module's docs.
   inputs.sort((a, b) {
     if (a.required == b.required) return 0;
     return a.required ? -1 : 1;
@@ -253,10 +248,6 @@ String renderModuleWrapper(LocalModule m, {required String version}) {
   return b.toString();
 }
 
-/// The `ModuleCall` meta-arguments every wrapper forwards. `count` and
-/// `for_each` are left out on purpose: a call carrying one is addressed
-/// `module.<name>[0]`, which no output getter of the wrapper spells, so such
-/// calls stay in Terraform.
 const _metaParameters = [
   'required super.source',
   'super.version',
@@ -264,14 +255,8 @@ const _metaParameters = [
   'super.dependsOn',
 ];
 
-/// `type = string` → `String`. Terraform's other constraints — collections,
-/// objects, `any` — have no single Dart payload, so they stay `Object?`:
-/// `TfArg.literal` carries the JSON value and `TfArg.expression` the
-/// Terraform expression either way.
 String _dartTypeOf(Expr? type) {
   if (type == null) return 'Object?';
-  // A bare `string` / `number` / `bool` constraint parses as a traversal, so
-  // its source text is the constraint.
   final text = (type.constantString ?? hclSource(type)).trim();
   return switch (text) {
     'string' => 'String',
@@ -281,7 +266,6 @@ String _dartTypeOf(Expr? type) {
   };
 }
 
-/// A unique lowerCamel identifier for [tfName], avoiding [used].
 String _unique(String tfName, Set<String> used, String suffix) {
   var candidate = lowerCamel(tfName);
   if (!isDartIdentifier(candidate) || used.contains(candidate)) {
@@ -297,7 +281,6 @@ String _unique(String tfName, Set<String> used, String suffix) {
   return attempt;
 }
 
-/// [text] as one doc-comment line.
 String _docLine(String text) {
   final flat = text.replaceAll(RegExp(r'\s+'), ' ').trim();
   return flat.length <= 68 ? flat : '${flat.substring(0, 65)}...';

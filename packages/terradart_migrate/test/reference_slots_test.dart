@@ -4,8 +4,6 @@ import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
-// A `RefTo<GoogleXNetwork>` argument that emits `self_link`, and a list of
-// them, on a made-up resource; the network has a data source twin.
 const _manifest = MigrateManifest(
   package: 'terradart_google',
   entries: [

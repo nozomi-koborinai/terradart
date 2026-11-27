@@ -209,8 +209,6 @@ final class MigratedProject {
     return b.toString();
   }
 
-  /// The `terradart plan` that plans one root of the package, or `null`
-  /// when the command cannot pick one out.
   String? _planCommand() {
     for (final m in merged) {
       if (m.isMerged) return 'terradart plan --env ${m.envs.first.member}';
@@ -219,9 +217,6 @@ final class MigratedProject {
       for (final m in modules)
         if (m.stack.hasStack) m,
     ];
-    // Without runEnvironments, `terradart plan` plans tf-out/ itself, and
-    // `--env <name>` the one directory under it whose name matches,
-    // ignoring case and punctuation.
     if (written.length == 1 ||
         written.any((m) => m.dir.isRoot && m.terraformDir == 'tf-out')) {
       return 'terradart plan';
@@ -470,11 +465,6 @@ MigratedProject migrateTree(
         })
       >[];
   final packages = <String>{};
-  // The Dart-side interface of every directory some `module` block calls:
-  // its `variable` blocks are the wrapper's parameters, its `output` blocks
-  // the wrapper's getters.
-  // A module that declares neither a variable nor an output has nothing to
-  // type, so its calls keep the bare `ModuleCall` and no wrapper is written.
   final interfaces = <String, LocalModule>{};
   for (final m in tree.modules) {
     if (m.callers.isEmpty) continue;
@@ -486,13 +476,10 @@ MigratedProject migrateTree(
       if (interfaces[call.value] != null) call.key: interfaces[call.value]!,
   };
 
-  // --- merged environment groups (--merge-envs) --------------------------
   final mergedGroups = <MergedEnvironment>[];
   final mergedOf = <String, MergedEnvironment>{};
   final memberOf = <String, String>{};
   if (mergeEnvs) {
-    // Names the modules keeping a Stack of their own already hold; the roots
-    // being merged give theirs up.
     final taken = <String>{
       for (final m in tree.modules)
         if (m.environment == null ||
@@ -565,7 +552,6 @@ MigratedProject migrateTree(
       stack.report,
       version: packageVersion,
     );
-    // A merged root's Stack is written once for the whole group, below.
     if (stack.hasStack && merged == null) {
       files['lib/${stack.stackFile}.dart'] = stack.source;
     }
@@ -660,8 +646,6 @@ MigratedProject migrateTree(
   return project;
 }
 
-/// A unique module name per directory: the base name, extended with parent
-/// directory names on collision (`envs_dev`), then a numeric suffix.
 Map<String, String> _moduleNames(ModuleTree tree, String projectName) {
   final out = <String, String>{};
   final used = <String>{};
@@ -685,8 +669,6 @@ Map<String, String> _moduleNames(ModuleTree tree, String projectName) {
   return out;
 }
 
-/// A unique `Env` member per environment root: the directory's base name,
-/// extended with parent directory names on collision, then a counter.
 Map<String, String> _envMembers(List<ModuleDir> roots) {
   final out = <String, String>{};
   final used = <String>{...envMemberNames};
@@ -706,8 +688,6 @@ Map<String, String> _envMembers(List<ModuleDir> roots) {
   return out;
 }
 
-/// The merged Stack's names, avoiding the file stems [taken] by the modules
-/// that keep a Stack of their own.
 ({String stackClass, String stackFile}) _mergedStackNames(
   String base,
   Set<String> taken,

@@ -5,12 +5,6 @@ import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
-// `--merge-envs` (#668). Two environment roots go in, one Stack taking an
-// `Env` enum comes out — or a refusal naming what stopped it. `format:
-// false` keeps one statement per line so the substring checks stay readable;
-// tool/migrate_fixture_gates.dart proves the merged Stack synthesizes, per
-// environment, exactly what one Stack each did.
-
 MergedEnvironment _merge(
   Map<String, String> envs, {
   bool liftWorkspace = false,
@@ -48,7 +42,6 @@ terraform {
 $body
 ''';
 
-/// A bucket whose name differs per environment, and nothing else.
 String _bucket(String name) =>
     '''
 resource "google_storage_bucket" "assets" {
@@ -79,7 +72,6 @@ void main() {
       expect(merged.source, contains('AppStack({required this.env})'));
       expect(merged.source, contains('final Env env;'));
       expect(merged.source, contains('name: .literal(env.assetsName)'));
-      // The block itself is written once, not once per environment.
       expect('name: .literal'.allMatches(merged.source), hasLength(1));
       expect(merged.source, contains("import 'env.dart';"));
     });
@@ -101,7 +93,6 @@ void main() {
       expect(merged.stacks.keys, unorderedEquals(['dev', 'prod']));
       for (final stack in merged.stacks.values) {
         expect(stack.report.isComplete, isTrue);
-        // The Stack itself is written once for the group.
         expect(stack.source, isEmpty);
       }
     });
@@ -139,7 +130,6 @@ ${_bucket('a')}
           'variable.region.default',
         ]),
       );
-      // A value from the environment is no longer a compile-time constant.
       expect(m.source, contains('GoogleProvider(project: env.googleProject)'));
       expect(m.source, contains('GcsBackend(bucket: env.backendBucket)'));
       expect(
@@ -178,8 +168,6 @@ resource "google_storage_bucket" "backups" {
     });
 
     test('a local another guarded block reads is declared ahead of the if', () {
-      // `backups` is read by a block that lands in a later `if`, because the
-      // module call between them is shared.
       const shared = '''
 resource "google_storage_bucket_iam_member" "shared" {
   bucket = google_storage_bucket.assets.name
@@ -212,8 +200,6 @@ resource "google_storage_bucket_iam_member" "backups_reader" {
   });
 
   group('merge-envs: enum arguments', () {
-    // A differing enum member is a scalar in HCL and a typed constant in
-    // Dart: the enum's own type, and the barrel that exports it.
     final merged = _merge({
       for (final e in {'dev': 'STANDARD', 'prod': 'NEARLINE'}.entries)
         e.key:
@@ -243,7 +229,6 @@ resource "google_storage_bucket" "assets" {
       expect(merged.envSource, contains('assetsStorageClass: .standard'));
       expect(merged.envSource, contains('assetsStorageClass: .nearline'));
       expect(merged.envSource, isNot(contains("'NEARLINE'")));
-      // The enum's own barrel, so the file compiles on its own.
       expect(
         merged.envSource,
         contains("import 'package:terradart_google/storage.dart';"),
@@ -268,7 +253,6 @@ ${_bucket('a')}
       expect(m.refusal, contains('sensitive'));
       expect(m.fields, isEmpty);
       expect(m.source, isEmpty);
-      // The environments still have a Stack each.
       expect(m.stacks['dev']!.report.isComplete, isTrue);
     });
 
@@ -345,11 +329,6 @@ ${_bucket('a')}
     });
 
     test('a lifted value the emitter cannot read explains itself', () {
-      // `aws_s3_bucket`'s deprecated `object_lock_configuration` is a
-      // passthrough argument: the factory takes its JSON verbatim, so there
-      // is no typed parameter to read a constant from, and the plan's lift
-      // goes unused. The refusal says so instead of reporting a bare
-      // difference.
       String body(String value) =>
           '''
 terraform {

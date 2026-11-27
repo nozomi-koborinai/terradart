@@ -1,33 +1,9 @@
-/// Literal `count` / `for_each` unrolling (#663).
-///
-/// A Stack registers one Terraform resource per `add(...)`, so a block with
-/// `count` or `for_each` cannot be translated as written. It can be unrolled:
-/// one resource per instance, `google_x.y[0]` becoming `google_x.y_0` and
-/// `google_x.y["eu"]` becoming `google_x.y_eu`, with a `moved` entry per
-/// instance so the existing state follows the rename and `terraform plan`
-/// shows moves, not replacements. Only a *literal* count or for_each can be
-/// unrolled — the instance set must be known without evaluating anything.
-///
-/// Two rewrites make that work:
-///
-/// - [expandBlock] produces the instance bodies, with `count.index`,
-///   `each.key` and `each.value` substituted (in parsed expressions and in
-///   the verbatim text of expressions the shallow parser keeps raw) and the
-///   meta-argument dropped;
-/// - [ReferenceRewriter] points every reference in the module at the new
-///   addresses: `google_x.y[0].id` → `google_x.y_0.id`, `google_x.y[*].id`
-///   → `[google_x.y_0, google_x.y_1][*].id`, a bare `google_x.y` → the tuple
-///   (count) or object (for_each) of its instances — the value Terraform
-///   gave the expression before.
-library;
-
 import 'package:terradart_hcl/terradart_hcl.dart';
 
 import '../report.dart';
 import 'blocker.dart';
 import 'tf_expr.dart';
 
-/// A block unrolled into one body per instance.
 final class Expansion {
   const Expansion({
     required this.item,
@@ -37,27 +13,15 @@ final class Expansion {
     required this.bodies,
   });
 
-  /// Addresses and keys, as the report lists them.
   final ExpandedItem item;
-
   final String type;
   final String name;
   final bool isData;
-
-  /// One substituted body per [ExpandedItem.instances] entry, meta-arguments
-  /// removed.
   final List<Body> bodies;
 
   String get address => item.address;
 }
 
-/// Unrolls a resource or data block whose `count` / `for_each` is a literal.
-///
-/// Returns `null` when the block has neither meta-argument. Throws
-/// [MigrateBlocker] when it has one that cannot be unrolled: a value that is
-/// not a literal, no instance at all, or an instance name that collides with
-/// a name already in use for the same kind and type ([siblingNames]: the
-/// blocks as written and the instances of blocks unrolled before this one).
 Expansion? expandBlock({
   required String type,
   required String name,
@@ -149,10 +113,8 @@ Expansion? expandBlock({
   );
 }
 
-/// JSON syntax writes expressions as strings — `"for_each": "${toset([...])}"`
-/// — which decode to a template holding one interpolation; this is that
-/// interpolation's expression. Any other expression is returned unchanged.
 Expr _unwrapInterpolation(Expr e) {
+  // Terraform JSON encodes expressions as single-interpolation strings (e.g. "${toset([...])}").
   if (e is TemplateExpr && e.parts.length == 1) {
     final part = e.parts.single;
     if (part is TemplateInterpolation) return part.expr;
@@ -160,8 +122,6 @@ Expr _unwrapInterpolation(Expr e) {
   return e;
 }
 
-/// The instance count a literal `count` declares, or `null`. A whole-number
-/// string counts too: Terraform converts `"2"` to a number.
 int? _countLiteral(Expr count) {
   final e = _unwrapInterpolation(count);
   final value = e is LiteralExpr ? e.value : e.constantString;
@@ -170,6 +130,7 @@ int? _countLiteral(Expr count) {
       return i;
     case final double d:
       return d == d.truncateToDouble() ? d.toInt() : null;
+    // Terraform coerces whole-number strings (e.g. "2") to numbers.
     case final String s:
       return int.tryParse(s.trim());
     default:
@@ -179,9 +140,6 @@ int? _countLiteral(Expr count) {
 
 final _toset = RegExp(r'^toset\((.*)\)$', dotAll: true);
 
-/// The `(key, value)` pairs a literal `for_each` declares: an object literal
-/// with plain keys, or `toset([...])` over string literals (each string is
-/// its own value, as `each.value` is for a set). `null` for anything else.
 List<({String key, Expr value})>? _forEachLiteral(Expr forEach) {
   final e = _unwrapInterpolation(forEach);
   switch (e) {
@@ -215,25 +173,17 @@ List<({String key, Expr value})>? _forEachLiteral(Expr forEach) {
   }
 }
 
-/// `0` or `"eu"` — the key as Terraform writes it inside `[...]`.
 String _keyText(Object key) => key is String ? _quote(key) : key.toString();
 
 String _quote(String s) =>
     '"${s.replaceAll(r'\', r'\\').replaceAll('"', r'\"')}"';
 
-/// The name suffix for an instance key: the index, or the key with every
-/// character Terraform does not allow in a name replaced by `_`.
 String _suffixFor(Object key) {
   if (key is! String) return key.toString();
   final cleaned = key.replaceAll(RegExp(r'[^A-Za-z0-9_-]'), '_');
   return cleaned.isEmpty ? '_' : cleaned;
 }
 
-// ---------------------------------------------------------------------------
-// count.index / each.key / each.value substitution
-// ---------------------------------------------------------------------------
-
-/// Substitutes the per-instance symbols of one instance into a body.
 final class _Substitution {
   _Substitution.count(int index) : _index = index, _key = null, _value = null;
 
@@ -250,16 +200,10 @@ final class _Substitution {
   static final _eachKey = RegExp(r'(?<![\w.])each\.key(?![\w])');
   static final _eachValue = RegExp(r'(?<![\w.])each\.value(?![\w])');
 
-  /// `each.value.attr`, `each.value["key"]`, `each.value[0]` — one step into
-  /// the value, substituted directly when the value is a literal object or
-  /// tuple holding that item.
   static final _eachValueStep = RegExp(
     r'(?<![\w.])each\.value(?:\.([A-Za-z_][\w-]*)|\["((?:[^"\\]|\\.)*)"\]|\[(\d+)\])',
   );
 
-  /// [body] with every expression substituted; [topLevel] drops the
-  /// `count` / `for_each` attribute itself (a nested block may legitimately
-  /// hold an argument of that name).
   Body body(Body body, {required bool topLevel}) => Body(
     [
       for (final entry in body.entries)
@@ -356,12 +300,9 @@ final class _Substitution {
       }
     }
     if (!changed) return t;
-    // The parts changed, so the heredoc body must be re-rendered from them.
     return TemplateExpr(parts, t.range, delimiter: t.delimiter, flush: t.flush);
   }
 
-  /// The text an interpolation of a substituted literal folds into, or
-  /// `null` when the substituted expression is not a primitive literal.
   static String? _foldedText(Expr e) {
     if (e is! LiteralExpr) return null;
     return switch (e.value) {
@@ -393,9 +334,6 @@ final class _Substitution {
     return t;
   }
 
-  /// [base] with the remaining traversal [rest] applied: a literal object or
-  /// tuple is indexed directly, anything else becomes the parenthesised
-  /// source text with the steps appended.
   Expr _applySteps(Expr base, List<TraversalStep> rest, TraversalExpr origin) {
     if (rest.isEmpty) return base;
     final step = rest.first;
@@ -423,7 +361,6 @@ final class _Substitution {
     return reparse(text, origin.range, origin);
   }
 
-  /// The raw source text with the instance symbols substituted.
   String _text(String source) {
     var out = source;
     if (_index != null) {
@@ -451,8 +388,6 @@ final class _Substitution {
     return out;
   }
 
-  /// [e] with every tuple and object rendered on one line, so a substituted
-  /// value reads as one expression inside the text it lands in.
   static Expr _compact(Expr e) => switch (e) {
     TupleExpr(:final elements, :final range) => TupleExpr([
       for (final x in elements) _compact(x),
@@ -465,7 +400,6 @@ final class _Substitution {
   };
 }
 
-/// `.name` / `[0]` / `["key"]` steps as source text.
 String _stepsText(List<TraversalStep> steps) => [
   for (final s in steps)
     switch (s) {
@@ -474,10 +408,6 @@ String _stepsText(List<TraversalStep> steps) => [
     },
 ].join();
 
-/// [source] parsed again after a textual rewrite — so a raw expression that
-/// became a plain reference (`google_x.y[0].id` after `count.index` → `0`)
-/// is classified as one — or a [RawExpr] of it. [unchanged] is returned when
-/// the text did not change.
 Expr reparse(String source, SourceRange range, Expr unchanged) {
   if (unchanged is RawExpr && unchanged.source == source) return unchanged;
   try {
@@ -489,12 +419,6 @@ Expr reparse(String source, SourceRange range, Expr unchanged) {
   }
 }
 
-// ---------------------------------------------------------------------------
-// References to unrolled instances
-// ---------------------------------------------------------------------------
-
-/// Rewrites references to unrolled blocks — in parsed expressions and in the
-/// verbatim text of raw ones or of blocks that stay in Terraform.
 final class ReferenceRewriter {
   ReferenceRewriter(Iterable<ExpandedItem> expansions)
     : _expansions = {for (final e in expansions) e.address: e};
@@ -514,9 +438,6 @@ final class ReferenceRewriter {
 
   bool get isEmpty => _expansions.isEmpty;
 
-  /// [body] with every reference rewritten. At the top level `depends_on`
-  /// and `lifecycle.replace_triggered_by` are address lists, where a bare
-  /// reference to an unrolled block spreads into its instances.
   Body body(Body body, {required bool topLevel}) => Body(
     [for (final entry in body.entries) _entry(entry, topLevel: topLevel)],
     body.range,
@@ -594,8 +515,6 @@ final class ReferenceRewriter {
     multiLine: object.multiLine,
   );
 
-  /// A `depends_on`-style list: references and, in tf.json, address strings.
-  /// A bare reference to an unrolled block becomes one entry per instance.
   Expr _addressList(Expr list) {
     if (list is! TupleExpr) return expr(list);
     final out = <Expr>[];
@@ -697,8 +616,6 @@ final class ReferenceRewriter {
     return TemplateExpr(parts, t.range, delimiter: t.delimiter, flush: t.flush);
   }
 
-  /// The block address [t] starts with and the number of steps it spans,
-  /// or `null` when [t] is not a resource / data-source reference.
   ({String address, int steps})? _base(TraversalExpr t) {
     final steps = t.steps;
     String? attr(int i) => i < steps.length && steps[i] is AttrStep
@@ -750,7 +667,6 @@ final class ReferenceRewriter {
     return null;
   }
 
-  /// `google_x.y_0.id` / `data.google_x.y_0.id`.
   static TraversalExpr _instanceTraversal(
     ExpandedInstanceItem instance,
     List<TraversalStep> rest,
@@ -765,8 +681,6 @@ final class ReferenceRewriter {
     ], range);
   }
 
-  /// The value a bare reference to the block had: the tuple of its
-  /// instances for `count`, the key → instance object for `for_each`.
   static Expr _collection(ExpandedItem expansion, SourceRange range) {
     if (!expansion.isForEach) {
       return TupleExpr([
@@ -784,13 +698,6 @@ final class ReferenceRewriter {
     ], range);
   }
 
-  /// [source] with every reference to an unrolled block rewritten as text:
-  /// `google_x.y[0]` and `google_x.y["eu"]` become the instance address,
-  /// `google_x.y[*]` / `google_x.y.*` splat the instance tuple (the values
-  /// of the instance object for `for_each`), and a bare `google_x.y` becomes
-  /// that tuple or object. With [strict], a reference to an instance the
-  /// block does not declare throws [MigrateBlocker]; otherwise it is left as
-  /// written.
   String text(String source, {required bool strict}) {
     if (isEmpty) return source;
     var out = source;
@@ -831,7 +738,6 @@ final class ReferenceRewriter {
   }
 }
 
-/// [source] parsed as a reference, or `null` when it is not one.
 TraversalExpr? _traversalOf(String source) {
   try {
     final e = parseHclExpression(source);

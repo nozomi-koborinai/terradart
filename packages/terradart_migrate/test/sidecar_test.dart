@@ -107,8 +107,6 @@ output "label" {
 
     test('resource-level blocks are copied verbatim, comments included', () {
       final leftover = sidecar.files[leftoverFileName]!;
-      // The counted subscription was unrolled (#663) and the moved block
-      // follows its migrated target into the Stack.
       expect(
         leftover,
         isNot(contains('resource "google_pubsub_subscription" "many"')),
@@ -131,8 +129,6 @@ output "label" {
           ),
         ),
       );
-      // The aliased configuration is registered on the Stack (#666), so it
-      // is not repeated here either.
       expect(leftover, isNot(contains('alias  = "west"')));
       expect(leftover, isNot(contains('resource "google_pubsub_topic" "t"')));
       expect(leftover, isNot(contains('project = "p"')));

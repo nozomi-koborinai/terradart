@@ -1,27 +1,13 @@
-/// Classification of `terradart_hcl` expressions for the emitter.
-///
-/// Nothing here evaluates anything: an expression is a constant, a single
-/// reference (`google_x.y.attr`, `data.google_x.y.attr`, `var.x`) or an
-/// opaque Terraform expression whose source text is copied verbatim.
-library;
-
 import 'package:terradart_hcl/terradart_hcl.dart';
 
-/// Re-applies HCL's template escapes so literal text survives another trip
-/// through Terraform: `${` → `$${`, `%{` → `%%{`.
 String escapeTemplateLiteral(String text) =>
     text.replaceAll(r'${', r'$${').replaceAll('%{', '%%{');
 
-/// The Terraform source of [expr] as it would be written in HCL — for a
-/// template, quoted.
 String hclSource(Expr expr) => switch (expr) {
   RawExpr(:final source) => source,
   _ => const HclWriter().writeExpr(expr),
 };
 
-/// The text of a template as it appears inside a tf.json string: literal
-/// parts re-escaped, interpolations and directives rebuilt around their
-/// expression source.
 String templateText(TemplateExpr template) {
   final buf = StringBuffer();
   for (final part in template.parts) {
@@ -55,16 +41,11 @@ String templateText(TemplateExpr template) {
   return buf.toString();
 }
 
-/// The constant string [expr] denotes, re-escaped for Terraform, or `null`
-/// when it is not a plain string.
 String? constantText(Expr expr) {
   final c = expr.constantString;
   return c == null ? null : escapeTemplateLiteral(c);
 }
 
-/// The tf.json value [expr] stands for: literals as themselves, templates as
-/// their text (constants re-escaped), tuples and objects recursively, and any
-/// other expression as a `${...}` interpolation string.
 Object? jsonValue(Expr expr) => switch (expr) {
   LiteralExpr(:final value) =>
     value is String ? escapeTemplateLiteral(value) : value,
@@ -77,8 +58,6 @@ Object? jsonValue(Expr expr) => switch (expr) {
   TraversalExpr() || RawExpr() => '\${${hclSource(expr)}}',
 };
 
-/// A reference `<root>.<...>` that is the whole value of [expr]: a bare
-/// traversal, or a template holding exactly one interpolation of one.
 TraversalExpr? singleReference(Expr expr) {
   if (expr is TraversalExpr) return expr;
   if (expr is TemplateExpr && expr.parts.length == 1) {
@@ -93,12 +72,10 @@ TraversalExpr? singleReference(Expr expr) {
   return null;
 }
 
-/// What a traversal points at.
 sealed class ReferenceTarget {
   const ReferenceTarget();
 }
 
-/// `google_pubsub_topic.orders.id` / `data.google_project.current.number`.
 final class BlockReference extends ReferenceTarget {
   const BlockReference({
     required this.address,
@@ -106,41 +83,28 @@ final class BlockReference extends ReferenceTarget {
     required this.isData,
   });
 
-  /// `google_pubsub_topic.orders` or `data.google_project.current`.
   final String address;
-
-  /// The attribute path after the block address (`id`, `spec[0].name`), or
-  /// empty for a reference to the block itself.
   final String attribute;
   final bool isData;
 }
 
-/// `var.name`.
 final class VariableReference extends ReferenceTarget {
   const VariableReference(this.name);
 
   final String name;
 }
 
-/// `module.events.topic_id` — an output of a `module` call.
 final class ModuleReference extends ReferenceTarget {
   const ModuleReference({required this.address, required this.attribute});
 
-  /// `module.events`.
   final String address;
-
-  /// The output read from it (`topic_id`), or empty for a reference to the
-  /// call itself (`depends_on = [module.events]`).
   final String attribute;
 }
 
-/// `local.x`, `each.key`, `path.module`, an instance of a counted `module`
-/// call, ... — anything the migrator does not resolve.
 final class OtherReference extends ReferenceTarget {
   const OtherReference();
 }
 
-/// Classifies [t]: a resource / data-source attribute, a variable, or other.
 ReferenceTarget classifyTraversal(TraversalExpr t) {
   final steps = t.steps;
   String attrPath(int from) {
@@ -181,8 +145,6 @@ ReferenceTarget classifyTraversal(TraversalExpr t) {
       final name = attrName(0);
       if (name == null) return const OtherReference();
       final attribute = attrPath(1);
-      // `module.x[0].y`: an instance of a counted call, which no `ModuleCall`
-      // spells — the expression stays verbatim.
       if (attribute.startsWith('[')) return const OtherReference();
       return ModuleReference(address: 'module.$name', attribute: attribute);
     case 'local' || 'each' || 'count' || 'path' || 'terraform' || 'self':
