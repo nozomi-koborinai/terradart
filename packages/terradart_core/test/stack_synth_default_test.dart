@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:terradart_core/src/app_exports.dart';
 import 'package:terradart_core/src/synth/synth_issue.dart';
@@ -56,15 +57,36 @@ void main() {
     });
 
     test('defaults outDir to tf-out when omitted', () async {
-      final stack = TestStack(providers: _providers);
-      final prev = Directory.current;
-      Directory.current = tempDir;
-      try {
-        await stack.writeTo();
-      } finally {
-        Directory.current = prev;
-      }
+      final script = File('${tempDir.path}/write_default.dart')
+        ..writeAsStringSync('''
+import 'package:terradart_core/terradart_core.dart';
 
+final class _Provider implements StackProvider {
+  const _Provider();
+  @override
+  String get providerName => 'google';
+  @override
+  String? get alias => null;
+  @override
+  String get source => 'hashicorp/google';
+  @override
+  String get versionConstraint => '~> 7.0';
+  @override
+  Map<String, Object?> get configArgs => const {};
+}
+
+final class _Stack extends Stack {
+  _Stack() : super(providers: const [_Provider()]);
+}
+
+Future<void> main() => _Stack().writeTo();
+''');
+      final packages = await Isolate.packageConfig;
+      final result = await Process.run(Platform.resolvedExecutable, [
+        '--packages=${packages!.toFilePath()}',
+        script.path,
+      ], workingDirectory: tempDir.path);
+      expect(result.exitCode, 0, reason: result.stderr as String);
       expect(
         await File('${tempDir.path}/tf-out/main.tf.json').exists(),
         isTrue,
