@@ -164,7 +164,7 @@ When every environment keeps its state in the same kind of backend and only its 
   );
   ```
 
-Two environments may share a directory only when one of these tells them apart; `runEnvironments` throws otherwise. `--workspace` and `--backend-config` on the command line override and extend them for one run.
+Two environments may share a directory only when one of these tells them apart; `runEnvironments` throws otherwise. `--backend-config` on the command line adds to an environment's `backendConfig` for one run. `--workspace` replaces the `workspace` that `runEnvironments` gives an environment for one run, because the next run selects that environment's own workspace again. Where `runEnvironments` gives no `workspace`, and with `runStack`, `terradart` selects no workspace. The directory then stays in the last workspace a `--workspace` selected, which the engine records in `.terraform/environment`. Pass `--workspace` on every run there, or `--workspace default` to go back.
 
 ## Moving an environment's state
 

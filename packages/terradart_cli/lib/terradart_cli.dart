@@ -12,6 +12,3 @@ library;
 
 export 'src/cli.dart' show runTerradart;
 export 'src/opentofu.dart' show kOpenTofuVersion;
-export 'src/process_runner.dart'
-    show CapturedProcess, IoProcessRunner, ProcessRunner;
-export 'src/workflow.dart' show Console;

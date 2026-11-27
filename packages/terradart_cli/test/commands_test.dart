@@ -251,6 +251,32 @@ void main() {
     expect(runner.engineCalls.last, 'output -json mobile_defines');
   });
 
+  test('--define-file is the exact path, with --env too', () async {
+    final project = TestProject.create();
+    final runner = FakeRunner(
+      synth: (args) => runEnvironmentsEntry(args, ['dev', 'stg']),
+      outputs: {'dart_defines': defines},
+    );
+    final r = await project.run([
+      'outputs',
+      '--env',
+      'stg',
+      '--define-file',
+      'app/dart_defines.stg.json',
+    ], runner);
+    expect(r.code, 0, reason: r.err);
+    expect(
+      Directory(project.path('app')).listSync().map((f) => p.basename(f.path)),
+      ['dart_defines.stg.json'],
+    );
+    expect(
+      r.out,
+      contains(
+        '--dart-define-from-file=${p.join('app', 'dart_defines.stg.json')}',
+      ),
+    );
+  });
+
   test('a named define output the Stack lacks fails before apply', () async {
     final project = TestProject.create(
       terradart: '  dart_defines:\n    output: mobile_defines\n',

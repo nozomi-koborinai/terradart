@@ -33,7 +33,7 @@ For a one-off run without installing globally, run `dart run terradart_cli:terra
 | `terradart synth` | the entry point, `dart run bin/infra.dart` |
 | `terradart validate` | synth, `init -backend=false`, `validate` — no credentials or state needed |
 | `terradart plan` | synth, `init`, `plan` |
-| `terradart apply` | synth, `init`, `apply`, then writes `.terradart/dart_defines.json` |
+| `terradart apply` | synth, `init`, `apply`, then writes the define file |
 | `terradart destroy` | synth, `init`, `destroy` |
 | `terradart outputs` | synth, `init`, then writes the define file from the applied state |
 | `terradart state migrate` | synth, then `init -migrate-state`: moves the state to the backend the Stack configures |
@@ -114,7 +114,7 @@ Future<void> main(List<String> args) =>
     );
 ```
 
-`terradart apply --env sandbox` synthesizes `tf-out/sandbox`, applies it, and writes `.terradart/dart_defines.sandbox.json`; a name that is not a member lists the ones that are. Without `--env`, `validate`, `plan`, `apply`, `destroy` and `outputs` take the `TERRADART_ENV` environment variable, else the `defaultEnv` given to `runEnvironments` (`Env.qa` above), else the only member, and prints which one and why (`qa`, the default). `apply` and `destroy` ask before running against an environment `TERRADART_ENV` or `defaultEnv` chose; `--auto-approve` skips the question. `runEnvironments` also takes a `workspace` or a partial `backendConfig` per environment, for environments that share one directory.
+`terradart apply --env sandbox` synthesizes `tf-out/sandbox`, applies it, and writes `.terradart/dart_defines.sandbox.json`; a name that is not a member lists the ones that are. Without `--env`, `validate`, `plan`, `apply`, `destroy` and `outputs` take the `TERRADART_ENV` environment variable, else the `defaultEnv` given to `runEnvironments` (`Env.qa` above), else the only member, and prints which one and why (`qa`, the default). The define file carries the environment's name however it was chosen, so a plain `terradart apply` here writes `.terradart/dart_defines.qa.json`; only `--define-file <path>` writes to the exact path it gets. `apply` and `destroy` ask before running against an environment `TERRADART_ENV` or `defaultEnv` chose; `--auto-approve` skips the question. `runEnvironments` also takes a `workspace` or a partial `backendConfig` per environment, for environments that share one directory.
 
 ## The agent skill
 

@@ -241,6 +241,32 @@ void main() {
       );
     });
 
+    test('keeps an explicit --define-file as given', () {
+      Target t(String file) => Request(
+        config('dart_defines:\n  file: ../app/defines.json\n'),
+        env: 'stg',
+        defineFile: file,
+      ).resolve(envs(['dev', 'stg'], 'stg'));
+      expect(
+        t('../app/dart_defines.json').defineFile,
+        abs('../app/dart_defines.json'),
+      );
+      expect(t('app.stg.json').defineFile, abs('app.stg.json'));
+      expect(
+        Request(config(), workspace: 'eu', defineFile: 'app.json')
+            .resolve(
+              Manifest(
+                environments: null,
+                selected: null,
+                roots: [mroot(null, 'tf-out')],
+              ),
+            )
+            .defineFile,
+        abs('app.json'),
+        reason: 'a workspace does not rename it either',
+      );
+    });
+
     test('picks the define output the Stack declares', () {
       Target t(List<String> defines) => Request(config()).resolve(
         Manifest(

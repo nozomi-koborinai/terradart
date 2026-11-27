@@ -40,6 +40,11 @@ Three ways to keep the states apart:
   - one directory, workspaces: workspace names the Terraform workspace to
     select after init (created on the first plan or apply).
 
---workspace and --backend-config override and extend them for one run.
+--backend-config adds to them for one run. --workspace replaces the
+member's workspace for one run; the next run selects the member's own
+again. Without a workspace from runEnvironments (runStack too), terradart
+selects none, and the directory stays in the last workspace --workspace
+selected (.terraform/environment): pass --workspace on every run there,
+or --workspace default to go back.
 
 More: https://terradart.dev/docs/environments/

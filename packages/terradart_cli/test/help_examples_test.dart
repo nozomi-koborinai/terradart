@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'dart:async';
 
 import 'package:terradart_cli/src/assets/help_topics.g.dart';
-import 'package:terradart_cli/terradart_cli.dart';
+import 'package:terradart_cli/src/cli.dart';
+import 'package:terradart_cli/src/workflow.dart';
 import 'package:test/test.dart';
 
 import 'support.dart';
@@ -13,7 +14,7 @@ Future<({int code, String out, String err})> terradart(
   final out = StringBuffer();
   final err = StringBuffer();
   final code = await runZoned(
-    () => runTerradart(
+    () => runTerradartWith(
       args,
       runner: FakeRunner(),
       console: Console(out: out.writeln, err: err.writeln),

@@ -89,9 +89,12 @@ final class Request {
         };
     String? file;
     if (output != null) {
-      final base = defineFile ?? config.defineFile ?? '.terradart/$output.json';
+      final base = config.defineFile ?? '.terradart/$output.json';
       file = p.normalize(
-        p.join(config.root, label == null ? base : _withInfix(base, label)),
+        p.join(
+          config.root,
+          defineFile ?? (label == null ? base : _withInfix(base, label)),
+        ),
       );
     }
     return Target._(

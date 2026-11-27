@@ -3,7 +3,9 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:path/path.dart' as p;
-import 'package:terradart_cli/terradart_cli.dart';
+import 'package:terradart_cli/src/cli.dart';
+import 'package:terradart_cli/src/process_runner.dart';
+import 'package:terradart_cli/src/workflow.dart';
 import 'package:test/test.dart';
 
 typedef Call = ({
@@ -276,7 +278,7 @@ final class TestProject {
     final out = StringBuffer();
     final err = StringBuffer();
     final lines = [...?input];
-    final code = await runTerradart(
+    final code = await runTerradartWith(
       args,
       runner: runner,
       console: Console(

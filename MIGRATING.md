@@ -83,6 +83,35 @@ registers `AzureProvider.unconfigured` in child-module mode and for
 | `AzureProvider(environment: 'usgovernment', resourceProviderRegistrations: 'none')` | `AzureProvider(environment: .usgovernment, resourceProviderRegistrations: .none)` |
 | `AzureProvider(features: null)` | `AzureProvider()` |
 
+### `terradart_cli` exports `runTerradart` and `kOpenTofuVersion` only
+
+**Breaking (`terradart_cli`).** `package:terradart_cli/terradart_cli.dart` no
+longer exports `Console`, `ProcessRunner`, `IoProcessRunner` or
+`CapturedProcess`, and `runTerradart` no longer takes `runner` or `console`.
+They were the CLI's test seams, and `Console.result` named a type the package
+never exported. Call `runTerradart` with the arguments alone, or run the
+command as a process to read its output.
+
+| Before | After |
+|---|---|
+| `runTerradart(['plan'], runner: const IoProcessRunner())` | `runTerradart(['plan'])` |
+| `runTerradart(['plan', '--json'], console: Console(out: print, err: print))` | `Process.run('dart', ['run', 'terradart_cli:terradart', 'plan', '--json'])` |
+
+### `--define-file` writes to the path you give
+
+**Breaking (`terradart_cli`).** When a command ran an environment or a
+workspace, `--define-file <path>` got its name before the extension, like the
+default file, so `--env stg --define-file app.stg.json` wrote
+`app.stg.stg.json`. The flag now writes to `<path>` exactly. The default
+`.terradart/<output>.json` and `terradart.dart_defines.file` in `pubspec.yaml`
+still take the environment's or workspace's name. Point the client build at the
+path the command gets:
+
+| Command | Wrote | Writes |
+|---|---|---|
+| `terradart outputs --env stg --define-file ../app/dart_defines.json` | `../app/dart_defines.stg.json` | `../app/dart_defines.json` |
+| `terradart apply --env stg --define-file app.stg.json` | `app.stg.stg.json` | `app.stg.json` |
+
 ### Azure provider 5.15.0
 
 **Breaking (`terradart_azure`).** Provider 5.15.0 adds `managed_rules.exception`

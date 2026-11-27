@@ -359,8 +359,9 @@ void main() {
       expect(lines, [
         'Dart define API_URL (Terraform output "api_url") is not set. Build '
             'the app with --dart-define-from-file=.terradart/dart_defines.json, '
-            'which `terradart apply` and `terradart outputs` write (with '
-            '--env <name>: .terradart/dart_defines.<name>.json).',
+            'which `terradart apply` and `terradart outputs` write (for '
+            'environment or workspace <name>: '
+            '.terradart/dart_defines.<name>.json).',
       ]);
     });
 

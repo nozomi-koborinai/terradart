@@ -225,7 +225,7 @@ It synthesizes, names the full source and target configuration (the bucket and p
 
 ## The define file
 
-After `apply`, a Stack with [`addDartDefineOutput()`](/docs/client-outputs/) gets its define file written to `.terradart/dart_defines.json` — `.terradart/dart_defines.<env>.json` with `--env` — and `terradart` prints the line that builds with it:
+After `apply`, a Stack with [`addDartDefineOutput()`](/docs/client-outputs/) gets its define file written to `.terradart/dart_defines.json`. When the command runs an environment, the environment's name goes before `.json` (`.terradart/dart_defines.<env>.json`), whether `--env`, `TERRADART_ENV`, `defaultEnv` or the only member chose it. Without an environment, a `--workspace` name goes there instead. `terradart` then prints the line that builds with the file:
 
 ```text
 Wrote 2 dart-defines to .terradart/dart_defines.stg.json
@@ -233,12 +233,12 @@ Wrote 2 dart-defines to .terradart/dart_defines.stg.json
   flutter build <target> --dart-define-from-file=.terradart/dart_defines.stg.json
 ```
 
-`terradart outputs --env stg` writes the same file from the applied state without planning or applying: the command for a client's build job, which can read the state but not change it. `.terradart/` gets its own `.gitignore`, so the file never reaches git. A Stack with several define outputs takes `--define-output <name>`; `--define-file <path>` writes elsewhere.
+`terradart outputs --env stg` writes the same file from the applied state without planning or applying: the command for a client's build job, which can read the state but not change it. `.terradart/` gets its own `.gitignore`, so the file never reaches git. A Stack with several define outputs takes `--define-output <name>`. `--define-file <path>` writes to that exact path, with no environment or workspace name added.
 
 When the app starts without the defines, the generated reader says how to get them:
 
 ```text
-Dart define API_URL (Terraform output "api_url") is not set. Build the app with --dart-define-from-file=.terradart/dart_defines.json, which `terradart apply` and `terradart outputs` write (with --env <name>: .terradart/dart_defines.<name>.json).
+Dart define API_URL (Terraform output "api_url") is not set. Build the app with --dart-define-from-file=.terradart/dart_defines.json, which `terradart apply` and `terradart outputs` write (for environment or workspace <name>: .terradart/dart_defines.<name>.json).
 ```
 
 ## The engine
@@ -318,7 +318,7 @@ terradart:
   opentofu_version: 1.13.1 # the release to download
   dart_defines:
     output: dart_defines # the addDartDefineOutput name
-    file: ../app/dart_defines.json # instead of .terradart/<output>.json
+    file: ../app/dart_defines.json # instead of .terradart/<output>.json; an env still adds .<env>
 ```
 
 Environments are not configured here; they are the enum `runEnvironments` takes ([Environments](/docs/environments/)).

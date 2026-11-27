@@ -24,6 +24,9 @@ Give every command --no-input --json:
     engine failed: error.engineExitCode is its code, and the reason is on
     stderr.
 
+terradart migrate never asks and rejects --no-input after migrate (exit
+64); its --json prints the --report as JSON, not this result.
+
 terradart also stops asking by itself in CI ($CI) and in a known agent's
 shell (AI_AGENT, CURSOR_AGENT, CLAUDECODE, GEMINI_CLI, CODEX_SANDBOX,
 CODEX_THREAD_ID, OPENCODE), and with TERRADART_NO_INPUT=1.
@@ -161,7 +164,12 @@ Three ways to keep the states apart:
   - one directory, workspaces: workspace names the Terraform workspace to
     select after init (created on the first plan or apply).
 
---workspace and --backend-config override and extend them for one run.
+--backend-config adds to them for one run. --workspace replaces the
+member's workspace for one run; the next run selects the member's own
+again. Without a workspace from runEnvironments (runStack too), terradart
+selects none, and the directory stays in the last workspace --workspace
+selected (.terraform/environment): pass --workspace on every run there,
+or --workspace default to go back.
 
 More: https://terradart.dev/docs/environments/
 ''',
@@ -298,10 +306,13 @@ read the state but not change it):
   terradart outputs --env stg
   terradart outputs --env stg --dry-run
 
-The file is .terradart/dart_defines.json, or
-.terradart/dart_defines.<env>.json with --env. --define-output <name> picks
-one of several define outputs, --define-file <path> writes elsewhere, and
-terradart.dart_defines in pubspec.yaml sets both for every run. .terradart/
+The file is .terradart/dart_defines.json. When the command runs an
+environment, its name goes before .json (.terradart/dart_defines.stg.json),
+whether --env, $TERRADART_ENV, defaultEnv or the only member chose it;
+without one, a --workspace name does the same. --define-output <name> picks
+one of several define outputs, and terradart.dart_defines in pubspec.yaml
+sets the output and the file for every run (the name goes into that file
+too). --define-file <path> writes to <path> exactly. .terradart/
 gets its own .gitignore, so the file never reaches git. --dry-run prints the
 file and its keys and writes nothing; --json lists the keys, never the
 values.

@@ -319,6 +319,22 @@ typedef MigratingReport = ({
   int beforeFailed,
 });
 
+/// The packages a cell compiles against: the doc-snippet packages, and
+/// `terradart_cli`, whose `runTerradart` a row can name.
+List<String> cellPackages(String root) => [
+  ...docSnippetPackages(File(p.join(root, 'pubspec.yaml')).readAsStringSync()),
+  'terradart_cli',
+];
+
+/// The imports of a cell that opens with none of its own: the doc-snippet
+/// barrels and `terradart_cli`.
+List<String> cellBarrels(String root) => [
+  ...docSnippetBarrels(
+    parseWrapLanes(File(p.join(root, providersPath)).readAsStringSync()),
+  ),
+  "import 'package:terradart_cli/terradart_cli.dart';",
+];
+
 const migratingTitle = '# Migrating terradart';
 
 const _undefinedNameCodes = {
@@ -349,9 +365,7 @@ Future<MigratingReport> checkMigratingCells(
   if (series == null) {
     return failed(['$at is neither `## Unreleased` nor `## <from> → <to>`']);
   }
-  final packages = docSnippetPackages(
-    File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
-  );
+  final packages = cellPackages(root);
   final release = previousRelease(
     text,
     await (lookupPublished ?? publishedVersions)(packages),
@@ -370,9 +384,7 @@ Future<MigratingReport> checkMigratingCells(
             'upgrading user has its code, and a row about it does not belong '
             'in $migratingPath';
 
-  final barrels = docSnippetBarrels(
-    parseWrapLanes(File(p.join(root, providersPath)).readAsStringSync()),
-  );
+  final barrels = cellBarrels(root);
   bool releasedImport(String line) {
     final m = RegExp(r"package:(\w+)/").firstMatch(line);
     return m == null || release.containsKey(m.group(1));
@@ -526,12 +538,8 @@ checkMigratingAfterCells(String root, {String? migrating}) async {
   if (cells.isEmpty) {
     return (failures: const <String>[], failingLines: const <int>{});
   }
-  final packages = docSnippetPackages(
-    File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
-  );
-  final barrels = docSnippetBarrels(
-    parseWrapLanes(File(p.join(root, providersPath)).readAsStringSync()),
-  );
+  final packages = cellPackages(root);
+  final barrels = cellBarrels(root);
   final failures = <String>[];
   final failingLines = <int>{};
   final after = <MigratingCell>[];

@@ -22,13 +22,27 @@ import 'workflow.dart';
 
 /// Runs the `terradart` command with [arguments] and returns its exit code.
 ///
-/// [runner], [console], [workingDirectory], [environment] (read for `PATH`,
-/// `TERRADART_ENV`, `TERRADART_NO_INPUT`, `CI`, the variables AI coding
-/// agents set (`CLAUDECODE`, `CURSOR_AGENT`, ...),
-/// `TERRADART_CACHE_DIR`, `TERRADART_OPENTOFU_MIRROR` and
-/// `TERRADART_NO_SKILL_NOTICE`) and
-/// [dartExecutable] replace the process, terminal and host in tests.
+/// [workingDirectory] replaces the current directory, [environment] the
+/// process environment (read for `PATH`, `TERRADART_ENV`,
+/// `TERRADART_NO_INPUT`, `CI`, the variables AI coding agents set
+/// (`CLAUDECODE`, `CURSOR_AGENT`, ...), `TERRADART_CACHE_DIR`,
+/// `TERRADART_OPENTOFU_MIRROR` and `TERRADART_NO_SKILL_NOTICE`), and
+/// [dartExecutable] the `dart` that runs the entry point.
 Future<int> runTerradart(
+  List<String> arguments, {
+  String? workingDirectory,
+  Map<String, String>? environment,
+  String? dartExecutable,
+}) => runTerradartWith(
+  arguments,
+  workingDirectory: workingDirectory,
+  environment: environment,
+  dartExecutable: dartExecutable,
+);
+
+/// [runTerradart] with the process runner and the terminal replaced, for
+/// tests.
+Future<int> runTerradartWith(
   List<String> arguments, {
   ProcessRunner runner = const IoProcessRunner(),
   Console? console,
@@ -392,8 +406,9 @@ abstract class _TerradartCommand extends Command<int> {
         'define-file',
         valueHelp: 'file',
         help:
-            'Where to write it (default: .terradart/<output>.json; '
-            '.terradart/<output>.<env>.json with --env).',
+            'Where to write it, exactly (default: .terradart/<output>.json; '
+            '.terradart/<output>.<env or workspace>.json when the run has '
+            'one).',
       );
   }
 }

@@ -280,10 +280,9 @@ final class ServerlessApiStack extends Stack {
 ```dart
 // bin/synth_items.dart
 import 'package:my_app/serverless_api_stack.dart';
+import 'package:terradart_core/terradart_core.dart';
 
-Future<void> main() async {
-  await ServerlessApiStack().writeTo('tf-out');
-}
+Future<void> main(List<String> args) => runStack(args, ServerlessApiStack.new);
 ```
 
 The handler and the client import the file synth writes. A missing variable fails at startup instead of becoming an empty string:

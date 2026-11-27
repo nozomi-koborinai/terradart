@@ -4,7 +4,7 @@ import 'package:terradart_core/terradart_core.dart';
 /// Provider source identifier — `hashicorp/google-beta`.
 const String kBetaProviderSource = 'hashicorp/google-beta';
 
-/// Version constraint pinning to provider major v7, tracking the GA
+/// Version constraint pinning to provider major v8, tracking the GA
 /// `terradart_google` pin (google-beta versions in lockstep upstream).
 const String kBetaProviderVersionConstraint = '~> 8.0';
 

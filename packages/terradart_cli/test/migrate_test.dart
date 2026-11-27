@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-import 'package:terradart_cli/terradart_cli.dart';
+import 'package:terradart_cli/src/cli.dart';
+import 'package:terradart_cli/src/workflow.dart';
 import 'package:test/test.dart';
 
 import 'support.dart';
@@ -17,7 +18,7 @@ void main() {
     final out = p.join(scratch.path, 'pkg');
     final stdout = StringBuffer();
     final stderr = StringBuffer();
-    final code = await runTerradart(
+    final code = await runTerradartWith(
       ['migrate', '--dir', scratch.path, '--out', out, '--name', 'orders'],
       runner: FakeRunner(),
       console: Console(out: stdout.writeln, err: stderr.writeln),
@@ -48,7 +49,7 @@ void main() {
     final terraform = fakeExecutable(bin.path, 'terraform');
     final stdout = StringBuffer();
     final stderr = StringBuffer();
-    Future<int> run(List<String> args) => runTerradart(
+    Future<int> run(List<String> args) => runTerradartWith(
       args,
       runner: FakeRunner(),
       console: Console(out: stdout.writeln, err: stderr.writeln),
@@ -148,7 +149,7 @@ resource "google_pubsub_topic" "t" {
     final out = p.join(scratch.path, 'pkg');
     final stdout = StringBuffer();
     final stderr = StringBuffer();
-    final code = await runTerradart(
+    final code = await runTerradartWith(
       [
         'migrate',
         '--dir',
@@ -177,7 +178,7 @@ resource "google_pubsub_topic" "t" {
     addTearDown(() => scratch.deleteSync(recursive: true));
     final stdout = StringBuffer();
     final stderr = StringBuffer();
-    final code = await runTerradart(
+    final code = await runTerradartWith(
       [
         'migrate',
         '--dir',
@@ -200,7 +201,7 @@ resource "google_pubsub_topic" "t" {
     final scratch = Directory.systemTemp.createTempSync('terradart_usage_');
     addTearDown(() => scratch.deleteSync(recursive: true));
     final stderr = StringBuffer();
-    final code = await runTerradart(
+    final code = await runTerradartWith(
       ['migrate'],
       runner: FakeRunner(),
       console: Console(out: (_) {}, err: stderr.writeln),
