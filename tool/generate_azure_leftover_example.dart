@@ -60,8 +60,7 @@ final class _AzureLeftoverStack implements CoverageStackGenerator {
             .where(
               (f) =>
                   f.path.endsWith('.dart') &&
-                  !f.path.endsWith('_catalog.g.dart') &&
-                  !f.path.endsWith('catalog_entry.dart'),
+                  !f.path.endsWith('_catalog.g.dart'),
             )
             .toList()
           ..sort((a, b) => a.path.compareTo(b.path));

@@ -1,3 +1,5 @@
+import 'naming.dart';
+
 class CatalogEntryData {
   CatalogEntryData({
     required this.tfType,
@@ -22,8 +24,10 @@ class CatalogEntryData {
   final List<String> sensitiveFields;
 }
 
+String catalogListName(String package) => snakeToCamel('${package}_catalog');
+
 class CatalogMetadataEmitter {
-  String emit(List<CatalogEntryData> entries) {
+  String emit(List<CatalogEntryData> entries, {required String package}) {
     final sorted = [...entries]
       ..sort((a, b) {
         final byType = a.tfType.compareTo(b.tfType);
@@ -33,9 +37,12 @@ class CatalogMetadataEmitter {
     final buf = StringBuffer()
       ..writeln('// GENERATED FILE - DO NOT EDIT')
       ..writeln('// Run `terradart wrap` to regenerate.')
-      ..writeln("import 'catalog_entry.dart';")
+      ..writeln("import 'package:terradart_core/catalog.dart';")
       ..writeln()
-      ..writeln('const List<CatalogEntry> terradartCatalog = <CatalogEntry>[');
+      ..writeln(
+        'const List<CatalogEntry> ${catalogListName(package)} = '
+        '<CatalogEntry>[',
+      );
     for (final e in sorted) {
       buf
         ..writeln('  CatalogEntry(')

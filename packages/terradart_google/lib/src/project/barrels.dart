@@ -1,4 +1,5 @@
-/// Per-service import barrels aligned with [terradartCatalog] `barrel` names.
+/// Per-service import barrels aligned with [terradartGoogleCatalog] `barrel`
+/// names.
 ///
 /// Use with [Apis.required] to derive the `google_project_service` set for the
 /// factories you import from `package:terradart_google/<barrel>.dart`.

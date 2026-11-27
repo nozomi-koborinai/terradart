@@ -752,9 +752,6 @@ class WrapCommand extends Command<int> {
     }
 
     if (only == null) {
-      final catalogRaw = CatalogMetadataEmitter().emit(catalogEntries);
-      buffer['_catalog.g.dart'] = formatter.format(catalogRaw);
-
       final providerVersion = readProviderVersion(source);
       if (providerVersion.isNotEmpty) {
         buffer['_provider_version.g.dart'] = formatter.format(
@@ -800,6 +797,12 @@ class WrapCommand extends Command<int> {
         stderr.writeln('terradart wrap: $e');
         return CliExitCodes.dataError;
       }
+      buffer['_catalog.g.dart'] = formatter.format(
+        CatalogMetadataEmitter().emit(
+          catalogEntries,
+          package: barrelManifest.umbrellaFile,
+        ),
+      );
 
       if (migrateManifest) {
         final manifestRaw = MigrateManifestEmitter().emit(

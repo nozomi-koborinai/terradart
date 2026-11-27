@@ -47,7 +47,8 @@ Map<String, dynamic> _fixtureSchema() {
 }
 
 Set<String> _catalogTypes(CatalogKind kind) => {
-  for (final e in terradartCatalog.where((e) => e.kind == kind)) e.tfType,
+  for (final e in terradartCloudflareCatalog.where((e) => e.kind == kind))
+    e.tfType,
 };
 
 void main() {

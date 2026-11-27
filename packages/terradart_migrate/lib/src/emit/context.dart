@@ -1,9 +1,9 @@
-import 'package:terradart_appwrite/catalog.dart' as appwrite;
-import 'package:terradart_aws/catalog.dart' as aws;
-import 'package:terradart_azure/catalog.dart' as azure;
-import 'package:terradart_cloudflare/catalog.dart' as cloudflare;
-import 'package:terradart_google/catalog.dart' as google;
-import 'package:terradart_google_beta/catalog.dart' as beta;
+import 'package:terradart_appwrite/catalog.dart';
+import 'package:terradart_aws/catalog.dart';
+import 'package:terradart_azure/catalog.dart';
+import 'package:terradart_cloudflare/catalog.dart';
+import 'package:terradart_google/catalog.dart';
+import 'package:terradart_google_beta/catalog.dart';
 
 import '../migrate_manifest.dart';
 import 'module_wrapper.dart';
@@ -61,27 +61,27 @@ final class SensitiveIndex {
     }
 
     addAll('terradart_google', [
-      for (final e in google.terradartCatalog)
+      for (final e in terradartGoogleCatalog)
         (tfType: e.tfType, kind: e.kind.name, sensitive: e.sensitiveFields),
     ]);
     addAll('terradart_google_beta', [
-      for (final e in beta.terradartCatalog)
+      for (final e in terradartGoogleBetaCatalog)
         (tfType: e.tfType, kind: e.kind.name, sensitive: e.sensitiveFields),
     ]);
     addAll('terradart_appwrite', [
-      for (final e in appwrite.terradartCatalog)
+      for (final e in terradartAppwriteCatalog)
         (tfType: e.tfType, kind: e.kind.name, sensitive: e.sensitiveFields),
     ]);
     addAll('terradart_cloudflare', [
-      for (final e in cloudflare.terradartCatalog)
+      for (final e in terradartCloudflareCatalog)
         (tfType: e.tfType, kind: e.kind.name, sensitive: e.sensitiveFields),
     ]);
     addAll('terradart_aws', [
-      for (final e in aws.terradartCatalog)
+      for (final e in terradartAwsCatalog)
         (tfType: e.tfType, kind: e.kind.name, sensitive: e.sensitiveFields),
     ]);
     addAll('terradart_azure', [
-      for (final e in azure.terradartCatalog)
+      for (final e in terradartAzureCatalog)
         (tfType: e.tfType, kind: e.kind.name, sensitive: e.sensitiveFields),
     ]);
     return SensitiveIndex._(out);

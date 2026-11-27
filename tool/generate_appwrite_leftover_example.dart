@@ -80,7 +80,6 @@ const _typePrefix = 'appwrite_';
 
 const _skipFiles = {
   '_catalog.g.dart',
-  'catalog_entry.dart',
   '_provider_version.g.dart',
   'appwrite_provider.dart',
 };

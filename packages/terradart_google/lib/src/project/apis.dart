@@ -28,7 +28,7 @@ abstract final class Apis {
     final barrelNames = barrels.map((b) => b.catalogName).toSet();
     final endpoints = <String>{};
 
-    for (final entry in terradartCatalog) {
+    for (final entry in terradartGoogleCatalog) {
       if (entry.kind != CatalogKind.resource) continue;
       if (!barrelNames.contains(entry.barrel)) continue;
       final api = requiredApiForTerraformType(entry.tfType);

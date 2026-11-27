@@ -1,8 +1,8 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-import 'catalog_entry.dart';
+import 'package:terradart_core/catalog.dart';
 
-const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
+const List<CatalogEntry> terradartGoogleCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_access_approval_folder_service_account',
     className: 'DataGoogleAccessApprovalFolderServiceAccount',

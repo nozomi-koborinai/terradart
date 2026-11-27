@@ -8,7 +8,7 @@ Curated factory wrappers for **Google Cloud** resources (the official [`hashicor
 
 Ships **1422 curated resource factories + 476 data sources** (1898 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
 
-Beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) (99 resource factories). The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/google/). Discover factories programmatically via `package:terradart_google/catalog.dart` (`terradartCatalog`).
+Beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) (99 resource factories). The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/google/). Discover factories programmatically via `package:terradart_google/catalog.dart` (`terradartGoogleCatalog`).
 
 ## Installation
 

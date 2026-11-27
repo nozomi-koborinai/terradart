@@ -19,7 +19,7 @@ Map<String, dynamic> schema({
 };
 
 const catalog = '''
-const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
+const List<CatalogEntry> terradartAwsCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'aws_kept',
     className: 'AwsKept',
