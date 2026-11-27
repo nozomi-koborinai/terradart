@@ -288,7 +288,22 @@ void main() {
   });
 
   group('requiredApiForTerraformType', () {
-    test('picks the longest matching prefix over shorter prefixes', () {
+    test('more specific prefixes precede broader prefixes they start with', () {
+      for (var i = 0; i < terraformApiPrefixRules.length; i++) {
+        final earlier = terraformApiPrefixRules[i].key;
+        for (var j = i + 1; j < terraformApiPrefixRules.length; j++) {
+          final later = terraformApiPrefixRules[j].key;
+          expect(
+            later.startsWith(earlier),
+            isFalse,
+            reason:
+                '$later appears after shorter prefix $earlier and would be shadowed',
+          );
+        }
+      }
+    });
+
+    test('matches specific prefixes before broader prefixes', () {
       expect(
         requiredApiForTerraformType('google_container_analysis_note'),
         'containeranalysis.googleapis.com',

@@ -149,12 +149,8 @@ String? requiredApiForTerraformType(String terraformType) {
       terraformType.endsWith('_iam_policy')) {
     return null;
   }
-  MapEntry<String, String>? longestMatch;
   for (final rule in terraformApiPrefixRules) {
-    if (terraformType.startsWith(rule.key) &&
-        (longestMatch == null || rule.key.length > longestMatch.key.length)) {
-      longestMatch = rule;
-    }
+    if (terraformType.startsWith(rule.key)) return rule.value;
   }
-  return longestMatch?.value;
+  return null;
 }
