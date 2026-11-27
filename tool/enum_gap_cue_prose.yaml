@@ -129,7 +129,6 @@ google_compute_backend_service.cdn_policy.cache_key_policy.query_string_blacklis
 google_compute_backend_service.cdn_policy.cache_key_policy.query_string_whitelist: names sibling inputs of a mutual-exclusion or union group, not values
 google_compute_disk.disk_encryption_key.rsa_encrypted_key_wo: names sibling inputs of a mutual-exclusion or union group, not values
 google_compute_image.raw_disk.source: names sibling inputs of a mutual-exclusion or union group, not values
-google_compute_image.source_disk: names sibling inputs of a mutual-exclusion or union group, not values
 google_compute_instance.name: names sibling inputs of a mutual-exclusion or union group, not values
 google_compute_instance_from_template.name: names sibling inputs of a mutual-exclusion or union group, not values
 google_compute_instance_template.disk.source: names sibling inputs of a mutual-exclusion or union group, not values
@@ -310,7 +309,6 @@ google_clouddeploy_deploy_policy.selectors.target.id: a resource name, URL or id
 google_cloudfunctions_function.vpc_connector: a resource name, URL or id in one of the listed forms
 google_compute_firewall_policy_rule.match.src_networks: a resource name, URL or id in one of the listed forms
 google_compute_image.source_image: a resource name, URL or id in one of the listed forms
-google_compute_image.source_snapshot: a resource name, URL or id in one of the listed forms
 google_compute_network_firewall_policy_rule.match.src_networks: a resource name, URL or id in one of the listed forms
 google_compute_region_network_firewall_policy_rule.match.src_networks: a resource name, URL or id in one of the listed forms
 google_dataplex_entry.aspects.aspect_key: a resource name, URL or id in one of the listed forms
