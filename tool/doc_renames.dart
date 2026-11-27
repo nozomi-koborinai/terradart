@@ -3,8 +3,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
-import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/analysis/utilities.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
@@ -156,8 +154,9 @@ final class PublicApi {
         if (pkg is Directory && p.basename(pkg.path) != 'terradart_codegen')
           pkg.path,
     ];
-    final exported = await _exported(root, packages);
-    return (_Declarations()
+    final parsedUnits = <String, CompilationUnit>{};
+    final exported = _exported(root, packages, parsedUnits);
+    return (_Declarations(parsedUnits)
           ..readAll(_sdkLibraries())
           ..readPackages(packages, exported))
         .api
@@ -174,25 +173,6 @@ final class PublicApi {
     internal: internal,
     exported: exported,
   );
-
-  PublicApi merge(PublicApi other) {
-    Map<String, Set<String>> union(
-      Map<String, Set<String>> a,
-      Map<String, Set<String>> b,
-    ) => {
-      for (final k in {...a.keys, ...b.keys}) k: {...?a[k], ...?b[k]},
-    };
-    return PublicApi._(
-      {...types, ...other.types},
-      union(members, other.members),
-      union(supertypes, other.supertypes),
-      {...names, ...other.names},
-      {...topLevel, ...other.topLevel},
-      {..._declaredTypes, ...other._declaredTypes},
-      internal: internal,
-      exported: exported,
-    );
-  }
 
   Map<String, String> get internalSymbols {
     const reason = 'not exported by any package entrypoint';
@@ -286,12 +266,11 @@ final class PublicApi {
           if (release.packages.contains((pkg as Map)['name']))
             Uri.parse(pkg['rootUri'] as String).toFilePath(),
       ];
+      final parsedUnits = <String, CompilationUnit>{};
+      final exported = _exported(dir.path, packages, parsedUnits);
       return (
         version: release.version,
-        api:
-            (_Declarations()
-                  ..readPackages(packages, await _exported(dir.path, packages)))
-                .api,
+        api: (_Declarations(parsedUnits)..readPackages(packages, exported)).api,
       );
     } finally {
       dir.deleteSync(recursive: true);
@@ -316,6 +295,35 @@ final class PublicApi {
       queue.addAll(supertypes[type] ?? const {});
     }
     return members['Object']?.contains(member) ?? false;
+  }
+
+  bool declaresWith(String symbol, PublicApi other) {
+    final dot = symbol.indexOf('.');
+    if (dot < 0) {
+      return symbol.startsWith(RegExp('[A-Z]'))
+          ? types.contains(symbol) || other.types.contains(symbol)
+          : names.contains(symbol) || other.names.contains(symbol);
+    }
+    final member = symbol.substring(dot + 1);
+    final seen = <String>{};
+    final queue = [symbol.substring(0, dot)];
+    while (queue.isNotEmpty) {
+      final type = queue.removeLast();
+      if (!seen.add(type)) continue;
+      if (seen.length == 1 &&
+          !types.contains(type) &&
+          !other.types.contains(type)) {
+        return type == 'Object';
+      }
+      if ((members[type]?.contains(member) ?? false) ||
+          (other.members[type]?.contains(member) ?? false)) {
+        return true;
+      }
+      if (supertypes[type] case final s?) queue.addAll(s);
+      if (other.supertypes[type] case final s?) queue.addAll(s);
+    }
+    return (members['Object']?.contains(member) ?? false) ||
+        (other.members['Object']?.contains(member) ?? false);
   }
 
   Set<String> get symbols => {
@@ -372,38 +380,177 @@ Iterable<String> _entrypoints(String package) sync* {
   }
 }
 
-Future<Set<(String, String)>> _exported(
-  String contextRoot,
-  List<String> packages,
-) async {
-  final root = p.normalize(p.absolute(contextRoot));
-  final collection = AnalysisContextCollection(includedPaths: [root]);
-  try {
-    final session = collection.contextFor(root).currentSession;
-    final out = <(String, String)>{};
-    for (final package in packages) {
-      for (final path in _entrypoints(package)) {
-        final uri = session.uriConverter.pathToUri(path) ?? Uri.file(path);
-        final result = await session.getLibraryByUri('$uri');
-        if (result is! LibraryElementResult) continue;
-        final names = result.element.exportNamespace.definedNames2;
-        for (final MapEntry(key: name, value: e) in names.entries) {
-          final file = e.firstFragment.libraryFragment?.source.fullName;
-          if (file == null) continue;
-          out.add((
-            p.normalize(file),
-            name.endsWith('=') ? name.substring(0, name.length - 1) : name,
-          ));
-        }
+Map<String, String> _packageRoots(String contextRoot) {
+  final cfgFile = File(
+    p.join(contextRoot, '.dart_tool', 'package_config.json'),
+  );
+  if (!cfgFile.existsSync()) return const {};
+  final cfg = jsonDecode(cfgFile.readAsStringSync()) as Map<String, dynamic>;
+  final cfgDir = p.join(contextRoot, '.dart_tool');
+  final out = <String, String>{};
+  for (final pkg in cfg['packages'] as List) {
+    final m = pkg as Map<String, dynamic>;
+    final name = m['name'] as String;
+    final rootUri = m['rootUri'] as String;
+    final pkgUri = (m['packageUri'] as String?) ?? '';
+    final base = Uri.directory(cfgDir).resolve(rootUri);
+    final resolved = pkgUri.isEmpty ? base : base.resolve(pkgUri);
+    out[name] = p.normalize(resolved.toFilePath());
+  }
+  return out;
+}
+
+String? _resolveDartUri(
+  String fromFile,
+  String uriStr,
+  Map<String, String> pkgRoots,
+) {
+  if (uriStr.startsWith('dart:')) return null;
+  if (uriStr.startsWith('package:')) {
+    final rest = uriStr.substring('package:'.length);
+    final slash = rest.indexOf('/');
+    if (slash < 0) return null;
+    final root = pkgRoots[rest.substring(0, slash)];
+    if (root == null) return null;
+    return p.normalize(p.join(root, rest.substring(slash + 1)));
+  }
+  return p.normalize(p.join(p.dirname(fromFile), uriStr));
+}
+
+CompilationUnit _parseCached(
+  String path,
+  Map<String, CompilationUnit> parsedUnits,
+) => parsedUnits.putIfAbsent(
+  path,
+  () => parseString(
+    content: File(path).readAsStringSync(),
+    throwIfDiagnostics: false,
+  ).unit,
+);
+
+Map<String, String> _exportNamespace(
+  String file,
+  Map<String, String> pkgRoots,
+  Map<String, CompilationUnit> parsedUnits,
+  Map<String, Map<String, String>> cache,
+  Set<String> visiting,
+) {
+  final norm = p.normalize(p.absolute(file));
+  if (cache.containsKey(norm)) return cache[norm]!;
+  if (!visiting.add(norm)) return const {};
+  if (!File(norm).existsSync()) {
+    visiting.remove(norm);
+    return const {};
+  }
+  final unit = _parseCached(norm, parsedUnits);
+  final own = <String, String>{};
+  void collectUnit(CompilationUnit u, String uPath) {
+    for (final d in u.declarations) {
+      switch (d) {
+        case ClassDeclaration(:final namePart):
+          final n = namePart.typeName.lexeme;
+          if (!n.startsWith('_')) own[n] = uPath;
+        case MixinDeclaration(:final name):
+          if (!name.lexeme.startsWith('_')) own[name.lexeme] = uPath;
+        case EnumDeclaration(:final namePart):
+          final n = namePart.typeName.lexeme;
+          if (!n.startsWith('_')) own[n] = uPath;
+        case ExtensionTypeDeclaration(:final namePart):
+          if (namePart is PrimaryConstructorDeclaration) {
+            final n = namePart.typeName.lexeme;
+            if (!n.startsWith('_')) own[n] = uPath;
+          }
+        case ExtensionDeclaration(:final name):
+          if (name != null && !name.lexeme.startsWith('_')) {
+            own[name.lexeme] = uPath;
+          }
+        case ClassTypeAlias(:final name):
+          if (!name.lexeme.startsWith('_')) own[name.lexeme] = uPath;
+        case GenericTypeAlias(:final name):
+          if (!name.lexeme.startsWith('_')) own[name.lexeme] = uPath;
+        case FunctionTypeAlias(:final name):
+          if (!name.lexeme.startsWith('_')) own[name.lexeme] = uPath;
+        case FunctionDeclaration(:final name):
+          if (!name.lexeme.startsWith('_')) own[name.lexeme] = uPath;
+        case TopLevelVariableDeclaration(:final variables):
+          for (final v in variables.variables) {
+            if (!v.name.lexeme.startsWith('_')) own[v.name.lexeme] = uPath;
+          }
+        default:
+          break;
       }
     }
-    return out;
-  } finally {
-    await collection.dispose();
   }
+
+  collectUnit(unit, norm);
+  for (final dir in unit.directives) {
+    if (dir is PartDirective) {
+      final uri = dir.uri.stringValue;
+      if (uri == null) continue;
+      final partPath = _resolveDartUri(norm, uri, pkgRoots);
+      if (partPath != null && File(partPath).existsSync()) {
+        collectUnit(_parseCached(partPath, parsedUnits), partPath);
+      }
+    }
+  }
+
+  final out = <String, String>{};
+  for (final dir in unit.directives) {
+    if (dir is ExportDirective) {
+      final uri = dir.uri.stringValue;
+      if (uri == null) continue;
+      final target = _resolveDartUri(norm, uri, pkgRoots);
+      if (target == null) continue;
+      final exported = _exportNamespace(
+        target,
+        pkgRoots,
+        parsedUnits,
+        cache,
+        visiting,
+      );
+      for (final e in exported.entries) {
+        var keep = true;
+        for (final c in dir.combinators) {
+          if (c is ShowCombinator) {
+            if (!c.shownNames.any((id) => id.name == e.key)) keep = false;
+          } else if (c is HideCombinator) {
+            if (c.hiddenNames.any((id) => id.name == e.key)) keep = false;
+          }
+        }
+        if (keep) out[e.key] = e.value;
+      }
+    }
+  }
+  out.addAll(own);
+  visiting.remove(norm);
+  return cache[norm] = out;
+}
+
+Set<(String, String)> _exported(
+  String contextRoot,
+  List<String> packages,
+  Map<String, CompilationUnit> parsedUnits,
+) {
+  final root = p.normalize(p.absolute(contextRoot));
+  final pkgRoots = _packageRoots(root);
+  final cache = <String, Map<String, String>>{};
+  final out = <(String, String)>{};
+  for (final package in packages) {
+    for (final path in _entrypoints(package)) {
+      final ns = _exportNamespace(path, pkgRoots, parsedUnits, cache, {});
+      for (final e in ns.entries) {
+        out.add((e.value, e.key));
+      }
+    }
+  }
+  return out;
 }
 
 final class _Declarations extends RecursiveAstVisitor<void> {
+  _Declarations([Map<String, CompilationUnit>? parsedUnits])
+    : _parsedUnits = parsedUnits ?? {};
+
+  final Map<String, CompilationUnit> _parsedUnits;
   final types = <String>{};
   final declaredTypes = <String>{};
   final members = <String, Set<String>>{};
@@ -456,6 +603,11 @@ final class _Declarations extends RecursiveAstVisitor<void> {
 
   void _read(File f) {
     _file = p.normalize(p.absolute(f.path));
+    final unit = _parsedUnits[_file];
+    if (unit != null) {
+      unit.accept(this);
+      return;
+    }
     parseString(
       content: f.readAsStringSync(),
       throwIfDiagnostics: false,
@@ -984,7 +1136,8 @@ Future<List<String>> checkDocRenames(
     final lib = Directory(p.isAbsolute(dir) ? dir : p.join(root, dir));
     if (!lib.existsSync()) continue;
     final package = p.split(dir).first == 'packages';
-    final withLocal = current.merge(PublicApi.read(_siblingLibs(root, dir)));
+    PublicApi? local;
+    PublicApi loadLocal() => local ??= PublicApi.read(_siblingLibs(root, dir));
     final files = [
       for (final f in lib.listSync(recursive: true).whereType<File>())
         if (f.path.endsWith('.dart')) f,
@@ -992,6 +1145,14 @@ Future<List<String>> checkDocRenames(
     for (final f in files) {
       final rel = p.relative(f.path, from: root);
       final text = f.readAsStringSync();
+      final fileMentions = staleMentions(
+        rel,
+        text,
+        forbidden,
+        docComments: true,
+      );
+      final fileUnresolved = unresolvedReferences(rel, text, current.declares);
+      if (fileMentions.isEmpty && fileUnresolved.isEmpty) continue;
       final public = package
           ? publicDocLines(
               f.path,
@@ -1001,14 +1162,19 @@ Future<List<String>> checkDocRenames(
                   p.split(p.relative(f.path, from: lib.path)).first != 'src',
             )
           : const <int>{};
+      final sibling = loadLocal();
       mentions.addAll(
-        staleMentions(rel, text, forbidden, docComments: true).where(
-          (m) => public.contains(m.line) || !withLocal.declares(m.symbol),
+        fileMentions.where(
+          (m) =>
+              public.contains(m.line) ||
+              !current.declaresWith(m.symbol, sibling),
         ),
       );
       unresolved.addAll(
-        unresolvedReferences(rel, text, current.declares).where(
-          (m) => public.contains(m.line) || !withLocal.declares(m.symbol),
+        fileUnresolved.where(
+          (m) =>
+              public.contains(m.line) ||
+              !current.declaresWith(m.symbol, sibling),
         ),
       );
     }
