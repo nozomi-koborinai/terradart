@@ -262,12 +262,17 @@ factory in it, so that list can be longer than the resources the Stack uses.
 already has `TimeProvider` from `terradart_time`; keep that dependency in its
 `pubspec.yaml`.
 
+To work out an API in code, `package:terradart_google/project.dart` now
+exports `requiredApiForTerraformType`, the API a wrapped resource type needs.
+It follows the Google API Discovery documents, so a few answers differ from
+what `Apis.required` derived: a BigQuery connection, for example, needs
+`bigqueryconnection.googleapis.com`, not `bigquery.googleapis.com`.
+
 | Before | After |
 |---|---|
 | `StackApis(stack).enableApis([.pubsub])` | `GoogleProjectService('api_pubsub', service: .literal('pubsub.googleapis.com'), disableOnDestroy: .literal(false))`, then `TimeSleep('api_propagation', createDuration: .duration(const Duration(seconds: 60)), triggers: ..., dependsOn: [...])` |
 | `StackApis(stack).enableApis([.apigee], propagationDelay: Duration.zero)` | `GoogleProjectService('api_apigee', service: .literal('apigee.googleapis.com'), disableOnDestroy: .literal(false))` and no `TimeSleep` |
 | `Apis.required(barrels: [Barrels.redis])` | `[GoogleProjectService('api_redis', service: .literal('redis.googleapis.com'), disableOnDestroy: .literal(false))]` |
-
 ## 0.36.x → 0.37.0
 
 ### Dart 3.12 is the minimum SDK

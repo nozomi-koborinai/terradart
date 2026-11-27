@@ -71,6 +71,19 @@ final class EventsStack extends Stack {
 
 The sleep's `triggers` map is keyed to the services, so a later apply that enables one more API replaces the sleep and waits again. Leaving `disableOnDestroy` false keeps an API on when the Stack is destroyed, so other workloads in the project keep working.
 
+To look up which API a resource needs, `requiredApiForTerraformType` (from `package:terradart_google/project.dart`) takes its Terraform type and returns the API, checked against Google's API Discovery documents:
+
+```dart
+// lib/redis_api.dart
+import 'package:terradart_google/project.dart';
+import 'package:terradart_google/redis.dart';
+
+final redisApi = requiredApiForTerraformType(GoogleRedisInstance.tfType);
+// 'redis.googleapis.com'
+```
+
+It returns null for IAM grants and `GoogleProjectService`, which need no API of their own, and only reads: enabling the API is still a `GoogleProjectService` you add.
+
 ## IAM grants
 
 An IAM adjunct takes its parent as a reference (the parent's `ref`) and who the grant is for as an `IamPrincipal`. A service account, a service agent or a default service account data source hands out its own as `principal`; anyone else takes the constructor of their kind: `.user(email)`, `.group(email)`, `.serviceAccount(email)`, `.domain(domain)`, `.allUsers`, `.allAuthenticatedUsers`, or `.principalSet(pool, attribute)` for Workload Identity Federation.

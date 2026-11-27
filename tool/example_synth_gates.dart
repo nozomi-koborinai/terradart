@@ -3,12 +3,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:terradart_google/project.dart' show requiredApiForTerraformType;
 import 'package:yaml/yaml.dart';
 
 import 'example_synth_env.dart';
 import 'lane_surface.dart';
 import 'readme_excerpts.dart';
-import 'terraform_api_requirements.dart';
 import 'validate_engine.dart';
 import 'wrap_lanes.dart';
 

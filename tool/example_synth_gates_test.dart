@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
+import 'package:terradart_google/project.dart' show requiredApiForTerraformType;
+
 import 'example_synth_gates.dart';
-import 'terraform_api_requirements.dart';
 
 void main() {
   _testRequiredApi();

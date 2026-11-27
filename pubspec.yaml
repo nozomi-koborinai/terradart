@@ -164,7 +164,7 @@ dev_dependencies:
   path: any
   test: any
   yaml: any
-  # tool/terraform_api_requirements.dart re-exports the Google API table.
+  # tool/example_synth_gates.dart asks each resource's Google API.
   # tool/plugin_cache_key.dart reads each curated provider constraint.
   terradart_google:
     path: packages/terradart_google
