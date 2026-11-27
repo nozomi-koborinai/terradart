@@ -2163,6 +2163,7 @@ extension type const LinuxWebAppDotnetVersion._(TfArg<String> _)
   static const v8p0 = LinuxWebAppDotnetVersion._(TfArgLiteral('8.0'));
   static const v9p0 = LinuxWebAppDotnetVersion._(TfArgLiteral('9.0'));
   static const v10p0 = LinuxWebAppDotnetVersion._(TfArgLiteral('10.0'));
+  static const v11p0 = LinuxWebAppDotnetVersion._(TfArgLiteral('11.0'));
 
   static const List<LinuxWebAppDotnetVersion> values = [
     v3p1,
@@ -2172,6 +2173,7 @@ extension type const LinuxWebAppDotnetVersion._(TfArg<String> _)
     v8p0,
     v9p0,
     v10p0,
+    v11p0,
   ];
 }
 

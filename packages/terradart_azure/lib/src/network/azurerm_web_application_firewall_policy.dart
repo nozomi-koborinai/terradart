@@ -386,9 +386,12 @@ extension type const WebApplicationFirewallPolicyVariableName._(TfArg<String> _)
 @immutable
 final class WebApplicationFirewallPolicyManagedRules {
   const WebApplicationFirewallPolicyManagedRules({
+    this.exception,
     this.exclusion,
     required this.managedRuleSet,
   });
+
+  final List<WebApplicationFirewallPolicyException>? exception;
 
   final List<WebApplicationFirewallPolicyExclusion>? exclusion;
 
@@ -396,9 +399,196 @@ final class WebApplicationFirewallPolicyManagedRules {
 
   @internal
   Map<String, Object?> encode() => {
+    if (exception != null)
+      'exception': [for (final e in exception!) e.encode()],
     if (exclusion != null)
       'exclusion': [for (final e in exclusion!) e.encode()],
     'managed_rule_set': [for (final e in managedRuleSet) e.encode()],
+  };
+}
+
+/// Typed helper for the `managed_rules.exception` block of
+/// `azurerm_web_application_firewall_policy` (derived from provider schema).
+@immutable
+final class WebApplicationFirewallPolicyException {
+  const WebApplicationFirewallPolicyException({
+    required this.matchVariable,
+    this.selector,
+    this.selectorMatchOperator,
+    required this.valueMatchOperator,
+    required this.values,
+    required this.exceptionRuleSet,
+  });
+
+  final WebApplicationFirewallPolicyExceptionMatchVariable matchVariable;
+
+  final TfArg<String>? selector;
+
+  final WebApplicationFirewallPolicyExceptionSelectorMatchOperator?
+  selectorMatchOperator;
+
+  final WebApplicationFirewallPolicyValueMatchOperator valueMatchOperator;
+
+  final TfArg<List<String>> values;
+
+  final List<WebApplicationFirewallPolicyExceptionRuleSet> exceptionRuleSet;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'match_variable': matchVariable.toTfJson(),
+    'selector': ?selector?.toTfJson(),
+    'selector_match_operator': ?selectorMatchOperator?.toTfJson(),
+    'value_match_operator': valueMatchOperator.toTfJson(),
+    'values': values.toTfJson(),
+    'exception_rule_set': [for (final e in exceptionRuleSet) e.encode()],
+  };
+}
+
+/// `match_variable` — derived from the provider schema description.
+extension type const WebApplicationFirewallPolicyExceptionMatchVariable._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  WebApplicationFirewallPolicyExceptionMatchVariable.variable(String name)
+    : this._(TfArg.variable(name));
+  WebApplicationFirewallPolicyExceptionMatchVariable.expression(String template)
+    : this._(TfArg.expression(template));
+  const WebApplicationFirewallPolicyExceptionMatchVariable.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const remoteaddr =
+      WebApplicationFirewallPolicyExceptionMatchVariable._(
+        TfArgLiteral('RemoteAddr'),
+      );
+  static const requestheader =
+      WebApplicationFirewallPolicyExceptionMatchVariable._(
+        TfArgLiteral('RequestHeader'),
+      );
+  static const requesturi =
+      WebApplicationFirewallPolicyExceptionMatchVariable._(
+        TfArgLiteral('RequestURI'),
+      );
+
+  static const List<WebApplicationFirewallPolicyExceptionMatchVariable> values =
+      [remoteaddr, requestheader, requesturi];
+}
+
+/// `selector_match_operator` — derived from the provider schema description.
+extension type const WebApplicationFirewallPolicyExceptionSelectorMatchOperator._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  WebApplicationFirewallPolicyExceptionSelectorMatchOperator.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  WebApplicationFirewallPolicyExceptionSelectorMatchOperator.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const WebApplicationFirewallPolicyExceptionSelectorMatchOperator.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const contains =
+      WebApplicationFirewallPolicyExceptionSelectorMatchOperator._(
+        TfArgLiteral('Contains'),
+      );
+  static const endswith =
+      WebApplicationFirewallPolicyExceptionSelectorMatchOperator._(
+        TfArgLiteral('EndsWith'),
+      );
+  static const equals =
+      WebApplicationFirewallPolicyExceptionSelectorMatchOperator._(
+        TfArgLiteral('Equals'),
+      );
+  static const startswith =
+      WebApplicationFirewallPolicyExceptionSelectorMatchOperator._(
+        TfArgLiteral('StartsWith'),
+      );
+
+  static const List<WebApplicationFirewallPolicyExceptionSelectorMatchOperator>
+  values = [contains, endswith, equals, startswith];
+}
+
+/// `value_match_operator` — derived from the provider schema description.
+extension type const WebApplicationFirewallPolicyValueMatchOperator._(
+  TfArg<String> _
+)
+    implements TfArg<String> {
+  WebApplicationFirewallPolicyValueMatchOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  WebApplicationFirewallPolicyValueMatchOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const WebApplicationFirewallPolicyValueMatchOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const contains = WebApplicationFirewallPolicyValueMatchOperator._(
+    TfArgLiteral('Contains'),
+  );
+  static const endswith = WebApplicationFirewallPolicyValueMatchOperator._(
+    TfArgLiteral('EndsWith'),
+  );
+  static const equals = WebApplicationFirewallPolicyValueMatchOperator._(
+    TfArgLiteral('Equals'),
+  );
+  static const ipmatch = WebApplicationFirewallPolicyValueMatchOperator._(
+    TfArgLiteral('IPMatch'),
+  );
+  static const startswith = WebApplicationFirewallPolicyValueMatchOperator._(
+    TfArgLiteral('StartsWith'),
+  );
+
+  static const List<WebApplicationFirewallPolicyValueMatchOperator> values = [
+    contains,
+    endswith,
+    equals,
+    ipmatch,
+    startswith,
+  ];
+}
+
+/// Typed helper for the `managed_rules.exception.exception_rule_set` block of
+/// `azurerm_web_application_firewall_policy` (derived from provider schema).
+@immutable
+final class WebApplicationFirewallPolicyExceptionRuleSet {
+  const WebApplicationFirewallPolicyExceptionRuleSet({
+    required this.type,
+    required this.version,
+    this.ruleGroup,
+  });
+
+  final TfArg<String> type;
+
+  final TfArg<String> version;
+
+  final List<WebApplicationFirewallPolicyExceptionRuleSetRuleGroup>? ruleGroup;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'type': type.toTfJson(),
+    'version': version.toTfJson(),
+    if (ruleGroup != null)
+      'rule_group': [for (final e in ruleGroup!) e.encode()],
+  };
+}
+
+/// Typed helper for the `managed_rules.exception.exception_rule_set.rule_group` block of
+/// `azurerm_web_application_firewall_policy` (derived from provider schema).
+@immutable
+final class WebApplicationFirewallPolicyExceptionRuleSetRuleGroup {
+  const WebApplicationFirewallPolicyExceptionRuleSetRuleGroup({
+    required this.ruleGroupName,
+    this.rules,
+  });
+
+  final TfArg<String> ruleGroupName;
+
+  final TfArg<List<String>>? rules;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'rule_group_name': ruleGroupName.toTfJson(),
+    'rules': ?rules?.toTfJson(),
   };
 }
 
@@ -413,11 +603,12 @@ final class WebApplicationFirewallPolicyExclusion {
     this.excludedRuleSet,
   });
 
-  final WebApplicationFirewallPolicyMatchVariable matchVariable;
+  final WebApplicationFirewallPolicyExclusionMatchVariable matchVariable;
 
   final TfArg<String> selector;
 
-  final WebApplicationFirewallPolicySelectorMatchOperator selectorMatchOperator;
+  final WebApplicationFirewallPolicyExclusionSelectorMatchOperator
+  selectorMatchOperator;
 
   final WebApplicationFirewallPolicyExcludedRuleSet? excludedRuleSet;
 
@@ -431,90 +622,107 @@ final class WebApplicationFirewallPolicyExclusion {
 }
 
 /// `match_variable` — derived from the provider schema description.
-extension type const WebApplicationFirewallPolicyMatchVariable._(
+extension type const WebApplicationFirewallPolicyExclusionMatchVariable._(
   TfArg<String> _
 )
     implements TfArg<String> {
-  WebApplicationFirewallPolicyMatchVariable.variable(String name)
+  WebApplicationFirewallPolicyExclusionMatchVariable.variable(String name)
     : this._(TfArg.variable(name));
-  WebApplicationFirewallPolicyMatchVariable.expression(String template)
+  WebApplicationFirewallPolicyExclusionMatchVariable.expression(String template)
     : this._(TfArg.expression(template));
-  const WebApplicationFirewallPolicyMatchVariable.arg(TfArg<String> arg)
-    : this._(arg);
+  const WebApplicationFirewallPolicyExclusionMatchVariable.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  static const requestargkeys = WebApplicationFirewallPolicyMatchVariable._(
-    TfArgLiteral('RequestArgKeys'),
-  );
-  static const requestargnames = WebApplicationFirewallPolicyMatchVariable._(
-    TfArgLiteral('RequestArgNames'),
-  );
-  static const requestargvalues = WebApplicationFirewallPolicyMatchVariable._(
-    TfArgLiteral('RequestArgValues'),
-  );
-  static const requestcookiekeys = WebApplicationFirewallPolicyMatchVariable._(
-    TfArgLiteral('RequestCookieKeys'),
-  );
-  static const requestcookienames = WebApplicationFirewallPolicyMatchVariable._(
-    TfArgLiteral('RequestCookieNames'),
-  );
+  static const requestargkeys =
+      WebApplicationFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestArgKeys'),
+      );
+  static const requestargnames =
+      WebApplicationFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestArgNames'),
+      );
+  static const requestargvalues =
+      WebApplicationFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestArgValues'),
+      );
+  static const requestcookiekeys =
+      WebApplicationFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestCookieKeys'),
+      );
+  static const requestcookienames =
+      WebApplicationFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestCookieNames'),
+      );
   static const requestcookievalues =
-      WebApplicationFirewallPolicyMatchVariable._(
+      WebApplicationFirewallPolicyExclusionMatchVariable._(
         TfArgLiteral('RequestCookieValues'),
       );
-  static const requestheaderkeys = WebApplicationFirewallPolicyMatchVariable._(
-    TfArgLiteral('RequestHeaderKeys'),
-  );
-  static const requestheadernames = WebApplicationFirewallPolicyMatchVariable._(
-    TfArgLiteral('RequestHeaderNames'),
-  );
+  static const requestheaderkeys =
+      WebApplicationFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestHeaderKeys'),
+      );
+  static const requestheadernames =
+      WebApplicationFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestHeaderNames'),
+      );
   static const requestheadervalues =
-      WebApplicationFirewallPolicyMatchVariable._(
+      WebApplicationFirewallPolicyExclusionMatchVariable._(
         TfArgLiteral('RequestHeaderValues'),
       );
 
-  static const List<WebApplicationFirewallPolicyMatchVariable> values = [
-    requestargkeys,
-    requestargnames,
-    requestargvalues,
-    requestcookiekeys,
-    requestcookienames,
-    requestcookievalues,
-    requestheaderkeys,
-    requestheadernames,
-    requestheadervalues,
-  ];
+  static const List<WebApplicationFirewallPolicyExclusionMatchVariable> values =
+      [
+        requestargkeys,
+        requestargnames,
+        requestargvalues,
+        requestcookiekeys,
+        requestcookienames,
+        requestcookievalues,
+        requestheaderkeys,
+        requestheadernames,
+        requestheadervalues,
+      ];
 }
 
 /// `selector_match_operator` — derived from the provider schema description.
-extension type const WebApplicationFirewallPolicySelectorMatchOperator._(
+extension type const WebApplicationFirewallPolicyExclusionSelectorMatchOperator._(
   TfArg<String> _
 )
     implements TfArg<String> {
-  WebApplicationFirewallPolicySelectorMatchOperator.variable(String name)
-    : this._(TfArg.variable(name));
-  WebApplicationFirewallPolicySelectorMatchOperator.expression(String template)
-    : this._(TfArg.expression(template));
-  const WebApplicationFirewallPolicySelectorMatchOperator.arg(TfArg<String> arg)
-    : this._(arg);
+  WebApplicationFirewallPolicyExclusionSelectorMatchOperator.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  WebApplicationFirewallPolicyExclusionSelectorMatchOperator.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const WebApplicationFirewallPolicyExclusionSelectorMatchOperator.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  static const contains = WebApplicationFirewallPolicySelectorMatchOperator._(
-    TfArgLiteral('Contains'),
-  );
-  static const endswith = WebApplicationFirewallPolicySelectorMatchOperator._(
-    TfArgLiteral('EndsWith'),
-  );
-  static const equals = WebApplicationFirewallPolicySelectorMatchOperator._(
-    TfArgLiteral('Equals'),
-  );
-  static const equalsany = WebApplicationFirewallPolicySelectorMatchOperator._(
-    TfArgLiteral('EqualsAny'),
-  );
-  static const startswith = WebApplicationFirewallPolicySelectorMatchOperator._(
-    TfArgLiteral('StartsWith'),
-  );
+  static const contains =
+      WebApplicationFirewallPolicyExclusionSelectorMatchOperator._(
+        TfArgLiteral('Contains'),
+      );
+  static const endswith =
+      WebApplicationFirewallPolicyExclusionSelectorMatchOperator._(
+        TfArgLiteral('EndsWith'),
+      );
+  static const equals =
+      WebApplicationFirewallPolicyExclusionSelectorMatchOperator._(
+        TfArgLiteral('Equals'),
+      );
+  static const equalsany =
+      WebApplicationFirewallPolicyExclusionSelectorMatchOperator._(
+        TfArgLiteral('EqualsAny'),
+      );
+  static const startswith =
+      WebApplicationFirewallPolicyExclusionSelectorMatchOperator._(
+        TfArgLiteral('StartsWith'),
+      );
 
-  static const List<WebApplicationFirewallPolicySelectorMatchOperator> values =
-      [contains, endswith, equals, equalsany, startswith];
+  static const List<WebApplicationFirewallPolicyExclusionSelectorMatchOperator>
+  values = [contains, endswith, equals, equalsany, startswith];
 }
 
 /// Typed helper for the `managed_rules.exclusion.excluded_rule_set` block of
@@ -531,7 +739,7 @@ final class WebApplicationFirewallPolicyExcludedRuleSet {
 
   final TfArg<String>? version;
 
-  final List<WebApplicationFirewallPolicyRuleGroup>? ruleGroup;
+  final List<WebApplicationFirewallPolicyExcludedRuleSetRuleGroup>? ruleGroup;
 
   @internal
   Map<String, Object?> encode() => {
@@ -545,8 +753,8 @@ final class WebApplicationFirewallPolicyExcludedRuleSet {
 /// Typed helper for the `managed_rules.exclusion.excluded_rule_set.rule_group` block of
 /// `azurerm_web_application_firewall_policy` (derived from provider schema).
 @immutable
-final class WebApplicationFirewallPolicyRuleGroup {
-  const WebApplicationFirewallPolicyRuleGroup({
+final class WebApplicationFirewallPolicyExcludedRuleSetRuleGroup {
+  const WebApplicationFirewallPolicyExcludedRuleSetRuleGroup({
     this.excludedRules,
     required this.ruleGroupName,
   });

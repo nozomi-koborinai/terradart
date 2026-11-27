@@ -24,6 +24,8 @@ extension type const ApiManagementPolicyFragmentFormat._(TfArg<String> _)
 }
 
 /// Factory wrapper for `azurerm_api_management_policy_fragment`.
+///
+/// Manages an API Management Policy Fragment.
 final class AzurermApiManagementPolicyFragment extends Resource {
   static const String tfType = 'azurerm_api_management_policy_fragment';
 

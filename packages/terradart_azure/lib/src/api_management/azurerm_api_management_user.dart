@@ -39,6 +39,8 @@ extension type const ApiManagementUserState._(TfArg<String> _)
 }
 
 /// Factory wrapper for `azurerm_api_management_user`.
+///
+/// Manages an API Management User.
 final class AzurermApiManagementUser extends Resource {
   static const String tfType = 'azurerm_api_management_user';
 

@@ -105,6 +105,8 @@ export 'src/cdn/azurerm_cdn_frontdoor_custom_domain.dart'
         CdnFrontdoorCustomDomainType;
 export 'src/cdn/azurerm_cdn_frontdoor_custom_domain_association.dart'
     show AzurermCdnFrontdoorCustomDomainAssociation;
+export 'src/cdn/azurerm_cdn_frontdoor_edge_action.dart'
+    show AzurermCdnFrontdoorEdgeAction;
 export 'src/cdn/azurerm_cdn_frontdoor_endpoint.dart'
     show AzurermCdnFrontdoorEndpoint;
 export 'src/cdn/azurerm_cdn_frontdoor_firewall_policy.dart'

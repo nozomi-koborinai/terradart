@@ -10,6 +10,8 @@ const Set<String> _azurermApiManagementOpenidConnectProviderSensitive =
     <String>{'client_id', 'client_secret'};
 
 /// Factory wrapper for `azurerm_api_management_openid_connect_provider`.
+///
+/// Manages an OpenID Connect Provider within an API Management Service.
 final class AzurermApiManagementOpenidConnectProvider extends Resource {
   static const String tfType = 'azurerm_api_management_openid_connect_provider';
 

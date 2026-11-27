@@ -10,6 +10,8 @@ const Set<String> _azurermApiManagementIdentityProviderMicrosoftSensitive =
     <String>{'client_secret'};
 
 /// Factory wrapper for `azurerm_api_management_identity_provider_microsoft`.
+///
+/// Manages an API Management Microsoft Identity Provider.
 final class AzurermApiManagementIdentityProviderMicrosoft extends Resource {
   static const String tfType =
       'azurerm_api_management_identity_provider_microsoft';

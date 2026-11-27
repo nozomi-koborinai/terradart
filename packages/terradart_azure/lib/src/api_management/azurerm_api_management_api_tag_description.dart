@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermApiManagementApiTagDescriptionSensitive = <String>{};
 
 /// Factory wrapper for `azurerm_api_management_api_tag_description`.
+///
+/// Manages an API Tag Description within an API Management Service.
 final class AzurermApiManagementApiTagDescription extends Resource {
   static const String tfType = 'azurerm_api_management_api_tag_description';
 

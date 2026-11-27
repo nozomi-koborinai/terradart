@@ -86,6 +86,8 @@ extension type const ApiManagementEmailTemplateName._(TfArg<String> _)
 }
 
 /// Factory wrapper for `azurerm_api_management_email_template`.
+///
+/// Manages an API Management Email Template.
 final class AzurermApiManagementEmailTemplate extends Resource {
   static const String tfType = 'azurerm_api_management_email_template';
 

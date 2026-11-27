@@ -9,6 +9,8 @@ const Set<String> _azurermApiManagementRedisCacheSensitive = <String>{
 };
 
 /// Factory wrapper for `azurerm_api_management_redis_cache`.
+///
+/// Manages an API Management Redis Cache.
 final class AzurermApiManagementRedisCache extends Resource {
   static const String tfType = 'azurerm_api_management_redis_cache';
 

@@ -34,6 +34,7 @@ extension type const FabricCapacitySkuName._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const FabricCapacitySkuName.arg(TfArg<String> arg) : this._(arg);
 
+  static const f0 = FabricCapacitySkuName._(TfArgLiteral('F0'));
   static const f2 = FabricCapacitySkuName._(TfArgLiteral('F2'));
   static const f4 = FabricCapacitySkuName._(TfArgLiteral('F4'));
   static const f8 = FabricCapacitySkuName._(TfArgLiteral('F8'));
@@ -45,8 +46,11 @@ extension type const FabricCapacitySkuName._(TfArg<String> _)
   static const f512 = FabricCapacitySkuName._(TfArgLiteral('F512'));
   static const f1024 = FabricCapacitySkuName._(TfArgLiteral('F1024'));
   static const f2048 = FabricCapacitySkuName._(TfArgLiteral('F2048'));
+  static const f4096 = FabricCapacitySkuName._(TfArgLiteral('F4096'));
+  static const f8192 = FabricCapacitySkuName._(TfArgLiteral('F8192'));
 
   static const List<FabricCapacitySkuName> values = [
+    f0,
     f2,
     f4,
     f8,
@@ -58,6 +62,8 @@ extension type const FabricCapacitySkuName._(TfArg<String> _)
     f512,
     f1024,
     f2048,
+    f4096,
+    f8192,
   ];
 }
 
