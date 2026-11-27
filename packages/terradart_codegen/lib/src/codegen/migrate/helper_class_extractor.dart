@@ -615,7 +615,7 @@ class HelperClassExtractor {
     return _Encoding(
       keys: {refs.single: blockKey},
       merged: const {},
-      attributes: {if (encodedAttribute(value) case final a?) refs.single: a},
+      attributes: {refs.single: ?encodedAttribute(value)},
       topLevelKeys: [blockKey],
     );
   }
