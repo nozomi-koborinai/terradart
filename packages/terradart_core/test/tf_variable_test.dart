@@ -196,14 +196,37 @@ void main() {
       expect(stack.variables['labels']!.toTfJson()['default'], isEmpty);
     });
 
-    test('an optional object attribute writes a null default', () {
+    test('an optional object attribute writes a default only when given', () {
+      final omitted = TfType.optional(TfType.string) as TfOptionalType;
+      final explicitNull =
+          TfType.optional(TfType.string, null) as TfOptionalType;
+      final value = TfType.optional(TfType.string, 'x') as TfOptionalType;
       expect(
-        const TfType.optional(TfType.string, null).expression,
-        'optional(string, null)',
+        [omitted, explicitNull, value].map((t) => (t.hasDefault, t.expression)),
+        [
+          (false, 'optional(string)'),
+          (true, 'optional(string, null)'),
+          (true, 'optional(string, "x")'),
+        ],
       );
       expect(
         const TfType.optional(TfType.string).expression,
         'optional(string)',
+      );
+      expect(
+        const TfType.optional(TfType.string, null).expression,
+        'optional(string, null)',
+      );
+    });
+
+    test('the type terradart migrate writes synthesizes the HCL it read', () {
+      const type = TfType.object({
+        'a': .optional(.string),
+        'b': .optional(.string, null),
+      });
+      expect(
+        type.expression,
+        'object({ a = optional(string), b = optional(string, null) })',
       );
     });
 

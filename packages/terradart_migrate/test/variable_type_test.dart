@@ -38,6 +38,10 @@ void main() {
         'Object?',
         ".object({'tags': .optional(.list(.string), <Object?>[])})",
       ),
+      'object({ a = optional(string), b = optional(string, null) })': (
+        'Object?',
+        ".object({'a': .optional(.string), 'b': .optional(.string, null)})",
+      ),
     };
     cases.forEach((hcl, expected) {
       final t = _of(hcl);
