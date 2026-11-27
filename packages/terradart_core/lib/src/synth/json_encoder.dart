@@ -13,12 +13,6 @@ import 'package:terradart_core/src/tf_arg.dart';
 /// scalars). The orchestrator in `stack_synth.dart` glues these together
 /// into the top-level map.
 class TfJsonEncoder {
-  /// `>= 1.11.0` is the default required Terraform version because
-  /// curated factories (notably Secret Manager's `secret_data_wo`) depend
-  /// on Terraform 1.11+ write-only arguments. Override it with
-  /// the Stack's `requiredVersion` if your stack does not need them.
-  static const String defaultRequiredVersion = '>= 1.11.0';
-
   /// The top-level `terraform { ... }` block: `required_version`,
   /// `required_providers`, optional `backend`.
   ///

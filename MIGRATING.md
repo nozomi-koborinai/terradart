@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### `TfJsonEncoder.defaultRequiredVersion` removed
+
+**Breaking (`terradart_core`, internal library).**
+`TfJsonEncoder.defaultRequiredVersion` (exported from
+`package:terradart_core/internal.dart`) was unused after
+`Stack.requiredVersion` took over the `'>= 1.11.0'` default in `0.32.0`, and is
+now removed. Read `Stack.requiredVersion` instead.
+
 ### AWS provider 6.74.0
 
 **Breaking (`terradart_aws`).** Provider 6.74.0 adds `ontap_configuration` to
