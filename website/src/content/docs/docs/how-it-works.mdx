@@ -61,9 +61,11 @@ Before it encodes anything, synth checks the whole Stack and collects every prob
 | `UndeclaredVariable` | a `.variable('x')` or `var.x` names a variable neither `variable` nor `externalVariable` declared |
 | `UnregisteredReference` | a block reads (or `depends_on`) a resource, data source or module that was built but never passed to `add` / `addModule` |
 | `SensitiveLiteral` | a sensitive field is set to a literal, which would write the secret into `main.tf.json` |
-| `InvalidTimeout` | a `TfTimeouts` value is not a Go duration string |
+| `InvalidTimeout` | a `TfTimeouts` `Duration` is negative |
+| `InvalidLifecycle` | a `lifecycle` block Terraform rejects: a data source (or one of its attributes) in `replaceTriggeredBy`, `all` inside `IgnoreChanges.of`, or a condition with an empty error message |
 | `InvalidMoveTarget` | an `addMoved` target names no resource of the Stack |
 | `UnresolvableConstant` | an `addConstant(...)` attribute has no literal value at synth |
+| `InvalidDartDefineOutput` | an `addDartDefineOutput` output names an output that is not registered, is sensitive or has no environment value, two of its outputs read one variable, or it carries no output at all |
 
 `stack.validate()` returns the same list without throwing — the shape a test or a pre-commit check wants. The sealed hierarchy lets a `switch` handle the issues it cares about:
 
@@ -237,7 +239,7 @@ add(AwsLambdaFunction(
 
 ### Building a client with them
 
-A client app — Flutter, Dart web, a CLI — gets the same variables as a file instead. `addDartDefineOutput()` declares an output whose value is the JSON that `--dart-define-from-file` reads; `terradart apply` writes it to `.terradart/dart_defines.json` (`.terradart/dart_defines.<env>.json` with `--env`), and the client reads it with `const OrdersStackOutputs.fromDartDefine()`. [Outputs in client apps](/docs/client-outputs/) walks through it.
+A client app — Flutter, Dart web, a CLI — gets the same variables as a file instead. `addDartDefineOutput()` declares an output whose value is the JSON that `--dart-define-from-file` reads; `terradart apply` writes it to `.terradart/dart_defines.json` (`.terradart/dart_defines.<env>.json` when it runs an environment, however the environment was chosen), and the client reads it with `const OrdersStackOutputs.fromDartDefine()`. [Outputs in client apps](/docs/client-outputs/) walks through it.
 
 An `AppExports` with the `name` `Orders` renames the generated classes (`OrdersConstants`, `OrdersOutputs`). The path is relative to the directory `bin/infra.dart` runs in, and the generated file imports only `dart:convert`, so it can live in a small package the app and the infra package both depend on, keeping the app free of provider packages — the [Lunch Concierge recipe](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/lunch-concierge) writes it into its `shared/` package. Runnable pattern: [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 

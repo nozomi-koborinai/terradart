@@ -8,13 +8,14 @@ Core runtime for [TerraDart](https://terradart.dev) — a Dart-first infrastruct
 
 This package ships the small set of primitives every TerraDart Stack uses:
 
-- `Stack` — abstract base for your infrastructure module. You subclass it (`final class MyStack extends Stack`), register `Resource` / `Data` instances via `add(...)`, and call `stack.writeTo('tf-out')` from your own `main()` to emit `main.tf.json`.
+- `Stack` — abstract base for your infrastructure module. You subclass it (`final class MyStack extends Stack`) and register `Resource` / `Data` instances via `add(...)`.
+- `runStack` / `runEnvironments` — the entry point in `bin/infra.dart`. `runStack(args, NetworkStack.new)` writes one Stack's `main.tf.json` to `tf-out/`; `runEnvironments` takes an enum of your environments and writes one Stack per member. Both tell the `terradart` command what they wrote.
 - `Resource` / `Data` — typed nodes supplied by provider factory packages.
-- `TfArg.literal(...)`, an attribute getter (`topic.name`), a variable handle and `TfArg.expression(...)` — the four ways every settable field accepts input: a Dart value, a reference to another resource's attribute, a Terraform input variable (the handle `variable<String>('region')` returns, passed as the subnetwork's `region` below; `TfArg.variable('region')` names one where the handle's type does not fit), or a raw Terraform expression emitted verbatim (`TfArg.expression(r'${lower(var.name)}-x')`). A Terraform enum is a `TfArg<String>` itself, so its members pass directly (see below).
+- `TfArg.literal(...)`, an attribute getter (`topic.name`), a variable handle and `TfArg.expression(...)` — the ways a `TfArg<T>` input takes a value: a Dart value, a reference to another resource's attribute, a Terraform input variable (the handle `variable<String>('region')` returns, passed as the subnetwork's `region` below; `TfArg.variable('region')` names one where the handle's type does not fit), or a raw Terraform expression emitted verbatim (`TfArg.expression(r'${lower(var.name)}-x')`). A Terraform enum is a `TfArg<String>` itself, so its members pass directly (see below). Enum, sealed, helper and `Sensitive<T>` inputs have forms of their own; [Arguments](https://terradart.dev/docs/arguments/) lists every form.
 - `RefTo<R>` — what an argument that names another resource takes: the target's generated `ref` getter (the subnetwork's `network` below), `.literal(...)` / `.variable(...)` / `.expression(...)` / `.arg(...)` for a value outside the Stack, and `.pinned('self_link')` to emit an attribute other than the argument's own.
 - `LifecycleOptions` — `create_before_destroy`, `prevent_destroy`, `ignore_changes` (`.all` / `.of([...])`), `replace_triggered_by` (resources and attribute getters), `precondition` / `postcondition`.
 - `Stack.synth()` returns an in-memory `SynthResult` with `tfJson` (Terraform JSON map) and, when the Stack was constructed with an `appExports` file (any path, as below), `dartSource` (the generated Dart file for the IaC ↔ application seam). `Stack.writeTo(outDir)` is the file-IO wrapper that calls `synth()` and writes `main.tf.json` under `outDir`, plus the Dart file at its path.
-- `addOutput('service_url', service.uri)` declares a Terraform `output`; `addConstant('ordersTopicName', .ref(topic.name))` declares a `static const` of the generated `<Stack>Constants` class — `.ref` reads the literal the attribute is set to at synth, `.value(...)` takes any JSON value, `.fromEnvironment('NAME')` a `String.fromEnvironment`. The same file holds a typed `<Stack>Outputs` reader with a getter per non-sensitive output, built with `fromTerraformJson(terraformOutputJson)` or `fromEnvironment(Platform.environment)` (`ORDERS_TOPIC_ID` for `orders_topic_id`); `outputEnvironment()` returns those variables as `TfArg<String>`s to pass as a Cloud Run service's `env`.
+- `addOutput('service_url', service.uri)` declares a Terraform `output`; `addConstant('ordersTopicName', .ref(topic.name))` declares a `static const` of the generated `<Stack>Constants` class — `.ref` reads the literal the attribute is set to at synth, `.value(...)` takes any JSON value, `.fromEnvironment('NAME')` a `String.fromEnvironment`. The same file holds a typed `<Stack>Outputs` reader with a getter per non-sensitive output, built with `fromTerraformJson(terraformOutputJson)` or `fromEnvironment(Platform.environment)` (`ORDERS_TOPIC_ID` for `orders_topic_id`); `outputEnvironment()` returns those variables as `TfArg<String>`s to pass as a Cloud Run service's `env`. For a Flutter, web or CLI client, `addDartDefineOutput()` declares the define file that `terradart apply` writes, and the client reads it with `const <Stack>Outputs.fromDartDefine()`.
 
 ```dart
 // lib/network_stack.dart
@@ -49,7 +50,7 @@ final class NetworkStack extends Stack {
 }
 ```
 
-This package is the **runtime layer only**. It is intentionally small and dependency-free.
+This package is the **runtime layer only**. It is intentionally small, and its one dependency is `package:meta`.
 
 ## Companion packages
 
@@ -60,6 +61,7 @@ This package is the **runtime layer only**. It is intentionally small and depend
 | [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) | Curated factory wrappers for Appwrite resources (`appwrite/appwrite`). |
 | [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) | Curated factory wrappers for Cloudflare resources (`cloudflare/cloudflare`). |
 | [`terradart_aws`](https://pub.dev/packages/terradart_aws) | Curated factory wrappers for AWS resources (`hashicorp/aws`). |
+| [`terradart_azure`](https://pub.dev/packages/terradart_azure) | Curated factory wrappers for Azure Resource Manager resources (`hashicorp/azurerm`). |
 | [`terradart_time`](https://pub.dev/packages/terradart_time) | `TimeSleep` (`hashicorp/time`), the propagation wait a Stack on any provider can use. |
 | [`terradart_cli`](https://pub.dev/packages/terradart_cli) | The `terradart` command: synth, plan, apply, destroy, outputs and migrate, with OpenTofu or Terraform. |
 | [`terradart_migrate`](https://pub.dev/packages/terradart_migrate) | The HCL → Dart migrator library behind `terradart migrate`. |

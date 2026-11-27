@@ -16,6 +16,9 @@ Give every command --no-input --json:
     engine failed: error.engineExitCode is its code, and the reason is on
     stderr.
 
+terradart migrate never asks and rejects --no-input after migrate (exit
+64); its --json prints the --report as JSON, not this result.
+
 terradart also stops asking by itself in CI ($CI) and in a known agent's
 shell (AI_AGENT, CURSOR_AGENT, CLAUDECODE, GEMINI_CLI, CODEX_SANDBOX,
 CODEX_THREAD_ID, OPENCODE), and with TERRADART_NO_INPUT=1.

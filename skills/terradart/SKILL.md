@@ -3,7 +3,7 @@ name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_azure` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
   terradart-version: "0.37.0"
-  terradart-sha256: "ded5a637fcdf26832b0de1c4a64bbab2ed7fe98c2224cae60154480426608ad7"
+  terradart-sha256: "3ca7bf2dd043ca0317a7ce0ce6810377798ab83abdbf258322535fb78321aa34"
 ---
 
 # TerraDart
@@ -153,8 +153,8 @@ add(
 <!-- argument-rules:end -->
 
 - A dot shorthand needs a context type. Spell out the class only where there is none: `final x = TfArg.literal('a');`. A reference makes Terraform order the blocks, so add `dependsOn` only for an ordering no argument shows.
-- Do not declare Terraform variables. Use Dart values (constructor parameters, environment variables read in `bin/infra.dart`), not `${var.x}`.
-- Do not put credentials in the stack. The provider classes leave them out on purpose; `terradart apply` reads them from the environment.
+- Prefer Dart values (constructor parameters, environment variables read in `bin/infra.dart`) to Terraform variables, and never write `${var.x}` into a literal. Declare a variable with `variable<T>()` only for a value Terraform must take at plan time, such as the secret a `Sensitive<T>` input needs, declared sensitive as the rules above show.
+- Do not put provider credentials in the stack. The provider classes leave them out on purpose; `terradart apply` reads them from the environment.
 - Hand values to the app instead of re-typing them there. `addOutput('service_url', service.uri)` declares a Terraform output for a value known after apply. `addConstant('topicName', .ref(topic.name))` writes a `static const` into the file the `appExports` argument of the `super(...)` call names (a path of your choosing); `.ref` reads the literal the attribute is set to (every input has a getter named after its attribute, e.g. `topic.name`, so the literal is written once), and synth fails when it is not one, so use `addOutput` for apply-time values. The same file has a `<Stack>Outputs` reader: the app reads an output with `<Stack>Outputs.fromEnvironment(Platform.environment).ordersTopicId` (variable `ORDERS_TOPIC_ID`) or `.fromTerraformJson(...)`, never by re-typing it. Give a Cloud Run service those variables by turning each entry of `outputEnvironment()` into an `env` entry of its container, or pass `outputEnvironment().variables` to a map-shaped environment (an AWS Lambda's `environment` block; `environmentVariables` on a Cloud Function), registering outputs that read the service itself after it. For a Flutter, web or CLI client, call `addDartDefineOutput()` (one output, `dart_defines`; `only:` and `name:` give each client its own) and read the values with `const <Stack>Outputs.fromDartDefine()`; `terradart apply` and `terradart outputs` write them to the define file the client builds with (section 6). It carries the non-sensitive outputs only, so never build a client from every output of the Stack.
 
 ```dart
@@ -219,7 +219,7 @@ terradart outputs    # synth, init, then writes the define file from the applied
 
 `dart install` puts `terradart` in `$DART_DATA_HOME/install/bin`, which must be on `PATH` (see [Install](https://terradart.dev/docs/cli/#install) for macOS, Linux, and Windows defaults, the macOS zsh snippet, and `dart uninstall terradart_cli`). Arguments after `--` go to the engine (`terradart plan -- -target=...`), and `--no-synth` reuses the last synth.
 
-Run every `terradart` command with `--no-input --json`: it then never waits for an answer (it also stops asking in `CI` and in an agent's shell it recognizes), and stdout is one JSON object — read `ok`, `error.code`, `error.choices` and `next` from it instead of parsing the log on stderr. Where it needs an answer, it exits 3 (`apply` / `destroy` without `--auto-approve`) or 64 (no `--env`) and `next` holds the command to run; never add `--auto-approve` unless the user asked for the apply. `terradart help agents` and `terradart help exit-codes` print the same rules in the terminal. `terradart apply --dry-run` (and `destroy --dry-run`) stops after the plan, and `terradart outputs --dry-run` lists the define keys without writing them. `terradart plan --detailed-exitcode` exits 2 when there are changes; 10 is the entry point failing (fix the Dart), 12 the engine (`error.engineExitCode`).
+Run every `terradart` command with `--no-input --json`: it then never waits for an answer (it also stops asking in `CI` and in an agent's shell it recognizes), and stdout is one JSON object — read `ok`, `error.code`, `error.choices` and `next` from it instead of parsing the log on stderr. Where it needs an answer, it exits 3 (`apply` / `destroy` without `--auto-approve`) or 64 (no `--env`) and `next` holds the command to run; never add `--auto-approve` unless the user asked for the apply. `terradart migrate` is the exception: it never asks, it rejects `--no-input` after `migrate` (exit 64), and its `--json` prints the `--report` as JSON instead of this result. `terradart help agents` and `terradart help exit-codes` print the same rules in the terminal. `terradart apply --dry-run` (and `destroy --dry-run`) stops after the plan, and `terradart outputs --dry-run` lists the define keys without writing them. `terradart plan --detailed-exitcode` exits 2 when there are changes; 10 is the entry point failing (fix the Dart), 12 the engine (`error.engineExitCode`).
 
 **Environments are declared in Dart**, never in `pubspec.yaml`: an enum of your own, any member names, each carrying that environment's values. The Stack takes a member and `bin/infra.dart` hands the members to `runEnvironments`:
 
@@ -278,7 +278,7 @@ With environments, `validate`, `plan`, `apply`, `destroy` and `outputs` run agai
 - **One directory, partial backend configuration**: the Stack sets `const GcsBackend()` (or `const S3Backend()` or `const AzurermBackend()`), and `runEnvironments` gets a `dir` that puts every environment in `tf-out` and a `backendConfig` that names a `-backend-config` file (`backend/<env>.gcs.tfbackend`) or `key=value` pairs per environment; `terradart` runs `init -reconfigure` with them.
 - **One directory, workspaces**: `runEnvironments` gets a `dir` that puts every environment in `tf-out` and a `workspace` per environment (its name); `terradart` selects the workspace after `init`, creating it on the first `plan` or `apply`.
 
-Two environments may share a directory only when `backendConfig` or `workspace` tells them apart; `runEnvironments` throws otherwise. `--backend-config` and `--workspace` on the command line extend and override them for one run.
+Two environments may share a directory only when `backendConfig` or `workspace` tells them apart; `runEnvironments` throws otherwise. `--backend-config` on the command line adds to them for one run. `--workspace` replaces the `workspace` that `runEnvironments` gives an environment for one run; the next run selects the environment's own again. Without a `workspace` from `runEnvironments` (and with `runStack`), `terradart` selects none, so the directory stays in the last workspace `--workspace` selected (`.terraform/environment`): pass `--workspace` on every run there, or `--workspace default` to go back.
 
 **Hand the outputs to a client** through the define file, one per environment:
 
@@ -290,7 +290,7 @@ terradart outputs --env prod     # a client build job: reads the applied state, 
 flutter build web --dart-define-from-file=.terradart/dart_defines.prod.json
 ```
 
-Without `--env` the file is `.terradart/dart_defines.json`. `.terradart/` gets its own `.gitignore`. A Stack with several define outputs takes `--define-output <name>`, and `--define-file <path>` writes elsewhere. Run `apply` and `destroy` only when the user asks for them.
+The environment's name goes into the file name however the command chose it (`--env`, `TERRADART_ENV`, `defaultEnv` or the only member). Without an environment the file is `.terradart/dart_defines.json`, or `.terradart/dart_defines.<workspace>.json` with `--workspace`. `.terradart/` gets its own `.gitignore`. A Stack with several define outputs takes `--define-output <name>`, and `--define-file <path>` writes to that exact path, with no name added. Run `apply` and `destroy` only when the user asks for them.
 
 ## Existing Terraform
 

@@ -438,7 +438,9 @@ abstract base class Stack {
   /// ```
   ///
   /// `terradart apply` writes it to `.terradart/<name>.json`
-  /// (`.terradart/<name>.<env>.json` with `--env <env>`), and
+  /// (`.terradart/<name>.<env>.json` when the command runs an environment,
+  /// however it was chosen, and `.terradart/<name>.<workspace>.json` with
+  /// `--workspace` and no environment), and
   /// `terradart outputs` writes the same file from the applied state: a
   /// JSON object of strings that `flutter build --dart-define-from-file`
   /// takes as it is, and the generated reader's `fromDartDefine()` reads

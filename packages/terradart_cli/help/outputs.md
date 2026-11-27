@@ -15,10 +15,13 @@ read the state but not change it):
   terradart outputs --env stg
   terradart outputs --env stg --dry-run
 
-The file is .terradart/dart_defines.json, or
-.terradart/dart_defines.<env>.json with --env. --define-output <name> picks
-one of several define outputs, --define-file <path> writes elsewhere, and
-terradart.dart_defines in pubspec.yaml sets both for every run. .terradart/
+The file is .terradart/dart_defines.json. When the command runs an
+environment, its name goes before .json (.terradart/dart_defines.stg.json),
+whether --env, $TERRADART_ENV, defaultEnv or the only member chose it;
+without one, a --workspace name does the same. --define-output <name> picks
+one of several define outputs, and terradart.dart_defines in pubspec.yaml
+sets the output and the file for every run (the name goes into that file
+too). --define-file <path> writes to <path> exactly. .terradart/
 gets its own .gitignore, so the file never reaches git. --dry-run prints the
 file and its keys and writes nothing; --json lists the keys, never the
 values.
