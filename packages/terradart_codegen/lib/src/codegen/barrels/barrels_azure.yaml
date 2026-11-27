@@ -292,6 +292,9 @@ barrels:
   healthcare:
     doc: |-
       /// Azure Resource Manager healthcare resources.
+  horizondb:
+    doc: |-
+      /// `horizondb` factories, added by the weekly schema bump.
   identity:
     doc: |-
       /// Azure user-assigned managed identities.

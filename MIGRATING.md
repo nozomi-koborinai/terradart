@@ -2,6 +2,39 @@
 
 ## Unreleased
 
+### Azure provider 5.15.0
+
+**Breaking (`terradart_azure`).** Provider 5.15.0 adds `managed_rules.exception`
+to `azurerm_web_application_firewall_policy` in upstream azurerm #33581. Because
+the new block defines its own `rule_group` block, `match_variable` enum, and
+`selector_match_operator` enum with different shapes and value sets, codegen
+splits three existing types under `managed_rules.exclusion`:
+
+- `WebApplicationFirewallPolicyExcludedRuleSet.ruleGroup` now takes
+  `WebApplicationFirewallPolicyExcludedRuleSetRuleGroup` instead of
+  `WebApplicationFirewallPolicyRuleGroup`. Its `ruleGroupName` and
+  `excludedRules` fields are unchanged.
+- `WebApplicationFirewallPolicyExclusion.matchVariable` now takes
+  `WebApplicationFirewallPolicyExclusionMatchVariable` instead of
+  `WebApplicationFirewallPolicyMatchVariable`. All nine exclusion values are
+  unchanged: `.requestargkeys`, `.requestargnames`, `.requestargvalues`,
+  `.requestcookiekeys`, `.requestcookienames`, `.requestcookievalues`,
+  `.requestheaderkeys`, `.requestheadernames`, and `.requestheadervalues`.
+- `WebApplicationFirewallPolicyExclusion.selectorMatchOperator` now takes
+  `WebApplicationFirewallPolicyExclusionSelectorMatchOperator` instead of
+  `WebApplicationFirewallPolicySelectorMatchOperator`. All five values are
+  unchanged: `.contains`, `.endswith`, `.equals`, `.equalsany`, and
+  `.startswith`.
+
+Dot shorthands such as `.new(...)`, `.requestheadervalues`, and `.equals` keep
+compiling, and Terraform JSON output is unchanged. Only explicit references to
+the old type names break.
+
+| Before | After |
+|---|---|
+| `WebApplicationFirewallPolicyExcludedRuleSet(ruleGroup: [WebApplicationFirewallPolicyRuleGroup(ruleGroupName: .literal('REQUEST-942-APPLICATION-ATTACK-SQLI'))])` | `WebApplicationFirewallPolicyExcludedRuleSet(ruleGroup: [WebApplicationFirewallPolicyExcludedRuleSetRuleGroup(ruleGroupName: .literal('REQUEST-942-APPLICATION-ATTACK-SQLI'))])` |
+| `WebApplicationFirewallPolicyExclusion(matchVariable: WebApplicationFirewallPolicyMatchVariable.requestheadervalues, selector: .literal('User-Agent'), selectorMatchOperator: WebApplicationFirewallPolicySelectorMatchOperator.equals)` | `WebApplicationFirewallPolicyExclusion(matchVariable: WebApplicationFirewallPolicyExclusionMatchVariable.requestheadervalues, selector: .literal('User-Agent'), selectorMatchOperator: WebApplicationFirewallPolicyExclusionSelectorMatchOperator.equals)` |
+
 ### `TfJsonEncoder.defaultRequiredVersion` removed
 
 **Breaking (`terradart_core`, internal library).**

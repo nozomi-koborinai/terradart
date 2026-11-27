@@ -104,6 +104,8 @@ final class ApiManagementApiSchemaDocumentValue
 }
 
 /// Factory wrapper for `azurerm_api_management_api_schema`.
+///
+/// Manages an API Schema within an API Management Service.
 final class AzurermApiManagementApiSchema extends Resource {
   static const String tfType = 'azurerm_api_management_api_schema';
 

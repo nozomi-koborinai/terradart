@@ -80,6 +80,8 @@ final class ApiManagementProductPolicyXmlLink
 }
 
 /// Factory wrapper for `azurerm_api_management_product_policy`.
+///
+/// Manages an API Management Product Policy.
 final class AzurermApiManagementProductPolicy extends Resource {
   static const String tfType = 'azurerm_api_management_product_policy';
 

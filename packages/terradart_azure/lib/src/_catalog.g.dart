@@ -154,7 +154,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['DataAdvisorRecommendationsFilterByCategory'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_advisor_recommendations`.',
+    docComment:
+        'Factory wrapper for `azurerm_advisor_recommendations`.\n\nUse this data source to access information about an existing Advisor\nRecommendations.',
   ),
   CatalogEntry(
     tfType: 'azurerm_advisor_suppression',
@@ -255,7 +256,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'AnalysisServicesServerIpv4FirewallRule',
     ],
     sensitiveFields: <String>['backup_blob_container_uri'],
-    docComment: 'Factory wrapper for `azurerm_analysis_services_server`.',
+    docComment:
+        'Factory wrapper for `azurerm_analysis_services_server`.\n\nManages an Analysis Services Server.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_connection',
@@ -360,7 +362,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'tenant_access.primary_key',
       'tenant_access.secondary_key',
     ],
-    docComment: 'Factory wrapper for `azurerm_api_management`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management`.\n\nManages an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management',
@@ -376,7 +379,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management`.\n\nUse this data source to access information about an existing API Management\nService.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api',
@@ -426,7 +430,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementApiSubscriptionKeyParameterNames',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_api`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_api`.\n\nManages an API within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api',
@@ -443,7 +448,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_api`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_api`.\n\nUse this data source to access information about an existing API Management\nAPI.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_diagnostic',
@@ -485,7 +491,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementApiDiagnosticFrontendResponse',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_api_diagnostic`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_api_diagnostic`.\n\nManages an API Management Service API Diagnostics Logs.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_operation',
@@ -518,7 +525,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementApiOperationTemplateParameter',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_api_operation`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_api_operation`.\n\nManages an API Operation within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_operation_policy',
@@ -542,7 +550,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `azurerm_api_management_api_operation_policy`.',
+        'Factory wrapper for `azurerm_api_management_api_operation_policy`.\n\nManages an API Management API Operation Policy.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_operation_tag',
@@ -559,7 +567,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `azurerm_api_management_api_operation_tag`.',
+        'Factory wrapper for `azurerm_api_management_api_operation_tag`.\n\nManages an API Management API Operation Tag.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_policy',
@@ -580,7 +588,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementApiPolicyXmlLink',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_api_policy`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_api_policy`.\n\nManages an API Management API Policy.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_release',
@@ -591,7 +600,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>['localName', 'apiId', 'name', 'notes'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_api_release`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_api_release`.\n\nManages an API Management API Release.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_schema',
@@ -615,7 +625,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementApiSchemaDocumentValue',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_api_schema`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_api_schema`.\n\nManages an API Schema within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_tag',
@@ -626,7 +637,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>['localName', 'apiId', 'name'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_api_tag`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_api_tag`.\n\nManages the Assignment of an API Management API Tag to an API.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_tag_description',
@@ -645,7 +657,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `azurerm_api_management_api_tag_description`.',
+        'Factory wrapper for `azurerm_api_management_api_tag_description`.\n\nManages an API Tag Description within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_version_set',
@@ -670,7 +682,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementApiVersionSetVersionQueryName',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_api_version_set`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_api_version_set`.\n\nManages an API Version Set within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_api_version_set',
@@ -686,7 +699,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_api_version_set`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_api_version_set`.\n\nUses this data source to access information about an API Version Set within\nan API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_authorization_server',
@@ -726,7 +740,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>['client_secret', 'resource_owner_password'],
     docComment:
-        'Factory wrapper for `azurerm_api_management_authorization_server`.',
+        'Factory wrapper for `azurerm_api_management_authorization_server`.\n\nManages an Authorization Server within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_backend',
@@ -769,7 +783,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementBackendTls',
     ],
     sensitiveFields: <String>['proxy.password'],
-    docComment: 'Factory wrapper for `azurerm_api_management_backend`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_backend`.\n\nManages a backend within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_certificate',
@@ -792,7 +807,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementCertificateSourceKeyVaultSecretId',
     ],
     sensitiveFields: <String>['data', 'password'],
-    docComment: 'Factory wrapper for `azurerm_api_management_certificate`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_certificate`.\n\nManages a Certificate within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_custom_domain',
@@ -828,7 +844,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'scm.certificate',
       'scm.certificate_password',
     ],
-    docComment: 'Factory wrapper for `azurerm_api_management_custom_domain`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_custom_domain`.\n\nManages an API Management Custom Domain.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_diagnostic',
@@ -869,7 +886,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementDiagnosticFrontendResponse',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_diagnostic`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_diagnostic`.\n\nManages an API Management Service Diagnostic.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_email_template',
@@ -887,7 +905,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['ApiManagementEmailTemplateName'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_email_template`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_email_template`.\n\nManages an API Management Email Template.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_gateway',
@@ -904,7 +923,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['ApiManagementGatewayLocationData'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_gateway`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_gateway`.\n\nManages an API Management Gateway.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_gateway',
@@ -915,7 +935,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>['localName', 'apiManagementId', 'name'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_gateway`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_gateway`.\n\nUse this data source to access information about an existing API Management\nGateway.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_gateway_api',
@@ -926,7 +947,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>['localName', 'apiId', 'gatewayId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_gateway_api`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_gateway_api`.\n\nManages an API Management Gateway API.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_gateway_certificate_authority',
@@ -945,7 +967,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `azurerm_api_management_gateway_certificate_authority`.',
+        'Factory wrapper for `azurerm_api_management_gateway_certificate_authority`.\n\nManages an API Management Gateway Certificate Authority.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_gateway_host_name_configuration',
@@ -969,7 +991,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `azurerm_api_management_gateway_host_name_configuration`.',
+        'Factory wrapper for `azurerm_api_management_gateway_host_name_configuration`.\n\nManages an API Management Gateway Host Name Configuration.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_gateway_host_name_configuration',
@@ -987,7 +1009,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `azurerm_api_management_gateway_host_name_configuration`.',
+        'Factory wrapper for `azurerm_api_management_gateway_host_name_configuration`.\n\nUse this data source to access information about an existing API Management\nGateway Host Configuration.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_global_schema',
@@ -1006,7 +1028,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['ApiManagementGlobalSchemaType'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_global_schema`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_global_schema`.\n\nManages a Global Schema within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_group',
@@ -1026,7 +1049,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['ApiManagementGroupType'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_group`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_group`.\n\nManages an API Management Group.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_group',
@@ -1042,7 +1066,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_group`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_group`.\n\nUse this data source to access information about an existing API Management\nGroup.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_group_user',
@@ -1059,7 +1084,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_group_user`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_group_user`.\n\nManages an API Management User Assignment to a Group.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_identity_provider_aad',
@@ -1081,7 +1107,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['client_secret'],
     docComment:
-        'Factory wrapper for `azurerm_api_management_identity_provider_aad`.',
+        'Factory wrapper for `azurerm_api_management_identity_provider_aad`.\n\nManages an API Management AAD Identity Provider.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_identity_provider_aadb2c',
@@ -1108,7 +1134,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['client_secret'],
     docComment:
-        'Factory wrapper for `azurerm_api_management_identity_provider_aadb2c`.',
+        'Factory wrapper for `azurerm_api_management_identity_provider_aadb2c`.\n\nManages an API Management Azure AD B2C Identity Provider.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_identity_provider_facebook',
@@ -1127,7 +1153,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['app_secret'],
     docComment:
-        'Factory wrapper for `azurerm_api_management_identity_provider_facebook`.',
+        'Factory wrapper for `azurerm_api_management_identity_provider_facebook`.\n\nManages an API Management Facebook Identity Provider.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_identity_provider_google',
@@ -1146,7 +1172,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['client_secret'],
     docComment:
-        'Factory wrapper for `azurerm_api_management_identity_provider_google`.',
+        'Factory wrapper for `azurerm_api_management_identity_provider_google`.\n\nManages an API Management Google Identity Provider.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_identity_provider_microsoft',
@@ -1165,7 +1191,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['client_secret'],
     docComment:
-        'Factory wrapper for `azurerm_api_management_identity_provider_microsoft`.',
+        'Factory wrapper for `azurerm_api_management_identity_provider_microsoft`.\n\nManages an API Management Microsoft Identity Provider.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_identity_provider_twitter',
@@ -1184,7 +1210,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['api_key', 'api_secret_key'],
     docComment:
-        'Factory wrapper for `azurerm_api_management_identity_provider_twitter`.',
+        'Factory wrapper for `azurerm_api_management_identity_provider_twitter`.\n\nManages an API Management Twitter Identity Provider.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_logger',
@@ -1220,7 +1246,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'application_insights.instrumentation_key',
       'eventhub.connection_string',
     ],
-    docComment: 'Factory wrapper for `azurerm_api_management_logger`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_logger`.\n\nManages a Logger within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_named_value',
@@ -1245,7 +1272,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementNamedValueFromKeyVault',
     ],
     sensitiveFields: <String>['value'],
-    docComment: 'Factory wrapper for `azurerm_api_management_named_value`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_named_value`.\n\nManages an API Management Named Value.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_notification_recipient_email',
@@ -1308,7 +1336,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['client_id', 'client_secret'],
     docComment:
-        'Factory wrapper for `azurerm_api_management_openid_connect_provider`.',
+        'Factory wrapper for `azurerm_api_management_openid_connect_provider`.\n\nManages an OpenID Connect Provider within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_policy',
@@ -1323,7 +1351,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementPolicyXmlLink',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_policy`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_policy`.\n\nManages an API Management service Policy.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_policy_fragment',
@@ -1341,7 +1370,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['ApiManagementPolicyFragmentFormat'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_policy_fragment`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_policy_fragment`.\n\nManages an API Management Policy Fragment.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_product',
@@ -1364,7 +1394,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_product`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_product`.\n\nManages an API Management Product.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_product',
@@ -1380,7 +1411,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_product`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_product`.\n\nUse this data source to access information about an existing API Management\nProduct.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_product_api',
@@ -1397,7 +1429,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_product_api`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_product_api`.\n\nManages an API Management API Assignment to a Product.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_product_group',
@@ -1414,7 +1447,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_product_group`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_product_group`.\n\nManages an API Management Product Assignment to a Group.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_product_policy',
@@ -1435,7 +1469,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementProductPolicyXmlLink',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_product_policy`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_product_policy`.\n\nManages an API Management Product Policy.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_product_tag',
@@ -1452,7 +1487,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_product_tag`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_product_tag`.\n\nManages an API Management Product tag.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_redis_cache',
@@ -1471,7 +1507,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>['connection_string'],
-    docComment: 'Factory wrapper for `azurerm_api_management_redis_cache`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_redis_cache`.\n\nManages an API Management Redis Cache.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_standalone_gateway',
@@ -1524,7 +1561,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementSubscriptionScopeProductId',
     ],
     sensitiveFields: <String>['primary_key', 'secondary_key'],
-    docComment: 'Factory wrapper for `azurerm_api_management_subscription`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_subscription`.\n\nManages a Subscription within an API Management Service.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_subscription',
@@ -1555,7 +1593,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_tag`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_tag`.\n\nManages an API Management Tag.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_user',
@@ -1581,7 +1620,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApiManagementUserState',
     ],
     sensitiveFields: <String>['password'],
-    docComment: 'Factory wrapper for `azurerm_api_management_user`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_user`.\n\nManages an API Management User.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_user',
@@ -1597,7 +1637,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `azurerm_api_management_user`.',
+    docComment:
+        'Factory wrapper for `azurerm_api_management_user`.\n\nUse this data source to access information about an existing API Management\nUser.',
   ),
   CatalogEntry(
     tfType: 'azurerm_api_management_workspace',
@@ -4876,6 +4917,22 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `azurerm_cdn_frontdoor_custom_domain_association`.',
+  ),
+  CatalogEntry(
+    tfType: 'azurerm_cdn_frontdoor_edge_action',
+    className: 'AzurermCdnFrontdoorEdgeAction',
+    barrel: 'cdn',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `azurerm_cdn_frontdoor_edge_action`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'resourceGroupName',
+      'tags',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment: 'Factory wrapper for `azurerm_cdn_frontdoor_edge_action`.',
   ),
   CatalogEntry(
     tfType: 'azurerm_cdn_frontdoor_endpoint',
@@ -9468,6 +9525,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `azurerm_data_protection_backup_vault_customer_managed_key`.',
   ),
   CatalogEntry(
+    tfType: 'azurerm_data_protection_backup_vault_resource_guard_association',
+    className: 'AzurermDataProtectionBackupVaultResourceGuardAssociation',
+    barrel: 'data_protection',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `azurerm_data_protection_backup_vault_resource_guard_association`.',
+    constructorParams: <String>[
+      'localName',
+      'dataProtectionBackupVaultId',
+      'dataProtectionResourceGuardId',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `azurerm_data_protection_backup_vault_resource_guard_association`.',
+  ),
+  CatalogEntry(
     tfType: 'azurerm_data_protection_resource_guard',
     className: 'AzurermDataProtectionResourceGuard',
     barrel: 'data_protection',
@@ -13820,6 +13894,64 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `azurerm_healthcare_workspace`.',
+  ),
+  CatalogEntry(
+    tfType: 'azurerm_horizondb_cluster',
+    className: 'AzurermHorizondbCluster',
+    barrel: 'horizondb',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `azurerm_horizondb_cluster`.',
+    constructorParams: <String>[
+      'localName',
+      'administratorLogin',
+      'administratorPassword',
+      'administratorPasswordWoVersion',
+      'backupRetentionInDays',
+      'geoRedundantBackupEnabled',
+      'location',
+      'name',
+      'pointInTimeRestoreOrPostgresqlVersion',
+      'publicNetworkAccess',
+      'resourceGroupName',
+      'tags',
+      'identity',
+      'readWritePool',
+    ],
+    nestedTypes: <String>[
+      'HorizondbClusterPostgresqlVersion',
+      'HorizondbClusterPublicNetworkAccess',
+      'HorizondbClusterAdministratorPassword',
+      'HorizondbClusterAdministratorPasswordChoice',
+      'HorizondbClusterAdministratorPasswordWo',
+      'HorizondbClusterPointInTimeRestoreOrPostgresqlVersion',
+      'HorizondbClusterPointInTimeRestoreOrPostgresqlVersionPointInTimeRestore',
+      'HorizondbClusterPointInTimeRestoreOrPostgresqlVersionChoice',
+      'HorizondbClusterIdentity',
+      'HorizondbClusterPointInTimeRestore',
+      'HorizondbClusterReadWritePool',
+      'HorizondbClusterHighAvailabilityMode',
+      'HorizondbClusterCompute',
+      'HorizondbClusterProcessor',
+    ],
+    sensitiveFields: <String>['administrator_password'],
+    docComment: 'Factory wrapper for `azurerm_horizondb_cluster`.',
+  ),
+  CatalogEntry(
+    tfType: 'azurerm_horizondb_firewall_rule',
+    className: 'AzurermHorizondbFirewallRule',
+    barrel: 'horizondb',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `azurerm_horizondb_firewall_rule`.',
+    constructorParams: <String>[
+      'localName',
+      'endIpAddress',
+      'horizondbPoolId',
+      'name',
+      'startIpAddress',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment: 'Factory wrapper for `azurerm_horizondb_firewall_rule`.',
   ),
   CatalogEntry(
     tfType: 'azurerm_image',
@@ -26443,6 +26575,29 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `azurerm_search_service`.',
   ),
   CatalogEntry(
+    tfType: 'azurerm_search_service_datasource_blob',
+    className: 'AzurermSearchServiceDatasourceBlob',
+    barrel: 'search',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `azurerm_search_service_datasource_blob`.',
+    constructorParams: <String>[
+      'localName',
+      'connectionStringWo',
+      'connectionStringWoVersion',
+      'containerName',
+      'containerQuery',
+      'description',
+      'name',
+      'searchServiceEndpoint',
+      'softDeleteColumnName',
+      'softDeleteMarkerValue',
+      'encryptionKey',
+    ],
+    nestedTypes: <String>['SearchServiceDatasourceBlobEncryptionKey'],
+    sensitiveFields: <String>['encryption_key.client_secret'],
+    docComment: 'Factory wrapper for `azurerm_search_service_datasource_blob`.',
+  ),
+  CatalogEntry(
     tfType: 'azurerm_search_shared_private_link_service',
     className: 'AzurermSearchSharedPrivateLinkService',
     barrel: 'search',
@@ -34372,11 +34527,17 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'WebApplicationFirewallPolicyMatchVariables',
       'WebApplicationFirewallPolicyVariableName',
       'WebApplicationFirewallPolicyManagedRules',
+      'WebApplicationFirewallPolicyException',
+      'WebApplicationFirewallPolicyExceptionMatchVariable',
+      'WebApplicationFirewallPolicyExceptionSelectorMatchOperator',
+      'WebApplicationFirewallPolicyValueMatchOperator',
+      'WebApplicationFirewallPolicyExceptionRuleSet',
+      'WebApplicationFirewallPolicyExceptionRuleSetRuleGroup',
       'WebApplicationFirewallPolicyExclusion',
-      'WebApplicationFirewallPolicyMatchVariable',
-      'WebApplicationFirewallPolicySelectorMatchOperator',
+      'WebApplicationFirewallPolicyExclusionMatchVariable',
+      'WebApplicationFirewallPolicyExclusionSelectorMatchOperator',
       'WebApplicationFirewallPolicyExcludedRuleSet',
-      'WebApplicationFirewallPolicyRuleGroup',
+      'WebApplicationFirewallPolicyExcludedRuleSetRuleGroup',
       'WebApplicationFirewallPolicyManagedRuleSet',
       'WebApplicationFirewallPolicyRuleGroupOverride',
       'WebApplicationFirewallPolicyRuleGroupOverrideRule',

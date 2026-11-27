@@ -81,6 +81,8 @@ final class ApiManagementApiOperationPolicyXmlLink
 }
 
 /// Factory wrapper for `azurerm_api_management_api_operation_policy`.
+///
+/// Manages an API Management API Operation Policy.
 final class AzurermApiManagementApiOperationPolicy extends Resource {
   static const String tfType = 'azurerm_api_management_api_operation_policy';
 

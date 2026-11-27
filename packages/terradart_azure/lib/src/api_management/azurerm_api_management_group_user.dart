@@ -9,6 +9,8 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 const Set<String> _azurermApiManagementGroupUserSensitive = <String>{};
 
 /// Factory wrapper for `azurerm_api_management_group_user`.
+///
+/// Manages an API Management User Assignment to a Group.
 final class AzurermApiManagementGroupUser extends Resource {
   static const String tfType = 'azurerm_api_management_group_user';
 

@@ -24,6 +24,8 @@ extension type const ApiManagementGroupType._(TfArg<String> _)
 }
 
 /// Factory wrapper for `azurerm_api_management_group`.
+///
+/// Manages an API Management Group.
 final class AzurermApiManagementGroup extends Resource {
   static const String tfType = 'azurerm_api_management_group';
 

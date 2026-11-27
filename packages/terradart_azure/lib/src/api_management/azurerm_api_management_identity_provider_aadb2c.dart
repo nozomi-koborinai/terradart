@@ -10,6 +10,8 @@ const Set<String> _azurermApiManagementIdentityProviderAadb2cSensitive =
     <String>{'client_secret'};
 
 /// Factory wrapper for `azurerm_api_management_identity_provider_aadb2c`.
+///
+/// Manages an API Management Azure AD B2C Identity Provider.
 final class AzurermApiManagementIdentityProviderAadb2c extends Resource {
   static const String tfType =
       'azurerm_api_management_identity_provider_aadb2c';

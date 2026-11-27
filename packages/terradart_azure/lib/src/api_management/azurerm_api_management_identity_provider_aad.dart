@@ -11,6 +11,8 @@ const Set<String> _azurermApiManagementIdentityProviderAadSensitive = <String>{
 };
 
 /// Factory wrapper for `azurerm_api_management_identity_provider_aad`.
+///
+/// Manages an API Management AAD Identity Provider.
 final class AzurermApiManagementIdentityProviderAad extends Resource {
   static const String tfType = 'azurerm_api_management_identity_provider_aad';
 
