@@ -3,6 +3,7 @@
 ## Unreleased
 
 - **Breaking:** `AwsProvider.retryMode` takes the `AwsRetryMode` enum (`.standard` or `.adaptive`) instead of a string. See [MIGRATING.md](../../MIGRATING.md#awsproviderretrymode-takes-awsretrymode).
+- **Breaking:** `AwsS3ObjectCopy.kmsKeyId` takes `Sensitive<String>` instead of `RefTo<AwsKmsKey>`, because the provider marks it sensitive and a `RefTo` takes the `.literal` synth rejects there. Pass the key's `arn` getter. See [MIGRATING.md](../../MIGRATING.md#secrets-take-sensitive).
 
 ## 0.37.0 - 2026-11-23
 

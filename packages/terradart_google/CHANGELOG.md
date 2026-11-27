@@ -3,6 +3,7 @@
 ## Unreleased
 
 - **Breaking:** `kProviderSource` and `kProviderVersionConstraint` are renamed `kGoogleProviderSource` and `kGoogleProviderVersionConstraint`. See [MIGRATING.md](../../MIGRATING.md#google-provider-constants-are-prefixed).
+- **Breaking:** every sensitive input takes `Sensitive<T>`, so a literal secret no longer compiles. That covers `metadataStartupScript` on `GoogleComputeInstance` and `GoogleComputeInstanceTemplate`, the secret version `.plaintext` payload, storage object `.content` and `encryptionKey`, the BigQuery connection `.password` and `plaintext`, and the trust config `pemCertificate` of trust anchors and intermediate CAs. See [MIGRATING.md](../../MIGRATING.md#secrets-take-sensitive).
 
 ## 0.37.0 - 2026-11-23
 

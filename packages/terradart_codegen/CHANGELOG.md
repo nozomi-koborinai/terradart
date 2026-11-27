@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- A top-level `extraSensitiveFields` entry types its input `Sensitive<T>`, as the schema's `sensitive` flag does.
+- A sensitive input is never typed as a reference: it stays `Sensitive<String>`, and no `tool/reference_targets.yaml` rule matches it.
+
 ## 0.37.0 - 2026-11-23
 
 - **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.11.0`). Install with `dart install terradart_codegen`. See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).

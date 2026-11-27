@@ -112,6 +112,30 @@ path the command gets:
 | `terradart outputs --env stg --define-file ../app/dart_defines.json` | `../app/dart_defines.stg.json` | `../app/dart_defines.json` |
 | `terradart apply --env stg --define-file app.stg.json` | `app.stg.stg.json` | `app.stg.json` |
 
+### Secrets take Sensitive
+
+**Breaking (`terradart_google`, `terradart_aws`).** Every input a provider
+marks sensitive takes `Sensitive<T>`, which has no `.literal`. Synth already
+rejected a literal there with a `SensitiveLiteral` issue; now it does not
+compile. The inputs that still took a `TfArg<T>` were `metadataStartupScript`
+on `GoogleComputeInstance` and `GoogleComputeInstanceTemplate`, which the
+override marks sensitive, and the hand-written Google helpers in the table.
+`AwsS3ObjectCopy.kmsKeyId` took a `RefTo<AwsKmsKey>`; pass the key's `arn`
+getter. Pass a variable, an expression or an attribute getter.
+`TfArg.variable(...)` returns a `TfArg<T>`, so write `.variable(...)` or pass
+the handle `variable<T>()` returns. Synth output does not change.
+
+| Before | After |
+|---|---|
+| `GoogleComputeInstance('vm', metadataStartupScript: .literal('echo hi'), ...)` | `GoogleComputeInstance('vm', metadataStartupScript: .expression(r'${file("startup.sh")}'), ...)` |
+| `GoogleSecretManagerSecretVersion('v1', secret: ..., payload: .plaintext(.literal('s3cret')))` | `GoogleSecretManagerSecretVersion('v1', secret: ..., payload: .plaintext(.variable('secret_value')))` |
+| `GoogleStorageBucketObject('o', bucket: ..., name: ..., body: .content(.literal('hello')))` | `GoogleStorageBucketObject('o', bucket: ..., name: ..., body: .content(.variable('object_content')))` |
+| `StorageBucketObjectCustomerEncryption(encryptionKey: .literal('a2V5'))` | `StorageBucketObjectCustomerEncryption(encryptionKey: .variable('csek_key'))` |
+| `BigqueryConnectionCloudSqlCredential(username: ..., password: .password(.literal('pw')))` | `BigqueryConnectionCloudSqlCredential(username: ..., password: .password(.variable('db_password')))` |
+| `BigqueryConnectionConfigurationAuthenticationPassword(plaintext: .literal('pw'))` | `BigqueryConnectionConfigurationAuthenticationPassword(plaintext: .variable('db_password'))` |
+| `CertificateManagerTrustConfigTrustAnchor(pemCertificate: TfArg.variable('anchor_pem'))` | `CertificateManagerTrustConfigTrustAnchor(pemCertificate: .variable('anchor_pem'))` |
+| `AwsS3ObjectCopy('copy', kmsKeyId: AwsKmsKey('key').ref, ...)` | `AwsS3ObjectCopy('copy', kmsKeyId: AwsKmsKey('key').arn, ...)` |
+
 ### Azure provider 5.15.0
 
 **Breaking (`terradart_azure`).** Provider 5.15.0 adds `managed_rules.exception`
