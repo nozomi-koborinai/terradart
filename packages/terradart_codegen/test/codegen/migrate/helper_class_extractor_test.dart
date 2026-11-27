@@ -80,6 +80,39 @@ final class Target {
       expect(h.fields[0].encodedAttribute, isNull);
     });
 
+    test('reads the attribute a value variant encodes', () {
+      const src = '''
+sealed class NextHop {
+  const NextHop();
+  String get blockKey;
+  TfArg<String> get value;
+}
+
+final class InstanceNextHop extends NextHop {
+  const InstanceNextHop(this.nextHopInstance);
+  final RefTo<GoogleComputeInstance> nextHopInstance;
+  @override
+  String get blockKey => 'next_hop_instance';
+  @override
+  TfArg<String> get value => nextHopInstance.encodeAs('self_link');
+}
+
+final class IpNextHop extends NextHop {
+  const IpNextHop(this.nextHopIp);
+  final TfArg<String> nextHopIp;
+  @override
+  String get blockKey => 'next_hop_ip';
+  @override
+  TfArg<String> get value => nextHopIp;
+}
+''';
+      final instance = _one(src, 'InstanceNextHop');
+      expect(instance.isIrregular, isFalse, reason: instance.irregularReason);
+      expect(instance.fields.single.tfKey, 'next_hop_instance');
+      expect(instance.fields.single.encodedAttribute, 'self_link');
+      expect(_one(src, 'IpNextHop').fields.single.encodedAttribute, isNull);
+    });
+
     test('records the factory constructor that builds a sealed variant', () {
       const src = '''
 sealed class Code {

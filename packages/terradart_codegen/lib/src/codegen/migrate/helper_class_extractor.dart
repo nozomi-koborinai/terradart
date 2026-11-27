@@ -609,11 +609,13 @@ class HelperClassExtractor {
     }
     final getter = _valueGetter.firstMatch(decl.body);
     if (getter == null) return const _Encoding.empty();
-    final refs = _fieldRefs(getter.group(2)!, fieldNames);
+    final value = getter.group(2)!;
+    final refs = _fieldRefs(value, fieldNames);
     if (refs.length != 1) return const _Encoding.empty();
     return _Encoding(
       keys: {refs.single: blockKey},
       merged: const {},
+      attributes: {if (encodedAttribute(value) case final a?) refs.single: a},
       topLevelKeys: [blockKey],
     );
   }
