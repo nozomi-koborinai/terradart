@@ -1,75 +1,47 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_appwrite/catalog.dart';
+import 'package:terradart_aws/catalog.dart';
+import 'package:terradart_azure/catalog.dart';
 import 'package:terradart_azure/netapp.dart';
 import 'package:terradart_azure/provider.dart';
-import 'package:terradart_google/netapp.dart';
-import 'package:terradart_google/provider.dart';
+import 'package:terradart_cloudflare/catalog.dart';
+import 'package:terradart_google/catalog.dart';
+import 'package:terradart_google/terradart_google.dart';
+import 'package:terradart_google_beta/catalog.dart';
+import 'package:terradart_google_beta/terradart_google_beta.dart';
 import 'package:test/test.dart';
 
+import 'doc_renames.dart' show entrypointNamespaces;
 import 'type_name_length_test.dart' show lanePackages;
 
-const _header = '// GENERATED FILE - DO NOT EDIT';
-final _export = RegExp(r"^export\s+'([^']+)'([^;]*);", multiLine: true);
-final _type = RegExp(
-  r'^(?:(?:abstract|base|final|interface|sealed|mixin)\s+)*'
-  r'(?:class|enum|mixin|typedef|extension\s+type(?:\s+const)?)\s+([A-Z]\w*)',
-  multiLine: true,
-);
-
-Set<String> libraryTypes(String path, [Set<String>? visited]) {
-  final seen = visited ?? <String>{};
-  if (!seen.add(p.normalize(path))) return const {};
-  final src = File(path).readAsStringSync();
-  final out = {for (final m in _type.allMatches(src)) m[1]!};
-  for (final m in _export.allMatches(src)) {
-    final uri = m[1]!;
-    if (uri.contains(':')) continue;
-    final names = libraryTypes(p.join(p.dirname(path), uri), seen);
-    final combinator = m[2]!.trim();
-    if (combinator.isEmpty) {
-      out.addAll(names);
-    } else if (RegExp(r'^show\s+(.+)$', dotAll: true).firstMatch(combinator)
-        case final show?) {
-      final shown = show[1]!.split(',').map((n) => n.trim());
-      out.addAll(names.intersection(shown.toSet()));
-    } else {
-      throw StateError('$path: export combinator not read: $combinator');
-    }
-  }
-  return out;
-}
-
-Map<String, List<String>> barrelTypeClashes(
+/// Each public name two of [packages] export from distinct declarations,
+/// mapped to every `<package>/<library>` that exports it.
+Map<String, List<String>> publicNameClashes(
   String root,
   List<String> packages,
 ) {
-  final barrels = <String, Map<String, List<String>>>{};
-  for (final package in packages) {
-    final lib = Directory(p.join(root, package, 'lib'));
-    final files =
-        lib
-            .listSync()
-            .whereType<File>()
-            .where(
-              (f) =>
-                  f.path.endsWith('.dart') &&
-                  f.readAsStringSync().startsWith(_header),
-            )
-            .toList()
-          ..sort((a, b) => a.path.compareTo(b.path));
-    for (final f in files) {
-      for (final name in libraryTypes(f.path)) {
-        ((barrels[name] ??= {})[package] ??= []).add(
-          '$package/${p.basename(f.path)}',
-        );
-      }
+  final declarations = <String, Set<String>>{};
+  final exporters = <String, Set<String>>{};
+  final libraries = <String, Set<String>>{};
+  final namespaces = entrypointNamespaces('.', [
+    for (final package in packages) p.join(root, package),
+  ]);
+  for (final MapEntry(key: library, value: names) in namespaces.entries) {
+    final [package, _, ...path] = p.split(
+      p.relative(library, from: p.absolute(root)),
+    );
+    for (final MapEntry(key: name, value: file) in names.entries) {
+      (declarations[name] ??= {}).add(file);
+      (exporters[name] ??= {}).add(package);
+      (libraries[name] ??= {}).add(p.posix.joinAll([package, ...path]));
     }
   }
   return {
-    for (final MapEntry(key: name, value: byPackage) in barrels.entries)
-      if (byPackage.length > 1)
-        name: [for (final files in byPackage.values) ...files],
+    for (final MapEntry(key: name, value: files) in declarations.entries)
+      if (files.length > 1 && exporters[name]!.length > 1)
+        name: libraries[name]!.toList()..sort(),
   };
 }
 
@@ -117,8 +89,70 @@ final class _NetappStack extends Stack {
   }
 }
 
+final class _BetaStack extends Stack {
+  _BetaStack()
+    : super(
+        providers: const [
+          GoogleProvider(project: 'ci-test-project-id'),
+          GoogleBetaProvider(project: 'ci-test-project-id'),
+        ],
+      ) {
+    add(
+      GoogleProjectServiceIdentity(
+        'cloudasset',
+        service: const .literal('cloudasset.googleapis.com'),
+      ),
+    );
+  }
+}
+
 void main() {
-  test('a type two packages declare in generated barrels clashes', () {
+  test('google-beta comes from terradart_google_beta next to google', () {
+    final json = _BetaStack().synth().tfJson;
+    final providers =
+        (json['terraform'] as Map<String, dynamic>)['required_providers']
+            as Map<String, dynamic>;
+    expect(providers['google-beta'], {
+      'source': kBetaProviderSource,
+      'version': kBetaProviderVersionConstraint,
+    });
+    expect(kBetaProviderSource, 'hashicorp/google-beta');
+    final identity =
+        ((json['resource']
+                    as Map<String, dynamic>)['google_project_service_identity']
+                as Map<String, dynamic>)['cloudasset']
+            as Map<String, dynamic>;
+    expect(identity['provider'], 'google-beta');
+  });
+
+  test('every provider catalog imports into one library', () {
+    final catalogs = <(String, List<CatalogEntry>)>[
+      ('google_', terradartGoogleCatalog),
+      ('google_', terradartGoogleBetaCatalog),
+      ('aws_', terradartAwsCatalog),
+      ('azurerm_', terradartAzureCatalog),
+      ('cloudflare_', terradartCloudflareCatalog),
+      ('appwrite_', terradartAppwriteCatalog),
+    ];
+    for (final (prefix, catalog) in catalogs) {
+      expect(
+        catalog.where((e) => e.kind == CatalogKind.resource),
+        isNotEmpty,
+        reason: prefix,
+      );
+      expect(
+        catalog.where((e) => !e.tfType.startsWith(prefix)),
+        isEmpty,
+        reason: prefix,
+      );
+    }
+    expect(
+      terradartGoogleBetaCatalog.map((e) => e.tfType),
+      contains('google_project_service_identity'),
+    );
+  });
+
+  test('a public name two packages declare apart clashes', () {
     final root = Directory.systemTemp.createTempSync('type_name_clash_');
     addTearDown(() => root.deleteSync(recursive: true));
     void write(String path, String src) => File(p.join(root.path, path))
@@ -126,23 +160,24 @@ void main() {
       ..writeAsStringSync(src);
 
     write('pkg_a/lib/netapp.dart', '''
-$_header
 export 'package:terradart_core/terradart_core.dart';
-export 'src/volume.dart' show Shared, OnlyA;
+export 'src/volume.dart' show Shared, OnlyA, kSource, sharedHelper;
 ''');
     write('pkg_a/lib/src/volume.dart', '''
 final class Shared {}
 enum OnlyA { a }
 extension type const Hidden._(String _) {}
+typedef Alias = int;
 const String kSource = 'a';
+void sharedHelper() {}
 ''');
-    write('pkg_a/lib/provider.dart', 'final class Provider {}\n');
-    write('pkg_b/lib/pkg_b.dart', '''
-$_header
-export 'netapp.dart';
+    write('pkg_a/lib/provider.dart', '''
+export 'src/volume.dart' show Alias;
+final class Provider {}
 ''');
+    write('pkg_b/lib/pkg_b.dart', "export 'netapp.dart';\n");
     write('pkg_b/lib/netapp.dart', '''
-$_header
+export 'package:terradart_core/terradart_core.dart' show Stack;
 export 'src/volume.dart'
     show
         Hidden,
@@ -151,23 +186,33 @@ export 'src/volume.dart'
     write('pkg_b/lib/src/volume.dart', '''
 extension type const Shared._(String _) {}
 sealed class Hidden {}
+enum OnlyA { b }
+typedef Alias = String;
 const String kSource = 'b';
+int sharedHelper() => 0;
 ''');
-    write('pkg_b/lib/provider.dart', 'final class Provider {}\n');
+    write('pkg_b/lib/provider.dart', '''
+export 'src/volume.dart' show Alias, kSource, sharedHelper;
+final class Provider {}
+''');
 
-    expect(barrelTypeClashes(root.path, ['pkg_a', 'pkg_b']), {
+    expect(publicNameClashes(root.path, ['pkg_a', 'pkg_b']), {
+      'Alias': ['pkg_a/provider.dart', 'pkg_b/provider.dart'],
+      'Provider': ['pkg_a/provider.dart', 'pkg_b/provider.dart'],
       'Shared': ['pkg_a/netapp.dart', 'pkg_b/netapp.dart', 'pkg_b/pkg_b.dart'],
+      'kSource': ['pkg_a/netapp.dart', 'pkg_b/provider.dart'],
+      'sharedHelper': ['pkg_a/netapp.dart', 'pkg_b/provider.dart'],
     });
   });
 
-  test('no two provider packages export one type name from a barrel', () {
+  test('no two provider packages export one public name', () {
     expect(
-      barrelTypeClashes('packages', lanePackages()),
+      publicNameClashes('packages', [...lanePackages(), 'terradart_time']),
       isEmpty,
       reason:
-          'a Stack that imports both barrels cannot name the type. Keep the '
-          'published name and give the other type its own with the '
-          "override's typeNames",
+          'a Stack that imports both libraries cannot name it. Keep the '
+          'published name and rename the other: a generated type with its '
+          "override's typeNames, anything else in its hand-written source",
     );
   });
 
