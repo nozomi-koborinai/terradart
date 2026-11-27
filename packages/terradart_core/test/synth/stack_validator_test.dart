@@ -311,6 +311,19 @@ void main() {
       );
     });
 
+    test('strips index brackets when checking dependsOn targets', () {
+      final stack = TestStack(providers: const [_google])
+        ..add(_topic('orders'))
+        ..add(
+          FakePubsubTopic.withMeta(
+            'consumer',
+            argMap: const {},
+            dependsOn: const [AddressStub('google_pubsub_topic.orders[0]')],
+          ),
+        );
+      expect(stack.validate(), isEmpty);
+    });
+
     test('addExternalBlock refuses a non-address and a repeat', () {
       final stack = TestStack(providers: const [_google])
         ..addExternalBlock('google_pubsub_topic.legacy');
@@ -382,5 +395,44 @@ void main() {
         ),
       );
     });
+
+    test('detects literals along multi-level concrete sensitive paths', () {
+      final bad = TestStack(providers: const [_google])
+        ..add(
+          _NestedSecretResource(
+            'svc',
+            argMap: const {
+              'auth': TfArgLiteral<Map<String, Object?>>({
+                'tls': {'private_key': 'pem-literal'},
+              }),
+            },
+          ),
+        );
+      expect(
+        () => bad.synth(),
+        throwsSynthIssue<SensitiveLiteral>(contains('"auth.tls.private_key"')),
+      );
+
+      final missingBranch = TestStack(providers: const [_google])
+        ..add(
+          _NestedSecretResource(
+            'svc',
+            argMap: const {
+              'auth': TfArgLiteral<Map<String, Object?>>({
+                'other': {'private_key': 'not-sensitive'},
+              }),
+            },
+          ),
+        );
+      expect(missingBranch.validate(), isEmpty);
+    });
   });
+}
+
+final class _NestedSecretResource extends Resource {
+  _NestedSecretResource(super.localName, {required super.argMap})
+    : super(terraformType: 'google_secret_manager_secret_version');
+
+  @override
+  Set<String> get sensitiveFields => const {'auth.tls.private_key'};
 }

@@ -445,14 +445,20 @@ void main() {
         ..addOutput('ratio', .literal(2.5))
         ..addOutput('zones', .literal(['a', 'b']))
         ..addOutput('limits', .literal({'cpu': 1, 'memory': 2}))
+        ..addOutput(
+          'quotas',
+          .literal(<String, Map<String, int>>{
+            'api': {'rpm': 100},
+          }),
+        )
         ..addOutput('maybe', TfArg<List<int>?>.literal(null));
       final environment = encoded(stack.outputEnvironment());
       final lines = await _run(stack.synth().dartSource!, '''
   final o = OrdersOutputs.fromEnvironment(${jsonEncode(environment)});
-  print(jsonEncode([o.region, o.replicas, o.ratio, o.zones, o.limits, o.maybe]));
+  print(jsonEncode([o.region, o.replicas, o.ratio, o.zones, o.limits, o.quotas, o.maybe]));
 ''');
       expect(lines, [
-        '["us-central1",3,2.5,["a","b"],{"cpu":1,"memory":2},null]',
+        '["us-central1",3,2.5,["a","b"],{"cpu":1,"memory":2},{"api":{"rpm":100}},null]',
       ]);
     });
 
@@ -463,10 +469,24 @@ void main() {
       expect([for (final e in environment) e.name], ['A']);
     });
 
+    test('wraps a single interpolation with balanced nested braces', () {
+      final stack = _stack()
+        ..addOutput(
+          'merged',
+          .expression<Map<String, int>>(r'${merge({a = 1}, {b = 2})}'),
+        );
+      expect(encoded(stack.outputEnvironment()), {
+        'MERGED': r'${jsonencode(merge({a = 1}, {b = 2}))}',
+      });
+    });
+
     test('rejects an output with no environment value', () {
       final stack = _stack()
         ..addOutput('secret', .literal('s'), sensitive: true)
         ..addOutput('pair', .expression<List<String>>(r'${a.b}-${c.d}'))
+        ..addOutput('directive', .expression<List<String>>('%{ if true }'))
+        ..addOutput('unclosed', .expression<List<String>>(r'${a.b'))
+        ..addOutput('unbalanced', .expression<List<String>>(r'${a.b}}'))
         ..addOutput(
           'mixed',
           .literal(<String, Object?>{
@@ -490,6 +510,18 @@ void main() {
       );
       expect(
         () => stack.outputEnvironment(only: ['pair']),
+        fails('has no JSON encoding'),
+      );
+      expect(
+        () => stack.outputEnvironment(only: ['directive']),
+        fails('has no JSON encoding'),
+      );
+      expect(
+        () => stack.outputEnvironment(only: ['unclosed']),
+        fails('has no JSON encoding'),
+      );
+      expect(
+        () => stack.outputEnvironment(only: ['unbalanced']),
         fails('has no JSON encoding'),
       );
       expect(

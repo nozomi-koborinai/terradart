@@ -242,6 +242,62 @@ Future<void> main(List<String> args) => runEnvironments(
       expect(r.code, 0, reason: r.err);
       expect(File('${r.dir.path}/manifest.json').existsSync(), isFalse);
     });
+
+    test(
+      'parses --env after other args and ignores a trailing --env',
+      () async {
+        final afterOther = await _run(_main, ['--other', '--env', 'sandbox']);
+        expect(afterOther.code, 0, reason: afterOther.err);
+        expect(_json(afterOther.dir, 'manifest.json')['selected'], 'sandbox');
+
+        final trailing = await _run(_main, ['--env']);
+        expect(trailing.code, 0, reason: trailing.err);
+        final manifest = _json(trailing.dir, 'manifest.json');
+        expect(manifest['selected'], isNull);
+        expect(manifest['roots'], hasLength(3));
+      },
+    );
+
+    test(
+      'normalizes ., .., and // when detecting shared output directories',
+      () async {
+        final collision = await _run(
+          '''
+Future<void> main(List<String> args) => runEnvironments(
+  args,
+  Env.values,
+  AppStack.new,
+  dir: (env) => switch (env) {
+    Env.qa => './tf-out//shared',
+    Env.sandbox => 'tf-out/a/../shared',
+    Env.prd => 'tf-out/prd',
+  },
+);''',
+          ['--env', 'prd'],
+        );
+        expect(collision.code, isNot(0));
+        expect(
+          collision.err,
+          contains('Environments qa, sandbox all write tf-out/shared'),
+        );
+
+        final distinctParents = await _run(
+          '''
+Future<void> main(List<String> args) => runEnvironments(
+  args,
+  Env.values,
+  AppStack.new,
+  dir: (env) => switch (env) {
+    Env.qa => 'tf-out/qa',
+    Env.sandbox => '../tf-out/qa',
+    Env.prd => '../../tf-out/qa',
+  },
+);''',
+          ['--env', 'qa'],
+        );
+        expect(distinctParents.code, 0, reason: distinctParents.err);
+      },
+    );
   });
 
   test('runStack writes tf-out and its manifest', () async {

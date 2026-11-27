@@ -21,6 +21,14 @@ TestStack _stack({AppExports? appExports}) => TestStack(
 
 TestStack _plainStack() => TestStack(providers: const [_provider]);
 
+final class _PrivateStack extends Stack {
+  _PrivateStack()
+    : super(
+        providers: const [_provider],
+        appExports: AppExports('lib/gen/x.g.dart'),
+      );
+}
+
 FakePubsubTopic _topic(TestStack stack, Map<String, TfArg<dynamic>?> argMap) =>
     stack.add(FakePubsubTopic('orders', argMap: argMap));
 
@@ -176,6 +184,7 @@ void main() {
 
     test('rejects a .fromEnvironment name that would break the literal', () {
       expect(() => AppConstant.fromEnvironment("A'B"), throwsArgumentError);
+      expect(() => AppConstant.fromEnvironment('A\nB'), throwsArgumentError);
       expect(() => AppConstant.fromEnvironment(''), throwsArgumentError);
     });
 
@@ -183,6 +192,10 @@ void main() {
       expect(
         _source(_stack()),
         contains('abstract final class TestStackConstants {'),
+      );
+      expect(
+        _source(_PrivateStack()),
+        contains('abstract final class PrivateStackConstants {'),
       );
       expect(
         _source(_stack(appExports: AppExports('x.dart', name: 'Orders'))),
@@ -240,6 +253,34 @@ void main() {
           () => _stack().addConstant<Object>('x', const .value(#sym)),
           throwsArgumentError,
         );
+        expect(
+          () => _stack().addConstant<Object?>(
+            'badMap',
+            const .value(<String, Object?>{'a': #sym}),
+          ),
+          throwsArgumentError,
+        );
+        expect(
+          () => _stack().addConstant(
+            'badDoubleMap',
+            const .value(<String, double>{'a': double.nan}),
+          ),
+          throwsArgumentError,
+        );
+      });
+
+      test('accepts JSON values for Object? constants', () {
+        final stack = _stack()
+          ..addConstant<Object?>('text', const .value('ok'))
+          ..addConstant<Object?>('items', const .value(<Object?>[null, true]))
+          ..addConstant<Object?>(
+            'nested',
+            const .value(<String, Object?>{'k': 1}),
+          );
+        final source = _source(stack);
+        expect(source, contains("static const Object? text = r'ok';"));
+        expect(source, contains('static const Object? items = [null, true];'));
+        expect(source, contains("static const Object? nested = {r'k': 1};"));
       });
 
       test('rejects a whole-resource reference', () {
