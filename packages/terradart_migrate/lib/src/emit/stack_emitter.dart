@@ -2,14 +2,19 @@ import 'dart:convert';
 
 import 'package:terradart_appwrite/provider.dart'
     show kAppwriteProviderVersionConstraint;
-import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
+import 'package:terradart_aws/provider.dart'
+    show AwsRetryMode, kAwsProviderVersionConstraint;
 import 'package:terradart_azure/provider.dart'
-    show kAzureProviderVersionConstraint;
+    show
+        AzureEnvironment,
+        AzureResourceProviderRegistrations,
+        kAzureProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
 import 'package:terradart_core/internal.dart'
     show outputEnvironmentName, parseGoDuration, templateVariableNames;
-import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
+import 'package:terradart_google/provider.dart'
+    show kGoogleProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderVersionConstraint;
 import 'package:terradart_hcl/terradart_hcl.dart';
@@ -104,6 +109,15 @@ final class _Scalar extends _ProviderArg {
   const _Scalar(super.param);
 }
 
+final class _Enum extends _ProviderArg {
+  const _Enum(super.param, this.enumName, this.members);
+
+  final String enumName;
+  final List<Enum> members;
+
+  bool lists(String value) => members.any((m) => m.name == value);
+}
+
 final class _Strings extends _ProviderArg {
   const _Strings(super.param);
 }
@@ -133,7 +147,7 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'region': _Scalar('region'),
     'zone': _Scalar('zone'),
     'user_project_override': _Scalar('userProjectOverride'),
-  }, kProviderVersionConstraint),
+  }, kGoogleProviderVersionConstraint),
   'google-beta':
       _ProviderRecipe('terradart_google_beta', 'GoogleBetaProvider', {
         'project': _Scalar('project'),
@@ -182,7 +196,7 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'skip_metadata_api_check': _Scalar('skipMetadataApiCheck'),
     'skip_region_validation': _Scalar('skipRegionValidation'),
     'skip_requesting_account_id': _Scalar('skipRequestingAccountId'),
-    'retry_mode': _Scalar('retryMode'),
+    'retry_mode': _Enum('retryMode', 'AwsRetryMode', AwsRetryMode.values),
     'max_retries': _Scalar('maxRetries'),
     'use_fips_endpoint': _Scalar('useFipsEndpoint'),
     'use_dualstack_endpoint': _Scalar('useDualstackEndpoint'),
@@ -191,7 +205,11 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'subscription_id': _Scalar('subscriptionId'),
     'tenant_id': _Scalar('tenantId'),
     'auxiliary_tenant_ids': _Strings('auxiliaryTenantIds'),
-    'environment': _Scalar('environment'),
+    'environment': _Enum(
+      'environment',
+      'AzureEnvironment',
+      AzureEnvironment.values,
+    ),
     'metadata_host': _Scalar('metadataHost'),
     'use_oidc': _Scalar('useOidc'),
     'use_msi': _Scalar('useMsi'),
@@ -202,7 +220,11 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'partner_id': _Scalar('partnerId'),
     'disable_correlation_request_id': _Scalar('disableCorrelationRequestId'),
     'disable_terraform_partner_id': _Scalar('disableTerraformPartnerId'),
-    'resource_provider_registrations': _Scalar('resourceProviderRegistrations'),
+    'resource_provider_registrations': _Enum(
+      'resourceProviderRegistrations',
+      'AzureResourceProviderRegistrations',
+      AzureResourceProviderRegistrations.values,
+    ),
     'resource_providers_to_register': _Strings('resourceProvidersToRegister'),
     'storage_use_azuread': _Scalar('storageUseAzuread'),
     'features': _Blocks('features', 'AzureFeatures', {
@@ -388,6 +410,11 @@ const _providerRecipes = <String, _ProviderRecipe>{
     barrel: 'terradart_time',
   ),
 };
+
+const _unconfiguredConstructors = {'azurerm': 'AzureProvider.unconfigured'};
+
+String? _literalString(Object? json) =>
+    json is String && !json.contains(r'${') ? json : null;
 
 String? _aliasLabel(Expr expr) {
   if (expr is TraversalExpr && expr.steps.every((s) => s is AttrStep)) {
@@ -800,8 +827,10 @@ final class StackEmitter {
       ctx.import(recipe.package, recipe.barrel);
       register(
         name,
-        '${config.isConst ? 'const ' : ''}'
-        '${recipe.className}(${args.join(', ')})',
+        childModule
+            ? 'const ${_unconfiguredConstructors[name] ?? recipe.className}()'
+            : '${config.isConst ? 'const ' : ''}'
+                  '${recipe.className}(${args.join(', ')})',
         external: externalDefault,
       );
       _registeredProviders.add(name);
@@ -853,7 +882,8 @@ final class StackEmitter {
       ctx.import(recipe.package, recipe.barrel);
       register(
         label,
-        'const ${recipe.className}(alias: ${dartString(alias)})',
+        'const ${_unconfiguredConstructors[name] ?? recipe.className}'
+        '(alias: ${dartString(alias)})',
         configurationAlias: true,
       );
       if (!_registeredProviders.contains(name)) {
@@ -1202,27 +1232,44 @@ final class StackEmitter {
     final values = objectMap(bodyAsObject(block.body)) ?? {};
     final secrets = droppedProviderArguments[providerName] ?? const {};
     final unmodeled = <String>[];
+    final unlisted = <String>[];
     final secretKeys = <String>[];
-    for (final key in values.keys) {
+    for (final MapEntry(:key, :value) in values.entries) {
       if (key == 'alias') continue;
       if (secrets.contains(key)) {
         secretKeys.add(key);
         continue;
       }
-      if (!recipe.args.containsKey(key)) unmodeled.add(key);
+      final arg = recipe.args[key];
+      if (arg == null) {
+        unmodeled.add(key);
+      } else if (arg is _Enum) {
+        final literal = _literalString(jsonValue(value));
+        if (literal != null && !arg.lists(literal)) {
+          unlisted.add(
+            '$key = ${jsonEncode(literal)}, which ${arg.enumName} does not '
+            'list',
+          );
+        }
+      }
     }
-    if (unmodeled.isEmpty) return false;
+    if (unmodeled.isEmpty && unlisted.isEmpty) return false;
     for (final key in secretKeys) {
       _warnings.add(
         'provider "$label": argument "$key" has no '
         '${recipe.className} parameter and was dropped',
       );
     }
-    final listed = unmodeled.map((k) => '"$k"').join(', ');
+    final reasons = [
+      if (unmodeled.isNotEmpty)
+        '${unmodeled.map((k) => '"$k"').join(', ')}, which '
+            '${recipe.className} does not model',
+      ...unlisted,
+    ];
     _keep(
       'provider.$label',
-      'provider "$label" sets $listed, which ${recipe.className} does not '
-          'model; the configuration stays in Terraform',
+      'provider "$label" sets ${reasons.join(', and ')}; the configuration '
+          'stays in Terraform',
     );
     return true;
   }
@@ -1244,6 +1291,18 @@ final class StackEmitter {
         isConst = false;
         args.add('${arg.param}: $override');
         continue;
+      }
+      if (arg is _Enum && override != null) {
+        if (_literalString(jsonValue(entry.value)) case final member?) {
+          isConst = false;
+          args.add('${arg.param}: $override');
+          _envSlotTypes[override] = arg.enumName;
+          _envValueSources[override] = '.$member';
+          _envImports.add(
+            "import 'package:${recipe.package}/${recipe.barrel}.dart';",
+          );
+          continue;
+        }
       }
       if (arg == null) {
         _warnings.add(
@@ -1272,9 +1331,6 @@ final class StackEmitter {
       return null;
     }
 
-    String? literalString(Object? json) =>
-        json is String && !json.contains(r'${') ? json : null;
-
     switch (arg) {
       case _Scalar():
         final json = jsonValue(expr);
@@ -1282,12 +1338,17 @@ final class StackEmitter {
             json == null ||
             json is bool ||
             json is num ||
-            literalString(json) != null;
+            _literalString(json) != null;
         return literal ? dartValue(json) : drop();
+      case _Enum():
+        final json = jsonValue(expr);
+        if (json == null) return 'null';
+        final member = _literalString(json);
+        return member == null ? drop() : '.$member';
       case _Strings():
         final json = jsonValue(expr);
         if (json is! List) return drop();
-        final items = json.map(literalString).toList();
+        final items = json.map(_literalString).toList();
         if (items.contains(null)) return drop();
         return items.isEmpty ? '<String>[]' : dartValue(items);
       case _StringMap(:final key):
@@ -1315,7 +1376,7 @@ final class StackEmitter {
         if (map == null) return drop();
         final out = <String, String>{};
         for (final MapEntry(key: k, :value) in map.entries) {
-          final s = literalString(jsonValue(value));
+          final s = _literalString(jsonValue(value));
           if (s == null) return drop();
           out[k] = s;
         }

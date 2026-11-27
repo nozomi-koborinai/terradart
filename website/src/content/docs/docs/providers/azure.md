@@ -20,7 +20,7 @@ dependencies:
 
 `AzureProvider` has no client id, client secret, client certificate, or OIDC token parameter. Credentials never enter the synthesized JSON, and synth needs none. `terradart plan` and `terradart apply` authenticate through `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_CLIENT_CERTIFICATE`, `ARM_USE_OIDC`, `ARM_USE_MSI`, `ARM_USE_CLI`, and the other `ARM_*` variables the provider reads. An omitted subscription falls back to `ARM_SUBSCRIPTION_ID`. An omitted tenant falls back to `ARM_TENANT_ID`. With those variables set, [`terradart apply`](/docs/cli/) synthesizes the Stack and applies it.
 
-The provider requires a `features` block. `const AzureProvider()` emits an empty one, which is enough for `terraform validate`.
+The provider requires a `features` block in a root module. `const AzureProvider()` always emits one, an empty block when `features` is omitted, which is enough for `terraform validate`. A child module or a configuration alias must not carry provider configuration, so register `AzureProvider.unconfigured()` there: it emits no provider block.
 
 ## A resource group
 

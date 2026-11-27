@@ -3,8 +3,8 @@ import 'package:test/test.dart';
 
 void main() {
   test('package exports compile and provider meta is exposed', () {
-    expect(kProviderSource, equals('hashicorp/google'));
+    expect(kGoogleProviderSource, equals('hashicorp/google'));
     expect(kBetaProviderSource, equals('hashicorp/google-beta'));
-    expect(kProviderVersionConstraint, equals('~> 8.0'));
+    expect(kGoogleProviderVersionConstraint, equals('~> 8.0'));
   });
 }

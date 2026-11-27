@@ -25,7 +25,7 @@ void main() {
           terraform['required_providers']! as Map<String, dynamic>;
       expect(providers['google-beta'], {
         'source': kBetaProviderSource,
-        'version': kProviderVersionConstraint,
+        'version': kGoogleProviderVersionConstraint,
       });
       expect((json['provider']! as Map<String, dynamic>)['google-beta'], {
         'project': 'demo',

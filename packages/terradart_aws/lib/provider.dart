@@ -13,5 +13,6 @@ export 'src/aws_provider.dart'
         AwsAssumeRole,
         AwsIgnoreTags,
         AwsProvider,
+        AwsRetryMode,
         kAwsProviderSource,
         kAwsProviderVersionConstraint;

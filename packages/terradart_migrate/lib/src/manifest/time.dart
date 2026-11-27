@@ -19,7 +19,7 @@ const MigrateManifest timeMigrateManifest = MigrateManifest(
           tfName: 'create_duration',
           dartName: 'createDuration',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -39,6 +39,21 @@ const MigrateManifest timeMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'create_duration',
+          dartName: 'createDuration',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'destroy_duration',
+          dartName: 'destroyDuration',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'triggers',
+          dartName: 'triggers',
+          dartType: 'Map<String, String>',
+        ),
       ],
     ),
   ],

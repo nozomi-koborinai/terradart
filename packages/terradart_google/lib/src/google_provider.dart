@@ -47,11 +47,11 @@ final class GoogleProvider implements StackProvider {
 
   /// Provider registry source — `hashicorp/google`.
   @override
-  String get source => kProviderSource;
+  String get source => kGoogleProviderSource;
 
   /// Version constraint — `~> 8.0`.
   @override
-  String get versionConstraint => kProviderVersionConstraint;
+  String get versionConstraint => kGoogleProviderVersionConstraint;
 
   @override
   Map<String, Object?> get configArgs => {

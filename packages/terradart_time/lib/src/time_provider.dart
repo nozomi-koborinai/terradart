@@ -1,6 +1,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+/// Provider source identifier: `hashicorp/time`.
+const String kTimeProviderSource = 'hashicorp/time';
+
 /// The `hashicorp/time` version constraint [TimeProvider] emits.
 ///
 /// Maintained by hand: no schema-bump automation tracks `hashicorp/time`
@@ -25,7 +28,7 @@ final class TimeProvider implements StackProvider {
   String get providerName => 'time';
 
   @override
-  String get source => 'hashicorp/time';
+  String get source => kTimeProviderSource;
 
   @override
   String get versionConstraint => kTimeProviderVersionConstraint;

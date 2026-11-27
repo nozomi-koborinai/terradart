@@ -5,6 +5,13 @@ final class TestStack extends Stack {
   TestStack({super.providers = const []});
 }
 
+Map<String, dynamic> _synthedSleep(TimeSleep sleep) {
+  final stack = TestStack(providers: const [TimeProvider()])..add(sleep);
+  final resources = stack.synth().tfJson['resource'] as Map<String, dynamic>;
+  return (resources['time_sleep'] as Map<String, dynamic>)[sleep.localName]
+      as Map<String, dynamic>;
+}
+
 void main() {
   group('TimeSleep', () {
     test('emits create_duration in argMap', () {
@@ -27,9 +34,49 @@ void main() {
       });
     });
 
-    test('id ref targets the time_sleep address', () {
+    test('a destroy-only wait synthesizes without create_duration', () {
+      expect(
+        _synthedSleep(
+          TimeSleep('wait', destroyDuration: const .literal('10s')),
+        ),
+        {'destroy_duration': '10s'},
+      );
+    });
+
+    test('a wait after create and before destroy synthesizes both', () {
+      expect(
+        _synthedSleep(
+          TimeSleep(
+            'wait',
+            createDuration: const .literal('30s'),
+            destroyDuration: const .literal('10s'),
+          ),
+        ),
+        {'create_duration': '30s', 'destroy_duration': '10s'},
+      );
+    });
+
+    test('a wait with neither duration is rejected', () {
+      expect(() => TimeSleep('wait'), throwsArgumentError);
+    });
+
+    test('tfType names the Terraform type', () {
+      expect(TimeSleep.tfType, 'time_sleep');
+    });
+
+    test('ref and the getters target the time_sleep address', () {
       final sleep = TimeSleep('wait', createDuration: TfArg.literal('60s'));
+      expect(sleep.ref.encodeAs('id').toTfJson(), r'${time_sleep.wait.id}');
       expect(sleep.id.interpolation, r'${time_sleep.wait.id}');
+      expect(
+        sleep.createDuration.interpolation,
+        r'${time_sleep.wait.create_duration}',
+      );
+      expect(
+        sleep.destroyDuration.interpolation,
+        r'${time_sleep.wait.destroy_duration}',
+      );
+      expect(sleep.triggers.interpolation, r'${time_sleep.wait.triggers}');
     });
   });
 
@@ -53,6 +100,7 @@ void main() {
     });
 
     test('registers hashicorp/time in synth', () {
+      expect(kTimeProviderSource, 'hashicorp/time');
       final stack = TestStack(providers: const [TimeProvider()]);
       stack.add(
         TimeSleep(
@@ -64,7 +112,7 @@ void main() {
       final required = json['terraform']! as Map<String, dynamic>;
       final providers = required['required_providers']! as Map<String, dynamic>;
       expect(providers['time'], {
-        'source': 'hashicorp/time',
+        'source': kTimeProviderSource,
         'version': '~> 0.12',
       });
     });

@@ -13,11 +13,11 @@ import 'package:terradart_azure/provider.dart'
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderSource, kCloudflareProviderVersionConstraint;
 import 'package:terradart_google/provider.dart'
-    show kProviderSource, kProviderVersionConstraint;
+    show kGoogleProviderSource, kGoogleProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderSource, kBetaProviderVersionConstraint;
 import 'package:terradart_time/terradart_time.dart'
-    show TimeProvider, kTimeProviderVersionConstraint;
+    show kTimeProviderSource, kTimeProviderVersionConstraint;
 
 import 'validate_engine.dart' show kNotOnOpenTofuRegistry;
 
@@ -56,7 +56,7 @@ final class ResolvedPlugin {
 }
 
 final providerPins = <ProviderPin>[
-  const ProviderPin(kProviderSource, kProviderVersionConstraint),
+  const ProviderPin(kGoogleProviderSource, kGoogleProviderVersionConstraint),
   const ProviderPin(kBetaProviderSource, kBetaProviderVersionConstraint),
   const ProviderPin(kAwsProviderSource, kAwsProviderVersionConstraint),
   const ProviderPin(kAzureProviderSource, kAzureProviderVersionConstraint),
@@ -68,7 +68,7 @@ final providerPins = <ProviderPin>[
     kAppwriteProviderSource,
     kAppwriteProviderVersionConstraint,
   ),
-  ProviderPin(const TimeProvider().source, kTimeProviderVersionConstraint),
+  const ProviderPin(kTimeProviderSource, kTimeProviderVersionConstraint),
 ];
 
 Set<PluginRegistry> registriesFor(String source) =>

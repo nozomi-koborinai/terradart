@@ -4,5 +4,5 @@ library;
 
 export 'package:terradart_core/terradart_core.dart';
 export 'src/time_provider.dart'
-    show TimeProvider, kTimeProviderVersionConstraint;
+    show TimeProvider, kTimeProviderSource, kTimeProviderVersionConstraint;
 export 'src/time_sleep.dart' show TimeSleep;

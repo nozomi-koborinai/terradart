@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** `AwsProvider.retryMode` takes the `AwsRetryMode` enum (`.standard` or `.adaptive`) instead of a string. See [MIGRATING.md](../../MIGRATING.md#awsproviderretrymode-takes-awsretrymode).
+
 ## 0.37.0 - 2026-11-23
 
 - **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).

@@ -54,12 +54,12 @@ abstract interface class StackProvider {
   String? get alias;
 
   /// Source identifier in form `<namespace>/<name>`, e.g. `'hashicorp/google'`.
-  /// `GoogleProvider` returns `kProviderSource`. Synth emits this under
+  /// `GoogleProvider` returns `kGoogleProviderSource`. Synth emits this under
   /// `terraform.required_providers.<providerName>.source`.
   String get source;
 
   /// Version constraint string, e.g. `'~> 7.0'`. `GoogleProvider` returns
-  /// `kProviderVersionConstraint`. Synth emits this under
+  /// `kGoogleProviderVersionConstraint`. Synth emits this under
   /// `terraform.required_providers.<providerName>.version`.
   String get versionConstraint;
 

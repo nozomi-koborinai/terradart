@@ -2,6 +2,54 @@
 
 ## Unreleased
 
+### Google provider constants are prefixed
+
+**Breaking (`terradart_google`).** `kProviderSource` and
+`kProviderVersionConstraint` are renamed `kGoogleProviderSource` and
+`kGoogleProviderVersionConstraint`, like the prefixed constants of the other
+provider packages (`kAwsProviderVersionConstraint`, `kTimeProviderSource`). The
+values are unchanged, and the old names are removed.
+
+| Before | After |
+|---|---|
+| `kProviderSource` | `kGoogleProviderSource` |
+| `kProviderVersionConstraint` | `kGoogleProviderVersionConstraint` |
+
+### `AwsProvider.retryMode` takes `AwsRetryMode`
+
+**Breaking (`terradart_aws`).** `AwsProvider.retryMode` takes the
+`AwsRetryMode` enum instead of a `String`. Its members `.standard` and
+`.adaptive` are the two values the provider accepts. The Terraform JSON is
+unchanged.
+
+| Before | After |
+|---|---|
+| `AwsProvider(retryMode: 'adaptive')` | `AwsProvider(retryMode: .adaptive)` |
+
+### Azure provider enums and `AzureProvider.unconfigured`
+
+**Breaking (`terradart_azure`).** `AzureProvider.environment` takes
+`AzureEnvironment` (`.public`, `.usgovernment`, `.china`), and
+`AzureProvider.resourceProviderRegistrations` takes
+`AzureResourceProviderRegistrations` (`.core`, `.extended`, `.all`, `.none`,
+`.legacy`), instead of a `String`. The Terraform JSON is unchanged.
+
+The `features` argument of `AzureProvider` no longer takes `null`. azurerm
+requires a `features` block in a root module, so the unnamed constructor always
+emits one, and an omitted argument still emits an empty block. A child module
+or a configuration alias must not carry provider configuration, so the new
+`AzureProvider.unconfigured` constructor emits no provider block. Register it
+in a child-module Stack, or pass it with an alias to `addConfigurationAlias`,
+which threw for every `AzureProvider` before. `terradart migrate` now
+registers `AzureProvider.unconfigured` in child-module mode and for
+`configuration_aliases`, so a migrated child module that the root calls with
+`count` or `for_each` validates.
+
+| Before | After |
+|---|---|
+| `AzureProvider(environment: 'usgovernment', resourceProviderRegistrations: 'none')` | `AzureProvider(environment: .usgovernment, resourceProviderRegistrations: .none)` |
+| `AzureProvider(features: null)` | `AzureProvider()` |
+
 ### Azure provider 5.15.0
 
 **Breaking (`terradart_azure`).** Provider 5.15.0 adds `managed_rules.exception`

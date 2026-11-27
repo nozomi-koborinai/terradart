@@ -6,7 +6,7 @@
 
 `TimeProvider` and `TimeSleep` for the [`hashicorp/time`](https://registry.terraform.io/providers/hashicorp/time) Terraform provider, for Dart-first Terraform stacks on any cloud.
 
-`TimeSleep` waits after create (and optionally before destroy) to absorb eventual consistency: GCP API enablement propagation (`terradart_google`'s `enableApis` adds one for you), AWS IAM role propagation, and the like.
+`TimeSleep` waits after create (`createDuration`), before destroy (`destroyDuration`), or both, to absorb eventual consistency: GCP API enablement propagation (`terradart_google`'s `enableApis` adds one for you), AWS IAM role propagation, and the like. Set at least one of the two durations.
 
 ## Installation
 
@@ -33,6 +33,6 @@ final class WaitStack extends Stack {
 }
 ```
 
-`TimeProvider` pins `hashicorp/time` at `~> 0.12` (`kTimeProviderVersionConstraint`). The pin is maintained by hand; no schema-bump automation tracks `hashicorp/time`.
+`TimeProvider` pins `hashicorp/time` (`kTimeProviderSource`) at `~> 0.12` (`kTimeProviderVersionConstraint`). The pin is maintained by hand; no schema-bump automation tracks `hashicorp/time`.
 
 Only `time_sleep` is wrapped. Open a [feature request](https://github.com/nozomi-koborinai/terradart/issues/new/choose) for `time_static`, `time_offset` or `time_rotating`.

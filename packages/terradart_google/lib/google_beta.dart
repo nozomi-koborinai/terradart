@@ -55,7 +55,7 @@ final class GoogleBetaProvider implements StackProvider {
   String get source => kBetaProviderSource;
 
   @override
-  String get versionConstraint => kProviderVersionConstraint;
+  String get versionConstraint => kGoogleProviderVersionConstraint;
 
   @override
   Map<String, Object?> get configArgs => {
