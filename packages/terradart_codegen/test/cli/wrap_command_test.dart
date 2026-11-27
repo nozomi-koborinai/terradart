@@ -110,6 +110,8 @@ void main() {
         'hashicorp/google',
         '--mm-groups',
         '--discovery-enums',
+        '--required-apis',
+        p.join('..', '..', 'tool', 'required_apis.yaml'),
         '--source',
         p.join('test', 'fixtures', 'wrap', 'source'),
         '--output',

@@ -52,7 +52,7 @@ void main() {
         for (final MapEntry(key: type, :value) in roots.entries) {
           if (value == null) continue;
           final want = _service(dir, (value as YamlMap)['doc'] as String);
-          final got = requiredApiForTerraformType(type);
+          final got = requiredApiForTerraformType(type)?.toTfJson();
           checked++;
           if (got != want) wrong.add('$type: $got, Discovery says $want');
         }
@@ -70,7 +70,7 @@ void main() {
             dir,
             (roots[parent] as YamlMap)['doc'] as String,
           );
-          final got = requiredApiForTerraformType(type);
+          final got = requiredApiForTerraformType(type)?.toTfJson();
           checked++;
           if (got != want) wrong.add('$type: $got, $parent needs $want');
         }

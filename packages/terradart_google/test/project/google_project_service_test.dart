@@ -4,10 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('GoogleProjectService', () {
     test('localName + service produce minimal argMap', () {
-      final api = GoogleProjectService(
-        'pubsub',
-        service: const TfArg.literal('pubsub.googleapis.com'),
-      );
+      final api = GoogleProjectService('pubsub', service: .pubsub);
       expect(api.terraformType, equals('google_project_service'));
       expect(api.localName, equals('pubsub'));
       expect(api.argMap.keys.toList(), equals(<String>['service']));
@@ -21,7 +18,7 @@ void main() {
     test('project parameter threads through to argMap', () {
       final api = GoogleProjectService(
         'pubsub',
-        service: const TfArg.literal('pubsub.googleapis.com'),
+        service: .pubsub,
         project: const TfArg.literal('my-project-123'),
       );
       expect(api.argMap['project'], isA<TfArg<String>>());
@@ -31,7 +28,7 @@ void main() {
     test('disableOnDestroy snake_cases to disable_on_destroy', () {
       final api = GoogleProjectService(
         'pubsub',
-        service: const TfArg.literal('pubsub.googleapis.com'),
+        service: .pubsub,
         disableOnDestroy: const TfArg.literal(false),
       );
       expect(api.argMap.containsKey('disable_on_destroy'), isTrue);
@@ -44,7 +41,7 @@ void main() {
       () {
         final api = GoogleProjectService(
           'pubsub',
-          service: const TfArg.literal('pubsub.googleapis.com'),
+          service: .pubsub,
           disableDependentServices: const TfArg.literal(true),
         );
         expect(api.argMap.containsKey('disable_dependent_services'), isTrue);
@@ -59,17 +56,14 @@ void main() {
     test('lifecycle prevent_destroy threads through to Resource', () {
       final api = GoogleProjectService(
         'pubsub',
-        service: const TfArg.literal('pubsub.googleapis.com'),
+        service: .pubsub,
         lifecycle: const LifecycleOptions(preventDestroy: true),
       );
       expect(api.lifecycle?.preventDestroy, isTrue);
     });
 
     test('id getter produces stable TfRef interpolation', () {
-      final api = GoogleProjectService(
-        'pubsub',
-        service: const TfArg.literal('pubsub.googleapis.com'),
-      );
+      final api = GoogleProjectService('pubsub', service: .pubsub);
       expect(
         api.id.interpolation,
         equals(r'${google_project_service.pubsub.id}'),
@@ -77,18 +71,12 @@ void main() {
     });
 
     test('sensitiveFields exposes empty set', () {
-      final api = GoogleProjectService(
-        'pubsub',
-        service: const TfArg.literal('pubsub.googleapis.com'),
-      );
+      final api = GoogleProjectService('pubsub', service: .pubsub);
       expect(api.sensitiveFields, isEmpty);
     });
 
     test('tfType constant matches terraformType', () {
-      final api = GoogleProjectService(
-        'pubsub',
-        service: const TfArg.literal('pubsub.googleapis.com'),
-      );
+      final api = GoogleProjectService('pubsub', service: .pubsub);
       expect(GoogleProjectService.tfType, equals('google_project_service'));
       expect(api.terraformType, equals(GoogleProjectService.tfType));
     });

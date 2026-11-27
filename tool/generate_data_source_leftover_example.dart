@@ -110,14 +110,18 @@ final class _GoogleDataSourceStack implements CoverageStackGenerator {
           '${param.ref ? value.replaceFirst('TfArg.', 'RefTo.') : value},',
         );
       }
-      final enums = _enumMembers(src);
+      final own = _enumMembers(src);
+      final enums = {..._importedEnumMembers(src), ...own};
       String? missing;
       for (final m in RegExp(r'required (\w+) (\w+),').allMatches(ctor)) {
         final helperType = m.group(1)!;
         if (enums[helperType] case final members?) {
+          final member = _enumMember(dummies, className, m.group(2)!, members);
+          // The stack imports the data barrel only, which does not export an
+          // enum a wrapper imports (GoogleApi); a shorthand needs no import.
           args.add(
             '      ${m.group(2)}: '
-            '${_enumMember(dummies, className, m.group(2)!, helperType, members)},',
+            '${own.containsKey(helperType) ? helperType : ''}.$member,',
           );
           continue;
         }
@@ -252,20 +256,25 @@ Map<String, List<(String, String)>> _enumMembers(String source) => {
     ],
 };
 
+Map<String, List<(String, String)>> _importedEnumMembers(String source) => {
+  for (final m in RegExp(
+    r"^import '(\.\./[^']+)'",
+    multiLine: true,
+  ).allMatches(source))
+    ..._enumMembers(readWrapperSource(File('$_dataDir/${m.group(1)}'))),
+};
+
 String _enumMember(
   CoverageDummies dummies,
   String className,
   String name,
-  String enumName,
   List<(String, String)> members,
 ) {
   final dummy = dummies.valueFor(className, name);
   final preferred = dummy is LiteralDummy ? dummy.json : null;
-  final pick = members.firstWhere(
-    (m) => m.$2 == preferred,
-    orElse: () => members.first,
-  );
-  return '$enumName.${pick.$1}';
+  return members
+      .firstWhere((m) => m.$2 == preferred, orElse: () => members.first)
+      .$1;
 }
 
 String _literal(

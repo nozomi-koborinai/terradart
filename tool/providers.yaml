@@ -149,6 +149,7 @@ providers:
     resourceProvider: null
     migrateManifest: packages/terradart_migrate/lib/src/manifest/google.g.dart
     references: typed
+    requiredApis: tool/required_apis.yaml
     bump:
       mode: auto
       repo: hashicorp/terraform-provider-google

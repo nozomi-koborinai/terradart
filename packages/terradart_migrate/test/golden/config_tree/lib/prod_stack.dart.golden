@@ -33,7 +33,7 @@ final class ProdStack extends Stack {
     // Production environment root module — same shape as dev, with an extra bucket
     // and an authoritative IAM binding.
     add(DataGoogleProject('current', projectId: projectId));
-    add(GoogleProjectService('run', service: .literal('run.googleapis.com')));
+    add(GoogleProjectService('run', service: .run));
     add(
       GoogleArtifactRegistryRepository(
         'images',

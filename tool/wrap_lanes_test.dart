@@ -35,6 +35,7 @@ void main() {
         '--mm-groups --discovery-enums '
         '--reference-targets ../../tool/reference_targets.yaml '
         '--typed-references '
+        '--required-apis ../../tool/required_apis.yaml '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart '
         '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
         '--check',

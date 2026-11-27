@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'google_api.dart' show GoogleApi;
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_project_service`.
@@ -17,8 +18,11 @@ const Set<String> _googleProjectServiceSensitive = <String>{};
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_project_service.`).
-/// - `service`: API endpoint name, e.g. `pubsub.googleapis.com`.
-///   Pass `TfArg.literal('pubsub.googleapis.com')`.
+/// - `service`: the API to enable, a [GoogleApi] constant such as
+///   [GoogleApi.pubsub] for `pubsub.googleapis.com`. A Google API without
+///   a constant goes through [GoogleApi.custom]; a variable, another
+///   resource's attribute or a service outside `googleapis.com` (a Cloud
+///   Endpoints service) goes through [GoogleApi.arg].
 ///
 /// Optional knobs:
 /// - `project`: explicit project ID; defaults to the provider's `project`
@@ -34,13 +38,13 @@ const Set<String> _googleProjectServiceSensitive = <String>{};
 /// ```dart
 /// final pubsubApi = GoogleProjectService(
 ///   'pubsub',
-///   service: TfArg.literal('pubsub.googleapis.com'),
-///   disableOnDestroy: TfArg.literal(false),
+///   service: .pubsub,
+///   disableOnDestroy: .literal(false),
 /// );
 ///
 /// final orders = GooglePubsubTopic(
 ///   'orders',
-///   name: TfArg.literal('orders-prod'),
+///   name: .literal('orders-prod'),
 ///   dependsOn: [pubsubApi],
 /// );
 /// ```
@@ -49,7 +53,7 @@ final class GoogleProjectService extends Resource {
 
   GoogleProjectService(
     super.localName, {
-    required TfArg<String> service,
+    required GoogleApi service,
     TfArg<String>? project,
     TfArg<bool>? disableOnDestroy,
     TfArg<bool>? disableDependentServices,

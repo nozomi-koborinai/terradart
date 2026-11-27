@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
-import 'package:terradart_google/project.dart' show requiredApiForTerraformType;
+import 'package:terradart_google/project.dart'
+    show GoogleApi, requiredApiForTerraformType;
 
 import 'example_synth_gates.dart';
 
@@ -14,18 +15,18 @@ void main() {
 void _testRequiredApi() {
   assert(
     requiredApiForTerraformType('google_gke_backup_backup_plan') ==
-        'gkebackup.googleapis.com',
+        GoogleApi.gkebackup,
   );
   assert(requiredApiForTerraformType('google_project_service') == null);
   assert(
     requiredApiForTerraformType('google_gke_backup_backup_plan_iam_member') ==
-        'gkebackup.googleapis.com',
+        GoogleApi.gkebackup,
   );
   assert(
     requiredApiForTerraformType(
           'google_document_ai_processor_default_version',
         ) ==
-        'documentai.googleapis.com',
+        GoogleApi.documentai,
   );
 }
 
