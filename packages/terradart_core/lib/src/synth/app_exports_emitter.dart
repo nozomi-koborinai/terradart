@@ -202,8 +202,8 @@ final class $name {
   /// compiled into the app: `--dart-define-from-file` with the file
   /// `terradart apply` and `terradart outputs` write from the Stack's
   /// `addDartDefineOutput` (`.terradart/dart_defines.json`, or
-  /// `.terradart/dart_defines.<env>.json` with `--env <env>`), or
-  /// `--dart-define=ORDERS_TOPIC_ID=...`.
+  /// `.terradart/dart_defines.<name>.json` for environment or workspace
+  /// `<name>`), or `--dart-define=ORDERS_TOPIC_ID=...`.
   const $name.fromDartDefine()
     : _source = _Source.dartDefine,
       _terraform = const {},
@@ -289,8 +289,9 @@ final class $name {
       ? ' No addDartDefineOutput of the stack carries it; pass '
             '--dart-define=$variable=<value>.'
       : ' Build the app with --dart-define-from-file=.terradart/$define.json, '
-            'which `terradart apply` and `terradart outputs` write (with '
-            '--env <name>: .terradart/$define.<name>.json).';
+            'which `terradart apply` and `terradart outputs` write (for '
+            'environment or workspace <name>: '
+            '.terradart/$define.<name>.json).';
 
   static T _as<T>(Object? value, String output) {
     if (value is T) return value;
