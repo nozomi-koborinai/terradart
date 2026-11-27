@@ -1,17 +1,49 @@
 import 'dart:io';
+import 'dart:isolate';
 
+import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/cli/lint_override_command.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('lint-override exits 0 on the clean committed registry', () {
-    final result = Process.runSync('dart', [
-      'run',
+  late Directory snapshotDir;
+  late String snapshotPath;
+  late String packageConfigPath;
+
+  setUpAll(() async {
+    packageConfigPath = (await Isolate.packageConfig)!.toFilePath();
+    snapshotDir = Directory.systemTemp.createTempSync('a5lint_dill_');
+    snapshotPath = p.join(snapshotDir.path, 'terradart.dill');
+    final compile = Process.runSync(Platform.resolvedExecutable, [
+      'compile',
+      'kernel',
       'bin/terradart.dart',
+      '-o',
+      snapshotPath,
+    ], workingDirectory: Directory.current.path);
+    expect(
+      compile.exitCode,
+      0,
+      reason: 'stdout:\n${compile.stdout}\nstderr:\n${compile.stderr}',
+    );
+  });
+
+  tearDownAll(() {
+    if (snapshotDir.existsSync()) snapshotDir.deleteSync(recursive: true);
+  });
+
+  ProcessResult runCli(List<String> args) => Process.runSync(
+    Platform.resolvedExecutable,
+    ['--packages=$packageConfigPath', snapshotPath, ...args],
+    workingDirectory: Directory.current.path,
+  );
+
+  test('lint-override exits 0 on the clean committed registry', () {
+    final result = runCli([
       'lint-override',
       '--generated',
       '../terradart_google/lib/src',
-    ], workingDirectory: Directory.current.path);
+    ]);
     expect(
       result.exitCode,
       0,
@@ -21,11 +53,7 @@ void main() {
   });
 
   test('lint-override is a registered subcommand in --help', () {
-    final result = Process.runSync('dart', [
-      'run',
-      'bin/terradart.dart',
-      '--help',
-    ], workingDirectory: Directory.current.path);
+    final result = runCli(['--help']);
     expect('${result.stdout}${result.stderr}', contains('lint-override'));
   });
 
@@ -35,13 +63,7 @@ void main() {
     File('${dir.path}/google_bad.yaml').writeAsStringSync(
       'outputDir: x\ncuratedDoc: |-\n  /// dead (deriveClassDoc is off)\n',
     );
-    final result = Process.runSync('dart', [
-      'run',
-      'bin/terradart.dart',
-      'lint-override',
-      '--dir',
-      dir.path,
-    ], workingDirectory: Directory.current.path);
+    final result = runCli(['lint-override', '--dir', dir.path]);
     expect(
       result.exitCode,
       65,
@@ -52,13 +74,7 @@ void main() {
 
   test('lint-override exits 65 with a clean message on a missing --dir', () {
     final missing = '${Directory.systemTemp.path}/a5-does-not-exist-xyz';
-    final result = Process.runSync('dart', [
-      'run',
-      'bin/terradart.dart',
-      'lint-override',
-      '--dir',
-      missing,
-    ], workingDirectory: Directory.current.path);
+    final result = runCli(['lint-override', '--dir', missing]);
     expect(
       result.exitCode,
       65,
@@ -83,13 +99,7 @@ prelude: |
     ];
   }
 ''');
-    final result = Process.runSync('dart', [
-      'run',
-      'bin/terradart.dart',
-      'lint-override',
-      '--dir',
-      dir.path,
-    ], workingDirectory: Directory.current.path);
+    final result = runCli(['lint-override', '--dir', dir.path]);
     expect(
       result.exitCode,
       65,
@@ -157,13 +167,7 @@ prelude: |
     });
     tearDown(() => repo.deleteSync(recursive: true));
 
-    ProcessResult lint() => Process.runSync('dart', [
-      'run',
-      'bin/terradart.dart',
-      'lint-override',
-      '--dir',
-      laneDir,
-    ], workingDirectory: Directory.current.path);
+    ProcessResult lint() => runCli(['lint-override', '--dir', laneDir]);
 
     test('a planted migrate_manifest_debt.yaml entry for a clean lane '
         'override is stale', () {
