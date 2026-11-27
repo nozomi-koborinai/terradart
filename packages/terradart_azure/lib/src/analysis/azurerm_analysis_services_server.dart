@@ -97,6 +97,8 @@ final class AnalysisServicesServerIpv4FirewallRule {
 }
 
 /// Factory wrapper for `azurerm_analysis_services_server`.
+///
+/// Manages an Analysis Services Server.
 final class AzurermAnalysisServicesServer extends Resource {
   static const String tfType = 'azurerm_analysis_services_server';
 

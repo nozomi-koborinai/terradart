@@ -121,6 +121,8 @@ final class ApiManagementSubscriptionScopeProductId
 }
 
 /// Factory wrapper for `azurerm_api_management_subscription`.
+///
+/// Manages a Subscription within an API Management Service.
 final class AzurermApiManagementSubscription extends Resource {
   static const String tfType = 'azurerm_api_management_subscription';
 

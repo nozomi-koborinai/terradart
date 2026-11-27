@@ -10,6 +10,8 @@ const Set<String> _azurermApiManagementIdentityProviderFacebookSensitive =
     <String>{'app_secret'};
 
 /// Factory wrapper for `azurerm_api_management_identity_provider_facebook`.
+///
+/// Manages an API Management Facebook Identity Provider.
 final class AzurermApiManagementIdentityProviderFacebook extends Resource {
   static const String tfType =
       'azurerm_api_management_identity_provider_facebook';

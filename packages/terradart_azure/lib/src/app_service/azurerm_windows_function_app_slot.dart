@@ -2353,6 +2353,9 @@ extension type const WindowsFunctionAppSlotDotnetVersion._(TfArg<String> _)
   static const v10p0 = WindowsFunctionAppSlotDotnetVersion._(
     TfArgLiteral('v10.0'),
   );
+  static const v11p0 = WindowsFunctionAppSlotDotnetVersion._(
+    TfArgLiteral('v11.0'),
+  );
 
   static const List<WindowsFunctionAppSlotDotnetVersion> values = [
     v3p0,
@@ -2362,6 +2365,7 @@ extension type const WindowsFunctionAppSlotDotnetVersion._(TfArg<String> _)
     v8p0,
     v9p0,
     v10p0,
+    v11p0,
   ];
 }
 

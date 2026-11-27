@@ -9,6 +9,9 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 const Set<String> _azurermApiManagementGroupSensitive = <String>{};
 
 /// Factory wrapper for `azurerm_api_management_group`.
+///
+/// Use this data source to access information about an existing API Management
+/// Group.
 final class DataAzurermApiManagementGroup extends Data {
   static const String tfType = 'azurerm_api_management_group';
 

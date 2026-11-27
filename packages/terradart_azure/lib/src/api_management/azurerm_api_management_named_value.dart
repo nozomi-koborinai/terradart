@@ -103,6 +103,8 @@ final class ApiManagementNamedValueFromKeyVault {
 }
 
 /// Factory wrapper for `azurerm_api_management_named_value`.
+///
+/// Manages an API Management Named Value.
 final class AzurermApiManagementNamedValue extends Resource {
   static const String tfType = 'azurerm_api_management_named_value';
 

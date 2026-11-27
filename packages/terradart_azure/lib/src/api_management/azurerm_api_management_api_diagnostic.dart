@@ -283,6 +283,8 @@ final class ApiManagementApiDiagnosticFrontendResponse {
 }
 
 /// Factory wrapper for `azurerm_api_management_api_diagnostic`.
+///
+/// Manages an API Management Service API Diagnostics Logs.
 final class AzurermApiManagementApiDiagnostic extends Resource {
   static const String tfType = 'azurerm_api_management_api_diagnostic';
 

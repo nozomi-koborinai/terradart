@@ -1718,6 +1718,14 @@ final class AzureLeftoverStack extends Stack {
     );
 
     add(
+      AzurermCdnFrontdoorEdgeAction(
+        'cdn_frontdoor_edge_action',
+        name: .literal(leftover),
+        resourceGroupName: .literal(resourceGroupName),
+      ),
+    );
+
+    add(
       AzurermCdnFrontdoorEndpoint(
         'cdn_frontdoor_endpoint',
         cdnFrontdoorProfileId: .literal(
@@ -3161,6 +3169,18 @@ final class AzureLeftoverStack extends Stack {
     );
 
     add(
+      AzurermDataProtectionBackupVaultResourceGuardAssociation(
+        'data_protection_backup_vault_resource_guard_asso',
+        dataProtectionBackupVaultId: .literal(
+          '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultName',
+        ),
+        dataProtectionResourceGuardId: .literal(
+          '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName',
+        ),
+      ),
+    );
+
+    add(
       AzurermDataProtectionResourceGuard(
         'data_protection_resource_guard',
         location: .literal(location),
@@ -4146,7 +4166,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        sku: FabricCapacitySku(name: .f2, tier: .fabric),
+        sku: FabricCapacitySku(name: .f0, tier: .fabric),
       ),
     );
 
@@ -4665,6 +4685,47 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
+      ),
+    );
+
+    add(
+      AzurermHorizondbCluster(
+        'horizondb_cluster',
+        administratorLogin: .literal(leftover),
+        administratorPassword: .administratorPassword(leftoverSecret),
+        location: .literal(location),
+        name: .literal(leftover),
+        pointInTimeRestoreOrPostgresqlVersion: .pointInTimeRestore(
+          .new(
+            pointInTimeUtc: .literal('2024-01-01T00:00:00Z'),
+            sourceHorizondbClusterId: .literal(
+              '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HorizonDb/clusters/clusterName',
+            ),
+          ),
+        ),
+        resourceGroupName: .literal(resourceGroupName),
+        readWritePool: HorizondbClusterReadWritePool(
+          highAvailabilityMode: .anyzone,
+          name: .literal(leftover),
+          nodeCount: .literal(1),
+          compute: .new(
+            generation: .literal(1),
+            processor: .amd,
+            vcores: .literal(2),
+          ),
+        ),
+      ),
+    );
+
+    add(
+      AzurermHorizondbFirewallRule(
+        'horizondb_firewall_rule',
+        endIpAddress: .literal('10.0.0.1'),
+        horizondbPoolId: .literal(
+          '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HorizonDb/clusters/clusterName/pools/poolName',
+        ),
+        name: .literal(leftover),
+        startIpAddress: .literal('10.0.0.1'),
       ),
     );
 

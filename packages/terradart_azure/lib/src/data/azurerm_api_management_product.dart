@@ -9,6 +9,9 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 const Set<String> _azurermApiManagementProductSensitive = <String>{};
 
 /// Factory wrapper for `azurerm_api_management_product`.
+///
+/// Use this data source to access information about an existing API Management
+/// Product.
 final class DataAzurermApiManagementProduct extends Data {
   static const String tfType = 'azurerm_api_management_product';
 

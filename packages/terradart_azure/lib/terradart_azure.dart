@@ -155,6 +155,7 @@ export 'graph.dart';
 export 'hdinsight.dart';
 export 'healthbot.dart';
 export 'healthcare.dart';
+export 'horizondb.dart';
 export 'identity.dart';
 export 'iot.dart';
 export 'iotcentral.dart';

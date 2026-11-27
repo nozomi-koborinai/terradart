@@ -330,6 +330,8 @@ final class ApiManagementApiOperationTemplateParameter {
 }
 
 /// Factory wrapper for `azurerm_api_management_api_operation`.
+///
+/// Manages an API Operation within an API Management Service.
 final class AzurermApiManagementApiOperation extends Resource {
   static const String tfType = 'azurerm_api_management_api_operation';
 

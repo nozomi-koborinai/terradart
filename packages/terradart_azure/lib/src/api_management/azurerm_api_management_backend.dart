@@ -366,6 +366,8 @@ final class ApiManagementBackendTls {
 }
 
 /// Factory wrapper for `azurerm_api_management_backend`.
+///
+/// Manages a backend within an API Management Service.
 final class AzurermApiManagementBackend extends Resource {
   static const String tfType = 'azurerm_api_management_backend';
 

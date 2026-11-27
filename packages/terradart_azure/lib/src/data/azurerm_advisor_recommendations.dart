@@ -45,6 +45,9 @@ extension type const DataAdvisorRecommendationsFilterByCategory._(
 }
 
 /// Factory wrapper for `azurerm_advisor_recommendations`.
+///
+/// Use this data source to access information about an existing Advisor
+/// Recommendations.
 final class DataAzurermAdvisorRecommendations extends Data {
   static const String tfType = 'azurerm_advisor_recommendations';
 

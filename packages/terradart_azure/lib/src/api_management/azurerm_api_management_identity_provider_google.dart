@@ -10,6 +10,8 @@ const Set<String> _azurermApiManagementIdentityProviderGoogleSensitive =
     <String>{'client_secret'};
 
 /// Factory wrapper for `azurerm_api_management_identity_provider_google`.
+///
+/// Manages an API Management Google Identity Provider.
 final class AzurermApiManagementIdentityProviderGoogle extends Resource {
   static const String tfType =
       'azurerm_api_management_identity_provider_google';

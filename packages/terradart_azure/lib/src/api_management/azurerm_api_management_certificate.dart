@@ -86,6 +86,8 @@ final class ApiManagementCertificateSourceKeyVaultSecretId
 }
 
 /// Factory wrapper for `azurerm_api_management_certificate`.
+///
+/// Manages a Certificate within an API Management Service.
 final class AzurermApiManagementCertificate extends Resource {
   static const String tfType = 'azurerm_api_management_certificate';
 
