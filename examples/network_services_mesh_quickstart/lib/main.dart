@@ -22,7 +22,7 @@ final class NetworkServicesMeshStack extends Stack {
     final apiNetworkServices = add(
       GoogleProjectService(
         'api_networkservices',
-        service: .literal('networkservices.googleapis.com'),
+        service: .networkservices,
         disableOnDestroy: .literal(false),
       ),
     );

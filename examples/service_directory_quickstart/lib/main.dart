@@ -40,7 +40,7 @@ final class RegistryStack extends Stack {
     final apiServiceDirectory = add(
       GoogleProjectService(
         'api_servicedirectory',
-        service: .literal('servicedirectory.googleapis.com'),
+        service: .servicedirectory,
         disableOnDestroy: .literal(false),
       ),
     );

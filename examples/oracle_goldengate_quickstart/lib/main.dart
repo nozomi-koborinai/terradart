@@ -23,11 +23,14 @@ final class OracleGoldengateStack extends Stack {
     const assignmentId = 'terradart-gg-assign';
 
     final apis = [
-      for (final api in ['compute', 'oracledatabase'])
+      for (final (name, api) in [
+        ('compute', GoogleApi.compute),
+        ('oracledatabase', GoogleApi.oracledatabase),
+      ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

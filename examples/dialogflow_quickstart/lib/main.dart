@@ -24,7 +24,7 @@ final class DialogflowSipTrunkStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_dialogflow',
-        service: .literal('dialogflow.googleapis.com'),
+        service: .dialogflow,
         disableOnDestroy: .literal(false),
       ),
     );

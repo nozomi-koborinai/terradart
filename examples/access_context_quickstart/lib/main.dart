@@ -33,7 +33,7 @@ final class AccessControlsStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_accesscontextmanager',
-        service: .literal('accesscontextmanager.googleapis.com'),
+        service: .accesscontextmanager,
         disableOnDestroy: .literal(false),
       ),
     );

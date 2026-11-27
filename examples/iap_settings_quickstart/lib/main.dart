@@ -35,7 +35,7 @@ final class IapSettingsStack extends Stack {
     final apiIap = add(
       GoogleProjectService(
         'api_iap',
-        service: .literal('iap.googleapis.com'),
+        service: .iap,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -43,7 +43,7 @@ final class IapSettingsStack extends Stack {
     final apiIam = add(
       GoogleProjectService(
         'api_iam',
-        service: .literal('iam.googleapis.com'),
+        service: .iam,
         disableOnDestroy: .literal(false),
       ),
     );

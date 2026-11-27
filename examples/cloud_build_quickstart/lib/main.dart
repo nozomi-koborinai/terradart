@@ -49,11 +49,15 @@ final class CloudBuildStack extends Stack {
     // One `google_project_service` per API, then a propagation wait that
     // dependents list in `dependsOn`.
     final apis = [
-      for (final api in ['artifactregistry', 'cloudbuild', 'iam'])
+      for (final (name, api) in [
+        ('artifactregistry', GoogleApi.artifactregistry),
+        ('cloudbuild', GoogleApi.cloudbuild),
+        ('iam', GoogleApi.iam),
+      ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

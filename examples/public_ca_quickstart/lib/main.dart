@@ -20,7 +20,7 @@ final class PublicCaStack extends Stack {
     final apiPublicCa = add(
       GoogleProjectService(
         'api_publicca',
-        service: .literal('publicca.googleapis.com'),
+        service: .publicca,
         disableOnDestroy: .literal(false),
       ),
     );

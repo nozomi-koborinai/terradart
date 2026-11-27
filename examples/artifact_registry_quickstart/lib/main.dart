@@ -31,14 +31,14 @@ final class ArtifactRegistryStack extends Stack {
     final apiAr = add(
       GoogleProjectService(
         'api_artifactregistry',
-        service: .literal('artifactregistry.googleapis.com'),
+        service: .artifactregistry,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiResourceManager = add(
       GoogleProjectService(
         'api_cloudresourcemanager',
-        service: .literal('cloudresourcemanager.googleapis.com'),
+        service: .cloudresourcemanager,
         disableOnDestroy: .literal(false),
       ),
     );

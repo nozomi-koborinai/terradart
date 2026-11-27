@@ -20,7 +20,7 @@ final class ConfigDeploymentStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_config',
-        service: .literal('config.googleapis.com'),
+        service: .config,
         disableOnDestroy: .literal(false),
       ),
     );

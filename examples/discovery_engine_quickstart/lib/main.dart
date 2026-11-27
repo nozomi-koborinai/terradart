@@ -32,7 +32,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_discoveryengine',
-        service: .literal('discoveryengine.googleapis.com'),
+        service: .discoveryengine,
         disableOnDestroy: .literal(false),
       ),
     );

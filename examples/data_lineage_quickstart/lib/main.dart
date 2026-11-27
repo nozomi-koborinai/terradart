@@ -19,7 +19,7 @@ final class DataLineageStack extends Stack {
     final apiLineage = add(
       GoogleProjectService(
         'api_datalineage',
-        service: .literal('datalineage.googleapis.com'),
+        service: .datalineage,
         disableOnDestroy: .literal(false),
       ),
     );

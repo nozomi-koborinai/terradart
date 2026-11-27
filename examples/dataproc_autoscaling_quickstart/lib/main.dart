@@ -23,7 +23,7 @@ final class DataprocAutoscalingStack extends Stack {
     final apiDataproc = add(
       GoogleProjectService(
         'api_dataproc',
-        service: .literal('dataproc.googleapis.com'),
+        service: .dataproc,
         disableOnDestroy: .literal(false),
       ),
     );

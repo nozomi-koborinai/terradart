@@ -21,7 +21,7 @@ final class SpannerInstanceConfigStack extends Stack {
     final apiSpanner = add(
       GoogleProjectService(
         'api_spanner',
-        service: .literal('spanner.googleapis.com'),
+        service: .spanner,
         disableOnDestroy: .literal(false),
       ),
     );

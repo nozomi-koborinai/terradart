@@ -25,7 +25,7 @@ final class CloudRunV1Stack extends Stack {
     final apiRun = add(
       GoogleProjectService(
         'api_run',
-        service: .literal('run.googleapis.com'),
+        service: .run,
         disableOnDestroy: .literal(false),
       ),
     );

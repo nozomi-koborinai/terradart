@@ -20,7 +20,7 @@ final class ComputeDefaultNetworkTierStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         'api_compute',
-        service: .literal('compute.googleapis.com'),
+        service: .compute,
         disableOnDestroy: .literal(false),
       ),
     );

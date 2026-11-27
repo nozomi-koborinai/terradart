@@ -31,7 +31,7 @@ final class HealthcareStack extends Stack {
     final apiHealthcare = add(
       GoogleProjectService(
         'api_healthcare',
-        service: .literal('healthcare.googleapis.com'),
+        service: .healthcare,
         disableOnDestroy: .literal(false),
       ),
     );

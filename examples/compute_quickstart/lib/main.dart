@@ -77,11 +77,15 @@ final class NetworkStack extends Stack {
     // SERVICE_DISABLED.
     // Every API-gated resource below carries `dependsOn: apiDeps`.
     final apis = [
-      for (final api in ['compute', 'file', 'iap'])
+      for (final (name, api) in [
+        ('compute', GoogleApi.compute),
+        ('file', GoogleApi.file),
+        ('iap', GoogleApi.iap),
+      ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

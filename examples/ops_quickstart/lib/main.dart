@@ -35,7 +35,7 @@ final class AuditPipelineStack extends Stack {
     final apiLogging = add(
       GoogleProjectService(
         'api_logging',
-        service: .literal('logging.googleapis.com'),
+        service: .logging,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -43,7 +43,7 @@ final class AuditPipelineStack extends Stack {
     final apiBigquery = add(
       GoogleProjectService(
         'api_bigquery',
-        service: .literal('bigquery.googleapis.com'),
+        service: .bigquery,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -51,7 +51,7 @@ final class AuditPipelineStack extends Stack {
     final apiSpanner = add(
       GoogleProjectService(
         'api_spanner',
-        service: .literal('spanner.googleapis.com'),
+        service: .spanner,
         disableOnDestroy: .literal(false),
       ),
     );

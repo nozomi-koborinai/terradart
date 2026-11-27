@@ -34,7 +34,7 @@ final class DataConnectStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_firebasedataconnect',
-        service: .literal('firebasedataconnect.googleapis.com'),
+        service: .firebasedataconnect,
         disableOnDestroy: .literal(false),
       ),
     );

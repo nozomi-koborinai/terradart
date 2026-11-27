@@ -31,7 +31,7 @@ final class FleetStack extends Stack {
     final apiGkeHub = add(
       GoogleProjectService(
         'api_gkehub',
-        service: .literal('gkehub.googleapis.com'),
+        service: .gkehub,
         disableOnDestroy: .literal(false),
       ),
     );

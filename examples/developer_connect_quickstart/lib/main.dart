@@ -22,7 +22,7 @@ final class DeveloperConnectStack extends Stack {
     final apiDeveloperConnect = add(
       GoogleProjectService(
         'api_developerconnect',
-        service: .literal('developerconnect.googleapis.com'),
+        service: .developerconnect,
         disableOnDestroy: .literal(false),
       ),
     );

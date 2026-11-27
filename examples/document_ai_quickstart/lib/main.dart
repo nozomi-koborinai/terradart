@@ -26,7 +26,7 @@ final class DocAiStack extends Stack {
     final apiDocumentAi = add(
       GoogleProjectService(
         'api_documentai',
-        service: .literal('documentai.googleapis.com'),
+        service: .documentai,
         disableOnDestroy: .literal(false),
       ),
     );

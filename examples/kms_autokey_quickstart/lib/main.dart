@@ -21,7 +21,7 @@ final class KmsAutokeyStack extends Stack {
     final apiKms = add(
       GoogleProjectService(
         'api_cloudkms',
-        service: .literal('cloudkms.googleapis.com'),
+        service: .cloudkms,
         disableOnDestroy: .literal(false),
       ),
     );

@@ -26,7 +26,7 @@ final class EventsStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_bigtableadmin',
-        service: .literal('bigtableadmin.googleapis.com'),
+        service: .bigtableadmin,
         disableOnDestroy: .literal(false),
       ),
     );

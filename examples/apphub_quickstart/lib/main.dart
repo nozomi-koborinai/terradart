@@ -23,7 +23,7 @@ final class ApphubStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_apphub',
-        service: .literal('apphub.googleapis.com'),
+        service: .apphub,
         disableOnDestroy: .literal(false),
       ),
     );

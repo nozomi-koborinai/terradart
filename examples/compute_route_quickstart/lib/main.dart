@@ -45,7 +45,7 @@ final class NetworkRouteStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         'api_compute',
-        service: .literal('compute.googleapis.com'),
+        service: .compute,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -53,7 +53,7 @@ final class NetworkRouteStack extends Stack {
     final apiIam = add(
       GoogleProjectService(
         'api_iam',
-        service: .literal('iam.googleapis.com'),
+        service: .iam,
         disableOnDestroy: .literal(false),
       ),
     );

@@ -36,7 +36,7 @@ final class RemoteConfigStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_firebaseremoteconfig',
-        service: .literal('firebaseremoteconfig.googleapis.com'),
+        service: .firebaseremoteconfig,
         disableOnDestroy: .literal(false),
       ),
     );

@@ -27,7 +27,7 @@ final class ContactCenterInsightsStack extends Stack {
     final apiInsights = add(
       GoogleProjectService(
         'api_contactcenterinsights',
-        service: .literal('contactcenterinsights.googleapis.com'),
+        service: .contactcenterinsights,
         disableOnDestroy: .literal(false),
       ),
     );

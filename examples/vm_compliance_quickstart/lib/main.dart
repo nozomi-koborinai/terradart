@@ -41,11 +41,14 @@ final class VmComplianceStack extends Stack {
     const zone = 'us-central1-a';
 
     final apis = [
-      for (final api in ['binaryauthorization', 'osconfig'])
+      for (final (name, api) in [
+        ('binaryauthorization', GoogleApi.binaryauthorization),
+        ('osconfig', GoogleApi.osconfig),
+      ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

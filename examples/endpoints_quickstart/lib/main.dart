@@ -83,21 +83,21 @@ final class EndpointsStack extends Stack {
     final apiServiceManagement = add(
       GoogleProjectService(
         'api_servicemanagement',
-        service: .literal('servicemanagement.googleapis.com'),
+        service: .custom('servicemanagement.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiServiceControl = add(
       GoogleProjectService(
         'api_servicecontrol',
-        service: .literal('servicecontrol.googleapis.com'),
+        service: .custom('servicecontrol.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
     final apiEndpoints = add(
       GoogleProjectService(
         'api_endpoints',
-        service: .literal('endpoints.googleapis.com'),
+        service: .custom('endpoints.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );

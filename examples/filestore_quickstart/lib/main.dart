@@ -21,11 +21,14 @@ final class FilestoreSnapshotStack extends Stack {
         ],
       ) {
     final apis = [
-      for (final api in ['compute', 'file'])
+      for (final (name, api) in [
+        ('compute', GoogleApi.compute),
+        ('file', GoogleApi.file),
+      ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

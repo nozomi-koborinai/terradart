@@ -27,7 +27,7 @@ final class PrivilegedAccessManagerStack extends Stack {
     final apiPam = add(
       GoogleProjectService(
         'api_pam',
-        service: .literal('privilegedaccessmanager.googleapis.com'),
+        service: .privilegedaccessmanager,
         disableOnDestroy: .literal(false),
       ),
     );

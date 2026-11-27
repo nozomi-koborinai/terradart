@@ -25,11 +25,15 @@ final class DataprocMetastoreStack extends Stack {
     const federationId = 'terradart-federation';
 
     final apis = [
-      for (final api in ['compute', 'dataproc', 'metastore'])
+      for (final (name, api) in [
+        ('compute', GoogleApi.compute),
+        ('dataproc', GoogleApi.dataproc),
+        ('metastore', GoogleApi.metastore),
+      ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

@@ -54,7 +54,7 @@ final class IamShowcaseStack extends Stack {
     final apiIam = add(
       GoogleProjectService(
         'api_iam',
-        service: .literal('iam.googleapis.com'),
+        service: .iam,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -125,28 +125,28 @@ final class IamShowcaseStack extends Stack {
     final apiPubsub = add(
       GoogleProjectService(
         'api_pubsub',
-        service: .literal('pubsub.googleapis.com'),
+        service: .pubsub,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiCloudTasks = add(
       GoogleProjectService(
         'api_cloudtasks',
-        service: .literal('cloudtasks.googleapis.com'),
+        service: .cloudtasks,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiSecretManager = add(
       GoogleProjectService(
         'api_secretmanager',
-        service: .literal('secretmanager.googleapis.com'),
+        service: .secretmanager,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiIap = add(
       GoogleProjectService(
         'api_iap',
-        service: .literal('iap.googleapis.com'),
+        service: .iap,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -409,7 +409,7 @@ final class IamShowcaseStack extends Stack {
     final apiOsLogin = add(
       GoogleProjectService(
         'api_oslogin',
-        service: .literal('oslogin.googleapis.com'),
+        service: .oslogin,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -437,7 +437,7 @@ final class IamShowcaseStack extends Stack {
     final apiWorkloadIdentity = add(
       GoogleProjectService(
         'api_workloadidentity',
-        service: .literal('workloadidentity.googleapis.com'),
+        service: .custom('workloadidentity.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );

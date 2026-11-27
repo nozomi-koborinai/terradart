@@ -23,7 +23,7 @@ final class ObservabilityStack extends Stack {
     final apiObservability = add(
       GoogleProjectService(
         'api_observability',
-        service: .literal('observability.googleapis.com'),
+        service: .observability,
         disableOnDestroy: .literal(false),
       ),
     );

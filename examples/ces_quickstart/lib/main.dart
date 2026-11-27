@@ -26,7 +26,7 @@ final class CesStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_ces',
-        service: .literal('ces.googleapis.com'),
+        service: .ces,
         disableOnDestroy: .literal(false),
       ),
     );

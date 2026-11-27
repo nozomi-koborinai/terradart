@@ -35,7 +35,7 @@ final class ContainerAnalysisStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_containeranalysis',
-        service: .literal('containeranalysis.googleapis.com'),
+        service: .containeranalysis,
         disableOnDestroy: .literal(false),
       ),
     );

@@ -28,7 +28,7 @@ final class IdentityPlatformStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_identitytoolkit',
-        service: .literal('identitytoolkit.googleapis.com'),
+        service: .identitytoolkit,
         disableOnDestroy: .literal(false),
       ),
     );

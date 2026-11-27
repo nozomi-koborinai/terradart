@@ -23,7 +23,7 @@ final class DataPolicyV2Stack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_bigquerydatapolicy',
-        service: .literal('bigquerydatapolicy.googleapis.com'),
+        service: .bigquerydatapolicy,
         disableOnDestroy: .literal(false),
       ),
     );

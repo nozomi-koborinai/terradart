@@ -35,7 +35,7 @@ final class GeminiStack extends Stack {
     final apiGemini = add(
       GoogleProjectService(
         'api_gemini',
-        service: .literal('cloudaicompanion.googleapis.com'),
+        service: .custom('cloudaicompanion.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );

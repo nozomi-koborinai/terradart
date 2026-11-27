@@ -29,7 +29,7 @@ final class NetappMetadataStack extends Stack {
     final apiNetapp = add(
       GoogleProjectService(
         'api_netapp',
-        service: .literal('netapp.googleapis.com'),
+        service: .netapp,
         disableOnDestroy: .literal(false),
       ),
     );

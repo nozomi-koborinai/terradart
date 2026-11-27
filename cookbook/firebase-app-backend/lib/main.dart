@@ -36,7 +36,7 @@ final class FirebaseAppBackendStack extends Stack {
     final apiFirebase = add(
       GoogleProjectService(
         'api_firebase',
-        service: .literal('firebase.googleapis.com'),
+        service: .firebase,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -44,7 +44,7 @@ final class FirebaseAppBackendStack extends Stack {
     final apiFirestore = add(
       GoogleProjectService(
         'api_firestore',
-        service: .literal('firestore.googleapis.com'),
+        service: .firestore,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -52,7 +52,7 @@ final class FirebaseAppBackendStack extends Stack {
     final apiRun = add(
       GoogleProjectService(
         'api_run',
-        service: .literal('run.googleapis.com'),
+        service: .run,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -60,7 +60,7 @@ final class FirebaseAppBackendStack extends Stack {
     final apiStorage = add(
       GoogleProjectService(
         'api_storage',
-        service: .literal('storage.googleapis.com'),
+        service: .storage,
         disableOnDestroy: .literal(false),
       ),
     );

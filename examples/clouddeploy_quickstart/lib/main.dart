@@ -38,7 +38,7 @@ final class DeployStack extends Stack {
     final apiClouddeploy = add(
       GoogleProjectService(
         'api_clouddeploy',
-        service: .literal('clouddeploy.googleapis.com'),
+        service: .clouddeploy,
         disableOnDestroy: .literal(false),
       ),
     );

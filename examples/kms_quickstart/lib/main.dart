@@ -48,11 +48,14 @@ final class CryptoStack extends Stack {
     // (Service accounts and `_iam_member` adjuncts below are not API-gated.)
 
     final apis = [
-      for (final api in ['cloudkms', 'contactcenterinsights'])
+      for (final (name, api) in [
+        ('cloudkms', GoogleApi.cloudkms),
+        ('contactcenterinsights', GoogleApi.contactcenterinsights),
+      ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

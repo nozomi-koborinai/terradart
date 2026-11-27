@@ -25,14 +25,14 @@ final class AppEngineStack extends Stack {
     final apiAppEngine = add(
       GoogleProjectService(
         'api_appengine',
-        service: .literal('appengine.googleapis.com'),
+        service: .appengine,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiAppEngineFlex = add(
       GoogleProjectService(
         'api_appengine_flex',
-        service: .literal('appengineflex.googleapis.com'),
+        service: .custom('appengineflex.googleapis.com'),
         disableOnDestroy: .literal(false),
         dependsOn: [apiAppEngine],
       ),
@@ -40,7 +40,7 @@ final class AppEngineStack extends Stack {
     final apiStorage = add(
       GoogleProjectService(
         'api_storage',
-        service: .literal('storage.googleapis.com'),
+        service: .storage,
         disableOnDestroy: .literal(false),
       ),
     );

@@ -26,21 +26,21 @@ final class DataplexCatalogStack extends Stack {
         ],
       ) {
     final apis = [
-      for (final api in [
-        'bigquery',
-        'bigquerydatapolicy',
-        'bigqueryreservation',
-        'dataplex',
-        'pubsub',
-        'storage',
-        'storagebatchoperations',
-        'storageinsights',
-        'storagetransfer',
+      for (final (name, api) in [
+        ('bigquery', GoogleApi.bigquery),
+        ('bigquerydatapolicy', GoogleApi.bigquerydatapolicy),
+        ('bigqueryreservation', GoogleApi.bigqueryreservation),
+        ('dataplex', GoogleApi.dataplex),
+        ('pubsub', GoogleApi.pubsub),
+        ('storage', GoogleApi.storage),
+        ('storagebatchoperations', GoogleApi.storagebatchoperations),
+        ('storageinsights', GoogleApi.storageinsights),
+        ('storagetransfer', GoogleApi.storagetransfer),
       ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

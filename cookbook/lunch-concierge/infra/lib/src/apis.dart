@@ -18,18 +18,18 @@ final class LunchApis {
 
 LunchApis addApisAndRepository(Stack stack) {
   final apis = [
-    for (final api in [
-      'artifactregistry',
-      'compute',
-      'run',
-      'servicenetworking',
-      'sqladmin',
-      'vpcaccess',
+    for (final (name, api) in [
+      ('artifactregistry', GoogleApi.artifactregistry),
+      ('compute', GoogleApi.compute),
+      ('run', GoogleApi.run),
+      ('servicenetworking', GoogleApi.servicenetworking),
+      ('sqladmin', GoogleApi.sqladmin),
+      ('vpcaccess', GoogleApi.vpcaccess),
     ])
       stack.add(
         GoogleProjectService(
-          'api_$api',
-          service: .literal('$api.googleapis.com'),
+          'api_$name',
+          service: api,
           disableOnDestroy: .literal(false),
         ),
       ),
@@ -50,7 +50,7 @@ LunchApis addApisAndRepository(Stack stack) {
   final vertexApi = stack.add(
     GoogleProjectService(
       'api_aiplatform',
-      service: .literal('aiplatform.googleapis.com'),
+      service: .aiplatform,
       disableOnDestroy: .literal(false),
     ),
   );
@@ -58,7 +58,7 @@ LunchApis addApisAndRepository(Stack stack) {
   final iapApi = stack.add(
     GoogleProjectService(
       'api_iap',
-      service: .literal('iap.googleapis.com'),
+      service: .iap,
       disableOnDestroy: .literal(false),
     ),
   );

@@ -182,14 +182,14 @@ final class ComputeLbStack extends Stack {
     final apiCertificateManager = add(
       GoogleProjectService(
         'api_certificatemanager',
-        service: .literal('certificatemanager.googleapis.com'),
+        service: .certificatemanager,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiPrivateca = add(
       GoogleProjectService(
         'api_privateca',
-        service: .literal('privateca.googleapis.com'),
+        service: .privateca,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -922,7 +922,7 @@ final class ComputeLbStack extends Stack {
     final apiIap = add(
       GoogleProjectService(
         'api_iap',
-        service: .literal('iap.googleapis.com'),
+        service: .iap,
         disableOnDestroy: .literal(false),
       ),
     );

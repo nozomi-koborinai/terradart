@@ -22,18 +22,18 @@ final class OrgLeftoverStack extends Stack {
       ) {
     const org = 'organizations/123456789';
     final apis = [
-      for (final api in [
-        'compute',
-        'networkconnectivity',
-        'networkmanagement',
-        'networksecurity',
-        'networkservices',
-        'storage',
+      for (final (name, api) in [
+        ('compute', GoogleApi.compute),
+        ('networkconnectivity', GoogleApi.networkconnectivity),
+        ('networkmanagement', GoogleApi.networkmanagement),
+        ('networksecurity', GoogleApi.networksecurity),
+        ('networkservices', GoogleApi.networkservices),
+        ('storage', GoogleApi.storage),
       ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

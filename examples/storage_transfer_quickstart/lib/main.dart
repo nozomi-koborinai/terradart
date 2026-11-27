@@ -27,16 +27,16 @@ final class StorageTransferStack extends Stack {
         ],
       ) {
     final apis = [
-      for (final api in [
-        'storage',
-        'storagebatchoperations',
-        'storageinsights',
-        'storagetransfer',
+      for (final (name, api) in [
+        ('storage', GoogleApi.storage),
+        ('storagebatchoperations', GoogleApi.storagebatchoperations),
+        ('storageinsights', GoogleApi.storageinsights),
+        ('storagetransfer', GoogleApi.storagetransfer),
       ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

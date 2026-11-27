@@ -18,7 +18,7 @@ final class ChronicleCustomListStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_chronicle',
-        service: .literal('chronicle.googleapis.com'),
+        service: .chronicle,
         disableOnDestroy: .literal(false),
       ),
     );
