@@ -16,11 +16,35 @@ final class ApiSecurityStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = enableApis([
-      .apikeys,
-      .recaptcha,
-      .network,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in [
+        'apikeys',
+        'networkconnectivity',
+        'networkmanagement',
+        'networksecurity',
+        'networkservices',
+        'recaptchaenterprise',
+      ])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     add(
       GoogleApikeysKey(

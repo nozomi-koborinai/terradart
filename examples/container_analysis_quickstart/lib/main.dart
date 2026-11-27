@@ -32,9 +32,23 @@ final class ContainerAnalysisStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = enableApis([
-      .containerAnalysis,
-    ], propagationDelay: const Duration(seconds: 60));
+    final api = add(
+      GoogleProjectService(
+        'api_containeranalysis',
+        service: .literal('containeranalysis.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({api.localName: api.id.interpolation}),
+          dependsOn: [api],
+        ),
+      ),
+    ];
 
     final note = GoogleContainerAnalysisNote(
       'attestor',

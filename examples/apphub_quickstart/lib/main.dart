@@ -20,9 +20,23 @@ final class ApphubStack extends Stack {
       ) {
     final current = add(DataGoogleProject('current'));
 
-    final apiDeps = enableApis([
-      .apphub,
-    ], propagationDelay: const Duration(seconds: 60));
+    final api = add(
+      GoogleProjectService(
+        'api_apphub',
+        service: .literal('apphub.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({api.localName: api.id.interpolation}),
+          dependsOn: [api],
+        ),
+      ),
+    ];
 
     add(
       GoogleApphubBoundary(

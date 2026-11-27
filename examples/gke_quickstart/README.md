@@ -33,7 +33,7 @@ terradart apply
 
 ## What gets created
 
-- API enablement via [`Apis.required`](../../packages/terradart_google/lib/src/project/apis.dart) (`Barrels.compute`, `Barrels.container`, `Barrels.gkeBackup` → Compute, GKE, GKE Hub, GKE Backup APIs).
+- One `google_project_service` per API: Compute, GKE, GKE Hub, GKE Backup.
 - VPC `gke-vpc` and subnet `gke-subnet` in `asia-northeast1`.
 - Regional cluster `main-gke` with `remove_default_node_pool = true`.
 - Node pool `primary-pool` attached to the cluster.

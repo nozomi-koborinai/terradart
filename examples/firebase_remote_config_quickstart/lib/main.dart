@@ -33,9 +33,23 @@ final class RemoteConfigStack extends Stack {
       ) {
     // Enable the Firebase Remote Config API and wait for propagation before
     // the template applies.
-    final apiDeps = enableApis([
-      .firebaseRemoteConfig,
-    ], propagationDelay: const Duration(seconds: 60));
+    final api = add(
+      GoogleProjectService(
+        'api_firebaseremoteconfig',
+        service: .literal('firebaseremoteconfig.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({api.localName: api.id.interpolation}),
+          dependsOn: [api],
+        ),
+      ),
+    ];
 
     // A condition that fires for users in Japan.
     final japanCondition = FirebaseRemoteConfigRemoteConfigCondition(

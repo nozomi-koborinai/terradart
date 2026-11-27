@@ -75,11 +75,28 @@ final class NetworkStack extends Stack {
     // Enable the Compute + Filestore APIs and wait for propagation before
     // the resources below apply; otherwise apply fails with SERVICE_DISABLED.
     // Every API-gated resource below carries `dependsOn: apiDeps`.
-    final apiDeps = enableApis([
-      .compute,
-      .filestore,
-      .iapApi,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in ['compute', 'file'])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     // Look up the live project so IAM bindings can reference the real
     // Google APIs service agent (`<number>@cloudservices.gserviceaccount.com`)

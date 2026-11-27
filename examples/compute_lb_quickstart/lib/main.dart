@@ -179,16 +179,20 @@ final class ComputeLbStack extends Stack {
     // [GoogleComputeTargetHttpsProxy.certificateMap] to `cmMap.id` at
     // apply time when migrating off Compute SSL certificates.
 
-    final apisByEndpoint = <String, GoogleProjectService>{};
-    for (final api in Apis.required(
-      barrels: [Barrels.certificateManager, Barrels.privateca],
-    )) {
-      final added = add(api);
-      apisByEndpoint[added.argMap['service']!.toTfJson() as String] = added;
-    }
-    final apiCertificateManager =
-        apisByEndpoint['certificatemanager.googleapis.com']!;
-    final apiPrivateca = apisByEndpoint['privateca.googleapis.com']!;
+    final apiCertificateManager = add(
+      GoogleProjectService(
+        'api_certificatemanager',
+        service: .literal('certificatemanager.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiPrivateca = add(
+      GoogleProjectService(
+        'api_privateca',
+        service: .literal('privateca.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
 
     final cmDnsAuth = GoogleCertificateManagerDnsAuthorization(
       'cm_dns_auth',

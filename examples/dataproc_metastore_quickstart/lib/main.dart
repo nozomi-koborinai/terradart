@@ -24,10 +24,28 @@ final class DataprocMetastoreStack extends Stack {
     const serviceId = 'terradart-metastore';
     const federationId = 'terradart-federation';
 
-    final apiDeps = enableApis([
-      .compute,
-      .dataproc,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in ['compute', 'dataproc', 'metastore'])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     // Dataproc Metastore's THRIFT endpoint attaches to a VPC network. When
     // `network` is omitted the API falls back to the project `default`
