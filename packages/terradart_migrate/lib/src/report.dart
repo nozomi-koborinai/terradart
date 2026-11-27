@@ -99,6 +99,10 @@ enum MigratedShape {
   /// An enum's `.arg(.literal(...))`, for a literal that names no member.
   enumUnlisted,
 
+  /// `GoogleApi.custom(...)`, for a Google API (`<name>.googleapis.com`) no
+  /// `GoogleApi` constant names.
+  googleApiCustom,
+
   /// An `EnumList` literal of members.
   enumListLiteral,
 

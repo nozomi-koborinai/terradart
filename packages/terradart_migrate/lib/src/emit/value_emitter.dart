@@ -879,6 +879,10 @@ final class ValueEmitter {
     return resource?.className == className;
   }
 
+  // The names GoogleApi.custom accepts; it throws on any other.
+  static bool _isGoogleApi(String raw) =>
+      raw.endsWith('.googleapis.com') && raw.length > '.googleapis.com'.length;
+
   MapEntry<String, String>? _caseInsensitiveMember(
     Map<String, String> members,
     String raw,
@@ -938,6 +942,11 @@ final class ValueEmitter {
           throw MigrateBlocker(
             'argument "$path": "$raw" is not a member of $enumName',
           );
+        }
+        if (enumName == 'GoogleApi' && _isGoogleApi(raw)) {
+          shapes.add(MigratedShape.googleApiCustom);
+          final call = '.custom(${dartString(raw)})';
+          return _typed ? call : '$enumName$call';
         }
         ctx.warnings.add(
           'argument "$path": "$raw" is not a member of $enumName; it is '

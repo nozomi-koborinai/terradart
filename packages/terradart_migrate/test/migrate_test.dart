@@ -3407,6 +3407,64 @@ resource "time_sleep" "wait" {
     });
   });
 
+  group('Google APIs', () {
+    MigrationResult migrate(String service) => _migrateHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 8.0" }
+  }
+}
+variable "api" {
+  type = string
+}
+resource "google_endpoints_service" "orders" {
+  service_name   = "orders.endpoints.my-project.cloud.goog"
+  openapi_config = "{}"
+}
+resource "google_project_service" "api" {
+  service = $service
+}
+''');
+
+    String serviceOf(MigrationResult r) {
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      return RegExp(
+        r"GoogleProjectService\('api', service: (.*)\)\);",
+      ).firstMatch(r.stackSource)!.group(1)!;
+    }
+
+    test('an API with a constant becomes that constant', () {
+      final r = migrate('"compute.googleapis.com"');
+      expect(serviceOf(r), '.compute');
+      expect(r.report.shapes, contains(MigratedShape.enumMember));
+    });
+
+    test('a Google API without a constant becomes GoogleApi.custom', () {
+      final r = migrate('"generativelanguage.googleapis.com"');
+      expect(serviceOf(r), ".custom('generativelanguage.googleapis.com')");
+      expect(r.report.shapes, contains(MigratedShape.googleApiCustom));
+      expect(r.report.warnings, isEmpty);
+    });
+
+    test('a service outside googleapis.com stays an unchecked arg', () {
+      final r = migrate('"orders.endpoints.my-project.cloud.goog"');
+      expect(
+        serviceOf(r),
+        ".arg(.literal('orders.endpoints.my-project.cloud.goog'))",
+      );
+      expect(r.report.shapes, contains(MigratedShape.enumUnlisted));
+      expect(r.report.warnings.single, contains('not a member of GoogleApi'));
+    });
+
+    test('a variable and an attribute stay what they read', () {
+      expect(serviceOf(migrate('var.api')), ".variable('api')");
+      expect(
+        serviceOf(migrate('google_endpoints_service.orders.service_name')),
+        '.arg(orders.serviceName)',
+      );
+    });
+  });
+
   group('provider enums', () {
     const azurerm =
         '''
