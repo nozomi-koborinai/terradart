@@ -530,152 +530,259 @@ Future<void> main(List<String> args) async {
     exit(1);
   }
 
+  final codegen = p.join(repoRoot, codegenDir);
+  final packageConfig = p.join(repoRoot, '.dart_tool', 'package_config.json');
+  Directory? snapshotDir;
+  String? snapshotPath;
+  if (lanes.length * gates.length > 1) {
+    snapshotDir = Directory.systemTemp.createTempSync('wrap_lanes_dill_');
+    snapshotPath = p.join(snapshotDir.path, 'terradart.dill');
+    final compile = await Process.run(Platform.resolvedExecutable, [
+      'compile',
+      'kernel',
+      'bin/terradart.dart',
+      '-o',
+      snapshotPath,
+    ], workingDirectory: codegen);
+    if (compile.exitCode != 0) {
+      snapshotPath = null;
+    }
+  }
+
+  List<String> cliDartArgs(List<String> cliArgs) => snapshotPath != null
+      ? ['--packages=$packageConfig', snapshotPath, ...cliArgs]
+      : ['run', 'bin/terradart.dart', ...cliArgs];
+
   final failed = <String>[];
-  for (final gate in gates) {
-    for (final lane in lanes) {
-      if (gate == WrapGate.regen &&
-          lane.providerEnums &&
-          staleHints(p.join(repoRoot, lane.schemaDir)).isNotEmpty) {
-        final code = await _reextractHints(lane, repoRoot);
-        if (code != 0) {
-          failed.add('${lane.name} (hints, exit $code)');
-          continue;
-        }
-      }
-      if (gate != WrapGate.lint && lane.mmSync != null) {
-        final stale = staleMmSync(p.join(repoRoot, lane.schemaDir));
-        if (stale.isNotEmpty && gate == WrapGate.wrap) {
-          for (final reason in stale) {
-            print('wrap_lanes: lane ${lane.name}: $reason');
-          }
-          print(
-            'wrap_lanes: lane ${lane.name}: stale MM YAML; run '
-            'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
-          );
-          failed.add('${lane.name} (mm sync)');
-          continue;
-        }
-        if (stale.isNotEmpty) {
-          final code = await _resyncMm(lane, repoRoot);
-          if (code != 0) {
-            failed.add('${lane.name} (mm sync, exit $code)');
-            continue;
-          }
-        }
-      }
-      if (gate != WrapGate.lint && lane.discovery) {
-        final stale = staleDiscovery(lane, repoRoot);
-        if (stale.isNotEmpty && gate == WrapGate.wrap) {
-          for (final reason in stale) {
-            print('wrap_lanes: lane ${lane.name}: $reason');
-          }
-          print(
-            'wrap_lanes: lane ${lane.name}: stale Discovery copy; run '
-            'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
-          );
-          failed.add('${lane.name} (discovery)');
-          continue;
-        }
-        if (stale.isNotEmpty) {
-          final code = await _refetchDiscovery(lane, repoRoot);
-          if (code != 0) {
-            failed.add('${lane.name} (discovery, exit $code)');
-            continue;
-          }
-        }
-      }
-      if (gate == WrapGate.regen) {
-        final schemaDir = p.join(repoRoot, lane.schemaDir);
-        final retired = retireRemovedOverrides(
-          schemaPath: p.join(schemaDir, 'schema.json'),
-          overridesRoot: p.join(repoRoot, lane.overridesRoot),
-          barrelsManifest: p.join(repoRoot, lane.barrelsManifest),
-        );
-        if (!retired.isEmpty) {
-          print(
-            '>> retire removed overrides (${lane.name}): '
-            'resources ${retired.resources} '
-            'data sources ${retired.dataSources} '
-            'barrels ${retired.barrels} '
-            'hints ${retired.hints}',
-          );
-        }
-      }
-      print('>> ${gate.label} (${lane.name})');
-      final codegen = p.join(repoRoot, codegenDir);
-      final args = ['run', 'bin/terradart.dart', ...gate.args(lane)];
-      final capture = gate == WrapGate.regen;
-      final manifestFile = File(p.join(repoRoot, lane.migrateManifest));
-      final beforeManifest = capture && manifestFile.existsSync()
-          ? manifestFile.readAsStringSync()
-          : null;
-      var run = await _runDart(args, codegen, captureLog: capture);
-      if (capture) {
-        const maxSelfHealPasses = 5;
-        for (var pass = 1; pass <= maxSelfHealPasses; pass++) {
-          final fixes = parseMechanicalWrapFixes(run.log);
-          if (fixes.isEmpty) break;
-          final applied = applyMechanicalOverrideFixes(
-            p.join(repoRoot, lane.overridesRoot),
-            fixes,
-          );
-          if (applied.isEmpty) break;
-          print(
-            '>> self-heal overrides (${lane.name}, pass $pass): '
-            '${applied.join('; ')}',
-          );
-          print('>> ${gate.label} (${lane.name}) retry $pass');
-          run = await _runDart(args, codegen, captureLog: true);
-        }
-      }
-      if (run.code != 0) {
-        failed.add('${lane.name} (${gate.name}, exit ${run.code})');
-      } else if (gate == WrapGate.regen) {
-        final version = File(
-          p.join(repoRoot, lane.schemaDir, 'provider_version.txt'),
-        ).readAsStringSync().trim();
-        final moved = repinLaneFixtures(
-          repoRoot,
-          source: lane.source,
-          version: version,
-        );
-        if (moved.isNotEmpty) {
-          print(
-            '>> repin migrate lane fixtures (${lane.name}): '
-            '${moved.join(', ')}',
-          );
-        }
-        if (beforeManifest != null && manifestFile.existsSync()) {
-          final afterManifest = manifestFile.readAsStringSync();
-          if (afterManifest != beforeManifest) {
-            final renames = deriveGeneratedTypeRenames(
-              parseManifestSourceSnapshot(beforeManifest),
-              parseManifestSourceSnapshot(afterManifest),
-            );
-            if (!renames.isEmpty) {
-              final outcome = await refreshAndVerifyMigratingMd(
-                repoRoot,
-                renames,
-              );
-              if (outcome.written) {
-                print(
-                  '>> refresh MIGRATING.md After cells (${lane.name}): '
-                  '${outcome.replacements.join('; ')}',
+  try {
+    for (final gate in gates) {
+      if (gate != WrapGate.regen && lanes.length > 1) {
+        final ordered = [...lanes]
+          ..sort((a, b) {
+            int sizeOf(WrapLane l) {
+              final f = File(p.join(repoRoot, l.schemaDir, 'schema.json'));
+              return f.existsSync() ? f.lengthSync() : 0;
+            }
+
+            return sizeOf(b).compareTo(sizeOf(a));
+          });
+        final results = <String, ({String output, String? failure})>{};
+        final workers = Platform.numberOfProcessors.clamp(1, ordered.length);
+        var next = 0;
+        Future<void> worker() async {
+          while (true) {
+            final i = next++;
+            if (i >= ordered.length) return;
+            final lane = ordered[i];
+            final buf = StringBuffer();
+            if (gate == WrapGate.wrap && lane.mmSync != null) {
+              final stale = staleMmSync(p.join(repoRoot, lane.schemaDir));
+              if (stale.isNotEmpty) {
+                for (final reason in stale) {
+                  buf.writeln('wrap_lanes: lane ${lane.name}: $reason');
+                }
+                buf.writeln(
+                  'wrap_lanes: lane ${lane.name}: stale MM YAML; run '
+                  'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
                 );
-              } else if (outcome.reason != null) {
-                print(
-                  '>> skipped MIGRATING.md After-cell refresh (${lane.name}): '
-                  '${outcome.reason}',
+                results[lane.name] = (
+                  output: buf.toString(),
+                  failure: '${lane.name} (mm sync)',
                 );
+                continue;
               }
+            }
+            if (gate == WrapGate.wrap && lane.discovery) {
+              final stale = staleDiscovery(lane, repoRoot);
+              if (stale.isNotEmpty) {
+                for (final reason in stale) {
+                  buf.writeln('wrap_lanes: lane ${lane.name}: $reason');
+                }
+                buf.writeln(
+                  'wrap_lanes: lane ${lane.name}: stale Discovery copy; run '
+                  'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
+                );
+                results[lane.name] = (
+                  output: buf.toString(),
+                  failure: '${lane.name} (discovery)',
+                );
+                continue;
+              }
+            }
+            buf.writeln('>> ${gate.label} (${lane.name})');
+            final run = await _runDartBuffered(
+              cliDartArgs(gate.args(lane)),
+              codegen,
+            );
+            buf.write(run.log);
+            results[lane.name] = (
+              output: buf.toString(),
+              failure: run.code == 0
+                  ? null
+                  : '${lane.name} (${gate.name}, exit ${run.code})',
+            );
+          }
+        }
+
+        await Future.wait([for (var w = 0; w < workers; w++) worker()]);
+        for (final lane in lanes) {
+          final r = results[lane.name]!;
+          stdout.write(r.output);
+          if (r.failure case final f?) failed.add(f);
+        }
+        continue;
+      }
+
+      for (final lane in lanes) {
+        if (gate == WrapGate.regen &&
+            lane.providerEnums &&
+            staleHints(p.join(repoRoot, lane.schemaDir)).isNotEmpty) {
+          final code = await _reextractHints(lane, repoRoot);
+          if (code != 0) {
+            failed.add('${lane.name} (hints, exit $code)');
+            continue;
+          }
+        }
+        if (gate != WrapGate.lint && lane.mmSync != null) {
+          final stale = staleMmSync(p.join(repoRoot, lane.schemaDir));
+          if (stale.isNotEmpty && gate == WrapGate.wrap) {
+            for (final reason in stale) {
+              print('wrap_lanes: lane ${lane.name}: $reason');
+            }
+            print(
+              'wrap_lanes: lane ${lane.name}: stale MM YAML; run '
+              'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
+            );
+            failed.add('${lane.name} (mm sync)');
+            continue;
+          }
+          if (stale.isNotEmpty) {
+            final code = await _resyncMm(lane, repoRoot);
+            if (code != 0) {
+              failed.add('${lane.name} (mm sync, exit $code)');
+              continue;
             }
           }
         }
-        if (lane.discovery) {
-          final code = await _recordProseSources(repoRoot);
-          if (code != 0) failed.add('${lane.name} (prose sources, exit $code)');
+        if (gate != WrapGate.lint && lane.discovery) {
+          final stale = staleDiscovery(lane, repoRoot);
+          if (stale.isNotEmpty && gate == WrapGate.wrap) {
+            for (final reason in stale) {
+              print('wrap_lanes: lane ${lane.name}: $reason');
+            }
+            print(
+              'wrap_lanes: lane ${lane.name}: stale Discovery copy; run '
+              'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
+            );
+            failed.add('${lane.name} (discovery)');
+            continue;
+          }
+          if (stale.isNotEmpty) {
+            final code = await _refetchDiscovery(lane, repoRoot);
+            if (code != 0) {
+              failed.add('${lane.name} (discovery, exit $code)');
+              continue;
+            }
+          }
+        }
+        if (gate == WrapGate.regen) {
+          final schemaDir = p.join(repoRoot, lane.schemaDir);
+          final retired = retireRemovedOverrides(
+            schemaPath: p.join(schemaDir, 'schema.json'),
+            overridesRoot: p.join(repoRoot, lane.overridesRoot),
+            barrelsManifest: p.join(repoRoot, lane.barrelsManifest),
+          );
+          if (!retired.isEmpty) {
+            print(
+              '>> retire removed overrides (${lane.name}): '
+              'resources ${retired.resources} '
+              'data sources ${retired.dataSources} '
+              'barrels ${retired.barrels} '
+              'hints ${retired.hints}',
+            );
+          }
+        }
+        print('>> ${gate.label} (${lane.name})');
+        final args = cliDartArgs(gate.args(lane));
+        final capture = gate == WrapGate.regen;
+        final manifestFile = File(p.join(repoRoot, lane.migrateManifest));
+        final beforeManifest = capture && manifestFile.existsSync()
+            ? manifestFile.readAsStringSync()
+            : null;
+        var run = await _runDart(args, codegen, captureLog: capture);
+        if (capture) {
+          const maxSelfHealPasses = 5;
+          for (var pass = 1; pass <= maxSelfHealPasses; pass++) {
+            final fixes = parseMechanicalWrapFixes(run.log);
+            if (fixes.isEmpty) break;
+            final applied = applyMechanicalOverrideFixes(
+              p.join(repoRoot, lane.overridesRoot),
+              fixes,
+            );
+            if (applied.isEmpty) break;
+            print(
+              '>> self-heal overrides (${lane.name}, pass $pass): '
+              '${applied.join('; ')}',
+            );
+            print('>> ${gate.label} (${lane.name}) retry $pass');
+            run = await _runDart(args, codegen, captureLog: true);
+          }
+        }
+        if (run.code != 0) {
+          failed.add('${lane.name} (${gate.name}, exit ${run.code})');
+        } else if (gate == WrapGate.regen) {
+          final version = File(
+            p.join(repoRoot, lane.schemaDir, 'provider_version.txt'),
+          ).readAsStringSync().trim();
+          final moved = repinLaneFixtures(
+            repoRoot,
+            source: lane.source,
+            version: version,
+          );
+          if (moved.isNotEmpty) {
+            print(
+              '>> repin migrate lane fixtures (${lane.name}): '
+              '${moved.join(', ')}',
+            );
+          }
+          if (beforeManifest != null && manifestFile.existsSync()) {
+            final afterManifest = manifestFile.readAsStringSync();
+            if (afterManifest != beforeManifest) {
+              final renames = deriveGeneratedTypeRenames(
+                parseManifestSourceSnapshot(beforeManifest),
+                parseManifestSourceSnapshot(afterManifest),
+              );
+              if (!renames.isEmpty) {
+                final outcome = await refreshAndVerifyMigratingMd(
+                  repoRoot,
+                  renames,
+                );
+                if (outcome.written) {
+                  print(
+                    '>> refresh MIGRATING.md After cells (${lane.name}): '
+                    '${outcome.replacements.join('; ')}',
+                  );
+                } else if (outcome.reason != null) {
+                  print(
+                    '>> skipped MIGRATING.md After-cell refresh (${lane.name}): '
+                    '${outcome.reason}',
+                  );
+                }
+              }
+            }
+          }
+          if (lane.discovery) {
+            final code = await _recordProseSources(repoRoot);
+            if (code != 0) {
+              failed.add('${lane.name} (prose sources, exit $code)');
+            }
+          }
         }
       }
+    }
+  } finally {
+    if (snapshotDir != null && snapshotDir.existsSync()) {
+      snapshotDir.deleteSync(recursive: true);
     }
   }
   if (gates.contains(WrapGate.lint)) {
@@ -724,4 +831,19 @@ Future<({int code, String log})> _runDart(
   await stdoutDone;
   await stderrDone;
   return (code: code, log: log.toString());
+}
+
+Future<({int code, String log})> _runDartBuffered(
+  List<String> args,
+  String workingDirectory,
+) async {
+  final result = await Process.run(
+    Platform.resolvedExecutable,
+    args,
+    workingDirectory: workingDirectory,
+  );
+  final log = StringBuffer()
+    ..write(result.stdout)
+    ..write(result.stderr);
+  return (code: result.exitCode, log: log.toString());
 }

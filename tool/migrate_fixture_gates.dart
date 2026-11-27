@@ -205,6 +205,17 @@ final List<WrapLane> _lanes = parseWrapLanes(
 
 final List<String> _workspacePackages = migrateGatePackages(_lanes);
 
+Future<void> _initLock = Future.value();
+
+Future<bool> _runTerraformInit(Directory dir, List<String> errors) {
+  final prev = _initLock;
+  final done = prev
+      .catchError((_) {})
+      .then((_) => _run(_terraformInit, dir, errors));
+  _initLock = done.then((_) {});
+  return done;
+}
+
 Future<void> main(List<String> args) async {
   final skipValidate = args.contains('--skip-validate');
   final keep = args.contains('--keep');
@@ -223,30 +234,49 @@ Future<void> main(List<String> args) async {
     exitCode = 1;
     return;
   }
-  var ok = true;
-  for (final fixture in plan.run) {
-    final passed = await _gate(
-      fixture,
-      repoRoot: repoRoot,
-      skipValidate: skipValidate,
-      keep: keep,
-    );
-    ok = ok && passed;
-  }
-  ok =
-      await _mergeEnvGate(
+  final tasks = <Future<({bool ok, String out, String err})> Function()>[
+    for (final fixture in plan.run)
+      () => _gate(
+        fixture,
         repoRoot: repoRoot,
         skipValidate: skipValidate,
         keep: keep,
-      ) &&
-      ok;
+      ),
+    () => _mergeEnvGate(
+      repoRoot: repoRoot,
+      skipValidate: skipValidate,
+      keep: keep,
+    ),
+  ];
+  final results = List<({bool ok, String out, String err})?>.filled(
+    tasks.length,
+    null,
+  );
+  final workers = Platform.numberOfProcessors.clamp(1, tasks.length);
+  var next = 0;
+  Future<void> worker() async {
+    while (true) {
+      final i = next++;
+      if (i >= tasks.length) return;
+      results[i] = await tasks[i]();
+    }
+  }
+
+  await Future.wait([for (var w = 0; w < workers; w++) worker()]);
+  var ok = true;
+  for (final r in results) {
+    final result = r!;
+    if (result.out.isNotEmpty) stdout.write(result.out);
+    if (result.err.isNotEmpty) stderr.write(result.err);
+    ok = ok && result.ok;
+  }
   stdout.writeln(
     ok ? 'migrate_fixture_gates: OK' : 'migrate_fixture_gates: FAILED',
   );
   exitCode = ok ? 0 : 1;
 }
 
-Future<bool> _mergeEnvGate({
+Future<({bool ok, String out, String err})> _mergeEnvGate({
   required String repoRoot,
   required bool skipValidate,
   required bool keep,
@@ -255,6 +285,7 @@ Future<bool> _mergeEnvGate({
   final plain = Directory.systemTemp.createTempSync('terradart_merge_plain_');
   final temp = Directory.systemTemp.createTempSync('terradart_merge_envs_');
   final errors = <String>[];
+  final out = StringBuffer();
   try {
     final tree = scanModuleTree(input);
     writeProject(migrateTree(tree, name: _mergeFixture), plain);
@@ -270,12 +301,26 @@ Future<bool> _mergeEnvGate({
     }
     if (merged.isEmpty) {
       errors.add('--merge-envs folded no environment group');
-      return _finish('$_mergeFixture --merge-envs', temp, errors, keep: keep);
+      return _finish(
+        '$_mergeFixture --merge-envs',
+        temp,
+        errors,
+        out,
+        keep: keep,
+      );
     }
-    for (final step in [plain, temp]) {
-      if (!await _build(step, repoRoot, errors)) {
-        return _finish('$_mergeFixture --merge-envs', temp, errors, keep: keep);
-      }
+    final built = await Future.wait([
+      _build(plain, repoRoot, errors),
+      _build(temp, repoRoot, errors),
+    ]);
+    if (built.any((ok) => !ok)) {
+      return _finish(
+        '$_mergeFixture --merge-envs',
+        temp,
+        errors,
+        out,
+        keep: keep,
+      );
     }
 
     final dirs = [for (final m in project.modules) m.terraformDir];
@@ -304,12 +349,12 @@ Future<bool> _mergeEnvGate({
     if (!skipValidate && errors.isEmpty) {
       for (final d in dirs) {
         final dir = Directory(p.join(temp.path, d));
-        if (!await _run(_terraformInit, dir, errors)) continue;
+        if (!await _runTerraformInit(dir, errors)) continue;
         await _run(['terraform', 'validate', '-no-color'], dir, errors);
       }
     }
     final envs = [for (final m in merged) ...m.envs];
-    stdout.writeln(
+    out.writeln(
       'migrate_fixture_gates: $_mergeFixture --merge-envs: '
       '${envs.length} environments '
       '(${envs.map((e) => e.path).join(', ')}) → '
@@ -323,7 +368,7 @@ Future<bool> _mergeEnvGate({
     errors.add('$_mergeFixture --merge-envs: $e\n$st');
   }
   if (errors.isEmpty && !keep) plain.deleteSync(recursive: true);
-  return _finish('$_mergeFixture --merge-envs', temp, errors, keep: keep);
+  return _finish('$_mergeFixture --merge-envs', temp, errors, out, keep: keep);
 }
 
 String _count(int n, String what) => '$n $what${n == 1 ? '' : 's'}';
@@ -386,7 +431,7 @@ void _diff(Object? a, Object? b, String path, List<String> out) {
   }
 }
 
-Future<bool> _gate(
+Future<({bool ok, String out, String err})> _gate(
   String fixture, {
   required String repoRoot,
   required bool skipValidate,
@@ -397,6 +442,7 @@ Future<bool> _gate(
     'terradart_migrate_fixture_',
   );
   final errors = <String>[];
+  final out = StringBuffer();
   try {
     final tree = scanModuleTree(input);
     final project = migrateTree(tree, name: fixture);
@@ -434,7 +480,7 @@ Future<bool> _gate(
         errors.removeRange(before, errors.length);
         passed = await _run(['dart', 'pub', 'get'], temp, errors);
       }
-      if (!passed) return _finish(fixture, temp, errors, keep: keep);
+      if (!passed) return _finish(fixture, temp, errors, out, keep: keep);
     }
     final dirs = [for (final m in project.modules) m.terraformDir];
     for (final d in dirs) {
@@ -453,7 +499,7 @@ Future<bool> _gate(
       );
     }
     if (errors.isNotEmpty) {
-      return _finish(fixture, temp, errors, keep: keep);
+      return _finish(fixture, temp, errors, out, keep: keep);
     }
     errors.addAll(
       pinDrift(fixture, [
@@ -478,7 +524,7 @@ Future<bool> _gate(
           // Terraform cannot validate a configuration_aliases child module standalone; root validate covers it.
           continue;
         }
-        if (!await _run(_terraformInit, dir, errors)) continue;
+        if (!await _runTerraformInit(dir, errors)) continue;
         if (await _run(['terraform', 'validate', '-no-color'], dir, errors)) {
           validatedDirs++;
         }
@@ -487,7 +533,7 @@ Future<bool> _gate(
     final validated = skipValidate
         ? ' (terraform validate skipped)'
         : ', $validatedDirs directories validated';
-    stdout.writeln(
+    out.writeln(
       'migrate_fixture_gates: $fixture: ${project.modules.length} modules, '
       '${project.migratedCount} migrated, ${project.keptCount} kept'
       '$validated',
@@ -495,30 +541,32 @@ Future<bool> _gate(
   } on Object catch (e, st) {
     errors.add('$fixture: $e\n$st');
   }
-  return _finish(fixture, temp, errors, keep: keep);
+  return _finish(fixture, temp, errors, out, keep: keep);
 }
 
-bool _finish(
+({bool ok, String out, String err}) _finish(
   String fixture,
   Directory temp,
-  List<String> errors, {
+  List<String> errors,
+  StringBuffer out, {
   required bool keep,
 }) {
+  final err = StringBuffer();
   if (errors.isEmpty) {
     if (keep) {
-      stdout.writeln('migrate_fixture_gates: $fixture kept at ${temp.path}');
+      out.writeln('migrate_fixture_gates: $fixture kept at ${temp.path}');
     } else {
       temp.deleteSync(recursive: true);
     }
-    return true;
+    return (ok: true, out: out.toString(), err: '');
   }
-  stderr.writeln(
+  err.writeln(
     'migrate_fixture_gates: $fixture FAILED (package kept at ${temp.path}):',
   );
   for (final e in errors) {
-    stderr.writeln('  $e');
+    err.writeln('  $e');
   }
-  return false;
+  return (ok: false, out: out.toString(), err: err.toString());
 }
 
 bool _treeContains(Directory dir, String needle) {

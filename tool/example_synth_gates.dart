@@ -38,8 +38,36 @@ Future<void> runExampleSynthGates(
   final allResourceTypes = <String>{};
   final allDataTypes = <String>{};
 
+  final scheduled = [...quickstarts]
+    ..sort((a, b) {
+      final al = a.endsWith('_leftover_quickstart') ? 0 : 1;
+      final bl = b.endsWith('_leftover_quickstart') ? 0 : 1;
+      if (al != bl) return al.compareTo(bl);
+      return a.compareTo(b);
+    });
+  final synthResults =
+      <String, ({Map<String, dynamic>? json, List<String> errors})>{};
+  final workers = Platform.numberOfProcessors.clamp(1, scheduled.length);
+  var next = 0;
+  Future<void> worker() async {
+    while (true) {
+      final i = next++;
+      if (i >= scheduled.length) return;
+      final slug = scheduled[i];
+      final slugErrors = <String>[];
+      final json = await synthExample(slug, slugErrors);
+      synthResults[slug] = (json: json, errors: slugErrors);
+    }
+  }
+
+  if (scheduled.isNotEmpty) {
+    await Future.wait([for (var w = 0; w < workers; w++) worker()]);
+  }
+
   for (final slug in quickstarts) {
-    final json = await synthExample(slug, errors);
+    final result = synthResults[slug]!;
+    errors.addAll(result.errors);
+    final json = result.json;
     if (json == null) continue;
     synthByExample[slug] = json;
     checkReadmeExcerpts(slug, json, errors);
