@@ -88,8 +88,24 @@ List<String> _cells(String row) {
   return out;
 }
 
+final _cellImport = RegExp(r"^\s*import\s+'[^']+'\s*;");
+
+({List<String> imports, String code}) cellImports(String code) {
+  final imports = <String>[];
+  var rest = code;
+  for (
+    var m = _cellImport.firstMatch(rest);
+    m != null;
+    m = _cellImport.firstMatch(rest)
+  ) {
+    imports.add(m[0]!.trim());
+    rest = rest.substring(m.end);
+  }
+  return (imports: imports, code: rest.trim());
+}
+
 String? cellShapeError(MigratingCell cell) {
-  if (_namedArgument.hasMatch(cell.code)) {
+  if (_namedArgument.hasMatch(cellImports(cell.code).code)) {
     return 'is a named-argument fragment; write the call that takes it';
   }
   return null;
@@ -200,26 +216,60 @@ const _ignores =
     '// ignore_for_file: unused_import, unused_local_variable, '
     'unused_element, unused_field, dead_code, no_leading_underscores_for_local_identifiers';
 
-({String contents, List<int?> docLines, List<MigratingCell?> cells})
-renderCells(List<MigratingCell> cells, List<String> imports) {
-  final lines = <String>[_ignores, ...imports, 'dynamic _elided;'];
-  final docLines = List<int?>.filled(lines.length, null, growable: true);
-  final owners = List<MigratingCell?>.filled(
-    lines.length,
-    null,
-    growable: true,
-  );
-  for (final (i, cell) in cells.indexed) {
-    final text = _typeSpan.hasMatch(cell.code)
-        ? 'typedef _T$i = ${cell.code};'
-        : 'void _c$i() { final _ = ${resolveElisions(cell.code).code}; }';
-    for (final l in text.split('\n')) {
-      lines.add(l);
-      docLines.add(cell.line);
-      owners.add(cell);
+typedef RenderedCells = ({
+  String name,
+  String contents,
+  List<int?> docLines,
+  List<MigratingCell?> cells,
+  bool standIns,
+});
+
+List<RenderedCells> renderCells(
+  List<MigratingCell> cells,
+  List<String> imports,
+) {
+  RenderedCells render(
+    String name,
+    List<String> imports,
+    List<MigratingCell> cells, {
+    required bool standIns,
+  }) {
+    final owner = standIns ? null : cells.single;
+    final lines = <String>[_ignores, ...imports, 'dynamic _elided;'];
+    final docLines = <int?>[null, for (final _ in imports) owner?.line, null];
+    final owners = <MigratingCell?>[null, for (final _ in imports) owner, null];
+    for (final (i, cell) in cells.indexed) {
+      final code = cellImports(cell.code).code;
+      final text = _typeSpan.hasMatch(code)
+          ? 'typedef _T$i = $code;'
+          : 'void _c$i() { final _ = ${resolveElisions(code).code}; }';
+      for (final l in text.split('\n')) {
+        lines.add(l);
+        docLines.add(cell.line);
+        owners.add(cell);
+      }
     }
+    return (
+      name: name,
+      contents: '${lines.join('\n')}\n',
+      docLines: docLines,
+      cells: owners,
+      standIns: standIns,
+    );
   }
-  return (contents: '${lines.join('\n')}\n', docLines: docLines, cells: owners);
+
+  final own = [
+    for (final c in cells)
+      if (cellImports(c.code).imports.isNotEmpty) c,
+  ];
+  return [
+    render('cells.dart', imports, [
+      for (final c in cells)
+        if (!own.contains(c)) c,
+    ], standIns: true),
+    for (final (i, c) in own.indexed)
+      render('cell_$i.dart', cellImports(c.code).imports, [c], standIns: false),
+  ];
 }
 
 String _workspacePubspec(String root, List<String> packages) {
@@ -344,8 +394,7 @@ Future<MigratingReport> checkMigratingCells(
 
   final sandbox = await Directory.systemTemp.createTemp('migrating_cells_');
   try {
-    final rendered =
-        <String, ({List<int?> docLines, List<MigratingCell?> cells})>{};
+    final rendered = <String, RenderedCells>{};
     final dirs = <String>[];
     for (final (name, group, imports, pubspec) in [
       ('after', after, barrels, _workspacePubspec(root, packages)),
@@ -361,10 +410,11 @@ Future<MigratingReport> checkMigratingCells(
       dirs.add(dir);
       Directory(p.join(dir, 'lib')).createSync(recursive: true);
       File(p.join(dir, 'pubspec.yaml')).writeAsStringSync(pubspec);
-      final r = renderCells(group, imports);
-      final file = p.canonicalize(p.join(dir, 'lib', 'cells.dart'));
-      File(file).writeAsStringSync(r.contents);
-      rendered[file] = (docLines: r.docLines, cells: r.cells);
+      for (final r in renderCells(group, imports)) {
+        final file = p.canonicalize(p.join(dir, 'lib', r.name));
+        File(file).writeAsStringSync(r.contents);
+        rendered[file] = r;
+      }
     }
     final pubResults = await Future.wait([
       for (final dir in dirs)
@@ -406,7 +456,7 @@ Future<MigratingReport> checkMigratingCells(
     var diagnostics = [for (final d in dirs) ...?diagByDir[d]];
     final undefined = <String, Set<String>>{};
     for (final d in diagnostics) {
-      if (!rendered.containsKey(d.file)) continue;
+      if (!(rendered[d.file]?.standIns ?? false)) continue;
       if (d.code != 'UNDEFINED_IDENTIFIER' && d.code != 'UNDEFINED_FUNCTION') {
         continue;
       }
@@ -441,7 +491,7 @@ Future<MigratingReport> checkMigratingCells(
       }
       if (cell != null &&
           d.code == 'STATIC_ACCESS_TO_INSTANCE_MEMBER' &&
-          _memberSpan.hasMatch(cell.code)) {
+          _memberSpan.hasMatch(cellImports(cell.code).code)) {
         continue;
       }
       if (cell != null && cell.before) failedBefore.add(cell);
@@ -504,9 +554,13 @@ checkMigratingAfterCells(String root, {String? migrating}) async {
     File(
       p.join(dir, 'pubspec.yaml'),
     ).writeAsStringSync(_workspacePubspec(root, packages));
-    final r = renderCells(after, barrels);
-    final file = p.canonicalize(p.join(dir, 'lib', 'cells.dart'));
-    File(file).writeAsStringSync(r.contents);
+    final rendered = {
+      for (final r in renderCells(after, barrels))
+        p.canonicalize(p.join(dir, 'lib', r.name)): r,
+    };
+    for (final MapEntry(key: file, value: r) in rendered.entries) {
+      File(file).writeAsStringSync(r.contents);
+    }
     var get = await Process.run('dart', [
       'pub',
       'get',
@@ -523,25 +577,28 @@ checkMigratingAfterCells(String root, {String? migrating}) async {
     }
 
     var diagnostics = await analyzeDiagnostics(dir);
-    final undefined = <String>{};
+    final undefined = <String, Set<String>>{};
     for (final d in diagnostics) {
-      if (d.file != file) continue;
+      if (!(rendered[d.file]?.standIns ?? false)) continue;
       if (d.code != 'UNDEFINED_IDENTIFIER' && d.code != 'UNDEFINED_FUNCTION') {
         continue;
       }
       final name = RegExp(r"'([a-z]\w*)'").firstMatch(d.message)?.group(1);
-      if (name != null) undefined.add(name);
+      if (name != null) undefined.putIfAbsent(d.file, () => {}).add(name);
     }
     if (undefined.isNotEmpty) {
-      final lines = File(file).readAsStringSync().split('\n');
-      lines.add('dynamic ${(undefined.toList()..sort()).join(', ')};');
-      File(file).writeAsStringSync(lines.join('\n'));
+      for (final MapEntry(key: file, value: names) in undefined.entries) {
+        final lines = File(file).readAsStringSync().split('\n');
+        lines.add('dynamic ${(names.toList()..sort()).join(', ')};');
+        File(file).writeAsStringSync(lines.join('\n'));
+      }
       diagnostics = await analyzeDiagnostics(dir);
     }
 
     for (final d in diagnostics) {
       if (d.severity != 'ERROR' && d.severity != 'WARNING') continue;
-      final inCell = d.file == file && d.line <= r.cells.length;
+      final r = rendered[d.file];
+      final inCell = r != null && d.line <= r.cells.length;
       final cell = inCell ? r.cells[d.line - 1] : null;
       if (cell != null &&
           elisionCodes.contains(d.code) &&
@@ -550,7 +607,7 @@ checkMigratingAfterCells(String root, {String? migrating}) async {
       }
       if (cell != null &&
           d.code == 'STATIC_ACCESS_TO_INSTANCE_MEMBER' &&
-          _memberSpan.hasMatch(cell.code)) {
+          _memberSpan.hasMatch(cellImports(cell.code).code)) {
         continue;
       }
       final docLine = inCell ? r.docLines[d.line - 1] : null;
