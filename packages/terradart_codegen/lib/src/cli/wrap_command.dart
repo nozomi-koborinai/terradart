@@ -252,19 +252,29 @@ class WrapCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
     final schemaSrc = schemaFile.readAsStringSync();
-    final baseIr = const SchemaJsonParser().parseString(
-      schemaSrc,
+    final decodedSchema = jsonDecode(schemaSrc) as Map<String, Object?>;
+    final baseIr = const SchemaJsonParser().parseMap(
+      decodedSchema,
       providerVersion: readProviderVersion(source),
     );
 
     final mmDir = Directory(p.join(source, 'mm'));
     final mmOverrides = <String, MmResourceOverrides>{};
     if (mmDir.existsSync()) {
+      final onlyMmTypes = only == null
+          ? null
+          : {
+              only,
+              if (only.startsWith('data_')) only.substring('data_'.length),
+            };
       for (final entity in mmDir.listSync()) {
         if (entity is! File) continue;
         final basename = p.basename(entity.path);
         if (!basename.endsWith('.yaml')) continue;
         final resourceType = basename.substring(0, basename.length - 5);
+        if (onlyMmTypes != null && !onlyMmTypes.contains(resourceType)) {
+          continue;
+        }
         try {
           mmOverrides[resourceType] = const MmYamlParser().parseString(
             entity.readAsStringSync(),
@@ -388,15 +398,20 @@ class WrapCommand extends Command<int> {
       }
       return CliExitCodes.dataError;
     }
+    final rawResourceBlocks = _rawSchemaBlocks(
+      decodedSchema,
+      schemasKey: 'resource_schemas',
+    );
+    final rawDataSourceBlocks = _rawSchemaBlocks(
+      decodedSchema,
+      schemasKey: 'data_source_schemas',
+    );
     final laneInputs = {
-      for (final (kind, schemasKey) in const [
-        (WrapperOverrideKind.resource, 'resource_schemas'),
-        (WrapperOverrideKind.dataSource, 'data_source_schemas'),
+      for (final (kind, blocks) in [
+        (WrapperOverrideKind.resource, rawResourceBlocks),
+        (WrapperOverrideKind.dataSource, rawDataSourceBlocks),
       ])
-        for (final MapEntry(:key, :value) in _rawSchemaBlocks(
-          schemaSrc,
-          schemasKey: schemasKey,
-        ).entries)
+        for (final MapEntry(:key, :value) in blocks.entries)
           kind.typeStem(key): _inputNames(value),
     };
     final typedOverrides = providerEnums.typeDerivedEnums(
@@ -414,15 +429,6 @@ class WrapCommand extends Command<int> {
     final needsRawDataSourceSchemas = typedOverrides.dataSources.values.any(
       (o) => o.deriveNestedTypes,
     );
-    final rawResourceSchemas = needsRawResourceSchemas
-        ? _withoutOutputBlocks(
-            _rawSchemaBlocks(schemaSrc, schemasKey: 'resource_schemas'),
-            mmOverrides,
-          )
-        : const <String, Map<String, dynamic>>{};
-    final rawDataSourceSchemas = needsRawDataSourceSchemas
-        ? _rawSchemaBlocks(schemaSrc, schemasKey: 'data_source_schemas')
-        : const <String, Map<String, dynamic>>{};
     final referenceLedger = results['reference-targets'] as String?;
     final typedReferences = results['typed-references'] as bool;
     if (typedReferences && referenceLedger == null) {
@@ -450,10 +456,6 @@ class WrapCommand extends Command<int> {
         stderr.writeln('[E406] terradart wrap: ${e.message}');
         return CliExitCodes.dataError;
       }
-      final dataSchemas = _rawSchemaBlocks(
-        schemaSrc,
-        schemasKey: 'data_source_schemas',
-      );
       ExternalTargets? external;
       if (results['reference-lane'] case final String lane) {
         final [laneSource, laneOutput, ...] = [...lane.split('='), '', ''];
@@ -466,14 +468,15 @@ class WrapCommand extends Command<int> {
           );
           return CliExitCodes.dataError;
         }
-        final laneSrc = laneSchema.readAsStringSync();
+        final decodedLane =
+            jsonDecode(laneSchema.readAsStringSync()) as Map<String, Object?>;
         external = (
           resourceSchemas: _rawSchemaBlocks(
-            laneSrc,
+            decodedLane,
             schemasKey: 'resource_schemas',
           ),
           dataSourceSchemas: _rawSchemaBlocks(
-            laneSrc,
+            decodedLane,
             schemasKey: 'data_source_schemas',
           ),
           dirs: _generatedResourceDirs(laneOutput),
@@ -487,10 +490,7 @@ class WrapCommand extends Command<int> {
         parentRule: parentRule,
         principalRule: principalRule,
         external: external,
-        resourceSchemas: _rawSchemaBlocks(
-          schemaSrc,
-          schemasKey: 'resource_schemas',
-        ),
+        resourceSchemas: rawResourceBlocks,
         curated: typedOverrides.resources.keys,
         targetDirs: {
           if (only != null) ..._generatedResourceDirs(output),
@@ -498,7 +498,8 @@ class WrapCommand extends Command<int> {
             e.key: e.value.outputDir,
         },
         dataSourceSchemas: {
-          for (final type in loaded.dataSources.keys) type: ?dataSchemas[type],
+          for (final type in loaded.dataSources.keys)
+            type: ?rawDataSourceBlocks[type],
         },
         complete: only == null,
       );
@@ -516,6 +517,12 @@ class WrapCommand extends Command<int> {
         principalDataSources = resolution.principalDataSources;
       }
     }
+    final rawResourceSchemas = needsRawResourceSchemas
+        ? _withoutOutputBlocks(rawResourceBlocks, mmOverrides)
+        : const <String, Map<String, dynamic>>{};
+    final rawDataSourceSchemas = needsRawDataSourceSchemas
+        ? rawDataSourceBlocks
+        : const <String, Map<String, dynamic>>{};
     final exactlyOne = deriveExactlyOneSlots(
       typedOverrides,
       ir,
@@ -998,10 +1005,9 @@ Map<String, String> _generatedResourceDirs(String output) {
 }
 
 Map<String, Map<String, dynamic>> _rawSchemaBlocks(
-  String schemaJson, {
+  Map<String, Object?> root, {
   required String schemasKey,
 }) {
-  final root = jsonDecode(schemaJson) as Map<String, dynamic>;
   final schemas = (root['provider_schemas'] as Map).cast<String, dynamic>();
   final providerBody = (schemas.values.single as Map).cast<String, dynamic>();
   final typed =

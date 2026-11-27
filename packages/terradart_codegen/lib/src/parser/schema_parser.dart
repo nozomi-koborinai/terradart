@@ -16,8 +16,16 @@ import '_type_decoder.dart';
 class SchemaJsonParser {
   const SchemaJsonParser();
 
-  ProviderSchemaIR parseString(String json, {String providerVersion = ''}) {
-    final root = jsonDecode(json) as Map<String, Object?>;
+  ProviderSchemaIR parseString(String json, {String providerVersion = ''}) =>
+      parseMap(
+        jsonDecode(json) as Map<String, Object?>,
+        providerVersion: providerVersion,
+      );
+
+  ProviderSchemaIR parseMap(
+    Map<String, Object?> root, {
+    String providerVersion = '',
+  }) {
     final schemas = (root['provider_schemas'] as Map).cast<String, Object?>();
     if (schemas.isEmpty) {
       throw const FormatException('No provider_schemas found.');

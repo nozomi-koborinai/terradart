@@ -282,15 +282,22 @@ final class _WorkspacePubProxy {
       return;
     }
 
-    final upstreamUri = Uri.https('pub.dev', request.uri.path, {
-      if (request.uri.hasQuery) ...request.uri.queryParameters,
-    });
-    final upstreamReq = await _upstream.getUrl(upstreamUri);
-    final accept = request.headers.value(HttpHeaders.acceptHeader);
-    if (accept != null) {
-      upstreamReq.headers.set(HttpHeaders.acceptHeader, accept);
+    final HttpClientResponse upstreamRes;
+    try {
+      final upstreamUri = Uri.https('pub.dev', request.uri.path, {
+        if (request.uri.hasQuery) ...request.uri.queryParameters,
+      });
+      final upstreamReq = await _upstream.getUrl(upstreamUri);
+      final accept = request.headers.value(HttpHeaders.acceptHeader);
+      if (accept != null) {
+        upstreamReq.headers.set(HttpHeaders.acceptHeader, accept);
+      }
+      upstreamRes = await upstreamReq.close();
+    } on IOException {
+      request.response.statusCode = HttpStatus.badGateway;
+      await request.response.close();
+      return;
     }
-    final upstreamRes = await upstreamReq.close();
     request.response.statusCode = upstreamRes.statusCode;
     final contentType = upstreamRes.headers.value(
       HttpHeaders.contentTypeHeader,
@@ -324,7 +331,9 @@ final class _WorkspacePubProxy {
       }
     }
 
-    final tarGz = Uint8List.fromList(gzip.encode(_buildUstarTar(entries)));
+    final tarGz = Uint8List.fromList(
+      GZipCodec(level: 1).encode(_buildUstarTar(entries)),
+    );
     final digest = sha256.convert(tarGz).toString();
     return _PackedPackage(
       name: name,

@@ -27,6 +27,53 @@ void _writePubspec(Directory root, String name) {
   ).writeAsStringSync('name: $name\nenvironment:\n  sdk: ^3.12.0\n');
 }
 
+({String overridesDir, String barrelsManifest}) _prepareGoogleSubset(
+  Directory dir, {
+  List<String> stems = const [
+    'google_pubsub_topic',
+    'google_cloud_scheduler_job',
+    'data_google_pubsub_topic',
+  ],
+}) {
+  final overridesDir = Directory(p.join(dir.path, '_subset_overrides'))
+    ..createSync(recursive: true);
+  final committedYaml = p.join(
+    'lib',
+    'src',
+    'codegen',
+    'wrapper_overrides',
+    'yaml',
+  );
+  for (final stem in stems) {
+    File(
+      p.join(committedYaml, '$stem.yaml'),
+    ).copySync(p.join(overridesDir.path, '$stem.yaml'));
+  }
+  final barrels = StringBuffer('''
+umbrellaFile: terradart_google
+umbrellaDoc: |-
+  /// Google umbrella.
+umbrellaExtraExports: []
+barrels:
+''');
+  final barrelDocs = {
+    'google_pubsub_topic': ('pubsub', 'Pub/Sub.'),
+    'google_cloud_scheduler_job': ('cloud_scheduler', 'Cloud Scheduler.'),
+    'data_google_pubsub_topic': ('data', 'Data sources.'),
+  };
+  final writtenBarrels = <String>{};
+  for (final stem in stems) {
+    final (barrel, doc) = barrelDocs[stem]!;
+    if (!writtenBarrels.add(barrel)) continue;
+    barrels.writeln('  $barrel:');
+    barrels.writeln('    doc: |-');
+    barrels.writeln('      /// $doc');
+  }
+  final manifest = File(p.join(dir.path, '_subset_barrels.yaml'))
+    ..writeAsStringSync(barrels.toString());
+  return (overridesDir: overridesDir.path, barrelsManifest: manifest.path);
+}
+
 void main() {
   group('WrapCommand args parse', () {
     test('wrap command is registered', () {
@@ -52,139 +99,127 @@ void main() {
   });
 
   group('WrapCommand integration', () {
-    test('emits exactly the generated files committed to terradart_google '
-        '(wrappers, _catalog.g.dart, _provider_version.g.dart, barrels, '
-        'umbrella)', () async {
-      final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_');
-      try {
-        final runner = buildCliRunner();
-        final code = await runner.run([
-          'wrap',
-          '--provider',
-          'hashicorp/google',
-          '--mm-groups',
-          '--discovery-enums',
-          '--source',
-          p.join('test', 'fixtures', 'wrap', 'source'),
-          '--output',
-          _libSrcOut(tmpOut),
-        ]);
-        expect(code, 0);
+    late Directory tmpOut;
+    late int? wrapCode;
 
-        final files = <String>[];
-        for (final ent in Directory(tmpOut.path).listSync(recursive: true)) {
-          if (ent is File && ent.path.endsWith('.dart')) {
-            files.add(p.relative(ent.path, from: tmpOut.path));
-          }
-        }
-        final committedRoot = p.join('..', 'terradart_google');
-        final committed = <String>[
-          for (final ent in Directory(
-            p.join(committedRoot, 'lib'),
-          ).listSync(recursive: true))
-            if (ent is File &&
-                ent.path.endsWith('.dart') &&
-                ent.readAsLinesSync().first.startsWith(
-                  '// GENERATED FILE - DO NOT EDIT',
-                ))
-              p.relative(ent.path, from: committedRoot),
-        ];
-        expect(files.toSet(), committed.toSet());
-        expect(files, contains(p.join('lib', 'src', '_catalog.g.dart')));
-        expect(
-          files,
-          contains(p.join('lib', 'src', '_provider_version.g.dart')),
-        );
-        expect(
-          files,
-          contains(p.join('lib', 'src', 'pubsub', 'google_pubsub_topic.dart')),
-        );
-        expect(
-          files,
-          contains(p.join('lib', 'src', 'data', 'google_project.dart')),
-        );
-        expect(files, contains(p.join('lib', 'pubsub.dart')));
-        expect(files, contains(p.join('lib', 'data.dart')));
-        expect(files, contains(p.join('lib', 'cloud_sql.dart')));
-        expect(files, isNot(contains(p.join('lib', 'sql.dart'))));
-        expect(files, contains(p.join('lib', 'terradart_google.dart')));
-        expect(
-          files,
-          isNot(
-            contains(
-              p.join(
-                'lib',
-                'src',
-                'generated',
-                'data_google_project.schema.dart',
-              ),
-            ),
-          ),
-        );
-      } finally {
-        await tmpOut.delete(recursive: true);
-      }
+    setUpAll(() async {
+      tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_');
+      wrapCode = await buildCliRunner().run([
+        'wrap',
+        '--provider',
+        'hashicorp/google',
+        '--mm-groups',
+        '--discovery-enums',
+        '--source',
+        p.join('test', 'fixtures', 'wrap', 'source'),
+        '--output',
+        _libSrcOut(tmpOut),
+      ]);
     });
 
-    test('all generated files start with the generated marker', () async {
-      final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_');
-      try {
-        final runner = buildCliRunner();
-        await runner.run([
-          'wrap',
-          '--provider',
-          'hashicorp/google',
-          '--mm-groups',
-          '--discovery-enums',
-          '--source',
-          p.join('test', 'fixtures', 'wrap', 'source'),
-          '--output',
-          _libSrcOut(tmpOut),
-        ]);
-        for (final ent in Directory(tmpOut.path).listSync(recursive: true)) {
-          if (ent is File && ent.path.endsWith('.dart')) {
-            final firstLine = ent.readAsLinesSync().first;
-            expect(
-              firstLine,
-              '// GENERATED FILE - DO NOT EDIT',
-              reason: ent.path,
-            );
-          }
+    tearDownAll(() async {
+      if (tmpOut.existsSync()) await tmpOut.delete(recursive: true);
+    });
+
+    test('emits exactly the generated files committed to terradart_google '
+        '(wrappers, _catalog.g.dart, _provider_version.g.dart, barrels, '
+        'umbrella)', () {
+      expect(wrapCode, 0);
+
+      final files = <String>[];
+      for (final ent in Directory(tmpOut.path).listSync(recursive: true)) {
+        if (ent is File && ent.path.endsWith('.dart')) {
+          files.add(p.relative(ent.path, from: tmpOut.path));
         }
-      } finally {
-        await tmpOut.delete(recursive: true);
+      }
+      final committedRoot = p.join('..', 'terradart_google');
+      final committed = <String>[
+        for (final ent in Directory(
+          p.join(committedRoot, 'lib'),
+        ).listSync(recursive: true))
+          if (ent is File &&
+              ent.path.endsWith('.dart') &&
+              ent.readAsLinesSync().first.startsWith(
+                '// GENERATED FILE - DO NOT EDIT',
+              ))
+            p.relative(ent.path, from: committedRoot),
+      ];
+      expect(files.toSet(), committed.toSet());
+      expect(files, contains(p.join('lib', 'src', '_catalog.g.dart')));
+      expect(files, contains(p.join('lib', 'src', '_provider_version.g.dart')));
+      expect(
+        files,
+        contains(p.join('lib', 'src', 'pubsub', 'google_pubsub_topic.dart')),
+      );
+      expect(
+        files,
+        contains(p.join('lib', 'src', 'data', 'google_project.dart')),
+      );
+      expect(files, contains(p.join('lib', 'pubsub.dart')));
+      expect(files, contains(p.join('lib', 'data.dart')));
+      expect(files, contains(p.join('lib', 'cloud_sql.dart')));
+      expect(files, isNot(contains(p.join('lib', 'sql.dart'))));
+      expect(files, contains(p.join('lib', 'terradart_google.dart')));
+      expect(
+        files,
+        isNot(
+          contains(
+            p.join(
+              'lib',
+              'src',
+              'generated',
+              'data_google_project.schema.dart',
+            ),
+          ),
+        ),
+      );
+    });
+
+    test('all generated files start with the generated marker', () {
+      expect(wrapCode, 0);
+      for (final ent in Directory(tmpOut.path).listSync(recursive: true)) {
+        if (ent is File && ent.path.endsWith('.dart')) {
+          final firstLine = ent.readAsLinesSync().first;
+          expect(
+            firstLine,
+            '// GENERATED FILE - DO NOT EDIT',
+            reason: ent.path,
+          );
+        }
       }
     });
   });
 
   group('WrapCommand --check', () {
+    List<String> subsetArgs(
+      Directory tmp,
+      ({String overridesDir, String barrelsManifest}) subset, [
+      List<String> extra = const [],
+    ]) => [
+      'wrap',
+      '--provider',
+      'hashicorp/google',
+      '--mm-groups',
+      '--discovery-enums',
+      '--source',
+      p.join('test', 'fixtures', 'wrap', 'source'),
+      '--output',
+      _libSrcOut(tmp),
+      '--overrides-root',
+      subset.overridesDir,
+      '--barrels-manifest',
+      subset.barrelsManifest,
+      ...extra,
+    ];
+
     test('exit 0 when generated matches existing', () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_check_');
       try {
-        final runner = buildCliRunner();
-        await runner.run([
-          'wrap',
-          '--provider',
-          'hashicorp/google',
-          '--mm-groups',
-          '--discovery-enums',
-          '--source',
-          p.join('test', 'fixtures', 'wrap', 'source'),
-          '--output',
-          _libSrcOut(tmpOut),
-        ]);
-        final code = await buildCliRunner().run([
-          'wrap',
-          '--provider',
-          'hashicorp/google',
-          '--mm-groups',
-          '--discovery-enums',
-          '--source',
-          p.join('test', 'fixtures', 'wrap', 'source'),
-          '--output',
-          _libSrcOut(tmpOut),
-          '--check',
-        ]);
+        final subset = _prepareGoogleSubset(tmpOut);
+        await buildCliRunner().run(subsetArgs(tmpOut, subset));
+        final code = await buildCliRunner().run(
+          subsetArgs(tmpOut, subset, ['--check']),
+        );
         expect(code, 0);
       } finally {
         await tmpOut.delete(recursive: true);
@@ -194,17 +229,8 @@ void main() {
     test('exit non-zero when one file differs', () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_check_');
       try {
-        await buildCliRunner().run([
-          'wrap',
-          '--provider',
-          'hashicorp/google',
-          '--mm-groups',
-          '--discovery-enums',
-          '--source',
-          p.join('test', 'fixtures', 'wrap', 'source'),
-          '--output',
-          _libSrcOut(tmpOut),
-        ]);
+        final subset = _prepareGoogleSubset(tmpOut);
+        await buildCliRunner().run(subsetArgs(tmpOut, subset));
         final f = File(
           p.join(_libSrcOut(tmpOut), 'pubsub', 'google_pubsub_topic.dart'),
         );
@@ -214,18 +240,9 @@ void main() {
           'class GooglePubsubTopicMUTATED',
         );
         f.writeAsStringSync(src);
-        final code = await buildCliRunner().run([
-          'wrap',
-          '--provider',
-          'hashicorp/google',
-          '--mm-groups',
-          '--discovery-enums',
-          '--source',
-          p.join('test', 'fixtures', 'wrap', 'source'),
-          '--output',
-          _libSrcOut(tmpOut),
-          '--check',
-        ]);
+        final code = await buildCliRunner().run(
+          subsetArgs(tmpOut, subset, ['--check']),
+        );
         expect(code, isNot(0));
       } finally {
         await tmpOut.delete(recursive: true);
@@ -235,37 +252,19 @@ void main() {
     test('aggregates multiple file diffs (still non-zero)', () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_check_');
       try {
-        await buildCliRunner().run([
-          'wrap',
-          '--provider',
-          'hashicorp/google',
-          '--mm-groups',
-          '--discovery-enums',
-          '--source',
-          p.join('test', 'fixtures', 'wrap', 'source'),
-          '--output',
-          _libSrcOut(tmpOut),
-        ]);
+        final subset = _prepareGoogleSubset(tmpOut);
+        await buildCliRunner().run(subsetArgs(tmpOut, subset));
         for (final rel in [
           p.join('src', 'pubsub', 'google_pubsub_topic.dart'),
-          p.join('src', 'data', 'google_project.dart'),
+          p.join('src', 'data', 'google_pubsub_topic.dart'),
           'pubsub.dart',
         ]) {
           final f = File(p.join(tmpOut.path, 'lib', rel));
           f.writeAsStringSync('${f.readAsStringSync()}\n// trailing edit\n');
         }
-        final code = await buildCliRunner().run([
-          'wrap',
-          '--provider',
-          'hashicorp/google',
-          '--mm-groups',
-          '--discovery-enums',
-          '--source',
-          p.join('test', 'fixtures', 'wrap', 'source'),
-          '--output',
-          _libSrcOut(tmpOut),
-          '--check',
-        ]);
+        final code = await buildCliRunner().run(
+          subsetArgs(tmpOut, subset, ['--check']),
+        );
         expect(code, isNot(0));
       } finally {
         await tmpOut.delete(recursive: true);
@@ -293,12 +292,25 @@ void main() {
       ...extra,
     ];
 
+    List<String> subsetWrapArgs(
+      Directory tmp,
+      ({String overridesDir, String barrelsManifest}) subset, [
+      List<String> extra = const [],
+    ]) => wrapArgs(tmp, [
+      '--overrides-root',
+      subset.overridesDir,
+      '--barrels-manifest',
+      subset.barrelsManifest,
+      ...extra,
+    ]);
+
     test(
       '--check fails on a generated wrapper and barrel nothing emits',
       () async {
         final tmpOut = await Directory.systemTemp.createTemp('orphan_check_');
         try {
-          expect(await buildCliRunner().run(wrapArgs(tmpOut)), 0);
+          final subset = _prepareGoogleSubset(tmpOut);
+          expect(await buildCliRunner().run(subsetWrapArgs(tmpOut, subset)), 0);
           final wrapper =
               File(
                   p.join(
@@ -313,7 +325,9 @@ void main() {
             ..writeAsStringSync(generatedOrphan);
 
           expect(
-            await buildCliRunner().run(wrapArgs(tmpOut, ['--check'])),
+            await buildCliRunner().run(
+              subsetWrapArgs(tmpOut, subset, ['--check']),
+            ),
             CliExitCodes.dataError,
           );
           expect(wrapper.existsSync(), isTrue, reason: '--check never writes');
@@ -329,7 +343,8 @@ void main() {
       () async {
         final tmpOut = await Directory.systemTemp.createTemp('orphan_regen_');
         try {
-          expect(await buildCliRunner().run(wrapArgs(tmpOut)), 0);
+          final subset = _prepareGoogleSubset(tmpOut);
+          expect(await buildCliRunner().run(subsetWrapArgs(tmpOut, subset)), 0);
           final orphanDir = Directory(p.join(_libSrcOut(tmpOut), 'removed'));
           final wrapper =
               File(p.join(orphanDir.path, 'google_removed_thing.dart'))
@@ -342,13 +357,18 @@ void main() {
           final manualBarrel = File(p.join(tmpOut.path, 'lib', 'provider.dart'))
             ..writeAsStringSync(handWritten);
 
-          expect(await buildCliRunner().run(wrapArgs(tmpOut)), 0);
+          expect(await buildCliRunner().run(subsetWrapArgs(tmpOut, subset)), 0);
           expect(wrapper.existsSync(), isFalse);
           expect(orphanDir.existsSync(), isFalse);
           expect(barrel.existsSync(), isFalse);
           expect(manual.readAsStringSync(), handWritten);
           expect(manualBarrel.readAsStringSync(), handWritten);
-          expect(await buildCliRunner().run(wrapArgs(tmpOut, ['--check'])), 0);
+          expect(
+            await buildCliRunner().run(
+              subsetWrapArgs(tmpOut, subset, ['--check']),
+            ),
+            0,
+          );
         } finally {
           await tmpOut.delete(recursive: true);
         }
@@ -528,6 +548,8 @@ paramOrder:
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
           _libSrcOut(tmpOut),
+          '--only',
+          'google_pubsub_topic',
         ]);
         expect(code, isNot(0));
         expect(f.readAsStringSync(), preExisting);
@@ -554,6 +576,8 @@ paramOrder:
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
           _libSrcOut(tmpOut),
+          '--only',
+          'google_pubsub_topic',
           '--force',
         ]);
         expect(code, 0);
@@ -1122,6 +1146,7 @@ barrels:
           'migrate_manifest_',
         );
         try {
+          final subset = _prepareGoogleSubset(tmpOut);
           final manifestPath = p.join(
             tmpOut.path,
             'migrate',
@@ -1134,7 +1159,7 @@ barrels:
             Directory(p.join(tmpOut.path, 'migrate')),
             'terradart_migrate',
           );
-          final code = await buildCliRunner().run([
+          final baseArgs = [
             'wrap',
             '--provider',
             'hashicorp/google',
@@ -1144,11 +1169,16 @@ barrels:
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
             _libSrcOut(tmpOut),
+            '--overrides-root',
+            subset.overridesDir,
+            '--barrels-manifest',
+            subset.barrelsManifest,
             '--migrate-manifest',
             manifestPath,
             '--migrate-package',
             'terradart_google',
-          ]);
+          ];
+          final code = await buildCliRunner().run(baseArgs);
           expect(code, CliExitCodes.success);
 
           final manifest = File(manifestPath);
@@ -1179,37 +1209,13 @@ barrels:
           expect(formatted, src);
 
           final checkCode = await buildCliRunner().run([
-            'wrap',
-            '--provider',
-            'hashicorp/google',
-            '--mm-groups',
-            '--discovery-enums',
-            '--source',
-            p.join('test', 'fixtures', 'wrap', 'source'),
-            '--output',
-            _libSrcOut(tmpOut),
-            '--migrate-manifest',
-            manifestPath,
-            '--migrate-package',
-            'terradart_google',
+            ...baseArgs,
             '--check',
           ]);
           expect(checkCode, CliExitCodes.success);
           manifest.writeAsStringSync('$src// drift\n');
           final driftCode = await buildCliRunner().run([
-            'wrap',
-            '--provider',
-            'hashicorp/google',
-            '--mm-groups',
-            '--discovery-enums',
-            '--source',
-            p.join('test', 'fixtures', 'wrap', 'source'),
-            '--output',
-            _libSrcOut(tmpOut),
-            '--migrate-manifest',
-            manifestPath,
-            '--migrate-package',
-            'terradart_google',
+            ...baseArgs,
             '--check',
           ]);
           expect(driftCode, CliExitCodes.dataError);
@@ -1227,6 +1233,10 @@ barrels:
           'migrate_pubspec_',
         );
         try {
+          final subset = _prepareGoogleSubset(
+            tmpOut,
+            stems: const ['google_pubsub_topic'],
+          );
           File(
             p.join(tmpOut.path, 'pubspec.yaml'),
           ).writeAsStringSync('name: terradart_fake_beta\nversion: 0.0.1\n');
@@ -1241,6 +1251,10 @@ barrels:
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
             _libSrcOut(tmpOut),
+            '--overrides-root',
+            subset.overridesDir,
+            '--barrels-manifest',
+            subset.barrelsManifest,
             '--migrate-manifest',
             manifestPath,
           ]);

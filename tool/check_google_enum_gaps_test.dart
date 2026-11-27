@@ -465,12 +465,8 @@ GoogleExampleThing(super.localName, {
 
     tearDown(() => root.deleteSync(recursive: true));
 
-    ProcessResult check() => Process.runSync(Platform.resolvedExecutable, [
-      'tool/check_google_enum_gaps.dart',
-      '--strict-nested',
-      '--generated-root',
-      root.path,
-    ]);
+    ({int exitCode, String output}) check() =>
+        runGoogleEnumGapCheck(strictNested: true, generatedRoot: root.path);
 
     void seed(String wrapper, Pattern typed, String raw) {
       final file = File('${root.path}/$wrapper');
@@ -481,7 +477,12 @@ GoogleExampleThing(super.localName, {
     }
 
     test('passes on the committed wrappers', () {
-      final result = check();
+      final result = Process.runSync(Platform.resolvedExecutable, [
+        'tool/check_google_enum_gaps.dart',
+        '--strict-nested',
+        '--generated-root',
+        root.path,
+      ]);
       expect(result.exitCode, 0, reason: '${result.stdout}');
     });
 
@@ -493,7 +494,7 @@ GoogleExampleThing(super.localName, {
       );
       final result = check();
       expect(result.exitCode, 1);
-      expect(result.stdout, contains('google_alloydb_backup.type'));
+      expect(result.output, contains('google_alloydb_backup.type'));
     });
 
     test('fails on a nested Magic Modules value set left a string', () {
@@ -505,7 +506,7 @@ GoogleExampleThing(super.localName, {
       final result = check();
       expect(result.exitCode, 1);
       expect(
-        result.stdout,
+        result.output,
         contains(
           'google_folder_access_approval_settings.enrolled_services'
           '.enrollment_level',
@@ -521,9 +522,9 @@ GoogleExampleThing(super.localName, {
       );
       final result = check();
       expect(result.exitCode, 1);
-      expect(result.stdout, contains('google_compute_instance.boot_disk.mode'));
+      expect(result.output, contains('google_compute_instance.boot_disk.mode'));
       expect(
-        result.stdout,
+        result.output,
         contains('google_compute_instance.attached_disk.mode'),
       );
     });
@@ -537,11 +538,11 @@ GoogleExampleThing(super.localName, {
       final result = check();
       expect(result.exitCode, 1);
       expect(
-        result.stdout,
+        result.output,
         contains('google_compute_instance.boot_disk.interface'),
       );
       expect(
-        result.stdout,
+        result.output,
         isNot(contains('google_compute_instance.scratch_disk.interface')),
       );
     });
@@ -608,8 +609,8 @@ GoogleExampleThing(super.localName, {
       test('fails on a seeded $wording field left a string', () {
         seed(wrappers[i], typed, raw);
         final result = check();
-        expect(result.exitCode, 1, reason: '${result.stdout}');
-        expect(result.stdout, contains(gap));
+        expect(result.exitCode, 1, reason: result.output);
+        expect(result.output, contains(gap));
       });
     }
   });

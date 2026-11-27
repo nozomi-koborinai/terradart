@@ -44,8 +44,6 @@ final _mmDir = Directory(
   p.join(_root.path, 'packages/terradart_codegen/test/fixtures/wrap/source/mm'),
 );
 
-late final Directory _genDir;
-
 typedef NestedEnumSite = ({
   List<String> blockPath,
   String attr,
@@ -53,12 +51,15 @@ typedef NestedEnumSite = ({
   bool cueOnly,
 });
 
-Map<String, dynamic> _loadOverride(String tfType) {
-  final file = File(p.join(_overrideDir.path, '$tfType.yaml'));
-  return Map<String, dynamic>.from(
-    loadYaml(file.readAsStringSync()) as YamlMap,
-  );
-}
+final _overrideCache = <String, Map<String, dynamic>>{};
+
+Map<String, dynamic> _loadOverride(String tfType) =>
+    _overrideCache.putIfAbsent(tfType, () {
+      final file = File(p.join(_overrideDir.path, '$tfType.yaml'));
+      return Map<String, dynamic>.from(
+        loadYaml(file.readAsStringSync()) as YamlMap,
+      );
+    });
 
 bool _isThin(Map<String, dynamic> ov) {
   const rich = {
@@ -268,16 +269,23 @@ List<String> topLevelEnumGaps({
 Map<String, List<String>> mmEnumValues(String mmYaml) =>
     const MmYamlParser().parseString(mmYaml).enumValuesByPath;
 
-Map<String, List<String>> _mmValues(String tfType) {
-  final file = File(p.join(_mmDir.path, '$tfType.yaml'));
-  if (!file.existsSync()) return const {};
-  return mmEnumValues(file.readAsStringSync());
-}
+final _mmValuesCache = <String, Map<String, List<String>>>{};
 
-String? _generatedSource(String tfType, Map<String, dynamic> ov) {
+Map<String, List<String>> _mmValues(String tfType) =>
+    _mmValuesCache.putIfAbsent(tfType, () {
+      final file = File(p.join(_mmDir.path, '$tfType.yaml'));
+      if (!file.existsSync()) return const {};
+      return mmEnumValues(file.readAsStringSync());
+    });
+
+String? _generatedSource(
+  Directory genDir,
+  String tfType,
+  Map<String, dynamic> ov,
+) {
   final outDir = ov['outputDir'] as String?;
   if (outDir == null) return null;
-  final genFile = File(p.join(_genDir.path, outDir, '$tfType.dart'));
+  final genFile = File(p.join(genDir.path, outDir, '$tfType.dart'));
   if (!genFile.existsSync()) return null;
   return genFile.readAsStringSync();
 }
@@ -305,7 +313,11 @@ bool _customSlotCoversBlock(Map<String, dynamic> ov, List<String> blockPath) {
   return false;
 }
 
-String? _helperTextForBlock(Map<String, dynamic> ov, List<String> blockPath) {
+String? _helperTextForBlock(
+  Map<String, dynamic> ov,
+  List<String> blockPath,
+  Map<String, String> Function() classSources,
+) {
   final slots = ov['customSlots'];
   if (slots is! Map) return null;
   for (var i = blockPath.length; i > 0; i--) {
@@ -315,7 +327,7 @@ String? _helperTextForBlock(Map<String, dynamic> ov, List<String> blockPath) {
     if (declaration is! String) continue;
     final className = _helperClassName(declaration);
     if (className == null) continue;
-    final text = _classSource(className);
+    final text = classSources()[className];
     if (text != null) return text;
   }
   return null;
@@ -334,18 +346,11 @@ String? _helperClassName(String declaration) {
   return names.last;
 }
 
-Map<String, String>? _classSources;
-
-String? _classSource(String className) {
-  final index = _classSources ??= _indexClassSources();
-  return index[className];
-}
-
-Map<String, String> _indexClassSources() {
+Map<String, String> _indexClassSources(Directory genDir) {
   final out = <String, String>{};
-  if (!_genDir.existsSync()) return out;
+  if (!genDir.existsSync()) return out;
   final className = RegExp(r'\bclass ([A-Z][A-Za-z0-9]*)\b');
-  for (final file in _genDir.listSync(recursive: true).whereType<File>()) {
+  for (final file in genDir.listSync(recursive: true).whereType<File>()) {
     if (!file.path.endsWith('.dart')) continue;
     final text = file.readAsStringSync();
     for (final match in className.allMatches(text)) {
@@ -584,14 +589,76 @@ List<NestedEnumSite> collectNestedEnumSites(
   return sites;
 }
 
-void main(List<String> args) {
-  final strictNested = args.contains('--strict-nested');
-  final rootAt = args.indexOf('--generated-root');
-  _genDir = Directory(
-    rootAt >= 0 && rootAt + 1 < args.length
-        ? args[rootAt + 1]
-        : p.join(_root.path, 'packages/terradart_google/lib/src'),
+typedef _OverrideCheckData = ({
+  String stem,
+  String tfType,
+  Map<String, dynamic> ov,
+  Map<String, List<String>> mm,
+  List<NestedEnumSite> sites,
+  List<String> cueInputs,
+});
+
+List<_OverrideCheckData>? _cachedOverrides;
+
+List<_OverrideCheckData> _loadAllOverrides() => _cachedOverrides ??= [
+  for (final ent in _overrideDir.listSync().whereType<File>())
+    if (ent.path.endsWith('.yaml')) ..._buildOverrideCheckData(ent),
+];
+
+List<_OverrideCheckData> _buildOverrideCheckData(File ent) {
+  final stem = p.basenameWithoutExtension(ent.path);
+  final ov = _loadOverride(stem);
+  final target = _gapTarget(
+    stem: stem,
+    override: ov,
+    resourceSchemas: _resourceSchemas,
+    dataSourceSchemas: _dataSourceSchemas,
   );
+  final schema = target.schema;
+  if (schema == null) return const [];
+  final tfType = target.terraformType;
+  final mm = _mmValues(tfType);
+  final cueInputs = <String>[];
+  final attrs =
+      ((schema as Map)['block'] as Map)['attributes'] as Map<String, dynamic>;
+  for (final attr in attrs.entries) {
+    final description = (attr.value as Map)['description'] as String?;
+    if (describedValues(description, mm[attr.key])?.cueOnly ?? false) {
+      cueInputs.add('$tfType.${attr.key}');
+    }
+  }
+  final block = Map<String, dynamic>.from(schema['block'] as Map);
+  final sites = collectNestedEnumSites(block, mmValues: mm);
+  for (final site in sites) {
+    if (site.cueOnly) {
+      cueInputs.add('$tfType.${_blockPathLabel(site.blockPath, site.attr)}');
+    }
+  }
+  return [
+    (
+      stem: stem,
+      tfType: tfType,
+      ov: ov,
+      mm: mm,
+      sites: sites,
+      cueInputs: cueInputs,
+    ),
+  ];
+}
+
+({int exitCode, String output}) runGoogleEnumGapCheck({
+  bool strictNested = false,
+  String? generatedRoot,
+}) {
+  final out = StringBuffer();
+  void log(String line) => out.writeln(line);
+
+  final genDir = Directory(
+    generatedRoot ?? p.join(_root.path, 'packages/terradart_google/lib/src'),
+  );
+  Map<String, String>? indexedClassSources;
+  Map<String, String> classSources() =>
+      indexedClassSources ??= _indexClassSources(genDir);
 
   final topLevelGaps = <String>[];
   final nestedPartialGaps = <String>[];
@@ -601,22 +668,12 @@ void main(List<String> args) {
   final checkedTypes = <String>{};
   final overrideTypes = <String>{};
 
-  for (final ent in _overrideDir.listSync().whereType<File>()) {
-    if (!ent.path.endsWith('.yaml')) continue;
-    final stem = p.basenameWithoutExtension(ent.path);
-    final ov = _loadOverride(stem);
-    final target = _gapTarget(
-      stem: stem,
-      override: ov,
-      resourceSchemas: _resourceSchemas,
-      dataSourceSchemas: _dataSourceSchemas,
-    );
-    final schema = target.schema;
-    if (schema == null) continue;
-    final tfType = target.terraformType;
+  for (final entry in _loadAllOverrides()) {
+    final (:stem, :tfType, :ov, :mm, :sites, cueInputs: entryCues) = entry;
     overrideTypes.add(tfType);
+    cueInputs.addAll(entryCues);
 
-    final genTextRaw = _generatedSource(tfType, ov);
+    final genTextRaw = _generatedSource(genDir, tfType, ov);
     final fileText = genTextRaw == null
         ? null
         : _normalizeWhitespace(genTextRaw);
@@ -627,26 +684,9 @@ void main(List<String> args) {
         resourceSchemas: _resourceSchemas,
         dataSourceSchemas: _dataSourceSchemas,
         generatedSource: genTextRaw,
-        mmValues: _mmValues(tfType),
+        mmValues: mm,
       ),
     );
-
-    final attrs =
-        ((schema as Map)['block'] as Map)['attributes'] as Map<String, dynamic>;
-    final mm = _mmValues(tfType);
-    for (final attr in attrs.entries) {
-      final description = (attr.value as Map)['description'] as String?;
-      if (describedValues(description, mm[attr.key])?.cueOnly ?? false) {
-        cueInputs.add('$tfType.${attr.key}');
-      }
-    }
-    final block = Map<String, dynamic>.from((schema['block'] as Map));
-    final sites = collectNestedEnumSites(block, mmValues: mm);
-    for (final site in sites) {
-      if (site.cueOnly) {
-        cueInputs.add('$tfType.${_blockPathLabel(site.blockPath, site.attr)}');
-      }
-    }
 
     if (fileText == null) continue;
     checkedTypes.add(tfType);
@@ -660,7 +700,7 @@ void main(List<String> args) {
 
       if (!_nestedFieldDeclared(genText, camel)) {
         if (encodesFixedValue(genText, site.attr, site.values)) continue;
-        final helper = _helperTextForBlock(ov, site.blockPath);
+        final helper = _helperTextForBlock(ov, site.blockPath, classSources);
         if (helper != null) {
           final helperText = _normalizeWhitespace(helper);
           if (_nestedFieldDeclared(helperText, camel)) {
@@ -694,7 +734,8 @@ void main(List<String> args) {
     }
   }
 
-  final prose = _ledger('enum_gap_cue_prose.yaml');
+  final prose = _ledger('enum_gap_cue_prose.yaml', log);
+  if (prose == null) return (exitCode: 1, output: out.toString());
   String keyOf(String gap) => gap.split('\t')[1];
   final cueKeys = {
     for (final g in [
@@ -713,14 +754,14 @@ void main(List<String> args) {
       )
       .toList();
   if (staleProse.isNotEmpty) {
-    print(
+    log(
       'check_google_enum_gaps: stale tool/enum_gap_cue_prose.yaml entries '
       '(not a cue-only gap: remove the lines):',
     );
     for (final k in staleProse) {
-      print('  $k');
+      log('  $k');
     }
-    exit(1);
+    return (exitCode: 1, output: out.toString());
   }
   bool unreviewed(String g) => !prose.containsKey(keyOf(g));
   topLevelGaps.retainWhere(unreviewed);
@@ -735,7 +776,8 @@ void main(List<String> args) {
     if (strictNested) ...nestedThinAdvisory,
   ];
 
-  final debt = _ledger('enum_gap_debt.yaml');
+  final debt = _ledger('enum_gap_debt.yaml', log);
+  if (debt == null) return (exitCode: 1, output: out.toString());
   final allGapKeys = {
     ...failing.map(keyOf),
     ...nestedThinAdvisory.map(keyOf),
@@ -748,14 +790,14 @@ void main(List<String> args) {
         : !overrideTypes.contains(type);
   }).toList();
   if (staleDebt.isNotEmpty) {
-    print(
+    log(
       'check_google_enum_gaps: stale tool/enum_gap_debt.yaml entries '
       '(no longer a gap — remove the lines):',
     );
     for (final k in staleDebt) {
-      print('  $k');
+      log('  $k');
     }
-    exit(1);
+    return (exitCode: 1, output: out.toString());
   }
   final suppressed = failing.where((g) => debt.containsKey(keyOf(g))).length;
   final effective = failing.where((g) => !debt.containsKey(keyOf(g))).toList();
@@ -766,53 +808,66 @@ void main(List<String> args) {
 
   void printFrozen() {
     if (frozenByExcludeGaps.isEmpty) return;
-    print(
+    log(
       '  (${frozenByExcludeGaps.length} frozen-by-exclude — nestedTypeExcludes, never fails)',
     );
     for (final g in frozenByExcludeGaps) {
-      print('  [frozen-by-exclude] $g');
+      log('  [frozen-by-exclude] $g');
     }
   }
 
   if (effective.isEmpty && nestedThinAdvisory.isEmpty) {
-    print(
+    log(
       'check_google_enum_gaps: OK (0 top-level, 0 nested partial, '
       '0 nested thin$debtNote; ${frozenByExcludeGaps.length} frozen-by-exclude)',
     );
     printFrozen();
-    exit(0);
+    return (exitCode: 0, output: out.toString());
   }
 
   if (effective.isEmpty) {
-    print(
+    log(
       'check_google_enum_gaps: OK (0 failing$debtNote; '
       '${nestedThinAdvisory.length} nested thin advisory; '
       '${frozenByExcludeGaps.length} frozen-by-exclude)',
     );
     for (final g in nestedThinAdvisory) {
-      print('  [advisory] $g');
+      log('  [advisory] $g');
     }
     printFrozen();
-    exit(0);
+    return (exitCode: 0, output: out.toString());
   }
 
-  print('check_google_enum_gaps: ${effective.length} gap(s)$debtNote:');
+  log('check_google_enum_gaps: ${effective.length} gap(s)$debtNote:');
   for (final g in effective) {
-    print('  $g');
+    log('  $g');
   }
   if (!strictNested && nestedThinAdvisory.isNotEmpty) {
-    print(
+    log(
       '  (${nestedThinAdvisory.length} NESTED_THIN advisory — pass --strict-nested to fail)',
     );
     for (final g in nestedThinAdvisory) {
-      print('  [advisory] $g');
+      log('  [advisory] $g');
     }
   }
   printFrozen();
-  exit(1);
+  return (exitCode: 1, output: out.toString());
 }
 
-Map<String, String> _ledger(String name) {
+void main(List<String> args) {
+  final strictNested = args.contains('--strict-nested');
+  final rootAt = args.indexOf('--generated-root');
+  final result = runGoogleEnumGapCheck(
+    strictNested: strictNested,
+    generatedRoot: rootAt >= 0 && rootAt + 1 < args.length
+        ? args[rootAt + 1]
+        : null,
+  );
+  stdout.write(result.output);
+  exit(result.exitCode);
+}
+
+Map<String, String>? _ledger(String name, void Function(String) log) {
   final file = File(p.join(_root.path, 'tool', name));
   if (!file.existsSync()) return const {};
   final entries = <String, String>{};
@@ -821,14 +876,14 @@ Map<String, String> _ledger(String name) {
     if (line.isEmpty || line.startsWith('#')) continue;
     final sep = line.indexOf(': ');
     if (sep <= 0) {
-      print('tool/$name: unparsable line "$raw"');
-      exit(1);
+      log('tool/$name: unparsable line "$raw"');
+      return null;
     }
     final key = line.substring(0, sep).trim();
     final reason = line.substring(sep + 2).trim();
     if (reason.isEmpty) {
-      print('tool/$name: $key needs a reason');
-      exit(1);
+      log('tool/$name: $key needs a reason');
+      return null;
     }
     entries[key] = reason;
   }
