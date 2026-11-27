@@ -80,7 +80,7 @@ These follow the entry, with no second list.
 - `terradart wrap` and `lint-override`, through `tool/wrap_lanes.dart`.
 - The weekly schema bump's lane plan. The workflow file still needs one `cron` line per `bump.cron`, and the `workflow_dispatch` choice has to name the bump lanes. `tool/bump_plan_test.dart` and the agreement test keep those two in step.
 - Example-synth catalog paths.
-- The exact-pin doc check, once the provider class aliases the generated pin (`const String kSomeProviderVersionConstraint = terradartProviderVersion`). `kProviderVersionConstraint` and `kBetaProviderVersionConstraint` stay hand-written `~> 8.0`, so google and google-beta are not in that check.
+- The exact-pin doc check, once the provider class aliases the generated pin (`const String kSomeProviderVersionConstraint = terradartProviderVersion`). `kGoogleProviderVersionConstraint` and `kBetaProviderVersionConstraint` stay hand-written `~> 8.0`, so google and google-beta are not in that check.
 - Coverage pages, from `siteTitle` plus the generated catalog. Regenerate with `dart tool/render_coverage_page.dart` after a synth.
 - The CI `test` and `pub publish --dry-run` matrices. They list every workspace member under `packages/` in the root `pubspec.yaml`.
 - The format hook's provider packages and generated-file globs, from `outputPackage` and `typePrefix`.

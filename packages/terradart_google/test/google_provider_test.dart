@@ -10,8 +10,8 @@ void main() {
 
     test('source / versionConstraint pin to provider-meta constants', () {
       const p = GoogleProvider();
-      expect(p.source, equals(kProviderSource));
-      expect(p.versionConstraint, equals(kProviderVersionConstraint));
+      expect(p.source, equals(kGoogleProviderSource));
+      expect(p.versionConstraint, equals(kGoogleProviderVersionConstraint));
     });
 
     test('configArgs omits null fields, emits set fields', () {

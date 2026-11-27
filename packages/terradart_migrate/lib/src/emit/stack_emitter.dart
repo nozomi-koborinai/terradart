@@ -9,7 +9,8 @@ import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
 import 'package:terradart_core/internal.dart'
     show outputEnvironmentName, parseGoDuration, templateVariableNames;
-import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
+import 'package:terradart_google/provider.dart'
+    show kGoogleProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderVersionConstraint;
 import 'package:terradart_hcl/terradart_hcl.dart';
@@ -133,7 +134,7 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'region': _Scalar('region'),
     'zone': _Scalar('zone'),
     'user_project_override': _Scalar('userProjectOverride'),
-  }, kProviderVersionConstraint),
+  }, kGoogleProviderVersionConstraint),
   'google-beta':
       _ProviderRecipe('terradart_google_beta', 'GoogleBetaProvider', {
         'project': _Scalar('project'),
