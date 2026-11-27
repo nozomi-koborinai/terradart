@@ -7,14 +7,10 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
-import 'lane_surface.dart' show docSnippetPackages;
 import 'migrating_cells.dart';
 
 Map<String, String> _workspaceOverrides(String root) => {
-  for (final pkg in docSnippetPackages(
-    File(p.join(root, 'pubspec.yaml')).readAsStringSync(),
-  ))
-    pkg: p.join(root, 'packages', pkg),
+  for (final pkg in cellPackages(root)) pkg: p.join(root, 'packages', pkg),
 };
 
 Future<Map<String, List<String>>> _fakeRelease035(
