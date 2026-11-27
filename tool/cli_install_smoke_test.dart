@@ -282,23 +282,31 @@ final class _WorkspacePubProxy {
       return;
     }
 
-    final upstreamUri = Uri.https('pub.dev', request.uri.path, {
-      if (request.uri.hasQuery) ...request.uri.queryParameters,
-    });
-    final upstreamReq = await _upstream.getUrl(upstreamUri);
-    final accept = request.headers.value(HttpHeaders.acceptHeader);
-    if (accept != null) {
-      upstreamReq.headers.set(HttpHeaders.acceptHeader, accept);
+    try {
+      final upstreamUri = Uri.https('pub.dev', request.uri.path, {
+        if (request.uri.hasQuery) ...request.uri.queryParameters,
+      });
+      final upstreamReq = await _upstream.getUrl(upstreamUri);
+      final accept = request.headers.value(HttpHeaders.acceptHeader);
+      if (accept != null) {
+        upstreamReq.headers.set(HttpHeaders.acceptHeader, accept);
+      }
+      final upstreamRes = await upstreamReq.close();
+      request.response.statusCode = upstreamRes.statusCode;
+      final contentType = upstreamRes.headers.value(
+        HttpHeaders.contentTypeHeader,
+      );
+      if (contentType != null) {
+        request.response.headers.set(
+          HttpHeaders.contentTypeHeader,
+          contentType,
+        );
+      }
+      await upstreamRes.pipe(request.response);
+    } on Object {
+      request.response.statusCode = HttpStatus.badGateway;
+      await request.response.close();
     }
-    final upstreamRes = await upstreamReq.close();
-    request.response.statusCode = upstreamRes.statusCode;
-    final contentType = upstreamRes.headers.value(
-      HttpHeaders.contentTypeHeader,
-    );
-    if (contentType != null) {
-      request.response.headers.set(HttpHeaders.contentTypeHeader, contentType);
-    }
-    await upstreamRes.pipe(request.response);
   }
 
   _PackedPackage _pack(String name) => _cache.putIfAbsent(name, () {
@@ -324,7 +332,9 @@ final class _WorkspacePubProxy {
       }
     }
 
-    final tarGz = Uint8List.fromList(gzip.encode(_buildUstarTar(entries)));
+    final tarGz = Uint8List.fromList(
+      GZipCodec(level: 1).encode(_buildUstarTar(entries)),
+    );
     final digest = sha256.convert(tarGz).toString();
     return _PackedPackage(
       name: name,

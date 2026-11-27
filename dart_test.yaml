@@ -1,3 +1,5 @@
+concurrency: 4
+
 tags:
   live:
     skip: "live pub.dev tests are opt-in; run with `dart test -t live --run-skipped`"
