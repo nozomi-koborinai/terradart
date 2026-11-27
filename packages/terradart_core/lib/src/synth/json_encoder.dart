@@ -60,9 +60,6 @@ class TfJsonEncoder {
         },
       };
     }
-    // Generic fallback: every StackBackend exposes `backendType` and
-    // `toTfJson()`. This works for user-supplied backends from
-    // provider-specific packages.
     return {backend.backendType: backend.toTfJson()};
   }
 
@@ -78,9 +75,6 @@ class TfJsonEncoder {
   static Map<String, dynamic>? providerBlock(Stack stack) {
     final byName = <String, List<StackProvider>>{};
     for (final p in stack.providers) {
-      // A configuration alias is declared on required_providers, not as a
-      // provider block: the calling module passes the configuration. An
-      // external configuration lives in a file beside main.tf.json.
       if (stack.isConfigurationAlias(p) || stack.isExternalProvider(p)) {
         continue;
       }
@@ -90,7 +84,6 @@ class TfJsonEncoder {
     for (final e in byName.entries) {
       final configs = e.value;
       if (configs.every((p) => p.alias == null)) {
-        // Stack.validate: exactly one default configuration.
         final args = configs.single.configArgs;
         if (args.isEmpty) continue;
         entries[e.key] = Map<String, dynamic>.from(args);
@@ -140,17 +133,12 @@ class TfJsonEncoder {
   /// - `TfArgExpression<T>` → its template string, verbatim.
   static Object? encodeArg(TfArg<dynamic> arg) {
     final raw = arg.toTfJson();
-    // Refs, variables and expressions produce final string forms (Terraform
-    // templates). Only literals may still hold nested `TfArg` instances
-    // inside Maps/Lists that need recursion.
     if (arg is TfRef || arg is TfArgVariable || arg is TfArgExpression) {
       return raw;
     }
     return _encodeLiteralValue(raw);
   }
 
-  /// Walk a literal value, recursively encoding nested `TfArg` instances
-  /// (so users can build mixed maps/lists of literals + refs).
   static dynamic _encodeLiteralValue(Object? v) {
     if (v == null) return null;
     if (v is TfArg<dynamic>) return encodeArg(v);
@@ -161,7 +149,7 @@ class TfJsonEncoder {
           e.key.toString(): _encodeLiteralValue(e.value),
       };
     }
-    return v; // primitive
+    return v;
   }
 
   /// Encode a full argMap; drops keys whose value is `null` (optional
@@ -173,7 +161,7 @@ class TfJsonEncoder {
     argMap.forEach((k, v) {
       if (v == null) return;
       final encoded = encodeArg(v);
-      if (encoded == null) return; // skip optional unset fields
+      if (encoded == null) return;
       out[k] = encoded;
     });
     return out;
@@ -249,9 +237,6 @@ class TfJsonEncoder {
     Resource r, {
     bool devModeInjectDeletionProtection = false,
   }) {
-    // `@protected` on the Resource getters expresses subclass-only contract
-    // intent; the synth pipeline is the privileged in-library consumer that
-    // reads them. `ignore` is the standard escape hatch for this case.
     final argMap =
         devModeInjectDeletionProtection &&
             // ignore: invalid_use_of_protected_member

@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:test/test.dart';
 
-// Import the script as a library. Dart allows importing a script file
-// directly; the `main()` function is simply unused from tests.
 import '../../../../tool/fetch_schema.dart';
 
 void main() {

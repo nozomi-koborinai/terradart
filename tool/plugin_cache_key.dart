@@ -1,18 +1,3 @@
-// plugin_cache_key.dart — the Actions cache key for provider plugins.
-//
-// CI keys `tfplugins` and `tofuplugins` on this hash plus the runner OS.
-// The hash is the provider releases `init` will download: each curated
-// constraint, resolved against the registry that engine uses. Hashing the
-// constraint text alone does not change when `~> 8.0` floats onto a new
-// release, and an Actions cache entry is immutable, so later jobs would
-// restore the stale entry and be unable to save the plugin they downloaded.
-//
-//   dart tool/plugin_cache_key.dart --registry opentofu
-//   dart tool/plugin_cache_key.dart --registry terraform --tf main.tf.json
-//
-// stdout is the hex sha256. `--tf` writes required_providers JSON pinned
-// to those exact versions.
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -36,7 +21,6 @@ import 'package:terradart_time/terradart_time.dart'
 
 import 'validate_engine.dart' show kNotOnOpenTofuRegistry;
 
-/// One registry `init` downloads from.
 enum PluginRegistry {
   opentofu('registry.opentofu.org'),
   terraform('registry.terraform.io');
@@ -52,8 +36,6 @@ enum PluginRegistry {
   };
 }
 
-/// A provider constraint synth emits. [constraint] is an exact pin or a
-/// Terraform pessimistic range such as `~> 8.0`.
 final class ProviderPin {
   const ProviderPin(this.source, this.constraint);
 
@@ -61,7 +43,6 @@ final class ProviderPin {
   final String constraint;
 }
 
-/// One release that belongs in the cache key.
 final class ResolvedPlugin {
   const ResolvedPlugin({
     required this.host,
@@ -74,11 +55,6 @@ final class ResolvedPlugin {
   final String version;
 }
 
-/// Constraints synth emits, in the packages that own them.
-///
-/// A lane added to [tool/providers.yaml] has to land here too.
-/// `plugin_cache_key_test.dart` fails until it does. `hashicorp/time` is
-/// not a wrap lane. Its constraint is hand-written on [TimeProvider].
 final providerPins = <ProviderPin>[
   const ProviderPin(kProviderSource, kProviderVersionConstraint),
   const ProviderPin(kBetaProviderSource, kBetaProviderVersionConstraint),
@@ -95,14 +71,11 @@ final providerPins = <ProviderPin>[
   ProviderPin(const TimeProvider().source, kTimeProviderVersionConstraint),
 ];
 
-/// Registries that serve [source]. Appwrite is absent from OpenTofu, the
-/// same list [kNotOnOpenTofuRegistry] uses to pick the validate engine.
 Set<PluginRegistry> registriesFor(String source) =>
     kNotOnOpenTofuRegistry.contains(source)
     ? const {PluginRegistry.terraform}
     : const {PluginRegistry.opentofu, PluginRegistry.terraform};
 
-/// Pins [registry] can install. Throws when two pins name one source.
 List<ProviderPin> pinsFor(PluginRegistry registry) {
   final seen = <String>{};
   final pins = <ProviderPin>[];
@@ -115,9 +88,7 @@ List<ProviderPin> pinsFor(PluginRegistry registry) {
   return pins;
 }
 
-/// Terraform's constraint language. pub_semver does not parse `~>`.
-///
-/// `~> 8.0` is `>= 8.0.0 < 9.0.0`. `~> 1.2.3` is `>= 1.2.3 < 1.3.0`.
+// pub_semver does not parse Terraform's pessimistic ~> constraint.
 VersionConstraint terraformConstraint(String constraint) {
   final trimmed = constraint.trim();
   if (!trimmed.startsWith('~>')) return VersionConstraint.parse(trimmed);
@@ -164,10 +135,6 @@ Version _padVersion(String raw) {
   );
 }
 
-/// Highest version in [versions] that [constraint] allows, or null.
-///
-/// A stable constraint does not select a prerelease. `~> 8.0` stays on
-/// 8.x. An exact pin allows that release only.
 String? selectVersion(String constraint, Iterable<String> versions) {
   final parsed = terraformConstraint(constraint);
   final stableOnly = !constraint.contains('-');
@@ -181,10 +148,7 @@ String? selectVersion(String constraint, Iterable<String> versions) {
   return best?.toString();
 }
 
-/// Versions from a registry `/versions` body that publish `linux_amd64`.
-///
-/// An entry with no `platforms` list is kept. The response used to omit
-/// that field, and dropping those versions would hide every release.
+// Registry /versions responses may omit platforms; keep entries without it.
 List<String> linuxAmd64Versions(Map<String, dynamic> body) {
   final versions = body['versions'];
   if (versions is! List) {
@@ -210,7 +174,6 @@ List<String> linuxAmd64Versions(Map<String, dynamic> body) {
   return out;
 }
 
-/// `GET https://<host>/v1/providers/<source>/versions`, linux_amd64 only.
 Future<List<String>> fetchLinuxAmd64Versions(
   String host,
   String source, {
@@ -239,7 +202,6 @@ Future<List<String>> fetchLinuxAmd64Versions(
 typedef VersionSource =
     Future<List<String>> Function(String host, String source);
 
-/// Resolve [pins] against [versions]. Fails when nothing matches.
 Future<List<ResolvedPlugin>> resolvePins({
   required PluginRegistry registry,
   required List<ProviderPin> pins,
@@ -261,7 +223,6 @@ Future<List<ResolvedPlugin>> resolvePins({
   return resolved;
 }
 
-/// Sorted `host source version` lines. The hash input.
 String cacheKeyMaterial(List<ResolvedPlugin> resolved) {
   final lines = [
     for (final plugin in resolved)
@@ -270,7 +231,6 @@ String cacheKeyMaterial(List<ResolvedPlugin> resolved) {
   return '${lines.join('\n')}\n';
 }
 
-/// Hex sha256 of [cacheKeyMaterial].
 String cacheKeyHash(String material) =>
     sha256.convert(utf8.encode(material)).toString();
 
@@ -282,7 +242,6 @@ String _localName(String source) {
   return source.substring(slash + 1);
 }
 
-/// `required_providers` JSON pinned to the resolved versions.
 String requiredProvidersJson(List<ResolvedPlugin> resolved) {
   final providers = <String, Object>{};
   for (final plugin in resolved) {

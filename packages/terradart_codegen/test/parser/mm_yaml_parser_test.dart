@@ -88,8 +88,6 @@ properties:
 
     test('Enum properties surface enum_values in MM YAML order', () {
       final result = const MmYamlParser().parseString(yaml);
-      // schema_settings is a nested object — its child fields are namespaced
-      // with a dot separator: 'schema_settings.encoding'.
       final c = result.fieldOverrides['schema_settings.encoding']!;
       expect(c.enumValues, ['ENCODING_UNSPECIFIED', 'JSON', 'BINARY']);
     });
@@ -204,9 +202,6 @@ properties:
     });
 
     test('unions a 3-way group whose members each list the other two', () {
-      // Magic Modules omits the declaring property from exactly_one_of, so a
-      // 3-way set arrives as three overlapping pairs. They are one group;
-      // sealing a pair would drop the third member.
       final result = const MmYamlParser().parseString('''
 properties:
   - name: vpcPeeringConfig
@@ -234,19 +229,22 @@ properties:
       - name: natIpsCount
         type: Integer
 ''');
-      expect(result.exactlyOneOfPaths, [
+      expect(
+        result.exactlyOneOfPaths,
         [
-          'psc_interface_config',
-          'reserved_public_ip_config',
-          'vpc_peering_config',
+          [
+            'psc_interface_config',
+            'reserved_public_ip_config',
+            'vpc_peering_config',
+          ],
         ],
-      ]);
+        reason:
+            'Magic Modules omits the declaring property from exactly_one_of; '
+            'sealing one pair would drop the third member',
+      );
     });
 
     test('leaves a 2-way omit-self pair ungrouped', () {
-      // Each side lists only the other member. The list has length 1, so it
-      // is not a group. Adding the declaring property would seal the pair
-      // and change every constructor that already takes both fields.
       final result = const MmYamlParser().parseString('''
 properties:
   - name: vpcPeeringConfig
@@ -264,7 +262,13 @@ properties:
       - name: networkAttachment
         type: String
 ''');
-      expect(result.exactlyOneOfPaths, isEmpty);
+      expect(
+        result.exactlyOneOfPaths,
+        isEmpty,
+        reason:
+            'each 1-element list is not a group; adding the declaring property '
+            'would seal constructors that already take both fields',
+      );
     });
 
     test('drops a group whose members span parent blocks', () {

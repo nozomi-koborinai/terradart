@@ -11,12 +11,6 @@ import '../codegen/wrapper_overrides/yaml_loader.dart';
 import '../parser/mm_yaml_parser.dart';
 import 'exit_codes.dart';
 
-/// `terradart lint-override` — fails (exit 65) if any wrapper override YAML
-/// carries a hand-written axis that a derivation gate has made dead config.
-///
-/// Phase A5 phase 1: two IR-free, YAML-only rules (see [lintOverride]). The
-/// detection logic is the pure `override_linter`; this command only resolves
-/// the bundled override-YAML root (or `--dir`), loads it, and reports.
 class LintOverrideCommand extends Command<int> {
   LintOverrideCommand() {
     argParser
@@ -76,12 +70,6 @@ class LintOverrideCommand extends Command<int> {
       rootDir = uri.toFilePath();
     }
 
-    // Malformed registry YAML self-fatals inside the loader (throws
-    // LoaderErrorReport, which the entrypoint maps to a non-zero exit) — that
-    // is correct linter behavior, so it is intentionally not caught here. A
-    // `--dir` pointing at a missing directory instead throws StateError; catch
-    // that to report a clean message + dataError (mirrors wrap_command) rather
-    // than surfacing a stack trace.
     final LoadedOverrides loaded;
     try {
       loaded = loadWrapperOverrides(rootDir: rootDir);
@@ -162,10 +150,6 @@ class LintOverrideCommand extends Command<int> {
   }
 }
 
-/// Default MM fixture dir when linting the bundled override registry.
-///
-/// `overrideYamlRoot` is `.../wrapper_overrides/yaml`; walk up to the
-/// `terradart_codegen` package root, then into the wrap test fixture tree.
 @visibleForTesting
 String defaultMmFixtureDirForOverrideRoot(String overrideYamlRoot) {
   final codegenPackageRoot = p.normalize(
@@ -174,19 +158,11 @@ String defaultMmFixtureDirForOverrideRoot(String overrideYamlRoot) {
   return p.join(codegenPackageRoot, 'test', 'fixtures', 'wrap', 'source', 'mm');
 }
 
-/// The debt ledgers every lane shares, under the repository `tool/`
-/// directory.
 const lintDebtLedgerFileNames = [
   'exactly_one_lint_debt.yaml',
   'migrate_manifest_debt.yaml',
 ];
 
-/// The repository `tool/` directory holding the shared debt ledgers, found
-/// from the `packages/terradart_codegen/lib/src/codegen/wrapper_overrides`
-/// directory [overrideYamlRoot] sits in. The bundled registry
-/// (`wrapper_overrides/yaml`) and a lane (`wrapper_overrides/<lane>/yaml`)
-/// resolve to the same directory. Null outside that tree, which reads as
-/// empty ledgers.
 String? lintDebtToolDirForOverrideRoot(String overrideYamlRoot) {
   final parts = p.split(p.normalize(p.absolute(overrideYamlRoot)));
   final i = parts.lastIndexOf('wrapper_overrides');
@@ -205,13 +181,9 @@ String? lintDebtToolDirForOverrideRoot(String overrideYamlRoot) {
   return p.joinAll([...parts.take(i - codegenPath.length), 'tool']);
 }
 
-/// `tool/exactly_one_lint_debt.yaml`, which must stay empty: every line is
-/// a lint failure.
 String? exactlyOneLintDebtPathForOverrideRoot(String overrideYamlRoot) =>
     _ledgerPath(overrideYamlRoot, lintDebtLedgerFileNames[0]);
 
-/// `tool/migrate_manifest_debt.yaml` beside `tool/exactly_one_lint_debt.yaml`:
-/// overrides accepted as `migrate-shape-underivable` debt.
 String? migrateManifestDebtPathForOverrideRoot(String overrideYamlRoot) =>
     _ledgerPath(overrideYamlRoot, lintDebtLedgerFileNames[1]);
 
@@ -223,9 +195,6 @@ String? _ledgerPath(String overrideYamlRoot, String fileName) {
 Map<String, String> _loadLedger(String? path) =>
     path == null ? const {} : loadLintDebtLedger(path);
 
-/// The entries of a shared [ledger] that name one of [overrideNames]. A lane
-/// validates only its own entries; `tool/wrap_lanes.dart` fails on entries
-/// that name an override in no lane.
 Map<String, String> laneLedgerEntries(
   Map<String, String> ledger,
   Iterable<String> overrideNames,
@@ -237,9 +206,6 @@ Map<String, String> laneLedgerEntries(
   };
 }
 
-/// Parses a `name: reason` debt ledger (one entry per line, `#` comments
-/// and blank lines ignored). A missing file is an empty ledger; a line
-/// without a reason is an error, so every accepted debt stays explained.
 Map<String, String> loadLintDebtLedger(String path) {
   final file = File(path);
   if (!file.existsSync()) return const {};

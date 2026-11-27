@@ -1,32 +1,3 @@
-// tool/provider_hints_aws.dart
-//
-// The hashicorp/aws scanner behind tool/extract_provider_hints.dart.
-//
-// The AWS provider is hand-written (SDKv2 and plugin framework side by
-// side), so there is no one schema file per resource:
-//
-// - A resource is the function an `// @SDKResource("aws_x", ...)` /
-//   `// @FrameworkResource("aws_x", ...)` annotation sits on. For a
-//   framework resource the schema is the `Schema` method of the struct the
-//   constructor returns (`&xResource{...}`).
-// - Attribute keys are string literals or `names.Attr*` constants; nested
-//   schemas often come from package helper functions, which are followed
-//   from the call site with the keys open there.
-// - A value set is `enum.Validate[T]()` (and its IgnoreCase / Framework
-//   forms), `fwtypes.StringEnumType[T]()` (and the list / set forms),
-//   `validation.StringInSlice(...)` or `stringvalidator.OneOf(...)`. `T` is
-//   an aws-sdk-go-v2 `types` enum whose `Values()` lists the members
-//   (Smithy-generated `types/enums.go`, read at the module version the
-//   provider's go.mod requires) or a provider type with its own `Values()`.
-//   Slice arguments are evaluated over literals, constants, `Values()`,
-//   `enum.Values`, `enum.Slice`, `append` and local `*_Values()` helpers; a
-//   set with any part that does not evaluate is dropped, never guessed.
-// - Relation rules are SDKv2 `ExactlyOneOf` / `AtLeastOneOf` /
-//   `ConflictsWith` string lists and the framework validators of the same
-//   names (plus `resourcevalidator.Conflicting`); `exclusiveGroups` turns
-//   each type's rules into exactly-one and at-most-one groups.
-// ignore_for_file: avoid_print
-
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -35,31 +6,21 @@ import 'package:terradart_codegen/src/codegen/exclusive_groups.dart';
 import 'extract_provider_hints.dart';
 import 'http_retry.dart';
 
-/// Whether [root] is a hashicorp/aws source tree.
 bool isAwsProviderSource(Directory root) =>
     Directory(p.join(root.path, 'internal', 'service')).existsSync() &&
     Directory(p.join(root.path, 'names')).existsSync();
 
-/// One Go function or method: its body tokens and the imports of the file
-/// that declares it.
 final class GoFunc {
   const GoFunc({required this.body, required this.imports, required this.file});
 
   final List<GoToken> body;
-
-  /// Import alias → import path.
   final Map<String, String> imports;
   final String file;
 }
 
-/// A Go package reduced to what a value set is computed from: its string
-/// constants and its functions (`name`, or `Receiver.name` for a method).
 final class GoPackage {
   final Map<String, String> consts = {};
   final Map<String, GoFunc> funcs = {};
-
-  /// Declarations annotated `@SDKResource` / `@FrameworkResource`: function
-  /// name → Terraform types.
   final Map<String, List<String>> resourceFuncs = {};
 
   void addFile(String src, {required String file}) {
@@ -156,7 +117,6 @@ final class GoPackage {
         j++;
         continue;
       }
-      // NAME = "v" | NAME T = "v" | NAME pkg.T = "v"
       final eq = _isPunct(toks, j + 1, '=')
           ? j + 1
           : _isIdent(toks, j + 1) && _isPunct(toks, j + 2, '=')
@@ -191,7 +151,6 @@ final _importSingle = RegExp(
   multiLine: true,
 );
 
-/// A Go file's imports: alias (or the path's last element) → path.
 Map<String, String> parseGoImports(String src) {
   final out = <String, String>{};
   void add(String? alias, String path) =>
@@ -216,7 +175,6 @@ bool _isIdent(List<GoToken> t, int i, [String? s]) =>
     t[i].kind == GoTok.ident &&
     (s == null || t[i].text == s);
 
-/// Index of the bracket closing the one at [open] (or the end).
 int _matching(List<GoToken> t, int open) {
   var depth = 0;
   for (var k = open; k < t.length; k++) {
@@ -228,11 +186,9 @@ int _matching(List<GoToken> t, int open) {
   return t.length - 1;
 }
 
-/// Evaluates value-set expressions against the loaded packages.
 final class _Evaluator {
   _Evaluator(this.packages);
 
-  /// Import path → package.
   final Map<String, GoPackage> packages;
 
   List<String>? typeValues(GoPackage pkg, String type, [int depth = 0]) {
@@ -255,7 +211,6 @@ final class _Evaluator {
     return path == null ? null : packages[path];
   }
 
-  /// `T` or `pkg.T` at [i]: the package and type name, and the index after.
   (GoPackage, String, int)? typeRef(
     List<GoToken> t,
     int i,
@@ -270,8 +225,6 @@ final class _Evaluator {
     return (self, t[i].text, i + 1);
   }
 
-  /// Comma-separated expressions from [i] up to the bracket at [close],
-  /// concatenated; each may carry a `...` spread.
   List<String>? list(
     List<GoToken> t,
     int i,
@@ -310,7 +263,6 @@ final class _Evaluator {
     if (i >= t.length || depth > 8) return null;
     final tok = t[i];
     if (tok.kind == GoTok.string) return (values: [tok.text], end: i + 1);
-    // []T{a, b}
     if (_isPunct(t, i, '[') && _isPunct(t, i + 1, ']')) {
       var k = i + 2;
       while (k < t.length && !_isPunct(t, k, '{')) {
@@ -345,7 +297,6 @@ final class _Evaluator {
       }
       return null;
     }
-    // pkg.X
     if (_isPunct(t, i + 1, '.') && _isIdent(t, i + 2)) {
       final pkg = _pkg(imports, name);
       if (pkg == null) return null;
@@ -354,8 +305,6 @@ final class _Evaluator {
     return _member(t, i, self, imports, depth);
   }
 
-  /// `X` in [pkg] at [i]: `X("").Values()`, `X()` (a helper returning a
-  /// set), `X(expr)` (a conversion) or the constant `X`.
   ({List<String> values, int end})? _member(
     List<GoToken> t,
     int i,
@@ -401,14 +350,10 @@ const _enumCustomTypes = {
   'ListOfStringEnumType',
 };
 
-/// One value set found in a function, relative to the function's keys.
 typedef _LocalHint = ({List<String> path, List<String> values, bool ci});
 
-/// A call to a package function, with the keys open at the call site.
 typedef _Call = ({List<String> path, String callee});
 
-/// One member of an exactly-one group: a path from the resource root
-/// ([abs]) or from the function's root.
 typedef _Member = ({List<String> path, bool abs});
 
 final class _FuncScan {
@@ -430,8 +375,6 @@ const _frameworkRelations = {
   'Conflicting',
 };
 
-/// Scans one function body: value sets under attribute keys and calls to
-/// package helpers.
 _FuncScan _scanFunc(
   GoFunc f,
   GoPackage self,
@@ -446,7 +389,6 @@ _FuncScan _scanFunc(
       if (fr.key != null) fr.key!,
   ];
 
-  /// The attribute key ending at the `:` at [colon], if any.
   String? keyBefore(int colon) {
     if (!_isPunct(t, colon, ':')) return null;
     if (colon >= 1 && t[colon - 1].kind == GoTok.string) {
@@ -493,9 +435,7 @@ _FuncScan _scanFunc(
         }
       }
     }
-    // `validation.Any(...)` / `<kind>validator.Any(...)`: a value set
-    // there is one alternative among others (`""`, an ARN, a name
-    // pattern), so the input is not closed over it.
+    // Terraform SDK/Framework Any(...) composes validators with OR, so inner value sets are not closed.
     if (tok.kind == GoTok.ident &&
         (tok.text == 'validation' || _anyValidators.contains(tok.text)) &&
         _isPunct(t, i + 1, '.') &&
@@ -529,9 +469,6 @@ _FuncScan _scanFunc(
       i = _matching(t, i + 3) + 1;
       continue;
     }
-    // SDKv2: `ExactlyOneOf: []string{"a", "b.0.c"}` (and `AtLeastOneOf`),
-    // the whole set, and `ConflictsWith`, the attribute's rivals; paths
-    // from the root.
     if (_isIdent(t, i) &&
         _sdkRelations.contains(tok.text) &&
         _isPunct(t, i + 1, ':')) {
@@ -542,6 +479,7 @@ _FuncScan _scanFunc(
         i += 2;
         continue;
       }
+      // Terraform SDKv2 encodes nested block paths with numeric list indices (e.g. "b.0.c").
       final members = [
         for (final v in r.values)
           (
@@ -565,11 +503,7 @@ _FuncScan _scanFunc(
       i = r.end;
       continue;
     }
-    // Framework: `resourcevalidator.ExactlyOneOf(path.MatchRoot(...), ...)`
-    // (or `AtLeastOneOf` / `Conflicting`) in ConfigValidators, or
-    // `<kind>validator.ExactlyOneOf(...)` (or `AtLeastOneOf` /
-    // `ConflictsWith`) on an attribute, which counts the attribute itself as
-    // a member.
+    // Framework attribute validators implicitly include the attribute itself; resourcevalidator lists all members.
     if (tok.kind == GoTok.ident &&
         (tok.text == 'resourcevalidator' ||
             attributeValidatorKinds.contains(tok.text)) &&
@@ -650,8 +584,6 @@ _FuncScan _scanFunc(
   return scan;
 }
 
-/// An attribute key at [i] — a string literal or `names.Attr*` — and the
-/// index after it.
 (String, int)? _keyAt(List<GoToken> t, int i, GoPackage names) {
   if (i < t.length && t[i].kind == GoTok.string) return (t[i].text, i + 1);
   if (_isIdent(t, i, 'names') &&
@@ -663,12 +595,6 @@ _FuncScan _scanFunc(
   return null;
 }
 
-/// The comma-separated path expressions from [i] up to [close], optionally
-/// wrapped in `path.Expressions{...}` (and spread with `...`):
-/// `path.MatchRoot(k)` (from the resource root) or `path.MatchRelative()`
-/// (from [here], the attribute the validator sits on), each followed by
-/// `.AtParent()` / `.AtName(k)` / list-index steps. Null when any part is
-/// something else.
 List<_Member>? _pathExprs(
   List<GoToken> t,
   int i,
@@ -740,8 +666,6 @@ List<_Member>? _pathExprs(
   return out;
 }
 
-/// Every aws-sdk-go-v2 service `types` package the provider imports, with
-/// the module version its go.mod requires: import path → (module, version).
 Map<String, ({String module, String version})> awsSdkTypesModules(
   Directory root,
 ) {
@@ -768,15 +692,12 @@ Map<String, ({String module, String version})> awsSdkTypesModules(
   return out;
 }
 
-/// `<sdkDir>/<module subpath>/types/enums.go` for [path].
 String sdkEnumsFile(String sdkDir, String typesImportPath) => p.join(
   sdkDir,
   typesImportPath.replaceFirst('github.com/aws/aws-sdk-go-v2/', ''),
   'enums.go',
 );
 
-/// Downloads each module's `types/enums.go` at its go.mod version into
-/// [sdkDir] (a module without one has no enums and is skipped).
 Future<void> downloadAwsSdkEnums(
   Map<String, ({String module, String version})> modules,
   String sdkDir,
@@ -820,36 +741,20 @@ Iterable<File> _goFiles(Directory dir) => dir
     .whereType<File>()
     .where((f) => f.path.endsWith('.go') && !f.path.endsWith('_test.go'));
 
-/// The result of scanning the AWS provider source.
 final class AwsHintsScan {
   AwsHintsScan(this.byType);
 
-  /// Terraform type → the file that declares it, its hints and its
-  /// exactly-one and at-most-one groups (member paths from the resource
-  /// root).
   final Map<String, AwsTypeHints> byType;
-
-  /// The same for data-source schemas. Only scanners that tell a data
-  /// source's schema from its resource twin's fill it.
   final Map<String, AwsTypeHints> dataSourcesByType = {};
-
-  /// Conflicts no group expresses, as `<type> [members]: reason`
-  /// (`data.<type>` for a data source).
   final unsealed = <String>[];
   var validators = 0;
   var unresolved = 0;
-
-  /// Each value-set validator not evaluated, as `<type> <path>`
-  /// (`data.<type>` for a data source). Only the azurerm scanner fills it.
   final unresolvedSites = <String>[];
   var groupValidators = 0;
   var unresolvedGroups = 0;
-
-  /// `Any(...)` validators skipped: a value set among alternatives.
   var openSets = 0;
 }
 
-/// What [scanAwsProvider] found for one Terraform type.
 typedef AwsTypeHints = ({
   String sourcePath,
   List<GoEnumHint> hints,
@@ -857,7 +762,6 @@ typedef AwsTypeHints = ({
   List<List<List<String>>> atMostOne,
 });
 
-/// Scans hashicorp/aws at [root], with SDK enums read from [sdkDir].
 AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
   final module = RegExp(
     r'^module\s+(\S+)',

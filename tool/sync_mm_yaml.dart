@@ -1,35 +1,3 @@
-// tool/sync_mm_yaml.dart
-//
-// Reads tool/mm_yaml_sources.yaml manifest, fetches each upstream file
-// from raw.githubusercontent.com, diffs it against the local fixture,
-// overwrites changed files, and reports the result as JSON on stdout.
-//
-// The manifest's `upstream_ref` pins the fetch to the magic-modules commit
-// the fixture's provider release was generated from: the release tag's
-// nearest commit carrying `[upstream:<sha>]` (the provider's downstream
-// generator stamps every commit with it). `--ref` overrides the pin; a
-// manifest with `upstream_branch` instead reads that branch.
-//
-// Usage:
-//   dart tool/sync_mm_yaml.dart \
-//     --manifest=tool/mm_yaml_sources.yaml \
-//     --target-dir=packages/terradart_codegen/test/fixtures/wrap/source/mm \
-//     [--ref=<magic-modules sha or branch>]
-//
-// Output (stdout, JSON):
-//   {
-//     "ref": "<magic-modules sha>",
-//     "changed": [{"file": "google_kms_crypto_key.yaml", "upstream_url": "..."}],
-//     "failed":  [{"file": "google_xxx.yaml", "reason": "404"}],
-//     "unchanged": 12
-//   }
-//
-// Exit codes:
-//   0 success (with or without changes)
-//   64 usage error
-//   65 manifest parse error
-//   69 cannot reach any upstream, or cannot resolve the pinned ref
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -79,10 +47,7 @@ Future<void> main(List<String> args) async {
   for (final entry in manifest.files.entries) {
     final localBasename = entry.key;
     final upstreamPath = entry.value;
-    if (upstreamPath == null) {
-      // synthetic fixture: skip
-      continue;
-    }
+    if (upstreamPath == null) continue;
     final url = manifest.urlFor(upstreamPath, ref: ref);
     final localFile = File('${parsed.targetDir}/$localBasename.yaml');
 
@@ -114,7 +79,6 @@ Future<void> main(List<String> args) async {
     'unchanged': unchanged,
   });
 
-  // If every file failed, treat as upstream-down rather than success.
   if (failed.length == manifest.realFileCount && manifest.realFileCount > 0) {
     stderr.writeln('All ${failed.length} upstream fetches failed.');
     stdout.writeln(report);
@@ -150,9 +114,6 @@ _Args? _parseArgs(List<String> args) {
   return _Args(manifest, target, ref);
 }
 
-/// Where the MM YAML of a provider release comes from: the provider repo
-/// whose release tags carry the magic-modules commit, the file recording
-/// the fixture's release, and the file recording the resolved commit.
 class ProviderPin {
   ProviderPin({
     required this.providerRepo,
@@ -165,14 +126,10 @@ class ProviderPin {
   final String? refFile;
 }
 
-/// Commit messages reachable from [ref] in [repo], newest first.
 typedef CommitMessages = Future<List<String>> Function(String repo, String ref);
 
 final _upstreamStamp = RegExp(r'\[upstream:([0-9a-f]{40})\]');
 
-/// The magic-modules ref [manifest] reads: [override] when given, the
-/// `upstream_branch` of an unpinned manifest, else the commit the pinned
-/// provider release was generated from.
 Future<String> resolveUpstreamRef(
   Manifest manifest, {
   String? override,
@@ -194,8 +151,6 @@ Future<String> resolveUpstreamRef(
   );
 }
 
-/// The magic-modules ref the MM fixtures were last synced at: the pinned
-/// manifest's `ref_file`, else its `upstream_branch`.
 String recordedUpstreamRef(Manifest manifest) {
   final refFile = manifest.providerPin?.refFile;
   if (refFile != null && File(refFile).existsSync()) {
@@ -232,7 +187,6 @@ Future<List<String>> _githubCommitMessages(String repo, String ref) async {
   ];
 }
 
-/// tool/mm_yaml_sources.yaml, parsed.
 class Manifest {
   Manifest({
     required this.upstreamRepo,
@@ -244,17 +198,14 @@ class Manifest {
   final String upstreamRepo;
   final String? upstreamBranch;
   final ProviderPin? providerPin;
-  // Map<localBasename, upstreamPath?>. null = synthetic, skipped.
   final Map<String, String?> files;
 
   int get realFileCount => files.values.where((v) => v != null).length;
 
-  /// The raw URL of [upstreamPath] at [ref] (default: `upstream_branch`).
   String urlFor(String upstreamPath, {String? ref}) =>
       'https://raw.githubusercontent.com/$upstreamRepo/${ref ?? upstreamBranch}/$upstreamPath';
 }
 
-/// Parses tool/mm_yaml_sources.yaml.
 Manifest parseManifest(String yaml) {
   final root = loadYaml(yaml);
   if (root is! YamlMap) {

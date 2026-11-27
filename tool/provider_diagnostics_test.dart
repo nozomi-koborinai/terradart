@@ -8,7 +8,6 @@ import 'provider_diagnostics.dart';
 String _fixture(String name) =>
     File('tool/testdata/provider_diagnostics/$name').readAsStringSync();
 
-/// [validate] with its one diagnostic's fields replaced by [diagnostic].
 String _withDiagnostic(String validate, Map<String, Object?> diagnostic) {
   final report = jsonDecode(validate) as Map<String, Object?>;
   final d = (report['diagnostics'] as List).single as Map<String, Object?>;

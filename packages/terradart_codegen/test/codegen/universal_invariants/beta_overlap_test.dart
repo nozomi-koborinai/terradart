@@ -1,4 +1,3 @@
-// packages/terradart_codegen/test/codegen/universal_invariants/beta_overlap_test.dart
 import 'package:terradart_codegen/src/codegen/universal_invariants/beta_overlap.dart';
 import 'package:test/test.dart';
 

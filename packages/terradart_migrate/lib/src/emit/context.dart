@@ -1,6 +1,3 @@
-/// State shared across one module's emission.
-library;
-
 import 'package:terradart_appwrite/catalog.dart' as appwrite;
 import 'package:terradart_aws/catalog.dart' as aws;
 import 'package:terradart_azure/catalog.dart' as azure;
@@ -11,7 +8,6 @@ import 'package:terradart_google_beta/catalog.dart' as beta;
 import '../migrate_manifest.dart';
 import 'module_wrapper.dart';
 
-/// A `module` call the Stack declares, as other blocks see it.
 final class ModuleTarget {
   const ModuleTarget({
     required this.address,
@@ -19,22 +15,13 @@ final class ModuleTarget {
     this.local,
   });
 
-  /// `module.sa_bff`.
   final String address;
-
-  /// The Dart local that holds it.
   final String dartName;
-
-  /// The typed wrapper the call uses, or `null` when it is a bare
-  /// `ModuleCall` (a registry / git module, or a local directory the scan
-  /// did not see).
   final LocalModule? local;
 
-  /// The output getter for [attribute], if the wrapper declares one.
   ModuleOutput? getter(String attribute) => local?.output(attribute);
 }
 
-/// A resource or data source the Stack declares, as other blocks see it.
 final class EmitTarget {
   EmitTarget({
     required this.address,
@@ -44,16 +31,12 @@ final class EmitTarget {
     required this.isData,
   });
 
-  /// `google_pubsub_topic.orders` / `data.google_project.current`.
   final String address;
-
-  /// The Dart local that holds it.
   final String dartName;
   final MigrateEntry entry;
   final MigrateManifest manifest;
   final bool isData;
 
-  /// The output getter for [attribute], if the wrapper declares one.
   MigrateGetter? getter(String attribute) {
     for (final g in entry.getters) {
       if (g.tfName == attribute) return g;
@@ -62,7 +45,6 @@ final class EmitTarget {
   }
 }
 
-/// Sensitive argument paths per curated factory, from the catalogs.
 final class SensitiveIndex {
   SensitiveIndex._(this._byKey);
 
@@ -107,48 +89,24 @@ final class SensitiveIndex {
 
   final Map<String, Set<String>> _byKey;
 
-  /// Dotted sensitive paths of the factory for [tfType] in [package].
   Set<String> of(String package, String tfType, CatalogKind kind) =>
       _byKey['$package|$tfType|${kind.name}'] ?? const {};
 }
 
-/// Everything the value and resource emitters share while one module is
-/// being emitted: which blocks are migrated (and under which Dart name),
-/// which variables exist, and the imports the Stack needs.
 final class EmitContext {
   EmitContext({required this.manifests, required this.sensitive});
 
-  /// Manifests in lookup precedence.
   final List<MigrateManifest> manifests;
   final SensitiveIndex sensitive;
-
-  /// Migrated blocks by address — the ones a reference may resolve to.
   final Map<String, EmitTarget> targets = {};
-
-  /// Migrated `module` calls by address (`module.sa_bff`), the other half of
-  /// what a reference may resolve to.
   final Map<String, ModuleTarget> moduleTargets = {};
-
-  /// Variables declared by `variable` blocks that become `variable<T>(...)`.
   final Set<String> declaredVariables = {};
-
-  /// The handle each declared variable's `variable<T>(...)` returns: its
-  /// Dart local and `T`. A reference whose argument takes a `TfArg<T>`
-  /// reads the local; anything else names the variable.
   final Map<String, ({String dartName, String dartType})> variableHandles = {};
-
-  /// Variables referenced but not declared: `externalVariable(...)`.
   final Set<String> externalVariables = {};
-
-  /// Addresses whose Dart local is used by another statement.
   final Set<String> referenced = {};
-
-  /// Package → barrels to import.
   final Map<String, Set<String>> imports = {};
-
   final List<String> warnings = [];
 
-  /// Resets the per-pass state (references, imports, external variables).
   void resetPass() {
     referenced.clear();
     externalVariables.clear();
@@ -160,19 +118,16 @@ final class EmitContext {
     imports.putIfAbsent(package, () => <String>{}).add(barrel);
   }
 
-  /// The migrated block at [address], marking it referenced.
   EmitTarget? use(String address) {
     final t = targets[address];
     if (t != null) referenced.add(address);
     return t;
   }
 
-  /// Registers a `var.<name>` reference.
   void useVariable(String name) {
     if (!declaredVariables.contains(name)) externalVariables.add(name);
   }
 
-  /// The manifest entry for a Terraform type, in precedence order.
   ({MigrateManifest manifest, MigrateEntry entry})? lookup(
     String tfType,
     CatalogKind kind,

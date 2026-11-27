@@ -8,28 +8,6 @@ import '../references/reference_targets.dart';
 import '../wrapper_overrides/wrapper_override.dart';
 import 'nested_type_collector.dart';
 
-/// Renders the Dart source for a resource's derived nested-block helper
-/// classes and their attribute enums — the render half of the
-/// `deriveNestedTypes` gate, matching the `@immutable` helper-class idiom
-/// hand-written `wrapper_overrides/` preludes have used until now (e.g.
-/// `wrapper_overrides/yaml/google_apigee_datastore.yaml`).
-///
-/// Pure string templating, no I/O. Like every other emitter in this package
-/// (see `WrapperEmitter.emit`), the returned source is **unformatted** —
-/// callers splice it into the surrounding wrapper file and run
-/// `dart_style.DartFormatter` once, over the whole file. It assumes that
-/// file already imports `package:meta/meta.dart` (`@immutable`) and
-/// `package:terradart_core/terradart_core.dart` (`TfArg`, `TfArgLiteral`);
-/// no import directives are emitted here.
-///
-/// Ordering is depth-first over [specs] — each spec's own class, then its
-/// attribute enums, then its children (recursively), before moving to the
-/// next sibling — with alphabetical-by-Terraform-name tie-breaking at every
-/// sibling level (root [specs], each block's enum-bearing attrs, each
-/// block's children). This makes the output depend only on the *set* of
-/// specs, never the order the caller happened to list them in, mirroring
-/// `constructor_params.dart`'s "IR-natural order... alphabetical" guarantee
-/// for top-level attributes.
 String renderNestedTypes(
   List<NestedBlockSpec> specs, {
   required String resourceTerraformType,
@@ -51,12 +29,6 @@ String renderNestedTypes(
   return buf.toString();
 }
 
-/// Renders one block's own class, then its attribute enums, then recurses
-/// depth-first into its children — the full subtree [spec] roots, as a
-/// sequence of top-level declarations separated by single blank lines.
-///
-/// A class already in [rendered] renders nothing, subtree included: blocks
-/// share a class name only when their whole subtrees have the same shape.
 String _renderBlockTree(
   NestedBlockSpec spec,
   String resourceTerraformType,
@@ -126,13 +98,6 @@ String _renderBlockTree(
   return buf.toString();
 }
 
-/// Renders [spec]'s own `@immutable` helper class: doc comment, constructor,
-/// fields, `encode()`. Field order is: [spec]'s attributes first
-/// (alphabetical by Terraform name), then its block-type children — both
-/// derived nested classes and opaque [NestedBlockSpec.excludedChildren]
-/// passthroughs, merged into one alphabetical-by-Terraform-name group —
-/// mirroring `constructor_params.dart`'s "attributes first, then nested
-/// blocks" grouping for top-level wrapper constructors.
 String _renderClass(
   NestedBlockSpec spec,
   String resourceTerraformType,
@@ -150,10 +115,7 @@ String _renderClass(
     ..writeln('@immutable')
     ..writeln('final class ${spec.className} {');
   if (plans.isEmpty) {
-    // `{}` is not a valid (empty) named-parameter clause in Dart — unlike
-    // an empty `()`, the braces require at least one parameter — so a
-    // block with no attrs/children/excluded children gets a bare `()`
-    // constructor instead of the usual `({...})` shape.
+    // Dart syntax forbids an empty named-parameter clause (`{}`).
     buf.writeln('  const ${spec.className}();');
   } else {
     buf.writeln('  const ${spec.className}({');
@@ -183,10 +145,6 @@ String _renderClass(
   return buf.toString();
 }
 
-/// Renders the free-standing enum declaration for one enum-carrying
-/// attribute. Member names reuse [enumMemberNames] (shared with the
-/// top-level `deriveEnums` path via `naming.dart`'s `enumName`) — never
-/// re-implemented here, including its reserved-word fallback.
 String _renderEnum(NestedAttrSpec attr) {
   final values = attr.enumValues!;
   return renderTerraformEnum(
@@ -197,8 +155,6 @@ String _renderEnum(NestedAttrSpec attr) {
   );
 }
 
-/// One class member before layout: its plan, and the shape a sealed
-/// variant holding it takes (null for an excluded child).
 typedef _Member = ({
   String tfName,
   bool required,
@@ -207,9 +163,6 @@ typedef _Member = ({
   ExactlyOneVariant? variant,
 });
 
-/// [spec]'s own class members, in render order: attrs first, then
-/// block-type children (derived + excluded, merged), each group
-/// alphabetical by Terraform name.
 List<_Member> _members(NestedBlockSpec spec) {
   final members = <_Member>[
     for (final attr in _byTfName(spec.attrs, (NestedAttrSpec a) => a.tfName))
@@ -264,29 +217,18 @@ List<_Member> _members(NestedBlockSpec spec) {
   return members;
 }
 
-/// One sealed field of a helper class: required for an exactly-one group or
-/// a joint of them, nullable for an at-most-one ([optional]) group.
 typedef _SealedGroup = ({
   List<String> members,
   List<SealedVariant> variants,
   bool optional,
-
-  /// The field's Dart name.
   String ident,
-
-  /// The sealed type's name.
   String type,
-
-  /// The field's name first, then any joint factory's and nested choice's.
   List<SealedGroupName> names,
 });
 
 typedef _Layout = ({
   List<HelperMember> plans,
   List<_SealedGroup> sealed,
-
-  /// The exactly-one group that is every input of the block, when there is
-  /// one: the block's own class is then its sealed type.
   _WholeBlockGroup? whole,
   List<String> skipped,
   List<String> skippedAtMostOne,
@@ -298,10 +240,6 @@ typedef _WholeBlockGroup = ({
   bool atMostOne,
 });
 
-/// Every block's [_layout] by class name, laid out in render order
-/// (depth-first, alphabetical by Terraform name). Each block's sealed types
-/// and variants join the names later blocks must not take, so two blocks
-/// never emit the same class.
 Map<String, _Layout> _layouts(List<NestedBlockSpec> specs) {
   final taken = nestedTypeNames(specs);
   final out = <String, _Layout>{};
@@ -326,8 +264,6 @@ Map<String, _Layout> _layouts(List<NestedBlockSpec> specs) {
   return out;
 }
 
-/// Every class and enum name [specs] declare, children included — the
-/// names a sealed group's type and variants must not take.
 Set<String> nestedTypeNames(List<NestedBlockSpec> specs) {
   final out = <String>{};
   void walk(NestedBlockSpec s) {
@@ -342,33 +278,12 @@ Set<String> nestedTypeNames(List<NestedBlockSpec> specs) {
   return out;
 }
 
-/// [spec]'s field plans with each sealable [NestedBlockSpec.exactlyOne]
-/// group folded into one required sealed field, and each sealable
-/// [NestedBlockSpec.atMostOne] group into one nullable sealed field, at its
-/// first member's position. A group is sealable when every member is an
-/// optional typed input of this block, not a keyed block, and no earlier
-/// group (exactly-one groups come first) took one of them. Exactly-one
-/// groups that share one member set and nothing else fold into one sealed
-/// field together ([placeGroups]).
-///
-/// An exactly-one group that is every input of a (non-keyed) block — or an
-/// at-most-one group, when the block is optional — needs no field: the
-/// block's own class becomes the sealed type, so its parent writes
-/// `block: .member(...)`.
-///
-/// Each sealed field is named by [resolveSealedName]: the block's
-/// [NestedBlockSpec.sealedNames] entry, else [deriveSealedConcept]. A name
-/// clashes when its field shadows another input of the block, its type
-/// only repeats the block's class name, or its type or a variant takes a
-/// name in [taken] (every class the resource declares) or one an earlier
-/// group chose.
 _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
   final members = _members(spec);
   final byName = {for (final m in members) m.tfName: m};
   if (!spec.keyed) {
     for (final group in [
       ...spec.exactlyOne,
-      // A null optional block already means "none of them".
       if (!spec.required) ...spec.atMostOne,
     ]) {
       if (group.length != members.length) continue;
@@ -470,9 +385,6 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
               }, named: spec.sealedTypeNames[c]),
         );
         final ident = safeDartIdentifier(snakeToCamel(resolved.concept));
-        // Only a group whose name reports an error (which fails `wrap`)
-        // reaches the plain concatenations: `clashes` vetted every name it
-        // resolves to.
         final type = typeOf(resolved.concept);
         final classes =
             exactlyOneVariantNames(type, group, {
@@ -574,11 +486,6 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
   );
 }
 
-/// The nested exactly-one [groups] — at-most-one groups when [optional] —
-/// (parent path → member names, as `collectNestedTypes` takes them) that
-/// [renderNestedTypes] leaves unsealed for [specs], each as
-/// `<path> [<members>]: <reason>`. A group [settled] accepts (a hand-written
-/// slot seals it, or the override says why it stays unsealed) is left out.
 List<String> unsealedNestedGroups(
   List<NestedBlockSpec> specs,
   Map<String, List<List<String>>> groups, {
@@ -594,8 +501,6 @@ List<String> unsealedNestedGroups(
     out.add('$path [${members.join(', ')}]: $reason');
   }
 
-  // A shared helper carries its canonical occurrence's `path`, so the walk
-  // tracks where each copy actually sits.
   void walk(NestedBlockSpec spec, List<String> at) {
     if (!seen.add(at.join('.'))) return;
     if (laidOut.add(spec.className)) {
@@ -622,12 +527,8 @@ List<String> unsealedNestedGroups(
   return out;
 }
 
-/// A helper layout's skipped group: `<path> [<members>]: <reason>`.
 final _skipReport = RegExp(r'^(\S+) \[([^\]]*)\]: (.*)$');
 
-/// The name of every group [renderNestedTypes] seals for [specs], each
-/// with its [sealedGroupKeyOf] key from the resource root, and any naming
-/// error. A shared helper is named once, at its canonical path.
 List<SealedGroupName> nestedSealedNames(List<NestedBlockSpec> specs) {
   final out = <SealedGroupName>[];
   final laidOut = <String>{};
@@ -645,9 +546,6 @@ List<SealedGroupName> nestedSealedNames(List<NestedBlockSpec> specs) {
   return out;
 }
 
-/// The [sealedGroupKeyOf] key of every sealed group at every place it
-/// sits, a shared helper's copies included — each key a `sealedNames`
-/// entry can name the group by.
 Set<String> nestedSealedKeys(List<NestedBlockSpec> specs) {
   final out = <String>{};
   final layouts = _layouts(specs);
@@ -672,8 +570,6 @@ Set<String> nestedSealedKeys(List<NestedBlockSpec> specs) {
   return out;
 }
 
-/// The sealed-variant shape of a typed member: the required field and the
-/// value `encode()` writes.
 ExactlyOneVariant _variant({
   required String tfName,
   required String ident,
@@ -700,8 +596,6 @@ ExactlyOneVariant _variant({
   );
 }
 
-/// `const <Helper>()` when [spec] is a single block with no fields, so a
-/// variant holding it can take no argument; null otherwise.
 String? emptyBlockDefault(NestedBlockSpec spec) =>
     !spec.repeated &&
         !spec.keyed &&
@@ -711,7 +605,6 @@ String? emptyBlockDefault(NestedBlockSpec spec) =>
     ? 'const ${spec.className}()'
     : null;
 
-/// The sealed-variant shape of a reference-typed member.
 ExactlyOneVariant _referenceVariant(
   NestedAttrSpec attr,
   ResolvedReference reference,
@@ -728,9 +621,6 @@ ExactlyOneVariant _referenceVariant(
   );
 }
 
-/// Sorts a defensive copy of [items] by [tfName], ascending. Every
-/// sibling-ordering decision in this file goes through here so the output
-/// never depends on the caller's own list order.
 List<T> _byTfName<T>(Iterable<T> items, String Function(T) tfName) {
   final list = items.toList()..sort((a, b) => tfName(a).compareTo(tfName(b)));
   return list;

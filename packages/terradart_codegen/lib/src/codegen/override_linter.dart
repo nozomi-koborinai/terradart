@@ -7,12 +7,6 @@ import 'migrate/migrate_shape_analyzer.dart';
 import 'universal_invariants/enum_extractor.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
-/// A single dead/conflicting-config finding for one override.
-///
-/// Phase A5 (lint-override): when a resource opts into a derivation gate, the
-/// matching hand-written axis becomes dead config the emitter ignores. Each
-/// such finding is reported as a [LintViolation] with a stable [rule] id so the
-/// CLI output (and future phase-2 rules) have a consistent contract.
 final class LintViolation {
   const LintViolation({
     required this.tfType,
@@ -20,37 +14,11 @@ final class LintViolation {
     required this.detail,
   });
 
-  /// Terraform type the violating override belongs to (e.g. `google_x`).
   final String tfType;
-
-  /// Stable rule identifier (e.g. `derive-class-doc-dead-classdoccomment`).
   final String rule;
-
-  /// Human-readable explanation + remediation.
   final String detail;
 }
 
-/// Lints a single [override] for phase-1 dead-config rules. Pure: no I/O.
-///
-/// Phase-1 rules (all decidable from [WrapperOverride] fields alone, no
-/// schema/MM/IR load):
-///
-/// - (d) `curatedDoc != null && deriveClassDoc == false`: `curatedDoc` is only
-///   emitted when `deriveClassDoc` is on, so it is dead.
-/// - (e) `customSlots` keys never referenced by `paramOrder` /
-///   `argMapOrder`: the emitter resolves slot names from those lists, so an
-///   unreferenced slot is silently skipped — the declared parameter never
-///   reaches the generated constructor (Wave 32 shipped
-///   `google_redis_instance` with both nested-block slots dropped this way,
-///   while `wrap --check` stayed green). When `paramOrder` is omitted the
-///   emitter walks IR-natural names, which can never include a *virtual*
-///   slot, so customSlots without an explicit paramOrder is flagged too.
-///
-/// enum-in-`prelude` (vs `deriveEnums`) and `name`/`id` in `extraGetters`
-/// (vs `deriveOutputGetters`) are NOT phase-1 rules: they need the IR to
-/// compute the derived symbol names, and a same-named hand-written duplicate is
-/// already caught by `dart analyze` (duplicate definition). They are deferred
-/// to phase 2.
 List<LintViolation> lintOverride(
   String tfType,
   WrapperOverride override, {
@@ -58,10 +26,6 @@ List<LintViolation> lintOverride(
   MigrateShapeLintInput? migrate,
 }) {
   final violations = <LintViolation>[];
-
-  // Former rule (a) — deriveClassDoc + classDocComment dead config — is
-  // gone with the axis itself: the loader now rejects `classDocComment`
-  // outright with a migration hint, which fires earlier than any lint.
 
   if (override.curatedDoc != null && !override.deriveClassDoc) {
     violations.add(
@@ -76,11 +40,6 @@ List<LintViolation> lintOverride(
     );
   }
 
-  // Belt-and-suspenders alongside the loader's eager FormatException (see
-  // `yaml_loader.dart`'s `nestedTypeExcludes requires deriveNestedTypes`
-  // check): the loader can never actually produce this shape from yaml, but
-  // an override built some other way (a test, a future non-yaml source)
-  // could still combine the two fields incorrectly.
   if (override.nestedTypeExcludes != null && !override.deriveNestedTypes) {
     violations.add(
       LintViolation(
@@ -106,26 +65,13 @@ List<LintViolation> lintOverride(
   return violations;
 }
 
-/// Inputs of the migration-manifest shape rules.
 final class MigrateShapeLintInput {
   const MigrateShapeLintInput({required this.context, this.debt = const {}});
 
-  /// Symbol table the slot / field types resolve against: the helper
-  /// classes, sealed roots and enums declared across every override's
-  /// `prelude` in the registry (see [preludeShapeContext]).
   final ShapeContext context;
-
-  /// Terraform types exempt from `migrate-shape-underivable`
-  /// (`tool/migrate_manifest_debt.yaml`).
   final Set<String> debt;
 }
 
-/// Builds the package-wide [ShapeContext] the lint resolves types against:
-/// the symbols every override's `prelude` declares, plus those of [emitted]
-/// (the lane's generated wrapper sources), where the derived symbols
-/// (`deriveEnums` enums, `deriveNestedTypes` classes) live. Without
-/// [emitted], a custom slot or prelude field typed with a derived symbol
-/// reads as underivable.
 ShapeContext preludeShapeContext(
   Map<String, WrapperOverride> overrides, {
   Iterable<String> emitted = const [],
@@ -147,23 +93,6 @@ ShapeContext preludeShapeContext(
   );
 }
 
-/// Migration-manifest shape rules (issue #659).
-///
-/// `terradart wrap --migrate-manifest` derives, for every curated factory,
-/// how each constructor slot and helper-class field maps back to Terraform
-/// (`_migrate_manifest.g.dart`). Shapes it cannot derive are recorded as
-/// `manual` — silently, because the manifest must always emit. These rules
-/// make that visible at lint time, from the override YAML alone:
-///
-/// - `migrate-shape-underivable` — a `prelude` helper class whose
-///   `encode()` cannot be mapped field-per-key, a helper field or custom
-///   slot whose type the manifest cannot express, or a custom slot whose
-///   argMap entry has no static key. Fix the shape, declare
-///   `customSlots.<slot>.migrate: {kind: manual, reason: ...}` for a slot
-///   that is manual by design, or add a reasoned `tool/migrate_manifest_debt.yaml`
-///   entry. Suppressed for types listed in [MigrateShapeLintInput.debt].
-/// - `migrate-hint-stale` — a `migrate:` hint on a slot the manifest
-///   derives fine; the hint would hide a working recipe. Never suppressed.
 List<LintViolation> lintMigrateShapes(
   String tfType,
   WrapperOverride override,
@@ -257,8 +186,6 @@ List<LintViolation> lintMigrateShapes(
   return violations;
 }
 
-/// Ledger entries that no longer suppress a `migrate-shape-underivable`
-/// finding (the override was fixed, or the type is unknown).
 List<String> staleMigrateManifestDebt(
   Map<String, WrapperOverride> overrides, {
   required ShapeContext context,
@@ -282,24 +209,6 @@ List<String> staleMigrateManifestDebt(
   return stale;
 }
 
-/// Flags `customSlots` entries the emitter can never emit.
-///
-/// The emitter resolves [WrapperOverride.paramOrder] (constructor side) and
-/// [WrapperOverride.argMapOrder] (argMap side, falling back to `paramOrder`)
-/// names against [WrapperOverride.customSlots] first; a slot key absent from
-/// the relevant list is silently skipped, leaving the declared
-/// `paramDeclaration` / `argMapEntry` as dead config and any prelude helper
-/// types as unreachable public API.
-///
-/// - `custom-slot-missing-param-order` — customSlots present but the
-///   override omits `paramOrder` entirely. IR-natural ordering can only
-///   resolve IR-derived names, so virtual slots are guaranteed dropped;
-///   overrides that use customSlots must spell out `paramOrder`.
-/// - `custom-slot-not-in-param-order` — a slot key is missing from
-///   `paramOrder`, so no constructor parameter is emitted for it.
-/// - `custom-slot-not-in-arg-map-order` — `argMapOrder` is set but omits a
-///   slot key, so the constructor parameter exists while its argMap entry is
-///   dropped (the generated wrapper would silently ignore the argument).
 List<LintViolation> lintDeadCustomSlots(
   String tfType,
   WrapperOverride override,
@@ -356,29 +265,13 @@ List<LintViolation> lintDeadCustomSlots(
   return violations;
 }
 
-/// Normalizes MM `exactly_one_of` groups into canonical sibling sets.
-///
-/// Magic Modules repeats the same sibling `exactly_one_of` list on each
-/// property in the group, and the parser prefixes each member with the
-/// declaring property path (e.g. `[aws.aws, aws.oidc, …]`). This helper
-/// collapses those duplicates into one sorted set per sibling group
-/// (e.g. `[aws, oidc, saml, x509]`).
-///
-/// Groups that reference a field *inside* a nested block via a list index
-/// (e.g. `[network, subnet.0.name]` on `google_vpc_access_connector`) are
-/// skipped: those express top-level-property-vs-nested-block exclusivity,
-/// not a flat sibling group, and collapsing `subnet.0.name` to its last
-/// segment (`name`) would fabricate a bogus `[name, network]` group. The
-/// flat-sibling rules this feeds (paramOrder / customSlot fanout) only model
-/// flat groups; a nested-block exclusivity needs a different shape.
 @visibleForTesting
 List<List<String>> canonicalExactlyOneOfGroups(List<List<String>> raw) {
   final seen = <String>{};
   final out = <List<String>>[];
   for (final group in raw) {
     if (group.length < 2) continue;
-    // A `.<digits>.` segment marks a list-indexed nested-block field
-    // reference, not a declaring-property prefix.
+    // Magic Modules uses .<digits>. for list-indexed nested-block paths (e.g. subnet.0.name).
     if (group.any((m) => RegExp(r'\.\d+\.').hasMatch(m))) continue;
     if (group.every((m) => !m.contains('.'))) {
       final sorted = List<String>.from(group)..sort();
@@ -397,28 +290,11 @@ List<List<String>> canonicalExactlyOneOfGroups(List<List<String>> raw) {
   return out;
 }
 
-/// Flags MM `exactly_one_of` groups modeled without a sealed virtual slot.
-///
-/// Phase A5 phase 2: requires [MmResourceOverrides.exactlyOneOfGroups] from
-/// the synced MM fixture.
-///
-/// - `exactly-one-optional-fanout` — top-level MM groups (member names
-///   without `.`) exposed as multiple optional member [customSlots].
-/// - `exactly-one-paramorder-fanout` — canonical sibling groups with two or
-///   more members listed in [WrapperOverride.paramOrder] (the escape hatch
-///   when an override omits customSlots and relies on schema-default optional
-///   nested blocks).
-///
-/// A group a hand-written sealed slot covers ([handSealedGroups], the test
-/// `deriveExactlyOne` applies too) is sealed. An override with
-/// `deriveExactlyOne` is never flagged.
 List<LintViolation> lintExactlyOneMutualExclusion(
   String tfType,
   WrapperOverride override, {
   MmResourceOverrides? mm,
 }) {
-  // `deriveExactlyOne` seals the groups at wrap time (wrap prints any it
-  // cannot), so the override has no slots of its own to lint.
   if (mm == null || override.deriveExactlyOne) return const [];
 
   final violations = <LintViolation>[];
@@ -450,8 +326,6 @@ List<LintViolation> lintExactlyOneMutualExclusion(
     if (coversGroup(hand, '', group)) continue;
 
     final optionalDirectMemberSlots = _optionalMemberSlots(group, slots);
-    // IR/schema slots only — customSlot keys in paramOrder are curated
-    // replacements, not schema-default fanout.
     final schemaSlotsInParamOrder = [
       for (final member in group)
         if (paramOrder.contains(member) && !slots.containsKey(member)) member,
@@ -507,11 +381,6 @@ LintViolation _exactlyOneViolation({
 bool _paramDeclarationIsOptional(String paramDeclaration) =>
     paramDeclaration.contains('?');
 
-/// Lints every entry of [overrides], aggregating violations across the
-/// registry. Results are ordered by `tfType` (then by rule-discovery order
-/// within a type) for deterministic output.
-///
-/// When [mmByType] is supplied, phase-2 rules (MM-backed) run per entry.
 List<LintViolation> lintOverrides(
   Map<String, WrapperOverride> overrides, {
   Map<String, MmResourceOverrides>? mmByType,

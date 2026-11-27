@@ -1,12 +1,3 @@
-// migrate_shape_fixtures.dart — one Terraform JSON fixture per migration
-// manifest that exercises every typed API shape the lane's wrappers emit.
-//
-// The round-trip gate migrates each fixture strictly (no ledger), and
-// tool/migrate_shape_fixtures_test.dart checks that the migration used every
-// shape [requiredShapes] derives from the manifest and, for a lane whose
-// package is in the release the top MIGRATING.md section upgrades from, at
-// least one type a MIGRATING.md rename row names.
-
 import 'package:terradart_migrate/terradart_migrate.dart';
 
 const shapeFixtureRoot = 'packages/terradart_migrate/test/fixtures/shapes';
@@ -20,9 +11,6 @@ String shapeFixtureSlug(String package) =>
 String shapeFixturePath(String package) =>
     '$shapeFixtureRoot/${shapeFixtureLane(package)}/main.tf.json';
 
-/// The shapes a migration of [manifest]'s fixture must use: each enum,
-/// enum-list, sealed, reference and principal slot kind the manifest has,
-/// with every enum fallback and all three enum-list forms.
 Set<MigratedShape> requiredShapes(MigrateManifest manifest) {
   final out = <MigratedShape>{};
   void scan(Iterable<MigrateSlot> slots) {
@@ -66,12 +54,6 @@ Set<MigratedShape> requiredShapes(MigrateManifest manifest) {
   return out;
 }
 
-/// The new names MIGRATING.md records for renamed types: every row of a
-/// Before / After table (`| Before | After |`, `| Before (0.30) | After |`)
-/// whose two cells are each one type name, with an optional note in
-/// parentheses (`(google-beta)`). Throws when there is none, and
-/// [shapeFixtureFindings] fails a lane none of them names, so a reworded
-/// table cannot turn the renamed type check off.
 Set<String> renamedTypes(String migratingMd) {
   const note = r'(?: \([^()|]*\))?';
   final header = RegExp('^\\| *Before$note *\\| *After$note *\\|\$');
@@ -98,14 +80,6 @@ Set<String> renamedTypes(String migratingMd) {
   return out;
 }
 
-/// Why [report], the migration of [manifest]'s shape fixture, does not cover
-/// the lane: a kept block, a required shape it did not use, or no use of a
-/// renamed type the manifest declares. The renamed-type checks apply only
-/// when the lane is [published] before the release MIGRATING.md upgrades
-/// from: a package with no such release has had no upgrade, so MIGRATING.md
-/// has no rename row about it. When a published lane has never renamed a
-/// helper or enum type across its upgrades, pass [allowNoRename] as `true`;
-/// it fails as stale as soon as MIGRATING.md records a rename for that lane.
 List<String> shapeFixtureFindings(
   MigrateManifest manifest,
   MigrationReport report, {

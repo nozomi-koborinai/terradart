@@ -115,7 +115,6 @@ final class _TfJsonDecoder {
     _fail('$what must be a JSON object');
   }
 
-  /// A body, or each body of a list of bodies.
   List<Map<String, dynamic>> _bodies(Object? value, String what) {
     if (value is Map<String, dynamic>) return [value];
     if (value is List) {

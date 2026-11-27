@@ -5,7 +5,6 @@ import 'assets/skill_md.g.dart';
 import 'skill/installer.dart';
 import 'skill/skill_command.dart';
 
-/// A provider package `terradart init` can scaffold a Stack for.
 enum InitProvider {
   google('terradart_google'),
   aws('terradart_aws'),
@@ -15,14 +14,12 @@ enum InitProvider {
 
   const InitProvider(this.package);
 
-  /// The pub package holding its factories.
   final String package;
 
   static InitProvider parse(String name) =>
       values.firstWhere((p) => p.name == name);
 }
 
-/// Where the scaffolded Stack keeps its state.
 enum InitBackend {
   local('a file under tf-out/'),
   gcs('a Google Cloud Storage bucket'),
@@ -38,7 +35,6 @@ enum InitBackend {
       values.firstWhere((b) => b.name == name);
 }
 
-/// The Flutter app an `infra/` package is scaffolded into.
 final class FlutterApp {
   const FlutterApp({
     required this.appExports,
@@ -47,24 +43,15 @@ final class FlutterApp {
     required this.appDir,
   });
 
-  /// The generated reader, relative to the infra package
-  /// (`../lib/generated/<stack>.g.dart`).
   final String appExports;
 
-  /// The define file of an environment, relative to the app
-  /// (`infra/.terradart/dart_defines.<env>.json`) — `<env>` is replaced.
   final String defineFile;
 
-  /// The infra package, relative to the app (`infra`).
   final String infraDir;
 
-  /// The app, relative to the infra package (`..`).
   final String appDir;
 }
 
-/// A per-environment value `terradart init` takes with a flag or a
-/// question, `<env>=<value>` or one value for every environment: left out,
-/// the field holds a placeholder and a TODO.
 enum InitId {
   gcpProject(InitProvider.google, 'gcp-project', 'Google Cloud project ID'),
   awsRegion(InitProvider.aws, 'aws-region', 'AWS region'),
@@ -96,23 +83,17 @@ enum InitId {
     this.perEnv = true,
   });
 
-  /// The provider it belongs to; `null` for the state bucket.
   final InitProvider? provider;
 
-  /// Left out, the field is `null` rather than a placeholder.
   final bool optional;
 
-  /// Usually differs between environments, so a question asks each one.
   final bool perEnv;
 
-  /// The `terradart init` option, without `--`.
   final String flag;
 
-  /// What the question asks for.
   final String label;
 }
 
-/// Everything `terradart init` writes, decided.
 final class InitPlan {
   InitPlan({
     required this.packageName,
@@ -129,35 +110,27 @@ final class InitPlan {
 
   final String packageName;
 
-  /// In [InitProvider] order.
   final List<InitProvider> providers;
   final List<String> envs;
   final InitBackend backend;
 
-  /// The IDs given, by environment.
   final Map<InitId, Map<String, String>> ids;
   final FlutterApp? flutter;
 
-  /// Where the project gets the agent skill this CLI bundles; none when
-  /// empty.
   final List<SkillTarget> skillTargets;
 
   bool has(InitProvider p) => providers.contains(p);
 
-  /// `MyAppStack` for `my_app`.
   String get stackClass => '${_pascal(packageName)}Stack';
 
-  /// `my-app`: the prefix of the cloud-side names.
   String get slug => packageName.replaceAll('_', '-');
 
-  /// The pub packages the project depends on, sorted.
   List<String> get packages => {
     'terradart_core',
     for (final p in providers) p.package,
     if (has(InitProvider.google)) 'terradart_time',
   }.toList()..sort();
 
-  /// The values the chosen providers and backend take.
   List<InitId> get idFields => [
     for (final id in InitId.values)
       if (switch (id.provider) {
@@ -167,14 +140,12 @@ final class InitPlan {
         id,
   ];
 
-  /// Whether `lib/env.dart` holds a placeholder marked TODO.
   bool get hasPlaceholders => fields.any(
     (f) =>
         f.todo != null &&
         envs.any((env) => f.id == null || ids[f.id]?[env] == null),
   );
 
-  /// The fields of the generated `Env` enum, in declaration order.
   List<EnvField> get fields {
     final aws = has(InitProvider.aws);
     return [
@@ -272,7 +243,6 @@ final class InitPlan {
   bool get google => has(InitProvider.google);
 }
 
-/// One field of the generated `Env` enum, and its value per environment.
 final class EnvField {
   EnvField(this.name, this.doc, this.placeholder, {this.id, String? todo})
     : todo =
@@ -282,18 +252,13 @@ final class EnvField {
   final String name;
   final String doc;
 
-  /// The value of an environment the flags leave out; `null` makes the
-  /// field nullable, and leaves it `null`.
   final String Function(String env)? placeholder;
 
-  /// The flag that sets it, when it takes one.
   final InitId? id;
 
-  /// The TODO a placeholder carries; `null` is a default that works as is.
   final String? todo;
 }
 
-/// The files of [plan], by path relative to the project.
 Map<String, String> renderProject(InitPlan plan) => {
   'pubspec.yaml': _pubspec(plan),
   'lib/env.dart': formatDart(_env(plan)),
@@ -395,12 +360,10 @@ String _env(InitPlan plan) {
   return '$b';
 }
 
-/// Whether an environment leaves [f] `null`.
 bool _nullable(InitPlan plan, EnvField f) =>
     f.placeholder == null &&
     plan.envs.any((env) => plan.ids[f.id]?[env] == null);
 
-/// [text] as `///` lines of at most 80 columns.
 String _docComment(String text, String indent) {
   final lines = <String>[];
   var line = '';
@@ -606,9 +569,6 @@ Future<void> main(List<String> args) => runEnvironments(
 );
 ''';
 
-/// The commands that follow `terradart init`, run from where it ran: [cd]
-/// is the project relative to there, `null` when it is there; [pubGet]
-/// when `init` did not run `dart pub get` itself.
 List<String> nextSteps(
   InitPlan plan, {
   required String? cd,
@@ -721,31 +681,31 @@ Guides: [The terradart command](https://terradart.dev/docs/cli/), [Environments]
 ''';
 }
 
-/// An Azure storage account name: 3 to 24 lowercase letters and digits.
-///
-/// The package name keeps as many leading characters as fit in front of
-/// `<env>tf`, so `a` / `dev` stays `adevtf`.
+const _azureStorageAccountMinLength = 3;
+const _azureStorageAccountMaxLength = 24;
+
 String _azureStorageAccountName(String packageName, String env) {
   final prefix = packageName.toLowerCase().replaceAll(RegExp(r'[^0-9a-z]'), '');
   final suffix = '${env.toLowerCase().replaceAll(RegExp(r'[^0-9a-z]'), '')}tf';
-  final room = 24 - suffix.length;
+  final room = _azureStorageAccountMaxLength - suffix.length;
   final head = room <= 0
       ? ''
       : (prefix.length <= room ? prefix : prefix.substring(0, room));
   var name = '$head$suffix';
-  if (name.length > 24) name = name.substring(name.length - 24);
-  if (name.length < 3) name = name.padLeft(3, '0');
+  if (name.length > _azureStorageAccountMaxLength) {
+    name = name.substring(name.length - _azureStorageAccountMaxLength);
+  }
+  if (name.length < _azureStorageAccountMinLength) {
+    name = name.padLeft(_azureStorageAccountMinLength, '0');
+  }
   return name;
 }
 
-/// How local state moves to a bucket; `terradart init` only scaffolds.
 const moveStateNote =
     'Move it to a bucket before anyone else applies: set `backend:` in '
     '`lib/stack.dart` to `GcsBackend`, `S3Backend`, `S3Backend.r2` or '
     '`AzurermBackend`, then run `terradart state migrate`.';
 
-/// The OpenTofu registry has no `appwrite/appwrite`, so the downloaded
-/// OpenTofu cannot install it.
 const appwriteEngineNote =
     'Appwrite currently needs Terraform on your PATH: the Appwrite provider '
     'is published to the Terraform registry only, which OpenTofu cannot '

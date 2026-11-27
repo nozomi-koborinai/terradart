@@ -5,7 +5,6 @@ import 'package:test/test.dart';
 
 void main() {
   test('public symbols are exported', () {
-    // Compile-time: just referencing them is the test.
     final symbols = <Type>[
       TfArg,
       TfArgExpression,
@@ -56,7 +55,6 @@ void main() {
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {
-    // Ensure the extension is reachable through the public surface.
     expect(const Duration(seconds: 7).toTfDurationString(), equals('7s'));
   });
 }

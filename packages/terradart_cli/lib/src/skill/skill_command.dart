@@ -10,21 +10,13 @@ import '../version.dart';
 import '../workflow.dart';
 import 'installer.dart';
 
-/// The exit code of `skill status --check` when a skill is missing, older
-/// or newer than this CLI, edited, or without a marker.
 const skillDriftExitCode = 4;
 
-/// The exit code of `skill install` / `update` when it left a file it does
-/// not overwrite without `--force`.
 const skillKeptExitCode = 5;
 
-/// The `npx skills` command that installs the skill this CLI bundles,
-/// pinned to its release tag.
 const npxSkillsAdd =
     'npx skills add nozomi-koborinai/terradart#v$cliVersion --skill terradart';
 
-/// `terradart skill install | update | status`: the terradart agent skill
-/// this CLI bundles, in the project's agent skills directories.
 final class SkillCommand extends Command<int> {
   SkillCommand({required Console console, required String cwd}) {
     addSubcommand(_SkillWriteCommand(console, cwd, update: false));
@@ -79,7 +71,6 @@ abstract class _SkillSubcommand extends Command<int> {
     return ProjectConfig.findRoot(cwd);
   }
 
-  /// The `--agents` targets; `null` without the flag.
   List<SkillTarget>? get agents => argResults!.wasParsed('agents')
       ? SkillTarget.parse(argResults!.multiOption('agents'))
       : null;

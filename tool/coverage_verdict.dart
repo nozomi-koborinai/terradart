@@ -1,17 +1,9 @@
-/// What one run of `tool/coverage_stack.dart` concluded, and the one codec of
-/// the `coverage_stack.json` it writes. `tool/bump_new_factories.dart record`
-/// and `tool/generate_drift_report.dart` only read it.
-library;
-
-/// One lane's coverage stack after a run.
 sealed class CoverageVerdict {
   const CoverageVerdict(this.slug);
 
-  /// `aws_leftover`: the stack is `examples/<slug>_quickstart`.
   final String slug;
 }
 
-/// The stack on disk passes what required CI runs on it.
 final class CoverageGreen extends CoverageVerdict {
   const CoverageGreen({
     required String slug,
@@ -22,25 +14,13 @@ final class CoverageGreen extends CoverageVerdict {
     required this.pruned,
   }) : super(slug);
 
-  /// `tofu 1.13.1`.
   final String engine;
-
-  /// Provider source to the version `init` selected: `hashicorp/aws` →
-  /// `6.68.0`.
   final Map<String, String> providers;
-
-  /// Values the provider asked for, now in the lane's ledger.
   final List<LearnedEntry> learned;
-
-  /// Factories this run left out of the stack.
   final List<ExcludedFactory> excluded;
-
-  /// Ledger keys removed because the manifest no longer has their slot.
   final List<String> pruned;
 }
 
-/// No green stack could be produced; the driver restored the stack and the
-/// ledger to what it found.
 final class CoverageBroken extends CoverageVerdict {
   const CoverageBroken({
     required String slug,
@@ -52,10 +32,8 @@ final class CoverageBroken extends CoverageVerdict {
   final String logExcerpt;
 }
 
-/// The step of a coverage run that failed.
 enum OracleStage { render, synth, fmt, init, validate, analyze }
 
-/// A value the run learned from a provider diagnostic.
 final class LearnedEntry {
   const LearnedEntry({
     required this.key,
@@ -66,26 +44,14 @@ final class LearnedEntry {
     required this.detail,
   });
 
-  /// `DataGoogleIamWorkloadIdentityPoolJwks.resourceName`.
   final String key;
-
-  /// The JSON value now in the ledger.
   final Object value;
-
-  /// `family url-host`, `sibling AwsDirectoryServiceTrust.directoryId`.
   final String source;
-
-  /// The value the provider rejected.
   final Object rejected;
-
-  /// `data.google_iam_workload_identity_pool_jwks.jwks.resource_name`.
   final String at;
-
-  /// The provider's message.
   final String detail;
 }
 
-/// A factory the coverage stack does not instantiate after this run.
 final class ExcludedFactory {
   const ExcludedFactory({
     required this.className,
@@ -99,32 +65,23 @@ final class ExcludedFactory {
   final FactoryKind kind;
   final ExclusionCause cause;
 
-  /// `resource:aws_foo` or `dataSource:aws_foo`, the key `schema_diff.json`
-  /// and `tool/curation_backlog.yaml` use.
   String get typeKey => '${kind.name}:$tfType';
 }
 
 enum FactoryKind { resource, dataSource }
 
-/// Why a factory is out of the stack.
 sealed class ExclusionCause {
   const ExclusionCause();
 }
 
-/// The provider rejected a value or block no candidate fixed.
 final class ProviderRejected extends ExclusionCause {
   const ProviderRejected(this.at, this.rejected, this.detail);
 
-  /// `aws_foo_bar.foo_bar.mode`, or the block address.
   final String at;
-
-  /// The rejected value; null when the provider rejected the block.
   final Object? rejected;
-
   final String detail;
 }
 
-/// The generator could not construct the factory's call.
 final class GeneratorCannotPlace extends ExclusionCause {
   const GeneratorCannotPlace(this.reason);
 
@@ -179,8 +136,6 @@ Map<String, Object?> encodeVerdict(CoverageVerdict verdict) =>
       },
     };
 
-/// Parses `coverage_stack.json` at the reader's boundary. Throws a
-/// [FormatException] on a malformed file.
 CoverageVerdict decodeVerdict(Object? json) {
   final m = _map(json, 'verdict');
   final slug = _string(m, 'slug');

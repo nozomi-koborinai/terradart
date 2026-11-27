@@ -349,7 +349,6 @@ final class OutputBlock extends TfBlock {
   Expr? get sensitive => argument('sensitive');
 }
 
-/// Arguments shared by resources, data sources and module calls.
 mixin _MetaArguments on TfBlock {
   /// The `count` meta-argument, if any.
   Expr? get count => argument('count');

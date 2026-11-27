@@ -2,25 +2,12 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart' as crypto;
 
-/// The version and content hash a terradart agent skill records under
-/// `metadata:` in its front matter:
-///
-/// ```yaml
-/// metadata:
-///   terradart-version: "0.34.0"
-///   terradart-sha256: "<sha256>"
-/// ```
-///
-/// `terradart-sha256` is [skillContentHash] of the file, which leaves these
-/// two lines out, so a release that changes only the version keeps the hash.
 final class SkillMarker {
   const SkillMarker({required this.version, required this.sha256});
 
   final String version;
   final String sha256;
 
-  /// The marker in [text]'s front matter; `null` when either line is
-  /// missing.
   static SkillMarker? parse(String text) {
     final front = _frontMatter(_lf(text));
     if (front == null) return null;
@@ -44,8 +31,6 @@ final _markerLine = RegExp(
   multiLine: true,
 );
 
-/// The SHA-256 (hex) of [text] without its two marker lines, after turning
-/// CRLF line endings into LF.
 String skillContentHash(String text) {
   final lf = _lf(text);
   final front = _frontMatter(lf);
@@ -57,8 +42,6 @@ String skillContentHash(String text) {
   return crypto.sha256.convert(utf8.encode(unmarked)).toString();
 }
 
-/// [text] with its marker set to [version] and the hash of its content,
-/// adding the `metadata:` lines when the front matter has none.
 String withSkillMarker(String text, String version) {
   final front = _frontMatter(text);
   if (front == null) {
@@ -82,9 +65,6 @@ String withSkillMarker(String text, String version) {
 
 String _lf(String text) => text.replaceAll('\r\n', '\n');
 
-/// The front matter of [text]: the lines between the opening `---` line and
-/// the next `---` line, each ending in `\n`; [start] and [end] are its
-/// offsets in [text].
 ({int start, int end, String body})? _frontMatter(String text) {
   if (!text.startsWith('---\n')) return null;
   const start = 4;
@@ -94,8 +74,6 @@ String _lf(String text) => text.replaceAll('\r\n', '\n');
   return (start: start, end: end, body: text.substring(start, end));
 }
 
-/// Compares two SemVer versions (`X.Y.Z` with an optional `-prerelease`);
-/// `null` when either does not parse.
 int? compareVersions(String a, String b) {
   final x = _semver.firstMatch(a);
   final y = _semver.firstMatch(b);

@@ -7,7 +7,6 @@ import 'package:test/test.dart';
 
 import 'support.dart';
 
-/// The one line `--json` prints on stdout.
 Map<String, Object?> result(({int code, String out, String err}) r) {
   final lines = r.out.trim().split('\n');
   expect(lines, hasLength(1), reason: 'stdout:\n${r.out}\nstderr:\n${r.err}');

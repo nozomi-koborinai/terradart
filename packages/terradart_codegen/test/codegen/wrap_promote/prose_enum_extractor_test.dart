@@ -78,7 +78,6 @@ void main() {
     });
 
     test('skips fields whose extracted tokens contain whitespace or dots', () {
-      // URL / path-style enums get rejected by the conservative token rule.
       final def = _resourceWithAttribute(
         name: 'url',
         description:

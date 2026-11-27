@@ -23,7 +23,6 @@ void main() {
         expect(out, contains('active'));
         expect(out, contains('alwaysRunning'));
         expect(out, contains('onDemand'));
-        // Phase 4.5.1: emitter no longer wraps in `prelude: |`.
         expect(out, isNot(contains('prelude:')));
       },
     );
@@ -84,7 +83,6 @@ void main() {
         );
         expect(out, contains('defaultCase'));
         expect(out, contains('strict'));
-        // `defaultCase` must carry the unmodified Terraform value.
         expect(
           out,
           contains(
@@ -101,14 +99,11 @@ void main() {
         enumValues: ['REGIONAL', 'GLOBAL'],
         resourcePascal: 'GoogleComputeNetwork',
       );
-      // No `.` in the Dart enum identifier.
       expect(out, isNot(contains('GoogleComputeNetworkRoutingConfig.')));
-      // Pascal-cased leaf field.
       expect(
         out,
         contains('extension type const GoogleComputeNetworkRoutingMode._('),
       );
-      // The header comment uses the leaf.
       expect(out, contains('# --- validValues: routing_mode ---'));
     });
 
@@ -119,7 +114,6 @@ void main() {
         enumValues: ['active', 'inactive'],
         resourcePascal: 'GoogleFoo',
       );
-      // Every non-empty line begins with at least 2 spaces.
       for (final line in out.split('\n')) {
         if (line.isEmpty) continue;
         expect(

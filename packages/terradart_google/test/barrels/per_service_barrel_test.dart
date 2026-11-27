@@ -1,20 +1,15 @@
-// packages/terradart_google/test/barrels/per_service_barrel_test.dart
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
-/// One `export 'path' show A, B, C;` directive parsed out of a barrel.
 class _ExportDirective {
   const _ExportDirective({required this.sourcePath, required this.shownNames});
   final String sourcePath;
   final List<String> shownNames;
 }
 
-/// Parses `export '<path>' show A, B, C;` directives from a Dart barrel.
-/// Tolerates multi-line `show` clauses (each name on its own line).
 List<_ExportDirective> _parseExports(String dartSource) {
-  // export\s+'(<path>)'\s+show\s+(A, B, C)\s*;
   final regex = RegExp(r"export\s+'([^']+)'\s+show\s+([^;]+);", dotAll: true);
   final results = <_ExportDirective>[];
   for (final match in regex.allMatches(dartSource)) {
@@ -30,21 +25,13 @@ List<_ExportDirective> _parseExports(String dartSource) {
   return results;
 }
 
-/// Returns the set of top-level Dart declarations (`class`, `enum`, `extension`,
-/// `mixin`, `typedef`, top-level `const`/`final`/`var`) defined in [source].
 Set<String> _topLevelDeclarations(String source) {
-  // Class / enum / mixin / typedef declarations. Excludes `extension`
-  // because anonymous extensions (`extension on String`) would falsely
-  // capture `on` as the declaration name.
-  final declRegex = RegExp(
+  final typeDeclRegex = RegExp(
     r'^(?:abstract\s+|sealed\s+|base\s+|interface\s+|final\s+|mixin\s+)*'
     r'(?:class|enum|mixin|typedef)\s+(\w+)',
     multiLine: true,
   );
-  // Named extensions only: `extension Foo on Bar`. The `\s+on\b` suffix
-  // skips anonymous extensions (`extension on String`) because (\w+)
-  // would have to consume `on` and then no second `on` is present.
-  final extensionRegex = RegExp(
+  final namedExtensionRegex = RegExp(
     r'^extension\s+(?:type\s+(?:const\s+)?(\w+)|(\w+)\s+on\b)',
     multiLine: true,
   );
@@ -53,10 +40,10 @@ Set<String> _topLevelDeclarations(String source) {
     multiLine: true,
   );
   final names = <String>{};
-  for (final m in declRegex.allMatches(source)) {
+  for (final m in typeDeclRegex.allMatches(source)) {
     names.add(m.group(1)!);
   }
-  for (final m in extensionRegex.allMatches(source)) {
+  for (final m in namedExtensionRegex.allMatches(source)) {
     names.add((m.group(1) ?? m.group(2))!);
   }
   for (final m in constRegex.allMatches(source)) {
@@ -66,11 +53,23 @@ Set<String> _topLevelDeclarations(String source) {
 }
 
 void main() {
+  test(
+    '_topLevelDeclarations captures named declarations and skips unnamed extensions',
+    () {
+      final names = _topLevelDeclarations('''
+class Foo {}
+extension NamedExt on String {}
+extension on String {}
+extension type const Wrapper(int value) {}
+const String kBar = 'bar';
+''');
+      expect(names, equals({'Foo', 'NamedExt', 'Wrapper', 'kBar'}));
+    },
+  );
+
   group('Per-service barrels: show entries resolve to source declarations', () {
     final libDir = Directory('lib');
 
-    // Find all `lib/*.dart` barrels except the legacy umbrella.
-    // Evaluated at test-collection time; lib/ must exist from the working dir.
     final barrels = libDir.existsSync()
         ? libDir
               .listSync()
@@ -81,15 +80,12 @@ void main() {
         : <File>[];
 
     test('discovered at least 1 per-service barrel under lib/', () {
-      // Also asserts lib/ is reachable from the working directory.
       expect(
         libDir.existsSync(),
         isTrue,
         reason: 'lib/ not found from terradart_google working dir',
       );
-      // Trivially passes after Task 1 (zero barrels); becomes meaningful as
-      // barrels land. Once Plan 5.B lands fully, the count is 16.
-      expect(barrels, isNotNull);
+      expect(barrels, isNotEmpty);
     });
 
     for (final barrel in barrels) {
@@ -99,7 +95,6 @@ void main() {
         final exports = _parseExports(barrelSource);
 
         for (final directive in exports) {
-          // Resolve sourcePath relative to lib/.
           final sourceFile = File(p.join('lib', directive.sourcePath));
           expect(
             sourceFile.existsSync(),
@@ -128,12 +123,6 @@ void main() {
   });
 
   group('Per-service barrels: generated files are exported completely', () {
-    // The reverse direction of the group above, limited to GENERATED
-    // wrapper files: every public top-level declaration must appear in the
-    // barrel's show clause. The catalog advertises all nested types of a
-    // generated wrapper to MCP agents (`nestedTypes`), so a hidden public
-    // type is a compile error waiting for whoever follows that advertised
-    // surface (Wave 32 shipped the redis barrel exporting 3 of 7 types).
     final libDir = Directory('lib');
     final barrels = libDir.existsSync()
         ? libDir
@@ -150,7 +139,7 @@ void main() {
         final exports = _parseExports(barrel.readAsStringSync());
         for (final directive in exports) {
           final sourceFile = File(p.join('lib', directive.sourcePath));
-          if (!sourceFile.existsSync()) continue; // covered by group above
+          if (!sourceFile.existsSync()) continue;
           final source = sourceFile.readAsStringSync();
           if (!source.startsWith('// GENERATED FILE')) continue;
           final public = _topLevelDeclarations(

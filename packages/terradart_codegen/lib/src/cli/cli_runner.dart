@@ -7,10 +7,6 @@ import 'wrap_command.dart';
 import 'wrap_init_command.dart';
 import 'wrap_promote_command.dart';
 
-/// Build the top-level `terradart-codegen` [CommandRunner].
-///
-/// Returns `int` so each command can pick its own exit code. `null` from a
-/// command means "no explicit code — treat as success".
 CommandRunner<int> buildCliRunner() {
   final runner =
       CommandRunner<int>(

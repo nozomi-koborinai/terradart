@@ -27,7 +27,6 @@ void main() {
           .where((f) => f.path.endsWith('_v7.schema.json'))
           .toList();
 
-      // 13 known production resources + 1 synthetic = 14 fixtures total.
       expect(entries.length, greaterThanOrEqualTo(13));
 
       const rules = GoogleProviderRules();
@@ -48,7 +47,6 @@ void main() {
             src,
             providerVersion: '7.31.0',
           );
-          // Pick the first resource OR data source in this fixture.
           final terraformType = ir.resources.keys
               .followedBy(ir.dataSources.keys)
               .firstOrNull;
@@ -73,7 +71,6 @@ void main() {
           File(p.join(tmpDir.path, '$stem.yaml')).writeAsStringSync(yaml);
         }
 
-        // Loader must read every emitted yaml without raising.
         expect(() {
           registry.loadWrapperOverrides(rootDir: tmpDir.path);
         }, returnsNormally);

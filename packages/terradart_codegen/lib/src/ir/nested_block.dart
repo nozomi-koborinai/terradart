@@ -7,7 +7,7 @@ enum NestingMode { single, list, set, map, group }
 
 /// One nested block ("schema_settings { ... }") attached to a parent block.
 final class NestedBlockDef {
-  final String name; // snake_case Terraform name
+  final String name;
   final NestingMode nesting;
   final int? minItems;
   final int? maxItems;

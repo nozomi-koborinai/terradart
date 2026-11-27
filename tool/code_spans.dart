@@ -1,30 +1,6 @@
-// code_spans.dart — the code spans and fences of a Markdown text, read the
-// CommonMark way, for the doc gates that read inline code.
-//
-// A span opens on a run of n backticks and closes on the next run of
-// exactly n, on the same line or a later line of the same block; its line
-// endings read as spaces. A blank line, a fence, a row of a table (a line
-// with `|` under a header whose next line is a delimiter row), an ATX
-// heading (one to six `#` and a space), a bullet item, or an ordered item
-// that numbers 1 or continues a list ends a block, and a run no later run
-// closes is literal text. Block-quote markers and a trailing CR are dropped
-// first. A fence is three or more backticks or tildes, at any indentation
-// (list items, doc comments), closed by a run of the same character at
-// least as long; so a four-space indented line of backticks, which
-// CommonMark reads as indented code, opens one here.
-
-/// A code span: its [code], and the 1-based [line] it opens on.
 typedef CodeSpan = ({String code, int line});
 
-/// One line of a scanned text.
-typedef ScannedLine = ({
-  /// The line with each code span blanked, or null inside a fence or on
-  /// one of its markers.
-  String? prose,
-
-  /// The info string of the fence this line is the body of, or null.
-  String? fence,
-});
+typedef ScannedLine = ({String? prose, String? fence});
 
 final _open = RegExp(r'^\s*(`{3,}|~{3,})(.*)$');
 final _quote = RegExp(r'^(?: {0,3}> ?)+');
@@ -33,8 +9,6 @@ final _bullet = RegExp(r'^\s*[-*+]\s');
 final _ordered = RegExp(r'^\s*(\d{1,9})[.)]\s');
 final _delimiterRow = RegExp(r'^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$');
 
-/// The lines and code spans of [lines]; a null line (a Dart line that is
-/// no doc comment) ends any block and fence.
 ({List<ScannedLine> lines, List<CodeSpan> spans}) scanMarkdown(
   List<String?> raw,
 ) {
@@ -129,8 +103,6 @@ final _delimiterRow = RegExp(r'^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$');
   );
 }
 
-/// Adds the spans of one block of `(index, line)` pairs to [spans], and
-/// to [prose] each of its lines with the spans blanked.
 void _scanBlock(
   List<(int, String)> block,
   List<CodeSpan> spans,
@@ -194,8 +166,6 @@ void _scanBlock(
 
 final _docComment = RegExp(r'^\s*/// ?(.*)$');
 
-/// The `///` doc-comment text of each line of Dart [text], or null for a
-/// line that is none.
 List<String?> docCommentLines(String text) => [
   for (final line in text.split('\n')) _docComment.firstMatch(line)?.group(1),
 ];

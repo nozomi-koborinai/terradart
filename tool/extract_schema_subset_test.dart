@@ -50,8 +50,6 @@ void main() {
           as Map)['attributes'],
       isNotEmpty,
     );
-    // Data sources stay omitted until explicitly requested — not copied
-    // wholesale (the fixture stays exactly as small as the catalog).
     expect(schemas.containsKey('data_source_schemas'), isFalse);
   });
 

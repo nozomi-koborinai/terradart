@@ -1,19 +1,6 @@
-// readme_excerpts.dart — the JSON excerpts of an example README must be what
-// the example synthesizes.
-//
-// Every fence of `examples/<slug>/README.md` whose info string's first word
-// is `json` (any case; `jsonc` is not one) is an excerpt of that
-// example's `tf-out/main.tf.json`: each object key it shows exists with the
-// value it shows, each list element matches a synthesized element in the same
-// order, and each scalar is equal. An excerpt may leave keys and elements out;
-// it may not show a value, a shape or a placeholder the synth does not emit.
-// tool/example_synth_gates.dart runs it after it synthesizes each quickstart.
-
 import 'dart:convert';
 import 'dart:io';
 
-/// One message per JSON fence of [readme] ([path]) that is not an excerpt of
-/// [synth].
 List<String> excerptMismatches(
   String path,
   String readme,
@@ -43,13 +30,6 @@ final _open = RegExp(r'^( {0,3})(`{3,}|~{3,})(.*)$');
 final _quote = RegExp(r'^(?: {0,3}> ?)+');
 final _item = RegExp(r'^ {0,3}([-*+]|\d{1,9}[.)]) {1,4}');
 
-/// The body of each fenced code block of [md] whose info string names
-/// `json` (any case), with the line its opening fence is on. A fence is
-/// three or more backticks or tildes, closed by a run of the same character
-/// at least as long, indented up to three spaces past its container: the
-/// document, a block quote (its `>` markers dropped), or the content of the
-/// list item above it, the fence on the item's own line included. Line
-/// endings may be CRLF.
 List<({int start, String body})> _jsonFences(String md) {
   final out = <({int start, String body})>[];
   final lines = [
@@ -138,8 +118,6 @@ String _kind(Object? v) => switch (v) {
   _ => jsonEncode(v),
 };
 
-/// Appends to [errors] the excerpt mismatches of `examples/<slug>/README.md`
-/// against [synth].
 void checkReadmeExcerpts(
   String slug,
   Map<String, dynamic> synth,

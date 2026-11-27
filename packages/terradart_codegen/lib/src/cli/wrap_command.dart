@@ -32,14 +32,6 @@ import '../parser/schema_parser.dart';
 import 'exit_codes.dart';
 import 'wrap_cli_common.dart';
 
-/// The `terradart wrap` subcommand: emits Layer 2 factory wrappers (+ data
-/// source Layer 1) from override YAML.
-///
-/// Phase 4.1 Wave 1b shipped the skeleton (args parsing + validation). Wave
-/// 2a Task 14 fills in the run pipeline: load `schema.json`, resolve the
-/// override YAML root from `package:terradart_codegen/`, fan each override
-/// out through the appropriate emitter, then materialise the in-memory
-/// buffer to disk under `<output>/<outputDir>/`.
 class WrapCommand extends Command<int> {
   WrapCommand() {
     argParser
@@ -252,10 +244,6 @@ class WrapCommand extends Command<int> {
       }
     }
 
-    // 1. Load schema.json from <source>/schema.json. The parser is tolerant
-    //    of missing data_source_schemas / resource_schemas keys (returns an
-    //    empty map), so callers can ship resource-only or data-source-only
-    //    schemas without surgery.
     final schemaFile = File(p.join(source, 'schema.json'));
     if (!schemaFile.existsSync()) {
       stderr.writeln(
@@ -269,21 +257,9 @@ class WrapCommand extends Command<int> {
       providerVersion: readProviderVersion(source),
     );
 
-    // 1b. Load MM YAML overrides from <source>/mm/ and merge them into the
-    //     schema IR so that enumValues (and other MM-derived constraints) are
-    //     available to the WrapperEmitter's `deriveEnums` gate.
-    //
-    //     The mm/ directory is optional: if it doesn't exist (e.g. a
-    //     schema-only fixture), we skip merging and use the bare schema IR.
-    //     For each resource in the registry we attempt to read
-    //     `mm/<terraform_type>.yaml`; missing files are silently skipped
-    //     (not every curated resource has a corresponding MM file).
     final mmDir = Directory(p.join(source, 'mm'));
     final mmOverrides = <String, MmResourceOverrides>{};
     if (mmDir.existsSync()) {
-      // Insertion order is irrelevant: `mmOverrides` is consumed by keyed
-      // lookup in `IrMerger.merge`, so no `..sort()` is needed (unlike
-      // `yaml_loader`, whose registry order is observable).
       for (final entity in mmDir.listSync()) {
         if (entity is! File) continue;
         final basename = p.basename(entity.path);
@@ -294,10 +270,6 @@ class WrapCommand extends Command<int> {
             entity.readAsStringSync(),
           );
         } catch (e) {
-          // Surface malformed MM YAML rather than silently dropping it: a
-          // dropped file would make the `deriveEnums` gate emit nothing,
-          // which is a confusing failure. Mirror the bracketed E-code
-          // convention used by the other input-error paths in this command.
           stderr.writeln(
             '[E405] terradart wrap: malformed MM YAML ${entity.path}: $e',
           );
@@ -309,9 +281,6 @@ class WrapCommand extends Command<int> {
         ? baseIr
         : const IrMerger().merge(base: baseIr, overrides: mmOverrides);
 
-    // 1c. `--provider-enums`: hints + the `Available values:` dialect;
-    //     `--mm-hints`: the MM YAML loaded above as the hints;
-    //     `--mm-groups`: only its sealable groups.
     ProviderEnums providerEnums;
     final hintFlags = [
       'mm-hints',
@@ -369,14 +338,6 @@ class WrapCommand extends Command<int> {
     providerEnums = providerEnums.withinSchema(mergedIr, dropped: dropped.add);
     final enrichedIr = providerEnums.enrich(mergedIr);
 
-    // 2. Resolve the YAML override root: the --overrides-root flag when
-    //    given (non-google providers carry their own registry), else the
-    //    committed google registry via package URI. In `dart test` the
-    //    package_config is provided by the runner, so
-    //    `Isolate.resolvePackageUri` succeeds. Production CLI invocations
-    //    (`dart run` / `dart compile exe`) also have a package config
-    //    available. Compile-time AOT snapshots are the one mode where this
-    //    can fail; surface a clear software error.
     final overridesRootArg = argResults?['overrides-root'] as String?;
     final String yamlRootPath;
     if (overridesRootArg != null) {
@@ -444,40 +405,9 @@ class WrapCommand extends Command<int> {
       laneInputs: laneInputs,
     );
 
-    // 3. Emit every override into an in-memory map keyed by repo-relative
-    //    output path. Doing this before any filesystem mutation lets the
-    //    `--force` check (and the future `--check` diff) consider the
-    //    whole batch atomically.
-    //
-    //    Plan 5.X (v0.5.0-dev): Layer 1 schema-carrier emission
-    //    (`generated/<type>.schema.dart` and
-    //    `generated/data_<type>.schema.dart`) is retired along with the
-    //    schemantic `build_runner` Layer 2 step. Only Layer 2 factory
-    //    wrappers are emitted now, and the wrapper itself carries its
-    //    file-private `_<r>Sensitive` const inline (see
-    //    `WrapperEmitter`).
     final buffer = <String, String>{};
-    // Static catalog accumulator: one CatalogEntry per curated resource +
-    // data source. Built alongside each wrapper so the entry's `nestedTypes`
-    // can be scanned from the just-emitted, formatted Dart source (the only
-    // drift-proof source for the resource-specific helper-type names) and
-    // `sensitiveFields` / `constructorParams` are computed from the SAME
-    // helpers the wrapper emitter uses (zero drift by construction).
     final catalogEntries = <CatalogEntryData>[];
-    // Migration-manifest inputs (`--migrate-manifest` only): one per curated
-    // resource + data source, carrying the SAME IR / override / raw-schema
-    // inputs the wrapper emitters consume plus the just-emitted source, so
-    // the recipe cannot drift from the generated Dart API (same zero-drift
-    // argument as the catalog). Built after the loops so helper classes one
-    // wrapper file declares resolve from every other file.
     final migrateInputs = <MigrateEntryInput>[];
-    // `deriveNestedTypes` needs the RAW schema.json `block` shape
-    // (`block_types` / `nesting_mode` / `min_items`, ...), which `baseIr`
-    // above no longer carries once `SchemaJsonParser` has flattened it into
-    // the IR. Decoding schema.json a second time only when at least one
-    // loaded override actually sets the gate keeps today's (dark) run
-    // exactly as cheap as before this gate existed — every committed
-    // override currently leaves `deriveNestedTypes` at its `false` default.
     final needsRawResourceSchemas = typedOverrides.resources.values.any(
       (o) => o.deriveNestedTypes,
     );
@@ -493,8 +423,6 @@ class WrapCommand extends Command<int> {
     final rawDataSourceSchemas = needsRawDataSourceSchemas
         ? _rawSchemaBlocks(schemaSrc, schemasKey: 'data_source_schemas')
         : const <String, Map<String, dynamic>>{};
-    // `--reference-targets`: the ledger is checked against the schema on
-    // every run; `--typed-references` also types what it matches.
     final referenceLedger = results['reference-targets'] as String?;
     final typedReferences = results['typed-references'] as bool;
     if (typedReferences && referenceLedger == null) {
@@ -600,9 +528,6 @@ class WrapCommand extends Command<int> {
     );
     final resourceOverrides = exactlyOne.overrides.resources;
     final dataSourceOverrides = exactlyOne.overrides.dataSources;
-    // `--check` fails on each of these: a group neither sealed nor named in
-    // its override's `unsealedGroups`, a stale `unsealedGroups` entry, and a
-    // derived helper no constructor reaches.
     final excused = exactlyOne.excused.toSet();
     final unsealed = <String>[
       for (final g in dropped) ?_droppedReport(g, loaded, mmOverrides, excused),
@@ -692,7 +617,6 @@ class WrapCommand extends Command<int> {
       principals: principalDataSources,
       principal: principal,
     );
-    // Layer 2 emit output is unformatted.
     final formatter = packageFormatter(output);
 
     for (final entry in resourceOverrides.entries) {
@@ -703,9 +627,6 @@ class WrapCommand extends Command<int> {
         );
         return CliExitCodes.dataError;
       }
-      // Layer 2 wrapper: `<outputDir>/<terraformType>.dart`.
-      // `extraSensitiveFields` (formerly forwarded to the Layer 1 abstract
-      // emitter) is now consumed by the wrapper emitter inline.
       final raw = resourceEmitter.emit(
         def,
         providerSource: provider,
@@ -759,8 +680,6 @@ class WrapCommand extends Command<int> {
         );
         return CliExitCodes.dataError;
       }
-      // Layer 2 wrapper: `<outputDir>/<terraformType>.dart` (outputDir is
-      // validated to be `'data'` for data sources at YAML load time).
       final raw = dataSourceEmitter.emit(def, providerSource: provider);
       typedReferenceKeys.addAll(dataSourceEmitter.typedReferences);
       final layer2 = generatedFileHeader + formatter.format(raw);
@@ -799,10 +718,6 @@ class WrapCommand extends Command<int> {
         'terradart wrap: ${typedReferenceKeys.length} inputs typed as '
         'references.',
       );
-      // An input the ledger matches but whose slot an override types by
-      // hand, or whose block has no derived helper, stays a string. An
-      // unreachable helper still types its inputs; the helper is reported
-      // above.
       final untyped = [
         for (final (prefix, byType) in [
           ('', references),
@@ -829,29 +744,10 @@ class WrapCommand extends Command<int> {
       }
     }
 
-    // Static catalog: render one CatalogEntry per curated resource + data
-    // source into `_catalog.g.dart`. The key is `_catalog.g.dart` (no
-    // `lib/src/` prefix) because `--output` is already `.../lib/src`, so the
-    // file lands next to the per-service barrels (see catalog_entry.dart /
-    // catalog.dart in terradart_google). It is added to `buffer` here —
-    // before the E401 guard / `--check` diff / materialise step — so it flows
-    // through every downstream stage uniformly, formatted with the same
-    // `DartFormatter` as the wrappers and carrying the standard generated
-    // header (first line `// GENERATED FILE - DO NOT EDIT`, an accepted E401
-    // marker).
-    //
-    // `--only` is skipped: the catalog is a WHOLE-registry artifact, so a
-    // single-resource regen must not clobber the full catalog with
-    // a 1-entry partial. `--only` callers regenerate one wrapper; the catalog
-    // is refreshed by the canonical full `terradart wrap`.
     if (only == null) {
       final catalogRaw = CatalogMetadataEmitter().emit(catalogEntries);
       buffer['_catalog.g.dart'] = formatter.format(catalogRaw);
 
-      // The fixture's release, for packages that pin their provider
-      // exactly: the pin moves with the wrappers instead of living in a
-      // hand-written copy. Kept out of the catalog so importing the pin
-      // does not pull the whole catalog into a user's compile.
       final providerVersion = readProviderVersion(source);
       if (providerVersion.isNotEmpty) {
         buffer['_provider_version.g.dart'] = formatter.format(
@@ -859,11 +755,6 @@ class WrapCommand extends Command<int> {
         );
       }
 
-      // Barrels: every per-service barrel (+ `data` + the umbrella) derives
-      // from the catalog entries joined with the authored barrels.yaml
-      // manifest (doc, file-name override, hand-written extraExports). Same
-      // `--only` skip rationale as the catalog: barrels are whole-registry
-      // artifacts, so a single-resource regen must not clobber them.
       final manifestArg = argResults?['barrels-manifest'] as String?;
       final String manifestPath;
       if (manifestArg != null) {
@@ -903,12 +794,6 @@ class WrapCommand extends Command<int> {
         return CliExitCodes.dataError;
       }
 
-      // Migration manifest: same formatting / header / E401 / --check rules
-      // as the catalog, but written to the `--migrate-manifest` file in
-      // terradart_migrate rather than under `--output` (#658). The buffer is
-      // keyed relative to `--output`, so the path is expressed that way.
-      // Entries record the barrel *file* stem (barrels.yaml `file:`), which
-      // is what a migrated Stack imports.
       if (migrateManifest) {
         final manifestRaw = MigrateManifestEmitter().emit(
           buildMigrateEntries(
@@ -927,15 +812,11 @@ class WrapCommand extends Command<int> {
             packageFormatter(migrateManifestPath).format(manifestRaw);
       }
       for (final entry in barrelFiles.entries) {
-        // `--output` is `.../lib/src`; barrels live one level up in `lib/`.
         buffer[p.join('..', '${entry.key}.dart')] =
             barrelFileHeader + formatter.format(entry.value);
       }
     }
 
-    // 4. E401 guard: refuse to clobber files that don't carry the
-    //    `// GENERATED FILE - DO NOT EDIT` marker, unless `--force` is set.
-    //    Files that don't yet exist are fine.
     if (!force) {
       for (final relPath in buffer.keys) {
         final existing = File(p.join(output, relPath));
@@ -951,12 +832,6 @@ class WrapCommand extends Command<int> {
       }
     }
 
-    // 5. `--check` mode: deferred to Task 17. Surface a clear stub so CI
-    //    plumbing that wires the flag through gets a useful exit code.
-    // A generated file the registry no longer emits (its override was
-    // deleted) is an orphan: the barrels stop exporting it, but it still
-    // compiles and a directory scan still finds it. `--only` emits a partial
-    // buffer, so it never judges the rest of the tree.
     final orphans = only == null
         ? _orphanedGeneratedFiles(buffer, output)
         : const <String>[];
@@ -980,9 +855,6 @@ class WrapCommand extends Command<int> {
       stderr.writeln('terradart wrap: $u');
     }
 
-    // 6. Materialise. Create parent dirs lazily; writeAsStringSync is
-    //    atomic-enough for the regen workflow (the file is fully written
-    //    before the next entry's directory probe runs).
     for (final entry in buffer.entries) {
       final outFile = File(p.join(output, entry.key));
       outFile.parent.createSync(recursive: true);
@@ -1004,10 +876,6 @@ class WrapCommand extends Command<int> {
     return CliExitCodes.success;
   }
 
-  /// Generated files under [output] (recursively) and its parent `lib/`
-  /// (barrels, top level only) that [buffer] does not emit, keyed relative
-  /// to [output] like the buffer. Hand-written files carry no generated
-  /// header and are never reported.
   List<String> _orphanedGeneratedFiles(
     Map<String, String> buffer,
     String output,
@@ -1031,11 +899,6 @@ class WrapCommand extends Command<int> {
     return orphans;
   }
 
-  /// `--check` mode body. Diffs [buffer] (the in-memory emit result, keyed
-  /// by repo-relative path) against the on-disk files under [output] and
-  /// returns [CliExitCodes.dataError] when any pair diverges. Line endings
-  /// are normalised to LF on both sides so CRLF Windows checkouts are not
-  /// reported as bogus mismatches.
   int _runCheck(
     Map<String, String> buffer,
     String output,
@@ -1085,11 +948,6 @@ class WrapCommand extends Command<int> {
   }
 }
 
-/// How `wrap` reports a [group] `withinSchema` dropped, or null when the
-/// drop needs no decision: the type has no factory, its override's
-/// `unsealedGroups` names the group (added to [excused]), or every missing
-/// member is a `min_version: beta` property of the MM YAML, which a GA
-/// schema lacks.
 String? _droppedReport(
   DroppedGroup group,
   LoadedOverrides loaded,
@@ -1117,10 +975,7 @@ bool _isGeneratedFile(File file) {
   return firstLine == '// GENERATED FILE - DO NOT EDIT';
 }
 
-/// The `name:` of the pubspec two levels above [output] (`<pkg>/lib/src` →
-/// `<pkg>/pubspec.yaml`), or `null` when there is none.
 String? _pubspecName(String output) {
-  // Lexical: `--output` need not exist yet when wrap runs for the first time.
   final pubspec = File(p.normalize(p.join(output, '..', '..', 'pubspec.yaml')));
   if (!pubspec.existsSync()) return null;
   final match = RegExp(
@@ -1130,10 +985,6 @@ String? _pubspecName(String output) {
   return match?.group(1);
 }
 
-/// Terraform type → directory under [output] of every generated resource
-/// wrapper on disk, for the reference targets a `--only` run did not load.
-/// Data-source wrappers live under `data/` with the same file names, so that
-/// directory is skipped.
 Map<String, String> _generatedResourceDirs(String output) {
   final root = Directory(output);
   if (!root.existsSync()) return const {};
@@ -1146,9 +997,6 @@ Map<String, String> _generatedResourceDirs(String output) {
   };
 }
 
-/// Decodes [schemaJson]'s raw `resource_schemas` or `data_source_schemas`
-/// entries down to just their `block` map, keyed by Terraform type — the
-/// shape `collectNestedTypes` needs for the `deriveNestedTypes` gate.
 Map<String, Map<String, dynamic>> _rawSchemaBlocks(
   String schemaJson, {
   required String schemasKey,
@@ -1164,8 +1012,6 @@ Map<String, Map<String, dynamic>> _rawSchemaBlocks(
   };
 }
 
-/// The PascalCase name of every attribute and nested-block key in [block],
-/// at any depth.
 Set<String> _inputNames(Map<String, dynamic> block) {
   final names = <String>{};
   void walk(Map<dynamic, dynamic>? b) {
@@ -1187,10 +1033,8 @@ Set<String> _inputNames(Map<String, dynamic> block) {
   return names;
 }
 
-/// [blocks] without the nested blocks Magic Modules marks `output: true`
-/// whose attributes all are computed-only. SDKv2 cannot mark a block
-/// computed, so the schema alone reads such a block
-/// (`google_chronicle_feed.failure_details`) as an input.
+// Terraform SDKv2 cannot mark nested blocks computed, so schema.json exposes
+// output-only blocks as inputs; strip those MM marks `output: true`.
 Map<String, Map<String, dynamic>> _withoutOutputBlocks(
   Map<String, Map<String, dynamic>> blocks,
   Map<String, MmResourceOverrides> mm,

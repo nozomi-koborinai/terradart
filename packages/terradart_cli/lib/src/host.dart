@@ -6,8 +6,6 @@ import 'package:path/path.dart' as p;
 import 'cli_exception.dart';
 import 'output/exit_codes.dart';
 
-/// The operating system and CPU the CLI runs on, named as OpenTofu release
-/// archives name them (`linux_amd64`, `darwin_arm64`, `windows_amd64`).
 final class HostPlatform {
   const HostPlatform(this.os, this.arch) : _unsupported = null;
 
@@ -15,9 +13,6 @@ final class HostPlatform {
     : arch = '$abi',
       _unsupported = abi;
 
-  /// The platform of the running process. An ABI OpenTofu publishes no
-  /// build for still finds `tofu` and `terraform` on `PATH`; only
-  /// [checkManaged] fails on it.
   factory HostPlatform.current() => switch (Abi.current()) {
     Abi.linuxX64 => const HostPlatform('linux', 'amd64'),
     Abi.linuxArm64 => const HostPlatform('linux', 'arm64'),
@@ -33,10 +28,8 @@ final class HostPlatform {
 
   final Abi? _unsupported;
 
-  /// Whether OpenTofu publishes a build terradart can download here.
   bool get hasManaged => _unsupported == null;
 
-  /// Throws when there is no managed OpenTofu for this platform.
   void checkManaged() {
     if (_unsupported case final abi?) {
       throw CliException(
@@ -47,23 +40,18 @@ final class HostPlatform {
     }
   }
 
-  /// `linux`, `darwin` or `windows`.
   final String os;
 
-  /// `amd64` or `arm64`.
   final String arch;
 
   bool get isWindows => os == 'windows';
 
-  /// `tofu.exe` on Windows, `tofu` elsewhere.
   String executable(String name) => isWindows ? '$name.exe' : name;
 
   @override
   String toString() => '${os}_$arch';
 }
 
-/// The directory terradart caches downloads in: `TERRADART_CACHE_DIR`, else
-/// the platform's user cache directory.
 String cacheDirectory({
   Map<String, String>? environment,
   HostPlatform? platform,
@@ -96,8 +84,6 @@ String cacheDirectory({
   return p.join(base, 'terradart');
 }
 
-/// The first executable named [name] on `PATH`, or `null`. On Windows each
-/// `PATHEXT` extension is tried.
 String? findOnPath(
   String name, {
   Map<String, String>? environment,

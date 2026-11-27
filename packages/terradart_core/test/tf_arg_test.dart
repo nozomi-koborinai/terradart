@@ -164,7 +164,6 @@ void main() {
     });
 
     test('TfArg.variable infers T from context', () {
-      // Implicit context type: TfArg<int>
       final TfArg<int> arg = TfArg.variable('replica_count');
       expect(arg, isA<TfArgVariable<int>>());
       expect(arg.toTfJson(), equals(r'${var.replica_count}'));
@@ -205,7 +204,6 @@ void main() {
     test('is an expression, so it is accepted where a ref is', () {
       final arg = TfArg.workspace<String>();
       expect(arg, isA<TfArgExpression<String>>());
-      // Nothing to declare: `terraform.workspace` is not a variable.
       expect((arg as TfArgExpression<String>).referencedVariables, isEmpty);
     });
 
@@ -243,7 +241,6 @@ void main() {
   });
 }
 
-/// The shape every provider package declares its enums in.
 extension type const _SampleEnum._(TfArg<String> _) implements TfArg<String> {
   _SampleEnum.variable(String name) : this._(TfArg.variable(name));
   _SampleEnum.expression(String template) : this._(TfArg.expression(template));
@@ -253,6 +250,4 @@ extension type const _SampleEnum._(TfArg<String> _) implements TfArg<String> {
   static const List<_SampleEnum> values = [alpha];
 }
 
-/// A plain Dart enum, which has no Terraform value. TfArg should throw on
-/// this.
 enum _BareEnum { first }

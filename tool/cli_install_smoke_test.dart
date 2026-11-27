@@ -10,17 +10,6 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 
-/// Proves `terradart_cli` works through both Dart 3.12+ global workflows:
-///
-/// 1. `dart install terradart_cli@{path: ...}` followed by running the
-///    installed `terradart` executable and `dart uninstall terradart_cli`.
-/// 2. Remote-style `dart run terradart_cli:terradart@{path: ...}` without
-///    installing or adding a dependency.
-///
-/// Both run from a temporary working directory outside the repository against a
-/// loopback pub proxy that serves the workspace's `terradart_*` packages at
-/// their current (possibly unpublished) versions and forwards everything else
-/// to `https://pub.dev`.
 void main() {
   final repoRoot = Directory.current.path;
   final cliDir = p.join(repoRoot, 'packages', 'terradart_cli');
@@ -214,12 +203,6 @@ void main() {
   );
 }
 
-/// Minimal pub repository v2 proxy that serves the workspace's `packages/*`
-/// packages directly from disk and forwards every other package to `pub.dev`.
-///
-/// Needed whenever the workspace holds a lockstep version not yet published on
-/// pub.dev (such as in a release PR), and ensures `dart install` exercises the
-/// workspace's own `terradart_*` dependencies rather than older published ones.
 final class _WorkspacePubProxy {
   _WorkspacePubProxy._(this._server, this._packageDirs);
 

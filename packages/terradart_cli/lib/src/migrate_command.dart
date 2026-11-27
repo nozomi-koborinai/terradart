@@ -4,13 +4,7 @@ import 'package:terradart_migrate/terradart_migrate.dart';
 import 'help.dart';
 import 'workflow.dart';
 
-/// `terradart migrate`: the user-facing front end of `terradart_migrate`.
-///
-/// It does not look for a `pubspec.yaml`. Migration runs before a Dart
-/// project exists, so `dart install terradart_cli` (or
-/// `dart run terradart_cli:terradart@ migrate ...`) is enough.
 final class MigrateCommand extends Command<int> {
-  /// Forwards what the migrator prints to [console].
   MigrateCommand(this._console) {
     declareMigrateOptions(argParser);
   }
@@ -47,7 +41,6 @@ final class MigrateCommand extends Command<int> {
   Future<int> run() => runMigrate(argResults!.arguments, _console);
 }
 
-/// Runs `terradart migrate <arguments>`, printing to [console].
 Future<int> runMigrate(List<String> arguments, Console console) async {
   final out = StringBuffer();
   final err = StringBuffer();

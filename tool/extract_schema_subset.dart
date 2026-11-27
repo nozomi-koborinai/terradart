@@ -1,44 +1,3 @@
-// tool/extract_schema_subset.dart
-//
-// Extracts a filtered provider-schema fixture containing ONLY the listed
-// resource types (and, when requested, data sources) — the fixture
-// strategy for demand-driven provider catalogs (google-beta first): the
-// full google-beta schema is >9 MB and the beta catalog is curated on
-// request, so the committed fixture stays exactly as small as the
-// catalog. The GA google fixture stays full (its backlog detection needs
-// every resource key); this tool is NOT for it. Filled-at-pin lanes
-// (cloudflare, aws) extract their whole catalog with --all-resources
-// --all-data-sources, and the emitted README then says it is the full
-// catalog instead of a curated subset.
-//
-// The committed output must never be hand-edited — always re-extract
-// (the MM-fixture local patch that PR #595 clobbered is the cautionary
-// tale). The exact command is recorded in the emitted README.md.
-//
-// Usage (repo root):
-//   dart tool/extract_schema_subset.dart \
-//     --provider=hashicorp/google-beta --version=7.44.0 \
-//     --resources=google_project_service_identity[,google_x,...] \
-//     --out=packages/terradart_codegen/test/fixtures/wrap/source_beta
-//
-//   --resources-from=<schema.json>  read the resource set from an existing
-//                         fixture (its resource_schemas keys). May be
-//                         combined with --resources= — the union is
-//                         extracted (how terradart-add-beta-resource
-//                         appends a type without a baked-in name list;
-//                         the weekly schema bump passes it alone to
-//                         re-extract the same set at the new version).
-//
-//   --schema-json=<file>  read an existing `terraform providers schema
-//                         -json` dump instead of running terraform
-//                         (tests / offline use).
-//
-// Without --schema-json the tool pins the provider at --version in a temp
-// dir and runs `terraform init` + `terraform providers schema -json` —
-// the same mechanism schema-bump.yml uses. Network: terraform registry
-// only; no cloud credentials, no GCP calls.
-//
-// Exit codes: 0 success, 64 usage error, 69 terraform/extraction failure.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -47,10 +6,6 @@ import 'dart:io';
 const _exitUsage = 64;
 const _exitExtract = 69;
 
-/// Returns the resource type names of an existing (filtered) fixture: the
-/// union of every provider's `resource_schemas` keys, sorted. Fails closed
-/// on an empty result — re-extracting an empty set must never silently
-/// produce an empty fixture.
 List<String> resourceNamesFromFixture(Map<String, dynamic> fixture) {
   final providerSchemas =
       (fixture['provider_schemas'] as Map?)?.cast<String, dynamic>() ??
@@ -67,9 +22,6 @@ List<String> resourceNamesFromFixture(Map<String, dynamic> fixture) {
   return names.toList()..sort();
 }
 
-/// Returns the data-source type names of an existing fixture: the union
-/// of every provider's `data_source_schemas` keys, sorted. Empty is
-/// allowed — resource-only fixtures are the historical default.
 List<String> dataSourceNamesFromFixture(Map<String, dynamic> fixture) {
   final providerSchemas =
       (fixture['provider_schemas'] as Map?)?.cast<String, dynamic>() ??
@@ -83,12 +35,6 @@ List<String> dataSourceNamesFromFixture(Map<String, dynamic> fixture) {
   return names.toList()..sort();
 }
 
-/// Returns a schema JSON containing only [resources] (and optionally
-/// [dataSources]) under `registry.terraform.io/<providerSource>`. Fails
-/// closed: an absent provider key or absent requested type throws
-/// [StateError] (a typo must never produce a silently-empty fixture).
-/// `data_source_schemas` is omitted when [dataSources] is empty so
-/// resource-only fixtures stay exactly as small as the catalog.
 Map<String, dynamic> filterSchemaSubset(
   Map<String, dynamic> full, {
   required String providerSource,
@@ -142,10 +88,6 @@ Map<String, dynamic> filterSchemaSubset(
   };
 }
 
-/// Whether [resources] and [dataSources] are every resource and data
-/// source `registry.terraform.io/<providerSource>` declares in [full].
-/// Decided from the extracted set rather than the flags, so re-extracting
-/// a full fixture with `--resources-from` keeps describing it as full.
 bool coversFullCatalog(
   Map<String, dynamic> full, {
   required String providerSource,
@@ -168,9 +110,6 @@ bool coversFullCatalog(
       dataSources.toSet().containsAll(allDataSources);
 }
 
-/// The README written next to an extracted fixture. [fullCatalog] picks
-/// the opening that says what the set is: the whole provider catalog at
-/// [version], or only the curated types.
 String fixtureReadme({
   required String provider,
   required String? version,
@@ -253,9 +192,6 @@ Future<void> main(List<String> args) async {
     }
   }
   if (resourcesFrom != null) {
-    // Union: the fixture's current set is the base, --resources adds to it
-    // (used by terradart-add-beta-resource to append a new type without a
-    // baked-in name list).
     final fixture =
         jsonDecode(File(resourcesFrom).readAsStringSync())
             as Map<String, dynamic>;
@@ -285,8 +221,7 @@ Future<void> main(List<String> args) async {
     rawSchema = File(schemaJsonPath).readAsStringSync();
   } else {
     final tmp = Directory.systemTemp.createTempSync('extract_schema_');
-    // dart:io's exit() skips finally blocks, so failures are collected and
-    // exit happens only AFTER the temp-dir cleanup below.
+    // dart:io exit() skips finally blocks, so exit runs after temp-dir cleanup.
     String? failure;
     var raw = '';
     try {
@@ -301,9 +236,7 @@ terraform {
   }
 }
 ''');
-      // Terraform emits UTF-8; the default systemEncoding is not UTF-8
-      // everywhere (Windows), and a mis-decoded description would land
-      // silently in the committed fixture.
+      // Terraform emits UTF-8; systemEncoding is not UTF-8 on Windows.
       final init = Process.runSync(
         'terraform',
         ['init', '-no-color'],

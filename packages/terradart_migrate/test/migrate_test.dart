@@ -12,9 +12,6 @@ import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
-// The emitter writes one statement per line; `format: false` keeps that
-// shape so the substring checks below stay readable. The round-trip gate
-// (tool/migrate_roundtrip_gates.dart) covers the formatted output.
 MigrationResult _migrateJson(
   Map<String, Object?> json, {
   String name = 'demo',
@@ -40,13 +37,6 @@ const _google = {
 
 void main() {
   group('passthrough slots', () {
-    // The two passthrough parameter shapes a catalog carries: a
-    // `TfArg<Map<String, dynamic>>` (`aws_s3_bucket`'s deprecated
-    // `object_lock_configuration`) and a bare
-    // `Map<String, Object?>` spread into its block (`advancedExtra` on a
-    // hand-written helper). The manifest's `wrapped` flag tells them apart;
-    // emitting `TfArg.literal` for the bare one produced a Stack that did
-    // not compile, found on a real Cloud SQL module.
     test('a bare Map parameter takes the collection itself', () {
       const manifest = MigrateManifest(
         package: 'terradart_google',
@@ -165,7 +155,6 @@ void main() {
         );
         expect(json.stackSource, contains(expected));
 
-        // The block form: written once, it reads as one object, not a list.
         final hcl = _migrateHcl('''
 terraform {
   required_providers {
@@ -183,7 +172,6 @@ resource "aws_s3_bucket" "logs" {
         expect(hcl.report.isComplete, isTrue, reason: hcl.report.renderText());
         expect(hcl.stackSource, contains(expected));
 
-        // The tf.json list form of a block written once fits a Map parameter.
         final listForm = _migrateJson({
           'terraform': aws,
           'resource': {
@@ -203,8 +191,6 @@ resource "aws_s3_bucket" "logs" {
   });
 
   group('pubsub_quickstart synth output', () {
-    // The quickstart's synth output as of this package's last change; the
-    // round-trip gate covers the live examples.
     final file = File('test/fixtures/pubsub_quickstart.tf.json');
     final result = migrateModule(
       TfModule.fromTfJson(file.readAsStringSync(), fileName: file.path),
@@ -248,14 +234,12 @@ resource "aws_s3_bucket" "logs" {
         ),
       );
       expect(src, contains("requiredVersion: '>= 1.11.0'"));
-      // Typed references, enum members, nested helpers, dependencies.
       expect(src, contains('topic: orders.ref,'));
       expect(src, contains('.protocolBuffer'));
       expect(src, contains('.pushConfig(.new('));
       expect(src, contains('ackDeadlineSeconds: .literal(60)'));
       expect(src, contains('members: .literal([ordersPublisher.principal])'));
       expect(src, contains('dependsOn: [ordersProto, ordersPublisher]'));
-      // A mixed template stays a verbatim expression.
       expect(
         src,
         contains(
@@ -265,7 +249,6 @@ resource "aws_s3_bucket" "logs" {
       expect(src, contains("add(DataGoogleProject('current'))"));
       expect(src, contains("addOutput('ORDERS_TOPIC_ID', orders.id);"));
       expect(src, isNot(contains('appExports')));
-      // Locals only where referenced.
       expect(src, isNot(contains('final ordersPush =')));
       expect(src, contains('final orders = add('));
     });
@@ -585,9 +568,6 @@ resource "aws_s3_bucket" "logs" {
     });
 
     group('an at-most-one sealed slot', () {
-      // `deriveExactlyOne` seals mutually exclusive inputs the provider also
-      // accepts none of into a nullable `...?slot?.argMap` slot: an optional
-      // merged sealed slot in the manifest.
       const manifest = MigrateManifest(
         package: 'terradart_google',
         entries: [
@@ -850,7 +830,6 @@ resource "google_datastream_connection_profile" "warehouse" {
     });
 
     group('a list of enum values', () {
-      // `selected_regions` is an `EnumList<MonitoringUptimeCheckRegion>`.
       MigrationResult migrate(Object regions) => _migrateJson({
         'terraform': _google,
         'resource': {
@@ -920,7 +899,6 @@ resource "google_datastream_connection_profile" "warehouse" {
           'labels': r'${var.labels}',
         }),
       );
-      // `${var.labels}` is a variable reference, which is fine...
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       final r2 = _migrateJson({
         'terraform': _google,
@@ -947,7 +925,6 @@ resource "google_datastream_connection_profile" "warehouse" {
           "enableMessageOrdering: .expression(r'\${var.env == \"prod\"}')",
         ),
       );
-      // The variables inside the expressions are declared, like references.
       expect(src, contains("externalVariable('n');"));
       expect(src, contains("externalVariable('env');"));
     });
@@ -1008,7 +985,6 @@ resource "google_datastream_connection_profile" "warehouse" {
           },
         },
       });
-      // A `List<String>` element may be a raw `${...}` string.
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(r.stackSource, contains(r"['us-central1', r'${var.r}']"));
     });
@@ -1739,8 +1715,6 @@ resource "google_pubsub_topic" "orders" {
           "backend: const S3Backend(bucket: 'b', key: 'k', region: 'auto', usePathStyle: true)",
         ),
       );
-      // A partial configuration (`terraform init -backend-config=...`) is
-      // the block with those keys left out (#671).
       final partial = _migrateJson({
         'terraform': {
           ..._google,
@@ -1972,7 +1946,6 @@ resource "google_pubsub_topic" "orders" {
         r.report.kept.singleWhere((k) => k.address == 'moved').reason,
         contains('"a.c" stays in Terraform'),
       );
-      // The module call itself became Dart, with no local directory to type.
       expect(
         r.stackSource,
         contains("addModule(ModuleCall('net', source: './net'))"),
@@ -2149,7 +2122,6 @@ output "count" {
           r"messageStoragePolicy: PubsubTopicMessageStoragePolicy(allowedPersistenceRegions: .expression(r'${[google_pubsub_topic.t_0, google_pubsub_topic.t_1][*].name}'))",
         ),
       );
-      // Outputs that are not one attribute stay in outputs.tf, rewritten.
       final outputs = r.sidecar.files[outputsFileName]!;
       expect(
         outputs,
@@ -2269,7 +2241,6 @@ resource "google_pubsub_topic" "kept" {
           "addMoved('google_pubsub_topic.old', 'google_pubsub_topic.t');",
         ),
       );
-      // A move onto an unrolled block is one move per instance.
       expect(
         src,
         contains(
@@ -2348,8 +2319,6 @@ resource "google_pubsub_topic" "kept" {
           'refers to an instance "google_pubsub_topic.x" does not declare',
         ),
       );
-      // Two unrolled blocks may not produce the same instance name either:
-      // `svc["api/0"]` and `svc_api[0]` would both be `svc_api_0`.
       final crossBlock = _migrateJson({
         'terraform': _google,
         'resource': {
@@ -2427,7 +2396,6 @@ resource "google_pubsub_subscription" "s" {
         ),
       );
       expect(r.report.expanded, isEmpty);
-      // The subscription still references the block as written.
       expect(
         r.stackSource,
         contains(r"topic: .expression(r'${google_pubsub_topic.t[0].name}')"),
@@ -2661,14 +2629,10 @@ resource "google_pubsub_topic" "y" {
         ),
       );
       expect(src, contains('provider: googleWestProvider'));
-      // The default configuration stays implicit on `y`.
       expect(src, contains("GooglePubsubTopic('y', name: .literal('y'))"));
     });
 
     test('an alias only the provider declares is registered too', () {
-      // `provider "google" { alias = "west" }` with no resource selecting
-      // it: registered like the default configuration, so a later `provider
-      // = google.west` in Dart just works and nothing stays in Terraform.
       final r = _migrateHcl('''
 terraform {
   required_providers {
@@ -3060,8 +3024,6 @@ resource "time_sleep" "wait" {
           '}',
         ]),
       );
-      // The body could not be pointed at t_0 / t_1, so emitting it would
-      // leave a dangling `google_pubsub_topic.t[5]` reference in the Stack.
       final kept = r.report.kept.singleWhere((k) => k.address == 'module.m');
       expect(kept.reason, contains('does not declare'));
       expect(r.stackSource, isNot(contains('addModule(')));
@@ -3200,7 +3162,6 @@ resource "time_sleep" "wait" {
           '}',
         ]),
       });
-      // No provider of its own — the child module pins what it uses.
       expect(
         project.files['lib/infra_stack.dart'],
         contains('InfraStack() : super(providers: []) {'),
@@ -3387,7 +3348,6 @@ resource "time_sleep" "wait" {
     });
 
     test('a name running on from the workspace is braced', () {
-      // `'t-$workspace_v2'` would read the identifier `workspace_v2`.
       final r = lift(
         'resource "google_pubsub_topic" "t" {\n'
         '  name = "t-\${terraform.workspace}_v2"\n'
@@ -3448,10 +3408,8 @@ resource "time_sleep" "wait" {
   });
 }
 
-/// [lines] as one HCL source string.
 String _lines(List<String> lines) => '${lines.join('\n')}\n';
 
-/// [lines] under a `terraform { required_providers { google = ... } }` header.
 String _hcl(List<String> lines) => _lines([
   'terraform {',
   '  required_providers {',
@@ -3462,7 +3420,6 @@ String _hcl(List<String> lines) => _lines([
   ...lines,
 ]);
 
-/// Module-call bodies the emitter cannot express, with the reason it gives.
 const _moduleBlockers =
     <({String label, Map<String, Object?> body, String reason})>[
       (
@@ -3487,9 +3444,6 @@ const _moduleBlockers =
       ),
     ];
 
-/// One resource of [type] named `x` with [body], under a google terraform
-/// block — the top-level twin of the `module(...)` helper inside the
-/// conversion-rule group.
 Map<String, Object?> _resource(
   Map<String, Object?> body, {
   String type = 'google_pubsub_topic',
@@ -3500,7 +3454,6 @@ Map<String, Object?> _resource(
   },
 };
 
-/// `timeouts` blocks the emitter cannot express, with the reason it gives.
 const _timeoutBlockers =
     <({String label, Map<String, Object?> body, String reason})>[
       (

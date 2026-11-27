@@ -1,33 +1,3 @@
-// tool/batch_wrap_init.dart
-//
-// Maintainer helper: run `terradart wrap-init` for multiple Terraform types.
-//
-// Usage (explicit list):
-//   dart tool/batch_wrap_init.dart \
-//     --resources=google_container_cluster,google_container_node_pool
-//
-// Usage (schema prefix filter — types without an override yaml yet):
-//   dart tool/batch_wrap_init.dart --prefix=google_container_
-//
-// Options:
-//   --resources   comma-separated terraform type names
-//   --prefix      scaffold every schema resource matching this prefix that
-//                 lacks an override yaml (mutually exclusive with --resources)
-//   --source      wrap fixture dir (default: packages/terradart_codegen/...)
-//   --output      override yaml dir (default: packages/terradart_codegen/...)
-//   --force       overwrite existing override yaml files
-//   --fill-param-order  pass wrap-init --fill-param-order (natural order)
-//   --dry-run     print planned commands without running wrap-init
-//
-// Output (stdout, JSON):
-//   { "created": [...], "skipped": [...], "failed": [...] }
-//
-// Exit codes:
-//   0 success (with or without skipped)
-//   64 usage error
-//   65 no resources resolved
-//   66 one or more wrap-init failures
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -88,8 +58,6 @@ Future<void> main(List<String> args) async {
       'bin/terradart.dart',
       'wrap-init',
       resource,
-      // Every file this tool writes is `<type>.yaml`, a resource override;
-      // a type that is also a data source needs the kind spelled out.
       '--kind',
       'resource',
       '--source',

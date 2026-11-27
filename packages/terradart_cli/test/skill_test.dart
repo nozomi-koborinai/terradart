@@ -27,7 +27,6 @@ void main() {
   Future<({int code, String out, String err})> run(List<String> args) =>
       project.run(args, FakeRunner());
 
-  /// An older skill: other content, recorded at 0.1.0.
   final older = withSkillMarker(
     bundledSkillMd.replaceFirst('# TerraDart', '# TerraDart (old)'),
     '0.1.0',

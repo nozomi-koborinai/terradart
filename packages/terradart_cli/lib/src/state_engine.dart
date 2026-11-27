@@ -6,18 +6,8 @@ import 'package:terradart_hcl/terradart_hcl.dart';
 
 import 'engine.dart';
 
-/// Which engine wrote a state, and what in the state says so.
 typedef StateWriter = ({EngineKind kind, String evidence});
 
-/// The engine that wrote [state] (a `terraform.tfstate` document), or `null`
-/// when nothing in it tells.
-///
-/// The provider addresses decide: OpenTofu rewrites `registry.terraform.io`
-/// to `registry.opentofu.org` on its first apply, unless the configuration
-/// spells the full Terraform address — so a provider in [pinned]
-/// (`hashicorp/google`) is not evidence. A state without providers is
-/// Terraform's when its `terraform_version` predates OpenTofu (1.6.0); the
-/// two engines' versions overlap after that.
 StateWriter? stateWriter(Object? state, {Set<String> pinned = const {}}) {
   if (state is! Map) return null;
   final version = state['terraform_version'];
@@ -44,7 +34,8 @@ StateWriter? stateWriter(Object? state, {Set<String> pinned = const {}}) {
       evidence: 'Terraform$shown: its providers are $_terraformRegistry ones',
     );
   }
-  if (version is String && compareVersions(version, '1.6.0') < 0) {
+  if (version is String &&
+      compareVersions(version, _firstOpenTofuVersion) < 0) {
     return (
       kind: EngineKind.terraform,
       evidence: 'Terraform $version, older than OpenTofu',
@@ -53,15 +44,12 @@ StateWriter? stateWriter(Object? state, {Set<String> pinned = const {}}) {
   return null;
 }
 
-/// [stateWriter] for a state file; `null` when [file] is missing, empty or
-/// not JSON.
 StateWriter? stateFileWriter(File file, {Set<String> pinned = const {}}) {
   if (!file.existsSync()) return null;
   final text = file.readAsStringSync();
   return text.trim().isEmpty ? null : stateTextWriter(text, pinned: pinned);
 }
 
-/// [stateWriter] for the text of a state (`state pull` prints it).
 StateWriter? stateTextWriter(String text, {Set<String> pinned = const {}}) {
   try {
     return stateWriter(jsonDecode(text), pinned: pinned);
@@ -70,8 +58,6 @@ StateWriter? stateTextWriter(String text, {Set<String> pinned = const {}}) {
   }
 }
 
-/// The providers whose `required_providers` source in [dir]'s `*.tf.json`
-/// names the Terraform registry in full, as `namespace/type`.
 Set<String> pinnedTerraformProviders(String dir) {
   final pinned = <String>{};
   final d = Directory(dir);
@@ -98,14 +84,6 @@ Set<String> pinnedTerraformProviders(String dir) {
   return pinned;
 }
 
-/// The local state file of [workspace] in [dir], where the local backend
-/// keeps it.
-///
-/// [workspace] `null` is the one [recordedWorkspace] names, else the default.
-/// A named workspace is `terraform.tfstate.d/<name>/terraform.tfstate`; the
-/// default is the `path` a `local` backend gives, else `terraform.tfstate`.
-/// A missing [dir] has not been written (`--no-synth`): the default path is
-/// returned and does not exist.
 File localStateFile(String dir, String? workspace) {
   final selected = workspace ?? recordedWorkspace(dir);
   if (selected != null && selected != 'default') {
@@ -113,8 +91,6 @@ File localStateFile(String dir, String? workspace) {
       p.join(dir, 'terraform.tfstate.d', selected, 'terraform.tfstate'),
     );
   }
-  // `--no-synth` or a deleted output dir: nothing has been written, so there
-  // is no local state to guard. Listing a missing directory throws.
   final d = Directory(dir);
   if (!d.existsSync()) return File(p.join(dir, 'terraform.tfstate'));
   for (final f in d.listSync().whereType<File>()) {
@@ -133,8 +109,6 @@ File localStateFile(String dir, String? workspace) {
   return File(p.join(dir, 'terraform.tfstate'));
 }
 
-/// The workspace the last `init` selected in [dir] (`.terraform/environment`),
-/// or `null` when none is recorded.
 String? recordedWorkspace(String dir) {
   final file = File(p.join(dir, '.terraform', 'environment'));
   if (!file.existsSync()) return null;
@@ -142,14 +116,6 @@ String? recordedWorkspace(String dir) {
   return name.isEmpty ? null : name;
 }
 
-/// Whether [dir]'s configuration stores state in a local file: no `backend`
-/// block, or a `local` one. A remote backend's leftover `terraform.tfstate`
-/// is not the state the next command will use.
-///
-/// `.tf` and `.tf.json` are parsed (`parseHcl` / the JSON front-end). A
-/// `backend` other than `"local"`, or a `cloud { }` block, is not local, so
-/// the check falls through to a remote `state pull`. A file that does not
-/// parse does the same — guessing wrong would skip the guard.
 bool configuredLocalBackend(String dir) => readConfiguredBackend(dir).isLocal;
 
 ConfiguredBackend readConfiguredBackend(String dir) {
@@ -164,7 +130,6 @@ ConfiguredBackend readConfiguredBackend(String dir) {
   var type = 'local';
   var attributes = const <String, String>{};
   final files = directory.listSync().whereType<File>().toList()
-    // Basename order, so two backend files resolve the same way on every OS.
     ..sort((a, b) => p.basename(a.path).compareTo(p.basename(b.path)));
   for (final file in files) {
     final name = p.basename(file.path);
@@ -262,8 +227,6 @@ String? _shownScalar(Expr expr) {
   return expr.constantString;
 }
 
-/// Whether `init` configured [dir] with a backend other than `local`, as
-/// `.terraform/terraform.tfstate` records it.
 bool initializedRemoteBackend(String dir) {
   final file = File(p.join(dir, '.terraform', 'terraform.tfstate'));
   if (!file.existsSync()) return false;
@@ -278,6 +241,7 @@ bool initializedRemoteBackend(String dir) {
   }
 }
 
+const _firstOpenTofuVersion = '1.6.0';
 const _terraformRegistry = 'registry.terraform.io';
 const _tofuRegistry = 'registry.opentofu.org';
 

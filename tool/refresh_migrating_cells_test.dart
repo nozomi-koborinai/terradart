@@ -48,13 +48,11 @@ void main() {
             'required': false,
             'owner': 'class:terradart_aws:AwsFoo',
           },
-          // Structural change: sealed -> helper must NOT be treated as a rename.
           'slot:terradart_aws:AwsFoo.structural': {
             'sig': 'sealed|||repeated|bare',
             'required': false,
             'owner': 'class:terradart_aws:AwsFoo',
           },
-          // Ambiguous split: FooAmbiguous splits into two distinct types.
           'slot:terradart_aws:AwsFoo.ambigA': {
             'sig': 'helper||FooAmbiguous|bare',
             'required': false,
@@ -65,7 +63,6 @@ void main() {
             'required': false,
             'owner': 'class:terradart_aws:AwsFoo',
           },
-          // Removed slot must NOT be treated as a rename.
           'slot:terradart_aws:AwsFoo.removedSlot': {
             'sig': 'helper||FooOldGlobal|bare',
             'required': false,

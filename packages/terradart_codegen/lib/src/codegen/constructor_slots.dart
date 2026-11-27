@@ -9,8 +9,6 @@ import 'provider_enums.dart';
 import 'references/reference_targets.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
-/// [param] has no trailing comma. The wrapper printer adds one.
-/// [argMapEntry] includes its trailing comma.
 typedef WrapperSlot = ({String param, String argMapEntry});
 
 typedef HelperMember = ({
@@ -409,7 +407,5 @@ WrapperSlot _absorbedSlot({
       ".alsoAs('$tfName')),",
 );
 
-/// Whether [attr] is a list of enum members, which a helper field takes as
-/// one `EnumList` rather than element by element.
 bool _enumList(NestedAttrSpec attr) =>
     attr.repeated && isEnumTypeName(attr.dartType);

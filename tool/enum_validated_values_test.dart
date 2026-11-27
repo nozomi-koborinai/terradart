@@ -1,30 +1,3 @@
-// tool/enum_validated_values_test.dart
-//
-// The wire value a generated enum member emits must be one the provider
-// accepts. The migration manifests record every emitted value; a lane's
-// hint files (tool/extract_provider_hints.dart) record the provider's own
-// validated sets. A description can be stale where the validator is not
-// (azurerm's `forward_proxy_convention` lists the Go constant names
-// `ForwardProxyConventionNoProxy`, ... while the provider accepts `NoProxy`),
-// so an emitted value outside the validated set of its input fails here.
-// The comparison is exact: a validator may ignore case, but some do not
-// (`forward_proxy_convention` uses `StringInSlice(..., false)`), and the
-// spelling a hint lists is accepted by either kind.
-//
-// The other direction holds too: a value the validator lists and the enum
-// lacks fails, and so does an input (top-level or nested) the validator
-// covers that no enum types, unless the provider only computes it or
-// [_untypedValidated] gives the reason it stays untyped.
-//
-// Where no hint covers an input, a value set whose every value is the
-// input's own PascalCase name plus a suffix is the shape of a Go constant
-// leaking from a description, and fails unless [_goConstantLike] gives the
-// reason the provider really accepts it, and its exact values.
-
-// The tool/ test convention keeps this file outside test/, so the analyzer
-// does not recognize it as a test for @visibleForTesting purposes.
-// ignore_for_file: invalid_use_of_visible_for_testing_member
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -37,8 +10,6 @@ import 'package:yaml/yaml.dart';
 
 import 'bump_api_surface.dart' show laneManifests;
 
-/// `type.path` → the Go-constant-shaped values that are the wire values,
-/// and why.
 const _goConstantLike = {
   'google_bigtable_instance.cluster.node_scaling_factor': (
     values: ['NodeScalingFactor1X', 'NodeScalingFactor2X'],
@@ -58,8 +29,6 @@ const _rawEncryption =
     'the deprecated inline server_side_encryption_configuration is a raw map; '
     'aws_s3_bucket_server_side_encryption_configuration types it';
 
-/// `lane` → `type.path` of an input a validator covers that no enum types,
-/// and why.
 const _untypedValidated = {
   'aws': {
     'aws_s3_bucket.object_lock_configuration.object_lock_enabled':
@@ -107,7 +76,6 @@ final _providersYaml = File(
   p.join(_root, 'tool/providers.yaml'),
 ).readAsStringSync();
 
-/// Every enum-typed input of [manifest]: `(kind, type, path)` → wire values.
 Map<(CatalogKind, String, String), List<String>> emittedEnums(
   MigrateManifest manifest,
 ) {
@@ -158,8 +126,6 @@ Map<(CatalogKind, String, String), List<String>> emittedEnums(
   return out;
 }
 
-/// The validated sets in [schemaDir]'s hint files: `(kind, type, path)` →
-/// values.
 Map<(CatalogKind, String, String), List<String>> validatedSets(
   String schemaDir,
 ) {
@@ -183,7 +149,6 @@ Map<(CatalogKind, String, String), List<String>> validatedSets(
   return out;
 }
 
-/// Each emitted value [validated] does not list exactly for its input.
 List<String> wireMismatches(
   Map<(CatalogKind, String, String), List<String>> emitted,
   Map<(CatalogKind, String, String), List<String>> validated,
@@ -195,7 +160,6 @@ List<String> wireMismatches(
           '${key.$2}.${key.$3}: emits "$v", provider validates $allowed',
 ];
 
-/// Each value [validated] lists for an input that the input's enum lacks.
 List<String> missingMembers(
   Map<(CatalogKind, String, String), List<String>> emitted,
   Map<(CatalogKind, String, String), List<String>> validated,
@@ -207,8 +171,6 @@ List<String> missingMembers(
           '${key.$2}.${key.$3}: provider validates "$v", the enum lacks it',
 ];
 
-/// The attributes of a provider `schema.json` the provider only computes
-/// (top-level and nested): `(kind, type, path)`.
 Set<(CatalogKind, String, String)> computedOnly(String schemaJson) {
   final out = <(CatalogKind, String, String)>{};
   final doc = jsonDecode(schemaJson) as Map<String, dynamic>;
@@ -245,9 +207,6 @@ Set<(CatalogKind, String, String)> computedOnly(String schemaJson) {
   return out;
 }
 
-/// Each input [validated] covers that [emitted] types with no enum, unless
-/// the provider only computes it ([computed]) or [allowed] gives a reason;
-/// plus each [allowed] entry that names no such input.
 List<String> untypedValidatedInputs(
   Map<(CatalogKind, String, String), List<String>> emitted,
   Map<(CatalogKind, String, String), List<String>> validated,
@@ -269,8 +228,6 @@ List<String> untypedValidatedInputs(
   ];
 }
 
-/// Inputs whose every value is the input's PascalCase name plus a suffix,
-/// unless [allowed] gives exactly those values for the input.
 List<String> goConstantShaped(
   Map<(CatalogKind, String, String), List<String>> enums, {
   Map<String, ({List<String> values, String reason})> allowed = const {},

@@ -271,9 +271,7 @@ void main() {
         ]),
         excludeNames: {'executionCount'},
       );
-      // The excluded camelCase getter is omitted entirely...
       expect(src, isNot(contains('get executionCount')));
-      // ...while non-excluded computed-only getters are still derived.
       expect(
         src,
         contains(

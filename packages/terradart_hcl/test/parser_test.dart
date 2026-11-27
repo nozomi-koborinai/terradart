@@ -273,7 +273,6 @@ b "x" {
         'aws.west',
       );
       final written = const HclWriter().writeExpr(o);
-      // A quoted dotted key is written unquoted: both forms are the same key.
       expect(written, '{ google.eu = google.eu, aws.west = aws.west }');
       final again = parseHclExpression(written) as ObjectExpr;
       expect(again.items.map((i) => i.keyName), ['google.eu', 'aws.west']);
@@ -284,8 +283,11 @@ b "x" {
       expect(parseHclExpression('[1,\n 2]'), isA<TupleExpr>());
       expect(parseHclExpression('  "s"  '), isA<LiteralExpr>());
       expect(() => parseHclExpression('1, 2'), _parseError('unexpected'));
-      // Adjacent primaries are not validated: the shallow parser keeps them raw.
-      expect(parseHclExpression('1 2'), isA<RawExpr>());
+      expect(
+        parseHclExpression('1 2'),
+        isA<RawExpr>(),
+        reason: 'shallow parser keeps adjacent primaries raw',
+      );
     });
   });
 

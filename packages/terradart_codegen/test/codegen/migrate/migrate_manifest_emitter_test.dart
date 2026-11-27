@@ -73,7 +73,6 @@ void main() {
         contains('const MigrateManifest googleBetaMigrateManifest'),
       );
       expect(formatted, contains("package: 'terradart_google_beta',"));
-      // Sorted by tfType, resource before its dataSource twin.
       final a = formatted.indexOf("tfType: 'google_a'");
       final bRes = formatted.indexOf('kind: CatalogKind.resource', a + 1);
       final bData = formatted.indexOf('kind: CatalogKind.dataSource');
@@ -87,7 +86,6 @@ void main() {
         formatted,
         contains("variants: <String, String>{'pubsub_target': 'PubsubTarget'}"),
       );
-      // Optional fields are omitted when default.
       expect(formatted, isNot(contains('positional: true')));
       expect(formatted, isNot(contains('wrapped: false')));
     });
@@ -127,7 +125,6 @@ void main() {
         ], package: 'terradart_google'),
         throwsStateError,
       );
-      // Identical redeclarations (the same file emitted twice) are fine.
       expect(
         MigrateManifestEmitter().emit([
           _build('google_a', helpers: const [_helper]),

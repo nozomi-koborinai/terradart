@@ -7,31 +7,13 @@ import '../exactly_one_types.dart';
 import 'loader_errors.dart';
 import 'wrapper_override.dart';
 
-/// Result of [YamlOverrideLoader.load] / `loadWrapperOverrides`, split by
-/// [WrapperOverrideKind].
-///
-/// Phase 4.1 introduces the resource / data source split so the new
-/// `DataSourceWrapperEmitter` can be wired alongside the existing
-/// `WrapperEmitter` without forcing the latter to take an `if (kind == ...)`
-/// dependency. The free function [loadWrapperOverrides] returns this struct
-/// directly; callers pick the half they need
-/// (`WrapperEmitter(overrides: loaded.resources)` etc.).
 class LoadedOverrides {
-  /// Creates a [LoadedOverrides] from already-split resource / data source
-  /// maps.
   const LoadedOverrides({required this.resources, required this.dataSources});
 
-  /// Override entries with [WrapperOverrideKind.resource].
   final Map<String, WrapperOverride> resources;
 
-  /// Override entries with [WrapperOverrideKind.dataSource].
   final Map<String, WrapperOverride> dataSources;
 
-  /// All entries flattened into a single map (for tests / introspection).
-  ///
-  /// Throws [StateError] when a terraform type exists in both halves
-  /// (resource / data-source twins). Iterate [entries] or use [asLintMap]
-  /// instead — colliding keys must not silently overwrite.
   Map<String, WrapperOverride> get all {
     final overlap = resources.keys.toSet().intersection(
       dataSources.keys.toSet(),
@@ -46,34 +28,24 @@ class LoadedOverrides {
     return {...resources, ...dataSources};
   }
 
-  /// Resource overrides plus data-source overrides. Twin terraform types
-  /// appear twice (once per kind).
   Iterable<MapEntry<String, WrapperOverride>> get entries sync* {
     yield* resources.entries;
     yield* dataSources.entries;
   }
 
-  /// Total curated overrides (resources + data sources).
   int get length => resources.length + dataSources.length;
 
-  /// The overrides of [kind].
   Map<String, WrapperOverride> of(WrapperOverrideKind kind) => switch (kind) {
     WrapperOverrideKind.resource => resources,
     WrapperOverrideKind.dataSource => dataSources,
   };
 
-  /// The unique key lint and ledgers use for [terraformType]'s [kind]
-  /// override: `data.<tfType>` for a data source with a resource twin, so
-  /// it never overwrites the twin, else the terraform type
-  /// (`google_project`).
   String lintKey(String terraformType, WrapperOverrideKind kind) =>
       kind == WrapperOverrideKind.dataSource &&
           resources.containsKey(terraformType)
       ? 'data.$terraformType'
       : terraformType;
 
-  /// Bag for lint / debt tools that need a unique map key per override,
-  /// keyed by [lintKey].
   Map<String, WrapperOverride> asLintMap() => {
     ...resources,
     for (final e in dataSources.entries)
@@ -81,11 +53,6 @@ class LoadedOverrides {
   };
 }
 
-/// Override YAML file stem for [terraformType] / [kind].
-///
-/// Resources: `<terraformType>`. Data sources: `data_<terraformType>`,
-/// except the legacy `google_project` data-source file which stays
-/// unprefixed.
 String overrideFileStem({
   required String terraformType,
   required WrapperOverrideKind kind,
@@ -97,10 +64,6 @@ String overrideFileStem({
   return terraformType;
 }
 
-/// Terraform type encoded by an override file stem and its parsed [kind].
-///
-/// `data_google_compute_network` + `kind: data_source` →
-/// `google_compute_network`. Legacy `google_project.yaml` keeps its stem.
 String terraformTypeFromOverrideStem(String stem, WrapperOverrideKind kind) {
   if (kind == WrapperOverrideKind.dataSource &&
       stem.startsWith('data_') &&
@@ -110,29 +73,6 @@ String terraformTypeFromOverrideStem(String stem, WrapperOverrideKind kind) {
   return stem;
 }
 
-/// Loads override YAML files under [rootDir] into a [LoadedOverrides]
-/// keyed by terraform type.
-///
-/// Resource files are `<terraformType>.yaml`. Data-source twins use
-/// `data_<terraformType>.yaml` so they do not overwrite the resource
-/// file; the loader strips the `data_` prefix after reading `kind`.
-/// The legacy `google_project.yaml` data-source file keeps its stem.
-///
-/// Validation:
-/// - File names must match `^[a-z][a-z0-9_]*$`.
-/// - Top-level keys must be in the allowed set (21 axes — 17 wrapper axes
-///   plus the 4 Phase 4.1 axes: `kind`, `outputDir`, `schemaStubBodyMode`,
-///   `fileLeadingComment`).
-/// - `nestedTypeExcludes` and `dedupeNestedTypes` require
-///   `deriveNestedTypes: true` (checked eagerly, like the
-///   `argMapOrder`-must-permute-`paramOrder` rule below).
-/// - `List<String>` fields must not be empty and entries must be strings.
-/// - `Map<String, String>` fields' values must be strings.
-/// - `customSlots[x].paramDeclaration` and `customSlots[x].argMapEntry`
-///   are required and must be strings; no other keys allowed.
-/// - When both `paramOrder` and `argMapOrder` are set, `argMapOrder` must
-///   be a permutation of `paramOrder`.
-/// - `kind` is one of `resource` (default) or `data_source`.
 class YamlOverrideLoader {
   YamlOverrideLoader({required this.rootDir});
 
@@ -141,9 +81,6 @@ class YamlOverrideLoader {
   static final RegExp _terraformTypePattern = RegExp(r'^[a-z][a-z0-9_]*$');
 
   static const Set<String> _allowedTopLevelKeys = {
-    // Wrapper axes (Phase 2.x, minus the Plan 5.X-retired
-    // `schemaStubComment` axis and the A4-retired `classDocComment` axis —
-    // class docs derive from the IR + `curatedDoc` now).
     'paramOrder',
     'argMapOrder',
     'extraGetters',
@@ -168,7 +105,6 @@ class YamlOverrideLoader {
     'exactlyOneOf',
     'atMostOneOf',
     'unsealedGroups',
-    // 4 Phase 4.1 axes (kind dispatch + emitter routing).
     'kind',
     'outputDir',
     'schemaStubBodyMode',
@@ -189,29 +125,6 @@ class YamlOverrideLoader {
 
   static const Set<String> _allowedMigrateHintKeys = {'kind', 'reason'};
 
-  /// Loads every `*.yaml` under [rootDir] and returns the parsed entries
-  /// split by [WrapperOverrideKind].
-  ///
-  /// Throws [LoaderErrorReport] when one or more entries fail validation
-  /// against the Phase 4.1 axes:
-  /// - E101 unknown `kind` value
-  /// - E102 `outputDir` missing or empty
-  /// - E103 `outputDir` malformed, or non-string `schemaStubBodyMode` /
-  ///   `fileLeadingComment`, or unknown `schemaStubBodyMode`
-  /// - E104 `kind: data_source` with `outputDir != 'data'`
-  /// - E201 resource-only axis present on a `data_source` entry
-  ///
-  /// Existing axis validation (paramOrder, customSlots, etc.) still throws
-  /// [FormatException] eagerly for backwards compatibility with Phase 2.x
-  /// callers; those failures short-circuit before the [LoaderErrorReport]
-  /// is assembled.
-  ///
-  /// [only], when non-null, restricts the scan to that terraform type
-  /// (and its `data_<type>.yaml` twin when present). Passing a
-  /// `data_<type>` stem loads only that data-source file. Sibling yamls
-  /// are not even opened, so an unstripped `wrap-promote` marker block
-  /// in a peer file no longer aborts the load. Throws [StateError] if no
-  /// matching file exists.
   LoadedOverrides load({String? only}) {
     final dir = Directory(rootDir);
     if (!dir.existsSync()) {
@@ -245,8 +158,6 @@ class YamlOverrideLoader {
       final src = file.readAsStringSync();
       final yaml = loadYaml(src, sourceUrl: Uri.file(file.path));
       if (yaml == null) {
-        // Empty yaml: outputDir is required (E102) — there is no node to
-        // attach a span to, so we point at line 1, column 1.
         errors.add(
           LoaderError(
             code: LoaderErrorCode.outputDirRequired,
@@ -297,8 +208,6 @@ class YamlOverrideLoader {
     return LoadedOverrides(resources: resources, dataSources: dataSources);
   }
 
-  /// Resolves `--only` to one or two yaml files: the exact stem, plus the
-  /// `data_<stem>` twin when [only] is a bare terraform type.
   List<File> _resolveOnlyFiles(String only) {
     final files = <File>[];
     final exact = File(p.join(rootDir, '$only.yaml'));
@@ -315,16 +224,6 @@ class YamlOverrideLoader {
     return files;
   }
 
-  /// Parses one yaml mapping into a [WrapperOverride].
-  ///
-  /// Phase 4.1 axes (kind / outputDir / schemaStubBodyMode /
-  /// fileLeadingComment) are routed through [errors] via [LoaderError] so
-  /// the loader can collect every failure in one pass. Legacy axes still
-  /// throw [FormatException] eagerly (preserved from Phase 2.x).
-  ///
-  /// Returns `null` when a fatal Phase 4.1 axis violation prevents
-  /// constructing a [WrapperOverride] (e.g. unknown kind value); the entry
-  /// is dropped from the [LoadedOverrides] in that case.
   WrapperOverride? _parseOverride(
     YamlMap yaml,
     String filePath,
@@ -332,9 +231,6 @@ class YamlOverrideLoader {
   ) {
     for (final key in yaml.keys) {
       if (key == 'classDocComment') {
-        // Retired axis (2026-07 doc wave): fail loudly with the migration
-        // path instead of the generic unknown-key error, so the axis cannot
-        // quietly come back.
         throw FormatException(
           '$filePath: `classDocComment` is retired — the class doc derives '
           'from the IR. Set `deriveClassDoc: true` and move artisanal prose '
@@ -367,10 +263,6 @@ class YamlOverrideLoader {
       filePath,
     );
     if (nestedTypeExcludes != null && !deriveNestedTypes) {
-      // Mirrors the retired-`classDocComment` style above: fail loudly at
-      // load time instead of silently accepting dead config the emitter
-      // would never consult (`nestedTypeExcludes` only has an effect inside
-      // the `deriveNestedTypes` codegen gate).
       throw FormatException(
         '$filePath: nestedTypeExcludes requires deriveNestedTypes: true. Set '
         '`deriveNestedTypes: true` on this override, or remove '
@@ -392,8 +284,6 @@ class YamlOverrideLoader {
     final schemaStubBodyMode = _parseSchemaStubBodyMode(yaml, filePath, errors);
     final fileLeadingComment = _parseFileLeadingComment(yaml, filePath, errors);
 
-    // E104: data sources must live under "data/" — keeps the wrap pipeline's
-    // fan-out predictable and matches the hand-written `data/` directory.
     if (kind == WrapperOverrideKind.dataSource &&
         outputDir != null &&
         outputDir != 'data') {
@@ -442,7 +332,6 @@ class YamlOverrideLoader {
       paramOrder: paramOrder,
       argMapOrder: argMapOrder,
       extraGetters: _readString(yaml, 'extraGetters', filePath),
-      // Plan 5.X: `schemaStubComment` is retired — no read here.
       requiredParams: _readStringList(yaml, 'requiredParams', filePath),
       dartTypeOverrides: _readStringMap(yaml, 'dartTypeOverrides', filePath),
       deprecatedParams: _readStringMap(yaml, 'deprecatedParams', filePath),
@@ -472,8 +361,6 @@ class YamlOverrideLoader {
     );
   }
 
-  /// The `unsealedGroups` axis: a string map whose keys are comma-separated
-  /// member paths and whose values are the reasons, never empty.
   Map<String, String>? _readUnsealedGroups(YamlMap yaml, String filePath) {
     final reasons = _readStringMap(yaml, 'unsealedGroups', filePath);
     if (reasons == null) return null;
@@ -494,8 +381,6 @@ class YamlOverrideLoader {
     return reasons;
   }
 
-  /// The `exactlyOneOf` / `atMostOneOf` axes: a string list whose entries
-  /// are comma-separated member paths, two or more each.
   List<String>? _readGroups(YamlMap yaml, String key, String filePath) {
     final groups = _readStringList(yaml, key, filePath);
     if (groups == null) return null;
@@ -512,8 +397,6 @@ class YamlOverrideLoader {
 
   static final RegExp _sealedConcept = RegExp(r'^[a-z][a-z0-9]*(_[a-z0-9]+)*$');
 
-  /// The `sealedNames` axis: a string map whose keys are comma-separated
-  /// member paths and whose values are snake_case concept names.
   Map<String, String>? _readSealedNames(YamlMap yaml, String filePath) {
     final names = _readStringMap(yaml, 'sealedNames', filePath);
     if (names == null) return null;
@@ -537,8 +420,6 @@ class YamlOverrideLoader {
   static final RegExp _inputPath = RegExp(r'^[a-z0-9_]+(\.[a-z0-9_]+)*$');
   static final RegExp _typeName = RegExp(r'^[A-Z][A-Za-z0-9]*$');
 
-  /// The `typeNames` axis: a string map from a dotted input path to a
-  /// PascalCase Dart type name.
   Map<String, String>? _readTypeNames(YamlMap yaml, String filePath) {
     final names = _readStringMap(yaml, 'typeNames', filePath);
     if (names == null) return null;
@@ -559,8 +440,6 @@ class YamlOverrideLoader {
     return names;
   }
 
-  /// The `enumValues` axis: a map from a dotted input path to a non-empty
-  /// list of distinct string values.
   Map<String, List<String>>? _readEnumValues(YamlMap yaml, String filePath) {
     final node = yaml['enumValues'];
     if (node == null) return null;
@@ -596,10 +475,6 @@ class YamlOverrideLoader {
     return out;
   }
 
-  /// Resolves the `kind` axis. Default: [WrapperOverrideKind.resource].
-  ///
-  /// Returns `null` (and appends an [LoaderErrorCode.unknownKind] entry to
-  /// [errors]) when the value is neither `resource` nor `data_source`.
   WrapperOverrideKind? _parseKind(
     YamlMap yaml,
     String filePath,
@@ -643,18 +518,6 @@ class YamlOverrideLoader {
     return null;
   }
 
-  /// Resolves the `outputDir` axis. Strict required (Phase 4.1):
-  ///
-  /// - Missing or empty -> [LoaderErrorCode.outputDirRequired] (E102),
-  ///   pointing at line 1 / column 1 when missing entirely or at the value
-  ///   span when the string is empty / whitespace.
-  /// - Non-string value -> [LoaderErrorCode.outputDirInvalid] (E103) at the
-  ///   value span.
-  /// - Contains `/`, `\`, equals `..` or `.` -> E103 at the value span. The
-  ///   value must be a single POSIX directory name; nested paths and parent
-  ///   refs are forbidden so the wrap pipeline can join paths predictably.
-  ///
-  /// Returns `null` when validation fails (caller drops the entry).
   String? _parseOutputDir(
     YamlMap yaml,
     String filePath,
@@ -723,18 +586,6 @@ class YamlOverrideLoader {
     return trimmed;
   }
 
-  /// Resolves the `schemaStubBodyMode` axis. Default:
-  /// [SchemaStubBodyMode.nosuchmethod].
-  ///
-  /// Strict (Phase 4.1):
-  /// - Non-string value -> [LoaderErrorCode.outputDirInvalid] (E103, reused
-  ///   for axis-value-shape errors per Task 4 plan) at the value span.
-  /// - Unknown string -> same E103 at the value span; allowed values are
-  ///   `nosuchmethod` and `bare`.
-  ///
-  /// Falls back to [SchemaStubBodyMode.nosuchmethod] when an error is
-  /// recorded so downstream emitter wiring stays type-safe; the
-  /// [LoaderErrorReport] aborts the run before the value is consumed.
   SchemaStubBodyMode _parseSchemaStubBodyMode(
     YamlMap yaml,
     String filePath,
@@ -781,17 +632,6 @@ class YamlOverrideLoader {
     return SchemaStubBodyMode.nosuchmethod;
   }
 
-  /// Resolves the `fileLeadingComment` axis. Default: `null` (no comment).
-  ///
-  /// Strict (Phase 4.1):
-  /// - Non-string value -> [LoaderErrorCode.outputDirInvalid] (E103, reused
-  ///   for axis-value-shape errors per Task 4 plan) at the value span.
-  ///
-  /// The block-scalar parsing (e.g. `|-` chomp) is delegated to the YAML
-  /// library, so the returned string preserves whatever line breaks the
-  /// author wrote (typically `\n` between lines, no trailing newline when
-  /// `|-` is used). The emitter is responsible for prefixing each line
-  /// with `// ` at write time.
   String? _parseFileLeadingComment(
     YamlMap yaml,
     String filePath,
@@ -933,16 +773,6 @@ class YamlOverrideLoader {
     return out;
   }
 
-  /// Parses `customSlots.<slot>.migrate`:
-  ///
-  /// ```yaml
-  /// migrate:
-  ///   kind: manual
-  ///   reason: env sources are a discriminated union the manifest cannot express
-  /// ```
-  ///
-  /// Only `kind: manual` exists today; `reason` is mandatory and non-empty so
-  /// the manifest never carries a bare "manual" without an explanation.
   MigrateHint? _readMigrateHint(Object? raw, String slotName, String filePath) {
     if (raw == null) return null;
     if (raw is! YamlMap) {

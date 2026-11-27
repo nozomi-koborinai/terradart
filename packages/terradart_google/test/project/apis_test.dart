@@ -1,5 +1,6 @@
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/src/project/terraform_api_requirements.dart';
 import 'package:terradart_time/terradart_time.dart';
 import 'package:test/test.dart';
 
@@ -207,9 +208,6 @@ void main() {
         'time_sleep',
       ]);
       final sleep = stack.resources.whereType<TimeSleep>().single;
-      // The returned dependency targets the sleep (not the services), and
-      // the sleep itself depends on every service — the services -> sleep ->
-      // dependents ordering is the whole contract of this helper.
       expect(deps.single, same(sleep));
       expect(sleep.dependsOn!.map((d) => d.tfAddress), [
         'google_project_service.api_pubsub',
@@ -283,11 +281,92 @@ void main() {
 
     test('empty barrels register nothing and return no deps', () {
       final stack = TestStack();
-      // Barrels.project contributes no API endpoints, so there is nothing
-      // to enable and nothing to wait for.
       final deps = stack.enableApis([.project]);
       expect(deps, isEmpty);
       expect(stack.resources, isEmpty);
+    });
+  });
+
+  group('requiredApiForTerraformType', () {
+    test('more specific prefixes precede broader prefixes they start with', () {
+      for (var i = 0; i < terraformApiPrefixRules.length; i++) {
+        final earlier = terraformApiPrefixRules[i].key;
+        for (var j = i + 1; j < terraformApiPrefixRules.length; j++) {
+          final later = terraformApiPrefixRules[j].key;
+          expect(
+            later.startsWith(earlier),
+            isFalse,
+            reason:
+                '$later appears after shorter prefix $earlier and would be shadowed',
+          );
+        }
+      }
+    });
+
+    test('matches specific prefixes before broader prefixes', () {
+      expect(
+        requiredApiForTerraformType('google_container_analysis_note'),
+        'containeranalysis.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType('google_container_cluster'),
+        'container.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType('google_bigquery_reservation'),
+        'bigqueryreservation.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType('google_bigquery_datapolicyv2_data_policy'),
+        'bigquerydatapolicy.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType('google_bigquery_datapolicy_data_policy'),
+        'bigquerydatapolicy.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType('google_bigquery_dataset'),
+        'bigquery.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType('google_storage_batch_operations_job'),
+        'storagebatchoperations.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType('google_storage_insights_report_config'),
+        'storageinsights.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType('google_storage_transfer_job'),
+        'storagetransfer.googleapis.com',
+      );
+      expect(
+        requiredApiForTerraformType('google_storage_bucket'),
+        'storage.googleapis.com',
+      );
+    });
+
+    test(
+      'gates IAM deny policies while leaving WIF and workforce pools ungated',
+      () {
+        expect(
+          requiredApiForTerraformType('google_iam_deny_policy'),
+          'iam.googleapis.com',
+        );
+        expect(
+          requiredApiForTerraformType('google_iam_workload_identity_pool'),
+          isNull,
+        );
+        expect(
+          requiredApiForTerraformType('google_iam_workforce_pool'),
+          isNull,
+        );
+      },
+    );
+
+    test('terraformApiPrefixRules has no duplicate prefixes', () {
+      final keys = terraformApiPrefixRules.map((e) => e.key).toList();
+      expect(keys.toSet().length, keys.length);
     });
   });
 

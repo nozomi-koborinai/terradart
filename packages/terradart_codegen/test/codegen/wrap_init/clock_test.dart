@@ -16,7 +16,7 @@ void main() {
       final fixed = DateTime.utc(2026, 1, 2, 3, 4, 5);
       final clock = FixedClock(fixed);
       expect(clock.now(), fixed);
-      expect(clock.now(), fixed); // idempotent
+      expect(clock.now(), fixed);
     });
   });
 }

@@ -123,40 +123,18 @@ abstract base class Stack {
   final AppExports? appExports;
 
   final List<StackProvider> _providers;
-
-  /// Configurations registered with [addConfigurationAlias]: aliases the
-  /// calling module passes in, not `provider` blocks this module owns.
   final List<StackProvider> _configurationAliases = [];
-
-  // Insertion-ordered for deterministic JSON emission.
   final Map<_DedupKey, Resource> _resources = {};
   final Map<_DedupKey, Data> _dataSources = {};
   final Map<String, ModuleCall> _modules = {};
-
-  // ---- Coordination state (synth consumes) --------------------------------
-
-  /// Insertion-ordered so the generated file and `output` block are stable.
   final Map<String, AppConstant<Object?>> _constants = {};
   final Map<String, TfOutput<Object?>> _outputs = {};
   final Map<String, DartDefineOutput> _dartDefineOutputs = {};
-
-  /// Insertion-ordered so the emitted `variable` block is stable.
   final Map<String, TfVariable> _variables = {};
-
-  /// Names declared outside synth output — see [externalVariable].
   final Set<String> _externalVariables = {};
-
-  /// Block addresses declared outside synth output — see
-  /// [addExternalBlock].
   final Set<String> _externalBlocks = {};
-
-  /// Configurations registered with [addExternalProvider].
   final List<StackProvider> _externalProviders = [];
-
-  /// Insertion-ordered so the emitted `moved` list is stable.
   final List<TfMoved> _moved = [];
-
-  // ---- Public read-only views (synth reads these) ------------------------
 
   /// The configurations passed to the constructor, then those registered
   /// with [addProvider], [addConfigurationAlias] and [addExternalProvider],
@@ -230,8 +208,6 @@ abstract base class Stack {
   /// Defaults to `'>= 1.11.0'`: Terraform 1.11 is the first with write-only
   /// arguments.
   final String requiredVersion;
-
-  // ---- Coordination mutators ---------------------------------------------
 
   /// Registers [provider] like an entry of the Stack's `providers` and
   /// returns it, so the constructor body holds the instance a resource
@@ -508,19 +484,16 @@ abstract base class Stack {
     }
   }
 
-  /// Members every generated reader has, which no getter may shadow.
-  static const _readerMembers = {
+  static const _reservedReaderMembers = {
     'hashCode',
     'runtimeType',
     'toString',
     'noSuchMethod',
   };
 
-  /// Throws when the output [name] would not map to its own getter and
-  /// environment variable in the generated reader.
   void _checkReaderNames(String name) {
     final getter = outputGetterName(name);
-    if (!isDartIdentifier(getter) || _readerMembers.contains(getter)) {
+    if (!isDartIdentifier(getter) || _reservedReaderMembers.contains(getter)) {
       throw ArgumentError.value(
         name,
         'name',
@@ -550,8 +523,6 @@ abstract base class Stack {
     }
   }
 
-  /// `owner.attr` when [value] references a field its owner marks
-  /// sensitive, else `null`.
   static String? _sensitiveFieldRead(TfArg<Object?> value) {
     final (owner, attr) = switch (value) {
       AttributeRef(:final owner, :final attr) => (owner, attr),
@@ -787,8 +758,6 @@ abstract base class Stack {
     r'^(?:data\.[A-Za-z][A-Za-z0-9_]*\.|module\.|'
     r'(?!data\.|module\.)[A-Za-z][A-Za-z0-9_]*\.)[A-Za-z_][A-Za-z0-9_-]*$',
   );
-
-  // ---- Resource registration ---------------------------------------------
 
   /// Register a resource or data source. Returns the same instance for
   /// fluent assignment.

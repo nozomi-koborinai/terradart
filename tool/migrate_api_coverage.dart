@@ -1,22 +1,3 @@
-// The migrator's API coverage gate: every public factory a provider package
-// declares needs a manifest entry for its Terraform type and kind, and every
-// constructor input (a scalar, an untyped block, an enum, an EnumList, a
-// sealed choice and its keys, a RefTo, an IAM principal, a helper block) and
-// output getter needs a recipe in that package's migration manifest that
-// builds the same shape, so `terradart migrate` never falls back to a
-// string where the API is typed. A sealed choice must also be encoded where
-// its slot says (merged into the block or under its key), each variant's
-// shorthand must be a factory constructor on the sealed type that redirects
-// to that variant, a RefTo must emit the attribute its slot names, and
-// getters a factory inherits count as its own.
-//
-// The wrapper side is read from the package sources with the analyzer, the
-// manifest side from `allMigrateManifests`; nothing is hand-listed. A
-// `manual` slot or a helper with a reason is a finding unless
-// tool/migrate_manifest_debt.yaml names a Terraform type that reaches it,
-// and a factory without an entry is one unless
-// tool/migrate_unmanifested_factories.yaml names another package whose
-// manifest builds it.
 import 'dart:io';
 
 import 'package:analyzer/dart/analysis/utilities.dart';
@@ -30,44 +11,20 @@ import 'package:yaml/yaml.dart';
 
 const migrateManifestDebtPath = 'tool/migrate_manifest_debt.yaml';
 
-/// The public surface of one provider package, as its sources declare it.
 final class WrapperApi {
   WrapperApi._();
 
-  /// Class → constructor parameter → declared type source.
   final Map<String, Map<String, String>> inputs = {};
-
-  /// Enum (an extension type over `TfArg<String>`) → raw value → member.
   final Map<String, Map<String, String>> enums = {};
-
-  /// Sealed class → factory constructor name → the class it redirects to.
   final Map<String, Map<String, String>> sealed = {};
-
-  /// Sealed variant → the Terraform key its `blockKey` getter returns.
   final Map<String, String> blockKeys = {};
-
-  /// Class → getter → `(attribute, T)` of its `TfRef<T>`.
   final Map<String, Map<String, ({String attribute, String type})>> getters =
       {};
-
-  /// Classes with a `principal` getter, the IAM principal of their `member`.
   final Set<String> principalGetters = {};
-
-  /// Class → value → the attribute its `encodeAs('...')` emits: what a
-  /// `RefTo` input writes.
   final Map<String, Map<String, String>> refAttributes = {};
-
-  /// Class → value → how its encoding is keyed: the Terraform key of a map
-  /// entry that holds it, or null when it lands in the enclosing block
-  /// (`x.blockKey: x.value`, `...x.encode()`).
   final Map<String, Map<String, String?>> encodedUnder = {};
-
-  /// Concrete public classes that extend `Resource` or `Data`, directly or
-  /// through package classes: the factories a manifest entry must describe,
-  /// with the Terraform type they emit (null when the source does not say).
   final Map<String, ({String? tfType, CatalogKind kind})> factories = {};
 
-  /// Every `.dart` file under `packages/<package>/lib`.
   static WrapperApi readPackage(String repoRoot, String package) {
     final lib = Directory(p.join(repoRoot, 'packages', package, 'lib'));
     return parse([
@@ -85,9 +42,6 @@ final class WrapperApi {
         if (d is ExtensionTypeDeclaration) api._enum(d);
       }
     }
-    // A `super.x` parameter takes the type of the superclass field. One
-    // whose superclass is outside the package (`Resource`'s `lifecycle`)
-    // is a bookend every factory shares, not an input of its own.
     for (final MapEntry(key: name, value: pending)
         in api._superParams.entries) {
       final fields = api._fields[api._superclass[name]];
@@ -96,7 +50,6 @@ final class WrapperApi {
         if (fields[param] case final type?) api.inputs[name]![param] = type;
       }
     }
-    // A getter a package superclass declares is part of the subclass API.
     for (final name in api._superclass.keys) {
       final seen = <String>{name};
       for (
@@ -225,8 +178,6 @@ final class WrapperApi {
     if (refs.isNotEmpty) getters[name] = refs;
   }
 
-  /// `static const String tfType = '...'`, else the `terraformType:` a
-  /// constructor passes to `super`.
   static String? _terraformType(Iterable<ClassMember> members) {
     for (final m in members.whereType<FieldDeclaration>()) {
       if (!m.isStatic) continue;
@@ -262,8 +213,6 @@ final class WrapperApi {
         if (raw != null) members[raw] = v.name.lexeme;
       }
     }
-    // An enum lists its members in `values`; other extension types over
-    // `TfArg<String>` (`AppwritePermission`) are not enums.
     if (_declaresValues(d)) {
       enums[name] = members;
     }
@@ -276,7 +225,6 @@ final class WrapperApi {
             m.fields.variables.any((v) => v.name.lexeme == 'values'),
       );
 
-  /// `X._(TfArgLiteral('RAW'))` → `TfArgLiteral('RAW')`.
   static Expression? _firstArg(Expression? e) => switch (e) {
     InstanceCreationExpression(:final argumentList) ||
     MethodInvocation(
@@ -291,8 +239,6 @@ final class WrapperApi {
   }
 }
 
-/// Reads how a class encodes its values: `x?.encodeAs('id')` for a
-/// reference, and the map entry or spread that holds `x`.
 final class _EncodingVisitor extends RecursiveAstVisitor<void> {
   final Map<String, String> attributes = {};
   final Map<String, String?> under = {};
@@ -353,8 +299,6 @@ final class _Identifiers extends RecursiveAstVisitor<void> {
   }
 }
 
-/// The shape a declared input type has, which the manifest slot for it must
-/// build.
 sealed class InputShape {
   const InputShape();
 
@@ -403,8 +347,6 @@ sealed class InputShape {
       return HelperInput(h, keyed: true);
     }
     if (api.inputs.containsKey(t)) return HelperInput(t);
-    // `Sensitive<T>` is a `TfArg<T>` the migrator fills from a variable, and
-    // the manifest records a payload without its `?`.
     final wrapped = inner('TfArg<') ?? inner('Sensitive<');
     final element = switch (wrapped) {
       final w? when w.startsWith('List<') && w.endsWith('>') => w.substring(
@@ -432,15 +374,11 @@ sealed class InputShape {
   };
 }
 
-/// A `TfArg<C>` or `TfArg<List<C>>` of a package class: no slot kind builds
-/// one, so it is always a finding.
 final class WrappedClassInput extends InputShape {
   const WrappedClassInput(this.type);
   final String type;
 }
 
-/// A `TfArg<T>` (or bare `T`) value: a string, number, flag or collection.
-/// [repeated] for a bare `List<T>` or `List<TfArg<T>>` of them.
 final class ScalarInput extends InputShape {
   const ScalarInput(this.type, {required this.wrapped, this.repeated = false});
   final String type;
@@ -448,15 +386,12 @@ final class ScalarInput extends InputShape {
   final bool repeated;
 }
 
-/// An untyped `Map<String, dynamic>` block, or a list of them.
 final class PassthroughInput extends InputShape {
   const PassthroughInput(this.type, {required this.wrapped});
   final String type;
   final bool wrapped;
 }
 
-/// A class of the package passed bare: one block, a list of blocks, or a
-/// map of blocks keyed by name.
 final class HelperInput extends InputShape {
   const HelperInput(this.type, {this.repeated = false, this.keyed = false});
   final String type;
@@ -497,7 +432,6 @@ final class RefInput extends InputShape {
   final bool repeated;
 }
 
-/// Terraform types in [migrateManifestDebtPath], with their reasons.
 Map<String, String> loadMigrateManifestDebt(File file) {
   if (!file.existsSync()) return {};
   final doc = loadYaml(file.readAsStringSync());
@@ -507,9 +441,6 @@ Map<String, String> loadMigrateManifestDebt(File file) {
 
 const unmanifestedFactoriesPath = 'tool/migrate_unmanifested_factories.yaml';
 
-/// A factory class a manifest omits because another provider package's
-/// manifest builds the same Terraform type: [builtBy] names that package.
-/// [error] says why the ledger entry is malformed, when it is.
 final class UnmanifestedFactory {
   const UnmanifestedFactory({this.builtBy, this.reason, this.error});
   final String? builtBy;
@@ -517,9 +448,6 @@ final class UnmanifestedFactory {
   final String? error;
 }
 
-/// Package → factory class → the manifest that builds it instead. An entry
-/// must be a map of exactly `builtBy` and `reason`, both non-empty strings;
-/// anything else loads with an [UnmanifestedFactory.error].
 Map<String, Map<String, UnmanifestedFactory>> loadUnmanifestedFactories(
   File file,
 ) {
@@ -560,16 +488,6 @@ Map<String, Map<String, UnmanifestedFactory>> loadUnmanifestedFactories(
   };
 }
 
-/// What keeps [manifest] from expressing [api]. Each finding names the
-/// class and input, the shape the API has, and what the manifest records.
-/// [debt] maps a Terraform type to the reason its manual shapes are
-/// deliberate; a manual shape a ledgered type reaches is not a finding.
-/// [usedDebt] collects the ledgered types that excused something.
-/// [unmanifested] maps a factory class the manifest omits to the package
-/// whose manifest builds it; the omission is excused only when that
-/// manifest has an entry for the same class, Terraform type and kind.
-/// [usedUnmanifested] collects the entries that excused an omission.
-/// [manifests] are the manifests [unmanifested] may name.
 List<String> coverageFindings(
   MigrateManifest manifest,
   WrapperApi api, {
@@ -585,7 +503,6 @@ List<String> coverageFindings(
   final byPackage = {
     for (final m in manifests ?? allMigrateManifests) m.package: m,
   };
-  // Excused omissions: the alternate entry must build this package's class.
   final alternates = <(MigrateEntry, MigrateManifest)>[];
   for (final MapEntry(key: f, value: (:tfType, :kind))
       in api.factories.entries.toList()
@@ -829,14 +746,11 @@ String? _mismatch(
         if (helper == null) {
           return 'variant $v has no manifest helper';
         }
-        // The migrator writes `.<shorthand>(...)`, or `V(...)` without one.
         if (helper.shorthand case final shorthand?
             when declared[shorthand] != v) {
           return 'variant $v is written `.$shorthand(...)`, but $type.'
               '$shorthand builds ${declared[shorthand] ?? 'nothing'}';
         }
-        // A variant names its Terraform key in `blockKey`; a derived one
-        // without it is the constructor named after the key.
         if (api.blockKeys[v] case final own?) {
           if (own != key) {
             return 'the manifest reads `$key` as $v, whose blockKey is '
@@ -891,8 +805,6 @@ String? _mismatch(
   }
 }
 
-/// Helper class (or factory class) → the Terraform types whose factories
-/// reach it through their slots.
 Map<String, Set<String>> _reachingTypes(MigrateManifest manifest) {
   final out = <String, Set<String>>{};
   void visit(String owner, List<MigrateSlot> slots, String tfType) {

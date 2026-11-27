@@ -1,20 +1,6 @@
-// Pure-function extractor that finds sealed-class declarations and their
-// `final class` members inside a yaml override's `prelude:` Dart-source text.
-//
-// Implementation note: this uses focused regex rather than `package:analyzer`.
-// Trade-off documented in Plan 5.D PR 2: production yaml preludes follow
-// curator-disciplined patterns (the 12 shipped sealed-class members all share
-// constructor / field declaration shapes), and regex avoids widening the
-// codegen dep graph. If Wave 5+ patterns break the regex, migrate to analyzer
-// as a follow-up — see docs/superpowers/specs/2026-05-16-plan5d-codegen-correctness-design.md
-// section "Open decisions deferred to plan".
-
 class SealedClassExtractor {
   const SealedClassExtractor();
 
-  /// Returns one [SealedClass] entry per `sealed class ... { ... }` block
-  /// discovered in [preludeText], with members populated from the surrounding
-  /// `final class <Name> extends <Sealed> { ... }` declarations.
   List<SealedClass> extract(String preludeText) {
     final sealedDecls = _sealedDeclPattern.allMatches(preludeText).toList();
     if (sealedDecls.isEmpty) return const [];
@@ -55,9 +41,6 @@ class SealedClassExtractor {
     dotAll: true,
   );
 
-  /// Walks [source] starting at [start] balancing `{` and `}` and returns the
-  /// substring containing the class body (between the opening and matching
-  /// closing braces — minus the braces themselves).
   String _extractClassBody(String source, int start) {
     var depth = 1;
     var i = start;
@@ -67,7 +50,6 @@ class SealedClassExtractor {
       if (ch == '}') depth--;
       i++;
     }
-    // i now sits one past the matching '}'. Return body without braces.
     return source.substring(start, i - 1);
   }
 
@@ -79,9 +61,6 @@ class SealedClassExtractor {
     for (final raw in paramsBlock.split(',')) {
       final trimmed = raw.trim();
       if (trimmed.isEmpty) continue;
-      // Forms expected:
-      //   required this.splits
-      //   this.codebaseBranch
       final required = trimmed.startsWith('required ');
       final afterRequired = required
           ? trimmed.substring('required '.length)

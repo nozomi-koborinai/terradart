@@ -1,14 +1,4 @@
 // ignore_for_file: avoid_print
-//
-// Maintainer: scaffold leftover-thin data-source overrides for every GA
-// data source that is not yet curated (google_project stays as-is).
-//
-// Writes `data_<type>.yaml` next to resource twins and appends
-// `tool/mm_yaml_sources.yaml` keys. Leftover-thin files are refreshed
-// in place so `paramOrder` stays aligned with the emitter's natural
-// slot order (Gate 1). Other hand-written data-source YAMLs are skipped.
-//
-// Run from repo root: dart tool/batch_data_source_overrides.dart
 
 import 'dart:io';
 
@@ -27,9 +17,6 @@ const _leftoverDoc = '''
   /// Read-only data source on the apply-excluded leftover path
   /// (synth + `terraform validate` only). Do not apply.''';
 
-/// The leftover-thin override of a data source whose constructor order is
-/// [paramOrder]; tool/bump_new_factories.dart writes the same shape for a
-/// data source a schema bump adds.
 String dataSourceOverrideYaml(List<String> paramOrder) {
   final buf = StringBuffer()
     ..writeln('kind: data_source')
@@ -50,8 +37,6 @@ String dataSourceOverrideYaml(List<String> paramOrder) {
   return buf.toString();
 }
 
-/// Same skip rules as [DataSourceWrapperEmitter._skipAttribute] /
-/// `_skipNestedBlock` so Gate 1 `paramOrder` matches the constructor.
 List<String> dataSourceParamOrder(ResourceDef def) {
   final out = <String>[];
   for (final attr in def.root.attributes) {

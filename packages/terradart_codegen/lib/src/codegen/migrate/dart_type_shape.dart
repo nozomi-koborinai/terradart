@@ -1,11 +1,3 @@
-/// A parsed Dart type annotation: `TfArg<Map<String, String>>?` becomes
-/// `TfArg` with one argument (`Map` with `String`, `String`) and
-/// `nullable: true`.
-///
-/// Only the shapes wrapper files use are supported — a named type with
-/// optional generic arguments and an optional trailing `?`. Function types,
-/// records and prefixed names would be a wrapper-emitter bug, and
-/// [parseDartType] rejects them with a [FormatException].
 final class DartTypeShape {
   const DartTypeShape(this.name, {this.args = const [], this.nullable = false});
 
@@ -13,11 +5,9 @@ final class DartTypeShape {
   final List<DartTypeShape> args;
   final bool nullable;
 
-  /// Same type without the trailing `?`.
   DartTypeShape get nonNullable =>
       DartTypeShape(name, args: args, nullable: false);
 
-  /// Canonical source text: one space after each comma, no other whitespace.
   String render() {
     final generic = args.isEmpty
         ? ''
@@ -29,8 +19,6 @@ final class DartTypeShape {
   String toString() => render();
 }
 
-/// Parses [source] (a Dart type annotation as it appears in generated or
-/// curated wrapper code) into a [DartTypeShape].
 DartTypeShape parseDartType(String source) {
   final parser = _TypeParser(source);
   final shape = parser.parseType();

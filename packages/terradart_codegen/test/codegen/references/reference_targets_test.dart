@@ -1116,9 +1116,9 @@ class XVmNic {
       expect(ref.dartType, 'RefTo<GoogleYService>');
       expect(ref.attribute, 'name');
       expect(ref.dartName, 'service');
-      // The data source does not export `project`, so a ref built from it
-      // could not fill it.
-      expect(ref.absorbed, ['location']);
+      expect(ref.absorbed, [
+        'location',
+      ], reason: 'the data source does not export project');
     });
 
     test('the adjunct takes the parent and fills the rest from it', () {

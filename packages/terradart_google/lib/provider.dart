@@ -1,4 +1,3 @@
-// packages/terradart_google/lib/provider.dart
 /// Provider block factory and version constants for `hashicorp/google`.
 ///
 /// Import this alongside one or more per-service barrels:

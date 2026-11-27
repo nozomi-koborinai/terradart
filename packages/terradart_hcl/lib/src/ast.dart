@@ -36,10 +36,6 @@ final class Comment {
   String toString() => text;
 }
 
-// ---------------------------------------------------------------------------
-// Expressions
-// ---------------------------------------------------------------------------
-
 /// An attribute value.
 ///
 /// Only the shapes a migration needs to *classify* are parsed exactly:
@@ -356,10 +352,6 @@ final class RawExpr extends Expr {
   @override
   String toString() => 'Raw($source)';
 }
-
-// ---------------------------------------------------------------------------
-// Structure
-// ---------------------------------------------------------------------------
 
 /// An entry of a [Body]: an [Attribute] or a [Block].
 sealed class BodyEntry extends HclNode {

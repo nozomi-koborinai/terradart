@@ -1,4 +1,3 @@
-// packages/terradart_google/lib/google_beta.dart
 /// `hashicorp/google-beta` utilities — service-agent minting used when the
 /// GA provider has no equivalent resource.
 library;

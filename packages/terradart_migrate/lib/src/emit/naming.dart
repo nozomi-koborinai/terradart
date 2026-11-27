@@ -7,7 +7,6 @@ import 'dart:core';
 
 import 'dart_literal.dart';
 
-/// `orders_push` → `ordersPush`, `my-topic` → `myTopic`, `2fa` → `r2fa`.
 String lowerCamel(String name) {
   final parts = name
       .split(RegExp(r'[^A-Za-z0-9]+'))
@@ -28,7 +27,6 @@ String lowerCamel(String name) {
   return out;
 }
 
-/// `pubsub_quickstart` → `PubsubQuickstart`.
 String pascalCase(String name) {
   final parts = name
       .split(RegExp(r'[^A-Za-z0-9]+'))
@@ -63,8 +61,6 @@ String snakeCase(String name) {
   return out;
 }
 
-/// `Stack` members and inherited names a migrated Stack's locals must not
-/// shadow.
 const Set<String> stackMemberNames = {
   'add',
   'addOutput',
@@ -101,18 +97,13 @@ const Set<String> stackMemberNames = {
   'noSuchMethod',
 };
 
-/// Hands out unique Dart local names inside one Stack constructor.
 final class NameAllocator {
-  /// [reserved] names are taken before any allocation — the merged Stack's
-  /// `env` parameter, say.
   NameAllocator({Set<String> reserved = const {}}) {
     _used.addAll(reserved);
   }
 
   final Set<String> _used = {...stackMemberNames};
 
-  /// A unique identifier derived from [base]; on a clash the PascalCase
-  /// [suffix] (the resource's type, say) is appended, then a counter.
   String allocate(String base, {required String suffix}) {
     var candidate = lowerCamel(base);
     if (!isDartIdentifier(candidate) || _used.contains(candidate)) {
@@ -128,8 +119,6 @@ final class NameAllocator {
     return attempt;
   }
 
-  /// The shortest suffix that distinguishes a Terraform type: the trailing
-  /// segments after the provider prefix (`google_pubsub_topic` → `PubsubTopic`).
   static String typeSuffix(String tfType) {
     final parts = tfType.split('_');
     return pascalCase(parts.sublist(math.min(1, parts.length - 1)).join('_'));

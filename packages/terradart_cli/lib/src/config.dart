@@ -7,19 +7,6 @@ import 'cli_exception.dart';
 import 'engine.dart';
 import 'output/exit_codes.dart';
 
-/// The optional `terradart:` section of a project's `pubspec.yaml`.
-///
-/// ```yaml
-/// terradart:
-///   entrypoint: bin/infra.dart
-///   engine: tofu
-///   dart_defines:
-///     output: dart_defines
-///     file: .terradart/dart_defines.json
-/// ```
-///
-/// Environments are not declared here: the entry point declares them in
-/// Dart with `runEnvironments`, and tells `terradart` what it wrote.
 final class ProjectConfig {
   const ProjectConfig({
     required this.root,
@@ -30,27 +17,18 @@ final class ProjectConfig {
     this.defineFile,
   });
 
-  /// The directory holding `pubspec.yaml`, absolute.
   final String root;
 
-  /// The Dart file whose `main` synthesizes the Stacks, relative to [root].
   final String entrypoint;
 
-  /// The directory an entry point that calls neither `runStack` nor
-  /// `runEnvironments` writes, relative to [root].
   final String out;
 
   final EngineSettings engine;
 
-  /// The `addDartDefineOutput` output `apply` and `outputs` write; `null`
-  /// is the one the Stack declares (`dart_defines` among several).
   final String? defineOutput;
 
-  /// The define file, relative to [root]; `null` is
-  /// `.terradart/<output>.json`.
   final String? defineFile;
 
-  /// The nearest directory from [start] upward that holds a `pubspec.yaml`.
   static String findRoot(String start) {
     var dir = p.absolute(start);
     while (true) {
@@ -67,7 +45,6 @@ final class ProjectConfig {
     }
   }
 
-  /// Reads the `terradart:` section of `<root>/pubspec.yaml`.
   static ProjectConfig load(String root) {
     final file = File(p.join(root, 'pubspec.yaml'));
     final Object? doc;
@@ -83,7 +60,6 @@ final class ProjectConfig {
     return parse(root, section);
   }
 
-  /// Reads a `terradart:` section that has already been decoded.
   static ProjectConfig parse(String root, Object? section) {
     if (section == null) return ProjectConfig(root: root);
     final map = _map(section, 'terradart', const {
@@ -148,14 +124,15 @@ final class ProjectConfig {
     if (value is YamlMap) {
       return {
         for (final MapEntry(:key, value: node) in value.nodes.entries)
-          '${key is YamlNode ? key.value : key}': _scalar(node),
+          '${key is YamlNode ? key.value : key}': _scalarPreservingNumberText(
+            node,
+          ),
       };
     }
     return {for (final MapEntry(:key, :value) in value.entries) '$key': value};
   }
 
-  /// A number as it is written, so `1.10` stays `1.10` and is not `1.1`.
-  static Object? _scalar(YamlNode node) => switch (node) {
+  static Object? _scalarPreservingNumberText(YamlNode node) => switch (node) {
     YamlScalar(value: num()) => node.span.text,
     YamlScalar(:final value) => value,
     _ => node,

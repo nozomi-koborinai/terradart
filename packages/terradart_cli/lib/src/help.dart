@@ -2,8 +2,6 @@ import 'package:args/command_runner.dart';
 
 import 'assets/help_topics.g.dart';
 
-/// The `usageFooter` of a command: [examples], the simplest first and the
-/// form an agent runs last, then the topics to read next.
 String commandFooter(List<String> examples, {List<String> seeAlso = const []}) {
   final b = StringBuffer('\nExamples:\n');
   for (final e in examples) {
@@ -17,7 +15,6 @@ String commandFooter(List<String> examples, {List<String> seeAlso = const []}) {
   return '$b'.trimRight();
 }
 
-/// The `terradart` runner, whose usage ends with the help topics.
 final class TerradartRunner extends CommandRunner<int> {
   TerradartRunner()
     : super(
@@ -33,10 +30,6 @@ final class TerradartRunner extends CommandRunner<int> {
       'what each covers.';
 }
 
-/// `terradart help --list` and `terradart help <topic>` ([rest] is what
-/// follows `help`): the text to print, or `null` for the command help
-/// `package:args` prints. A topic that is also a command (`migrate`) prints
-/// the command's usage, then the topic under `Guide:`.
 String? topicHelp(List<String> rest, CommandRunner<int> runner) {
   if (rest case ['--list']) {
     final width = helpTopics.keys.fold(

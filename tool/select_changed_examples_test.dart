@@ -62,10 +62,6 @@ void main() {
     });
 
     test('docs-only PR selects nothing (the historical cost-leak class)', () {
-      // A retired shell twin of this selector once fanned a pubspec-only
-      // bump out to every example via a broken awk regex. The validate
-      // matrix intentionally DOES select an example for its own pubspec
-      // (cheap), but repo-level docs must select nothing.
       final sel = selectExamples(
         event: 'pull_request',
         changed: const ['README.md', 'MIGRATING.md', 'website/src/a.md'],
@@ -74,8 +70,6 @@ void main() {
     });
 
     test('a deleted example is in the diff but not in the matrix', () {
-      // Deleting examples/<slug>_quickstart/ lists its files as changed while
-      // the directory is gone from the checkout; validating it would fail.
       final sel = selectExamples(
         event: 'pull_request',
         changed: const [

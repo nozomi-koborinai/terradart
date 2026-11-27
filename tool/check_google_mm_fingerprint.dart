@@ -1,88 +1,73 @@
 // ignore_for_file: avoid_print
-//
-// google lane gate: catch `upstream: null` entries in
-// tool/mm_yaml_sources.yaml (the GA lane's MM manifest) that are almost
-// certainly Magic-Modules-generated.
-//
-// Why this exists: Waves 26-32 shipped a copy-pasted
-// `upstream: null # handwritten in terraform-provider-google` comment across
-// ~29 resources that DO have an mmv1 YAML upstream (certificatemanager,
-// privateca, alloydb, memcache, spanner, filestore, ...). A wrong null
-// silently disables MM enum-drift checks for that resource — the frozen
-// prelude enums then rot when upstream adds a constant.
-//
-// Detection (offline, schema-fixture only — no network): a resource is
-// flagged when it carries an MM fingerprint yet maps to `upstream: null`:
-//   - an `effective_labels` / `terraform_labels` attribute (MM labels rework), or
-//   - any attribute description with MM's machine-appended
-//     `Possible values: [...]` / `Default value: ...` suffix.
-//
-// This is a heuristic, not a prover: it cannot see label-less MM resources
-// (probe the upstream path to be sure). It exists to stop the high-volume
-// copy-paste class, not to certify every null.
-//
-// Usage: dart tool/check_google_mm_fingerprint.dart
 
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:yaml/yaml.dart';
 
-/// Resources that genuinely lack an mmv1 YAML but still carry an MM-style
-/// fingerprint (the provider-wide labels rework gave handwritten resources
-/// `effective_labels`; `cloudbuild_worker_pool` is DCL/tpgtools-generated, not
-/// mmv1). Verified by upstream 404 probe (2026-06). Revisit if magic-modules
-/// later adds these.
-const _fingerprintFalsePositives = <String>{
-  'google_compute_security_policy',
-  'google_project',
-  'google_cloudbuild_worker_pool',
-  'google_bigtable_instance', // third_party go + meta.yaml; no mmv1/products/bigtable/Instance.yaml
-  // Probed earlier; reasons live on their mm_yaml_sources.yaml entries, but
-  // the listing here was missed, which silently broke the full agent gate:
-  'google_compute_network_peering', // third_party resource_compute_network_peering.go
-  'google_compute_router_peer', // no mmv1/products/compute/RouterPeer.yaml (sync 404)
-  'google_dataplex_zone', // MM Zone.yaml is IAM-only (exclude_resource: true)
-  'google_dataplex_asset', // MM Asset.yaml is IAM-only (exclude_resource: true)
-  'google_recaptcha_enterprise_key', // third_party resource_recaptcha_enterprise_key.go
-  'google_composer_environment', // third_party resource_composer_environment.go.tmpl; no mmv1/products/composer/Environment.yaml
-  'google_composer_user_workloads_secret', // third_party resource_composer_user_workloads_secret.go.tmpl; no mmv1 YAML
-  'google_dataproc_cluster', // third_party resource_dataproc_cluster.go; no mmv1/products/dataproc/Cluster.yaml (product has AutoscalingPolicy/Batch/SessionTemplate only)
-  'google_dataproc_job', // third_party resource_dataproc_job.go; no mmv1/products/dataproc/Job.yaml (Job.yaml 404, probed 2026-07-25)
-  'google_dataproc_workflow_template', // third_party resource_dataproc_workflow_template.go.tmpl (DCL→handwritten); no mmv1/products/dataproc/WorkflowTemplate.yaml (404, probed 2026-08-14; product has AutoscalingPolicy/Batch/SessionTemplate only)
-  'google_dataflow_job', // third_party resource_dataflow_job.go; mmv1/products/dataflow has product.yaml only (Job.yaml 404, probed 2026-07-25)
-  'google_dataflow_flex_template_job', // third_party resource_dataflow_flex_template_job.go; mmv1/products/dataflow has product.yaml only (probed 2026-11-03)
-  // Apigee handwritten (mmv1/third_party/terraform/services/apigee/*); no mmv1/products/apigee/<Resource>.yaml (404, probed 2026-07-25).
-  'google_apigee_api',
-  'google_apigee_sharedflow',
-  'google_apigee_sharedflow_deployment',
-  'google_apigee_flowhook',
-  'google_apigee_environment_debugmask',
-  'google_apigee_keystores_aliases_key_cert_file',
-  'google_apigee_keystores_aliases_pkcs12',
-  // GKE multi-cloud: DCL/third_party templates under mmv1/third_party/terraform/services/containeraws|containerazure;
-  // mmv1/products/containeraws|containerazure have product.yaml only (Cluster.yaml 404, probed 2026-07-25).
-  'google_container_aws_cluster',
-  'google_container_aws_node_pool',
-  'google_container_azure_cluster',
-  'google_container_azure_node_pool',
-  // NCC InternalRange: effective_labels fingerprint but no
-  // mmv1/products/networkconnectivity/InternalRange.yaml (404, probed 2026-08-11).
-  'google_network_connectivity_internal_range',
-  // Compute instance-from-template: third_party
-  // resource_compute_instance_from_template.go.tmpl (+ meta.yaml); no
-  // mmv1/products/compute/InstanceFromTemplate.yaml (404, probed 2026-08-12).
-  'google_compute_instance_from_template',
-  // Assured Workloads: mmv1/products/assuredworkloads has product.yaml only
-  // (Workload.yaml 404, probed 2026-08-15). Schema still carries Possible
-  // values: / labels fingerprints.
-  'google_assured_workloads_workload',
-  // Handwritten third_party Go template only (no MM YAML under products/).
-  // Probed: no RegionInstanceTemplate.yaml; region_instance_template.go.tmpl.
-  'google_compute_region_instance_template',
-  // DCL→handwritten third_party resource_apikeys_key.go; mmv1/products/apikeys
-  // has product.yaml only (probed at the 8.4.0 upstream commit 067aeb86).
-  'google_apikeys_key',
+const _fingerprintFalsePositives = <String, String>{
+  'google_compute_security_policy':
+      'handwritten with provider-wide effective_labels; no mmv1 YAML (probed 2026-06)',
+  'google_project':
+      'handwritten with provider-wide effective_labels; no mmv1 YAML (probed 2026-06)',
+  'google_cloudbuild_worker_pool':
+      'DCL/tpgtools-generated, not mmv1 (probed 2026-06)',
+  'google_bigtable_instance':
+      'third_party go + meta.yaml; no mmv1/products/bigtable/Instance.yaml',
+  'google_compute_network_peering':
+      'third_party resource_compute_network_peering.go',
+  'google_compute_router_peer':
+      'no mmv1/products/compute/RouterPeer.yaml (sync 404)',
+  'google_dataplex_zone': 'MM Zone.yaml is IAM-only (exclude_resource: true)',
+  'google_dataplex_asset': 'MM Asset.yaml is IAM-only (exclude_resource: true)',
+  'google_recaptcha_enterprise_key':
+      'third_party resource_recaptcha_enterprise_key.go',
+  'google_composer_environment':
+      'third_party resource_composer_environment.go.tmpl; no mmv1/products/composer/Environment.yaml',
+  'google_composer_user_workloads_secret':
+      'third_party resource_composer_user_workloads_secret.go.tmpl; no mmv1 YAML',
+  'google_dataproc_cluster':
+      'third_party resource_dataproc_cluster.go; no mmv1/products/dataproc/Cluster.yaml',
+  'google_dataproc_job':
+      'third_party resource_dataproc_job.go; no mmv1/products/dataproc/Job.yaml (404, probed 2026-07-25)',
+  'google_dataproc_workflow_template':
+      'third_party resource_dataproc_workflow_template.go.tmpl; no mmv1/products/dataproc/WorkflowTemplate.yaml (404, probed 2026-08-14)',
+  'google_dataflow_job':
+      'third_party resource_dataflow_job.go; mmv1/products/dataflow has product.yaml only (404, probed 2026-07-25)',
+  'google_dataflow_flex_template_job':
+      'third_party resource_dataflow_flex_template_job.go; mmv1/products/dataflow has product.yaml only (probed 2026-11-03)',
+  'google_apigee_api':
+      'handwritten mmv1/third_party/terraform/services/apigee; no mmv1/products/apigee/<Resource>.yaml (404, probed 2026-07-25)',
+  'google_apigee_sharedflow':
+      'handwritten mmv1/third_party/terraform/services/apigee; no mmv1/products/apigee/<Resource>.yaml (404, probed 2026-07-25)',
+  'google_apigee_sharedflow_deployment':
+      'handwritten mmv1/third_party/terraform/services/apigee; no mmv1/products/apigee/<Resource>.yaml (404, probed 2026-07-25)',
+  'google_apigee_flowhook':
+      'handwritten mmv1/third_party/terraform/services/apigee; no mmv1/products/apigee/<Resource>.yaml (404, probed 2026-07-25)',
+  'google_apigee_environment_debugmask':
+      'handwritten mmv1/third_party/terraform/services/apigee; no mmv1/products/apigee/<Resource>.yaml (404, probed 2026-07-25)',
+  'google_apigee_keystores_aliases_key_cert_file':
+      'handwritten mmv1/third_party/terraform/services/apigee; no mmv1/products/apigee/<Resource>.yaml (404, probed 2026-07-25)',
+  'google_apigee_keystores_aliases_pkcs12':
+      'handwritten mmv1/third_party/terraform/services/apigee; no mmv1/products/apigee/<Resource>.yaml (404, probed 2026-07-25)',
+  'google_container_aws_cluster':
+      'DCL/third_party under mmv1/third_party/terraform/services/containeraws; product.yaml only (404, probed 2026-07-25)',
+  'google_container_aws_node_pool':
+      'DCL/third_party under mmv1/third_party/terraform/services/containeraws; product.yaml only (404, probed 2026-07-25)',
+  'google_container_azure_cluster':
+      'DCL/third_party under mmv1/third_party/terraform/services/containerazure; product.yaml only (404, probed 2026-07-25)',
+  'google_container_azure_node_pool':
+      'DCL/third_party under mmv1/third_party/terraform/services/containerazure; product.yaml only (404, probed 2026-07-25)',
+  'google_network_connectivity_internal_range':
+      'no mmv1/products/networkconnectivity/InternalRange.yaml (404, probed 2026-08-11)',
+  'google_compute_instance_from_template':
+      'third_party resource_compute_instance_from_template.go.tmpl; no mmv1/products/compute/InstanceFromTemplate.yaml (404, probed 2026-08-12)',
+  'google_assured_workloads_workload':
+      'mmv1/products/assuredworkloads has product.yaml only (404, probed 2026-08-15)',
+  'google_compute_region_instance_template':
+      'handwritten third_party region_instance_template.go.tmpl; no RegionInstanceTemplate.yaml',
+  'google_apikeys_key':
+      'DCL->handwritten third_party resource_apikeys_key.go; mmv1/products/apikeys has product.yaml only (8.4.0 067aeb86)',
 };
 
 bool _isIamAdjunct(String tfType) =>
@@ -140,9 +125,9 @@ void main() {
     if (spec['upstream'] != null) continue;
     nullCount++;
     if (_isIamAdjunct(tfType)) continue;
-    if (_fingerprintFalsePositives.contains(tfType)) continue;
+    if (_fingerprintFalsePositives.containsKey(tfType)) continue;
     final rs = resourceSchemas[tfType] as Map<String, dynamic>?;
-    if (rs == null) continue; // not in the GA fixture (beta-only, data source)
+    if (rs == null) continue;
     if (_hasFingerprint(rs)) violations.add(tfType);
   }
 

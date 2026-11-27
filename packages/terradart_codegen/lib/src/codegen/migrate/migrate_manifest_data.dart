@@ -1,14 +1,3 @@
-/// Plain data carriers for the migration manifest `terradart wrap
-/// --migrate-manifest` renders into `_migrate_manifest.g.dart`.
-///
-/// These mirror the hand-written runtime types in
-/// `packages/terradart_google/lib/src/migrate_manifest_entry.dart`
-/// (`MigrateSlot`, `MigrateHelper`, `MigrateGetter`, `MigrateEnum`,
-/// `MigrateEntry`, `MigrateManifest`) field for field; the emitter renders
-/// each carrier as a `const` constructor call of its runtime twin.
-library;
-
-/// Mirrors the runtime `MigrateSlotKind` enum (rendered by name).
 enum MigrateSlotKind {
   scalar,
   enumValue,
@@ -87,7 +76,6 @@ final class MigrateEnumData {
 
   final String name;
 
-  /// Raw Terraform value → Dart member name.
   final Map<String, String> members;
 }
 
@@ -106,16 +94,12 @@ final class MigrateEntryData {
   final String className;
   final String barrel;
 
-  /// `'resource'` or `'dataSource'` — rendered as `CatalogKind.<kind>`.
   final String kind;
   final List<MigrateSlotData> slots;
   final List<MigrateGetterData> getters;
   final bool principal;
 }
 
-/// One factory's contribution to the manifest: its entry plus the helper
-/// classes and enums declared in its wrapper file. The emitter merges the
-/// per-factory helper / enum lists into the package-wide tables.
 final class MigrateEntryBuild {
   const MigrateEntryBuild({
     required this.entry,

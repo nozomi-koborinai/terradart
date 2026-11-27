@@ -1,22 +1,3 @@
-// migrate_roundtrip_gates.dart — the migrator's correctness oracle.
-//
-// For every quickstart's synth output (`tf-out/main.tf.json`) and every
-// shape fixture (tool/migrate_shape_fixtures.dart): migrate it to Dart with
-// `terradart_migrate`, put every generated Stack into one temporary
-// package, analyze it once, synthesize each Stack and deep-compare the
-// result with the original — `synth(migrate(synth(S))) == synth(S)`.
-//
-// Strict examples and every shape fixture must round-trip completely. A
-// resource the migrator keeps in Terraform needs a reasoned entry in
-// tool/migrate_roundtrip_debt.yaml (slug → address → reason); an entry whose
-// resource round-trips again is stale and fails the gate, so the ledger only
-// ratchets down. A shape fixture can never be ledgered.
-//
-// Run from repo root: dart tool/migrate_roundtrip_gates.dart
-//   --reuse-tf-out   use the tf-out the synth gates already wrote (default:
-//                    synth any example whose tf-out is missing)
-//   --keep           keep the temporary package on success too
-//   --only=<slug>    restrict to one example
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -35,8 +16,6 @@ const _ledgerPath = 'tool/migrate_roundtrip_debt.yaml';
 
 Future<void> main(List<String> args) async {
   final keep = args.contains('--keep');
-  // `--reuse-tf-out` is accepted for symmetry with check_example_topology:
-  // an existing tf-out is always reused, a missing one is synthesized.
   args.contains('--reuse-tf-out');
   final only = args
       .where((a) => a.startsWith('--only='))
@@ -99,8 +78,6 @@ Future<bool> runMigrateRoundtripGates(
     if (tfOut.existsSync()) {
       json = jsonDecode(tfOut.readAsStringSync()) as Map<String, dynamic>;
     } else if (!File('examples/$slug/bin/infra.dart').existsSync()) {
-      // A stale checkout directory without a synth entry point (a removed
-      // example whose gitignored tf-out lingers): not an example any more.
       continue;
     } else {
       json = await synthExample(slug, errors);
@@ -125,8 +102,6 @@ Future<bool> runMigrateRoundtripGates(
     );
     packages.addAll(result.report.packages);
 
-    // Kept resources (and providers without a factory) must be ledgered;
-    // ledgered addresses must still be kept.
     final kept = {
       for (final k in result.report.kept)
         if (_isLedgerable(k.address)) k.address: k.reason,
@@ -203,14 +178,8 @@ Future<bool> runMigrateRoundtripGates(
   return !failed;
 }
 
-/// A migrated Stack: its class, its file under `lib/` (no extension) and
-/// its source.
 typedef MigratedStack = ({String stackClass, String stackFile, String source});
 
-/// Puts [stacks] into one package under [temp] that depends on [packages],
-/// analyzes it, synthesizes every Stack and compares each with [expected]
-/// (keyed like [stacks]). Returns how many Stacks matched, or null when the
-/// package did not resolve, analyze or run.
 Future<int?> compareMigratedStacks(
   Map<String, MigratedStack> stacks, {
   required Map<String, Object?> expected,
@@ -218,9 +187,6 @@ Future<int?> compareMigratedStacks(
   required Directory temp,
   required List<String> errors,
 }) async {
-  // One package holding every Stack, analyzed once, synthesized once. The
-  // workspace packages are wired in through dependency_overrides so their
-  // own hosted `terradart_core: ^x` constraints resolve to the checkout.
   final repoRoot = Directory.current.path;
   for (final e in stacks.entries) {
     File('${temp.path}/lib/${e.value.stackFile}.dart')
@@ -374,7 +340,6 @@ bool _isBlockAddress(String address) =>
         !address.startsWith('removed') &&
         !address.startsWith('check'));
 
-/// The original synth output minus the ledgered blocks (and providers).
 Map<String, dynamic> _withoutKept(
   Map<String, dynamic> json,
   Iterable<String> kept,

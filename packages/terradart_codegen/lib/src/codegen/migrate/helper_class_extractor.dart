@@ -1,49 +1,5 @@
-/// Regex-based extraction of nested helper classes from wrapper Dart source.
-///
-/// The migration manifest needs, for every helper class a curated factory
-/// exposes (`PubsubSubscriptionPushConfig`, `CloudSchedulerJobPubsubTarget`,
-/// a `deriveNestedTypes` class, ...), the constructor parameters, their
-/// declared types, and the Terraform key each one encodes to. Both the
-/// derived and the hand-written helpers follow a small family of
-/// curator-disciplined shapes — `const` constructor, `final` fields, an
-/// `encode()` / `toArgMap()` map literal whose entries are
-/// `'tf_key': field.toTfJson()` and friends — so a focused regex scan
-/// recovers the recipe without `package:analyzer`, the same trade-off
-/// `universal_invariants/sealed_class_extractor.dart` makes.
-///
-/// Recognised encodings (all observed in the committed google registry):
-///
-/// - `encode() => { 'key': field..., 'key': ?x?..., if (x != null) 'key':
-///   x!..., }` and the
-///   list-of-one form `=> [ { ... } ]`, with or without `<String, Object?>`
-///   type arguments and `const`.
-/// - `blockKey: value` entries, where `blockKey` is the class's own
-///   `String get blockKey => '...'` (sealed variants that emit their key).
-/// - An entry whose value is itself a map literal (`'google_maps_config':
-///   { 'plot_mode': plotMode... }`, or a self-wrapping variant's
-///   `{ 'weekly_schedule': { ...fields } }`): the inner fields get dotted
-///   keys (`google_maps_config.plot_mode`, `weekly_schedule.day_of_weeks`).
-/// - `...field.encode()` / `...field!` spreads: the field is recorded as
-///   [ExtractedField.merged] (its keys surface in the enclosing block).
-/// - Variants without a `blockKey` getter: their single constant string
-///   getter (`tierKey`), the single top-level key their `encode()` writes,
-///   or — for multi-key variants — the required key no sibling variant
-///   writes (`BigqueryDatasetAccessDomain` → `domain`).
-/// - Scalar sealed variants with no `encode()` but a block key plus a
-///   `value` field or a `value` / `slotValue` getter over one field: that
-///   field encodes under the block key.
-/// - `super.x` constructor parameters resolved against the parent class's
-///   fields (same file), and `Type name` parameters assigned to a field in
-///   the initializer list (`const X(TfArg<String> ip) : value = ip`).
-///
-/// Anything outside those shapes is not guessed: the helper is returned with
-/// [ExtractedHelper.irregularReason] set, and the manifest marks it manual so
-/// a migrator keeps such blocks in Terraform.
-library;
-
 import 'migrate_shape_analyzer.dart' show encodedAttribute;
 
-/// One constructor parameter of a helper class.
 final class ExtractedField {
   const ExtractedField({
     required this.name,
@@ -56,40 +12,22 @@ final class ExtractedField {
     this.encodedAttribute,
   });
 
-  /// Dart constructor parameter name.
   final String name;
 
-  /// Declared type, whitespace-normalised (`TfArg<Map<String, String>>?`).
   final String typeSource;
 
   final bool required;
   final bool positional;
 
-  /// Terraform key the field encodes to, relative to the map the class's
-  /// `encode()` returns — a dotted path when the entry sits inside a nested
-  /// map literal. `null` when the field is [merged] or the class is
-  /// irregular.
   final String? tfKey;
 
-  /// True when the field's encoding is spread into the enclosing map
-  /// (`...source.encode()`): its own keys — a helper's slot keys, a sealed
-  /// variant's block key, or a raw map's entries — appear at this level.
   final bool merged;
 
-  /// True when the field encodes as a keyed map of helper values
-  /// ([isKeyedHelperEncoding]) — the only encoding a `Map<String, Helper>`
-  /// field's manifest slot can describe.
   final bool keyedEncoding;
 
-  /// The attribute a reference field's entry encodes
-  /// (`?network?.encodeAs('id')` → `id`).
   final String? encodedAttribute;
 }
 
-/// Whether [expr] is the keyed-map encoding of a `Map<String, Helper>`:
-/// `{for (final e in x.entries) e.key: e.value.encode()}`, each helper under
-/// its own key. Anything else (`x.entries.map(...).toList()`, a key moved
-/// into the block) is not a keyed map on the wire.
 bool isKeyedHelperEncoding(String expr) => _keyedHelperEncoding.hasMatch(expr);
 
 final RegExp _keyedHelperEncoding = RegExp(
@@ -97,7 +35,6 @@ final RegExp _keyedHelperEncoding = RegExp(
   r'\1\.key\s*:\s*\1\.value\.encode\(\)\s*,?\s*\}',
 );
 
-/// One extracted helper class.
 final class ExtractedHelper {
   const ExtractedHelper({
     required this.name,
@@ -110,23 +47,14 @@ final class ExtractedHelper {
 
   final String name;
 
-  /// Constructor parameters in constructor order.
   final List<ExtractedField> fields;
 
-  /// The class this helper extends, when any (a sealed root for variants).
   final String? parent;
 
-  /// The Terraform key that selects this class among its sealed siblings:
-  /// its `String get blockKey => 'x';` getter, or the key inferred from its
-  /// `encode()` (see the library doc).
   final String? blockKey;
 
-  /// The factory constructor of [parent] that redirects to this class
-  /// (`const factory Parent.imageUri(...) = ThisClass;`), so a caller can
-  /// build the variant with the dot shorthand `.imageUri(...)`.
   final String? shorthand;
 
-  /// Non-null when the encoding could not be mapped back to Terraform keys.
   final String? irregularReason;
 
   bool get isIrregular => irregularReason != null;
@@ -141,22 +69,13 @@ final class ExtractedHelper {
   );
 }
 
-/// Everything [HelperClassExtractor.extract] found in one source file.
 final class HelperExtraction {
   const HelperExtraction({required this.helpers, required this.sealedClasses});
 
-  /// Helper class name → extraction (sealed *variants* included, sealed
-  /// abstract roots excluded).
   final Map<String, ExtractedHelper> helpers;
 
-  /// Names of `sealed class` declarations.
   final Set<String> sealedClasses;
 
-  /// Package-wide view over several per-file extractions, so a slot typed
-  /// with a helper another wrapper file declares (`google_eventarc_pipeline`
-  /// reusing `EventarcMessageBusLoggingConfig`) still resolves. The first
-  /// declaration of a name wins; the manifest emitter rejects two
-  /// declarations of one name with different shapes.
   factory HelperExtraction.merge(Iterable<HelperExtraction> parts) {
     final helpers = <String, ExtractedHelper>{};
     final sealed = <String>{};
@@ -172,9 +91,6 @@ final class HelperExtraction {
     );
   }
 
-  /// Block key → variant class name for [sealedName], or `null` when any
-  /// variant lacks a block key (a curator hint is needed to describe the
-  /// group).
   Map<String, String>? variantsOf(String sealedName) {
     final out = <String, String>{};
     for (final h in helpers.values) {
@@ -191,10 +107,6 @@ final class HelperExtraction {
 class HelperClassExtractor {
   const HelperClassExtractor();
 
-  /// Matches a class header: optional `@immutable` on the previous line,
-  /// optional `sealed` / `final` / `abstract`, the name, optional
-  /// `extends X` (possibly wrapped onto the next line by `dart_style`),
-  /// optional `implements ...`, then the opening brace.
   static final RegExp _classHeader = RegExp(
     r'(?:^|\n)[ \t]*(?:@immutable[ \t]*\n[ \t]*)?'
     r'(?:(sealed|final|abstract)[ \t]+)?class[ \t]+(\w+)'
@@ -203,8 +115,6 @@ class HelperClassExtractor {
 
   static final RegExp _lineComment = RegExp(r'^[ \t]*//.*$', multiLine: true);
 
-  /// An `encode()` / `toArgMap()` *definition* (abstract declarations end
-  /// in `;` and stay in the declaration part).
   static final RegExp _encodeDefinition = RegExp(
     r'\b(?:encode|toArgMap)\(\)\s*(?:=>|\{)',
   );
@@ -223,12 +133,10 @@ class HelperClassExtractor {
     dotAll: true,
   );
 
-  /// `=> {`, `return {`, `=> [ {`, `=> const [<String, Object?>{`, ...
   static final RegExp _literalStart = RegExp(
     r'(?:=>|return)\s*(?:const\s+)?(\[\s*)?(?:<[^{]*?>\s*)?\{',
   );
 
-  /// A nested `[ { ... } ]` / `<String, Object?>{ ... }` value.
   static final RegExp _nestedLiteralStart = RegExp(
     r'^(?:const\s+)?(\[\s*)?(?:<[^{]*?>\s*)?\{',
   );
@@ -290,8 +198,6 @@ class HelperClassExtractor {
     );
   }
 
-  /// Target class → constructor name for every `factory Sealed.name(...)
-  /// = Target;` redirecting constructor [sealedName] declares.
   static Map<String, String> _redirectingFactories(
     String sealedName,
     String declPart,
@@ -318,9 +224,6 @@ class HelperClassExtractor {
       for (final g in _stringGetter.allMatches(decl.body))
         g.group(1)!: g.group(2)!,
     };
-    // A variant's key getter is `blockKey` by convention; a sealed group
-    // that names it differently (`tierKey`, `planeKey`) still has exactly
-    // one constant string getter per variant.
     final blockKey =
         getters['blockKey'] ??
         (decl.parent != null && getters.length == 1
@@ -331,8 +234,6 @@ class HelperClassExtractor {
     final reasons = <String>[];
     if (ctor.irregularReason != null) reasons.add(ctor.irregularReason!);
 
-    // Field names visible to the encode body: own fields plus inherited
-    // ones (a variant's `super.condition`).
     final fieldTypes = <String, String>{};
     for (var p = decl.parent; p != null; p = decls[p]?.parent) {
       final parentDecl = decls[p];
@@ -357,11 +258,6 @@ class HelperClassExtractor {
       }
     }
 
-    // Every constructor parameter must reach Terraform through the encoding
-    // — an encode() entry, a spread, or (for a scalar variant) the `value`
-    // the block key carries. A parameter the encoding never mentions is
-    // irregular either way; a class with neither encoding nor parameters
-    // is a marker and needs nothing.
     final hasEncoding = encodePart != null || encoding.keys.isNotEmpty;
     final fields = <ExtractedField>[];
     for (final p in ctor.params) {
@@ -390,11 +286,6 @@ class HelperClassExtractor {
       );
     }
 
-    // A variant without a `blockKey` getter answers to the one top-level
-    // key its encode() writes (`{ 'value': value.toTfJson() }` → `value`,
-    // `{ 'weekly_schedule': { ... } }` → `weekly_schedule`); a multi-key
-    // variant is resolved against its siblings afterwards
-    // (see [_inferDiscriminators]).
     final singleKey = decl.parent != null && encoding.topLevelKeys.length == 1
         ? encoding.topLevelKeys.single
         : null;
@@ -409,11 +300,6 @@ class HelperClassExtractor {
     );
   }
 
-  /// For sealed variants that still have no block key — several fields,
-  /// no getter, no wrapper (`BigqueryDatasetAccessDomain { domain, role,
-  /// condition }`) — the discriminating key is the required field no
-  /// sibling variant writes. Exactly one such key names the variant;
-  /// otherwise it stays keyless and the sealed slot is reported manual.
   static Map<String, ExtractedHelper> _inferDiscriminators(
     Map<String, ExtractedHelper> helpers,
   ) {
@@ -446,10 +332,6 @@ class HelperClassExtractor {
     return out;
   }
 
-  /// Parses `const Name(...)` (+ optional initializer list) into positional
-  /// / named parameters. `this.x` and `super.x` map to field `x`; a plain
-  /// `Type name` parameter maps to the field the initializer list assigns
-  /// it to (`: value = name`).
   _Constructor _parseConstructor(String name, String declPart) {
     final ctor = RegExp(
       r'\bconst\s+' + RegExp.escape(name) + r'\s*\(',
@@ -532,8 +414,6 @@ class HelperClassExtractor {
     );
   }
 
-  /// `: a = x, b = y` → `{x: a, y: b}` (parameter → field). Asserts and
-  /// `super(...)` calls are ignored.
   static Map<String, String> _parseInitializers(String afterParams) {
     final text = afterParams.trimLeft();
     if (!text.startsWith(':')) return const {};
@@ -546,8 +426,6 @@ class HelperClassExtractor {
     return out;
   }
 
-  /// Removes `@name` / `@name(...)` annotations (argument lists balanced
-  /// and string-aware, so a `@Deprecated('... (see x) ...')` survives).
   static String _stripAnnotations(String text) {
     final out = StringBuffer();
     var i = 0;
@@ -570,9 +448,6 @@ class HelperClassExtractor {
     return out.toString();
   }
 
-  /// Maps each field referenced by exactly one map entry to that entry's
-  /// Terraform key, and collects spread-merged fields. Dynamic keys and
-  /// entries that combine several fields are reported through [reasons].
   _Encoding _encodeKeys(
     String encodePart,
     Set<String> fieldNames,
@@ -641,9 +516,6 @@ class HelperClassExtractor {
       final path = prefix.isEmpty ? key : '$prefix.$key';
       final value = keyed.$2.trim();
 
-      // Nested map literal (`'k': { ... }`, `'k': [ { ... } ]`): the inner
-      // entries encode under `k.`. A map comprehension (`{for (final e in
-      // x.entries) e.key: ...}`, a keyed helper map) encodes one field.
       final nested = _mapComprehension.hasMatch(value)
           ? null
           : _nestedLiteralStart.firstMatch(value);
@@ -670,7 +542,7 @@ class HelperClassExtractor {
       }
 
       final refs = _fieldRefs(value, fieldNames);
-      if (refs.isEmpty) continue; // constant entry, e.g. 'kind': 'x'
+      if (refs.isEmpty) continue;
       if (refs.length > 1) {
         reasons.add("entry '$path' combines fields ${refs.join(', ')}");
         continue;
@@ -688,10 +560,6 @@ class HelperClassExtractor {
     );
   }
 
-  /// A field maps to exactly one Terraform key. The same key written twice
-  /// (two guarded entries for one field) is fine; two *different* keys
-  /// cannot be expressed by the manifest's single `tfName`, so the class
-  /// is irregular rather than silently keeping the last one.
   static void _recordKey(
     Map<String, String> keys,
     String field,
@@ -708,8 +576,6 @@ class HelperClassExtractor {
     keys[field] = path;
   }
 
-  /// `(key, value, quoted)` for a `'key': value` / `identifier: value`
-  /// entry.
   static (String, String, bool)? _keyedEntry(String entry) {
     final m = RegExp(
       r"^(?:'([^']+)'|(\w+))\s*:\s*(.*)$",
@@ -720,8 +586,6 @@ class HelperClassExtractor {
     return (quoted ?? m.group(2)!, m.group(3)!, quoted != null);
   }
 
-  /// A quoted key is itself; a bare identifier resolves through the class's
-  /// `String get <name> => '...'` getters (`blockKey` and friends).
   static String? _resolveKey(
     (String, String, bool) keyed,
     Map<String, String> getters,
@@ -730,9 +594,6 @@ class HelperClassExtractor {
     return quoted ? key : getters[key];
   }
 
-  /// Scalar sealed variant: `blockKey` + a `value` field or a `value` /
-  /// `slotValue` getter over exactly one field — that field encodes under
-  /// the block key.
   _Encoding _valueVariantKeys(
     _ClassDecl decl,
     Set<String> fieldNames,
@@ -757,14 +618,11 @@ class HelperClassExtractor {
     );
   }
 
-  /// True when, after the map literal that closes at [afterMap], the
-  /// enclosing list has no further elements.
   static bool _isSingleElementList(String src, int afterMap) {
     final rest = src.substring(afterMap).trimLeft();
     return rest.startsWith(']') || RegExp(r'^,\s*\]').hasMatch(rest);
   }
 
-  /// Removes a leading `if (...)` guard from a map entry.
   static String _stripGuard(String entry) {
     if (!entry.startsWith('if')) return entry;
     final open = entry.indexOf('(');
@@ -773,9 +631,6 @@ class HelperClassExtractor {
     return entry.substring(open + 1 + cond.length + 1).trim();
   }
 
-  /// Field names referenced in [expr] as bare identifiers (a `.member`
-  /// access or the text of a plain string literal, `encodeAs('arn')`, does
-  /// not count).
   static List<String> _fieldRefs(String expr, Set<String> fieldNames) {
     final code = expr.replaceAll(RegExp(r"'[^'$\\]*'"), "''");
     final seen = <String>{};
@@ -788,8 +643,6 @@ class HelperClassExtractor {
     return seen.toList();
   }
 
-  /// Returns the text between [start] (just after an opening bracket) and its
-  /// matching closing bracket, string literals skipped.
   static String _balancedBody(
     String src,
     int start, {
@@ -814,9 +667,6 @@ class HelperClassExtractor {
     return src.substring(start);
   }
 
-  /// Splits [text] on [separator] at bracket depth zero. Angle brackets
-  /// count only while a generic is open, and `=>` never counts, so
-  /// `xs.map((x) => x.encode())` and `<String, Object?>{` both survive.
   static List<String> _splitTopLevel(String text, String separator) {
     final out = <String>[];
     var depth = 0;
@@ -847,7 +697,6 @@ class HelperClassExtractor {
     return out;
   }
 
-  /// Index just past the string literal opening at [i].
   static int _skipString(String src, int i) {
     final quote = src[i];
     var j = i + 1;
@@ -894,15 +743,12 @@ final class _Param {
     this.typeOverride,
   });
 
-  /// Constructor parameter name (what a caller writes).
   final String name;
 
-  /// Field the parameter initialises.
   final String field;
   final bool required;
   final bool positional;
 
-  /// Declared parameter type for a plain `Type name` parameter.
   final String? typeOverride;
 }
 
@@ -929,19 +775,13 @@ final class _Encoding {
       attributes = const {},
       topLevelKeys = const [];
 
-  /// Field → Terraform key path.
   final Map<String, String> keys;
 
-  /// Fields spread into the enclosing map.
   final Set<String> merged;
 
-  /// Fields encoded as a keyed helper map ([isKeyedHelperEncoding]).
   final Set<String> keyed;
 
-  /// Reference field → the attribute its entry encodes.
   final Map<String, String> attributes;
 
-  /// Every resolved key of the outermost map literal, constant entries
-  /// included, in source order.
   final List<String> topLevelKeys;
 }

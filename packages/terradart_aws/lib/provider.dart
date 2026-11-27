@@ -1,4 +1,3 @@
-// packages/terradart_aws/lib/provider.dart
 /// Provider block factory and version constants for `hashicorp/aws`.
 ///
 /// Import this alongside one or more per-service barrels:

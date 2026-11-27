@@ -1,12 +1,6 @@
 import '../../ir/resource_def.dart';
 import 'provider_rules.dart';
 
-/// wrap-init rules for `cloudflare/cloudflare`.
-///
-/// No Magic Modules. Barrel folders are the terraform-type segment after
-/// `cloudflare_`, with multi-segment families folded via [outputDirAliases]
-/// so `cloudflare_zero_trust_*` shares one barrel instead of exploding
-/// into `zero` / `trust` / …
 final class CloudflareProviderRules extends ProviderRules {
   const CloudflareProviderRules();
 
@@ -37,11 +31,8 @@ final class CloudflareProviderRules extends ProviderRules {
     return const [];
   }
 
-  /// Longest-prefix folds. Two-segment identities keep families such as
-  /// `zero_trust_*` from collapsing to the first segment (`zero`).
-  ///
-  /// Do **not** map `access` → `zero_trust`: `cloudflare_access_rule` is a
-  /// zone IP access rule, not Zero Trust Access.
+  // Do not map 'access' to 'zero_trust': cloudflare_access_rule is a zone IP
+  // access rule, not Zero Trust Access.
   static const Map<String, String> _aliases = {
     'zero_trust': 'zero_trust',
     'load_balancer': 'load_balancer',

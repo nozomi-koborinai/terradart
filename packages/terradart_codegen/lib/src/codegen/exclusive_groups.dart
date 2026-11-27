@@ -1,39 +1,9 @@
-/// Mutually exclusive input groups from a provider's relation rules — the
-/// one derivation every hint source shares (`tool/extract_provider_hints.dart`
-/// for plugin-framework and SDKv2 validators, `MmYamlParser` for Magic
-/// Modules `exactly_one_of` / `conflicts`).
-///
-/// Members are dotted Terraform paths from the resource root.
 typedef ExclusiveGroups = ({
-  /// Sets the provider requires exactly one of.
   List<List<String>> exactlyOne,
-
-  /// Pairwise conflicting sets nothing requires one of: the provider
-  /// accepts none of their members and rejects more than one.
   List<List<String>> atMostOne,
-
-  /// Conflicts no group expresses, each as `[members]: reason`.
   List<String> unsealed,
 });
 
-/// Combines relation rules into [ExclusiveGroups]:
-///
-/// - every [exactlyOne] set, and every [atLeastOne] set whose members all
-///   pairwise conflict, is an exactly-one group (sets compare as sets, the
-///   first-seen order is kept). Overlapping exactly-one sets are one group
-///   when every pair in the union appears together in some input set.
-///   Magic Modules writes a 3-way `exactly_one_of` as each member listing the
-///   other two, so each pair appears in one of those lists. Two rules that
-///   only share a member stay separate. Sealing one pair of a 3-way would
-///   require that pair and drop the member it leaves out.
-/// - the remaining [conflicts] (undirected pairs) between inputs of one
-///   block and outside every exactly-one group form a graph; each connected
-///   component whose members all pairwise conflict is an at-most-one group,
-///   in first-seen member order.
-///
-/// A conflict that touches an exactly-one member, spans two blocks, or sits
-/// in a component that is not pairwise exclusive (`a` conflicts with `b` and
-/// `c`, which are compatible) is returned in `unsealed`.
 ExclusiveGroups exclusiveGroups({
   List<List<String>> exactlyOne = const [],
   List<List<String>> atLeastOne = const [],
@@ -128,14 +98,8 @@ ExclusiveGroups exclusiveGroups({
   return (exactlyOne: exact, atMostOne: atMostOne, unsealed: unsealed);
 }
 
-/// Unions overlapping exactly-one sets whose union is one rule.
-///
-/// A pair counts when some input set contains both members. Magic Modules
-/// writes a 3-way group as the three pairs "everyone but me", and every pair
-/// of that union appears in one of those pairs, so they become one group.
-/// Two rules that only share a member do not. Their cross pairs never appear
-/// together, and merging them would reject a config the provider accepts.
-/// Member order is the first-seen order of the earliest set in the union.
+// Magic Modules encodes N-way exactly_one_of as per-member lists of the other
+// members; merge only cliques so rules that merely share a member stay separate.
 List<List<String>> _mergeOverlapping(List<List<String>> groups) {
   bool clique(List<String> members) {
     for (var i = 0; i < members.length; i++) {

@@ -27,8 +27,6 @@ void main() {
   String read(String rel) => File(p.join(root, rel)).readAsStringSync();
   bool exists(String rel) => File(p.join(root, rel)).existsSync();
 
-  /// Runs `terradart init`; [answers] are typed into the prompts, and
-  /// without them nobody can answer.
   Future<
     ({int code, String out, String err, List<String> asked, FakeRunner runner})
   >

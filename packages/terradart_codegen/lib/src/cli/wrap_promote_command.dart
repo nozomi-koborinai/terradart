@@ -12,8 +12,6 @@ import '../parser/schema_parser.dart';
 import 'exit_codes.dart';
 import 'wrap_cli_common.dart';
 
-/// `terradart wrap-promote <resource>` — overlays MM-derived sealed-class
-/// skeletons + Dart enums onto an existing wrap-init-produced yaml.
 class WrapPromoteCommand extends Command<int> {
   WrapPromoteCommand({required this.providers}) {
     argParser
@@ -96,7 +94,6 @@ class WrapPromoteCommand extends Command<int> {
     final resourceName = rest.single;
     final force = results['force'] as bool;
 
-    // 1. Locate the existing yaml (E403 if absent).
     final yamlFile = File(p.join(output, '$resourceName.yaml'));
     if (!yamlFile.existsSync()) {
       stderr.writeln(
@@ -105,7 +102,6 @@ class WrapPromoteCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
 
-    // 2. Locate the MM YAML (E404 if absent).
     final mmFile = File(p.join(source, 'mm', '$resourceName.yaml'));
     if (!mmFile.existsSync()) {
       stderr.writeln(
@@ -114,8 +110,6 @@ class WrapPromoteCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
 
-    // 3. Locate the schema (canonical OR per-resource fallback — see
-    //    resolveSchemaFile).
     final schemaFile = resolveSchemaFile(source, resourceName);
     if (schemaFile == null) {
       stderr.writeln(
@@ -126,7 +120,6 @@ class WrapPromoteCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
 
-    // 4. Read existing yaml, check for existing marker.
     final existingYaml = yamlFile.readAsStringSync();
     final hasMarker = existingYaml.contains(WrapPromoteMarker.beginMarker);
     if (hasMarker && !force) {
@@ -137,7 +130,6 @@ class WrapPromoteCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
 
-    // 5. Parse inputs.
     final ir = const SchemaJsonParser().parseString(
       schemaFile.readAsStringSync(),
       providerVersion: readProviderVersion(source),
@@ -152,7 +144,6 @@ class WrapPromoteCommand extends Command<int> {
     }
     final mm = const MmYamlParser().parseString(mmFile.readAsStringSync());
 
-    // 6. Generate the additions block.
     final generator = WrapPromoteGenerator(clock: const SystemClock());
     final additions = generator.generate(
       terraformType: resourceName,
@@ -160,7 +151,6 @@ class WrapPromoteCommand extends Command<int> {
       mm: mm,
     );
 
-    // 7. Strip existing marker (if any) + append fresh additions.
     final stripped = WrapPromoteMarker.stripMarkerSection(existingYaml);
     final next = additions.isEmpty ? stripped : '$stripped$additions';
     yamlFile.writeAsStringSync(next);

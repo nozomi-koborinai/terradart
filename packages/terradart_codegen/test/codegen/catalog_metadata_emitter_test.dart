@@ -101,13 +101,9 @@ void main() {
               'newline.',
         ),
       ]);
-      // Single-quote escaped.
       expect(src, contains(r"\'"));
-      // Dollar escaped.
       expect(src, contains(r'\$var'));
-      // Backslash escaped (the literal `\b` from `with\back`).
       expect(src, contains(r'with\\back'));
-      // Newline escaped (no raw newline inside the emitted string literal).
       expect(src, contains(r'\nnewline.'));
     });
 

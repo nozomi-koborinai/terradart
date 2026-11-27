@@ -36,6 +36,12 @@ void main() {
       expect(isDartIdentifier('_x1'), isTrue);
     });
 
+    test('accepts built-in identifiers as legal member names', () {
+      for (final word in ['get', 'static', 'await']) {
+        expect(isDartIdentifier(word), isTrue, reason: word);
+      }
+    });
+
     test('rejects reserved words, hyphens, dollars, digits first, empty', () {
       expect(isDartIdentifier('class'), isFalse);
       expect(isDartIdentifier('null'), isFalse);

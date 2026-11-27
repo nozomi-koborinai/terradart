@@ -38,9 +38,7 @@ void main() {
         bannerDate: DateTime.utc(2026, 1, 1),
       );
       final yaml = const WrapInitEmitter().emit(draft);
-      // Verify only the listed axis appears.
       expect(yaml, contains('outputDir: x'));
-      // Verify NO unlisted axes appear.
       expect(yaml, isNot(contains('classDocComment')));
       expect(yaml, isNot(contains('paramOrder')));
       expect(yaml, isNot(contains('extraGetters')));

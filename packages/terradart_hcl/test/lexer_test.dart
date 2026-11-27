@@ -35,7 +35,6 @@ void main() {
       expect(h.delimiter, 'EOT');
       expect(h.flush, isTrue);
       expect(h.body, '  a\n   b\n');
-      // The newline after the closing marker is a regular newline token.
       expect(tokens[tokens.indexOf(h) + 1].type, TokenType.newline);
       expect(tokens[tokens.indexOf(h) + 2].text, 'y');
     });

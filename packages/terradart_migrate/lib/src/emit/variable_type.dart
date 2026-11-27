@@ -1,32 +1,18 @@
-/// A `variable` block's `type` constraint as the Dart type of its
-/// `Stack.variable<T>` handle, plus the `type:` argument where `T` does not
-/// say it.
-library;
-
 import 'package:terradart_hcl/terradart_hcl.dart';
 
 import 'blocker.dart';
 import 'dart_literal.dart';
 import 'tf_expr.dart';
 
-/// The handle type of one variable.
 final class VariableType {
   const VariableType(this.dartType, {this.tfType});
 
-  /// `String`, `num`, `List<String>`, `Object?`.
   final String dartType;
-
-  /// The `TfType` argument as Dart source (`.set(.string)`), or `null` when
-  /// [dartType] already derives the constraint.
   final String? tfType;
 
-  /// No `type` at all: Terraform infers `any`, and so does the handle.
   static const untyped = VariableType('Object?');
 }
 
-/// The handle type for the constraint [type] (absent → [VariableType.untyped])
-/// whose default is [defaultValue]. Throws [MigrateBlocker] for a constraint
-/// it cannot read.
 VariableType variableTypeOf(Expr? type, {Object? defaultValue}) {
   if (type == null) return VariableType.untyped;
   final text = (type.constantString ?? hclSource(type)).trim();
@@ -68,9 +54,6 @@ bool _conforms(Object? value, String dart) {
   return false;
 }
 
-/// One parsed constraint: its `TfType` source, and the Dart handle type that
-/// carries it (`null` when only `Object?` can), [derived] when that Dart type
-/// alone names the constraint.
 final class _Type {
   const _Type(this.source, this.dart, {this.derived = true});
 
@@ -102,14 +85,11 @@ final class _Parser {
         _expect(')');
         final source = '.$name(${element.source})';
         final e = element.dart;
-        // `Object?` inside a collection is `any` again.
         final derived = element.derived || e == 'Object?';
         if (e == null || !derived) return _Type(source, null);
         if (name == 'map') {
           return _Type(source, 'Map<String, $e>');
         }
-        // A Dart `Set` has no list literal a default could be written as,
-        // and the arguments that take it are lists anyway.
         return _Type(source, 'List<$e>', derived: name == 'list');
       case 'object':
         _expect('(');
@@ -155,8 +135,6 @@ final class _Parser {
     if (_i != _s.length) throw FormatException('unexpected "${_s[_i]}"');
   }
 
-  /// The `optional(type, <default>)` default: the source up to the closing
-  /// parenthesis, read as an HCL value.
   Object? _defaultValue() {
     _skip();
     final start = _i;

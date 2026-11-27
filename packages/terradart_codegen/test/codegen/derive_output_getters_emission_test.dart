@@ -57,8 +57,6 @@ void main() {
           "TfRef<String> get id => TfRef.attribute<String>(this, 'id');",
         ),
       );
-      // `project` is optional+computed: a constructor input that also reads
-      // back as a getter.
       expect(src, contains('get project =>'));
     });
 
@@ -102,10 +100,6 @@ void main() {
 
     test('a hand-written extraGetters getter shadows the derived one '
         '(exactly one, hand-written type wins)', () {
-      // `count` is a pure computed-only int attribute that derivation would
-      // emit as `TfRef<int> get count`. The override re-declares it in
-      // extraGetters with a deliberately distinct body to prove the derived
-      // one is skipped (no duplicate_definition).
       const def = ResourceDef(
         terraformType: 'google_pubsub_schema',
         root: BlockDef(
@@ -129,9 +123,7 @@ void main() {
         },
       );
       final src = emitter.emit(def, providerSource: 'hashicorp/google');
-      // Exactly one declaration of `get count` — the derived one was skipped.
       expect('get count'.allMatches(src).length, 1);
-      // ...and it is the hand-written one (carries its bespoke doc comment).
       expect(src, contains('/// Hand-written.'));
     });
   });

@@ -1,4 +1,3 @@
-/// One `TfRef<T> get <name> => TfRef.attribute<T>(this, '<attr>')` getter.
 final class ExtractedGetter {
   const ExtractedGetter({
     required this.tfName,
@@ -16,10 +15,6 @@ final RegExp _getter = RegExp(
   "'([^']+)'",
 );
 
-/// Extracts every output-attribute getter from a wrapper file. Both the
-/// derived getters (`getter_emitter.dart`) and hand-written `extraGetters`
-/// use the same `TfRef.attribute<T>(this, 'attr')` idiom, so one scan covers
-/// both. Order is declaration order.
 List<ExtractedGetter> extractOutputGetters(String source) {
   return [
     for (final m in _getter.allMatches(source))

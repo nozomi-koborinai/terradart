@@ -9,7 +9,6 @@ import 'app_exports_emitter.dart';
 import 'json_encoder.dart';
 import 'synth_issue.dart';
 
-/// Finds every [SynthIssue] of a Stack before synth encodes it.
 @internal
 abstract final class StackValidator {
   static List<SynthIssue> validate(Stack stack) => [
@@ -27,8 +26,6 @@ abstract final class StackValidator {
   static final RegExp _alias = RegExp(r'^[A-Za-z_][A-Za-z0-9_-]*$');
 
   static Iterable<SynthIssue> _providers(Stack stack) sync* {
-    // A root that only calls modules declares no provider of its own — the
-    // child modules pin what they use.
     final modulesOnly =
         stack.modules.isNotEmpty &&
         stack.resources.isEmpty &&
@@ -76,9 +73,6 @@ abstract final class StackValidator {
     }
 
     if (stack.providers.isEmpty && !modulesOnly) return;
-    // An explicit provider meta-argument replaces the implied prefix
-    // provider (Terraform semantics): google-beta wrappers share the GA
-    // google_* prefix.
     final registered = {
       for (final p in stack.providers) TfJsonEncoder.providerReference(p),
     };
@@ -124,7 +118,6 @@ abstract final class StackValidator {
     }
   }
 
-  /// Every block's arguments, keyed by the block's address.
   static Iterable<(String, Iterable<TfArg<dynamic>?>)> _argumentsByBlock(
     Stack stack,
   ) sync* {
@@ -148,8 +141,6 @@ abstract final class StackValidator {
     }
   }
 
-  /// Every variable name reachable from [v], including references nested
-  /// inside literal maps and lists.
   static Iterable<String> _variableNames(Object? v) sync* {
     switch (v) {
       case TfArgVariable(:final name):
@@ -178,9 +169,6 @@ abstract final class StackValidator {
       for (final m in stack.modules) m.tfAddress,
       ...stack.externalBlocks,
     };
-    // A resource type starts with its provider's name: `google_` in
-    // `google_pubsub_topic.orders`. Matching only those roots keeps
-    // for-expression variables (`[for s in var.l : s.id]`) out.
     final prefixes = {
       for (final p in stack.providers) p.providerName,
       for (final r in [...stack.resources, ...stack.dataSources])
@@ -255,9 +243,7 @@ abstract final class StackValidator {
     r'\bfor\s+([A-Za-z_][\w\-]*)(?:\s*,\s*([A-Za-z_][\w\-]*))?\s+in\b',
   );
 
-  /// The roots Terraform resolves itself; a provider named like one
-  /// (`hashicorp/local`) still has no type spelled without an underscore.
-  static const _builtinRoots = {
+  static const _terraformBuiltinRoots = {
     'count',
     'data',
     'each',
@@ -269,11 +255,6 @@ abstract final class StackValidator {
     'var',
   };
 
-  /// The blocks an interpolation or directive body reads:
-  /// `google_pubsub_topic.orders`, `data.google_project.current`,
-  /// `data.http.ip`, `module.sa`. A for-expression or `%{ for }` variable
-  /// of the same template ([iterators]: `[for module in var.l : module.id]`)
-  /// is not a block, even in a sequence nested inside a quoted string.
   static Iterable<String> _referencedBlocks(
     String body,
     Set<String> prefixes,
@@ -284,7 +265,7 @@ abstract final class StackValidator {
       if (!prefixes.contains(prefix)) continue;
       final type = '$prefix${m.group(3)}';
       if (iterators.contains(type)) continue;
-      if (type == prefix && _builtinRoots.contains(type)) continue;
+      if (type == prefix && _terraformBuiltinRoots.contains(type)) continue;
       yield m.group(1) == null
           ? '$type.${m.group(4)}'
           : 'data.$type.${m.group(4)}';
@@ -295,8 +276,6 @@ abstract final class StackValidator {
     }
   }
 
-  /// The block a bare address (`google_x.y.attr`, `data.t.n`, `module.m`)
-  /// belongs to.
   static String _root(String bare) {
     final parts = bare.replaceAll(RegExp(r'\[[^\]]*\]'), '').split('.');
     final take = switch (parts.first) {
@@ -306,7 +285,6 @@ abstract final class StackValidator {
     return parts.take(take).join('.');
   }
 
-  /// Every string in an encoded JSON value, map keys included.
   static Iterable<String> _strings(Object? v) sync* {
     switch (v) {
       case String():
@@ -336,10 +314,6 @@ abstract final class StackValidator {
     }
   }
 
-  /// The [sensitiveFields] of [argMap] that are set to a literal. A path is
-  /// a top-level key (`password`) or dotted into blocks
-  /// (`customer_encryption.encryption_key`, `*` for every key of a map
-  /// block); a template (reference, variable, expression) is not a literal.
   static List<String> sensitiveLiteralFields(
     Map<String, TfArg<dynamic>?> argMap,
     Set<String> sensitiveFields,

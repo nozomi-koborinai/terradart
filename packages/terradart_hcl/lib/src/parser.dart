@@ -23,20 +23,15 @@ Expr parseHclExpression(String source, {String? fileName}) {
   ).parseStandaloneExpression();
 }
 
-/// Builds the expression for a string whose escapes are already decoded
-/// (a `*.tf.json` string value): `${ }` interpolations and `%{ }`
-/// directives are parsed, `$${` / `%%{` are the literal escapes, and
-/// backslashes are plain characters. Returns a [LiteralExpr] when the text
-/// has no template markers.
 Expr templateFromDecodedString(String text, {String? fileName}) {
   final parts = _TemplateParser(
     text,
     fileName: fileName,
-    escapes: false,
+    decodeBackslashEscapes: false,
     baseOffset: 0,
     baseLine: 0,
     baseColumn: 0,
-    positions: false,
+    trackSourcePositions: false,
   ).parse();
   if (parts.isEmpty) return const LiteralExpr('', SourceRange.none);
   if (parts.length == 1 && parts.single is TemplateLiteral) {
@@ -48,9 +43,6 @@ Expr templateFromDecodedString(String text, {String? fileName}) {
   return TemplateExpr(parts, SourceRange.none);
 }
 
-/// Removes the common leading whitespace of a `<<-` heredoc body: the
-/// smallest number of leading whitespace *characters* over the non-blank
-/// lines is dropped from every line (matching hashicorp/hcl).
 String stripFlushIndent(String body) {
   final lines = body.split('\n');
   int? min;
@@ -64,7 +56,6 @@ String stripFlushIndent(String body) {
   for (final line in lines) {
     final runes = line.runes.toList();
     final drop = runes.length < min ? runes.length : min;
-    // Only whitespace is dropped, even on shorter blank lines.
     var k = 0;
     while (k < drop &&
         Lexer.leadingWhitespace(String.fromCharCode(runes[k])) == 1) {
@@ -75,17 +66,7 @@ String stripFlushIndent(String body) {
   return out.join('\n');
 }
 
-/// Where an expression appears, which decides what ends it.
-enum _Ctx {
-  /// An attribute value: ends at the newline (or a comment / `}` / EOF).
-  attribute,
-
-  /// A tuple element: newlines are insignificant; `,` or `]` ends it.
-  tuple,
-
-  /// An object item value: `,`, a newline, a comment or `}` ends it.
-  object,
-}
+enum _Ctx { attribute, tuple, object }
 
 final class _Parser {
   _Parser(this.source, this.tokens, {this.fileName, this.offsetBase = 0});
@@ -93,9 +74,6 @@ final class _Parser {
   final String source;
   final List<Token> tokens;
   final String? fileName;
-
-  /// File offset of `source[0]` — non-zero when [source] is an
-  /// interpolation fragment whose token ranges are file-relative.
   final int offsetBase;
   int _i = 0;
   final _comments = <Comment>[];
@@ -115,8 +93,6 @@ final class _Parser {
     _comments.add(c);
     return c;
   }
-
-  // -- structure ------------------------------------------------------------
 
   HclFile parseFile() {
     final body = _parseBody(blockStart: null);
@@ -139,8 +115,6 @@ final class _Parser {
     return expr;
   }
 
-  /// Parses entries until the closing brace (when [blockStart] is set) or
-  /// end of file.
   Body _parseBody({required Token? blockStart}) {
     final start = _t.range.start;
     final entries = <BodyEntry>[];
@@ -198,7 +172,8 @@ final class _Parser {
     List<Comment> leading, {
     required bool inOneLineBlock,
   }) {
-    _i++; // '='
+    assert(_t.type == TokenType.equal);
+    _i++;
     final value = _parseExpr(_Ctx.attribute);
     Comment? trailing;
     if (!inOneLineBlock) {
@@ -251,7 +226,7 @@ final class _Parser {
         _t,
       );
     }
-    _i++; // '{'
+    _i++;
     final Body body;
     final bool oneLine;
     if (_t.type == TokenType.newline) {
@@ -262,7 +237,8 @@ final class _Parser {
       body = _parseOneLineBody();
       oneLine = true;
     }
-    final closeTok = _t; // '}' guaranteed by the body parsers
+    assert(_t.type == TokenType.rbrace);
+    final closeTok = _t;
     _i++;
     Comment? trailing;
     if (_t.type == TokenType.comment) {
@@ -289,7 +265,6 @@ final class _Parser {
     );
   }
 
-  /// `{ }` or `{ name = expr }` on the opening line.
   Body _parseOneLineBody() {
     final start = _t.range.start;
     final entries = <BodyEntry>[];
@@ -324,8 +299,6 @@ final class _Parser {
     return Body(entries, SourceRange(start, _t.range.start));
   }
 
-  // -- expressions ----------------------------------------------------------
-
   void _skipNewlinesAndComments() {
     while (_t.type == TokenType.newline || _t.type == TokenType.comment) {
       if (_t.type == TokenType.comment) _comment(_t);
@@ -333,7 +306,6 @@ final class _Parser {
     }
   }
 
-  /// Parses one expression in context [ctx].
   Expr _parseExpr(_Ctx ctx) {
     if (ctx == _Ctx.tuple) _skipNewlinesAndComments();
     final startIndex = _i;
@@ -350,8 +322,6 @@ final class _Parser {
     return _parseRaw(ctx);
   }
 
-  /// Whether token type [t] ends an expression in [ctx] (at bracket depth
-  /// zero).
   static bool _terminates(TokenType t, _Ctx ctx) => switch (ctx) {
     _Ctx.attribute => switch (t) {
       TokenType.newline ||
@@ -381,7 +351,6 @@ final class _Parser {
   bool _atTerminator(_Ctx ctx) {
     var j = _i;
     if (ctx == _Ctx.tuple) {
-      // Peek past insignificant newlines / comments without consuming.
       while (tokens[j].type == TokenType.newline ||
           tokens[j].type == TokenType.comment) {
         j++;
@@ -390,8 +359,6 @@ final class _Parser {
     return _terminates(tokens[j].type, ctx);
   }
 
-  /// Literal, template, traversal, tuple or object — or `null` when the
-  /// upcoming tokens are not one of those shapes.
   Expr? _tryParseSimple() {
     final t = _t;
     switch (t.type) {
@@ -436,21 +403,19 @@ final class _Parser {
         return LiteralExpr(null, root.range, source: root.text);
     }
     _i++;
-    if (_t.type == TokenType.lparen) return null; // function call
+    if (_t.type == TokenType.lparen) return null;
     final steps = <TraversalStep>[];
     var end = root.range.end;
     while (true) {
       if (_t.type == TokenType.dot) {
         final next = tokens[_i + 1];
-        if (next.type != TokenType.ident) return null; // splat, legacy index
+        if (next.type != TokenType.ident) return null;
         steps.add(
           AttrStep(next.text, SourceRange(_t.range.start, next.range.end)),
         );
         end = next.range.end;
         _i += 2;
       } else if (_t.type == TokenType.lbrack) {
-        // `[` is never the last token, but `foo[` at EOF has only `eof`
-        // after it: fall back to the raw scanner, which reports it.
         if (_i + 2 >= tokens.length) return null;
         final open = _t;
         final idx = tokens[_i + 1];
@@ -527,8 +492,7 @@ final class _Parser {
       final Expr key;
       switch (keyTok.type) {
         case TokenType.ident:
-          // `providers = { google.eu = google.eu }`: a dotted identifier is
-          // one object key, not a traversal. The chain stops at `=` / `:`.
+          // Terraform accepts unquoted dotted object keys (e.g. providers = { google.eu = google.eu }).
           final parts = [keyTok.text];
           var end = keyTok.range.end;
           _i++;
@@ -595,10 +559,6 @@ final class _Parser {
     );
   }
 
-  /// Consumes tokens verbatim until the expression ends in [ctx], keeping
-  /// brackets balanced. With [singleBracketed] the raw expression is
-  /// exactly one bracketed group starting at the current token (an object
-  /// key `(expr)`).
   RawExpr _parseRaw(_Ctx ctx, {bool singleBracketed = false}) {
     final first = _t;
     var depth = 0;
@@ -663,19 +623,17 @@ final class _Parser {
     return LiteralExpr(value, range, source: text);
   }
 
-  // -- templates ------------------------------------------------------------
-
   Expr _templateFromString(Token t) {
     final inner = t.inner!;
     final start = t.range.start;
     final parts = _TemplateParser(
       inner,
       fileName: fileName,
-      escapes: true,
+      decodeBackslashEscapes: true,
       baseOffset: start.offset + 1,
       baseLine: start.line,
       baseColumn: start.column + 1,
-      positions: true,
+      trackSourcePositions: true,
     ).parse();
     if (parts.isEmpty) return LiteralExpr('', t.range, source: t.text);
     if (parts.length == 1 && parts.single is TemplateLiteral) {
@@ -695,12 +653,11 @@ final class _Parser {
     final parts = _TemplateParser(
       body,
       fileName: fileName,
-      escapes: false,
+      decodeBackslashEscapes: false,
       baseOffset: bodyStart.offset,
       baseLine: bodyStart.line,
       baseColumn: bodyStart.column,
-      // Flush stripping shifts columns; positions stay approximate then.
-      positions: !t.flush,
+      trackSourcePositions: !t.flush,
     ).parse();
     return TemplateExpr(
       parts,
@@ -712,29 +669,28 @@ final class _Parser {
   }
 }
 
-/// Splits template text into literal / interpolation / directive parts.
 final class _TemplateParser {
   _TemplateParser(
     this.text, {
     required this.fileName,
-    required this.escapes,
+    required this.decodeBackslashEscapes,
     required this.baseOffset,
     required this.baseLine,
     required this.baseColumn,
-    required this.positions,
+    required this.trackSourcePositions,
   });
+
+  static const _dollar = 0x24;
+  static const _percent = 0x25;
+  static const _backslash = 0x5c;
 
   final String text;
   final String? fileName;
-
-  /// Decode backslash escapes (quoted strings) or not (heredocs, JSON).
-  final bool escapes;
+  final bool decodeBackslashEscapes;
   final int baseOffset;
   final int baseLine;
   final int baseColumn;
-
-  /// False when the text does not map onto the file (no ranges).
-  final bool positions;
+  final bool trackSourcePositions;
 
   final _parts = <TemplatePart>[];
   final _buf = StringBuffer();
@@ -743,8 +699,7 @@ final class _TemplateParser {
   int _col = 0;
 
   SourcePos _pos(int index) {
-    if (!positions) return SourcePos.none;
-    // Recompute line / column for [index] from the start of the text.
+    if (!trackSourcePositions) return SourcePos.none;
     var line = baseLine;
     var col = baseColumn;
     for (var k = 0; k < index; k++) {
@@ -760,8 +715,9 @@ final class _TemplateParser {
     return SourcePos(baseOffset + index, _line, _col);
   }
 
-  SourceRange _range(int from, int to) =>
-      positions ? SourceRange(_pos(from), _pos(to)) : SourceRange.none;
+  SourceRange _range(int from, int to) => trackSourcePositions
+      ? SourceRange(_pos(from), _pos(to))
+      : SourceRange.none;
 
   Never _fail(String message, int at) {
     throw HclParseException([
@@ -773,11 +729,11 @@ final class _TemplateParser {
     var i = 0;
     while (i < text.length) {
       final c = text.codeUnitAt(i);
-      if (escapes && c == 0x5c /* \ */ ) {
+      if (decodeBackslashEscapes && c == _backslash) {
         i = _escape(i);
         continue;
       }
-      if (c == 0x24 /* $ */ || c == 0x25 /* % */ ) {
+      if (c == _dollar || c == _percent) {
         if (i + 2 < text.length &&
             text.codeUnitAt(i + 1) == c &&
             text.codeUnitAt(i + 2) == 0x7b) {
@@ -801,7 +757,7 @@ final class _TemplateParser {
             inner = inner.substring(0, inner.length - 1);
           }
           final range = _range(i, end + 1);
-          if (c == 0x24) {
+          if (c == _dollar) {
             _parts.add(
               TemplateInterpolation(
                 _innerExpression(inner, i + 2 + (stripLeft ? 1 : 0)),
@@ -839,7 +795,7 @@ final class _TemplateParser {
   }
 
   Expr _innerExpression(String inner, int innerIndex) {
-    final lexer = positions
+    final lexer = trackSourcePositions
         ? Lexer(
             inner,
             fileName: fileName,
@@ -853,12 +809,11 @@ final class _TemplateParser {
       inner,
       tokens,
       fileName: fileName,
-      offsetBase: positions ? baseOffset + innerIndex : 0,
+      offsetBase: trackSourcePositions ? baseOffset + innerIndex : 0,
     ).parseStandaloneExpression();
-    return positions ? expr : _withoutPositions(expr);
+    return trackSourcePositions ? expr : _withoutPositions(expr);
   }
 
-  /// Interpolations of JSON strings carry no file positions.
   static Expr _withoutPositions(Expr e) => switch (e) {
     LiteralExpr(:final value, :final source) => LiteralExpr(
       value,
@@ -939,8 +894,6 @@ final class _TemplateParser {
     RawExpr(:final source) => RawExpr(source, SourceRange.none),
   };
 
-  /// Index of the `}` closing the interpolation whose content starts at
-  /// [from], honouring nested braces and quoted strings.
   int _findClose(int from) {
     var depth = 1;
     var i = from;

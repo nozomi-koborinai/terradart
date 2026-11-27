@@ -1,7 +1,3 @@
-// The gate of tool/google_enum_sources.dart: every enum of a discovery lane
-// equals the value set a checked-in machine source lists, or has a
-// reasoned tool/enum_prose_sources.yaml entry, and no input a machine source
-// has a set for stays a plain string.
 import 'dart:io';
 
 import 'package:terradart_codegen/src/parser/discovery_enums.dart';

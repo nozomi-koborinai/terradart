@@ -1,33 +1,3 @@
-// tool/fetch_schema.dart
-//
-// Detects the latest release of a provider inside the major version its
-// lane tracks and reports whether it is newer than --current-version (the
-// lane fixture's provider_version.txt, which the bump rewrites whenever it
-// refreshes the fixture).
-//
-// Also reports the max major version available, used by the workflow for
-// the new-major banner (the bump never crosses a major on its own).
-//
-// Usage:
-//   dart tool/fetch_schema.dart --lane=aws \
-//     --current-version=$(cat packages/terradart_codegen/test/fixtures/wrap/source_aws/provider_version.txt)
-//
-// --lane reads `bump.repo` (GitHub releases) and `bump.major` from the
-// tool/providers.yaml entry; --repo / --major override them. Without
-// either, the GA google defaults apply (hashicorp/terraform-provider-google,
-// major 7). Releases of other majors never count as "latest": cloudflare's
-// v4 maintenance releases, published alongside v5, are ignored.
-//
-// Output (stdout, JSON):
-//   {"repo": "hashicorp/terraform-provider-aws", "major": 6,
-//    "latest": "6.67.0", "current": "6.66.0", "max_major_version": "6",
-//    "bump_needed": true, "new_major_available": false}
-//
-// Exit codes:
-//   0 success
-//   64 usage error (missing/malformed args, unknown lane)
-//   69 upstream unavailable (GitHub API failure)
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -72,7 +42,6 @@ Future<void> main(List<String> args) async {
   );
 }
 
-/// The state the workflow and the drift report read for one lane.
 @visibleForTesting
 Map<String, Object?> bumpState(
   List<Map<String, dynamic>> releases, {
@@ -139,7 +108,6 @@ _Args _parseArgs(List<String> args) {
   );
 }
 
-/// `bump.repo` / `bump.major` of [lane] in tool/providers.yaml.
 @visibleForTesting
 ({String repo, int major}) laneBumpCoordinates(String yamlText, String lane) {
   final providers = (loadYaml(yamlText) as YamlMap)['providers'] as YamlMap;
@@ -184,7 +152,6 @@ Future<List<Map<String, dynamic>>?> _fetchReleases(String repo) async {
   }
 }
 
-/// Highest non-draft, non-prerelease release whose major is [major].
 @visibleForTesting
 Version? findLatestInMajor(List<Map<String, dynamic>> releases, int major) {
   Version? best;
@@ -210,8 +177,7 @@ Iterable<Version> _stableVersions(List<Map<String, dynamic>> releases) sync* {
     final tag = (r['tag_name'] as String?)?.replaceFirst('v', '');
     if (tag == null) continue;
     final v = tryParseVersion(tag);
-    // A tag GitHub does not flag as a prerelease can still carry a
-    // prerelease suffix (cloudflare's 5.19.0-beta.N).
+    // GitHub releases can omit the prerelease flag on semver prerelease tags (e.g. cloudflare 5.19.0-beta.N).
     if (v == null || v.isPreRelease) continue;
     yield v;
   }

@@ -8,10 +8,6 @@ import 'package:test/test.dart';
 import 'migrate_shape_fixtures.dart';
 import 'migrating_cells.dart' show previousRelease, publishedVersions;
 
-/// Published lanes that have had at least one upgrade before the release
-/// MIGRATING.md upgrades from, yet have never renamed a helper or enum type
-/// in any upgrade. Stale as soon as MIGRATING.md records a type rename for
-/// the lane.
 const _lanesWithoutTypeRenames = <String, String>{
   'azure':
       'terradart_azure first released in 0.36.0 (after the 0.33/0.35 type-name '
@@ -276,9 +272,6 @@ void main() {
   });
 }
 
-/// Whether [versions] has a stable release before [from], the release
-/// MIGRATING.md upgrades from. A package first released in [from] has had no
-/// upgrade yet, so MIGRATING.md has no rename row about it.
 bool _releasedBefore(List<String> versions, String? from) =>
     from != null &&
     versions

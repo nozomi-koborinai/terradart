@@ -1,4 +1,3 @@
-// Reading the public API resolves every package's export namespace.
 @Timeout(Duration(minutes: 10))
 library;
 

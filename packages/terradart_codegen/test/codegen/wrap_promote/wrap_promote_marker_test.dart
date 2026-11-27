@@ -30,17 +30,19 @@ prelude: |
       expect(stripped, contains('outputDir: pubsub'));
     });
 
-    test('wrapWithMarkers then stripMarkerSection is identity (round-trip)', () {
-      const original = 'outputDir: pubsub\n';
-      final wrapped =
-          original +
-          WrapPromoteMarker.wrapWithMarkers(
-            'prelude: |\n  sealed class FooChoice {}\n',
-            DateTime.utc(2026, 1, 1),
-          );
-      final stripped = WrapPromoteMarker.stripMarkerSection(wrapped);
-      // Original content preserved (trailing whitespace may differ; compare trimmed).
-      expect(stripped.trim(), original.trim());
-    });
+    test(
+      'wrapWithMarkers then stripMarkerSection is identity (round-trip)',
+      () {
+        const original = 'outputDir: pubsub\n';
+        final wrapped =
+            original +
+            WrapPromoteMarker.wrapWithMarkers(
+              'prelude: |\n  sealed class FooChoice {}\n',
+              DateTime.utc(2026, 1, 1),
+            );
+        final stripped = WrapPromoteMarker.stripMarkerSection(wrapped);
+        expect(stripped.trim(), original.trim());
+      },
+    );
   });
 }

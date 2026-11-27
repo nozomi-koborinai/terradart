@@ -1,4 +1,3 @@
-// packages/terradart_codegen/test/codegen/universal_invariants_test.dart
 import 'dart:convert';
 import 'dart:io';
 
@@ -17,8 +16,6 @@ import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
-/// Hand-written enums whose value set differs from the fixture schema on
-/// purpose, with the reason.
 const _curatedEnumValueSets = <String, String>{
   'TimePartitioningType':
       'the 7.31 fixture MM lists DAY only; the provider accepts DAY, HOUR, '
@@ -28,10 +25,6 @@ const _curatedEnumValueSets = <String, String>{
       'imported version; a config cannot set them',
 };
 
-/// The enums hand-written (or `wrap-promote`-emitted) in an override
-/// `prelude`. Gates 3, 5 and 8 hold these to the TG-2 rules; a derived enum
-/// takes its members from `enumName` / `enumMemberName`, which the naming
-/// tests cover.
 Set<String> preludeEnumNames(LoadedOverrides loaded) => {
   for (final o in loaded.asLintMap().values)
     if (o.prelude case final prelude?)
@@ -51,9 +44,6 @@ void main() {
         File('test/fixtures/wrap/source/schema.json').readAsStringSync(),
         providerVersion: '7.31.0',
       );
-      // SchemaJsonParser does not populate enum_values (Terraform schema JSON
-      // has no such field). enum_values come from the Magic Modules YAML
-      // mirror. Merge them in so Gate 3's schema-side enum check is non-vacuous.
       final mmDir = Directory('test/fixtures/wrap/source/mm');
       final mmOverrides = <String, MmResourceOverrides>{};
       for (final ent in mmDir.listSync()) {
@@ -69,9 +59,6 @@ void main() {
 
     group('Gate 4: UnimplementedError(TODO(wrap-promote)) ban', () {
       test('zero occurrences in shipped terradart_google source', () {
-        // Only terradart_google ships wrap-promote sealed classes; terradart_codegen
-        // contains the emitter (legitimately includes the placeholder string) and
-        // golden fixtures (.golden, not .dart), both correctly outside this root.
         final root = Directory(p.join('..', 'terradart_google', 'lib', 'src'));
         expect(
           root.existsSync(),
@@ -112,12 +99,6 @@ void main() {
               'terradart_google/lib/src not found from '
               'terradart_codegen working dir',
         );
-        // ^[a-z]: must start with lowercase letter; then letters and
-        // digits, with an optional trailing `_` (the reserved-word escape,
-        // `in_`). No run of three capitals: a one-letter word may sit next
-        // to the next word (`caProtectedB`, `randomFirstNAvailable`), an
-        // embedded-CAPS run like addCOSTTOMED may not.
-        // Forbids: ALL_CAPS, leading-digit, snake_case, hyphenated.
         final lowerCamelCase = RegExp(
           r'^[a-z](?![a-zA-Z0-9]*[A-Z]{3})[a-zA-Z0-9]*_?$',
         );
@@ -159,20 +140,12 @@ void main() {
       test('every required attr is in paramOrder or customSlots', () {
         final offenders = <String>[];
 
-        // Resources side.
         for (final entry in loaded.resources.entries) {
           final terraformType = entry.key;
           final override = entry.value;
           final def = ir.resources[terraformType];
-          // TODO(gate1-unmatched): a yaml override naming a resource absent
-          // from the fixture schema (typo, or fixture stale) is silently
-          // skipped here. Add a complementary assertion that every override
-          // key resolves to an IR def.
           if (def == null) continue;
 
-          // NOTE: only root-level attributes are checked. Required nested
-          // blocks (min_items > 0) are excluded by scope — track in a future
-          // gate if regressions emerge.
           final requiredAttrs = def.root.attributes
               .where((a) => a.constraints.required)
               .map((a) => a.name)
@@ -189,7 +162,6 @@ void main() {
           }
         }
 
-        // Data sources side (same logic against `ir.dataSources`).
         for (final entry in loaded.dataSources.entries) {
           final terraformType = entry.key;
           final override = entry.value;
@@ -228,8 +200,6 @@ void main() {
         const walker = PathWalker();
         const extractor = EnumExtractor();
 
-        // Pre-extract every prelude enum across all wrapper + schema files,
-        // keyed by Dart enum name.
         final preludeEnums = preludeEnumNames(loaded);
         final emittedEnums = <String, EmittedEnum>{};
         final root = Directory(p.join('..', 'terradart_google', 'lib', 'src'));
@@ -240,10 +210,6 @@ void main() {
               'terradart_google/lib/src not found from '
               'terradart_codegen working dir',
         );
-        // Scan scope is intentionally terradart_google/lib/src so that wrapper
-        // types like TfArg (defined in terradart_core) cannot collide with
-        // emittedEnums when the dartTypeName regex extracts capital-prefixed
-        // identifiers like `TfArg<EnumName>?`.
         for (final ent in root.listSync(recursive: true)) {
           if (ent is! File) continue;
           if (!ent.path.endsWith('.dart')) continue;
@@ -262,15 +228,12 @@ void main() {
           if (def == null) continue;
 
           dartTypeOverrides.forEach((fieldPath, dartTypeName) {
-            // dartTypeName may be `EnumName` or `TfArg<EnumName>?`.
-            // Strip the wrapper so the lookup matches a bare enum name.
             final bareEnumName = RegExp(r'[A-Z][A-Za-z0-9]*')
                 .allMatches(dartTypeName)
                 .map((m) => m.group(0)!)
                 .where((n) => emittedEnums.containsKey(n))
                 .firstOrNull;
-            if (bareEnumName == null) return; // dartTypeOverrides entry
-            //                                   doesn't reference an enum
+            if (bareEnumName == null) return;
 
             final emitted = emittedEnums[bareEnumName]!;
             final attr = walker.resolveAttribute(
@@ -287,12 +250,8 @@ void main() {
             final schemaEnumValues = attr.constraints.enumValues?.toSet();
             if (schemaEnumValues == null) return;
             if (_curatedEnumValueSets.containsKey(bareEnumName)) return;
-            // ^ schema has no enum_values for this field; the enum was
-            // hand-authored (e.g. KmsKeyPurpose). Gate 3 only enforces
-            // round-trip when the schema has the source of truth.
 
             final emittedTerraformValues = emitted.members.values.toSet();
-            // Dart's default Set uses reference equality; compare structurally.
             final equal =
                 emittedTerraformValues.containsAll(schemaEnumValues) &&
                 schemaEnumValues.containsAll(emittedTerraformValues);
@@ -354,40 +313,55 @@ void main() {
 
   group('Gate 8: enum value identifier minimum length', () {
     test('every enum value identifier is >= 4 chars or in allow-list', () {
-      // Allow-list: industry-standard acronyms and natural-language short
-      // identifiers that mirror Terraform wire values and should NOT be
-      // verbose-renamed. The gate's intent is to catch abbreviation-style
-      // values like `Comparison.lt` / `.gt` / `.eq` — not to force
-      // `tcpProtocol` for `tcp`.
-      const allowList = <String>{
-        // Logical / quantifiers
-        'and', 'or', 'not', 'any', 'all', 'one',
-        // Networking protocols
-        'tcp', 'udp', 'ssl', 'tls', 'h2c', 'ah', 'esp',
-        // Data formats / hashes / pattern syntax
-        'csv', 'orc', 'sql', 'md5', 'sha', 're2',
-        // Aggregates
-        'min', 'max', 'sum', 'avg',
-        // State / lifecycle
-        'on', 'off', 'ga',
-        // Confidential compute / KMS
-        'sev', 'tdx', 'mac', 'hsm',
-        // HTTP methods
-        'get', 'put',
-        // Regions / locales
-        'usa', 'eu', 'apj',
-        // Time units
-        'day', 'hour',
-        // Misc natural words / service acronyms
-        'the', 'vm', 'to',
-        // API versions
-        'v1', 'v2',
+      const shortWireValueAllowList = <String>{
+        'and',
+        'or',
+        'not',
+        'any',
+        'all',
+        'one',
+        'tcp',
+        'udp',
+        'ssl',
+        'tls',
+        'h2c',
+        'ah',
+        'esp',
+        'csv',
+        'orc',
+        'sql',
+        'md5',
+        'sha',
+        're2',
+        'min',
+        'max',
+        'sum',
+        'avg',
+        'on',
+        'off',
+        'ga',
+        'sev',
+        'tdx',
+        'mac',
+        'hsm',
+        'get',
+        'put',
+        'usa',
+        'eu',
+        'apj',
+        'day',
+        'hour',
+        'the',
+        'vm',
+        'to',
+        'v1',
+        'v2',
         'ces',
       };
       final violations = EnumValueLength.scan(
         rootDir: p.join('..', 'terradart_google', 'lib', 'src'),
         minLength: 4,
-        allowList: allowList,
+        allowList: shortWireValueAllowList,
         enumNames: preludeEnumNames(
           loadWrapperOverrides(
             rootDir: 'lib/src/codegen/wrapper_overrides/yaml',

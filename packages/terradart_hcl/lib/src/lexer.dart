@@ -1,7 +1,6 @@
 import 'diagnostics.dart';
 import 'source.dart';
 
-/// Token kinds of HCL native syntax.
 enum TokenType {
   lbrace,
   rbrace,
@@ -16,23 +15,16 @@ enum TokenType {
   colon,
   question,
   fatArrow,
-
-  /// `== != < <= > >= + - * / % && || !`
   op,
   ident,
   number,
-
-  /// A quoted string; [Token.inner] is the text between the quotes.
   string,
-
-  /// A heredoc; see [Token.delimiter], [Token.flush], [Token.body].
   heredoc,
   newline,
   comment,
   eof,
 }
 
-/// One lexical token with its source [range] and verbatim [text].
 final class Token {
   const Token(
     this.type,
@@ -48,22 +40,10 @@ final class Token {
   final TokenType type;
   final String text;
   final SourceRange range;
-
-  /// For [TokenType.string]: the raw text between the quotes (escapes and
-  /// interpolations undecoded).
   final String? inner;
-
-  /// For [TokenType.heredoc]: the marker identifier.
   final String? delimiter;
-
-  /// For [TokenType.heredoc]: true for the `<<-` form.
   final bool flush;
-
-  /// For [TokenType.heredoc]: the lines between the opening line and the
-  /// closing marker, exactly as written (each ending in `\n`).
   final String? body;
-
-  /// For [TokenType.heredoc]: the range of [body] within the file.
   final SourceRange? bodyRange;
 
   bool get isOp => type == TokenType.op;
@@ -72,8 +52,6 @@ final class Token {
   String toString() => '$type(${text.replaceAll('\n', r'\n')})@$range';
 }
 
-/// Splits HCL source into [Token]s. Whitespace is dropped; newlines and
-/// comments are tokens so the parser can decide where they matter.
 final class Lexer {
   Lexer(
     this.source, {
@@ -85,10 +63,6 @@ final class Lexer {
 
   final String source;
   final String? fileName;
-
-  /// When lexing a fragment (an interpolation inside a string), the
-  /// position of the fragment's first character in the enclosing file, so
-  /// every token range is file-relative.
   final int baseOffset;
   final int baseLine;
   final int baseColumn;
@@ -97,6 +71,18 @@ final class Lexer {
   int _line = 1;
   int _col = 1;
   final _tokens = <Token>[];
+
+  static const _quote = 0x22;
+  static const _hash = 0x23;
+  static const _dollar = 0x24;
+  static const _percent = 0x25;
+  static const _star = 0x2a;
+  static const _minus = 0x2d;
+  static const _slash = 0x2f;
+  static const _lessThan = 0x3c;
+  static const _backslash = 0x5c;
+  static const _underscore = 0x5f;
+  static const _lbrace = 0x7b;
 
   static final RegExp _letter = RegExp(r'\p{L}', unicode: true);
   static final RegExp _mark = RegExp(r'\p{M}', unicode: true);
@@ -109,15 +95,15 @@ final class Lexer {
         _newline();
       } else if (c == 0x20 || c == 0x09 || c == 0x0d) {
         _advance();
-      } else if (c == 0x23 /* # */ ) {
+      } else if (c == _hash) {
         _lineComment();
-      } else if (c == 0x2f /* / */ && _peekChar(1) == 0x2f) {
+      } else if (c == _slash && _peekChar(1) == _slash) {
         _lineComment();
-      } else if (c == 0x2f && _peekChar(1) == 0x2a /* * */ ) {
+      } else if (c == _slash && _peekChar(1) == _star) {
         _blockComment();
-      } else if (c == 0x22 /* " */ ) {
+      } else if (c == _quote) {
         _string();
-      } else if (c == 0x3c /* < */ && _peekChar(1) == 0x3c) {
+      } else if (c == _lessThan && _peekChar(1) == _lessThan) {
         _heredoc();
       } else if (_isDigit(c)) {
         _number();
@@ -130,8 +116,6 @@ final class Lexer {
     _tokens.add(Token(TokenType.eof, '', SourceRange(_here(), _here())));
     return _tokens;
   }
-
-  // -- helpers --------------------------------------------------------------
 
   int _peekChar(int ahead) =>
       _pos + ahead < source.length ? source.codeUnitAt(_pos + ahead) : -1;
@@ -175,7 +159,7 @@ final class Lexer {
 
   bool _isIdStart(int at) {
     final c = source.codeUnitAt(at);
-    if (c == 0x5f /* _ */ ) return true;
+    if (c == _underscore) return true;
     if ((c >= 0x41 && c <= 0x5a) || (c >= 0x61 && c <= 0x7a)) return true;
     if (c < 0x80) return false;
     return _letter.hasMatch(_charAt(at));
@@ -183,13 +167,12 @@ final class Lexer {
 
   bool _isIdContinue(int at) {
     final c = source.codeUnitAt(at);
-    if (c == 0x2d /* - */ || _isDigit(c)) return true;
+    if (c == _minus || _isDigit(c)) return true;
     if (_isIdStart(at)) return true;
     if (c < 0x80) return false;
     return _mark.hasMatch(_charAt(at));
   }
 
-  /// The character at [at], as a string (a surrogate pair when needed).
   String _charAt(int at) {
     final c = source.codeUnitAt(at);
     if (c >= 0xd800 && c <= 0xdbff && at + 1 < source.length) {
@@ -198,8 +181,6 @@ final class Lexer {
     return String.fromCharCode(c);
   }
 
-  /// Number of leading whitespace *characters* of [line] (Unicode
-  /// White_Space, so tabs and em spaces each count once).
   static int leadingWhitespace(String line) {
     var n = 0;
     for (final r in line.runes) {
@@ -214,8 +195,6 @@ final class Lexer {
     return n;
   }
 
-  // -- scanners --------------------------------------------------------------
-
   void _newline() {
     final start = _here();
     _advance();
@@ -227,7 +206,6 @@ final class Lexer {
     while (_pos < source.length && source.codeUnitAt(_pos) != 0x0a) {
       _advance();
     }
-    // Drop a trailing carriage return from CRLF files.
     var text = source.substring(start.offset - baseOffset, _pos);
     if (text.endsWith('\r')) text = text.substring(0, text.length - 1);
     _emit(TokenType.comment, start, text: text);
@@ -286,23 +264,23 @@ final class Lexer {
 
   void _string() {
     final start = _here();
-    _advance(); // opening quote
+    _advance();
     final innerStart = _pos;
     while (true) {
       if (_pos >= source.length) _fail('unterminated string', start);
       final c = source.codeUnitAt(_pos);
-      if (c == 0x5c /* \ */ ) {
+      if (c == _backslash) {
         if (_pos + 1 >= source.length) _fail('unterminated string', start);
         _advance(2);
-      } else if (c == 0x22) {
+      } else if (c == _quote) {
         break;
       } else if (c == 0x0a) {
         _fail('newline in string literal', start);
-      } else if ((c == 0x24 /* $ */ || c == 0x25 /* % */ ) &&
+      } else if ((c == _dollar || c == _percent) &&
           _peekChar(1) == c &&
-          _peekChar(2) == 0x7b) {
-        _advance(3); // `$${` / `%%{` escape
-      } else if ((c == 0x24 || c == 0x25) && _peekChar(1) == 0x7b) {
+          _peekChar(2) == _lbrace) {
+        _advance(3);
+      } else if ((c == _dollar || c == _percent) && _peekChar(1) == _lbrace) {
         _advance(2);
         _skipInterpolation(start);
       } else {
@@ -310,7 +288,7 @@ final class Lexer {
       }
     }
     final inner = source.substring(innerStart, _pos);
-    _advance(); // closing quote
+    _advance();
     final end = _here();
     _tokens.add(
       Token(
@@ -322,16 +300,14 @@ final class Lexer {
     );
   }
 
-  /// Skips to the `}` closing an interpolation / directive opened just
-  /// before [_pos], tracking nested braces and nested quoted strings.
   void _skipInterpolation(SourcePos start) {
     var depth = 1;
     while (true) {
       if (_pos >= source.length) _fail('unterminated interpolation', start);
       final c = source.codeUnitAt(_pos);
-      if (c == 0x22) {
+      if (c == _quote) {
         _skipNestedString(start);
-      } else if (c == 0x7b) {
+      } else if (c == _lbrace) {
         depth++;
         _advance();
       } else if (c == 0x7d) {
@@ -345,20 +321,20 @@ final class Lexer {
   }
 
   void _skipNestedString(SourcePos start) {
-    _advance(); // opening quote
+    _advance();
     while (true) {
       if (_pos >= source.length) _fail('unterminated string', start);
       final c = source.codeUnitAt(_pos);
-      if (c == 0x5c) {
+      if (c == _backslash) {
         _advance(2);
-      } else if (c == 0x22) {
+      } else if (c == _quote) {
         _advance();
         return;
-      } else if ((c == 0x24 || c == 0x25) &&
+      } else if ((c == _dollar || c == _percent) &&
           _peekChar(1) == c &&
-          _peekChar(2) == 0x7b) {
+          _peekChar(2) == _lbrace) {
         _advance(3);
-      } else if ((c == 0x24 || c == 0x25) && _peekChar(1) == 0x7b) {
+      } else if ((c == _dollar || c == _percent) && _peekChar(1) == _lbrace) {
         _advance(2);
         _skipInterpolation(start);
       } else {
@@ -369,9 +345,9 @@ final class Lexer {
 
   void _heredoc() {
     final start = _here();
-    _advance(2); // <<
+    _advance(2);
     var flush = false;
-    if (_pos < source.length && source.codeUnitAt(_pos) == 0x2d) {
+    if (_pos < source.length && source.codeUnitAt(_pos) == _minus) {
       flush = true;
       _advance();
     }
@@ -396,10 +372,9 @@ final class Lexer {
     if (_pos >= source.length || source.codeUnitAt(_pos) != 0x0a) {
       _fail('newline expected after heredoc marker', start);
     }
-    _advance(); // the newline that starts the body
+    _advance();
     final bodyStartPos = _here();
     final bodyStart = _pos;
-    // Scan line by line for the closing marker.
     while (true) {
       if (_pos >= source.length) {
         _fail('unterminated heredoc (missing closing "$delimiter")', start);
@@ -412,7 +387,6 @@ final class Lexer {
       if (line.trim() == delimiter) {
         final body = source.substring(bodyStart, lineStart);
         final bodyRange = SourceRange(bodyStartPos, _here());
-        // Position after the marker (before its newline).
         final markerOffset = lineStart + line.indexOf(delimiter);
         _advance(markerOffset - _pos + delimiter.length);
         final end = _here();
@@ -429,7 +403,6 @@ final class Lexer {
         );
         return;
       }
-      // Consume the line and its newline.
       _advance(lineEnd - _pos);
       if (_pos < source.length) _advance();
     }
@@ -450,10 +423,10 @@ final class Lexer {
       len = 2;
     } else if ((c == 0x3d || c == 0x21 || c == 0x3c || c == 0x3e) &&
         n == 0x3d) {
-      type = TokenType.op; // == != <= >=
+      type = TokenType.op;
       len = 2;
     } else if ((c == 0x26 && n == 0x26) || (c == 0x7c && n == 0x7c)) {
-      type = TokenType.op; // && ||
+      type = TokenType.op;
       len = 2;
     } else {
       type = switch (c) {

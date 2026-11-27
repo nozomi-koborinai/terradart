@@ -3,9 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('ValueEmitter.hasPlainSensitiveLeaf', () {
-    // Mirrors synth: a sensitive nested leaf passes when it is a Terraform
-    // template — a `${ ... }` or `%{ ... }` sequence anywhere — and is a
-    // plain literal otherwise (escaped sequences are literal text).
     test('a template anywhere in the leaf is not plain', () {
       for (final leaf in [
         r'${var.key}',

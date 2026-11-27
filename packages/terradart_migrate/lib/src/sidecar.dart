@@ -91,9 +91,6 @@ final class _SidecarBuilder {
   final _chunks = <String, List<String>>{};
   final _placements = <String, String>{};
 
-  /// Points references at the instances the Stack unrolled a `count` /
-  /// `for_each` block into (`google_x.y[0]` → `google_x.y_0`); the block as
-  /// written no longer exists in the directory.
   late final _rewriter = ReferenceRewriter(report.expanded);
 
   String _providerText(ProviderBlock p) =>
@@ -129,8 +126,6 @@ final class _SidecarBuilder {
     return const HclWriter().writeEntry(filtered, level: level).trimRight();
   }
 
-  /// A credential attribute, or a nested block of that name
-  /// (`assume_role_with_web_identity { web_identity_token = "..." }`).
   bool _hasDroppedCredential(Body body, Set<String> dropped) =>
       body.entries.any((e) => _isDroppedCredential(e, dropped));
 
@@ -156,12 +151,6 @@ final class _SidecarBuilder {
       'references to instances of an unrolled count / for_each block point '
       'at the new addresses';
 
-  /// [text] with every reference to an instance of an unrolled block
-  /// pointed at the address that instance became.
-  ///
-  /// Everything the sidecar writes goes through this: a block the migration
-  /// kept still names `google_x.y[0]`, and that resource no longer exists —
-  /// the Stack declares `google_x.y_0`.
   ({String text, bool rewritten}) _pointAtInstances(String text) {
     if (_rewriter.isEmpty) return (text: text, rewritten: false);
     final out = _rewriter.text(text, strict: false);
@@ -232,11 +221,6 @@ final class _SidecarBuilder {
     );
   }
 
-  /// The `locals` blocks, holding the entries that stay in Terraform.
-  ///
-  /// A block every entry of which is kept is copied as written; when the
-  /// report migrated some of them, what is left is re-rendered around the
-  /// entries that remain.
   void _locals() {
     final seen = <Block>{};
     for (final l in module.locals) {
@@ -249,16 +233,12 @@ final class _SidecarBuilder {
       ];
       if (entries.isEmpty) continue;
       if (entries.length == l.block.body.entries.length) {
-        // Every entry stays: the block is the user's, as written.
         _put(
           localsFileName,
           'local.${entries.first.name}',
           verbatimEntry(l.file, l.block),
         );
       } else {
-        // Some entries became Dart, so the block is rebuilt around what is
-        // left, each entry over the reason it stayed — and each pointed at
-        // the unrolled instances, as `_put` would have done for a whole one.
         final lines = <String>['locals {'];
         var moved = false;
         for (final e in entries) {
@@ -285,7 +265,6 @@ final class _SidecarBuilder {
     }
   }
 
-  /// One `terraform { }` block holding the settings the Stack does not own.
   void _terraformSettings() {
     final entries = <String>[];
     final providerEntries = <String>[];
@@ -309,7 +288,6 @@ final class _SidecarBuilder {
             );
             _placements['terraform.required_providers.${attr.name}'] =
                 backendFileName;
-            // A kept provider with no `provider` block lives here alone.
             _placements.putIfAbsent(
               'provider.${attr.name}',
               () => backendFileName,
@@ -320,8 +298,7 @@ final class _SidecarBuilder {
         final address = 'terraform.$key';
         final reason = kept[address];
         if (reason == null) continue;
-        // A JSON backend / cloud setting is an attribute; render the block
-        // form Terraform expects in HCL.
+        // Terraform JSON encodes backend and cloud as attributes; HCL requires block syntax.
         BodyEntry node = entry;
         if (entry is Attribute && key == 'backend') node = t.backend ?? entry;
         if (entry is Attribute && key == 'cloud') node = t.cloud ?? entry;

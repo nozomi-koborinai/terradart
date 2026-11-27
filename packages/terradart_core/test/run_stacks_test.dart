@@ -5,8 +5,6 @@ import 'dart:isolate';
 import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
 
-/// Runs `main` of an entry point with [body] after the shared declarations,
-/// in a fresh directory, with `TERRADART_MANIFEST` set.
 Future<({int code, String out, String err, Directory dir})> _run(
   String body,
   List<String> args, {

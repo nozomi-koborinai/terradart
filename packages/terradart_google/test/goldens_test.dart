@@ -1,12 +1,3 @@
-/// Per-resource golden tests for every curated factory in terradart_google.
-///
-/// One file (instead of one per factory) keeps boilerplate down. The
-/// section 1.3 narrative push subscription is in
-/// `pubsub/google_pubsub_subscription_golden_test.dart`; the topic-only
-/// golden lives in `pubsub/google_pubsub_topic_golden_test.dart`. Everything
-/// else lives here.
-library;
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -134,7 +125,7 @@ void main() {
   });
 
   test(
-    'secret_manager_secret_version golden — write-only literal flows through',
+    'secret_manager_secret_version golden — write_only secret_data_wo is not marked sensitive by provider',
     () async {
       final stack = TestStack(
         providers: const [GoogleProvider(project: 'demo')],
@@ -157,12 +148,6 @@ void main() {
         ),
       );
 
-      // The sensitive set is machine-derived from the provider
-      // schema. hashicorp/google v7.31.0 marks only `secret_data` as
-      // sensitive; `secret_data_wo` is `write_only` (the value is excluded
-      // from state, not from the rendered tf.json). So the literal flows
-      // through unmasked here. The legacy `secret_data` path (used in the
-      // unit test for that field) is masked.
       expect(
         stack.synth().tfJson,
         equals(await _readGolden('secret_manager_secret_version.tf.json')),

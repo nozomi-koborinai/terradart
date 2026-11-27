@@ -3,9 +3,6 @@ import 'dart:io';
 import 'package:terradart_codegen/src/cli/lint_override_command.dart';
 import 'package:test/test.dart';
 
-/// Runs `terradart lint-override` against the real bundled registry as a
-/// subprocess (the same way `wrap` is exercised), so the command wiring +
-/// package-URI resolution are covered end-to-end.
 void main() {
   test('lint-override exits 0 on the clean committed registry', () {
     final result = Process.runSync('dart', [

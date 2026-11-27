@@ -144,14 +144,9 @@ MergedEnvironment mergeEnvironments({
     forceLocals: forceLocals,
     reservedNames: const {'env'},
     liftWorkspace: liftWorkspace,
-    // The bodies are lined up statement by statement, and two environments
-    // may document the same block differently; the merged Stack carries no
-    // comments rather than one environment's.
     carryComments: false,
   ).emit();
 
-  // A local one environment reads is declared in every environment, so the
-  // merged bodies still line up statement for statement.
   final union = <String>{
     for (final env in envs)
       for (final s in emitOne(env, const {}).statements) ...s.uses,
@@ -191,9 +186,6 @@ MergedEnvironment mergeEnvironments({
     );
   }
 
-  // A constant the emitter never read is one the merged Stack has no way to
-  // take from the environment (an argument with no plain Dart parameter);
-  // its address will differ, and this is the reason why.
   final consumed = {
     for (final env in envs) ...emitted[env.member]!.envSlotTypes.keys,
   };
@@ -209,7 +201,6 @@ MergedEnvironment mergeEnvironments({
         );
   }
 
-  // ---- line the bodies up ------------------------------------------------
   final statements = <String, Map<String, StackStatement>>{};
   for (final env in envs) {
     for (final s in emitted[env.member]!.statements) {
@@ -241,7 +232,6 @@ MergedEnvironment mergeEnvironments({
     return refuse('the environments declare their blocks in a different order');
   }
 
-  // ---- guards ------------------------------------------------------------
   final all = {for (final env in envs) env.member};
   final guardNames = <String, String>{};
   final guards = <EnvGuard>[];
@@ -265,7 +255,6 @@ MergedEnvironment mergeEnvironments({
     );
   }
 
-  // ---- runs of one guard, and the locals they may not leak ---------------
   final runs = <({String? guard, List<StackStatement> statements})>[];
   String? previous = '';
   for (final tag in order) {
@@ -281,11 +270,6 @@ MergedEnvironment mergeEnvironments({
     }
     previous = guard;
   }
-  // A guarded local another `if` block reads is declared outside any block,
-  // `null` in the other environments
-  // (`final backups = env.isProd ? add(...) : null;`), so the two blocks
-  // share the name. A reader outside the environments that declare it would
-  // read `null`, and is refused instead.
   final hoisted = <String>{};
   for (var i = 0; i < runs.length; i++) {
     final run = runs[i];
@@ -312,7 +296,6 @@ MergedEnvironment mergeEnvironments({
     }
   }
 
-  // ---- render ------------------------------------------------------------
   final slotTypes = <String, String>{
     for (final env in envs) ...emitted[env.member]!.envSlotTypes,
   };
@@ -322,8 +305,6 @@ MergedEnvironment mergeEnvironments({
   final envImports = {
     for (final env in envs) ...emitted[env.member]!.envImports,
   }.toList()..sort();
-  // `package:` imports first (terradart_core sorts to the front), then the
-  // libraries beside the Stack: the enum and the module wrappers.
   final lines = {
     for (final env in envs) ...emitted[env.member]!.imports,
     "import '$envFile.dart';",
@@ -332,8 +313,6 @@ MergedEnvironment mergeEnvironments({
     ...lines.where((l) => l.contains('package:')).toList()..sort(),
     ...lines.where((l) => !l.contains('package:')).toList()..sort(),
   ];
-  // A hoisted local is `null` outside its environments; every guard that
-  // reads one also tests it, which promotes it to the block's type.
   String condition(String guard, Iterable<StackStatement> readers) => [
     'env.$guard',
     for (final tag in {
@@ -434,8 +413,6 @@ $body  }
   );
 }
 
-/// `lib/<envFile>.dart`: the environments as an enum, one constant per value
-/// the roots disagree on.
 String _renderEnv({
   required String envClass,
   required String stackClass,
@@ -448,8 +425,6 @@ String _renderEnv({
   required List<String> imports,
 }) {
   String typeOf(EnvField f) => slotTypes[f.expression] ?? f.inferredType;
-  // An enum-typed constant is written as the member the environment names,
-  // not as the wire string it came from.
   String valueOf(EnvField f, String member) =>
       valueSources[member]?[f.expression] ?? dartValue(f.values[member]);
 
@@ -507,7 +482,6 @@ ${declarations.join('\n\n')}
 MigratedStack _stackOf(EmittedStack emitted, String stackFile) => MigratedStack(
   stackClass: emitted.stackClass,
   stackFile: stackFile,
-  // The Stack itself is written once for the whole group.
   source: '',
   packages: emitted.packages,
   report: emitted.report,
@@ -516,12 +490,6 @@ MigratedStack _stackOf(EmittedStack emitted, String stackFile) => MigratedStack(
   usesWorkspace: emitted.usesWorkspace,
 );
 
-/// An order over every tag that keeps each environment's own order, or
-/// `null` when the environments contradict each other.
-///
-/// Among the statements it may emit next, one belonging to the same
-/// environments as the last is preferred, so guarded blocks come out in as
-/// few `if` blocks as possible.
 List<String>? _mergeOrders(
   List<List<String>> orders,
   Map<String, Set<String>> owners,
@@ -561,19 +529,16 @@ List<String>? _mergeOrders(
   return out;
 }
 
-/// `isProd`, `isDevOrStaging` — the flag for the environments [owners].
 String _guardName(List<EnvBinding> envs, Set<String> owners) =>
     'is${[for (final e in envs)
       if (owners.contains(e.member)) pascalCase(e.member)].join('Or')}';
 
-/// The Dart local a `final x = add(...);` statement declares.
 String _localOf(StackStatement s) =>
     RegExp(r'^final (\w+) =').firstMatch(s.text)!.group(1)!;
 
 bool _same(Set<String> a, Set<String> b) =>
     a.length == b.length && a.containsAll(b);
 
-/// A stable key for the set of environments a block belongs to.
 String _key(List<EnvBinding> envs, Set<String> owners) => [
   for (final e in envs)
     if (owners.contains(e.member)) e.member,

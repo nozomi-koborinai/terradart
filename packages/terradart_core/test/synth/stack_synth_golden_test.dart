@@ -78,8 +78,6 @@ void main() {
           argMap: const {'name': TfArgLiteral<String>('orders-prod')},
         ),
       );
-      // `replace_triggered_by` accepts `TfRef<dynamic>`; we point at the
-      // stable computed `id` attribute.
       final triggerRef = TfRef.attribute<dynamic>(ordersTopic, 'id');
       stack.add(
         FakePubsubTopic.withMeta(
@@ -102,7 +100,6 @@ void main() {
         equals(['google_pubsub_topic.orders.id']),
       );
       expect(auditBlock['depends_on'], equals(['google_pubsub_topic.orders']));
-      // Critical: NEITHER value is wrapped in ${}.
       final replace = lifecycle['replace_triggered_by']! as List<dynamic>;
       expect(replace[0], isNot(startsWith(r'${')));
       final deps = auditBlock['depends_on']! as List<dynamic>;
@@ -250,7 +247,6 @@ void main() {
       );
 
       final result = StackSynth.synth(stack);
-      // Must not throw — any unconverted TfArg/TfRef would raise here.
       final json = jsonEncode(result.tfJson);
       expect(jsonDecode(json), equals(result.tfJson));
     });

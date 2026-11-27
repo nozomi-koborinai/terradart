@@ -1,16 +1,3 @@
-// append_curation_backlog.dart — idempotent append under `entries:` in
-// tool/curation_backlog.yaml (schema-bump workflow). Reads a
-// tool/schema_resource_diff.dart output: `added_resources` become
-// `resource:` entries, `added_data_sources` (lanes that diff them)
-// `data_source:` entries.
-//
-// Usage:
-//   dart tool/append_curation_backlog.dart \
-//     --backlog=tool/curation_backlog.yaml \
-//     --diff=/tmp/schema_diff.json \
-//     --detected-at=2026-06-12 \
-//     --provider-version=7.2.0
-//
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -117,7 +104,6 @@ _Args? _parseArgs(List<String> args) {
   );
 }
 
-/// Parses `entries:` from [yamlSource]. Returns an empty list when absent.
 List<Map<String, String>> readBacklogEntries(String yamlSource) {
   final doc = loadYaml(yamlSource);
   if (doc is! YamlMap) return [];
@@ -130,7 +116,6 @@ List<Map<String, String>> readBacklogEntries(String yamlSource) {
   ];
 }
 
-/// The entry keys naming a type, by kind.
 const backlogKindKeys = ['resource', 'data_source'];
 
 String _entryKey(Map<String, String> e) =>
@@ -143,8 +128,6 @@ String _entryKey(Map<String, String> e) =>
 String _entryName(Map<String, String> e) =>
     e['resource'] ?? e['data_source'] ?? '';
 
-/// Appends [resources] and [dataSources] not already present (by kind and
-/// type name), sorted by type name so lanes' entries stay apart.
 List<Map<String, String>> appendCurationEntries({
   required List<Map<String, String>> existing,
   required List<String> resources,
@@ -162,13 +145,10 @@ List<Map<String, String>> appendCurationEntries({
     for (final name in names) {
       final key = '$kind:$name';
       if (!seen.add(key)) {
-        // The append step records a type with no note when wrap did not
-        // run. A later record, once the factory exists, fills that note
-        // and leaves a note a person already wrote.
         if (note != null && note.isNotEmpty) {
           final i = out.indexWhere((e) => _entryKey(e) == key);
-          final current = i < 0 ? null : out[i]['note'];
-          if (i >= 0 && (current == null || current.isEmpty)) {
+          final existingNote = i < 0 ? null : out[i]['note'];
+          if (i >= 0 && (existingNote == null || existingNote.isEmpty)) {
             out[i] = {...out[i], 'note': note};
           }
         }
@@ -189,7 +169,6 @@ List<Map<String, String>> appendCurationEntries({
   return out;
 }
 
-/// The comment block above `entries:`.
 String readBacklogHeader(String yamlSource) {
   final lines = yamlSource.split('\n');
   final headerLines = <String>[];
@@ -200,7 +179,6 @@ String readBacklogHeader(String yamlSource) {
   return headerLines.join('\n').trimRight();
 }
 
-/// Writes the backlog file: comment [header] + `entries:` list.
 String formatBacklogYaml({
   required String header,
   required List<Map<String, String>> entries,

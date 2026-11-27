@@ -59,8 +59,6 @@ void _testApiEnablementGraph() {
   checkApiEnablement('fixture', bad, badErrors);
   assert(badErrors.isNotEmpty);
 
-  // Mandate ratchet: enabling SOME APIs while an API-gated resource's own
-  // API is absent must fail (the Wave 32 secretmanager gap).
   final partial = {
     'resource': {
       'google_project_service': {
@@ -81,7 +79,6 @@ void _testApiEnablementGraph() {
     ),
   );
 
-  // The same gap is suppressed by a tool/example_api_debt.yaml entry.
   final debtErrors = <String>[];
   checkApiEnablement(
     'fixture',
@@ -91,7 +88,6 @@ void _testApiEnablementGraph() {
   );
   assert(debtErrors.isEmpty);
 
-  // Examples that enable nothing stay exempt (manual-enablement mode).
   final manual = {
     'resource': {
       'google_secret_manager_secret': {
@@ -119,7 +115,6 @@ void _testIamAdjunctDebt() {
   };
   const synthWithMember = {'google_foo_iam_member'};
 
-  // Happy path: binding + policy with sibling member in synth.
   final ok = <String>[];
   checkIamAdjunctDebtEntry(
     className: 'GoogleFooIamBinding',
@@ -139,7 +134,6 @@ void _testIamAdjunctDebt() {
   );
   assert(ok.isEmpty);
 
-  // Token ignored when absent.
   final ignored = <String>[];
   checkIamAdjunctDebtEntry(
     className: 'GoogleBar',
@@ -151,7 +145,6 @@ void _testIamAdjunctDebt() {
   );
   assert(ignored.isEmpty);
 
-  // Wrong class with token.
   final wrongClass = <String>[];
   checkIamAdjunctDebtEntry(
     className: 'GoogleBar',
@@ -163,7 +156,6 @@ void _testIamAdjunctDebt() {
   );
   assert(wrongClass.any((e) => e.contains('not *IamBinding/*IamPolicy')));
 
-  // Sibling not in catalog.
   final noSibling = <String>[];
   checkIamAdjunctDebtEntry(
     className: 'GoogleFooIamBinding',
@@ -175,7 +167,6 @@ void _testIamAdjunctDebt() {
   );
   assert(noSibling.any((e) => e.contains('not in the catalog')));
 
-  // Sibling curated but not in synth.
   final notInSynth = <String>[];
   checkIamAdjunctDebtEntry(
     className: 'GoogleFooIamBinding',
@@ -208,7 +199,6 @@ entries:
     backlogTypes: backlog,
     errors: ok,
   );
-  // Other reasons are not tied to the backlog.
   checkAwaitingExampleEntry(
     className: 'GoogleOld',
     reason: 'org-only; needs folder',
@@ -218,8 +208,6 @@ entries:
   );
   assert(ok.isEmpty);
 
-  // The kind must match: a resource line does not borrow a data source's
-  // backlog entry.
   final missing = <String>[];
   checkAwaitingExampleEntry(
     className: 'AwsNew',

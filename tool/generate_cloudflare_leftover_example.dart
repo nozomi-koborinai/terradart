@@ -1,10 +1,3 @@
-// Renders examples/cloudflare_leftover_quickstart/lib/main.dart, for
-// tool/coverage_stack.dart, which writes and validates it: one constructor
-// call per leftover Cloudflare factory (resource or data source). Dummy
-// values satisfy Dart types so synth + terraform validate can cover the
-// filled catalog. Live apply is out of scope. Literal values live in
-// tool/coverage_dummies/cloudflare.yaml.
-
 import 'dart:io';
 
 import 'coverage_dummies.dart';
@@ -17,13 +10,9 @@ const _skipDataTypes = {'cloudflare_firewall_rule'};
 
 const _srcRoot = 'packages/terradart_cloudflare/lib/src';
 
-/// Terraform variable backing every sensitive leaf in the generated
-/// stack. Declared by the generator so the reference resolves at synth.
 const _secretVar = 'leftover_secret';
 const _secretVarRef = 'leftoverSecret';
 
-/// What a sensitive leaf of [type] reads: the `String` handle, or the
-/// variable by name where the payload is not a string.
 String _secretFor(String type) {
   var t = type.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
@@ -32,7 +21,6 @@ String _secretFor(String type) {
       : "Sensitive.variable('$_secretVar')";
 }
 
-/// The cloudflare lane's coverage stack.
 const cloudflareLeftoverStack = _CloudflareLeftoverStack();
 
 final class _CloudflareLeftoverStack implements CoverageStackGenerator {
@@ -141,8 +129,6 @@ final class _CloudflareLeftoverStack implements CoverageStackGenerator {
       ..writeln("    const zoneId = '00000000000000000000000000000002';")
       ..writeln();
 
-    // Body first: the preamble can only decide whether to declare the
-    // secret variable once it knows a factory actually referenced it.
     final body = StringBuffer();
     for (final f in factories) {
       final local = _uniqueLocal(f.type, f.kind, usedLocals);
@@ -162,9 +148,6 @@ final class _CloudflareLeftoverStack implements CoverageStackGenerator {
       body.writeln();
     }
 
-    // Sensitive leaves read the variable's handle, and synth
-    // rejects a reference with no matching declaration — so the declaration
-    // is generated too, not hand-added to this generated file.
     if (body.toString().contains(_secretVarRef)) {
       buf.writeln(
         "    final $_secretVarRef = variable<String>('$_secretVar', "
@@ -253,8 +236,6 @@ Set<String> _parseSensitiveLeaves(String src) {
   return out;
 }
 
-/// Every sealed exactly-one type the package declares: name → its variant
-/// classes in declaration order.
 final _sealedVariants = <String, List<String>>{};
 
 _ParsedFile _parseFile(File file) {
@@ -316,7 +297,6 @@ Map<String, String> _parseFields(String body) {
   String body,
   Map<String, String> fields,
 ) {
-  // A sealed variant takes its one member positionally.
   final positional = RegExp(
     'const ${RegExp.escape(className)}\\(\\s*this\\.(\\w+),?\\s*\\);',
   ).firstMatch(body);
@@ -376,12 +356,8 @@ class _Extra {
   final String value;
 }
 
-/// The member a sealed exactly-one slot sets, where the first variant is
-/// not the one the dummy configuration needs.
 const _sealedMember = <String, String>{'RulesetScope': 'zoneId'};
 
-/// The variant of sealed type [sealed] to construct: the one setting its
-/// `_sealedMember` entry, else the first.
 String _sealedChoice(
   String sealed,
   Map<String, _ClassInfo> helpers, {
@@ -414,8 +390,7 @@ String _sealedChoice(
 
 const _preferZoneId = {'DataCloudflareRuleset', 'DataCloudflareRulesets'};
 
-/// Data sources whose scope id is itself the lookup: the provider takes
-/// exactly one of it and `filter`.
+// Cloudflare provider treats scope id as the lookup and rejects combining it with filter.
 const _scopeIsLookup = {'DataCloudflareAccount', 'DataCloudflareZone'};
 
 List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
@@ -447,7 +422,7 @@ List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
     if (!optional.containsKey('accountId')) add('zoneId');
   }
   add('id');
-  // file XOR url (cloudflare_image): emit url so leftover JSON is valid.
+  // cloudflare_image requires file XOR url in provider validation.
   if (optional.containsKey('file') && optional.containsKey('url')) {
     add('url');
   }
@@ -623,8 +598,7 @@ String _dummyForType(
       sensitive: sensitive,
       owner: owner,
     );
-    // An enum member's long name makes the formatter wrap the call; the
-    // trailing comma keeps the wrapped shape `require_trailing_commas` wants.
+    // Trailing comma keeps wrapped calls compliant with require_trailing_commas.
     return _enums.containsKey(inner.trim())
         ? 'TfArg.literal($value,)'
         : 'TfArg.literal($value)';
@@ -719,8 +693,6 @@ String _literalInner(
   return 'leftover';
 }
 
-/// Every enum the package declares: name → (member, raw value) in
-/// declaration order.
 final _enums = <String, List<(String, String)>>{};
 
 final _enumDecl = RegExp(
@@ -740,16 +712,12 @@ void _collectEnums(String source) {
   }
 }
 
-/// The member whose value [_stringValue] would have written for the slot
-/// (the value its provider validator accepts), else the first member.
-/// The enum element type of a `List<E>` type, if [t] is one.
 String? _listEnum(String t) {
   final m = RegExp(r'^List<(\w+)\??>$').firstMatch(t);
   final name = m?.group(1);
   return name != null && _enums.containsKey(name) ? name : null;
 }
 
-/// The member of [enumName] whose wire value is [value], else the first.
 String _enumByValue(String enumName, String value) {
   final members = _enums[enumName]!;
   final pick = members.firstWhere(
@@ -772,14 +740,10 @@ String _enumMember(String enumName, String name, {required String owner}) {
   return '$enumName.${pick.$1}';
 }
 
-/// Optional slots a factory needs anyway: the provider requires at least
-/// one of a group the generated constructor leaves optional.
+// Cloudflare provider validation requires one of these optional slots despite the schema leaving them optional.
 const _optionalExtras = <String, List<String>>{
   'CloudflareCustomSsl': ['customCsrId'],
   'CloudflareWorkersScript': ['content'],
-  // The provider requires exactly one vendor block. The schema does not
-  // mark the set ExactlyOneOf, so wrap leaves the blocks optional and the
-  // stack has to set one or validate rejects the resource.
   'CloudflareZeroTrustCasbIntegration': ['anthropic'],
 };
 
@@ -788,8 +752,6 @@ String _stringValue(String name, {String owner = ''}) {
   return value != null && value.isString ? value.dart : 'leftover';
 }
 
-/// [value] written for a slot of inner type [t], or null when it does not
-/// fit and the slot takes its type default.
 String? _fit(DummyValue value, String t) {
   if (value is IncludeDummy) return null;
   final json = switch (value) {
@@ -812,8 +774,6 @@ String? _fit(DummyValue value, String t) {
   return fits ? value.dart : null;
 }
 
-/// Whether the value being built sits inside a helper or a sealed variant,
-/// where a helper whose type is the context type is written `.new(...)`.
 var _insideHelper = false;
 
 String _constructHelper(
@@ -854,9 +814,6 @@ String _constructHelper(
       )
       .join(', ');
   _insideHelper = outer;
-  // Trailing comma: `dart format` then expands the call across lines and
-  // keeps it there, which is the shape `require_trailing_commas` wants.
-  // Without it the formatter wraps long calls and adds no comma, so a
-  // formatted `examples/` fails `dart analyze`.
+  // Trailing comma keeps wrapped calls compliant with require_trailing_commas.
   return '$ctor($args,)';
 }

@@ -1,6 +1,3 @@
-// Lists that are still edited by hand. Adding a lane to tool/providers.yaml
-// and nowhere else fails this file. Surfaces that follow the yaml are
-// covered by tool/lane_surface_test.dart.
 import 'dart:io';
 
 import 'package:terradart_codegen/src/codegen/providers/provider_registry.dart';
@@ -132,9 +129,7 @@ void main() {
       'skills/terradart/SKILL.md',
     ];
     final astro = File('website/astro.config.mjs').readAsStringSync();
-    final providers = File(
-      'website/src/lib/providers.ts',
-    ).readAsStringSync();
+    final providers = File('website/src/lib/providers.ts').readAsStringSync();
     for (final lane in lanes) {
       final package = packageOf(lane);
       for (final path in docs) {

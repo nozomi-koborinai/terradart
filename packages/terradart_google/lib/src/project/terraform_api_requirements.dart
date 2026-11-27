@@ -1,13 +1,8 @@
-/// Terraform resource type prefix → `google_project_service.service` API endpoint.
-///
-/// Longest-prefix wins. Types with no match are not API-gated by the example
-/// enablement checker (e.g. pure IAM adjuncts).
 const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_gke_backup_', 'gkebackup.googleapis.com'),
   MapEntry('google_gke_hub_', 'gkehub.googleapis.com'),
   MapEntry('google_cloudfunctions2_', 'cloudfunctions.googleapis.com'),
   MapEntry('google_cloud_run_v2_', 'run.googleapis.com'),
-  // After v2 so `google_cloud_run_v2_*` still matches the longer prefix first.
   MapEntry('google_cloud_run_', 'run.googleapis.com'),
   MapEntry('google_cloud_asset_', 'cloudasset.googleapis.com'),
   MapEntry(
@@ -47,8 +42,6 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_filestore_', 'file.googleapis.com'),
   MapEntry('google_firebaserules_', 'firebaserules.googleapis.com'),
   MapEntry('google_firestore_', 'firestore.googleapis.com'),
-  // Longer than `google_container_` so analysis notes/occurrences do not map
-  // to the GKE Container API.
   MapEntry('google_container_analysis_', 'containeranalysis.googleapis.com'),
   MapEntry('google_container_', 'container.googleapis.com'),
   MapEntry(
@@ -66,8 +59,6 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_document_ai_', 'documentai.googleapis.com'),
   MapEntry('google_composer_', 'composer.googleapis.com'),
   MapEntry('google_compute_', 'compute.googleapis.com'),
-  // Longer than `google_bigquery_` — Reservation API (slots / groups), not
-  // the core BigQuery data API.
   MapEntry('google_bigquery_reservation', 'bigqueryreservation.googleapis.com'),
   MapEntry(
     'google_bigquery_capacity_commitment',
@@ -78,7 +69,6 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
     'bigqueryreservation.googleapis.com',
   ),
   MapEntry('google_backup_dr_', 'backupdr.googleapis.com'),
-  // Longer than `google_bigquery_` — Data Policy API (V1 + V2), not core BQ.
   MapEntry(
     'google_bigquery_datapolicyv2_',
     'bigquerydatapolicy.googleapis.com',
@@ -92,26 +82,17 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
     'binaryauthorization.googleapis.com',
   ),
   MapEntry('google_pubsub_', 'pubsub.googleapis.com'),
-  // SCC v2 notification configs use the Security Center API endpoint.
   MapEntry('google_scc_', 'securitycenter.googleapis.com'),
   MapEntry('google_redis_', 'redis.googleapis.com'),
   MapEntry('google_memorystore_', 'memorystore.googleapis.com'),
-  // Longer than `google_storage_` — Batch Operations API, not the core
-  // Cloud Storage JSON API.
   MapEntry(
     'google_storage_batch_operations_',
     'storagebatchoperations.googleapis.com',
   ),
-  // Longer than `google_storage_` — Storage Insights API (inventory reports
-  // + datasets), not the core Cloud Storage JSON API.
   MapEntry('google_storage_insights_', 'storageinsights.googleapis.com'),
-  // Longer than `google_storage_` — Storage Transfer Service API, not the
-  // core Cloud Storage JSON API.
   MapEntry('google_storage_transfer_', 'storagetransfer.googleapis.com'),
   MapEntry('google_storage_', 'storage.googleapis.com'),
   MapEntry('google_kms_', 'cloudkms.googleapis.com'),
-  // Longer than a hypothetical `google_iam_` prefix so WIF / workforce
-  // pool factories stay ungated. Deny policies use the IAM v2 API.
   MapEntry('google_iam_deny_', 'iam.googleapis.com'),
   MapEntry('google_identity_platform_', 'identitytoolkit.googleapis.com'),
   MapEntry('google_integration_connectors_', 'connectors.googleapis.com'),
@@ -160,7 +141,6 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   ),
 ];
 
-/// Returns the API endpoint a [terraformType] needs, or null when unchecked.
 String? requiredApiForTerraformType(String terraformType) {
   if (terraformType == 'google_project_service' ||
       terraformType == 'google_project' ||

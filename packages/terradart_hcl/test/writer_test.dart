@@ -4,8 +4,6 @@ import 'package:terradart_hcl/src/dump.dart';
 import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:test/test.dart';
 
-/// The migrator's tree fixtures: a multi-environment GCP repo and a root
-/// with one local child module.
 const _trees = [
   '../terradart_migrate/test/fixtures/config_tree',
   '../terradart_migrate/test/fixtures/real_plan_src',
@@ -116,9 +114,7 @@ b "l1" l2 {
         final written = serializeHcl(first);
         final again = parseHcl(written, fileName: '${f.path}#written');
         expect(dumpHcl(again), dumpHcl(first));
-        // Writing is idempotent.
         expect(serializeHcl(again), written);
-        // Comments survive too.
         expect(
           again.comments.map((c) => c.text),
           first.comments.map((c) => c.text),

@@ -13,7 +13,6 @@ void main() {
     });
 
     test('generated wrapper exposes the derived enum', () {
-      // Relative path assumes cwd is the package dir, which `dart test` provides.
       final dart = File(
         '../terradart_google/lib/src/pubsub/google_pubsub_schema.dart',
       ).readAsStringSync();

@@ -1,13 +1,6 @@
 import 'package:terradart_google/compute.dart';
 import 'package:test/test.dart';
 
-/// Wire-precision tests for the unified health-check protocol sealed type:
-/// seven per-protocol config blocks whose exactly-one-of constraint the
-/// resource enforces at the type level (a single `protocol` parameter).
-///
-/// Gate 6 asserts each config encodes something well-formed; these tests
-/// pin the block-key mapping and that the resource embeds exactly one
-/// `*_health_check` block.
 void main() {
   test('each protocol variant maps to exactly its own block key', () {
     final variants = <String, ({ComputeHealthCheckProtocol config, int port})>{

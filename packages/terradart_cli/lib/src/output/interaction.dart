@@ -1,8 +1,5 @@
-/// The environment variable that turns questions off, as `--no-input` does.
 const noInputVariable = 'TERRADART_NO_INPUT';
 
-/// Variables AI coding agents set in the shells they spawn. Such a shell can
-/// be a terminal, where a question would hang the agent.
 const agentVariables = [
   'AI_AGENT',
   'CURSOR_AGENT',
@@ -13,9 +10,6 @@ const agentVariables = [
   'OPENCODE',
 ];
 
-/// Why the CLI must not ask, even on a terminal: `--no-input`
-/// ([noInputFlag]), [noInputVariable], `CI`, or one of [agentVariables];
-/// `null` when nothing says so.
 String? noInputReason(
   Map<String, String> environment, {
   bool noInputFlag = false,
@@ -33,8 +27,6 @@ String? noInputReason(
   return null;
 }
 
-/// [arguments] as a command line a shell runs as is, with [add] inserted
-/// before `--`: the `Next:` line of an error.
 String commandLine(List<String> arguments, [List<String> add = const []]) {
   final dashes = arguments.indexOf('--');
   final words = dashes < 0

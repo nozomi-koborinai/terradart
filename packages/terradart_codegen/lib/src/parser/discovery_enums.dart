@@ -4,33 +4,18 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
 
-/// The directory under a google lane's schema fixture that holds its copy of
-/// the Google API Discovery enums (`tool/fetch_discovery_enums.dart`).
 const discoveryDirName = 'discovery';
 
-/// The record of which Discovery schema each Terraform type is.
 const discoveryRootsFile = 'roots.yaml';
 
-/// The Discovery schema a Terraform type is: the document key
-/// (`compute.v1`), the schema name (`Address`), and the hand path prefixes
-/// (Terraform path prefix → REST field path) for a resource whose Terraform
-/// shape is not the REST one.
 typedef DiscoveryRoot = ({
   String doc,
   String schema,
   Map<String, List<String>> paths,
 });
 
-/// One enum a Discovery document declares for a Terraform input.
 typedef DiscoveryEnum = ({List<String> values, String doc, String field});
 
-/// The Google API Discovery enum copy of one google lane.
-///
-/// Each `<name>.<version>.json` is one Discovery document pruned to the
-/// properties that lead to an `enum`, with its provenance (`name`,
-/// `version`, `revision`, `sourceUrl`), plus the enum query parameters of
-/// the methods that take a root schema as their request body. `roots.yaml`
-/// records the schema each Terraform type is.
 final class DiscoveryEnums {
   DiscoveryEnums({
     required this.docs,
@@ -39,11 +24,7 @@ final class DiscoveryEnums {
     this.parameters = const {},
   });
 
-  /// Pruned schemas by document key (`compute.v1`).
   final Map<String, Map<String, Object?>> docs;
-
-  /// Enum query parameters by document key, then request schema, then
-  /// parameter name (`apikeys.v2` → `V2Key` → `checkExistingUsage`).
   final Map<String, Map<String, Map<String, List<String>>>> parameters;
   final Map<String, DiscoveryRoot> resources;
   final Map<String, DiscoveryRoot> dataSources;
@@ -54,8 +35,6 @@ final class DiscoveryEnums {
     dataSources: const {},
   );
 
-  /// The copy under `<sourceDir>/discovery`, or null when there is none.
-  /// Throws [FormatException] on a malformed file.
   static DiscoveryEnums? load(String sourceDir) {
     final dir = Directory(p.join(sourceDir, discoveryDirName));
     final rootsFile = File(p.join(dir.path, discoveryRootsFile));
@@ -90,16 +69,6 @@ final class DiscoveryEnums {
     );
   }
 
-  /// The enum the Discovery schema of [type] declares at Terraform [path],
-  /// or null when no property resolves or the one that does is no enum.
-  ///
-  /// [restPath] is the REST field path Magic Modules records for [path]; it
-  /// is followed first. Without one, or when it does not resolve, each
-  /// Terraform segment matches the property whose name is the same letters
-  /// (`ip_protocol` is `IPProtocol`), or their plural (`node_affinity` is
-  /// `nodeAffinities`). A top-level input no property resolves falls back to
-  /// an enum query parameter of a method that takes the schema
-  /// (`V2Key?checkExistingUsage`).
   DiscoveryEnum? lookup(
     String type,
     String path, {
@@ -172,8 +141,6 @@ final class DiscoveryEnums {
     return values == null ? null : (values: values, field: field.join('.'));
   }
 
-  /// [node] with `$ref`, `items` and `additionalProperties` followed to the
-  /// object that has `properties`.
   static Object? _object(Map<String, Object?> schemas, Object? node) {
     for (var hops = 0; hops < 8 && node is Map; hops++) {
       if (node['properties'] != null) return node;
@@ -226,14 +193,9 @@ final class DiscoveryEnums {
       s.toLowerCase().replaceAll(RegExp('[^a-z0-9]'), '');
 }
 
-/// Whether [value] is a Discovery enum's unset sentinel
-/// (`TYPE_UNSPECIFIED`, `UNSPECIFIED`, `UNSPECIFIED_MODE`).
 bool isDiscoverySentinel(String value) =>
     RegExp(r'(^|_)UNSPECIFIED($|_)').hasMatch(value);
 
-/// `roots.yaml`: the `resources:` and `data_sources:` maps of Terraform type
-/// to `{doc, schema, paths?}`; a null entry is a type no Discovery schema
-/// was found for.
 ({
   Map<String, DiscoveryRoot> resources,
   Map<String, DiscoveryRoot> dataSources,
@@ -281,12 +243,6 @@ DiscoveryRoot _root(String type, Object? value) {
   throw FormatException('$discoveryRootsFile: $type needs doc and schema');
 }
 
-/// [doc] (a Discovery REST document) reduced to the schemas and properties
-/// under [roots] that lead to an `enum`: each kept property is `enum`,
-/// `$ref`, `items`, `additionalProperties` or `properties`, nothing else.
-/// The provenance fields stay, and `parameters` keeps the enum query
-/// parameters of every method whose request body is one of [roots], by
-/// root (the first method in name order wins a name two methods share).
 Map<String, Object?> pruneDiscoveryDoc(
   Map<String, Object?> doc,
   Iterable<String> roots, {

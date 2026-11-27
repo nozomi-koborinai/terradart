@@ -17,17 +17,14 @@ void main() {
     test(
       'outputDirAliases contains the expected MM-product and segment entries',
       () {
-        // Strategy 1 — MM-product normalizations.
         expect(rules.outputDirAliases['cloudtasks'], 'cloud_tasks');
         expect(rules.outputDirAliases['secretmanager'], 'secret_manager');
         expect(rules.outputDirAliases['cloudscheduler'], 'cloud_scheduler');
         expect(rules.outputDirAliases['resourcemanager'], 'project');
-        // Strategy 2 — segment / prefix overrides.
         expect(rules.outputDirAliases['service_account'], 'iam');
         expect(rules.outputDirAliases['workload_identity'], 'iam');
         expect(rules.outputDirAliases['workloadidentity'], 'iam');
         expect(rules.outputDirAliases['project_service'], 'project');
-        // Phase 4.5 pilot — cloud_run service alias.
         expect(rules.outputDirAliases['cloudrunv2'], 'cloud_run');
         expect(rules.outputDirAliases['public'], 'public_ca');
         expect(rules.outputDirAliases['publicca'], 'public_ca');

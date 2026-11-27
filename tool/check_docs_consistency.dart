@@ -1,13 +1,3 @@
-// check_docs_consistency.dart — verifies docs caret minors, catalog counts,
-// and the weekly bump table.
-//
-// Text-only: the example synth gates (coverage + API-enablement ratchet +
-// local terraform validate) live in tool/example_synth_gates.dart and run as
-// their own step in agent_verify.sh and CI.
-//
-// Run from repo root: dart tool/check_docs_consistency.dart
-//   --fix  first rewrite the terradart_google catalog counts in the pages
-//          that carry them, and the weekly bump table in how-its-built.mdx.
 // ignore_for_file: avoid_print
 
 import 'dart:io';
@@ -82,11 +72,6 @@ Future<void> main(List<String> args) async {
     '$curatedFactoryCount curated resource factories + $dataSourceCatalogPhrase',
     '($catalogEntryCount catalog entries)',
   );
-  // Version-line freshness: any `0.NN.x` token in these user-facing pages must
-  // match the current workspace minor, and no `^0.NN.P` caret may name an
-  // older one. Pages that intentionally reference old
-  // lines (MIGRATING, waves history, SECURITY's unsupported-versions table)
-  // are exempt.
   for (final page in [
     'README.md',
     'CONTRIBUTING.md',
@@ -103,7 +88,6 @@ Future<void> main(List<String> args) async {
   for (final page in _providerPages()) {
     _checkCaretMinor(errors, minor, page);
   }
-  // terradart-migrate distribution: the install line and the guide.
   for (final page in [
     'README.md',
     'packages/terradart_migrate/README.md',
@@ -224,8 +208,6 @@ void _checkPhrase(
   }
 }
 
-/// Every page under Providers; each has an install snippet with the minor
-/// caret, so a new page is checked without being listed here.
 List<String> _providerPages() => [
   for (final f in Directory(
     'website/src/content/docs/docs/providers',
@@ -289,9 +271,6 @@ void _checkCaretMinor(
   }
 }
 
-/// Prose that restates an exact pin or its catalog counts goes stale on the
-/// next schema bump; point at the generated constant instead. History
-/// (CHANGELOG, MIGRATING) and the schema fixtures themselves are exempt.
 void _checkNoExactPinCopies(List<String> errors, ExactPinLane lane) {
   final phrases = lane.stalePhrases;
   for (final path in _proseFiles()) {
@@ -310,10 +289,6 @@ void _checkNoExactPinCopies(List<String> errors, ExactPinLane lane) {
   }
 }
 
-/// A version constraint a reader copies into `pubspec.yaml` or onto a
-/// `dart install` line must be one pub accepts: `^0.33.x` is not
-/// (`dart pub get` fails), `^0.33.0` is. Prose such as "the 0.33.x line" has
-/// no caret and is fine. History (CHANGELOG, MIGRATING) is exempt.
 void _checkCopyPasteConstraints(List<String> errors) {
   final caretX = RegExp(r'\^\d+\.\d+\.x\b');
   final fence = RegExp(r'^\s*```+\s*(\w*)');
@@ -376,9 +351,6 @@ List<String> _filesUnder(String root, bool Function(String) keep) {
   ];
 }
 
-/// Hand-written prose a reader sees: root guides, package / example
-/// READMEs, example pubspec descriptions, the barrels manifests (their docs
-/// land in generated library comments), skills and the website.
 List<String> _proseFiles() {
   final files = <String>[
     for (final name in [
@@ -411,8 +383,6 @@ List<String> _proseFiles() {
     (p) => p.endsWith('.yaml'),
   );
   under('.agents/skills', (p) => p.endsWith('.md'));
-  // The coverage pages state every catalog's counts on purpose: they are
-  // rendered from the catalogs, and the bump re-renders them.
   under(
     'website/src',
     (p) =>

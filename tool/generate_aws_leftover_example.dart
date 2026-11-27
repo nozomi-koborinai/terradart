@@ -1,11 +1,3 @@
-// Renders examples/aws_leftover_quickstart/lib/main.dart, for
-// tool/coverage_stack.dart, which writes and validates it: one constructor
-// call per AWS factory (resource or data source) that no other example
-// covers. Dummy values satisfy the Dart types and the provider's
-// validate-time checks, so synth + terraform validate cover the filled
-// catalog. Live apply is out of scope. Literal values live in
-// tool/coverage_dummies/aws.yaml.
-
 import 'dart:io';
 
 import 'catalog_class_names.dart';
@@ -14,13 +6,11 @@ import 'coverage_stack.dart';
 import 'dot_shorthands.dart';
 
 const _skipResourceTypes = {
-  // Covered by aws_lambda_quickstart.
   'aws_cloudwatch_log_group',
   'aws_iam_role',
   'aws_iam_role_policy_attachment',
   'aws_lambda_function',
   'aws_lambda_function_url',
-  // Covered by aws_serverless_api_quickstart.
   'aws_apigatewayv2_api',
   'aws_apigatewayv2_integration',
   'aws_apigatewayv2_route',
@@ -28,7 +18,6 @@ const _skipResourceTypes = {
   'aws_dynamodb_table',
   'aws_iam_role_policy',
   'aws_lambda_permission',
-  // Covered by aws_static_site_quickstart.
   'aws_acm_certificate',
   'aws_acm_certificate_validation',
   'aws_cloudfront_distribution',
@@ -37,7 +26,6 @@ const _skipResourceTypes = {
   'aws_s3_bucket',
   'aws_s3_bucket_policy',
   'aws_s3_bucket_public_access_block',
-  // Covered by aws_ecs_express_quickstart.
   'aws_ecr_lifecycle_policy',
   'aws_ecr_repository',
   'aws_ecs_cluster',
@@ -45,23 +33,17 @@ const _skipResourceTypes = {
 };
 
 const _skipDataTypes = {
-  // Covered by aws_lambda_quickstart.
   'aws_caller_identity',
   'aws_iam_policy_document',
-  // Covered by aws_static_site_quickstart.
   'aws_cloudfront_cache_policy',
   'aws_route53_zone',
 };
 
 const _srcRoot = 'packages/terradart_aws/lib/src';
 
-/// Terraform variable backing every sensitive leaf in the generated
-/// stack. Declared by the generator so the reference resolves at synth.
 const _secretVar = 'leftover_secret';
 const _secretVarRef = 'leftoverSecret';
 
-/// What a sensitive leaf of [type] reads: the `String` handle, or the
-/// variable by name where the payload is not a string.
 String _secretFor(String type) {
   var t = type.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
@@ -70,7 +52,6 @@ String _secretFor(String type) {
       : "Sensitive.variable('$_secretVar')";
 }
 
-/// The aws lane's coverage stack.
 const awsLeftoverStack = _AwsLeftoverStack();
 
 final class _AwsLeftoverStack implements CoverageStackGenerator {
@@ -179,8 +160,6 @@ final class _AwsLeftoverStack implements CoverageStackGenerator {
       ..writeln('        $_policyJson;')
       ..writeln();
 
-    // Body first: the preamble can only decide whether to declare the
-    // secret variable once it knows a factory actually referenced it.
     final body = StringBuffer();
     for (final f in factories) {
       final local = _uniqueLocal(f.type, f.kind, usedLocals);
@@ -200,9 +179,6 @@ final class _AwsLeftoverStack implements CoverageStackGenerator {
       body.writeln();
     }
 
-    // Sensitive leaves read the variable's handle, and synth
-    // rejects a reference with no matching declaration — so the declaration
-    // is generated too, not hand-added to this generated file.
     if (body.toString().contains(_secretVarRef)) {
       buf.writeln(
         "    final $_secretVarRef = variable<String>('$_secretVar', "
@@ -215,8 +191,6 @@ final class _AwsLeftoverStack implements CoverageStackGenerator {
     buf.writeln('  }');
     buf.writeln('}');
 
-    // A left-out factory leaves its knobs unread, so only a render that left
-    // none out can tell a stale knob.
     if (leftOut.isEmpty) {
       final stale = {
         ..._requiredAtValidate.keys,
@@ -305,8 +279,6 @@ Set<String> _parseSensitiveLeaves(String src) {
   return out;
 }
 
-/// Every sealed exactly-one type the package declares: name → its variant
-/// classes in declaration order.
 final _sealedVariants = <String, List<String>>{};
 
 _ParsedFile _parseFile(File file) {
@@ -357,7 +329,6 @@ String? _parseTfType(String body) {
 
 Map<String, String> _parseFields(String body) {
   final out = <String, String>{};
-  // `[^;=]` spans newlines: dart format splits long field declarations.
   for (final m in RegExp(r'final\s+([^;=(){}]+?)\s+(\w+);').allMatches(body)) {
     out[m.group(2)!] = m.group(1)!.trim().replaceAll(RegExp(r'\s+'), ' ');
   }
@@ -369,7 +340,6 @@ Map<String, String> _parseFields(String body) {
   String body,
   Map<String, String> fields,
 ) {
-  // A sealed variant takes its one member positionally.
   final positional = RegExp(
     'const ${RegExp.escape(className)}\\(\\s*this\\.(\\w+),?\\s*\\);',
   ).firstMatch(body);
@@ -903,10 +873,6 @@ const _requiredAtValidate = <String, List<String>>{
   'WorkspaceswebSessionLoggerEventFilter': ['include'],
 };
 
-/// The variant of sealed type [sealed] to construct: the member a
-/// `_requiredAtValidate` entry of [sealed] (a block that collapsed into its
-/// sealed type) or of [owner] names, else the first. A collapsed block
-/// keeps its ledger entries under its own class name.
 String _sealedChoice(
   String sealed,
   Map<String, _ClassInfo> helpers, {
@@ -951,8 +917,6 @@ String _sealedChoice(
   return '.${member.name}($value)';
 }
 
-/// Whether [name] is a variant member of one of the sealed [params], which
-/// an `_requiredAtValidate` entry names to pick that variant.
 bool _isSealedMember(
   List<_Param> params,
   String name,
@@ -965,10 +929,6 @@ bool _isSealedMember(
       false,
 );
 
-/// The optional parameters [extras] names on [owner]: the parameter
-/// itself, or the optional sealed parameter one of whose variants sets it.
-/// A member of a required sealed parameter needs no slot: `_sealedChoice`
-/// picks its variant.
 List<_Param> _extraSlots(
   String owner,
   Iterable<String> extras,
@@ -1138,8 +1098,6 @@ String _dummy(
       count,
     );
   }
-  // A sealed slot named like one of its members takes the value inside the
-  // variant `_sealedChoice` builds, not as itself.
   final sealed = _sealedVariants.containsKey(
     p.type.replaceFirst(RegExp(r'\?$'), ''),
   );
@@ -1156,8 +1114,6 @@ String _dummy(
   );
 }
 
-/// [value] written for a slot of [type], or null when it does not fit the
-/// type and the slot takes its type default.
 String? _fit(DummyValue value, String type) {
   var t = type.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
@@ -1240,7 +1196,6 @@ const _primitives = {
   'Set',
 };
 
-/// `{'k': value}` with a value of the map's declared value type.
 String _mapLiteral(
   String type,
   Map<String, _ClassInfo> helpers, {
@@ -1261,8 +1216,6 @@ String _mapLiteral(
     name: 'k',
     sensitive: sensitive,
   );
-  // A nested collection makes dart format split the literal, and
-  // `require_trailing_commas` then wants the comma.
   final comma = inner.contains('{') || inner.contains('[') ? ',' : '';
   return "{'k': $inner$comma}";
 }
@@ -1300,8 +1253,6 @@ String _dummyForType(
       sensitive: sensitive,
       owner: owner,
     );
-    // An enum member's long name makes the formatter wrap the call; the
-    // trailing comma keeps the wrapped shape `require_trailing_commas` wants.
     return _enums.containsKey(inner.trim())
         ? 'TfArg.literal($value,)'
         : 'TfArg.literal($value)';
@@ -1393,8 +1344,6 @@ String _literalInner(
 
 const _accountId = '123456789012';
 
-/// Every enum the package declares: name → (member, raw value) in
-/// declaration order.
 final _enums = <String, List<(String, String)>>{};
 
 final _enumDecl = RegExp(
@@ -1414,7 +1363,6 @@ void _collectEnums(String source) {
   }
 }
 
-/// The enum an `E?` / `List<E>?` slot takes, if any.
 String? _enumSlotType(String type) {
   final m = RegExp(
     r'^(?:List<)?(\w+)>?\??$',
@@ -1423,8 +1371,6 @@ String? _enumSlotType(String type) {
   return name != null && _enums.containsKey(name) ? name : null;
 }
 
-/// The member of [enumName] whose value is the Dart string literal
-/// [literal], else the first member.
 String _enumFor(String enumName, String literal) {
   final members = _enums[enumName]!;
   final preferred = literal.startsWith("'") && literal.endsWith("'")
@@ -1437,17 +1383,11 @@ String _enumFor(String enumName, String literal) {
   return '$enumName.${pick.$1}';
 }
 
-/// The member whose value [_stringValue] would have written for the slot
-/// (the value its provider validator accepts), else the first member.
 String _enumMember(String enumName, String name, {required String owner}) =>
     _enumFor(enumName, _stringValue(name, owner: owner));
 
-/// Deeper than any typed helper chain in the catalog; the heavy
-/// resources take their nested blocks as maps.
 const _maxDepth = 20;
 
-/// Lists the provider wants longer than one element, keyed by
-/// `Owner.param`.
 const _listCounts = <String, int>{
   'AwsArcregionswitchPlan.regions': 2,
   'AwsCloudwatchEventEndpoint.eventBus': 2,
@@ -1463,8 +1403,6 @@ const _listCounts = <String, int>{
 
 final _usedKeys = <String>{};
 
-/// Repeats the single element of a generated list literal [count] times.
-/// String elements vary so a set-typed attribute keeps every element.
 String _repeat(String listExpr, int count) {
   var inner = listExpr;
   var wrap = (String s) => s;
@@ -1494,7 +1432,7 @@ String _repeat(String listExpr, int count) {
     if (RegExp(r"^'[^']*'$").hasMatch(element)) {
       return "${element.substring(0, element.length - 1)}$i'";
     }
-    // Set-typed blocks collapse identical elements, so vary the first string.
+    // Terraform set-typed blocks deduplicate identical elements, so vary the first string.
     if (element.contains('TfArg.literal(leftover)')) {
       return element.replaceFirst(
         'TfArg.literal(leftover)',
@@ -1525,8 +1463,6 @@ String _stringValue(String name, {String owner = ''}) {
   return value != null && value.isString ? value.dart : 'leftover';
 }
 
-/// Whether the value being built sits inside a helper or a sealed variant,
-/// where a helper whose type is the context type is written `.new(...)`.
 var _insideHelper = false;
 
 String _constructHelper(
@@ -1582,9 +1518,5 @@ String _constructHelper(
       )
       .join(', ');
   _insideHelper = outer;
-  // Trailing comma: `dart format` then expands the call across lines and
-  // keeps it there, which is the shape `require_trailing_commas` wants.
-  // Without it the formatter wraps long calls and adds no comma, so a
-  // formatted `examples/` fails `dart analyze`.
   return '$ctor($args,)';
 }

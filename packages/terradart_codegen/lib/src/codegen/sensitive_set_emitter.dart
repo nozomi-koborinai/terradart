@@ -3,48 +3,6 @@ import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
 import 'naming.dart';
 
-/// Emits the **top-level** sensitive-field constant for a resource.
-///
-/// Pre Plan 5.X, this emitter produced a **public** const sibling of the
-/// `$Resource` abstract class inside `<r>.schema.dart` (e.g.
-/// `const Set<String> googleSecretManagerSecretVersionSensitive = {...};`).
-/// The wrapper imported it via `show <r>Sensitive` and exposed it through
-/// the `sensitiveFields` getter.
-///
-/// Plan 5.X (v0.5.0-dev) retires the entire `.schema.dart` Layer 1 — the
-/// const therefore moves **inline into the wrapper file** as a file-private
-/// const (`_<r>Sensitive`). The data flow is unchanged
-/// (`IR → const Set → sensitiveFields → encoder masking`); only the
-/// physical location and visibility of the const move.
-///
-/// Two emit helpers are exposed:
-///
-/// - [emitFilePrivateSensitiveSet] — Plan 5.X canonical. Emits
-///   `const Set<String> _<r>Sensitive = <String>{...};` for the wrapper
-///   to drop at the top of the file. Used by [WrapperEmitter].
-/// - [emitSensitiveStaticSet] — pre-Plan-5.X public-const form
-///   (`const Set<String> <r>Sensitive = ...;`). No live consumer in
-///   Plan 5.X (the only caller was [AbstractClassEmitter], itself a
-///   Plan 5.X no-op), kept exported only so the existing unit test that
-///   pins its behavior continues to compile during the transition.
-///
-/// Output (file-private form):
-/// ```dart
-/// /// Sensitive field paths for `google_secret_manager_secret_version`.
-/// const Set<String> _googleSecretManagerSecretVersionSensitive = <String>{
-///   'secret_data',
-///   'secret_data_wo',
-/// };
-/// ```
-///
-/// The keys are Terraform JSON snake_case names, dotted for nested fields.
-/// The set is alphabetically sorted for deterministic golden tests.
-///
-/// [extraSensitiveFields] (optional) lists additional paths the curator
-/// wants masked even though the provider schema does not flag them as
-/// sensitive — e.g. `metadata_startup_script` on `google_compute_instance`
-/// frequently holds credentials in practice. Entries are merged with the
-/// schema-derived set; duplicates collapse via the underlying Set.
 String emitFilePrivateSensitiveSet(
   ResourceDef def, {
   List<String>? extraSensitiveFields,
@@ -54,10 +12,6 @@ String emitFilePrivateSensitiveSet(
   extraSensitiveFields: extraSensitiveFields,
 );
 
-/// Pre-Plan-5.X public-const form. Returned source is identical in
-/// structure to [emitFilePrivateSensitiveSet] but the const name has no
-/// leading underscore. Kept for transitional compatibility only —
-/// Plan 5.X has no live consumer.
 String emitSensitiveStaticSet(
   ResourceDef def, {
   List<String>? extraSensitiveFields,
@@ -67,18 +21,6 @@ String emitSensitiveStaticSet(
   extraSensitiveFields: extraSensitiveFields,
 );
 
-/// Returns the sorted, deduped list of sensitive field paths for [def].
-///
-/// This is the single source of truth for the masked-field set: it merges
-/// the schema-derived sensitive paths (dotted snake_case, collected by
-/// walking [ResourceDef.root]) with the curator-supplied
-/// [extraSensitiveFields], dedupes via a `Set`, and sorts alphabetically for
-/// deterministic output.
-///
-/// Both the inline `_<r>Sensitive` const (via [emitFilePrivateSensitiveSet])
-/// and the static catalog's `sensitiveFields` (via the catalog metadata
-/// emitter) call this so the catalog is byte-identical to what the wrapper
-/// actually masks — there is exactly one place the path set is computed.
 List<String> sensitiveFieldPaths(
   ResourceDef def, {
   List<String>? extraSensitiveFields,
@@ -108,24 +50,9 @@ String _emit(
   return "${docComment}const Set<String> $constName = <String>{$body};";
 }
 
-/// Returns the Dart identifier for the file-private sensitive const of
-/// [terraformType]. e.g. `google_pubsub_topic` →
-/// `_googlePubsubTopicSensitive`.
-///
-/// Naming pattern: a leading underscore (file-private) + the camelCase
-/// resource type + `Sensitive` suffix. The leading underscore is the
-/// load-bearing Plan 5.X change vs [sensitiveConstName] — the const is
-/// now scoped to the single wrapper file rather than re-exported across
-/// packages.
 String filePrivateSensitiveConstName(String terraformType) =>
     '_${snakeToCamel(terraformType)}Sensitive';
 
-/// Returns the **public** Dart identifier for the sensitive const of
-/// [terraformType]. Pre-Plan-5.X naming pattern; kept exported because
-/// the existing unit test for the public-const emit form references it.
-///
-/// Naming pattern: full Terraform resource type in camelCase + `Sensitive`
-/// suffix.
 String sensitiveConstName(String terraformType) =>
     '${snakeToCamel(terraformType)}Sensitive';
 
@@ -141,8 +68,6 @@ void _collect(
     }
   }
   for (final n in nested) {
-    // A map of blocks puts an arbitrary key between the block and its
-    // fields; `*` stands for it (see `_checkNestedPaths` in terradart_core).
     final name = n.nesting == NestingMode.map ? '${n.name}.*' : n.name;
     final nextPrefix = prefix.isEmpty ? name : '$prefix.$name';
     _collect(n.block.attributes, n.block.nestedBlocks, nextPrefix, sink);

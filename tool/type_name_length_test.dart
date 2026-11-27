@@ -1,13 +1,3 @@
-// Every type `terradart wrap` declares in the package of a tool/providers.yaml
-// lane stays at or under [maxTypeNameLength] characters, unless its name is
-// already as short as the naming rules allow. That set is the resource class
-// (the PascalCase Terraform type), the data-source class (`Data` plus that
-// name), or one Terraform segment, plus an optional `Choice` collision
-// suffix, past the type it is named after. See [irreducibleNames]. Terraform
-// chose the type name. Any other name over the limit needs a reasoned entry
-// in tool/type_name_length_debt.yaml, and an entry that no longer names such
-// a type fails as stale.
-
 import 'dart:io';
 
 import 'package:terradart_codegen/src/codegen/naming.dart';
@@ -19,8 +9,6 @@ const maxTypeNameLength = 80;
 
 const _ledgerPath = 'tool/type_name_length_debt.yaml';
 
-/// The package every `tool/providers.yaml` lane wraps into
-/// (`outputPackage`), so a new lane is gated with no edit here.
 List<String> lanePackages() {
   final doc =
       loadYaml(File('tool/providers.yaml').readAsStringSync()) as YamlMap;
@@ -35,9 +23,6 @@ String _pascal(String snake) => [
     if (p.isNotEmpty) p[0].toUpperCase() + p.substring(1),
 ].join();
 
-/// Every run of consecutive words in [snake], in PascalCase: a type name may
-/// drop the words a segment repeats from its prefix, and a derived sealed
-/// concept is the members' shared leading or trailing words.
 Iterable<String> _wordRuns(String snake) sync* {
   final words = [
     for (final w in snake.split('_'))
@@ -50,8 +35,6 @@ Iterable<String> _wordRuns(String snake) sync* {
   }
 }
 
-/// Every Terraform name segment (block, attribute, sealed member, sealed
-/// concept) the manifest records, and every word run of one, in PascalCase.
 Set<String> _segments(MigrateManifest manifest) {
   final out = <String>{};
   void add(Iterable<MigrateSlot> slots) {
@@ -79,16 +62,8 @@ Set<String> _segments(MigrateManifest manifest) {
   return out;
 }
 
-/// A declared type: its name, the file declaring it, and whether it is
-/// already as short as the naming rules allow (see [irreducibleNames]).
 typedef TypeName = ({String name, String file, bool irreducible});
 
-/// Names the naming rules cannot shorten for [terraformType]. The resource
-/// class is [snakeToPascal] of the Terraform type, and the data-source class
-/// is `Data` plus that name. A helper, enum, sealed type, or variant is one
-/// segment past the short stem [shortResourcePascal] returns. The resource
-/// and data-source class names are included even when [src] does not declare
-/// them.
 Set<String> irreducibleNames(
   String src,
   String terraformType,
@@ -103,12 +78,6 @@ Set<String> irreducibleNames(
   };
 }
 
-/// The types [src] declares whose name is one of [segments] (plus an
-/// optional `Choice`) past the type it is named after, where:
-/// - a helper class or enum is named after a resource stem in [stems];
-/// - a sealed type is named after a stem or the helper class holding it;
-/// - a variant is named after its sealed type, or after that type's owner
-///   when the member takes the concept's place.
 Set<String> irreducibleTypes(
   String src,
   List<String> stems,
@@ -160,7 +129,6 @@ final _decl = RegExp(
   multiLine: true,
 );
 
-/// Every type declared by a generated file under [package]'s `lib/src/`.
 List<TypeName> declaredTypes(String package, Set<String> segments) {
   final out = <TypeName>[];
   final files =

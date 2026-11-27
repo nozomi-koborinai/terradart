@@ -284,16 +284,12 @@ func resourceTyped() *Resource { return nil }
     expect(hints['mode']!.values, ['on', 'off']);
     expect(hints['mode']!.caseInsensitive, isTrue);
     expect(hints['encryption.enforcement']!.values, ['allow', 'drop']);
-    // Qualified and bare constants, a one-value set and a local slice.
     expect(hints['auth_mode']!.values, ['a', 'b']);
     expect(hints['encoding']!.values, ['UTF8']);
     expect(hints['shape']!.values, ['round', 'square']);
     expect(hints['method']!.values, ['GET', 'PUT']);
     expect(hints['computed']!.values, ['on', 'off', 'auto']);
     expect(scan.unresolvedSites, isEmpty);
-    // A schema-map value that calls a schema function, in this package or an
-    // imported one, is scanned at its key's path: the validated set wins over
-    // a description that names Go constants.
     expect(hints['auth.convention']!.values, ['a', 'b']);
     expect(hints['auth_slot.convention']!.values, ['a', 'b']);
     expect(hints['retention.unit']!.values, ['Day', 'Hour']);

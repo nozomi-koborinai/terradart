@@ -9,7 +9,6 @@ import 'host.dart';
 import 'opentofu.dart';
 import 'process_runner.dart';
 
-/// The Terraform-compatible CLI that runs `init`, `plan` and `apply`.
 enum EngineKind {
   tofu('OpenTofu'),
   terraform('Terraform');
@@ -28,22 +27,15 @@ enum EngineKind {
   };
 }
 
-/// Why the resolver picked an engine; `--json` names it in
-/// `engine.source`.
 enum EngineSource {
-  /// `--engine-path` or `terradart.engine_path`.
   enginePath('engine_path'),
 
-  /// `--engine` or `terradart.engine`.
   setting('setting'),
 
-  /// The engine `.terradart/engines.json` records for the state.
   state('state'),
 
-  /// `tofu`, else `terraform`, on `PATH`.
   path('path'),
 
-  /// The OpenTofu terradart downloaded.
   managed('managed');
 
   const EngineSource(this.id);
@@ -51,7 +43,6 @@ enum EngineSource {
   final String id;
 }
 
-/// One resolved engine binary.
 final class Engine {
   const Engine(
     this.kind,
@@ -64,36 +55,26 @@ final class Engine {
   final EngineKind kind;
   final String path;
 
-  /// Whether terradart downloaded it into its cache.
   final bool managed;
 
-  /// Why this engine was picked, for the log line.
   final String reason;
 
-  /// Why this engine was picked: [EngineSource.managed] when [managed].
   final EngineSource source;
 
   @override
   String toString() => '${kind.label} ($path)';
 }
 
-/// What the engine settings of a project and its command line ask for.
 final class EngineSettings {
   const EngineSettings({this.kind, this.path, this.openTofuVersion});
 
-  /// `tofu` / `terraform`, or `null` to pick one.
   final EngineKind? kind;
 
-  /// A binary to run instead of looking on `PATH`.
   final String? path;
 
-  /// The OpenTofu release to download instead of [kOpenTofuVersion].
   final String? openTofuVersion;
 }
 
-/// Picks the engine: the project's setting, then the engine recorded for the
-/// state, then `tofu` on `PATH`, `terraform` on `PATH`, and finally a managed
-/// OpenTofu download.
 final class EngineResolver {
   EngineResolver({
     required this.settings,
@@ -110,11 +91,6 @@ final class EngineResolver {
   final void Function(String) log;
   final void Function(String) warn;
 
-  /// Resolves the engine, preferring the one [recorded] ran the state last.
-  ///
-  /// [terraformOnly] lists the Terraform-only providers the Stack uses
-  /// ([terraformOnlyProviders]): when it is not empty the engine is
-  /// Terraform, and asking for OpenTofu fails.
   Future<Engine> resolve({
     EngineRecord? recorded,
     List<String> terraformOnly = const [],
@@ -242,12 +218,8 @@ final class EngineResolver {
   }
 }
 
-/// Providers published to the Terraform registry only: OpenTofu cannot
-/// install them, so a Stack that uses one runs on Terraform.
 const kTerraformOnlyProviders = {'appwrite/appwrite'};
 
-/// The [kTerraformOnlyProviders] the `*.tf.json` files in [dir] require, by
-/// `terraform.required_providers.<name>.source`.
 List<String> terraformOnlyProviders(String dir) {
   final found = <String>{};
   final directory = Directory(dir);
@@ -278,7 +250,6 @@ List<String> terraformOnlyProviders(String dir) {
   return found.toList()..sort();
 }
 
-/// Why OpenTofu cannot run a Stack that uses [providers], and the fix.
 String terraformOnlyMessage(List<String> providers, String problem) =>
     'This Stack uses ${providers.join(', ')}, which is published to the '
     'Terraform registry only, so OpenTofu cannot install it: Appwrite '
@@ -287,7 +258,6 @@ String terraformOnlyMessage(List<String> providers, String problem) =>
     '--engine terraform, or set terradart.engine: terraform in '
     'pubspec.yaml.';
 
-/// The engine version `<engine> version -json` reports, or `null`.
 Future<String?> engineVersion(Engine engine, ProcessRunner runner) async {
   final result = await runner.capture(engine.path, ['version', '-json']);
   if (result.exitCode != 0) return null;
@@ -302,7 +272,6 @@ Future<String?> engineVersion(Engine engine, ProcessRunner runner) async {
   return null;
 }
 
-/// The engine that last applied one state.
 final class EngineRecord {
   const EngineRecord(this.kind, this.version);
 
@@ -312,9 +281,6 @@ final class EngineRecord {
   Map<String, Object?> toJson() => {'engine': kind.name, 'version': version};
 }
 
-/// `.terradart/engines.json`: the engine and version that last applied each
-/// state of the project, so a later run keeps using it and warns before
-/// switching.
 final class EngineRecords {
   EngineRecords(this.file);
 
@@ -352,8 +318,6 @@ final class EngineRecords {
   }
 }
 
-/// The warning for running [now] (at [version]) on a state [recorded] last
-/// applied, or `null` when nothing changes for the state.
 String? engineSwitchWarning(
   EngineRecord recorded,
   EngineKind now,
@@ -374,7 +338,6 @@ String? engineSwitchWarning(
   return null;
 }
 
-/// Compares `x.y.z` versions numerically; a prerelease suffix is ignored.
 int compareVersions(String a, String b) {
   List<int> parts(String v) => [
     for (final s in v.split('-').first.split('.')) int.tryParse(s) ?? 0,

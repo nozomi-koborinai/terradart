@@ -1,19 +1,12 @@
 import 'wrap_init_draft.dart';
 import 'wrap_init_templates.dart';
 
-/// Pure YAML serializer for `WrapInitDraft`. No I/O.
-///
-/// Output is a hand-built `StringBuffer` because the production-overrides
-/// YAML convention requires both inline comments and commented-out keys
-/// (`# extraGetters: |2`, `# - <param>`), and `package:yaml_writer`
-/// cannot preserve either.
 class WrapInitEmitter {
   const WrapInitEmitter();
 
   String emit(WrapInitDraft draft) {
     final buf = StringBuffer();
 
-    // Banner.
     final date = draft.bannerDate.toIso8601String().substring(0, 10);
     buf.write(wrapInitBannerTemplate.replaceAll('{date}', date));
     buf.writeln();
@@ -21,7 +14,6 @@ class WrapInitEmitter {
     for (var i = 0; i < draft.axes.length; i++) {
       final axis = draft.axes[i];
       _emitAxis(buf, axis);
-      // Blank line between axes (mirrors the production yaml layout).
       if (i != draft.axes.length - 1) buf.writeln();
     }
 
@@ -46,8 +38,6 @@ class WrapInitEmitter {
         buf.writeln('# TODO(wrap-init): $todoMessage');
         _emitTodo(buf, key, seed: seed, skeleton: skeleton);
       case BannerOnlyAxis(:final key, :final banner):
-        // Phase 4.3 territory; Phase 4.2 generator does not emit these,
-        // but we handle the case so the sealed switch is exhaustive.
         buf.writeln('# $key:');
         buf.writeln('# $banner');
     }
@@ -93,7 +83,6 @@ class WrapInitEmitter {
     Object? skeleton,
   }) {
     if (seed != null && seed is String) {
-      // Active (uncommented) key with MM-seeded value.
       buf.writeln('$key: |-');
       for (final line in seed.split('\n')) {
         buf.writeln('  $line');
@@ -101,7 +90,6 @@ class WrapInitEmitter {
       return;
     }
     if (skeleton != null && skeleton is List<String>) {
-      // Commented-out `extraGetters: |2` block with each Dart line preceded by `# `.
       buf.writeln('# $key: |2');
       for (final line in skeleton) {
         buf.writeln('#     $line');
@@ -109,14 +97,12 @@ class WrapInitEmitter {
       return;
     }
     if (skeleton != null && skeleton is Map<String, String>) {
-      // Commented-out `deprecatedParams:` block.
       buf.writeln('# $key:');
       skeleton.forEach((k, v) {
         buf.writeln('#   $k: $v');
       });
       return;
     }
-    // No seed, no skeleton — emit fully commented placeholder.
     buf.writeln('# $key:');
   }
 }

@@ -1,17 +1,8 @@
-/// What `tofu validate -json` says about a synthesized `main.tf.json`, and
-/// which values a provider's messages name.
-///
-/// Positions come from each diagnostic's byte range, never from the message
-/// text: OpenTofu 1.13.1 highlights exactly the rejected JSON value, quotes
-/// included, list elements as well.
-library;
-
 import 'dart:convert';
 import 'dart:typed_data';
 
 import 'coverage_dummies.dart';
 
-/// A block of a synthesized `main.tf.json`: `aws_x.name` or `data.aws_x.name`.
 final class TfAddress {
   const TfAddress({
     required this.dataSource,
@@ -19,8 +10,6 @@ final class TfAddress {
     required this.name,
   });
 
-  /// Parses a diagnostic's `address`. Null for a module or indexed address,
-  /// which a coverage stack never has.
   static TfAddress? parse(String address) {
     final m = _address.firstMatch(address);
     if (m == null) return null;
@@ -31,7 +20,6 @@ final class TfAddress {
   final String type;
   final String name;
 
-  /// Where the block sits in `main.tf.json`.
   List<String> get jsonPath => [dataSource ? 'data' : 'resource', type, name];
 
   @override
@@ -52,7 +40,6 @@ final _address = RegExp(
   r'^(data\.)?([A-Za-z_][A-Za-z0-9_-]*)\.([A-Za-z_][A-Za-z0-9_-]*)$',
 );
 
-/// The attribute below a block: names and list indices (`config[0].mode`).
 extension type const AttrPath(List<Object> segments) {
   String get text {
     final out = StringBuffer();
@@ -68,20 +55,16 @@ extension type const AttrPath(List<Object> segments) {
   }
 }
 
-/// One error required CI would print for the coverage stack. Warnings pass
-/// CI and are dropped at parse time.
 sealed class Rejection {
   const Rejection(this.summary, this.detail);
 
   final String summary;
   final String detail;
 
-  /// The text a message family reads: `detail`, or `summary` when the
-  /// provider left `detail` empty (SDKv2 validators do).
+  // Terraform SDKv2 validators leave detail empty and put the message in summary.
   String get message => detail.isNotEmpty ? detail : summary;
 }
 
-/// The provider rejected a value the stack wrote: a scalar or a list element.
 final class ValueRejection extends Rejection {
   ValueRejection(
     this.address,
@@ -89,34 +72,23 @@ final class ValueRejection extends Rejection {
     this.rejected,
     super.summary,
     super.detail,
-  );
+  ) : assert(path.segments.isNotEmpty);
 
   final TfAddress address;
-
-  /// Never empty.
   final AttrPath path;
-
-  /// `String`, `num` or `bool`.
   final Object rejected;
 
-  /// `aws_directory_service_ip_route.route.directory_id`.
   String get at => '$address.${path.text}';
 
-  /// Where the value sits in `main.tf.json`.
   List<Object> get jsonPath => [...address.jsonPath, ...path.segments];
 }
 
-/// The block is wrong as a whole: a missing or conflicting argument, a
-/// diagnostic whose range is the block or a key, or a rejected object or
-/// list. Nothing in it can be learned.
 final class BlockRejection extends Rejection {
   BlockRejection(this.address, super.summary, super.detail);
 
   final TfAddress address;
 }
 
-/// Not attributable to one block: provider configuration, an unparsable
-/// address, a range outside the block it names or in another file.
 final class StackRejection extends Rejection {
   StackRejection(super.summary, super.detail);
 }
@@ -126,13 +98,10 @@ final _workflowCommand = RegExp(
   multiLine: true,
 );
 
-/// [stdout] without the `::error::...` lines `hashicorp/setup-terraform`'s
-/// wrapper appends after `terraform validate -json`.
+// hashicorp/setup-terraform's wrapper appends GitHub workflow command lines to validate -json stdout.
 String stripWorkflowCommands(String stdout) =>
     stdout.replaceAll(_workflowCommand, '');
 
-/// Parses `tofu validate -json` [stdout] against the [mainTfJson] it
-/// validated. Throws a [FormatException] when [stdout] is not that report.
 List<Rejection> parseValidateJson(String stdout, String mainTfJson) {
   final report = jsonDecode(stripWorkflowCommands(stdout));
   if (report is! Map<String, Object?> || report['diagnostics'] is! List) {
@@ -193,8 +162,6 @@ List<Rejection> parseValidateJson(String stdout, String mainTfJson) {
   return out;
 }
 
-/// The JSON path of the value spanning UTF-8 bytes `[start, end)` of
-/// [source], or null when no value spans exactly that range.
 List<Object>? jsonPathAt(String source, int start, int end) {
   final exact = _spans(
     source,
@@ -202,9 +169,6 @@ List<Object>? jsonPathAt(String source, int start, int end) {
   return exact?.path;
 }
 
-/// [source] with the value at each path of [values] replaced by its JSON
-/// encoding; everything else, layout included, is kept. Throws an
-/// [ArgumentError] for a path [source] has no value at.
 String patchJson(String source, Map<List<Object>, Object> values) {
   final bytes = utf8.encode(source);
   final spans = _spans(source);
@@ -230,9 +194,6 @@ String patchJson(String source, Map<List<Object>, Object> values) {
   return utf8.decode(out.takeBytes());
 }
 
-/// One family of provider validator messages and the values it names. Keyed
-/// by message, never by attribute: one row serves every attribute any
-/// provider guards with that validator.
 final class DiagnosticFamily {
   const DiagnosticFamily(this.name, this.message, this.shapes);
 
@@ -241,13 +202,6 @@ final class DiagnosticFamily {
   final List<LiteralDummy> Function(RegExpMatch match) shapes;
 }
 
-/// The message families, from the messages the bumps have met.
-///
-/// `url-host`: SDKv2 `IsURLWithHTTPorHTTPS` ("to have a host") and the
-/// framework URL validators ("contains no host"). `one-of`: "must be one of:
-/// [..]" and "to be one of [..]", giving the first member.
-/// `regex`: "match regular expression '..'" (or Go-quoted), giving
-/// [sampleRegex] of it.
 final List<DiagnosticFamily> kDiagnosticFamilies = [
   DiagnosticFamily(
     'url-host',
@@ -350,8 +304,6 @@ final List<DiagnosticFamily> kDiagnosticFamilies = [
   ),
 ];
 
-/// Values the families name for [message], best first, each with the
-/// family that named it.
 List<Candidate> shapesNamedBy(String message) => [
   for (final family in kDiagnosticFamilies)
     for (final m in family.message.allMatches(message))
@@ -372,9 +324,6 @@ final _oneOfConfiguredMsg = RegExp(
   r'(?:Exactly|At least) one of these attributes must be configured:\s*\[([^\]]+)\]',
 );
 
-/// Parses a Terraform attribute/block path such as `configuration`,
-/// `connector_provider[0].azure[0].scope_configuration`, or `a.0.b` into an
-/// [AttrPath]. Returns null when [text] is not a valid path.
 AttrPath? parseAttrPath(String text) {
   final trimmed = text.trim();
   if (trimmed.isEmpty) return null;
@@ -397,8 +346,6 @@ AttrPath? parseAttrPath(String text) {
   return segments.isEmpty ? null : AttrPath(segments);
 }
 
-/// The missing required block or attribute path named by a provider's
-/// block-level validation [message], or null when [message] does not name one.
 AttrPath? requiredPathNamedBy(String message) {
   if (_requiredBlockMsg.firstMatch(message) case final m?) {
     return parseAttrPath(m[1]!);
@@ -420,10 +367,6 @@ AttrPath? requiredPathNamedBy(String message) {
   return null;
 }
 
-/// A string matching [pattern], or null outside the subset this samples:
-/// literals, escapes, character classes, `\d` `\w` `\s`, `.`, groups,
-/// `{n}` `{n,}` `{n,m}` `?` `+` `*`, anchors, and the first branch of an
-/// alternation. A sample is returned only when [pattern] matches it.
 String? sampleRegex(String pattern) {
   try {
     final sampler = _RegexSampler(pattern);
@@ -526,9 +469,7 @@ final class _RegexSampler {
     _unsupported();
   }
 
-  /// How many times to write the atom before `i`: its quantifier's minimum,
-  /// but at least once where the quantifier allows it, since providers often
-  /// reject an empty string.
+  // Emit at least 1 when allowed; provider validators often reject empty strings.
   int _repeat() {
     if (i >= p.length) return 1;
     var count = 1;
@@ -593,12 +534,9 @@ final class _Span {
   final int start;
   final int end;
   final List<Object> path;
-
-  /// The scalar, or null for an object or array (and for JSON `null`).
   final Object? value;
 }
 
-/// Every value of [source] with its UTF-8 byte range and path.
 List<_Span> _spans(String source) {
   final bytes = utf8.encode(source);
   final spans = <_Span>[];

@@ -1,62 +1,3 @@
-// doc_renames.dart — fails when a doc names a Dart symbol the public API no
-// longer has, so a guide cannot keep teaching a type or getter an upgrade
-// removed.
-//
-// Run from repo root: dart tool/doc_renames.dart
-// tool/doc_renames_test.dart runs the same check (CI: `dart test tool/`).
-//
-// The public API is what a dependent can import: the analyzer's export
-// namespace of each package's entrypoints (its `lib/` libraries outside
-// `lib/src/`), for every workspace package but `terradart_codegen` and for
-// the packages of the last release, plus the SDK's `dart:` libraries. A
-// declaration under `lib/src/` that no entrypoint exports is not API.
-//
-// The last release is the one the top section of MIGRATING.md upgrades from
-// (`0.35.x` under `## 0.35.x → 0.36.0`, the newest under `## Unreleased`),
-// read from pub.dev, so publishing the next one does not change the verdict.
-//
-// A doc may name only the public API. A type, `Type.member` or top-level
-// name a workspace package declares but no entrypoint exports is internal
-// (`AppExportsEmitter`), and naming it fails like naming a removed one.
-//
-// A removed symbol is one the public API no longer declares, and that either
-//
-// - MIGRATING.md names in a backtick span (prose, any table cell, indented
-//   tables included): a type (`OldName`, `Foo<Bar>`, `OldName(...)`, outside
-//   string literals), a member through its type (`Type.member`), or a whole
-//   lowerCamel span (`addExport`), or
-// - the last release declared: a type, a member of a type
-//   (`Type.member`; constructors, fields, getters, methods, enum values),
-//   or a top-level name, which only a top-level declaration of the same
-//   name keeps (a parameter or member spelled the same does not). A
-//   type's members include those of its supertypes, and a typedef's those
-//   of the type it aliases.
-//
-// Declarations are read with the analyzer, so a member is declared only when
-// its type, a supertype (exported or not), or an exported extension on it
-// declares it; a supertype outside the libraries read declares nothing.
-//
-// A mention is a removed or internal symbol anywhere in a document (prose,
-// a code span, a fence) outside the before column of its rename tables, or
-// anywhere in a `///` doc comment, behind a lowercase prefix
-// (`cli.runTerradart`) or not. Code spans are read by tool/code_spans.dart,
-// so a span split across lines counts. In prose, a one-word name
-// (`Network`, `Settings`) and a name with no capital letter are English, so
-// they count only in code. The doc comment of a declaration a dependent sees (an exported
-// declaration, a public member of one, an entrypoint's library comment) is
-// held to the public API alone; the others, and the doc comments of the
-// examples and recipes, may also name what their own `lib/` declares. The documents are those tool/doc_snippets.dart
-// compiles plus the `terradart help` topics; the doc comments are those of
-// the doc-comment packages, the examples and the cookbook recipes.
-// A `[Type]` or `[Type.member]` reference of a doc comment must also name a
-// declared symbol: of the public API, or, outside the doc comment of a
-// declaration a dependent sees, of the package's own `lib/` (internal
-// declarations included) or of the example or recipe it belongs to.
-// MIGRATING.md and the CHANGELOG.md files are the record of what each
-// release changed and keep the old names. A mention that is not the Dart
-// symbol (an upstream description naming an API resource) goes in
-// tool/doc_renames_allow.yaml with a reason; an entry no mention matches
-// fails.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -101,14 +42,8 @@ final _memberSpan = RegExp(r'^([A-Z]\w*\.[a-z]\w*|[a-z][a-zA-Z0-9]*[A-Z]\w*)$');
 final _words = RegExp(r'^[\w-]+( [\w-]+)+$');
 final _word = RegExp(r'^[A-Z][a-z0-9]+$');
 final _docComment = RegExp(r'^\s*/// ?(.*)$');
-
-/// An import prefix (`cli.`, `api.`), or a receiver, before a name.
 final _prefix = RegExp(r'(?<![\w$.])[a-z][a-z0-9_]*\.(?=[A-Za-z])');
-
-/// An all-lowercase name, which `_token` leaves to code.
 final _lowercase = RegExp(r'(?<![\w$.])[a-z][a-z0-9_]*(?![\w$])');
-
-/// A `Type.\nmember` span reads `Type. member`; the member is still one.
 final _splitMember = RegExp(r'\.\s+(?=[a-z])');
 
 List<String> _cells(String row) {
@@ -120,8 +55,6 @@ List<String> _cells(String row) {
       .toList();
 }
 
-/// The before and after column of a table [header], or `null` when it is no
-/// rename table.
 (int, int?)? renameColumns(List<String> header) {
   for (var i = 0; i < header.length; i++) {
     final cell = header[i];
@@ -138,8 +71,6 @@ List<String> _cells(String row) {
   return null;
 }
 
-/// Line → the column of its before cell, for each row of a rename table of
-/// [md], indented tables included.
 Map<int, int> beforeColumns(String md) {
   final lines = md.split('\n');
   final out = <int, int>{};
@@ -161,10 +92,6 @@ Map<int, int> beforeColumns(String md) {
   return out;
 }
 
-/// The symbols one code span names: a whole-span member (`Type.member`,
-/// `addExport`), else every type and `Type.member` outside its string
-/// literals. A pattern (`Foo<Protocol>Config`) or a run of plain words
-/// (`Zone Settings Read`) names none.
 Set<String> spanSymbols(String span) {
   final code = span.trim();
   if (_memberSpan.hasMatch(code)) return {code};
@@ -181,12 +108,9 @@ Set<String> spanSymbols(String span) {
   };
 }
 
-/// Whether token [m] of [code] is a one-word label (`Next:`), which Dart
-/// never spells for a type.
 bool _isLabel(String code, RegExpMatch m) =>
     m.group(2) == null && _label.hasMatch(code.substring(m.start));
 
-/// Each symbol a backtick span of [md] names, with the first line naming it.
 Map<String, int> migratingSymbols(String md) {
   final out = <String, int>{};
   for (final (:code, :line) in scanMarkdown(md.split('\n')).spans) {
@@ -197,8 +121,6 @@ Map<String, int> migratingSymbols(String md) {
   return out;
 }
 
-/// The declarations of a set of Dart libraries: types, the members each
-/// declares, its supertypes, and every declared name.
 final class PublicApi {
   PublicApi._(
     this.types,
@@ -211,35 +133,18 @@ final class PublicApi {
     this.exported = const {},
   });
 
-  /// The public types.
   final Set<String> types;
-
-  /// The members of every declared type, public or not, so a public type
-  /// inherits what an unexported supertype declares.
   final Map<String, Set<String>> members;
   final Map<String, Set<String>> supertypes;
-
-  /// Every public name: members, top-level declarations, parameters.
   final Set<String> names;
-
-  /// The public top-level functions, getters and variables.
   final Set<String> topLevel;
-
   final Set<String> _declaredTypes;
-
-  /// The types and top-level names declared under a package's `lib/` that
-  /// no entrypoint exports, private ones aside.
   final Set<String> internal;
-
-  /// The exported top-level declarations, by declaring file and name.
   final Set<(String, String)> exported;
 
-  /// Every declaration of the `.dart` files under [dirs].
   factory PublicApi.read(Iterable<String> dirs) =>
       (_Declarations()..readAll(dirs)).api;
 
-  /// What the entrypoints of the workspace packages but codegen export, and
-  /// the SDK's `dart:` libraries.
   static Future<PublicApi> workspace(String root) =>
       _workspaces[root] ??= _readWorkspace(root);
 
@@ -270,7 +175,6 @@ final class PublicApi {
     exported: exported,
   );
 
-  /// These declarations and [other]'s, as one set of libraries.
   PublicApi merge(PublicApi other) {
     Map<String, Set<String>> union(
       Map<String, Set<String>> a,
@@ -290,8 +194,6 @@ final class PublicApi {
     );
   }
 
-  /// Each internal symbol — an unexported type, a member of one, or an
-  /// unexported top-level name — with why naming it fails.
   Map<String, String> get internalSymbols {
     const reason = 'not exported by any package entrypoint';
     return {
@@ -304,8 +206,6 @@ final class PublicApi {
     };
   }
 
-  /// What the [docCommentPackages] exported at the release the top section
-  /// of [migrating] upgrades from ([previousRelease]).
   static Future<({String version, PublicApi api})> released(
     String migrating, {
     PublishedVersionsLookup? lookupPublished,
@@ -318,8 +218,6 @@ final class PublicApi {
     pathOverrides: pathOverrides,
   );
 
-  /// What the entrypoints of [pins] (package → version) export, fetched
-  /// from pub.dev into a scratch package.
   static Future<({String version, PublicApi api})> readReleased(
     Map<String, String> pins, {
     Map<String, String>? pathOverrides,
@@ -400,8 +298,6 @@ final class PublicApi {
     }
   }
 
-  /// Whether [symbol] — a type, a `Type.member`, or a lowerCamel name — is
-  /// declared. A supertype outside these libraries declares no member.
   bool declares(String symbol) {
     final dot = symbol.indexOf('.');
     if (dot < 0) {
@@ -422,9 +318,6 @@ final class PublicApi {
     return members['Object']?.contains(member) ?? false;
   }
 
-  /// Every type, `Type.member` and top-level name these libraries declare,
-  /// private ones aside; a type's members include what its supertypes (a
-  /// typedef's aliased type among them) declare.
   Set<String> get symbols => {
     for (final n in topLevel)
       if (!n.startsWith('_')) n,
@@ -450,7 +343,6 @@ final class PublicApi {
   }
 }
 
-/// The SDK's `dart:` libraries the docs name.
 List<String> _sdkLibraries() {
   final sdk = p.join(
     File(Platform.resolvedExecutable).parent.parent.path,
@@ -470,7 +362,6 @@ List<String> _sdkLibraries() {
   ];
 }
 
-/// The libraries of [package] a dependent imports: its `lib/` but `lib/src/`.
 Iterable<String> _entrypoints(String package) sync* {
   final lib = Directory(p.join(package, 'lib'));
   if (!lib.existsSync()) return;
@@ -481,9 +372,6 @@ Iterable<String> _entrypoints(String package) sync* {
   }
 }
 
-/// The top-level declarations the entrypoints of [packages] export, by
-/// declaring file and name: the analyzer's export namespace of each, with
-/// the `package:` URIs of [contextRoot]'s package config.
 Future<Set<(String, String)>> _exported(
   String contextRoot,
   List<String> packages,
@@ -524,8 +412,6 @@ final class _Declarations extends RecursiveAstVisitor<void> {
   final topLevel = <String>{};
   final internal = <String>{};
 
-  /// The exported `(file, name)` pairs; null when every declaration is
-  /// public.
   Set<(String, String)>? _exported;
   Set<String> _entrypointFiles = const {};
   String _file = '';
@@ -545,7 +431,6 @@ final class _Declarations extends RecursiveAstVisitor<void> {
     },
   );
 
-  /// Every declaration under [dirs] is public.
   void readAll(Iterable<String> dirs) {
     _exported = null;
     for (final dir in dirs) {
@@ -557,7 +442,6 @@ final class _Declarations extends RecursiveAstVisitor<void> {
     }
   }
 
-  /// Only what [exported] names of the `lib/` of [packages] is public.
   void readPackages(List<String> packages, Set<(String, String)> exported) {
     _exported = exported;
     _entrypointFiles = {for (final pkg in packages) ..._entrypoints(pkg)};
@@ -581,8 +465,6 @@ final class _Declarations extends RecursiveAstVisitor<void> {
   bool _exports(String name) =>
       _exported == null || _exported!.contains((_file, name));
 
-  /// Visits a top-level declaration [name] with [visit], recording what it
-  /// declares as public only when [public].
   void _topLevel(bool public, void Function() visit) {
     final was = _public;
     _public = public;
@@ -694,8 +576,7 @@ final class _Declarations extends RecursiveAstVisitor<void> {
     });
   }
 
-  /// A named extension is public when exported; an unnamed one, which no
-  /// export carries, when an entrypoint declares it.
+  // Dart's exportNamespace omits unnamed extensions; treat those declared in entrypoints as public.
   @override
   void visitExtensionDeclaration(ExtensionDeclaration node) {
     final name = node.name?.lexeme;
@@ -791,9 +672,6 @@ final class _Declarations extends RecursiveAstVisitor<void> {
   }
 }
 
-/// Each removed symbol, with where the removal is recorded: a
-/// `MIGRATING.md:<line>` of [migrating], or the [released] version that
-/// still declared it.
 Map<String, String> removedSymbols({
   required Map<String, int> migrating,
   required PublicApi current,
@@ -816,13 +694,10 @@ Map<String, String> removedSymbols({
   return out;
 }
 
-/// A doc line that names a removed symbol.
 typedef StaleMention = ({String file, int line, String symbol});
 
 final _reference = RegExp(r'\[([A-Z][A-Za-z0-9]+(?:\.[a-z]\w*)?)\](?![(\[:])');
 
-/// The `[Type]` and `[Type.member]` references of the `///` lines of [text]
-/// ([file]) that [declared] does not resolve.
 List<StaleMention> unresolvedReferences(
   String file,
   String text,
@@ -842,9 +717,6 @@ List<StaleMention> unresolvedReferences(
   return out;
 }
 
-/// What the doc comments of [lib] may name besides the public API: every
-/// declaration of a package's own `lib/`, or the `lib/` directories of the
-/// example or recipe it belongs to.
 List<String> _siblingLibs(String root, String lib) {
   final parts = p.split(lib);
   if (parts.first == 'packages') return [p.join(root, lib)];
@@ -860,8 +732,6 @@ List<String> _siblingLibs(String root, String lib) {
   ];
 }
 
-/// The removed symbols [text] ([file]) names. With [docComments], only its
-/// `///` lines; a document's rename tables keep their before cells.
 List<StaleMention> staleMentions(
   String file,
   String text,
@@ -935,9 +805,6 @@ List<StaleMention> staleMentions(
   return out;
 }
 
-/// The lines of the `///` doc comments in Dart [text] ([path]) that a
-/// dependent reads: those of an exported declaration (by [exported]), of a
-/// public member of one, and, in an [entrypoint], of its library directive.
 Set<int> publicDocLines(
   String path,
   String text,
@@ -1007,7 +874,6 @@ Set<int> publicDocLines(
   return out;
 }
 
-/// The documents and doc-comment roots the check scans, relative to [root].
 ({List<String> docs, List<String> libs}) renameScanTargets(String root) {
   final help = Directory(p.join(root, 'packages', 'terradart_cli', 'help'));
   final libs = <String>[
@@ -1036,10 +902,6 @@ Set<int> publicDocLines(
   );
 }
 
-/// The reviewed exceptions of [allowYaml]: `notApi`, the names MIGRATING.md
-/// spells in code that were never the public API (symbol → reason), and
-/// `mentions`, the mentions that are not the Dart symbol (a path, or a
-/// directory ending in `/`, → symbol → reason).
 typedef AllowList = ({
   Map<String, String> notApi,
   Map<String, Map<String, String>> mentions,
@@ -1061,11 +923,6 @@ AllowList parseAllowList(String allowYaml) {
   );
 }
 
-/// One message per doc line that names a removed symbol, and per stale
-/// entry of [allow] (default: [allowPath]; a mention entry is stale only on
-/// the default [docs] and [libs]). [migrating] defaults to the
-/// repo's MIGRATING.md; [released] (default: the release it upgrades from) adds the
-/// symbols that release declared.
 Future<List<String>> checkDocRenames(
   String root, {
   String? migrating,

@@ -58,7 +58,6 @@ void main() {
       });
 
       test('every helper, enum and sealed variant reference resolves', () {
-        // google-beta references GA types (`--reference-lane`).
         final referenced = [
           manifest,
           if (manifest.package == 'terradart_google_beta')

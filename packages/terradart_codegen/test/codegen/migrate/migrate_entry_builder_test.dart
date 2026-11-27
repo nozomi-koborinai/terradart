@@ -26,8 +26,6 @@ import 'package:test/test.dart';
 const _source = 'test/fixtures/wrap/source';
 const _yamlRoot = 'lib/src/codegen/wrapper_overrides/yaml';
 
-/// Emits one committed google wrapper exactly as `terradart wrap` does and
-/// builds its manifest entry, so the test exercises the real registry.
 final class _Fixture {
   _Fixture(this.schemaSrc);
 
@@ -86,8 +84,6 @@ final class _Fixture {
       if (loaded.resources[tfType]!.deriveNestedTypes)
         tfType: rawBlock(tfType, schemasKey: 'resource_schemas'),
     };
-    // Mirrors `wrap --mm-groups`: MM exactly-one / at-most-one groups
-    // become the sealed slots the committed google lane emits.
     final providerEnums = ProviderEnums.mmGroups(mm)
         .withinSchema(ir, dropped: (_) {})
         .withOverrideGroups(loaded, ir, error: (e) => throw StateError(e));
@@ -389,7 +385,6 @@ class Holder {
       ]);
       expect(builds, hasLength(2));
       expect(_slot(builds[1], 'config').kind, MigrateSlotKind.helper);
-      // Helpers are recorded only by the file that declares them.
       expect(builds[0].helpers.map((h) => h.className), ['Config']);
       expect(builds[1].helpers, isEmpty);
     });
@@ -517,7 +512,6 @@ class Holder {
         expect(source.kind, MigrateSlotKind.sealed);
         expect(source.merged, isTrue);
         expect(source.variants, isNotEmpty);
-        // Every variant the manifest names is itself in the helper table.
         for (final className in source.variants!.values) {
           expect(b.helpers.map((h) => h.className), contains(className));
         }
@@ -551,8 +545,6 @@ class Holder {
       expect(policy.entry.kind, 'dataSource');
       expect(policy.entry.barrel, 'data');
       expect(policy.entry.getters, isNotEmpty);
-      // `google_project` is the one data source without the `Data` prefix
-      // (see `dataSourceClassName`); the manifest follows the emitter.
       final project = fixture.build('google_project', dataSource: true);
       expect(project.entry.className, 'DataGoogleProject');
       expect(project.entry.kind, 'dataSource');

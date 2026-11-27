@@ -6,18 +6,9 @@ import '../../ir/resource_def.dart';
 import '../dart_type_writer.dart';
 import '../naming.dart';
 
-/// Emits the prelude sealed-class block + customSlots entry for one
-/// `exactly_one_of` group.
-///
-/// Phase 4.3: skeleton level. Class names, constructor parameter lists, and
-/// `blockKey` getters are fully generated from the IR. The `encode()` body
-/// is left as `UnimplementedError` for the human reviewer to fill in (the
-/// argMap encoding pattern varies per resource and is too risky to auto-fill).
 class ExactlyOneOfEmitter {
   const ExactlyOneOfEmitter();
 
-  /// Returns a multi-line string (terminated by `\n`) ready to embed in the
-  /// wrap-promote additions section.
   String emit({
     required List<String> groupMembers,
     required String resourcePascal,
@@ -108,7 +99,6 @@ class ExactlyOneOfEmitter {
         attrRequired ? '      required this.$camel,' : '      this.$camel,',
       );
     }
-    // Surface nested-block stubs as TODO.
     final List<NestedBlockDef> nestedBlocks = block.nestedBlocks;
     for (final nb in nestedBlocks) {
       buf.writeln(
@@ -133,8 +123,6 @@ class ExactlyOneOfEmitter {
     }
   }
 
-  /// Returns the nested-block whose snake_case name matches [memberName], or
-  /// `null` if no such block exists in the resource's IR.
   BlockDef? _findNestedBlock(ResourceDef def, String memberName) {
     for (final nb in def.root.nestedBlocks) {
       if (nb.name == memberName) return nb.block;
@@ -142,16 +130,12 @@ class ExactlyOneOfEmitter {
     return null;
   }
 
-  /// Returns the longest common snake_case suffix shared by all [members].
-  /// Empty string if no common suffix.
   String _longestCommonSnakeSuffix(List<String> members) {
     if (members.isEmpty) return '';
     var suffix = '';
     final first = members.first;
     for (var len = 1; len <= first.length; len++) {
       final candidate = first.substring(first.length - len);
-      // Require the candidate to start at a word boundary (`_`) unless it's
-      // the entire first member.
       if (!candidate.startsWith('_') && len != first.length) continue;
       if (members.every((m) => m.endsWith(candidate))) {
         suffix = candidate;

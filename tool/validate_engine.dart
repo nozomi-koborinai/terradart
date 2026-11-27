@@ -1,42 +1,19 @@
-// validate_engine.dart — the engine that validates an example's synth output.
-//
-// OpenTofu, the engine `terradart` gives users: `tofu` on PATH, else the
-// release terradart_cli pins, downloaded and checksum-verified by
-// `terradart engine --engine tofu`. A Stack that requires a provider the
-// OpenTofu registry does not carry (kNotOnOpenTofuRegistry) validates with
-// `terraform` until the provider is published there.
-//
-// Run from repo root:
-//   dart tool/validate_engine.dart examples/<slug>/tf-out
-// prints `<kind> <binary>` (`tofu /path/to/tofu`, or `terraform terraform`).
-// tool/example_synth_gates.dart and the CI terraform_validate matrix both
-// pick the engine here.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
 import 'dart:io';
 
-/// Provider sources `registry.opentofu.org` does not serve, so `tofu init`
-/// cannot install them. Remove an entry once
-/// `https://registry.opentofu.org/v1/providers/<source>/versions` answers.
 const kNotOnOpenTofuRegistry = {
-  // 404 on registry.opentofu.org (2026-10-02); terradart_appwrite users on
-  // OpenTofu hit the same init failure.
+  // 404 on registry.opentofu.org/v1/providers/appwrite/appwrite/versions.
   'appwrite/appwrite',
 };
 
-/// What the CI `validate (<slug>)` leg runs in `tf-out` after synth, in
-/// order. `tool/validate_engine_test.dart` fails when the Validate step of
-/// `.github/workflows/ci.yml` runs anything else. `tool/coverage_stack.dart`
-/// adds `-json` to `validate`, which changes only the output format.
 const kValidateLeg = <List<String>>[
   ['fmt', '-check'],
   ['init', '-backend=false', '-input=false'],
   ['validate'],
 ];
 
-/// The `required_providers` sources of [mainTfJson] that
-/// [kNotOnOpenTofuRegistry] lists.
 Set<String> providersNotOnOpenTofu(Map<String, dynamic> mainTfJson) {
   final terraform = mainTfJson['terraform'];
   final required = terraform is Map ? terraform['required_providers'] : null;
@@ -55,8 +32,6 @@ String _normalize(String source) {
   return parts.length == 3 ? '${parts[1]}/${parts[2]}' : parts.join('/');
 }
 
-/// The OpenTofu binary `terradart engine --engine tofu` resolves, or `null`
-/// (with the reason on stderr) when it cannot.
 Future<String?> resolveOpenTofu() async {
   final r = await Process.run(Platform.resolvedExecutable, [
     'run',

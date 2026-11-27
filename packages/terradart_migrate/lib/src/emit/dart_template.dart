@@ -1,22 +1,5 @@
-/// Rewriting a Terraform template into a Dart string that interpolates the
-/// Dart values the migrator has for the references inside it.
-///
-/// `--lift-workspace` needs this: it turns `${terraform.workspace}` into the
-/// Stack's `workspace` parameter.
-library;
-
 import 'dart_literal.dart';
 
-/// [template] as a Dart string literal interpolating what [substitute]
-/// hands back for each `${ ... }` sequence, or `null` when it returns `null`
-/// for any of them — a reference with no Dart value here, so the whole
-/// template has to stay a Terraform expression.
-///
-/// Literal text is copied through as written, escapes included: `$${` is
-/// Terraform's *literal* `${`, and the Dart string keeps it doubled, so the
-/// value synth writes still un-escapes to exactly what it did before. A
-/// `%{ ... }` directive is never substituted — it is control flow, not a
-/// value — and refuses the whole template.
 String? dartTemplate(
   String template,
   String? Function(String reference) substitute,
@@ -60,19 +43,14 @@ String? dartTemplate(
       buf.write(_dartStringBody(part.text));
       continue;
     }
-    // `${name}` where the next character would run straight on into the
-    // name: Dart reads `$prefix_suffix` as one identifier. A substitution
-    // that is not a bare identifier always takes the braced form.
     final next = k + 1 < parts.length ? parts[k + 1].text : '';
     final braced =
-        !isDartIdentifier(part.text) || _identifierChar.hasMatch(next);
+        !isDartIdentifier(part.text) || _continuesDartIdentifier.hasMatch(next);
     buf.write(braced ? '\${${part.text}}' : '\$${part.text}');
   }
   return (buf..write("'")).toString();
 }
 
-/// One piece of the rewritten template: literal text, or Dart source whose
-/// value is interpolated where the sequence was.
 extension type const _Part._((bool, String) _value) {
   const _Part.literal(String text) : this._((true, text));
   const _Part.reference(String dart) : this._((false, dart));
@@ -81,9 +59,6 @@ extension type const _Part._((bool, String) _value) {
   String get text => _value.$2;
 }
 
-/// Index of the `}` closing the sequence opening at [start], or `null` when
-/// it is unterminated. Braces nest and quoted strings are skipped, as they
-/// are when terradart_core reads a template's sequences.
 int? _sequenceEnd(String s, int start) {
   var depth = 1;
   var j = start + 2;
@@ -103,9 +78,6 @@ int? _sequenceEnd(String s, int start) {
   return null;
 }
 
-/// Index of the `"` closing a string that starts at [from] (after the
-/// opening quote), honouring backslash escapes; the end of the string when
-/// it is unterminated.
 int _closingQuote(String s, int from) {
   var k = from;
   while (k < s.length) {
@@ -120,7 +92,6 @@ int _closingQuote(String s, int from) {
   return s.length;
 }
 
-/// A part of the template inside a single-quoted Dart string.
 String _dartStringBody(String text) => text
     .replaceAll('\\', r'\\')
     .replaceAll("'", r"\'")
@@ -129,5 +100,4 @@ String _dartStringBody(String text) => text
     .replaceAll('\r', r'\r')
     .replaceAll('\t', r'\t');
 
-/// A leading character Dart would take as part of the interpolated name.
-final RegExp _identifierChar = RegExp('^[A-Za-z0-9_]');
+final RegExp _continuesDartIdentifier = RegExp('^[A-Za-z0-9_]');

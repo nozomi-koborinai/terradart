@@ -5,9 +5,6 @@ import 'package:test/test.dart';
 
 import 'init_support.dart';
 
-/// `terradart init` for each provider, then `terradart synth` of what it
-/// wrote against the workspace packages: the templates compile and
-/// synthesize. `e2e_test.dart` also validates them with OpenTofu.
 void main() {
   late String root;
 

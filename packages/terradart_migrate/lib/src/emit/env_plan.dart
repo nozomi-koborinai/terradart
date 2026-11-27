@@ -66,8 +66,6 @@ final class EnvField {
   String get expression => 'env.$dartName';
 }
 
-/// Names an `Env` enum member cannot take: what `enum` already declares,
-/// plus the fields the merged emitter always writes.
 const Set<String> envMemberNames = {
   'index',
   'name',
@@ -129,7 +127,6 @@ EnvPlan planEnvironments(List<EnvBinding> envs) {
   void note(String address, String reason) =>
       notes.putIfAbsent(address, () => []).add(reason);
 
-  // address -> member -> (arguments, a base name for the constants)
   final blocks = <String, Map<String, _Block>>{};
   for (final env in envs) {
     for (final b in _blocksOf(env.module)) {
@@ -140,8 +137,6 @@ EnvPlan planEnvironments(List<EnvBinding> envs) {
   for (final entry in blocks.entries) {
     final address = entry.key;
     final byEnv = entry.value;
-    // A block only some environments declare is guarded by the merged
-    // emitter (`if (env.isProd)`), never lifted.
     if (byEnv.length != envs.length) continue;
     final keys = <String>{for (final b in byEnv.values) ...b.args.keys};
     for (final key in keys) {
@@ -189,7 +184,6 @@ EnvPlan planEnvironments(List<EnvBinding> envs) {
   );
 }
 
-/// Why [key] cannot become an `Env` constant, or `null` when it can.
 String? _notLiftable(_Block block, String key, Map<String, Object?> values) {
   if (block.sensitive) {
     return '"$key" belongs to a sensitive variable: its value is never '
@@ -221,7 +215,6 @@ String? _notLiftable(_Block block, String key, Map<String, Object?> values) {
   return null;
 }
 
-/// `String` / `int` / `double` / `bool` for the values of one constant.
 String _typeOf(Iterable<Object?> values) {
   if (values.every((v) => v is bool)) return 'bool';
   if (values.every((v) => v is int)) return 'int';
@@ -229,8 +222,6 @@ String _typeOf(Iterable<Object?> values) {
   return 'String';
 }
 
-/// A unique field name for [key] of [block]: `assetsName`, then the block's
-/// type in front on a clash, then a counter.
 String _fieldName(_Block block, String key, Set<String> used) {
   final candidates = [
     lowerCamel('${block.base}_$key'),
@@ -245,7 +236,6 @@ String _fieldName(_Block block, String key, Set<String> used) {
   }
 }
 
-/// One comparable block of a module.
 final class _Block {
   const _Block({
     required this.address,
@@ -257,27 +247,15 @@ final class _Block {
   });
 
   final String address;
-
-  /// The name the constants are derived from (`assets`).
   final String base;
-
-  /// Prepended on a name clash (`google_storage_bucket`).
   final String qualifier;
   final Map<String, Expr> args;
-
-  /// Arguments that may become constants; the rest keep their literal.
   final Set<String> liftable;
-
-  /// A `variable` block declaring `sensitive = true`.
   final bool sensitive;
 }
 
-/// Everything of [m] the environments are compared over.
 List<_Block> _blocksOf(TfModule m) {
   Map<String, Expr> args(Body body) => objectMap(bodyAsObject(body)) ?? {};
-  // Credential arguments are dropped from the migrated provider and from a
-  // kept backend. Leave them out of the comparison too, or a per-environment
-  // secret becomes a field on the generated Env enum.
   Map<String, Expr> withoutSecrets(String? type, Map<String, Expr> a) {
     final dropped = droppedProviderArguments[type] ?? const <String>{};
     if (dropped.isEmpty) return a;
@@ -287,9 +265,7 @@ List<_Block> _blocksOf(TfModule m) {
     };
   }
 
-  // A resource's own arguments are all liftable; its meta-arguments are
-  // structure, not values, and the merge refuses when they differ.
-  const meta = {
+  const nonLiftableMetaArguments = {
     'provider',
     'depends_on',
     'lifecycle',
@@ -303,7 +279,7 @@ List<_Block> _blocksOf(TfModule m) {
     'providers',
   };
   Set<String> own(Map<String, Expr> a) =>
-      a.keys.where((k) => !meta.contains(k)).toSet();
+      a.keys.where((k) => !nonLiftableMetaArguments.contains(k)).toSet();
 
   final out = <_Block>[];
   for (final r in m.resources) {
@@ -352,8 +328,6 @@ List<_Block> _blocksOf(TfModule m) {
         base: v.name,
         qualifier: 'variable',
         args: a,
-        // `type`, `sensitive` and `nullable` shape the variable; only its
-        // default and description are values an environment picks.
         liftable: const {'default', 'description'},
         sensitive: sensitive,
       ),

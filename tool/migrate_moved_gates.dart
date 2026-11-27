@@ -1,24 +1,3 @@
-/// Migrate moved gate (#663): the acceptance check for `count` / `for_each`
-/// unrolling. Migrates `packages/terradart_migrate/test/fixtures/moved_state/`
-/// — a module with a `count` resource, a `for_each` resource, references to
-/// their instances, an output over them and a `moved` block of its own —
-/// with `terradart_migrate`, synthesizes the generated Stack, puts the
-/// fixture's `state.json` (a `terraform.tfstate` of the indexed instances as
-/// Terraform recorded them; the name keeps it out of the `*.tfstate` ignore
-/// rule) next to the synth output, and runs `terraform plan -refresh=false`:
-/// the plan must be moves only — every resource change a `no-op`, every
-/// unrolled instance reported under its previous address, nothing created,
-/// changed or destroyed.
-///
-///   dart tool/migrate_moved_gates.dart [--keep]
-///
-/// `--keep` leaves the generated package in place. Exit 1 on any failure,
-/// with the package kept for inspection. The plan configures the google
-/// provider but makes no API call (`-refresh=false`, nothing to change), so
-/// a placeholder access token is enough — no credentials, no network beyond
-/// `terraform init`.
-library;
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -29,8 +8,9 @@ import 'lane_surface.dart';
 import 'wrap_lanes.dart';
 
 const _fixture = 'moved_state';
+// Terraform -detailed-exitcode exits 2 for non-empty plans, including move-only plans.
+const _terraformPlanHasChangesExit = 2;
 
-/// Every move the plan must report: `previous_address` → `address`.
 const _expectedMoves = <String, String>{
   'google_pubsub_topic.t[0]': 'google_pubsub_topic.t_0',
   'google_pubsub_topic.t[1]': 'google_pubsub_topic.t_1',
@@ -67,9 +47,6 @@ Future<bool> _gate({required String repoRoot, required bool keep}) async {
     writeProject(project, temp);
     final module = project.modules.single;
     final report = module.report;
-    // The splat output stays in outputs.tf on purpose (an export is one
-    // attribute): the sidecar rewrite must point it at the new addresses,
-    // which the plan below checks. Anything else kept is a failure.
     for (final k in report.kept) {
       if (k.address.startsWith('output.')) continue;
       errors.add('${k.address} stays in Terraform: ${k.reason}');
@@ -85,8 +62,6 @@ Future<bool> _gate({required String repoRoot, required bool keep}) async {
     }
     if (errors.isNotEmpty) return _finish(temp, errors, keep: keep);
 
-    // The generated pubspec pins hosted lockstep versions; wire the checkout
-    // in so the gate exercises this tree.
     final overrides = StringBuffer('\ndependency_overrides:\n');
     for (final pkg in _workspacePackages) {
       overrides
@@ -106,7 +81,6 @@ Future<bool> _gate({required String repoRoot, required bool keep}) async {
       final before = errors.length;
       var passed = await _run(step, temp, errors);
       if (!passed && step[1] == 'pub') {
-        // A cold pub cache fails --offline: retry online.
         errors.removeRange(before, errors.length);
         passed = await _run(['dart', 'pub', 'get'], temp, errors);
       }
@@ -128,9 +102,6 @@ Future<bool> _gate({required String repoRoot, required bool keep}) async {
       return _finish(temp, errors, keep: keep);
     }
 
-    // The state Terraform recorded for the module as written, next to the
-    // synth output and its sidecar files (committed as state.json: the
-    // repository ignores *.tfstate).
     File(
       p.join(input.path, 'state.json'),
     ).copySync(p.join(dir.path, 'terraform.tfstate'));
@@ -142,7 +113,6 @@ Future<bool> _gate({required String repoRoot, required bool keep}) async {
     )) {
       return _finish(temp, errors, keep: keep);
     }
-    // Exit 2 is "succeeded with a non-empty plan" — moves alone count as one.
     final plan = await Process.run(
       'terraform',
       [
@@ -156,7 +126,7 @@ Future<bool> _gate({required String repoRoot, required bool keep}) async {
       workingDirectory: dir.path,
       environment: {'GOOGLE_OAUTH_ACCESS_TOKEN': 'terradart-migrate-gate'},
     );
-    if (plan.exitCode != 0 && plan.exitCode != 2) {
+    if (plan.exitCode != 0 && plan.exitCode != _terraformPlanHasChangesExit) {
       errors.add(
         'terraform plan exited ${plan.exitCode}:\n${plan.stdout}${plan.stderr}',
       );

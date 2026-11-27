@@ -1,38 +1,3 @@
-// google_enum_sources.dart — the machine sources every google-lane enum is
-// compared against, and the reasoned list of the sets none of them has.
-//
-// Usage (from repo root):
-//   dart tool/google_enum_sources.dart          # report; exit 1 on a failure
-//   dart tool/google_enum_sources.dart --fix    # rewrite tool/enum_prose_sources.yaml
-//
-// An enum-typed input of a `discovery` lane (google, google-beta) compares
-// its emitted wire values, spelled exactly, against the first machine source
-// that has a set for it: the Magic Modules `enum_values` of the lane's
-// `<schemaDir>/mm`, then the lane's Google API Discovery copy
-// (`<schemaDir>/discovery`, tool/fetch_discovery_enums.dart) without its
-// `*_UNSPECIFIED` sentinel. The two sets must be equal: a value the source
-// lists and the enum lacks fails like a value the enum has and the source
-// does not. A set no machine source has comes from prose (an MM description,
-// a hand `enumValues` entry, a `prelude` enum), and a set that differs from
-// its source is a deliberate difference; both need an entry in
-// tool/enum_prose_sources.yaml with the exact values and a reason:
-//   no-document  no Discovery document is recorded for the type
-//                (`<schemaDir>/discovery/roots.yaml` says why);
-//   no-enum      the type's Discovery schema declares no enum at the path;
-//   disagrees    a machine source has a set (`upstream`, as compared) the
-//                enum does not equal; the note says why the provider takes
-//                the emitted values instead.
-// `no-document` and `no-enum` are checked against the copy, so `--fix`
-// writes them; a `disagrees` note is a human decision that `--fix` keeps
-// while both the emitted and the upstream values match, and replaces with
-// `awaiting-review` otherwise.
-// tool/wrap_lanes.dart runs `--fix` after a discovery lane's regen, so a
-// schema bump records new prose sets and fails CI only on a new
-// disagreement. tool/google_enum_sources_test.dart is the gate.
-//
-// It also lists every input a constructor or helper takes as a plain
-// `String` (or `List<String>`) whose value set a machine source has: such
-// an input must be an enum.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -51,23 +16,15 @@ import 'bump_api_surface.dart' show laneManifests;
 
 const proseSourcesPath = 'tool/enum_prose_sources.yaml';
 
-/// The note `--fix` writes for a disagreement nobody has reviewed; the gate
-/// rejects it.
 const awaitingReview = 'awaiting-review';
 
-/// One input of a curated factory: its kind, Terraform type and dotted path.
 typedef InputKey = (CatalogKind, String, String);
 
 String inputLabel(InputKey key) =>
     '${key.$1 == CatalogKind.dataSource ? 'data.' : ''}${key.$2}.${key.$3}';
 
-/// What a manifest says about one string-valued input: its enum's wire
-/// values, or null when it is a plain `String` / `List<String>`.
 typedef InputSite = List<String>?;
 
-/// Every string-valued input of [manifest] reached through constructor
-/// slots, helper fields and sealed variants: enum inputs with their wire
-/// values, plain strings with null.
 Map<InputKey, InputSite> stringInputs(MigrateManifest manifest) {
   final out = <InputKey, InputSite>{};
   void walk(
@@ -119,8 +76,6 @@ Map<InputKey, InputSite> stringInputs(MigrateManifest manifest) {
   return out;
 }
 
-/// The Dart enum types [manifest]'s constructor slots, helper fields and
-/// sealed variants reach.
 Set<String> reachedEnums(MigrateManifest manifest) {
   final out = <String>{};
   final seen = <String>{};
@@ -153,9 +108,6 @@ Set<String> reachedEnums(MigrateManifest manifest) {
 
 const enumSitesPath = 'tool/enum_sites.yaml';
 
-/// One enum a lane's generated wrappers declare: the factory file it sits
-/// in, the field leaf its derived doc names (null for a `prelude` enum),
-/// and its wire values in declaration order.
 typedef EmittedEnum = ({
   String name,
   CatalogKind kind,
@@ -171,8 +123,6 @@ final _enumDeclaration = RegExp(
 final _derivedLeaf = RegExp(r'enum for `([^`]+)`\.');
 final _literal = RegExp(r"TfArgLiteral\(\s*'((?:[^'\\]|\\.)*)'");
 
-/// Every enum declared in the generated wrappers under
-/// `<outputPackage>/lib/src` (files with wrap's `// GENERATED FILE` header).
 List<EmittedEnum> emittedEnums(String outputPackage) {
   final out = <EmittedEnum>[];
   final root = Directory(p.join(outputPackage, 'lib', 'src'));
@@ -209,8 +159,6 @@ List<EmittedEnum> emittedEnums(String outputPackage) {
   return out;
 }
 
-/// Every dotted input and attribute path of each resource and data source
-/// in a provider `schema.json`, keyed by kind and type.
 Map<(CatalogKind, String), List<String>> schemaPaths(String schemaJson) {
   final doc = jsonDecode(schemaJson) as Map<String, dynamic>;
   final out = <(CatalogKind, String), List<String>>{};
@@ -253,9 +201,6 @@ Map<(CatalogKind, String), List<String>> schemaPaths(String schemaJson) {
   return out;
 }
 
-/// Parses one lane's section of tool/enum_sites.yaml: enum type → the
-/// [inputLabel]s it is the value set of, for an enum no manifest slot
-/// reaches and whose derived doc does not place it.
 Map<String, List<String>> parseEnumSites(String yamlText, String lane) {
   final doc = loadYaml(yamlText);
   final section = doc is YamlMap ? doc[lane] : null;
@@ -284,13 +229,6 @@ InputKey _parseLabel(String label) {
   );
 }
 
-/// The enum sites of one lane, from the enums its wrappers emit rather than
-/// the slots its manifest walks: [inputs] (from [stringInputs]) plus one
-/// site per emitted enum no slot reaches, placed by its derived doc's leaf
-/// when [paths] has exactly one path with that leaf, else by [ledger]
-/// (tool/enum_sites.yaml). An enum neither places, a ledger entry for an
-/// enum a slot reaches or the wrappers do not emit, and an emitted enum the
-/// manifest records with other values all fail.
 ({Map<InputKey, InputSite> sites, List<String> failures}) enumSites(
   Map<InputKey, InputSite> inputs,
   MigrateManifest manifest,
@@ -385,10 +323,6 @@ InputKey _parseLabel(String label) {
 
 const discoveryAttachmentsPath = 'tool/discovery_attachments.yaml';
 
-/// The reviewed exceptions of [checkAttachments] for one lane: Terraform
-/// leaf → Discovery field leaf pairs that name one thing
-/// (`delete_rule` → `autoDelete`), and inputs whose Discovery schema has a
-/// same-named enum that is another field; each with why.
 typedef AttachmentRules = ({
   Map<String, Map<String, String>> aliases,
   Map<String, String> unrelated,
@@ -396,7 +330,6 @@ typedef AttachmentRules = ({
 
 const AttachmentRules noAttachmentRules = (aliases: {}, unrelated: {});
 
-/// Parses one lane's section of tool/discovery_attachments.yaml.
 AttachmentRules parseAttachmentRules(String yamlText, String lane) {
   final doc = loadYaml(yamlText);
   final section = doc is YamlMap ? doc[lane] : null;
@@ -439,8 +372,6 @@ bool _sameName(String a, String b) {
       (y.endsWith('y') && '${y.substring(0, y.length - 1)}ies' == x);
 }
 
-/// Whether [longer]'s words end with [shorter]'s and every word before
-/// them is in [context].
 bool _endsWithName(
   List<String> longer,
   List<String> shorter,
@@ -454,11 +385,6 @@ bool _endsWithName(
     ) &&
     longer.sublist(0, longer.length - shorter.length).every(context.contains);
 
-/// Whether the Terraform leaf [tfLeaf] and the Discovery [field] (dotted
-/// below [schema]; `?param` for a method parameter) name one thing: the
-/// same letters or their plural, or one is the other with words of the
-/// schema or the field's parents in front (`instance_type` is
-/// `Instance.type`, `logging_variant` is `loggingConfig.variantConfig.variant`).
 bool discoveryLeafMatches(String tfLeaf, String field, String schema) {
   final segments = field.split(RegExp(r'[.?]'));
   final leaf = segments.last;
@@ -472,7 +398,6 @@ bool discoveryLeafMatches(String tfLeaf, String field, String schema) {
       _endsWithName(discovery, tf, context);
 }
 
-/// Every enum field below [root] in [schemas], dotted.
 List<String> discoveryEnumFields(Map<String, Object?> schemas, String root) {
   final out = <String>[];
   void walk(Object? node, List<String> path, Set<String> refs) {
@@ -501,10 +426,6 @@ List<String> discoveryEnumFields(Map<String, Object?> schemas, String root) {
   return out;
 }
 
-/// The enum fields of [key]'s Discovery schema a dropped or missing
-/// attachment would have found: those whose leaf [discoveryLeafMatches]
-/// [key]'s, at most two deep for a top-level input and else below a field
-/// named like [key]'s parent.
 List<String> discoveryCandidates(InputKey key, LaneSources sources) {
   final root = (key.$1 == CatalogKind.dataSource
       ? sources.discovery.dataSources
@@ -533,12 +454,6 @@ List<String> discoveryCandidates(InputKey key, LaneSources sources) {
   ];
 }
 
-/// Checks each Discovery attachment of [sites] by name, independently of
-/// how it was found (a hand path, a Magic Modules REST path, the segment
-/// match): an attached field whose leaf does not name the input's fails
-/// unless [rules] aliases the pair, and an enum site with no attachment
-/// fails when its schema has a [discoveryCandidates] field, unless [rules]
-/// records it as unrelated. An exception nothing uses is stale.
 List<String> checkAttachments(
   Map<InputKey, InputSite> sites,
   LaneSources sources,
@@ -609,11 +524,9 @@ List<String> checkAttachments(
   return failures;
 }
 
-/// The machine sources of one discovery lane.
 final class LaneSources {
   LaneSources({required this.mm, required this.discovery});
 
-  /// Reads `<schemaDir>/mm/*.yaml` and `<schemaDir>/discovery`.
   factory LaneSources.load(String schemaDir) {
     final mm = <String, MmResourceOverrides>{};
     final dir = Directory(p.join(schemaDir, 'mm'));
@@ -637,10 +550,8 @@ final class LaneSources {
       ? (mm['data_${key.$2}'] ?? mm[key.$2])
       : mm[key.$2];
 
-  /// The Magic Modules `enum_values` of [key], or null.
   List<String>? mmValues(InputKey key) => _yaml(key)?.enumValuesByPath[key.$3];
 
-  /// The Discovery enum of [key] (with its sentinel), or null.
   DiscoveryEnum? discoveryEnum(InputKey key) => discovery.lookup(
     key.$2,
     key.$3,
@@ -648,16 +559,12 @@ final class LaneSources {
     restPath: _yaml(key)?.restPathsByPath[key.$3],
   );
 
-  /// Whether a Discovery document is recorded for [key]'s type.
   bool hasDocument(InputKey key) =>
       (key.$1 == CatalogKind.dataSource
           ? discovery.dataSources
           : discovery.resources)[key.$2] !=
       null;
 
-  /// The values wrap types [key] with when it stays a plain string: the
-  /// MM set, else the Discovery one without its sentinel; null when neither
-  /// has one.
   List<String>? typableValues(InputKey key) =>
       mmValues(key) ??
       discoveryInputValues(
@@ -671,9 +578,6 @@ final class LaneSources {
       );
 }
 
-/// One reasoned prose set: its exact values and why no machine source has
-/// it (`no-document`, `no-enum`), or why it differs from the source set
-/// [upstream] (`disagrees` with a note).
 typedef ProseEntry = ({
   List<String> values,
   String reason,
@@ -681,8 +585,6 @@ typedef ProseEntry = ({
   List<String>? upstream,
 });
 
-/// Parses one lane's section of tool/enum_prose_sources.yaml, keyed by
-/// [inputLabel].
 Map<String, ProseEntry> parseProseSources(String yamlText, String lane) {
   final doc = loadYaml(yamlText);
   final section = doc is YamlMap ? doc[lane] : null;
@@ -720,28 +622,17 @@ Map<String, ProseEntry> parseProseSources(String yamlText, String lane) {
   };
 }
 
-/// The result of comparing one lane's enums with its sources.
 typedef SourceCheck = ({
-  /// Sites whose values a machine source has, by source.
   int mm,
   int discovery,
-
-  /// Sites the reasoned list covers, by reason.
   Map<String, int> prose,
-
-  /// Every failure: a value no source spells, a source value the enum
-  /// lacks, a missing, stale or unreviewed entry, a set a machine source has
-  /// left untyped.
   List<String> failures,
-
-  /// The prose list as the lane's sites need it (for `--fix`).
   Map<String, ProseEntry> wanted,
 });
 
 bool _sameList(List<String> a, List<String> b) =>
     a.length == b.length && a.indexed.every((e) => e.$2 == b[e.$1]);
 
-/// Compares [inputs] (from [stringInputs]) with [sources] and [prose].
 SourceCheck checkSources(
   Map<InputKey, InputSite> inputs,
   LaneSources sources,
@@ -876,8 +767,6 @@ SourceCheck checkSources(
   );
 }
 
-/// The lanes `tool/providers.yaml` marks `discovery: true`, with their
-/// schema directories and output packages.
 Map<String, ({String schemaDir, String outputPackage})> discoveryLanes(
   String providersYaml,
 ) {
@@ -893,8 +782,6 @@ Map<String, ({String schemaDir, String outputPackage})> discoveryLanes(
   };
 }
 
-/// [enumSites] of [lane] read from the checked-in wrappers, manifest,
-/// schema fixture and tool/enum_sites.yaml.
 ({Map<InputKey, InputSite> sites, List<String> failures}) laneEnumSites(
   String providersYaml,
   String lane,
@@ -915,7 +802,6 @@ Map<String, ({String schemaDir, String outputPackage})> discoveryLanes(
   );
 }
 
-/// [lane]'s section of tool/discovery_attachments.yaml.
 AttachmentRules laneAttachmentRules(String lane) {
   final file = File(discoveryAttachmentsPath);
   return file.existsSync()

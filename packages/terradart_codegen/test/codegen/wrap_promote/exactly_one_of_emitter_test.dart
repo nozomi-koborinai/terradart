@@ -53,7 +53,6 @@ void main() {
           resourcePascal: 'GoogleCloudSchedulerJob',
           def: googleCloudSchedulerJob,
         );
-        // Each member yields a final class extending the sealed.
         expect(
           out,
           contains(
@@ -72,7 +71,6 @@ void main() {
             'final class AppEngineHttpTarget extends GoogleCloudSchedulerJobTarget',
           ),
         );
-        // PubsubTarget has at least `topic_name` (required per provider schema).
         expect(out, contains('required this.topicName'));
         expect(out, contains('final TfArg<String> topicName'));
       },

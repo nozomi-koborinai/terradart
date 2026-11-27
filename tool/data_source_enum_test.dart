@@ -9,10 +9,6 @@ import 'package:yaml/yaml.dart';
 import 'check_google_enum_gaps.dart' show ctorRawStringFields;
 import 'wrap_lanes.dart';
 
-/// The top-level inputs of a data source that list a fixed value set (the
-/// description dialects a `providerEnums` lane reads, or a hint file's
-/// `enum_values`) but that [generatedSource]'s constructor still takes as
-/// `TfArg<String>` or `TfArg<List<String>>`.
 List<String> rawValueSetInputs(
   Map<String, dynamic> block,
   String generatedSource, {

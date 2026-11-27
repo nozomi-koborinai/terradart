@@ -5,16 +5,8 @@ import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:yaml/yaml.dart';
 
-/// The formatter `dart format` applies to a file at [path].
-///
-/// Its language version is the `environment.sdk` floor (major.minor) of the
-/// nearest `pubspec.yaml` at or above [path], which is the package language
-/// version `dart format` and pana format with. Style changes are language
-/// versioned, so formatting at `latestLanguageVersion` instead drifts from
-/// `dart format` whenever dart_style supports a newer version than the
-/// package's floor. Without a pubspec or an SDK floor it is
-/// `latestLanguageVersion`, as for a file outside any package. The walk is
-/// lexical, so [path] need not exist yet.
+// dart_style formatting is language-versioned; match dart format / pana
+// by using the nearest pubspec.yaml's environment.sdk floor instead of latestLanguageVersion.
 DartFormatter packageFormatter(String path) =>
     DartFormatter(languageVersion: _languageVersion(path));
 

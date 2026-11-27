@@ -1,11 +1,6 @@
 import '../../ir/resource_def.dart';
 import 'provider_rules.dart';
 
-/// wrap-init and lane-scaffold rules for `appwrite/appwrite`.
-///
-/// No Magic Modules. A barrel folder is the terraform-type segment after
-/// `appwrite_`; [outputDirAliases] pluralizes the four families whose
-/// barrels are plural, so `appwrite_function_variable` lands in `functions`.
 final class AppwriteProviderRules extends ProviderRules {
   const AppwriteProviderRules();
 
@@ -15,8 +10,6 @@ final class AppwriteProviderRules extends ProviderRules {
   @override
   String get terraformTypePrefix => 'appwrite_';
 
-  /// The only scaffold flag that writes `deriveOutputGetters: true`, which
-  /// every appwrite override carries.
   @override
   bool get typedNestedDefaults => true;
 

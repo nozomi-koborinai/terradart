@@ -1,10 +1,3 @@
-// packages/terradart_codegen/lib/src/codegen/universal_invariants/beta_overlap.dart
-/// Gate 9 predicate: resource type names present in BOTH schema JSONs.
-///
-/// The GA fixture is the full `hashicorp/google` schema and the beta fixture
-/// is the filtered beta-only subset, so a non-empty intersection means a
-/// beta-only type has been promoted to GA — the "types that also exist in GA
-/// stay in `terradart_google`" invariant is broken.
 List<String> overlappingResourceTypes({
   required Map<String, dynamic> gaSchema,
   required Map<String, dynamic> betaSchema,

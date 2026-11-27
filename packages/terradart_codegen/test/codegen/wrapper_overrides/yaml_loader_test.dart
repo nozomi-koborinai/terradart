@@ -15,16 +15,12 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        // ファイル名 stem `empty` が key として使われる前提
         final result = loader.load().resources;
         expect(result, contains('empty'));
         final override = result['empty']!;
         expect(override.paramOrder, isNull);
         expect(override.argMapOrder, isNull);
         expect(override.extraGetters, isNull);
-        // Plan 5.X: `schemaStubComment` axis retired alongside the
-        // schemantic stub-class emit. The field no longer exists on
-        // [WrapperOverride].
         expect(override.requiredParams, isNull);
         expect(override.dartTypeOverrides, isNull);
         expect(override.deprecatedParams, isNull);
@@ -78,9 +74,6 @@ void main() {
           final result = loader.load().resources;
           final o = result['derive_class_doc_on']!;
           expect(o.deriveClassDoc, isTrue);
-          // `equals` (not `contains`) pins the curatedDoc contract: the `|-`
-          // chomp strips the trailing newline, so the parsed value is exactly
-          // the single `///` line with no leading separator or trailing `\n`.
           expect(o.curatedDoc, equals('/// Curated example block.'));
           expect(o.outputDir, 'test_out');
         },
@@ -148,11 +141,6 @@ void main() {
           ),
         );
       });
-
-      // Plan 5.X: the `schema_stub_comment_only` happy-path test is
-      // retired alongside the axis. The negative coverage moved to
-      // `schemaStubComment is now rejected as an unknown top-level key`
-      // (group: failure).
 
       test('required_params_only -> list set', () {
         final loader = YamlOverrideLoader(
@@ -453,8 +441,6 @@ $values''');
       });
 
       test('classDocComment -> retired-axis FormatException with hint', () {
-        // The axis was retired with the 2026-07 doc wave; the loader fails
-        // loudly with the migration path so it cannot quietly come back.
         final loader = YamlOverrideLoader(
           rootDir:
               'test/fixtures/semantic_hints_loader/failure/'
@@ -466,11 +452,6 @@ $values''');
         );
       });
 
-      // Plan 5.X: `schemaStubComment` is no longer a recognized
-      // top-level axis. The retirement is enforced via the standard
-      // unknown-top-level-key rejection so any leftover yaml axis (or
-      // future yaml edits that reintroduce it) fail loud at load time
-      // rather than silently dropping the value.
       test(
         'schemaStubComment is no longer a recognized top-level key',
         () async {
@@ -983,11 +964,6 @@ fileLeadingComment: |-
   });
 
   group('Data source axis restriction', () {
-    // Plan 5.X: `schemaStubComment` is no longer a recognized top-level
-    // key for any override kind. The post-Plan-5.X behavior is that the
-    // key is rejected at the top-level allowed-keys check
-    // (FormatException, code path: `unknown top-level key`), well before
-    // the resource-vs-data-source axis routing runs.
     test(
       'schemaStubComment on data source is rejected as unknown top-level key',
       () async {
@@ -1045,12 +1021,10 @@ prelude: |
     test('multiple errors aggregated and reported', () async {
       final tmpDir = await Directory.systemTemp.createTemp('phase4_aggr_');
       try {
-        // E101: unknown kind value.
         await File(p.join(tmpDir.path, 'a.yaml')).writeAsString('''
 kind: bogus
 outputDir: x
 ''');
-        // E102: outputDir missing entirely.
         await File(p.join(tmpDir.path, 'b.yaml')).writeAsString('''
 deriveClassDoc: true
 ''');
@@ -1083,8 +1057,6 @@ deriveClassDoc: true
             'yaml',
           ),
         );
-        // The weekly schema bump scaffolds overrides for new upstream types,
-        // so the count moves; the catalog wrap generated is the reference.
         final kinds = RegExp(r'kind: CatalogKind\.(\w+)')
             .allMatches(
               File(

@@ -1,10 +1,3 @@
-// refresh_migrating_cells.dart: refreshes MIGRATING.md After cells whose
-// generated helper or enum type names changed during a schema bump, while
-// leaving Before cells untouched and verifying After-cell compilation.
-//
-// Only unambiguous mechanical type-name changes (same slot kind and container
-// flags) are applied. Structural changes (sealed <-> helper, enum -> scalar,
-// removed slots or classes) are never rewritten and remain human judgement.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -14,11 +7,8 @@ import 'package:path/path.dart' as p;
 
 import 'migrating_cells.dart';
 
-/// Shape of one helper- or enum-typed slot in a generated migration manifest.
 typedef SlotTypeSig = ({String kind, String typeName, String flags});
 
-/// Lightweight snapshot of declared types and helper/enum slot signatures from
-/// one lane's migration manifest.
 final class ManifestTypeSnapshot {
   const ManifestTypeSnapshot({
     required this.declaredTypes,
@@ -29,21 +19,13 @@ final class ManifestTypeSnapshot {
   final Map<({String owner, String slot}), SlotTypeSig> slots;
 }
 
-/// Mechanical generated type renames derived from before/after manifest
-/// snapshots.
 final class GeneratedTypeRenames {
   const GeneratedTypeRenames({
     required this.globalRenames,
     required this.slotRenames,
   });
 
-  /// Old generated type name -> new generated type name when the old name no
-  /// longer exists and every renamed slot moved to one unambiguous new name.
   final Map<String, String> globalRenames;
-
-  /// `(owner, slot)` -> `(oldType, newType, positional)` when a slot kept the
-  /// same kind and container flags and only its helper or enum type name
-  /// changed.
   final Map<
     ({String owner, String slot}),
     ({String oldType, String newType, bool positional})
@@ -79,8 +61,6 @@ final class MigratingVerifyOutcome {
   final String? reason;
 }
 
-/// Parses a generated `packages/terradart_migrate/lib/src/manifest/*.g.dart`
-/// source directly without compiling `terradart_migrate`.
 ManifestTypeSnapshot parseManifestSourceSnapshot(String source) {
   final declaredTypes = <String>{};
   final slots = <({String owner, String slot}), SlotTypeSig>{};
@@ -141,8 +121,6 @@ ManifestTypeSnapshot parseManifestSourceSnapshot(String source) {
   return ManifestTypeSnapshot(declaredTypes: declaredTypes, slots: slots);
 }
 
-/// Converts a `tool/bump_api_surface.dart` surface map into a
-/// [ManifestTypeSnapshot].
 ManifestTypeSnapshot snapshotFromApiSurface(
   Map<String, Map<String, Object?>> surface,
 ) {
@@ -184,8 +162,6 @@ ManifestTypeSnapshot snapshotFromApiSurface(
   return ManifestTypeSnapshot(declaredTypes: declaredTypes, slots: slots);
 }
 
-/// Derives unambiguous mechanical generated-type renames from [before] and
-/// [after] manifest snapshots.
 GeneratedTypeRenames deriveGeneratedTypeRenames(
   ManifestTypeSnapshot before,
   ManifestTypeSnapshot after,
@@ -227,9 +203,6 @@ GeneratedTypeRenames deriveGeneratedTypeRenames(
   );
 }
 
-/// Refreshes only the `After` column backtick spans in the top `##` section of
-/// [migratingMd] using [renames]. `Before` cells and historical sections are
-/// never modified.
 MigratingRefreshResult refreshMigratingAfterCells(
   String migratingMd,
   GeneratedTypeRenames renames,
@@ -297,10 +270,6 @@ MigratingRefreshResult refreshMigratingAfterCells(
   );
 }
 
-/// Refreshes `MIGRATING.md` After cells under [repoRoot] when [renames] match,
-/// verifying with [verifyAfter] (default [checkMigratingAfterCells]) that
-/// every modified line compiles cleanly and no previously compiling line
-/// regresses. Writes `MIGRATING.md` only when verification succeeds.
 Future<MigratingVerifyOutcome> refreshAndVerifyMigratingMd(
   String repoRoot,
   GeneratedTypeRenames renames, {

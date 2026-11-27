@@ -1,16 +1,3 @@
-// bump_plan.dart — which tool/providers.yaml lanes one run of
-// .github/workflows/schema-bump.yml bumps, as the job matrix it runs.
-//
-// Usage (from repo root):
-//   dart tool/bump_plan.dart --schedule='0 22 * * 1'   # a cron run
-//   dart tool/bump_plan.dart --lane=aws                # workflow_dispatch
-//   dart tool/bump_plan.dart --lane=all
-//
-// Prints a JSON array with one object per lane (see [BumpLane.toMatrix]);
-// `[]` when a schedule matches no lane. Every path the workflow touches
-// comes from the lane's providers.yaml entry.
-//
-// exit: 0 success; 64 usage error or an invalid `bump:` entry.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -21,6 +8,8 @@ import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
 
 import 'wrap_lanes.dart';
+
+const _exitUsage = 64;
 
 enum Weekday {
   sunday('Sunday'),
@@ -47,7 +36,6 @@ enum Weekday {
   }
 }
 
-/// A lane with a `bump:` entry.
 @immutable
 class BumpLane {
   const BumpLane({
@@ -64,28 +52,19 @@ class BumpLane {
   });
 
   final WrapLane lane;
-
-  /// `auto` or `pr-only`.
   final String mode;
   final String cron;
 
   Weekday get weekday => Weekday.parseCron(cron);
 
-  /// `dump` or `extract`.
   final String refresh;
-
-  /// `wrap-init` or `lane`.
   final String scaffold;
   final bool dataSources;
   final WrapLane? rideAlong;
   final String? exampleGenerator;
-
-  /// The catalog kinds (`resource`, `dataSource`) [exampleGenerator] covers
-  /// in its example; empty without one.
   final Set<String> exampleCovers;
   final bool mm;
 
-  /// The keys schema-bump.yml reads as `matrix.<key>`.
   Map<String, Object> toMatrix() => {
     'lane': lane.name,
     'mode': mode,
@@ -109,8 +88,6 @@ class BumpLane {
   };
 }
 
-/// Every lane of [providersYaml] with a `bump:` entry, in file order.
-/// Throws [FormatException] naming the lane and field on an invalid entry.
 List<BumpLane> parseBumpLanes(String providersYaml) {
   final lanes = {
     for (final lane in parseWrapLanes(providersYaml)) lane.name: lane,
@@ -184,8 +161,6 @@ List<BumpLane> parseBumpLanes(String providersYaml) {
   return out;
 }
 
-/// The lanes one run bumps: those whose cron is [schedule] (a scheduled
-/// run), or [lane] (`all` for every bump lane) on a manual run.
 @visibleForTesting
 List<BumpLane> planLanes(
   List<BumpLane> lanes, {
@@ -223,7 +198,7 @@ void main(List<String> args) {
     stderr.writeln(
       'usage: dart tool/bump_plan.dart --schedule=<cron> | --lane=<name|all>',
     );
-    exit(64);
+    exit(_exitUsage);
   }
   try {
     final lanes = planLanes(
@@ -234,6 +209,6 @@ void main(List<String> args) {
     print(jsonEncode([for (final l in lanes) l.toMatrix()]));
   } on FormatException catch (e) {
     stderr.writeln('bump_plan: ${e.message}');
-    exit(64);
+    exit(_exitUsage);
   }
 }

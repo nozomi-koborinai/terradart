@@ -31,7 +31,6 @@ void main() {
 
     test('default sensitiveFields is empty', () {
       final r = _FakeResource('main', name: const TfArgLiteral('hello'));
-      // ignore: invalid_use_of_protected_member
       expect(r.sensitiveFields, isEmpty);
     });
 
@@ -50,10 +49,6 @@ void main() {
     });
   });
 
-  // `@protected` on the Resource getter expresses subclass-only contract
-  // intent; this test deliberately reaches into the getter from outside a
-  // subclass instance to verify default + override behaviour. The ignore
-  // directives are the standard escape hatch for this read-back pattern.
   group('Resource.supportsDeletionProtection', () {
     test('defaults to false on Resource base class', () {
       final r = _FakeResource('a', name: const TfArgLiteral('x'));
@@ -63,7 +58,6 @@ void main() {
 
     test('can be overridden to true', () {
       final r = _CapableResource('b', name: const TfArgLiteral('y'));
-      // ignore: invalid_use_of_protected_member
       expect(r.supportsDeletionProtection, isTrue);
     });
   });

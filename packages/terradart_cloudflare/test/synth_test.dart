@@ -36,8 +36,6 @@ final class _TestStack extends Stack {
   }
 }
 
-/// The lane's schema fixture in the monorepo: the pin and the full catalog
-/// are both derived from it.
 const _fixtureDir = '../terradart_codegen/test/fixtures/wrap/source_cloudflare';
 
 Map<String, dynamic> _fixtureSchema() {
@@ -61,8 +59,6 @@ void main() {
             as Map<String, dynamic>;
     expect(requiredProviders['source'], 'cloudflare/cloudflare');
     expect(requiredProviders['version'], kCloudflareProviderVersionConstraint);
-    // Exact pin, not a range: the wrapper surface and the provider version
-    // move together.
     expect(
       kCloudflareProviderVersionConstraint,
       File('$_fixtureDir/provider_version.txt').readAsStringSync().trim(),
@@ -91,8 +87,6 @@ void main() {
         (json['provider'] as Map<String, dynamic>)['cloudflare']
             as Map<String, dynamic>;
     expect(providerBlock['base_url'], 'https://api.cloudflare.com/client/v4');
-    // The schema marks these sensitive; CloudflareProvider has no such
-    // parameters, so no synthesized main.tf.json can ever carry them.
     expect(providerBlock.keys, isNot(contains('api_token')));
     expect(providerBlock.keys, isNot(contains('api_key')));
     expect(providerBlock.keys, isNot(contains('api_user_service_key')));
@@ -108,11 +102,13 @@ void main() {
     final zone =
         (resources['cloudflare_zone'] as Map<String, dynamic>)['main']
             as Map<String, dynamic>;
-    // The framework object attribute serializes as a plain JSON object.
     expect(zone['account'], {'id': 'acc-1'});
-    // No provider meta-argument: the cloudflare_ prefix implies the
-    // provider (no collision, unlike google-beta).
-    expect(zone.containsKey('provider'), isFalse);
+    expect(
+      zone.containsKey('provider'),
+      isFalse,
+      reason:
+          'cloudflare_ prefix implies the cloudflare provider with no collision',
+    );
     final record =
         (resources['cloudflare_dns_record'] as Map<String, dynamic>)['api']
             as Map<String, dynamic>;

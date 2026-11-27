@@ -68,9 +68,9 @@ void main() {
       expect(out.toTfJson(), equals('{"count":{"integerValue":"42"}}'));
     });
 
-    test('int near 2^53 boundary stays precise as string', () {
-      final big = 9007199254740993; // 2^53 + 1, loses precision as JSON number
-      final out = FirestoreFields.encode({'big': big});
+    test('int beyond IEEE-754 2^53 safe range stays precise as string', () {
+      const twoToThe53Plus1 = 9007199254740993;
+      final out = FirestoreFields.encode({'big': twoToThe53Plus1});
       expect(out.toTfJson(), contains('"integerValue":"9007199254740993"'));
     });
 

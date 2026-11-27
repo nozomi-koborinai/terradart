@@ -1,7 +1,3 @@
-// Renders examples/data_source_leftover_quickstart/lib/main.dart from the
-// generated data-source wrappers, for tool/coverage_stack.dart, which writes
-// and validates it. Literal values live in tool/coverage_dummies/google.yaml.
-
 import 'dart:io';
 
 import 'catalog_class_names.dart';
@@ -10,8 +6,6 @@ import 'coverage_stack.dart';
 
 const _dataDir = 'packages/terradart_google/lib/src/data';
 
-/// The constructor's required `TfArg<T>`, `Sensitive<T>` and `RefTo<T>`
-/// parameters, in order; [ref] marks a `RefTo`.
 List<({String dartType, String name, bool ref, bool sensitive})>
 _requiredCtorParams(String ctor) {
   final out = <({String dartType, String name, bool ref, bool sensitive})>[];
@@ -46,7 +40,6 @@ _requiredCtorParams(String ctor) {
   return out;
 }
 
-/// The google lane's coverage stack: one call per catalogued GA data source.
 const googleDataSourceStack = _GoogleDataSourceStack();
 
 final class _GoogleDataSourceStack implements CoverageStackGenerator {
@@ -141,7 +134,7 @@ final class _GoogleDataSourceStack implements CoverageStackGenerator {
         unplaceable[className] = missing;
         continue;
       }
-      final extras = _extraOptionals[className] ?? const {};
+      final extras = _requiredAtValidate[className] ?? const {};
       extras.forEach((name, value) {
         args.add('      $name: $value,');
       });
@@ -222,9 +215,7 @@ String _uniqueLocal(String tfType, Set<String> used) {
   return candidate;
 }
 
-/// Optional slots terraform validate still requires (exactly-one groups,
-/// schema-required fields the Dart wrapper left optional).
-const _extraOptionals = <String, Map<String, String>>{
+const _requiredAtValidate = <String, Map<String, String>>{
   'DataGoogleComputeImage': {'name': 'TfArg.literal(leftover)'},
   'DataGoogleComputeInstanceTemplate': {'name': 'TfArg.literal(leftover)'},
   'DataGoogleComputeRegionInstanceTemplate': {
@@ -236,13 +227,10 @@ const _extraOptionals = <String, Map<String, String>>{
   },
 };
 
-/// What a required sensitive argument takes: Terraform's `sensitive()`
-/// passes `terraform validate` without a declared variable.
+// Terraform's sensitive() satisfies validate without a declared variable.
 const _sensitiveValue =
     '''Sensitive.expression(r'\${sensitive("leftover")}')''';
 
-/// Dummy values for required derived-helper parameters, keyed by helper
-/// class.
 const _requiredHelpers = <String, String>{
   'DataCloudIdentityGroupLookupGroupKey':
       'DataCloudIdentityGroupLookupGroupKey(id: .literal(leftover))',
@@ -256,8 +244,6 @@ final _enumEntry = RegExp(
   r"static\s+const\s+(\w+)\s*=\s*\w+\._\(\s*TfArgLiteral\(\s*'((?:[^'\\]|\\.)*)'",
 );
 
-/// Every enum [source] declares: name → (member, raw value) in declaration
-/// order.
 Map<String, List<(String, String)>> _enumMembers(String source) => {
   for (final m in _enumDecl.allMatches(source))
     m.group(1)!: [
@@ -266,8 +252,6 @@ Map<String, List<(String, String)>> _enumMembers(String source) => {
     ],
 };
 
-/// The member of [enumName] whose raw value is the ledger's dummy for the
-/// slot, else its first member.
 String _enumMember(
   CoverageDummies dummies,
   String className,

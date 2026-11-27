@@ -697,14 +697,12 @@ void _collectEnums(String source) {
   }
 }
 
-/// The enum element type of a `List<E>` type, if [t] is one.
 String? _listEnum(String t) {
   final m = RegExp(r'^List<(\w+)\??>$').firstMatch(t);
   final name = m?.group(1);
   return name != null && _enums.containsKey(name) ? name : null;
 }
 
-/// The member of [enumName] whose wire value is [value], else the first.
 String _enumByValue(String enumName, String value) {
   final members = _enums[enumName]!;
   final pick = members.firstWhere(

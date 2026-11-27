@@ -1,13 +1,3 @@
-// No two provider packages export a type of the same name from the barrels
-// `terradart wrap` generates for them: the per-service barrels and the
-// umbrella of every tool/providers.yaml lane. A Stack that imports both
-// barrels and names such a type fails `dart analyze` with `ambiguous_import`.
-//
-// Only a package's own declarations count. A barrel that re-exports another
-// package (`terradart_core`) passes on that package's type, not a second
-// one. Hand-written libraries (`provider.dart`, `catalog.dart`) are not
-// service barrels, and constants and functions are not types.
-
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -27,8 +17,6 @@ final _type = RegExp(
   multiLine: true,
 );
 
-/// The public types the library at [path] declares, plus those its exports
-/// of files in the same package pass on.
 Set<String> libraryTypes(String path, [Set<String>? visited]) {
   final seen = visited ?? <String>{};
   if (!seen.add(p.normalize(path))) return const {};
@@ -52,8 +40,6 @@ Set<String> libraryTypes(String path, [Set<String>? visited]) {
   return out;
 }
 
-/// Every type a generated barrel under `<root>/<package>/lib/` exports from
-/// two or more of [packages], mapped to those barrels.
 Map<String, List<String>> barrelTypeClashes(
   String root,
   List<String> packages,

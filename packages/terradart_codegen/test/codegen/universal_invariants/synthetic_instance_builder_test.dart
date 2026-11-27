@@ -14,10 +14,6 @@ void main() {
 
         final expr = const SyntheticInstanceBuilder().buildExpression(member);
 
-        // The synth value for a required param is left as `<TODO>` for the
-        // emitted test to fill in via Component B-3's type-aware logic. The
-        // expression shape must include the constructor call with all required
-        // params present.
         expect(expr, contains('TargetSplit('));
         expect(expr, contains('splits:'));
         expect(expr, endsWith(')'));
@@ -35,9 +31,6 @@ void main() {
 
       final expr = const SyntheticInstanceBuilder().buildExpression(member);
 
-      // Both params are optional; the synthetic expression invokes the
-      // constructor with no args (testing the "all optional null" path of
-      // encode round-trip).
       expect(expr, 'RolloutPolicy()');
     });
 
@@ -54,9 +47,6 @@ void main() {
 
       final expr = const SyntheticInstanceBuilder().buildExpression(member);
 
-      // Required `userByEmail` and `role` must appear in input order; the
-      // interleaved optional `domain` must NOT appear. Guards against a
-      // future regression that reorders or drops required params.
       expect(expr, 'BigqueryAccess(userByEmail: <TODO>, role: <TODO>)');
     });
   });

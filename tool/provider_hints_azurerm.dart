@@ -88,7 +88,6 @@ AwsHintsScan scanAzurermProvider(Directory root) {
   return result;
 }
 
-/// Scans each of [kind]'s [schemas] into [out], counting into [result].
 void _collect(
   WrapperOverrideKind kind,
   Map<String, List<_FuncRef>> schemas,
@@ -321,13 +320,9 @@ final class _BodyScan {
   var unresolved = 0;
   var relations = 0;
   var unresolvedRelations = 0;
-
-  /// The schema path of each value-set validator not evaluated.
   final unresolvedPaths = <String>[];
 }
 
-/// Resolves a call to a schema function: `Name()` in the caller's package
-/// when [qualifier] is null, else `qualifier.Name()` through its imports.
 typedef _SchemaCall =
     _FuncRef? Function(_FuncRef from, String? qualifier, String name);
 
@@ -335,7 +330,6 @@ _BodyScan _scanBody(_FuncRef ref, _PackageIndex index, _SchemaCall lookup) {
   final found = _BodyScan();
   final seen = <String>{};
   void scan(_FuncRef current, List<String> path) {
-    // A shared schema function is scanned once per path it is mounted at.
     final id = '${current.file.rel}:${current.bodyStart} ${path.join('.')}';
     if (!seen.add(id)) return;
     final target = _schemaTarget(current);
@@ -389,8 +383,6 @@ int? _mapOpen(List<GoToken> t, int from, int end) {
   return null;
 }
 
-/// Returns the `{` index of a `map[string]*[pkg.]Schema{` literal starting at
-/// [at], or null if [at] does not open a schema map.
 int? _schemaMapOpen(List<GoToken> t, int at, int end) {
   if (at + 6 >= end ||
       t[at].text != 'map' ||
@@ -599,8 +591,7 @@ void _recordRelation(
   _BodyScan found,
 ) {
   final parent = path.sublist(0, path.length - 1);
-  // A dotted member is already a resource-root path. Azurerm writes the
-  // list index as `.0.`, which is not a schema key.
+  // Terraform SDKv2 dotted relation paths are root-relative and include numeric list indices (e.g. ".0.").
   List<String> full(String member) {
     if (member.contains('.')) {
       return [
@@ -627,8 +618,6 @@ void _recordRelation(
   }
 }
 
-/// The schema-function call `Name(...)` or `pkg.Name(...)` that starts at
-/// [i] as a whole schema-map value (a comma or the map's end follows it).
 ({String? qualifier, String name, int next})? _schemaCallAt(
   List<GoToken> t,
   int i,
@@ -649,7 +638,7 @@ void _recordRelation(
   return (qualifier: qualifier, name: t[j].text, next: next);
 }
 
-/// `Any(...)` makes a `StringInSlice` one alternative, not the value set.
+// Terraform SDKv2 Any(...) composes validators with OR, so inner StringInSlice sets are not closed.
 bool _insideAny(List<GoToken> t, int at) {
   var paren = 0;
   for (var i = at - 1; i >= 0; i--) {
@@ -735,8 +724,6 @@ List<String>? _literalSlice(
   return null;
 }
 
-/// The last `name := []string{...}` or `name := [pkg.]Func()` before [at]
-/// in the function body starting at [from].
 List<String>? _localSlice(
   List<GoToken> t,
   int from,
@@ -762,7 +749,6 @@ List<String>? _localSlice(
   return null;
 }
 
-/// The values of the zero-argument slice function `[pkg.]Func()` at [i].
 List<String>? _callValues(
   List<GoToken> t,
   int i,
@@ -943,8 +929,6 @@ final class _PackageIndex {
     return pkg;
   }
 
-  /// The top-level functions and `var name = ...` declarations, kept for
-  /// [_GoEval].
   void _readDecls(
     _Package pkg,
     List<GoToken> t,
@@ -975,7 +959,6 @@ final class _PackageIndex {
     }
   }
 
-  /// `name [Type] = expr` at [i]: records where `expr` starts.
   int _readVarSpec(_Package pkg, _FileTok file, int i, int end) {
     final t = file.tokens;
     if (i >= end || t[i].kind != GoTok.ident) return i + 1;
@@ -1036,8 +1019,6 @@ final class _PackageIndex {
     }
   }
 
-  /// `func Name() []string { return []string{...} }`: a function whose
-  /// whole body returns one slice literal.
   void _readSliceFuncs(
     _Package pkg,
     List<GoToken> t,
@@ -1076,8 +1057,6 @@ final class _Package {
   final varExprs = <String, ({_FileTok file, int at})>{};
 }
 
-/// The end of the expression starting at [i]: the first `,`, `)` or `}`
-/// outside brackets, or a following top-level declaration.
 int _skipExpr(List<GoToken> t, int i, int end) {
   var depth = 0;
   for (var j = i; j < end; j++) {
@@ -1098,14 +1077,12 @@ int _skipExpr(List<GoToken> t, int i, int end) {
   return end;
 }
 
-/// A top-level Go function: its parameter names and named result.
 final class _GoFunc {
   _GoFunc(this.ref, this.params, this.result);
 
   factory _GoFunc.parse(_FuncRef ref) {
     final t = ref.file.tokens;
     var i = ref.bodyStart - 1;
-    // Walk back from the body's `{` to the `func Name` header.
     var open = i;
     while (open > 0 && !(t[open].text == 'func')) {
       open--;
@@ -1138,8 +1115,7 @@ final class _GoFunc {
   final String? result;
 }
 
-/// Go standard library constants a value set can name. The provider tree
-/// does not vendor the standard library, and these values are fixed by it.
+// Go stdlib is not vendored in azurerm; these constants come from net/http.
 const _goStdConsts = {
   'net/http': {
     'MethodGet': 'GET',
@@ -1160,7 +1136,6 @@ final class _EvalFail implements Exception {
 
 enum _Flow { normal, next, done }
 
-/// A scope of one evaluation: the file being read and its local names.
 final class _Scope {
   _Scope(this.file, [Map<String, Object>? locals]) : locals = locals ?? {};
 
@@ -1169,13 +1144,6 @@ final class _Scope {
   Object? returned;
 }
 
-/// Evaluates the Go expressions a value-set validator is built from:
-/// slice and struct literals, string conversions and `+`, `append`,
-/// `make`, calls to package functions (with arguments) and inline
-/// closures, and bodies of assignments, `range` loops, `if` filters
-/// (`==`, `!=`, `strings.HasPrefix`, `!`, `&&`, `||`), `continue`,
-/// `slices.Sort` and `return`. Any other shape throws [_EvalFail], so a
-/// set is either fully evaluated or left unresolved, never guessed.
 final class _GoEval {
   _GoEval(this.index);
 
@@ -1280,8 +1248,6 @@ final class _GoEval {
     return (_named(s.file.packagePath, name), i + 1);
   }
 
-  /// `cases.Title(language.X, cases.NoLower).String(expr)`: upper-cases
-  /// the first letter of each word and leaves the rest as written.
   (Object, int) _title(_Scope s, int open, int end) {
     final t = _t(s);
     if (open >= end || t[open].text != '(') throw const _EvalFail();
@@ -1345,8 +1311,15 @@ final class _GoEval {
     return (out, close + 1);
   }
 
-  /// The string fields of `{Field: expr, ...}`; a field whose value is
-  /// not a string (a number the tokenizer drops, a bool) is left out.
+  String? _tryStringExpr(_Scope s, int start, int end) {
+    try {
+      final (value, next) = _expr(s, start, end);
+      return next == end && value is String ? value : null;
+    } on _EvalFail {
+      return null;
+    }
+  }
+
   Map<String, Object> _struct(_Scope s, int start, int close) {
     final t = _t(s);
     final out = <String, Object>{};
@@ -1358,11 +1331,8 @@ final class _GoEval {
       final field = t[k].text;
       final valueEnd = _skipExpr(t, k + 2, close);
       if (valueEnd > k + 2) {
-        try {
-          final (value, next) = _expr(s, k + 2, valueEnd);
-          if (next == valueEnd && value is String) out[field] = value;
-        } on _EvalFail {
-          // Not a string field.
+        if (_tryStringExpr(s, k + 2, valueEnd) case final value?) {
+          out[field] = value;
         }
       }
       k = valueEnd < close && t[valueEnd].text == ',' ? valueEnd + 1 : valueEnd;
@@ -1411,7 +1381,6 @@ final class _GoEval {
     }
   }
 
-  /// `func() (res []string) { ... }()`.
   (Object, int) _closure(_Scope s, int i, int end) {
     final t = _t(s);
     if (i + 2 >= end || t[i + 1].text != '(' || t[i + 2].text != ')') {
@@ -1462,7 +1431,6 @@ final class _GoEval {
       }
       if (text == 'continue') return _Flow.next;
       if (text == 'for') {
-        // for _, v := range expr { body }
         if (i + 6 >= end ||
             t[i + 2].text != ',' ||
             t[i + 3].kind != GoTok.ident ||

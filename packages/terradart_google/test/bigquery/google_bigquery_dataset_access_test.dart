@@ -1,12 +1,6 @@
 import 'package:terradart_google/bigquery.dart';
 import 'package:test/test.dart';
 
-/// Wire-precision tests for the 8-variant `BigqueryDatasetAccess` sealed
-/// hierarchy (the README's flagship exactly-one-of example).
-///
-/// Gate 6 asserts each variant encodes something well-formed; these tests
-/// pin the exact principal key per variant and that no sibling principal
-/// key leaks into another variant's encoding.
 void main() {
   const principalKeys = {
     'user_by_email',

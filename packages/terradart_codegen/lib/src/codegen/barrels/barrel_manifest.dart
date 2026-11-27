@@ -1,14 +1,3 @@
-/// Authored manifest for the generated per-service barrels
-/// (`lib/src/codegen/barrels/barrels.yaml`).
-///
-/// The barrel STRUCTURE (which generated file exports which public types)
-/// derives from the catalog at `terradart wrap` time; this manifest carries
-/// only the human decisions the IR cannot know: the barrel's doc comment,
-/// a file-name override when it differs from the barrel key (`sql` →
-/// `cloud_sql.dart`), and verbatim export directives for hand-written
-/// sources the wrap pipeline does not emit (e.g. `FirestoreFields`).
-library;
-
 import 'dart:io';
 
 import 'package:yaml/yaml.dart';
@@ -22,24 +11,14 @@ class BarrelManifest {
     this.dataSourceBarrels = const {},
   });
 
-  /// Umbrella file stem under `lib/` (e.g. `terradart_google_beta` for the
-  /// beta package). Defaults to the original google umbrella so existing
-  /// manifests need no edit.
   final String umbrellaFile;
 
-  /// Verbatim `///` doc block for the umbrella.
   final String umbrellaDoc;
 
-  /// Verbatim `export '...';` directives the umbrella carries beyond the
-  /// per-service barrels (e.g. `provider.dart`).
   final List<String> umbrellaExtraExports;
 
-  /// Barrel key (== catalog `barrel` / override `outputDir`) → spec.
   final Map<String, BarrelSpec> barrels;
 
-  /// Data source type → the service barrel that exports it beside `data`,
-  /// where [dataSourceBarrelFor] derives none or the wrong one. The value
-  /// `data` keeps the type in the `data` barrel only.
   final Map<String, String> dataSourceBarrels;
 }
 
@@ -50,23 +29,15 @@ class BarrelSpec {
     this.extraExports = const [],
   });
 
-  /// Verbatim `///` doc block emitted above `library;`.
   final String doc;
 
-  /// Barrel file stem under `lib/` when it differs from the barrel key.
   final String? file;
 
-  /// Verbatim `export '...' show ...;` directives for hand-written sources.
   final List<String> extraExports;
 
   String fileStemFor(String barrelKey) => file ?? barrelKey;
 }
 
-/// Loads and validates `barrels.yaml` at [path].
-///
-/// Throws [FormatException] on structural problems (missing `doc`, unknown
-/// keys, wrong value shapes) so `terradart wrap` fails loudly instead of
-/// emitting a half-formed barrel.
 BarrelManifest loadBarrelManifest(String path) {
   final file = File(path);
   if (!file.existsSync()) {

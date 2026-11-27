@@ -1,4 +1,3 @@
-// packages/terradart_cloudflare/lib/provider.dart
 /// Provider block factory and version constants for
 /// `cloudflare/cloudflare`.
 ///

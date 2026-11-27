@@ -223,7 +223,6 @@ MigrationResult migrateModule(
 /// The Dart package name for a module name (`my-infra` → `my_infra`).
 String packageNameFor(String name) => snakeCase(name);
 
-/// The SDK floor of a migrated package's pubspec.
 final Version _migratedSdkFloor = Version(3, 12, 0);
 
 /// `dart_style` at the language version of a migrated package, which is
@@ -362,7 +361,6 @@ String _mergedCtor(MergedInfra group) => group.workspace
     ? '${group.stackClass}(env: env, workspace: workspace)'
     : '${group.stackClass}(env: env)';
 
-/// `runEnvironments` for [group]: the manifest `terradart --env` reads.
 String _runEnvironmentsStmt(MergedInfra group, {String indent = '  '}) {
   final lines = [
     '${indent}await runEnvironments(',
@@ -376,9 +374,6 @@ String _runEnvironmentsStmt(MergedInfra group, {String indent = '  '}) {
   return lines.join('\n');
 }
 
-/// Several merged groups. Omitting `--env` writes every member (no manifest:
-/// `terradart plan` then asks for `--env`). A name selects one group through
-/// `runEnvironments`, so the manifest names that environment's directory.
 String _manyGroupBody(List<MergedInfra> merged) {
   final b = StringBuffer()
     ..writeln("  final selected = _option(args, '--env');")

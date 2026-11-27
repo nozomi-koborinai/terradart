@@ -20,8 +20,7 @@ final class HclWriter {
     unicode: true,
   );
 
-  /// `google.eu`: an object key written as a dotted identifier, which
-  /// Terraform accepts unquoted (`providers = { google.eu = google.eu }`).
+  // Terraform accepts unquoted dotted object keys (e.g. providers = { google.eu = google.eu }).
   static final RegExp _dottedIdentifier = RegExp(
     r'^[\p{L}_][\p{L}\p{M}\p{N}_-]*(\.[\p{L}_][\p{L}\p{M}\p{N}_-]*)+$',
     unicode: true,
@@ -200,7 +199,6 @@ final class HclWriter {
       final buf = StringBuffer('<<${t.flush ? '-' : ''}${t.delimiter}\n');
       buf.write(body);
       if (!body.endsWith('\n')) buf.write('\n');
-      // The closing marker sits at the enclosing entry's indentation.
       buf.write(indent * level);
       buf.write(t.delimiter);
       return buf.toString();

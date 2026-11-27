@@ -18,7 +18,6 @@ TestStack _stack() => TestStack(
   appExports: AppExports('lib/gen/x.g.dart', name: 'Orders'),
 );
 
-/// A Stack with one output of every reader type, all read from `topic`.
 TestStack _typedStack() {
   final stack = _stack();
   final topic = stack.add(
@@ -42,9 +41,6 @@ TestStack _typedStack() {
     ..addOutput('secret', attr<String>('secret'), sensitive: true);
 }
 
-/// Writes [source] beside a `main.dart` whose body is [body], runs it with
-/// the compile-time [defines] — on the VM, or compiled to JavaScript with
-/// dart2js and run by Node when [web] — and returns its stdout lines.
 Future<List<String>> _run(
   String source,
   String body, {
@@ -90,7 +86,6 @@ $body
   return const LineSplitter().convert(result.stdout as String);
 }
 
-/// Why a test needs Node, or `null` when it is on PATH.
 final Object? _noNode = Process.runSync('which', ['node']).exitCode == 0
     ? null
     : 'node is not on PATH';
@@ -201,8 +196,6 @@ void main() {
   });
 
   group('dart-define output', () {
-    /// The `terraform output -json dart_defines` value of [stack], whose
-    /// outputs are all literals.
     Map<String, String> applied(Stack stack, [String name = 'dart_defines']) {
       final output = stack.synth().tfJson['output'] as Map<String, Object?>;
       final value = (output[name]! as Map<String, Object?>)['value'];

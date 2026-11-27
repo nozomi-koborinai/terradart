@@ -1,34 +1,13 @@
-// self_heal_overrides.dart: mechanical override repairs diagnosed by
-// `terradart wrap` (E406 and E301).
-//
-// Only strictly mechanical stale-metadata diagnostics are repaired:
-// - E406 `sealedNames "<key>" matches no sealed group`
-// - E406 `[<key>]: sealedNames "<human>" repeats the derived name; remove it`
-// - E406 `[<members>]: the group source declares it; remove the entry`
-// - E406 `enumValues <path>: the derivation already gives every one of these
-//   values; remove the entry`
-// - E301 / regen stderr `unsealedGroups "<key>" matches no group wrap leaves
-//   unsealed; remove it`
-// - E301 / regen stderr `nested helper not reachable from the constructor:
-//   <type>.<block>`
-//
-// Judgement-class diagnostics (clashing sealedNames, unsealed groups needing a
-// human reason, missing schema inputs, untyped references, type-name clashes)
-// are never matched and remain blockers.
-
 import 'retire_stale_sealed_names.dart';
 
-/// One mechanical override repair diagnosed by `terradart wrap`.
 sealed class OverrideFix {
   const OverrideFix();
 
-  /// Wrap diagnostic label (`google_foo` or `data.azurerm_foo`).
   String get overrideType;
 
   String get description;
 }
 
-/// Remove a stale or redundant key from `sealedNames:`.
 final class DropSealedName extends OverrideFix {
   const DropSealedName(this.overrideType, this.key);
 
@@ -49,7 +28,6 @@ final class DropSealedName extends OverrideFix {
   int get hashCode => Object.hash(overrideType, canonicalGroupKey(key));
 }
 
-/// Remove a stale key from `unsealedGroups:`.
 final class DropUnsealedGroup extends OverrideFix {
   const DropUnsealedGroup(this.overrideType, this.key);
 
@@ -70,7 +48,6 @@ final class DropUnsealedGroup extends OverrideFix {
   int get hashCode => Object.hash(overrideType, canonicalGroupKey(key));
 }
 
-/// Remove a redundant group from `exactlyOneOf:` or `atMostOneOf:`.
 final class DropOverrideGroup extends OverrideFix {
   const DropOverrideGroup(this.overrideType, this.membersKey);
 
@@ -91,7 +68,6 @@ final class DropOverrideGroup extends OverrideFix {
   int get hashCode => Object.hash(overrideType, canonicalGroupKey(membersKey));
 }
 
-/// Remove a stale path from `enumValues:`.
 final class DropEnumValues extends OverrideFix {
   const DropEnumValues(this.overrideType, this.attrPath);
 
@@ -112,7 +88,6 @@ final class DropEnumValues extends OverrideFix {
   int get hashCode => Object.hash(overrideType, attrPath);
 }
 
-/// Add a newly derived nested block to an explicit `paramOrder:` list.
 final class AddParamOrderBlock extends OverrideFix {
   const AddParamOrderBlock(this.overrideType, this.blockName);
 
@@ -152,7 +127,6 @@ final _unreachableHelper = RegExp(
   r'(?:terradart wrap:|\[E301\])\s+nested helper not reachable from the constructor: ([a-z0-9_]+)\.([a-z0-9_]+)\b',
 );
 
-/// Extracts every mechanical override fix diagnosed in a `terradart wrap` log.
 List<OverrideFix> parseMechanicalWrapFixes(String log) {
   final seen = <OverrideFix>{};
   final out = <OverrideFix>[];
@@ -181,8 +155,6 @@ List<OverrideFix> parseMechanicalWrapFixes(String log) {
   return out;
 }
 
-/// Drops list entries matching [memberKeys] (by [canonicalGroupKey]) from
-/// `exactlyOneOf:` or `atMostOneOf:`. Removes the header when emptied.
 String dropGroupListSection(
   String source,
   String section,
@@ -250,7 +222,6 @@ String dropGroupListSection(
   return out.join('\n');
 }
 
-/// Drops keys in [paths] from `enumValues:`. Removes the header when emptied.
 String dropEnumValuesSection(String source, Set<String> paths) {
   if (paths.isEmpty) return source;
   final lines = source.split('\n');
@@ -326,9 +297,6 @@ String dropEnumValuesSection(String source, Set<String> paths) {
   return out.join('\n');
 }
 
-/// Inserts each missing block in [blocks] into an explicit `paramOrder:` list.
-/// Places new entries before a trailing `- project` item when present, else at
-/// the end of `paramOrder:`. No-op when `paramOrder:` is absent.
 String addParamOrderBlocks(String source, List<String> blocks) {
   if (blocks.isEmpty) return source;
   final lines = source.split('\n');
@@ -364,8 +332,6 @@ String addParamOrderBlocks(String source, List<String> blocks) {
   return lines.join('\n');
 }
 
-/// Applies [fixes] to override YAML files under [overridesRoot]. Returns a
-/// sorted description of every fix that modified a file on disk.
 List<String> applyMechanicalOverrideFixes(
   String overridesRoot,
   List<OverrideFix> fixes,

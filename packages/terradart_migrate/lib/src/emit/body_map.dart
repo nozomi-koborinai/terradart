@@ -1,18 +1,7 @@
-/// A block body as a uniform expression tree.
-///
-/// HCL writes nested arguments as blocks (`push_config { ... }`), tf.json as
-/// object attributes; the emitter reads both through one [ObjectExpr]:
-/// repeated blocks of one type become a tuple, so a body looks exactly like
-/// its Terraform JSON form.
-library;
-
 import 'package:terradart_hcl/terradart_hcl.dart';
 
-/// [body] as an object: attributes verbatim, nested blocks grouped by type.
-///
-/// A labelled nested block (`dynamic "x"`, `provisioner "local-exec"`) is
-/// kept under its type with the labels folded into a `__labels` key, which
-/// no manifest slot ever claims — so it surfaces as an unmapped argument.
+const _unclaimedBlockLabelsKey = '__labels';
+
 ObjectExpr bodyAsObject(Body body) {
   final items = <ObjectItem>[];
   final blocksByType = <String, List<Block>>{};
@@ -49,7 +38,7 @@ ObjectExpr _blockAsObject(Block block) {
   if (block.labels.isEmpty) return inner;
   return ObjectExpr([
     ObjectItem(
-      const LiteralExpr('__labels', SourceRange.none),
+      const LiteralExpr(_unclaimedBlockLabelsKey, SourceRange.none),
       TupleExpr([
         for (final l in block.labels) LiteralExpr(l.text, l.range),
       ], SourceRange.none),
@@ -59,11 +48,9 @@ ObjectExpr _blockAsObject(Block block) {
   ], block.range);
 }
 
-/// The items of an object keyed by name; `null` when [expr] is not an object
-/// (a one-element tuple holding an object counts — tf.json writes single
-/// nested blocks either way). A computed key is not supported.
 Map<String, Expr>? objectMap(Expr expr) {
   var e = expr;
+  // Terraform JSON encodes a single nested block as either an object or a one-element array.
   if (e is TupleExpr && e.elements.length == 1) e = e.elements.single;
   if (e is! ObjectExpr) return null;
   final out = <String, Expr>{};

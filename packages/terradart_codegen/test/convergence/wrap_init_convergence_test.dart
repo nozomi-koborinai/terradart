@@ -19,8 +19,6 @@ const _overrideRoot = 'lib/src/codegen/wrapper_overrides/yaml';
 const _schemaPath = 'test/fixtures/wrap/source/schema.json';
 const _mmDir = 'test/fixtures/wrap/source/mm';
 
-/// Reads axis [key] from a draft, or null if the axis was not emitted
-/// (resources omit `kind`/`schemaStubBodyMode` at their defaults).
 String? _axis(WrapInitDraft draft, String key) {
   for (final a in draft.axes) {
     if (a.key == key && a is FilledAxis) return a.value as String;
@@ -28,16 +26,11 @@ String? _axis(WrapInitDraft draft, String key) {
   return null;
 }
 
-/// Derived axis values, normalized to the WrapperOverride default when
-/// wrap-init omitted them (resources do not emit kind/schemaStubBodyMode).
 String _derivedKind(WrapInitDraft d) => _axis(d, 'kind') ?? 'resource';
 String _derivedStub(WrapInitDraft d) =>
     _axis(d, 'schemaStubBodyMode') ?? 'nosuchmethod';
 String? _derivedOutputDir(WrapInitDraft d) => _axis(d, 'outputDir');
 
-/// Committed [WrapperOverrideKind] mapped to the wrap-init emit spelling
-/// (`resource` -> `'resource'`, `dataSource` -> `'data_source'`), so it lines
-/// up with [_derivedKind] / wrap-init's `FilledAxis('kind', 'data_source')`.
 String _committedKind(WrapperOverrideKind k) =>
     k == WrapperOverrideKind.dataSource ? 'data_source' : 'resource';
 
@@ -71,7 +64,7 @@ void main() {
             : ir.dataSources[tfType];
         if (def == null) {
           skipped++;
-          continue; // no schema fixture for this override
+          continue;
         }
 
         final mmFile = File(p.join(_mmDir, '$tfType.yaml'));
@@ -112,23 +105,10 @@ void main() {
         // ignore: avoid_print
         print('  MISMATCH $m');
       }
-      // Tracer never fails — it only measures. The asserting test below now guards
-      // all three axes (kind + outputDir + schemaStubBodyMode). The one residual
-      // tracer mismatch is google_project's raw kind spelling (committed
-      // `dataSource` vs wrap-init emit `data_source`); the assertion normalizes it
-      // via `_committedKind`, so it is not a real drift.
       expect(true, isTrue);
     },
   );
 
-  // Phase D assertion. Scope: kind + outputDir + schemaStubBodyMode.
-  //
-  // outputDir joins the anchor here: OutputDirResolver folds each resource into
-  // its product directory (e.g. `cloud_run`, `firebase_app_check`,
-  // `artifact_registry`) via the GoogleProviderRules alias map, matching the
-  // committed outputDir of every override. A regression in the resolver or the
-  // alias map (or a new product whose prefix is missing) trips this assertion
-  // even though `wrap --check` stays green (it reads the override as truth).
   test(
     'committed overrides match the wrap-init anchor (kind + outputDir + schemaStubBodyMode)',
     () {

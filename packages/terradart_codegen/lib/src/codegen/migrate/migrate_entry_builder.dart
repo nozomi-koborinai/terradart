@@ -14,30 +14,6 @@ import 'migrate_manifest_data.dart';
 import 'migrate_shape_analyzer.dart';
 import 'output_getter_extractor.dart';
 
-/// Builds one factory's migration recipe from the SAME inputs the wrapper
-/// emitters consume (`ResourceDef` IR, `WrapperOverride`, the raw schema
-/// block for `deriveNestedTypes`) plus the just-emitted wrapper source, so
-/// the manifest can never drift from the generated Dart API:
-///
-/// - Top-level slots follow `orderedConstructorParams` /
-///   `orderedDataSourceConstructorParams` — the emitter's own slot order.
-/// - IR attributes classify from `dartTypeOverrides[name] ??
-///   writeDartType(type)`.
-/// - Derived nested blocks use the `collectNestedTypes` specs the emitter
-///   rendered (class name, cardinality, requiredness).
-/// - Custom slots are read from their verbatim `paramDeclaration` /
-///   `argMapEntry` and sealed arguments from their sealed type, both
-///   resolved against the helper / sealed / enum declarations extracted
-///   from the emitted file.
-/// - Helper recipes, enum member maps and output getters are extracted
-///   from the emitted file (`HelperClassExtractor`, `EnumExtractor`,
-///   `extractOutputGetters`).
-///
-/// Unlike the wrapper emitters this never throws on an unrepresentable
-/// shape: such a slot or helper is recorded as manual with a reason, and
-/// `terradart lint-override` (rule `migrate-shape-underivable`) decides
-/// whether that is an accepted debt.
-/// One curated factory's inputs to [buildMigrateEntries].
 final class MigrateEntryInput {
   const MigrateEntryInput({
     required this.tfType,
@@ -58,53 +34,25 @@ final class MigrateEntryInput {
   final WrapperOverride override;
   final ResourceDef def;
 
-  /// `'resource'` or `'dataSource'` (the catalog's kind vocabulary).
   final String kind;
 
-  /// The formatted wrapper file `terradart wrap` just emitted.
   final String emittedSource;
 
-  /// Raw provider-schema `block` for the type; required when
-  /// `override.deriveNestedTypes` is set.
   final Map<String, dynamic>? rawSchemaBlock;
 
-  /// The nested-type collector's enum resolver — the one the wrapper
-  /// emitter used for this type.
   final EnumValuesResolver enumValues;
 
-  /// The nested exactly-one groups the wrapper emitter sealed for this
-  /// type (`ProviderEnums.nestedHints`).
   final Map<String, List<List<String>>> exactlyOneGroups;
 
-  /// The nested at-most-one groups, likewise.
   final Map<String, List<List<String>>> atMostOneGroups;
 
-  /// The type's reference inputs the wrapper emitter typed, by dotted path.
   final Map<String, ResolvedReference> references;
 
-  /// The names no derived helper may take (`ProviderEnums.nestedHints`), as
-  /// the wrapper emitter passed them.
   final Set<String> reservedTypeNames;
 
-  /// The stem of every type the lane wraps, as the emitters got it.
   final Map<String, Set<String>> laneInputs;
 }
 
-/// Builds every factory's recipe against one package-wide symbol table.
-///
-/// Helper classes and enums are extracted from every emitted file first, so
-/// a slot typed with a helper that a *sibling* wrapper file declares (the
-/// Eventarc `LoggingConfig` shared by three resources) resolves exactly like
-/// a same-file helper. Each build still records only the helpers / enums its
-/// own file declares, so the manifest emitter's per-name tables stay
-/// one-declaration-per-file.
-///
-/// [barrelFiles] maps a barrel key (the override's `outputDir`) to the barrel
-/// file stem under `lib/` when they differ (`sql` → `cloud_sql`, from
-/// `barrels.yaml`); the manifest records the file stem so a migrated Stack
-/// can import `package:<package>/<barrel>.dart` directly.
-/// [dataSourceBarrels] maps a data source type to the service barrel key
-/// that also exports it, which the manifest records instead of `data`.
 List<MigrateEntryBuild> buildMigrateEntries(
   List<MigrateEntryInput> inputs, {
   Map<String, String> barrelFiles = const {},
@@ -159,10 +107,6 @@ String _barrelFile(
   return barrelFiles[barrel] ?? barrel;
 }
 
-/// Builds one factory's recipe. [context] is the symbol table slot types
-/// resolve against (package-wide via [buildMigrateEntries], or the file's
-/// own when omitted); [fileHelpers] / [fileEnums] default to extracting the
-/// file's own declarations.
 MigrateEntryBuild buildMigrateEntry({
   required String tfType,
   required WrapperOverride override,
@@ -236,7 +180,6 @@ MigrateEntryBuild buildMigrateEntry({
       ? orderedDataSourceConstructorParams(def, override.paramOrder)
       : orderedConstructorParams(def, override.paramOrder);
 
-  // A key a parent reference fills → that reference's Dart name.
   final defaultsFrom = <String, String>{
     if (!isDataSource)
       for (final MapEntry(key: name, value: ref) in references.entries)
@@ -261,7 +204,6 @@ MigrateEntryBuild buildMigrateEntry({
       });
     } else if (spec != null &&
         ctx.helpers.sealedClasses.contains(spec.className)) {
-      // A block that is one exactly-one group is itself the sealed type.
       slots.add(
         _fromShape(
           classifyDartType(
@@ -343,10 +285,6 @@ MigrateEntryBuild buildMigrateEntry({
   );
 }
 
-/// A custom slot with a `<slot>.blockKey:` or `...<slot>.argMap` argMap
-/// entry is a *virtual* slot: the chosen variant's keys land directly in the
-/// resource's arguments, which is what [MigrateSlotData.merged] means (no
-/// Terraform key of its own, so `tfName` is empty).
 MigrateSlotData _customSlot(String name, CustomSlot custom, ShapeContext ctx) {
   final parsed = parseCustomSlot(custom);
   final shape = customSlotShape(custom, parsed, ctx);

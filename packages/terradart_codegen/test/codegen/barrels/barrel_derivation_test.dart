@@ -29,8 +29,6 @@ void main() {
       final manifest = loadBarrelManifest(
         'lib/src/codegen/barrels/barrels.yaml',
       );
-      // Length is ratcheted by wrap_command_test / docs consistency when a
-      // Wave adds a barrel — keep this test focused on structural shape.
       expect(manifest.barrels, isNotEmpty);
       expect(manifest.barrels['sql']!.file, 'cloud_sql');
       expect(manifest.barrels['pubsub']!.doc, startsWith('///'));
@@ -115,7 +113,6 @@ void main() {
     test('emits sorted show sets, file overrides, and the umbrella', () {
       final files = buildBarrelFiles(entries: entries, manifest: manifest());
       expect(files.keys.toSet(), {'pubsub', 'cloud_sql', 'terradart_google'});
-      // Show names sort alphabetically (className merged with nestedTypes).
       expect(
         files['pubsub'],
         contains(
@@ -123,9 +120,7 @@ void main() {
           'show ATopicEnum, GooglePubsubTopic, ZTopicHelper;',
         ),
       );
-      // The sql barrel exports from src/sql/ under its cloud_sql file stem.
       expect(files['cloud_sql'], contains("export 'src/sql/"));
-      // Umbrella sorts barrel exports and verbatim extras together.
       final umbrella = files['terradart_google']!;
       final cloudSqlAt = umbrella.indexOf("export 'cloud_sql.dart';");
       final providerAt = umbrella.indexOf("export 'provider.dart';");

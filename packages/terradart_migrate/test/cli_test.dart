@@ -108,9 +108,6 @@ void main() {
       ]) {
         expect(File(p.join(out, f)).existsSync(), isTrue, reason: f);
       }
-      // The call became `addModule(...)`; the child directory stays where it
-      // is, so `source` still resolves from `tf-out/`. The module declares
-      // neither a variable nor an output, so there is no typed wrapper.
       expect(
         File(p.join(out, 'lib/real_plan_src_stack.dart')).readAsStringSync(),
         contains(
@@ -127,7 +124,6 @@ void main() {
         contains("await NetworkStack().writeTo('tf-out/modules/network');"),
       );
 
-      // Non-destructive: a non-empty --out is refused without --force.
       final again = await _run([
         '--dir',
         '$_fixtures/real_plan_src',
@@ -196,8 +192,6 @@ void main() {
 
   test('a child where nothing translates stays Terraform, no Stack', () async {
     final input = Directory(p.join(tmp.path, 'infra'))..createSync();
-    // `count` on the call is a blocker (its instances are addressed
-    // `module.m[0]`), so the call itself stays in Terraform too.
     File(p.join(input.path, 'main.tf')).writeAsStringSync(
       'resource "google_pubsub_topic" "t" { name = "t" }\n'
       'module "m" {\n  source = "./modules/m"\n  count  = 2\n}\n',
@@ -259,7 +253,6 @@ void main() {
         ),
       ),
     );
-    // Refused before anything is written.
     expect(File(p.join(tmp.path, 'escape.txt')).existsSync(), isFalse);
     expect(out.existsSync(), isFalse);
   });
@@ -284,7 +277,6 @@ void main() {
       File(p.join(out, 'tf-out', weird, leftoverFileName)).existsSync(),
       isTrue,
     );
-    // Before the name was kept literal, this resolved to <tmp>/escape/.
     expect(Directory(p.join(tmp.path, 'escape')).existsSync(), isFalse);
   });
 
@@ -491,8 +483,6 @@ resource "google_pubsub_topic" "t" {
     expect(infra, contains('EastStack'));
     expect(infra, contains('WestStack'));
     expect(infra, contains('exit(64)'));
-    // Omitting --env writes every environment with no manifest; a name
-    // selects one group through runEnvironments.
     expect(infra, contains(".writeTo('tf-out/\${env.path}')"));
   });
 }

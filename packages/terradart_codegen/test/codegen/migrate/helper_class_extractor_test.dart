@@ -365,9 +365,11 @@ final class View extends Access {
       expect(domain.fields.map((f) => f.name), ['domain', 'role', 'condition']);
       expect(domain.fields[2].typeSource, 'Condition?');
       expect(domain.fields[2].tfKey, 'condition');
-      // Multi-key variants without a getter: the required key no sibling
-      // writes is the discriminator.
-      expect(domain.blockKey, 'domain');
+      expect(
+        domain.blockKey,
+        'domain',
+        reason: 'multi-key variant without getter uses its unique required key',
+      );
       expect(_one(src, 'View').blockKey, 'view');
     });
 
@@ -493,7 +495,6 @@ class Dual {
         h.irregularReason,
         contains('field `name` is written under several keys'),
       );
-      // The same key written twice for one field is not a conflict.
       expect(h.irregularReason, isNot(contains('`other`')));
     });
 

@@ -10,11 +10,6 @@ import 'package:test/test.dart';
 
 import 'init_support.dart';
 
-/// The real loop on the host OS: the pinned OpenTofu downloaded into an
-/// empty cache, a Stack per environment synthesized by `runEnvironments`
-/// in `dart run`, then init, apply (a local-state `time_sleep`, no cloud),
-/// outputs and destroy. The environment enum mixes a local backend with a
-/// GCS one, which is only synthesized and validated.
 void main() {
   final packages = p.normalize(p.join(Directory.current.path, '..'));
 
@@ -129,8 +124,7 @@ void main() {
     tearDownAll(() => _deleteTemp(Directory(cache)));
 
     for (final MapEntry(key: name, value: s) in scaffolds.entries) {
-      // appwrite/appwrite is published to registry.terraform.io only;
-      // registry.opentofu.org has no such provider.
+      // appwrite/appwrite is absent from registry.opentofu.org.
       if (name == 'appwrite') continue;
       test(name, () async {
         final root = Directory.systemTemp.createTempSync('terradart_init_');
@@ -158,9 +152,7 @@ void main() {
   });
 }
 
-/// On Windows a provider plugin that has just exited can hold its files for
-/// a moment, so a scratch directory is deleted with retries and, if it stays
-/// locked, left to the system temp directory.
+// On Windows, exited provider plugins can hold file handles briefly; retry then abandon.
 Future<void> _deleteTemp(Directory dir) async {
   for (var attempt = 0; ; attempt++) {
     try {

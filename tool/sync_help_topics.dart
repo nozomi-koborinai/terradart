@@ -1,14 +1,3 @@
-// Keeps the `terradart help <topic>` texts the CLI carries identical to
-// their sources, packages/terradart_cli/help/<topic>.md.
-//
-// The CLI carries them as Dart constants (lib/src/assets/help_topics.g.dart)
-// because `dart install` and `dart compile exe` cannot read a
-// file outside the package at run time.
-//
-//   dart tool/sync_help_topics.dart        # list what is stale, exit 1
-//   dart tool/sync_help_topics.dart --fix  # rewrite the constants
-//
-// tool/help_topics_test.dart fails while anything is stale.
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -17,7 +6,6 @@ const helpTopicsDir = 'packages/terradart_cli/help';
 const helpTopicsDart =
     'packages/terradart_cli/lib/src/assets/help_topics.g.dart';
 
-/// The topic sources under [root], by name, in name order.
 Map<String, String> readHelpTopics(String root) {
   final files =
       Directory(p.join(root, helpTopicsDir))
@@ -32,7 +20,6 @@ Map<String, String> readHelpTopics(String root) {
   };
 }
 
-/// The Dart library that carries [topics].
 String renderHelpTopics(Map<String, String> topics) {
   final b = StringBuffer()
     ..write('// GENERATED FILE - DO NOT EDIT\n')
@@ -59,7 +46,6 @@ String renderHelpTopics(Map<String, String> topics) {
   return '$b';
 }
 
-/// The stale files, relative to [root]; with [fix], rewrites them.
 List<String> syncHelpTopics(String root, {bool fix = false}) {
   final file = File(p.join(root, helpTopicsDart));
   final dart = renderHelpTopics(readHelpTopics(root));
