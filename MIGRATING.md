@@ -2,6 +2,39 @@
 
 ## Unreleased
 
+### Provider packages export each public name once
+
+**Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
+`terradart_azure`, `terradart_cloudflare`, `terradart_appwrite`).** A Stack or
+a tool can import any libraries of the provider packages together without an
+`ambiguous_import` error:
+
+- `package:terradart_google/google_beta.dart` is removed. Its
+  `GoogleBetaProvider` and `GoogleProjectServiceIdentity` duplicated the ones
+  `terradart_google_beta` generates. Add `terradart_google_beta` to your
+  `dependencies` at the same caret as `terradart_google`, and import its
+  `provider.dart` and `project.dart`. The Terraform JSON is unchanged.
+- `terradart_google` no longer exports `kBetaProviderSource`. Import it from
+  `package:terradart_google_beta/provider.dart`.
+- Each `catalog.dart` names its list after its package: `terradartCatalog`
+  becomes `terradartGoogleCatalog`, `terradartGoogleBetaCatalog`,
+  `terradartAwsCatalog`, `terradartAzureCatalog`, `terradartCloudflareCatalog`
+  or `terradartAppwriteCatalog`. `CatalogEntry` and `CatalogKind` are declared
+  once, in `package:terradart_core/catalog.dart`, and every `catalog.dart`
+  re-exports them, so their uses compile unchanged.
+
+| Before | After |
+|---|---|
+| `import 'package:terradart_google/google_beta.dart'; GoogleProjectServiceIdentity('cloudasset', service: .literal('cloudasset.googleapis.com'))` | `import 'package:terradart_google_beta/project.dart'; GoogleProjectServiceIdentity('cloudasset', service: .literal('cloudasset.googleapis.com'))` |
+| `import 'package:terradart_google/google_beta.dart'; GoogleBetaProvider(project: 'my-project')` | `import 'package:terradart_google_beta/provider.dart'; GoogleBetaProvider(project: 'my-project')` |
+| `import 'package:terradart_google/provider.dart'; kBetaProviderSource` | `import 'package:terradart_google_beta/provider.dart'; kBetaProviderSource` |
+| `import 'package:terradart_google/catalog.dart'; terradartCatalog.where((e) => e.kind == CatalogKind.dataSource)` | `import 'package:terradart_google/catalog.dart'; terradartGoogleCatalog.where((e) => e.kind == CatalogKind.dataSource)` |
+| `import 'package:terradart_google_beta/catalog.dart'; terradartCatalog` | `import 'package:terradart_google_beta/catalog.dart'; terradartGoogleBetaCatalog` |
+| `import 'package:terradart_aws/catalog.dart'; terradartCatalog` | `import 'package:terradart_aws/catalog.dart'; terradartAwsCatalog` |
+| `import 'package:terradart_azure/catalog.dart'; terradartCatalog` | `import 'package:terradart_azure/catalog.dart'; terradartAzureCatalog` |
+| `import 'package:terradart_cloudflare/catalog.dart'; terradartCatalog` | `import 'package:terradart_cloudflare/catalog.dart'; terradartCloudflareCatalog` |
+| `import 'package:terradart_appwrite/catalog.dart'; terradartCatalog` | `import 'package:terradart_appwrite/catalog.dart'; terradartAppwriteCatalog` |
+
 ### Google provider constants are prefixed
 
 **Breaking (`terradart_google`).** `kProviderSource` and
