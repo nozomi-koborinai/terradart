@@ -21,7 +21,6 @@ void main() {
     return root;
   }
 
-  /// PATH containing a failing `yq` stub so any accidental `yq` call fails.
   Map<String, String> envWithBrokenYq(Directory root) {
     final bin = Directory(p.join(root.path, 'fake_bin'))..createSync();
     final yq = File(
