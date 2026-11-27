@@ -14,6 +14,7 @@ void main() {
 
     test('interpolation wraps with \${...}', () {
       expect(ref.interpolation, r'${google_pubsub_topic.orders.name}');
+      expect(ref.toTfJson(), r'${google_pubsub_topic.orders.name}');
     });
 
     test('bareAddress is unwrapped', () {

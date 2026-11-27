@@ -45,8 +45,13 @@ void main() {
         ('1h30m', const Duration(hours: 1, minutes: 30)),
         ('90m', const Duration(minutes: 90)),
         ('2.5s', const Duration(milliseconds: 2500)),
+        ('1.25s', const Duration(milliseconds: 1250)),
+        ('0.005s', const Duration(milliseconds: 5)),
         ('0.1s', const Duration(milliseconds: 100)),
         ('1500ms', const Duration(milliseconds: 1500)),
+        ('250us', const Duration(microseconds: 250)),
+        ('250\u00b5s', const Duration(microseconds: 250)),
+        ('250\u03bcs', const Duration(microseconds: 250)),
         ('3000ns', const Duration(microseconds: 3)),
       ]) {
         expect(parseGoDuration(text), duration, reason: text);

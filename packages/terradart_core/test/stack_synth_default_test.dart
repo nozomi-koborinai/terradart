@@ -55,6 +55,22 @@ void main() {
       );
     });
 
+    test('defaults outDir to tf-out when omitted', () async {
+      final stack = TestStack(providers: _providers);
+      final prev = Directory.current;
+      Directory.current = tempDir;
+      try {
+        await stack.writeTo();
+      } finally {
+        Directory.current = prev;
+      }
+
+      expect(
+        await File('${tempDir.path}/tf-out/main.tf.json').exists(),
+        isTrue,
+      );
+    });
+
     test('creates outDir when it does not exist', () async {
       final stack = TestStack(
         providers: const [

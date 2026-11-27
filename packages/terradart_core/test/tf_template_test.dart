@@ -51,8 +51,10 @@ void main() {
   group('templateVariableNames', () {
     test('finds var.<name> in interpolations and directives', () {
       expect(
-        templateVariableNames(r'${var.a}${var.a}-%{ if var.b-c }x%{ endif }'),
-        equals({'a', 'b-c'}),
+        templateVariableNames(
+          r'${var.a}${var.a}${var.BUCKET}-%{ if var.b-c }x%{ endif }',
+        ),
+        equals({'a', 'BUCKET', 'b-c'}),
       );
     });
 
