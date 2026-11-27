@@ -1,8 +1,8 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-import 'catalog_entry.dart';
+import 'package:terradart_core/catalog.dart';
 
-const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
+const List<CatalogEntry> terradartAwsCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'aws_accessanalyzer_analyzer',
     className: 'AwsAccessanalyzerAnalyzer',

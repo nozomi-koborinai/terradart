@@ -1,8 +1,8 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-import 'catalog_entry.dart';
+import 'package:terradart_core/catalog.dart';
 
-const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
+const List<CatalogEntry> terradartAzureCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'azurerm_aadb2c_directory',
     className: 'AzurermAadb2cDirectory',

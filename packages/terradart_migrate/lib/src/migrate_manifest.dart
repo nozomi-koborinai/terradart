@@ -1,6 +1,6 @@
-import 'package:terradart_google/catalog.dart' show CatalogKind;
+import 'package:terradart_core/catalog.dart' show CatalogKind;
 
-export 'package:terradart_google/catalog.dart' show CatalogKind;
+export 'package:terradart_core/catalog.dart' show CatalogKind;
 
 /// How one constructor parameter of a curated factory — or one field of a
 /// nested helper class — accepts its value.

@@ -9,8 +9,8 @@ End-to-end terradart example for a **Cloud Asset Inventory project feed**:
 
 Enabling the Cloud Asset API does **not** create
 `service-{PROJECT_NUMBER}@gcp-sa-cloudasset.iam.gserviceaccount.com`.
-This stack mints it with `google_project_service_identity` (google-beta)
-before the topic IAM grant. Creating a feed does not scan or export
+This stack mints it with `google_project_service_identity`, a google-beta
+resource from `terradart_google_beta`, before the topic IAM grant. Creating a feed does not scan or export
 existing assets. Folder and organization feeds are not in this stack
 (they need a folder/org parent).
 

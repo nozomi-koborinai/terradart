@@ -524,25 +524,35 @@ Map<String, String> _exportNamespace(
   return cache[norm] = out;
 }
 
+/// Entrypoint path → public name → the file declaring it, for every public
+/// library of [packages].
+Map<String, Map<String, String>> entrypointNamespaces(
+  String contextRoot,
+  List<String> packages, [
+  Map<String, CompilationUnit>? parsedUnits,
+]) {
+  final pkgRoots = _packageRoots(p.normalize(p.absolute(contextRoot)));
+  final units = parsedUnits ?? {};
+  final cache = <String, Map<String, String>>{};
+  return {
+    for (final package in packages)
+      for (final path in _entrypoints(package))
+        path: _exportNamespace(path, pkgRoots, units, cache, {}),
+  };
+}
+
 Set<(String, String)> _exported(
   String contextRoot,
   List<String> packages,
   Map<String, CompilationUnit> parsedUnits,
-) {
-  final root = p.normalize(p.absolute(contextRoot));
-  final pkgRoots = _packageRoots(root);
-  final cache = <String, Map<String, String>>{};
-  final out = <(String, String)>{};
-  for (final package in packages) {
-    for (final path in _entrypoints(package)) {
-      final ns = _exportNamespace(path, pkgRoots, parsedUnits, cache, {});
-      for (final e in ns.entries) {
-        out.add((e.value, e.key));
-      }
-    }
-  }
-  return out;
-}
+) => {
+  for (final ns in entrypointNamespaces(
+    contextRoot,
+    packages,
+    parsedUnits,
+  ).values)
+    for (final e in ns.entries) (e.value, e.key),
+};
 
 final class _Declarations extends RecursiveAstVisitor<void> {
   _Declarations([Map<String, CompilationUnit>? parsedUnits])

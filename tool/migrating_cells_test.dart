@@ -444,4 +444,40 @@ void main() {
     );
     expect(failures.where((f) => f.contains(' Before ')), isEmpty);
   });
+
+  test('a cell that opens with imports compiles with only those', () async {
+    const seeded = '''
+# Migrating terradart
+
+## 0.35.x → 0.36.0
+
+### Seeded
+
+**Breaking (`terradart_google`, `terradart_google_beta`).** Text.
+
+| Before | After |
+|---|---|
+| `GooglePubsubTopic.name` | `import 'package:terradart_google_beta/provider.dart'; kBetaProviderSource` |
+| `GooglePubsubTopic.name` | `import 'package:terradart_google/provider.dart'; kBetaProviderSource` |
+| `GooglePubsubTopic.name` | `import 'package:terradart_google/google_beta.dart'; GoogleBetaProvider()` |
+''';
+    final root = Directory.current.path;
+    final failures = (await checkMigratingCells(
+      root,
+      migrating: seeded,
+      lookupPublished: _fakeRelease035,
+      beforePathOverrides: _workspaceOverrides(root),
+    )).failures;
+    String at(int line) => failures.where((f) => f.contains(':$line:')).join();
+    expect(at(12), contains("Undefined name 'kBetaProviderSource'"));
+    expect(at(13), contains('URI_DOES_NOT_EXIST'));
+    expect(
+      {
+        for (final f in failures)
+          int.parse(RegExp(r'^MIGRATING\.md:(\d+):').firstMatch(f)![1]!),
+      },
+      {12, 13},
+      reason: failures.join('\n'),
+    );
+  });
 }

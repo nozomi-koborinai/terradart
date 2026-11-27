@@ -12,9 +12,5 @@ library;
 /// Provider source identifier.
 const String kGoogleProviderSource = 'hashicorp/google';
 
-/// Beta provider source — `hashicorp/google-beta`, version-locked to the
-/// same major as [kGoogleProviderVersionConstraint].
-const String kBetaProviderSource = 'hashicorp/google-beta';
-
-/// Version constraint for [kGoogleProviderSource] and [kBetaProviderSource].
+/// Version constraint for [kGoogleProviderSource].
 const String kGoogleProviderVersionConstraint = '~> 8.0';

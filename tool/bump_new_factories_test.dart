@@ -12,7 +12,7 @@ import 'wrap_lanes.dart';
 
 void main() {
   const catalog = '''
-const terradartCatalog = <CatalogEntry>[
+const terradartAwsCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'aws_new',
     className: 'AwsNew',

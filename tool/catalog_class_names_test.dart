@@ -12,7 +12,7 @@ void main() {
 
   test('reads class names dart_style wrapped onto the next line', () {
     File('${tmp.path}/_catalog.g.dart').writeAsStringSync('''
-const terradartCatalog = [
+const terradartGoogleCatalog = [
   CatalogEntry(
     className: 'GoogleShort',
   ),

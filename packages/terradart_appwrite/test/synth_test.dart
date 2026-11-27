@@ -2,10 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_appwrite/auth.dart';
+import 'package:terradart_appwrite/catalog.dart';
 import 'package:terradart_appwrite/project.dart';
 import 'package:terradart_appwrite/provider.dart';
-import 'package:terradart_appwrite/src/_catalog.g.dart';
-import 'package:terradart_appwrite/src/catalog_entry.dart';
 import 'package:terradart_appwrite/storage.dart';
 import 'package:test/test.dart';
 
@@ -75,7 +74,8 @@ Map<String, dynamic> _fixtureSchema() {
 }
 
 Set<String> _catalogTypes(CatalogKind kind) => {
-  for (final e in terradartCatalog.where((e) => e.kind == kind)) e.tfType,
+  for (final e in terradartAppwriteCatalog.where((e) => e.kind == kind))
+    e.tfType,
 };
 
 void main() {
