@@ -137,7 +137,7 @@ void main() {
         expect(line, isNot(contains('github.sha')));
       }
       expect(
-        'uses: actions/cache/save@v4'.allMatches(ci).length,
+        RegExp(r'uses: actions/cache/save@v\d+').allMatches(ci).length,
         2,
         reason: 'one save for tofuplugins and one for tfplugins',
       );

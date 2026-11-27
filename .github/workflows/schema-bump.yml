@@ -49,9 +49,6 @@ permissions:
   contents: write
   pull-requests: write
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
-
 jobs:
   plan:
     name: plan bump lanes
