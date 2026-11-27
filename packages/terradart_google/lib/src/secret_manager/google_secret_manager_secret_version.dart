@@ -26,7 +26,7 @@ sealed class SecretManagerSecretVersionPayload {
   }) = SecretManagerSecretVersionWriteOnlyPayload;
 
   const factory SecretManagerSecretVersionPayload.plaintext(
-    TfArg<String> secretData,
+    Sensitive<String> secretData,
   ) = SecretManagerSecretVersionPlaintextPayload;
 
   /// The key that tells the variants apart (`'secret_data_wo'` or
@@ -90,7 +90,7 @@ final class SecretManagerSecretVersionPlaintextPayload
     extends SecretManagerSecretVersionPayload {
   const SecretManagerSecretVersionPlaintextPayload(this.secretData);
 
-  final TfArg<String> secretData;
+  final Sensitive<String> secretData;
 
   @override
   @internal

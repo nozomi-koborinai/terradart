@@ -194,13 +194,13 @@ final Map<String, Object Function()> _syntheticInstances = {
   'ComputeImageSourceRawDisk': () => const ComputeImageSourceRawDisk(
     ComputeImageRawDisk(source: TfArg.literal('gs://b/disk.tar.gz')),
   ),
-  'BigqueryConnectionCloudSql': () => const BigqueryConnectionCloudSql(
-    instanceId: TfArg.literal('p:us:inst'),
-    database: TfArg.literal('db'),
+  'BigqueryConnectionCloudSql': () => BigqueryConnectionCloudSql(
+    instanceId: const TfArg.literal('p:us:inst'),
+    database: const TfArg.literal('db'),
     type: BigqueryConnectionCloudSqlType.postgres,
     credential: BigqueryConnectionCloudSqlCredential(
-      username: TfArg.literal('user'),
-      password: .password(TfArg.literal('secret')),
+      username: const TfArg.literal('user'),
+      password: .password(.variable('secret')),
     ),
   ),
   'BigqueryConnectionCloudSpanner': () =>
@@ -216,7 +216,7 @@ final Map<String, Object Function()> _syntheticInstances = {
       const BigqueryConnectionCloudResource(),
   'BigqueryConnectionSpark': () => const BigqueryConnectionSpark(),
   'BigqueryConnectionCloudSqlPasswordChoice': () =>
-      const BigqueryConnectionCloudSqlPasswordChoice(TfArg.literal('secret')),
+      BigqueryConnectionCloudSqlPasswordChoice(.variable('secret')),
   'BigqueryConnectionCloudSqlPasswordWo': () =>
       const BigqueryConnectionCloudSqlPasswordWo(TfArg.literal('secret')),
   'BigqueryConnectionConfiguration': () =>
@@ -255,9 +255,7 @@ final Map<String, Object Function()> _syntheticInstances = {
         secretDataWoVersion: TfArg.literal('1'),
       ),
   'SecretManagerSecretVersionPlaintextPayload': () =>
-      const SecretManagerSecretVersionPlaintextPayload(
-        TfArg.literal('mock-secret'),
-      ),
+      SecretManagerSecretVersionPlaintextPayload(.variable('mock_secret')),
   'FirestoreBackupScheduleDailyRecurrence': () =>
       const FirestoreBackupScheduleDailyRecurrence(),
   'FirestoreBackupScheduleWeeklyRecurrence': () =>
@@ -272,9 +270,8 @@ final Map<String, Object Function()> _syntheticInstances = {
       const FirestoreIndexFieldVectorConfig(TfArgLiteral<int>(768)),
   'StorageBucketObjectBodySource': () =>
       const StorageBucketObjectBodySource(TfArg.literal('./mock/path.bin')),
-  'StorageBucketObjectBodyContent': () => const StorageBucketObjectBodyContent(
-    TfArg.literal('mock-inline-payload'),
-  ),
+  'StorageBucketObjectBodyContent': () =>
+      StorageBucketObjectBodyContent(.variable('mock_inline_payload')),
   'DataCatalogEntryFileset': () => const DataCatalogEntryFileset(),
   'DataCatalogEntryCustomType': () =>
       const DataCatalogEntryCustomType(TfArg.literal('my_custom_type')),

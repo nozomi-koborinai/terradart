@@ -14,7 +14,7 @@ const Set<String> _googleCertificateManagerTrustConfigSensitive = <String>{
 final class CertificateManagerTrustConfigTrustAnchor {
   const CertificateManagerTrustConfigTrustAnchor({this.pemCertificate});
 
-  final TfArg<String>? pemCertificate;
+  final Sensitive<String>? pemCertificate;
 
   @internal
   Map<String, Object?> encode() => {
@@ -26,7 +26,7 @@ final class CertificateManagerTrustConfigTrustAnchor {
 final class CertificateManagerTrustConfigIntermediateCa {
   const CertificateManagerTrustConfigIntermediateCa({this.pemCertificate});
 
-  final TfArg<String>? pemCertificate;
+  final Sensitive<String>? pemCertificate;
 
   @internal
   Map<String, Object?> encode() => {
@@ -92,7 +92,7 @@ final class CertificateManagerTrustConfigAllowlistedCertificate {
 ///     CertificateManagerTrustConfigTrustStore(
 ///       trustAnchors: [
 ///         .new(
-///           pemCertificate: TfArg.variable('cm_trust_anchor_pem'),
+///           pemCertificate: .variable('cm_trust_anchor_pem'),
 ///         ),
 ///       ],
 ///     ),

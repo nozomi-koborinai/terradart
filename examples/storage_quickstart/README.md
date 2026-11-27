@@ -126,7 +126,7 @@ The `assets` bucket itself:
 }
 ```
 
-A body's `.source(...)` (a local file) and `.content(...)` (inline text, below) are the two variants of the sealed `StorageBucketObjectBody` argument: exactly one is required, and the compiler enforces the choice at construction time.
+A body's `.source(...)` (a local file) and `.content(...)` (inline text, below) are the two variants of the sealed `StorageBucketObjectBody` argument: exactly one is required, and the compiler enforces the choice at construction time. The provider marks `content` sensitive, so it takes a variable or an expression, never a literal.
 
 ```dart
 final assets = add(
@@ -137,7 +137,7 @@ add(
     'robots',
     bucket: assets.ref,
     name: .literal('robots.txt'),
-    body: .content(.literal('User-agent: *\nDisallow:\n')),
+    body: .content(.expression(r'${"User-agent: *\nDisallow:\n"}')),
   ),
 );
 ```

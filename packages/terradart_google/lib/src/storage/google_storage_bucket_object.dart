@@ -34,7 +34,7 @@ sealed class StorageBucketObjectBody {
       StorageBucketObjectBodySource;
 
   /// Inline string payload.
-  const factory StorageBucketObjectBody.content(TfArg<String> content) =
+  const factory StorageBucketObjectBody.content(Sensitive<String> content) =
       StorageBucketObjectBodyContent;
 
   /// argMap key under which this payload is emitted (`'source'` or
@@ -77,15 +77,16 @@ final class StorageBucketObjectBodySource extends StorageBucketObjectBody {
 }
 
 /// Inline string payload. The provider marks `content` as `Sensitive`,
-/// so the value is redacted in `terraform plan` output but still ends
-/// up in Terraform state — prefer [StorageBucketObjectBodySource] for any
-/// non-trivial data.
+/// so it takes a variable or an expression, never a literal; the value is
+/// redacted in `terraform plan` output but still ends up in Terraform
+/// state — prefer [StorageBucketObjectBodySource] for any non-trivial
+/// data.
 @immutable
 final class StorageBucketObjectBodyContent extends StorageBucketObjectBody {
   const StorageBucketObjectBodyContent(this.content);
 
   /// The inline data to upload.
-  final TfArg<String> content;
+  final Sensitive<String> content;
 
   @override
   @internal
@@ -153,7 +154,7 @@ class StorageBucketObjectCustomerEncryption {
   });
 
   /// Base64-encoded customer-supplied AES-256 key.
-  final TfArg<String> encryptionKey;
+  final Sensitive<String> encryptionKey;
 
   /// Encryption algorithm. Defaults to `AES256` server-side; usually
   /// omitted.
@@ -264,7 +265,7 @@ final class StorageBucketObjectCustom {
 ///   bucket: assets.ref,
 ///   name: TfArg.literal('config/app.json'),
 ///   body: StorageBucketObjectBodyContent(
-///     TfArg.literal('{"feature_x": true}'),
+///     .expression(r'${jsonencode({ feature_x = true })}'),
 ///   ),
 ///   contentType: TfArg.literal('application/json'),
 ///   storageClass: BucketObjectStorageClass.standard,
