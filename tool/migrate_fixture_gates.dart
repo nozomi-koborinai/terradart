@@ -206,7 +206,7 @@ final List<WrapLane> _lanes = parseWrapLanes(
 
 final List<String> _workspacePackages = migrateGatePackages(_lanes);
 
-final class _TerraformInitSerializer {
+final class _TerraformCacheSerializer {
   Future<void> _tail = Future<void>.value();
 
   Future<T> run<T>(Future<T> Function() action) async {
@@ -222,10 +222,13 @@ final class _TerraformInitSerializer {
   }
 }
 
-final _terraformInitSerializer = _TerraformInitSerializer();
+final _terraformCacheSerializer = _TerraformCacheSerializer();
 
-Future<bool> _runTerraformInit(Directory dir, List<String> errors) =>
-    _terraformInitSerializer.run(() => _run(_terraformInit, dir, errors));
+Future<bool> _initAndValidateTerraform(Directory dir, List<String> errors) =>
+    _terraformCacheSerializer.run(() async {
+      if (!await _run(_terraformInit, dir, errors)) return false;
+      return _run(['terraform', 'validate', '-no-color'], dir, errors);
+    });
 
 Future<void> main(List<String> args) async {
   final skipValidate = args.contains('--skip-validate');
@@ -360,8 +363,7 @@ Future<({bool ok, String out, String err})> _mergeEnvGate({
     if (!skipValidate && errors.isEmpty) {
       for (final d in dirs) {
         final dir = Directory(p.join(temp.path, d));
-        if (!await _runTerraformInit(dir, errors)) continue;
-        await _run(['terraform', 'validate', '-no-color'], dir, errors);
+        await _initAndValidateTerraform(dir, errors);
       }
     }
     final envs = [for (final m in merged) ...m.envs];
@@ -535,8 +537,7 @@ Future<({bool ok, String out, String err})> _gate(
           // Terraform cannot validate a configuration_aliases child module standalone; root validate covers it.
           continue;
         }
-        if (!await _runTerraformInit(dir, errors)) continue;
-        if (await _run(['terraform', 'validate', '-no-color'], dir, errors)) {
+        if (await _initAndValidateTerraform(dir, errors)) {
           validatedDirs++;
         }
       }
