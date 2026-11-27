@@ -263,16 +263,39 @@ already has `TimeProvider` from `terradart_time`; keep that dependency in its
 `pubspec.yaml`.
 
 To work out an API in code, `package:terradart_google/project.dart` now
-exports `requiredApiForTerraformType`, the API a wrapped resource type needs.
-It follows the Google API Discovery documents, so a few answers differ from
-what `Apis.required` derived: a BigQuery connection, for example, needs
-`bigqueryconnection.googleapis.com`, not `bigquery.googleapis.com`.
+exports `requiredApiForTerraformType`, the `GoogleApi` a wrapped resource type
+needs. It follows the Google API Discovery documents, so a few answers differ
+from what `Apis.required` derived: a BigQuery connection, for example, needs
+`GoogleApi.bigqueryconnection`, not `GoogleApi.bigquery`.
 
 | Before | After |
 |---|---|
-| `StackApis(stack).enableApis([.pubsub])` | `GoogleProjectService('api_pubsub', service: .literal('pubsub.googleapis.com'), disableOnDestroy: .literal(false))`, then `TimeSleep('api_propagation', createDuration: .duration(const Duration(seconds: 60)), triggers: ..., dependsOn: [...])` |
-| `StackApis(stack).enableApis([.apigee], propagationDelay: Duration.zero)` | `GoogleProjectService('api_apigee', service: .literal('apigee.googleapis.com'), disableOnDestroy: .literal(false))` and no `TimeSleep` |
-| `Apis.required(barrels: [Barrels.redis])` | `[GoogleProjectService('api_redis', service: .literal('redis.googleapis.com'), disableOnDestroy: .literal(false))]` |
+| `StackApis(stack).enableApis([.pubsub])` | `GoogleProjectService('api_pubsub', service: .pubsub, disableOnDestroy: .literal(false))`, then `TimeSleep('api_propagation', createDuration: .duration(const Duration(seconds: 60)), triggers: ..., dependsOn: [...])` |
+| `StackApis(stack).enableApis([.apigee], propagationDelay: Duration.zero)` | `GoogleProjectService('api_apigee', service: .apigee, disableOnDestroy: .literal(false))` and no `TimeSleep` |
+| `Apis.required(barrels: [Barrels.redis])` | `[GoogleProjectService('api_redis', service: .redis, disableOnDestroy: .literal(false))]` |
+
+### Google API names are typed
+
+**Breaking (`terradart_google`).** `GoogleProjectService` and
+`DataGoogleProjectService` take the API as a `GoogleApi`, so a misspelled API
+no longer compiles. Every API a wrapped resource type needs is a member, named
+after the part before `.googleapis.com` (`.pubsub`, `.networkconnectivity`).
+Name another Google API with `.custom('servicemanagement.googleapis.com')`,
+which throws unless the name ends in `.googleapis.com`. A Terraform variable,
+another block's attribute, or a service that is not a Google API (a Cloud
+Endpoints `*.cloud.goog` service) goes in `.arg(...)`. The Terraform JSON is
+unchanged.
+
+A loop over API names iterates the members, with the name each local name
+needs beside it.
+
+| Before | After |
+|---|---|
+| `GoogleProjectService('api_pubsub', service: .literal('pubsub.googleapis.com'))` | `GoogleProjectService('api_pubsub', service: .pubsub)` |
+| `GoogleProjectService('api_endpoints', service: .literal('endpoints.googleapis.com'))` | `GoogleProjectService('api_endpoints', service: .custom('endpoints.googleapis.com'))` |
+| `GoogleProjectService('api', service: TfArg.variable('api'))` | `GoogleProjectService('api', service: .arg(TfArg.variable('api')))` |
+| `DataGoogleProjectService('compute', service: .literal('compute.googleapis.com'))` | `DataGoogleProjectService('compute', service: .compute)` |
+| `[for (final api in ['run', 'iam']) GoogleProjectService('api_$api', service: .literal('$api.googleapis.com'))]` | `[for (final (name, api) in [('run', GoogleApi.run), ('iam', GoogleApi.iam)]) GoogleProjectService('api_$name', service: api)]` |
 ## 0.36.x → 0.37.0
 
 ### Dart 3.12 is the minimum SDK

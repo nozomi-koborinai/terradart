@@ -39,10 +39,13 @@ final class EventsStack extends Stack {
   EventsStack({required String projectId})
     : super(providers: [GoogleProvider(project: projectId), const TimeProvider()]) {
     final apis = [
-      for (final api in ['pubsub', 'storage'])
+      for (final (name, api) in [
+        ('pubsub', GoogleApi.pubsub),
+        ('storage', GoogleApi.storage),
+      ])
         add(GoogleProjectService(
-          'api_$api',
-          service: .literal('$api.googleapis.com'),
+          'api_$name',
+          service: api,
           disableOnDestroy: .literal(false),
         )),
     ];
@@ -71,7 +74,24 @@ final class EventsStack extends Stack {
 
 The sleep's `triggers` map is keyed to the services, so a later apply that enables one more API replaces the sleep and waits again. Leaving `disableOnDestroy` false keeps an API on when the Stack is destroyed, so other workloads in the project keep working.
 
-To look up which API a resource needs, `requiredApiForTerraformType` (from `package:terradart_google/project.dart`) takes its Terraform type and returns the API, checked against Google's API Discovery documents:
+The `service` is a `GoogleApi`, so a misspelled API does not compile. It has a member for every API a wrapped resource needs, named after the part before `.googleapis.com` (`.pubsub`, `.networkconnectivity`). Name any other Google API with `.custom`, which throws unless the name ends in `.googleapis.com`. A Terraform variable, another block's attribute, or a service that is not a Google API (a Cloud Endpoints service) goes in `.arg`:
+
+```dart
+add(
+  GoogleProjectService(
+    'api_servicemanagement',
+    service: .custom('servicemanagement.googleapis.com'),
+  ),
+);
+add(
+  GoogleProjectService(
+    'api_orders',
+    service: .arg(.literal('orders.endpoints.my-project.cloud.goog')),
+  ),
+);
+```
+
+To look up which API a resource needs, `requiredApiForTerraformType` (from `package:terradart_google/project.dart`) takes its Terraform type and returns its `GoogleApi`, checked against Google's API Discovery documents:
 
 ```dart
 // lib/redis_api.dart
@@ -79,7 +99,7 @@ import 'package:terradart_google/project.dart';
 import 'package:terradart_google/redis.dart';
 
 final redisApi = requiredApiForTerraformType(GoogleRedisInstance.tfType);
-// 'redis.googleapis.com'
+// GoogleApi.redis
 ```
 
 It returns null for IAM grants and `GoogleProjectService`, which need no API of their own, and only reads: enabling the API is still a `GoogleProjectService` you add.
