@@ -54,7 +54,7 @@ final class ApiServiceStack extends Stack {
       ) {
     // ---- API enablement + Wave 25 VPC Access + Wave 32 Redis --------------
     //
-    // One [GoogleProjectService] per API (Compute, Run, Secret Manager,
+    // One [GoogleProjectService] per API (Compute, IAP, Run, Secret Manager,
     // Service Networking, VPC Access, Redis, Memcache), then a [TimeSleep]
     // that waits 60s for propagation before dependents apply. Compute + Service Networking back
     // the Private Service Access (PSA) chain the Memorystore instances peer
@@ -64,6 +64,7 @@ final class ApiServiceStack extends Stack {
     final apis = [
       for (final api in [
         'compute',
+        'iap',
         'memcache',
         'redis',
         'run',

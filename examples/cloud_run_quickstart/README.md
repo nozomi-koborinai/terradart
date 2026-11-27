@@ -10,7 +10,7 @@ The Memorystore for Redis and Memcached instances bill hourly while they exist. 
 
 - Dart SDK >= 3.12
 - The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
-- A GCP project with credentials configured (`gcloud auth application-default login`). The stack enables the Compute, Run, Secret Manager, Service Networking, VPC Access, Redis, and Memcache APIs with one `GoogleProjectService` each.
+- A GCP project with credentials configured (`gcloud auth application-default login`). The stack enables the Compute, IAP, Run, Secret Manager, Service Networking, VPC Access, Redis, and Memcache APIs with one `GoogleProjectService` each.
 
 ## Layout
 

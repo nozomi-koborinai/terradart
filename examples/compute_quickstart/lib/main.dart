@@ -72,11 +72,12 @@ final class NetworkStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    // Enable the Compute + Filestore APIs and wait for propagation before
-    // the resources below apply; otherwise apply fails with SERVICE_DISABLED.
+    // Enable the Compute, Filestore and IAP APIs and wait for propagation
+    // before the resources below apply; otherwise apply fails with
+    // SERVICE_DISABLED.
     // Every API-gated resource below carries `dependsOn: apiDeps`.
     final apis = [
-      for (final api in ['compute', 'file'])
+      for (final api in ['compute', 'file', 'iap'])
         add(
           GoogleProjectService(
             'api_$api',

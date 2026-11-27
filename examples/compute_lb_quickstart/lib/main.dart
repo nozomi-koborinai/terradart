@@ -916,7 +916,16 @@ final class ComputeLbStack extends Stack {
     // ---- Wave 23: IAP on the global HTTPS backend ------------------------
     //
     // Member (additive) is the default pattern. Binding (authoritative per
-    // role) is shown for stacks that fully own the IAP accessor list.
+    // role) is shown for stacks that fully own the IAP accessor list. Every
+    // IAP grant goes through the IAP API, so each one depends on it.
+
+    final apiIap = add(
+      GoogleProjectService(
+        'api_iap',
+        service: .literal('iap.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
 
     add(
       GoogleIapWebBackendServiceIamMember(
@@ -924,7 +933,7 @@ final class ComputeLbStack extends Stack {
         webBackendService: lbBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
-        dependsOn: [lbBackend],
+        dependsOn: [lbBackend, apiIap],
       ),
     );
 
@@ -934,7 +943,7 @@ final class ComputeLbStack extends Stack {
         webBackendService: lbBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         members: .literal([.group('platform-admins@example.com')]),
-        dependsOn: [lbBackend],
+        dependsOn: [lbBackend, apiIap],
       ),
     );
 
@@ -945,7 +954,7 @@ final class ComputeLbStack extends Stack {
         forwardingRuleServiceName: ilbHttps.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
-        dependsOn: [ilbHttps],
+        dependsOn: [ilbHttps, apiIap],
       ),
     );
 
@@ -956,7 +965,7 @@ final class ComputeLbStack extends Stack {
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
         region: .literal(region),
-        dependsOn: [ilbHttps],
+        dependsOn: [ilbHttps, apiIap],
       ),
     );
 
@@ -967,7 +976,7 @@ final class ComputeLbStack extends Stack {
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
         region: .literal(region),
-        dependsOn: [regionalBackend],
+        dependsOn: [regionalBackend, apiIap],
       ),
     );
   }

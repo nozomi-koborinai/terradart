@@ -7,4 +7,4 @@
 # example enables the API (or stops needing it). Burn this list down by
 # adding the missing `GoogleProjectService` to the example.
 
-compute_lb_quickstart:compute.googleapis.com: pre-gate partial enablement (the example enables only certificatemanager + privateca); add a compute.googleapis.com GoogleProjectService and make the LB chain depend on it in a follow-up
+compute_lb_quickstart:compute.googleapis.com: pre-gate partial enablement (the example enables only certificatemanager, privateca and iap); add a compute.googleapis.com GoogleProjectService and make the LB chain depend on it in a follow-up
