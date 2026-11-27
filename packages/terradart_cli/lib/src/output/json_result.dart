@@ -3,53 +3,33 @@ import 'dart:convert';
 import '../cli_exception.dart';
 import 'exit_codes.dart';
 
-/// The `schemaVersion` of the `--json` result; raised only for a change
-/// that breaks a reader.
 const jsonSchemaVersion = 1;
 
-/// What `--json` prints: one object on stdout, filled in as the command
-/// runs.
 final class JsonResult {
   JsonResult(this.command);
 
-  /// The command path: `plan`, `state migrate`.
   final String command;
 
-  /// The CLI version (`--version`).
   String? version;
 
-  /// The environment and why it is the one (`flag`, `variable`, `default`,
-  /// `only`, `prompt`).
   ({String name, String source})? env;
 
-  /// The engine, its version and why it is the one (`engine_path`,
-  /// `setting`, `state`, `path`, `managed`).
   ({String kind, String? version, String source, String path})? engine;
 
-  /// The Terraform directory, relative to the working directory.
   String? outDir;
 
-  /// `--dry-run`: the command stopped before it changed anything.
   bool dryRun = false;
 
-  /// What `plan` would do.
   PlanSummary? plan;
 
-  /// The define file `apply` or `outputs` wrote.
   String? defineFile;
 
-  /// The keys of the define file — never the values, which may be
-  /// sensitive.
   List<String>? keys;
 
-  /// One-line notices (`skill_outdated`, `skill_newer`).
   final notices = <({String code, String message})>[];
 
-  /// Commands to run next.
   final next = <String>[];
 
-  /// The result of a run that exited [exitCode], failing with [error], a
-  /// usage error ([usage]), or only a failing code (`skill status --check`).
   Map<String, Object?> toJson(
     int exitCode, {
     CliException? error,
@@ -117,7 +97,6 @@ final class JsonResult {
   );
 }
 
-/// The resource changes of a saved plan, as `show -json` lists them.
 final class PlanSummary {
   const PlanSummary({
     this.add = 0,
@@ -126,8 +105,6 @@ final class PlanSummary {
     this.replace = 0,
   });
 
-  /// Counts the `resource_changes` of a `show -json <plan>` document: a
-  /// replacement (`delete` and `create`) counts once, as `replace`.
   factory PlanSummary.fromShowJson(Map<String, Object?> plan) {
     var add = 0, change = 0, destroy = 0, replace = 0;
     for (final rc in (plan['resource_changes'] as List?) ?? const []) {

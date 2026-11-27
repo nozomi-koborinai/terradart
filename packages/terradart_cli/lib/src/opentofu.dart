@@ -15,12 +15,7 @@ import 'tar.dart';
 /// `terraform` is on `PATH`.
 const kOpenTofuVersion = '1.13.1';
 
-/// The SHA-256 of each `tofu_<version>_<os>_<arch>.tar.gz` of
-/// [kOpenTofuVersion], copied from the release's `SHA256SUMS` after its GPG
-/// signature verified against the OpenTofu signing key
-/// (`E3E6 E43D 84CB 852E ADB0 051D 0C0A F313 E5FD 9F80`). Pinning them here
-/// means a replaced release asset fails the check instead of matching a
-/// checksum file replaced with it.
+// Verified against OpenTofu release SHA256SUMS GPG key E3E6 E43D 84CB 852E ADB0 051D 0C0A F313 E5FD 9F80.
 const kOpenTofuChecksums = <String, String>{
   'darwin_amd64':
       'a73720443ba38712d7d96dc1e857add02c15a790919c653ad07492e9952f8c27',
@@ -36,13 +31,10 @@ const kOpenTofuChecksums = <String, String>{
       'cc189b6f7ecba6c80924ddff72b4d086d5f727a0c31180421cfb821a3e5c7587',
 };
 
-/// Where OpenTofu releases are downloaded from, unless
-/// `TERRADART_OPENTOFU_MIRROR` names another base URL with the same layout.
 final kOpenTofuReleases = Uri.parse(
   'https://github.com/opentofu/opentofu/releases/download/',
 );
 
-/// Downloads, verifies and caches one OpenTofu release for one platform.
 final class OpenTofuInstaller {
   OpenTofuInstaller({
     required this.cacheDir,
@@ -58,7 +50,6 @@ final class OpenTofuInstaller {
   final Uri releases;
   final void Function(String message) log;
 
-  /// The binary's path once installed.
   String get binaryPath => p.join(
     cacheDir,
     'opentofu',
@@ -71,7 +62,6 @@ final class OpenTofuInstaller {
 
   Uri _url(String file) => releases.resolve('v$version/$file');
 
-  /// The installed binary, downloading it first when the cache lacks it.
   Future<String> ensure() async {
     if (File(binaryPath).existsSync()) return binaryPath;
     final expected = await _expectedChecksum();
@@ -120,7 +110,7 @@ final class OpenTofuInstaller {
       try {
         await staged.parent.rename(target.path);
       } on FileSystemException {
-        // Another terradart process installed the same release first.
+        // Directory.rename fails when another process populated target first.
         if (!File(binaryPath).existsSync()) rethrow;
       }
       log('Installed OpenTofu $version at $binaryPath');
@@ -190,7 +180,6 @@ final class OpenTofuInstaller {
   Future<String> _getText(HttpClient client, Uri url) async =>
       (await _get(client, url)).transform(utf8.decoder).join();
 
-  /// Writes [url] to [file] and returns its SHA-256 in hex.
   Future<String> _download(HttpClient client, Uri url, File file) async {
     final response = await _get(client, url);
     final digest = _DigestSink();

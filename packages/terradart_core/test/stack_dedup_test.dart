@@ -97,7 +97,6 @@ void main() {
         final stack = _S();
         stack.add(_D('shared', type: 'google_project'));
         stack.add(_R('shared', type: 'google_project'));
-        // Both registered because kind differs.
         expect(stack.resources, hasLength(1));
         expect(stack.dataSources, hasLength(1));
       },

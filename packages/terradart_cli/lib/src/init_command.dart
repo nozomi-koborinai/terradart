@@ -13,12 +13,6 @@ import 'process_runner.dart';
 import 'skill/installer.dart';
 import 'workflow.dart';
 
-/// `terradart init [dir]`: scaffolds a project that `terradart plan` runs.
-///
-/// Every question it asks in a terminal is one of its flags, and it prints
-/// the command that answers them all; without a terminal it never asks.
-/// Run inside a Flutter app, it wires `infra/` to the app. A directory that
-/// already holds Terraform is pointed at `terradart migrate` instead.
 final class InitCommand extends Command<int> {
   InitCommand({
     required this._console,
@@ -129,7 +123,6 @@ final class InitCommand extends Command<int> {
   final ProcessRunner _runner;
   final String? _dart;
 
-  /// The flags the questions answered, for the command printed at the end.
   final _answered = <String>{};
 
   @override
@@ -377,9 +370,6 @@ See also: terradart help environments, terradart help backends, terradart help a
     return 0;
   }
 
-  /// Without a terminal nothing consequential is defaulted: fails, with a
-  /// command to edit, unless the flags give the providers, environments
-  /// and backend, or --defaults accepts the documented ones.
   void _requireFlags(ArgResults args, bool useDefaults) {
     final missing = [
       if (!args.wasParsed('provider')) '--provider',
@@ -424,7 +414,6 @@ See also: terradart help environments, terradart help backends, terradart help a
     _console.out('Defaults: ${defaults.join(', ')}.');
   }
 
-  /// The non-interactive command for what was asked.
   void _printRerun(InitPlan plan, String target, {required bool force}) {
     if (_answered.isEmpty) return;
     String pairs(Map<String, String> ids) =>
@@ -454,8 +443,6 @@ See also: terradart help environments, terradart help backends, terradart help a
       ..out('Re-run with: $command');
   }
 
-  /// Where the agent skill goes: the flags, else asked in a terminal
-  /// without --defaults, else nowhere.
   List<SkillTarget> _skillTargets(ArgResults args, bool useDefaults) {
     final agents = args.wasParsed('agents')
         ? SkillTarget.parse(args.multiOption('agents'))
@@ -557,8 +544,6 @@ See also: terradart help environments, terradart help backends, terradart help a
     return ids;
   }
 
-  /// The backend, and the bucket of each environment when the flags or
-  /// the answers name one.
   (InitBackend, Map<String, String>) _state(
     ArgResults args,
     List<InitProvider> providers,
@@ -628,7 +613,6 @@ See also: terradart help environments, terradart help backends, terradart help a
     return (kind, buckets);
   }
 
-  /// The kind of bucket: the one [kinds] holds, else asked.
   InitBackend _askKind(List<InitBackend> kinds) {
     _answered.add('backend');
     var options = kinds;
@@ -654,9 +638,6 @@ See also: terradart help environments, terradart help backends, terradart help a
     );
   }
 
-  /// Asks until [parse] accepts the answer; end of input, no terminal, or
-  /// an empty answer when [allowEmpty] is [fallback]. An accepted answer is
-  /// the [flag]'s.
   T _ask<T>(
     String flag,
     String question,
@@ -730,9 +711,6 @@ See also: terradart help environments, terradart help backends, terradart help a
     appDir: _posix(p.relative(_cwd, from: target)),
   );
 
-  /// The directories under each of [roots] that hold `*.tf` / `*.tf.json`
-  /// files, by root; all relative to the working directory. A root inside
-  /// another is not walked twice.
   Map<String, List<String>> _terraformDirs(Iterable<String> roots) {
     final walked = <String>[];
     final found = <String, List<String>>{};
@@ -809,7 +787,6 @@ bool _sameTargets(List<SkillTarget> a, List<SkillTarget> b) =>
 
 const _anyBucket = [InitBackend.gcs, InitBackend.s3, InitBackend.azurerm];
 
-/// The buckets the providers point at: google's is GCS, and so on.
 List<InitBackend> _bucketKinds(List<InitProvider> providers) => [
   for (final p in providers.toSet())
     ?switch (p) {
@@ -821,8 +798,6 @@ List<InitBackend> _bucketKinds(List<InitProvider> providers) => [
     },
 ];
 
-/// `<env>=<value>` pairs, or one value for every environment, by
-/// environment in [envs] order.
 (Map<String, String>?, String?) _parseIds(
   InitId id,
   List<String> values,
@@ -856,11 +831,19 @@ List<InitBackend> _bucketKinds(List<InitProvider> providers) => [
 
 const _forceHint = 'Pass --force to scaffold a new project anyway.';
 
-/// Directories the Terraform scan skips: tooling, build output, the
-/// platform folders of a Flutter app, and what TerraDart itself writes.
 const _notTerraform = {
-  '.git', '.dart_tool', 'build', 'node_modules', '.terraform', //
-  'tf-out', '.terradart', 'ios', 'android', 'macos', 'linux', 'windows',
+  '.git',
+  '.dart_tool',
+  'build',
+  'node_modules',
+  '.terraform',
+  'tf-out',
+  '.terradart',
+  'ios',
+  'android',
+  'macos',
+  'linux',
+  'windows',
   'web',
 };
 
@@ -889,7 +872,6 @@ List<String> _split(List<String> values) => [
   return (envs, null);
 }
 
-/// Why [id] cannot go into a Dart string literal as it is, or `null`.
 String? _checkId(String id) => RegExp(r"^[^'\\$\s]+$").hasMatch(id)
     ? null
     : '"$id" is not an ID: no spaces, quotes, backslashes or \$.';
@@ -907,7 +889,6 @@ void _checkFieldNames(InitPlan plan) {
   }
 }
 
-/// The `name` of the Flutter app whose `pubspec.yaml` is in [dir], or `null`.
 String? _flutterAppName(String dir) {
   final file = File(p.join(dir, 'pubspec.yaml'));
   if (!file.existsSync()) return null;
@@ -923,7 +904,6 @@ String? _flutterAppName(String dir) {
   return '${doc['name'] ?? 'app'}';
 }
 
-/// [name] as a pub package name: lowercase, `_` for anything else.
 String _packageName(String name) {
   var n = name
       .toLowerCase()
@@ -937,12 +917,45 @@ String _packageName(String name) {
 
 String _posix(String path) => p.split(path).join('/');
 
-/// Dart reserved words, and the members every enum has.
 const _reserved = {
-  'assert', 'break', 'case', 'catch', 'class', 'const', 'continue', //
-  'default', 'do', 'else', 'enum', 'extends', 'false', 'final', 'finally',
-  'for', 'if', 'in', 'is', 'new', 'null', 'rethrow', 'return', 'super',
-  'switch', 'this', 'throw', 'true', 'try', 'var', 'void', 'while', 'with',
-  'values', 'index', 'name', 'hashCode', 'runtimeType', 'toString',
+  'assert',
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'default',
+  'do',
+  'else',
+  'enum',
+  'extends',
+  'false',
+  'final',
+  'finally',
+  'for',
+  'if',
+  'in',
+  'is',
+  'new',
+  'null',
+  'rethrow',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'var',
+  'void',
+  'while',
+  'with',
+  'values',
+  'index',
+  'name',
+  'hashCode',
+  'runtimeType',
+  'toString',
   'noSuchMethod',
 };

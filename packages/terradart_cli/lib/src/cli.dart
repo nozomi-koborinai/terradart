@@ -110,10 +110,9 @@ Future<int> runTerradart(
   }
 
   final path = _commandPath(arguments, cli);
-  // `--json` on `migrate` is the migrator's own report, wherever it is
-  // written: a global one moves onto the command.
-  if (path == 'migrate') arguments = _jsonOntoMigrate(arguments);
-  // Set before parsing, so a usage error is a result too.
+  if (path == 'migrate') {
+    arguments = _moveGlobalJsonFlagOntoMigrate(arguments);
+  }
   if (path != 'migrate' &&
       arguments.takeWhile((a) => a != '--').contains('--json')) {
     io.result = JsonResult(path);
@@ -150,8 +149,7 @@ Future<int> runTerradart(
               noInputFlag: results.flag('no-input'),
             )
       ..quiet = results.flag('quiet');
-    // `--help` prints usage with `print`; with `--json` stdout carries the
-    // result alone.
+    // package:args prints --help via print(); redirect it to stderr so --json stdout stays pure JSON.
     final code = json
         ? await runZoned(
             () => cli.runCommand(results),
@@ -190,8 +188,7 @@ Future<int> runTerradart(
   }
 }
 
-/// [arguments] with a `--json` written before `migrate` moved after it.
-List<String> _jsonOntoMigrate(List<String> arguments) {
+List<String> _moveGlobalJsonFlagOntoMigrate(List<String> arguments) {
   final at = arguments.indexOf('migrate');
   final before = arguments.sublist(0, at);
   final after = arguments.sublist(at + 1);
@@ -204,8 +201,6 @@ List<String> _jsonOntoMigrate(List<String> arguments) {
   ];
 }
 
-/// The command path the arguments name (`plan`, `state migrate`), for the
-/// `--json` result before they are parsed; `terradart` when none.
 String _commandPath(List<String> arguments, CommandRunner<int> cli) {
   final path = <String>[];
   var commands = cli.commands;
@@ -306,11 +301,8 @@ abstract class _TerradartCommand extends Command<int> {
 
   final _Context context;
 
-  /// The `Examples:` of `--help`: the simplest use first, the form an agent
-  /// runs (`--no-input --json`) last.
   List<String> get examples;
 
-  /// The help topics `--help` points at.
   List<String> get seeAlso => const [];
 
   @override
@@ -347,9 +339,6 @@ abstract class _TerradartCommand extends Command<int> {
       out: config.out,
       defineOutput: config.defineOutput,
       defineFile: config.defineFile,
-      // A flag replaces the engine pubspec.yaml picks, path and kind
-      // together: --engine terraform does not run its engine_path, and
-      // --engine-path takes its kind from the file name.
       engine: EngineSettings(
         kind: kind == null ? null : EngineKind.parse(kind, '--engine'),
         path: path == null ? null : File(path).absolute.path,
@@ -409,8 +398,6 @@ abstract class _TerradartCommand extends Command<int> {
   }
 }
 
-/// `apply --dry-run` and `destroy --dry-run`: what `plan` does, then the
-/// command to run without the flag.
 Future<int> _dryRun(Workflow flow, String action, List<String> extra) async {
   flow.console.result?.dryRun = true;
   await flow.checkLocalState();

@@ -6,11 +6,6 @@ import 'dart:io';
 import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:test/test.dart';
 
-/// Locates the hashicorp/hcl specsuite `tests` directory: an explicit
-/// checkout via `TERRADART_HCL_SPECSUITE` (the hcl repo root or its
-/// `specsuite/tests` directory), else a cached shallow clone under
-/// `.dart_tool/hcl_specsuite`, made on first use. Returns `null` only when
-/// `TERRADART_HCL_SPECSUITE_SKIP` is set.
 Directory? locateSpecsuite() {
   final env = Platform.environment;
   if (env['TERRADART_HCL_SPECSUITE_SKIP'] == '1') return null;
@@ -87,12 +82,11 @@ void main() {
       test(hcl.path.substring(tests.path.length + 1), () {
         final src = hcl.readAsStringSync();
         if (expectsDiagnostics) {
-          // Some diagnostics are schema errors the parser cannot see; a
-          // parse must simply not crash with anything but a parse error.
           try {
             parseHcl(src, fileName: hcl.path);
           } on HclParseException {
-            // A syntax error is the expected outcome for the syntax cases.
+            // hashicorp/hcl specsuite uses diagnostics {} for both syntax and
+            // schema errors; only syntax errors throw HclParseException.
           }
         } else {
           expect(() => parseHcl(src, fileName: hcl.path), returnsNormally);
@@ -150,9 +144,8 @@ void main() {
       final got = actual.body.attribute(item.keyName!)!.value as LiteralExpr;
       final want = item.value as LiteralExpr;
       if (item.keyName == 'string_unicode_nonnorm') {
-        // HCL normalizes strings to NFC; this parser keeps the source code
-        // points (the migrator copies text back verbatim), so the combining
-        // tilde in the input stays a combining tilde.
+        // HCL2 spec normalizes strings to NFC; this parser preserves source
+        // code points for verbatim round-tripping.
         expect(got.value, 'an\u0303os');
         continue;
       }

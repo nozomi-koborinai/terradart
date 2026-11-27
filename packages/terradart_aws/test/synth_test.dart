@@ -7,9 +7,8 @@ import 'package:terradart_aws/lambda.dart';
 import 'package:terradart_aws/provider.dart';
 import 'package:test/test.dart';
 
-/// Provider arguments that carry credentials. The AWS provider schema does
-/// not mark them `sensitive`, so nothing structural keeps them out of
-/// [AwsProvider]; this list does.
+// The AWS provider schema omits `sensitive` on credential arguments, so this
+// list enforces keeping them out of AwsProvider.
 const _credentialArgs = {
   'access_key',
   'secret_key',
@@ -104,8 +103,6 @@ Iterable<String> _keysDeep(Object? value) sync* {
   }
 }
 
-/// The lane's schema fixture in the monorepo: the pin and the full catalog
-/// are both derived from it.
 const _fixtureDir = '../terradart_codegen/test/fixtures/wrap/source_aws';
 
 Map<String, dynamic> _fixtureSchema() {
@@ -151,12 +148,13 @@ void main() {
   test('credentials cannot appear in synth output by construction', () {
     final keys = _keysDeep(_TestStack().synth().tfJson).toSet();
     expect(keys.intersection(_credentialArgs), isEmpty);
-    // A setting only reaches synth through a quoted key in configArgs, so a
-    // credential key literal in the source is the regression to catch even
-    // when _everySetting does not set the new parameter.
     final source = File('lib/src/aws_provider.dart').readAsStringSync();
     for (final key in _credentialArgs) {
-      expect(source, isNot(contains("'$key'")), reason: key);
+      expect(
+        source,
+        isNot(contains("'$key'")),
+        reason: 'credential key $key must not appear in aws_provider.dart',
+      );
     }
   });
 

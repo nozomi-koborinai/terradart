@@ -1,12 +1,6 @@
 import 'package:terradart_google/cloud_run.dart';
 import 'package:test/test.dart';
 
-/// Wire-precision tests for the Cloud Run v2 sealed families.
-///
-/// Gate 6 (test/synth/encode_round_trip_test.dart) asserts every sealed
-/// member encodes something well-formed; these tests pin the exact wire
-/// shape and — the part Gate 6 cannot see — exactly-one-of exclusivity:
-/// a variant must not leak its siblings' keys.
 void main() {
   group('CloudRunV2ServiceEnvSource', () {
     test('.value encodes env.value and nothing else', () {

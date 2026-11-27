@@ -191,8 +191,6 @@ final class TfArgLiteral<T> extends TfArg<T> {
   Object? toTfJson() {
     final v = value;
     if (v is Enum) {
-      // A Dart enum has no Terraform value (and `dart:convert` cannot
-      // encode it); failing here beats a confusing encoder error later.
       throw ArgumentError(
         'TfArg.literal received the Dart enum value '
         '${v.runtimeType}.${v.name}, which has no Terraform value. Pass '

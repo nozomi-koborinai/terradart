@@ -37,7 +37,6 @@ void main() {
     dartDefines: dartDefines,
   );
 
-  /// What runEnvironments writes with `--env` [selected].
   Manifest envs(List<String> names, String? selected) => Manifest(
     environments: names,
     selected: selected,

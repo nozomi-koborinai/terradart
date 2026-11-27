@@ -82,7 +82,7 @@ final class EnvironmentConstant extends AppConstant<String> {
     if (name.isEmpty) {
       throw ArgumentError.value(name, 'name', 'must not be empty');
     }
-    if (_unsafeInLiteral.hasMatch(name)) {
+    if (_unsafeInSingleQuotedLiteral.hasMatch(name)) {
       throw ArgumentError.value(
         name,
         'name',
@@ -91,9 +91,9 @@ final class EnvironmentConstant extends AppConstant<String> {
     }
   }
 
-  /// Characters that would break or alter the single-quoted literal the
-  /// variable name is written into.
-  static final RegExp _unsafeInLiteral = RegExp(r"['\\$\x00-\x1f\x7f]");
+  static final RegExp _unsafeInSingleQuotedLiteral = RegExp(
+    r"['\\$\x00-\x1f\x7f]",
+  );
 
   /// The `--define` name.
   final String name;

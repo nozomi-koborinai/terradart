@@ -6,7 +6,6 @@ import 'barrels.dart';
 import 'google_project_service.dart';
 import 'terraform_api_requirements.dart';
 
-/// Default propagation wait for [StackApis.enableApis].
 const Duration _defaultPropagationDelay = Duration(seconds: 60);
 
 /// Helpers for declaring [GoogleProjectService] enablement from barrel imports.

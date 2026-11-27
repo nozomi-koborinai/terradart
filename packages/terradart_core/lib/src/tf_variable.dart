@@ -255,8 +255,6 @@ final class _DartTypeParser {
   }
 }
 
-/// [value] with every `Set` as a list, which is how Terraform's JSON spells a
-/// `set(...)` value and the only collection `jsonEncode` takes.
 Object? _jsonValue(Object? value) => switch (value) {
   Set<Object?>() => [for (final e in value) _jsonValue(e)],
   List<Object?>() => [for (final e in value) _jsonValue(e)],

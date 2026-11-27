@@ -182,9 +182,6 @@ void main() {
     });
 
     test('an input named "provider" is an input, not a meta-argument', () {
-      // Terraform reserves source / version / providers / count / for_each /
-      // depends_on / lifecycle on a module block — `provider` (singular) is a
-      // resource meta-argument, and a module may declare it as a variable.
       expect(ModuleCall.reservedInputNames, isNot(contains('provider')));
       final stack = TestStack(providers: const [google])
         ..addModule(
@@ -279,7 +276,6 @@ void main() {
           ),
         );
       final json = stack.synth().tfJson;
-      // The child modules pin what they use, so there is nothing to require.
       expect(json['terraform'], equals({'required_version': '>= 1.11.0'}));
       expect(json.containsKey('provider'), isFalse);
       expect(

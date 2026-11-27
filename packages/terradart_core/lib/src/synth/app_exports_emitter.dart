@@ -13,15 +13,8 @@ import '../tf_output.dart';
 import '../tf_template.dart';
 import 'json_encoder.dart';
 
-/// Renders a Stack's [Stack.outputs] as the `output` block and its
-/// [Stack.constants] (with [Stack.appExports]) as the generated Dart file.
 @internal
 abstract final class AppExportsEmitter {
-  /// The top-level `output` value, or `null` when the Stack declares none:
-  /// the [Stack.outputs], then the [Stack.dartDefineOutputs].
-  ///
-  /// Assumes [Stack.validate] found no issue, so every dart-define output
-  /// resolves.
   static Map<String, Object?>? outputBlock(Stack stack) {
     if (stack.outputs.isEmpty && stack.dartDefineOutputs.isEmpty) return null;
     return {
@@ -39,9 +32,6 @@ abstract final class AppExportsEmitter {
     };
   }
 
-  /// What the dart-define output [d] of [stack] carries: every
-  /// non-sensitive output, or those [DartDefineOutput.only] names, in
-  /// order, each as its environment variable and value.
   static List<EnvironmentEntry> dartDefines(Stack stack, DartDefineOutput d) {
     final outputs =
         d.only ??
@@ -66,9 +56,6 @@ abstract final class AppExportsEmitter {
     ];
   }
 
-  /// The environment variable a non-sensitive [output] of [stack] is read
-  /// from by the generated reader's `fromEnvironment` and `fromDartDefine`,
-  /// and its value.
   static EnvironmentEntry environmentEntry(Stack stack, String output) {
     final o = stack.outputs[output]!;
     final type = o.valueType;
@@ -98,7 +85,7 @@ abstract final class AppExportsEmitter {
     final inner = template.startsWith(r'${') && template.endsWith('}')
         ? template.substring(2, template.length - 1)
         : null;
-    if (inner == null || inner.contains(r'${') || !_balanced(inner)) {
+    if (inner == null || inner.contains(r'${') || !_hasBalancedBraces(inner)) {
       return .problem(
         output,
         'Output "$output" of type ${type.source} is the template '
@@ -109,8 +96,7 @@ abstract final class AppExportsEmitter {
     return .new(output, TfArg.expression<String>('\${jsonencode($inner)}'));
   }
 
-  /// True when no `}` in [body] closes the sequence before its end.
-  static bool _balanced(String body) {
+  static bool _hasBalancedBraces(String body) {
     var depth = 0;
     for (final c in body.split('')) {
       if (c == '{') depth++;
@@ -126,8 +112,6 @@ abstract final class AppExportsEmitter {
     _ => false,
   };
 
-  /// The generated Dart source, or `null` when the Stack has no
-  /// [Stack.appExports] file.
   static String? dartSource(Stack stack) {
     final file = stack.appExports;
     if (file == null) return null;
@@ -320,7 +304,6 @@ enum _Source { terraform, environment, dartDefine }
 """);
   }
 
-  /// An expression converting the decoded JSON [value] to [type].
   static String _convert(
     DartValueType type,
     String value,
@@ -375,8 +358,6 @@ enum _Source { terraform, environment, dartDefine }
     }
   }
 
-  /// Why the constant [c] of [stack] has no value known at synth, or
-  /// `null` when it resolves to a literal of its type.
   static String? constantProblem(Stack stack, RefConstant<Object?> c) {
     final (:value, :problem) = _resolve(stack, c.ref);
     if (problem != null) return problem;
@@ -386,8 +367,6 @@ enum _Source { terraform, environment, dartDefine }
         '${value.runtimeType} $value.';
   }
 
-  /// The literal [ref]'s attribute is set to, or the problem naming what
-  /// the attribute is set by when it is not one.
   static ({Object? value, String? problem}) _resolve(
     Stack stack,
     TfRef<Object?> ref,
@@ -444,9 +423,6 @@ enum _Source { terraform, environment, dartDefine }
 
   static const Object _notPlain = _NotPlain();
 
-  /// [value] with enums as their Terraform value and nested literals
-  /// unwrapped, or [_notPlain] when it holds a reference, a variable, an
-  /// expression or a string Terraform would interpolate.
   static Object? _plain(Object? value) {
     switch (value) {
       case TfArgLiteral(:final value):
@@ -471,16 +447,12 @@ enum _Source { terraform, environment, dartDefine }
     }
   }
 
-  /// `OrdersStack` for `final class OrdersStack extends Stack`; a leading
-  /// `_` of a private class is dropped.
   static String _className(Stack stack) {
     final name = stack.runtimeType.toString();
     return name.replaceFirst(RegExp('^_+'), '');
   }
 }
 
-/// The environment variable an output is passed in, and its value — or,
-/// when the output has none, why.
 @internal
 final class EnvironmentEntry {
   EnvironmentEntry(String output, TfArg<String> this.value)
@@ -491,7 +463,6 @@ final class EnvironmentEntry {
     : name = outputEnvironmentName(output),
       value = null;
 
-  /// `ORDERS_TOPIC_ID` for `orders_topic_id`.
   final String name;
   final TfArg<String>? value;
   final String? problem;

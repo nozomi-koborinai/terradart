@@ -28,16 +28,15 @@ Set<String> templateVariableNames(String template) {
   return out;
 }
 
-/// The bodies of the `${ ... }` / `%{ ... }` sequences of [template], in
-/// order, with the text of quoted strings inside a sequence blanked out
-/// (sequences nested inside such a string are appended after it).
 List<String> templateSequenceBodies(String template) {
   final out = <String>[];
   final n = template.length;
   var i = 0;
   while (i < n) {
-    if (template.startsWith(r'$${', i) || template.startsWith('%%{', i)) {
-      i += 3; // escaped: literal `${` / `%{`
+    final isEscapedSequence =
+        template.startsWith(r'$${', i) || template.startsWith('%%{', i);
+    if (isEscapedSequence) {
+      i += 3;
       continue;
     }
     if (template.startsWith(r'${', i) || template.startsWith('%{', i)) {
@@ -75,9 +74,6 @@ List<String> templateSequenceBodies(String template) {
   return out;
 }
 
-/// Index of the `"` closing a quoted string that starts at [from] (after the
-/// opening quote), honouring backslash escapes; the end of the string when
-/// it is unterminated.
 int _closingQuote(String s, int from) {
   var k = from;
   while (k < s.length) {

@@ -92,7 +92,8 @@ void main() {
             versionConstraint: '~> 7.0',
           ),
         ],
-      ); // devMode default false
+      );
+      expect(stack.devMode, isFalse);
       stack.add(_CapableResource('r', name: const TfArgLiteral('x')));
 
       final group = TfJsonEncoder.resourcesGroup(stack);

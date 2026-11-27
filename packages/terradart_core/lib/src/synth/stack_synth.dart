@@ -27,43 +27,23 @@ class SynthResult {
   final String? dartSourcePath;
 }
 
-/// Synth entry point: convert a [Stack] into the JSON map for
-/// `main.tf.json` plus the Dart source of the `Stack.appExports` file.
-///
-/// This is a thin orchestrator over the building blocks in `synth/`:
-/// JSON via [TfJsonEncoder], outputs and the Dart file via
-/// [AppExportsEmitter].
-///
-/// Internal: callers should use [Stack.synth] (in-memory) or
-/// [Stack.writeTo] (file write) — the public surface routes through
-/// the Stack-level API, not this orchestrator class directly.
 @internal
 class StackSynth {
-  /// Synthesise [stack] into a [SynthResult].
   static SynthResult synth(Stack stack) {
     final issues = StackValidator.validate(stack);
     if (issues.isNotEmpty) {
       throw SynthException(stack.runtimeType.toString(), issues);
     }
 
-    // 1. Top-level terraform block (required).
     final terraform = TfJsonEncoder.terraformBlock(stack);
-
-    // 2. Optional provider and variable blocks.
     final providers = TfJsonEncoder.providerBlock(stack);
     final variables = TfJsonEncoder.variableBlock(stack);
-
-    // 3. Resources, data sources, module calls, and the moved entries
-    // between them.
     final resources = TfJsonEncoder.resourcesGroup(stack);
     final data = TfJsonEncoder.dataGroup(stack);
     final modules = TfJsonEncoder.moduleGroup(stack);
     final moved = TfJsonEncoder.movedBlock(stack);
-
-    // 4. Outputs.
     final outputs = AppExportsEmitter.outputBlock(stack);
 
-    // 5. Assemble tf.json (key order is stable for golden tests).
     final tfJson = <String, dynamic>{'terraform': terraform};
     if (variables != null) tfJson['variable'] = variables;
     if (providers != null) tfJson['provider'] = providers;
@@ -73,7 +53,6 @@ class StackSynth {
     if (moved != null) tfJson['moved'] = moved;
     if (outputs != null) tfJson['output'] = outputs;
 
-    // 6. The app's Dart file.
     return SynthResult(
       tfJson: tfJson,
       dartSource: AppExportsEmitter.dartSource(stack),

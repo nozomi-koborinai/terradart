@@ -8,10 +8,6 @@ void main() {
   test(
     'catalog entry count is internally consistent (no hand-pinned total)',
     () {
-      // The catalog total is DERIVED from the wrap-generated catalog, not pinned
-      // to a constant here — that constant was the source of the parallel-wave
-      // count race (#136/#137/#138). tool/doc_expectations.dart reads the same
-      // file and tool/check_docs_consistency.dart asserts the prose matches.
       final resources = terradartCatalog
           .where((e) => e.kind == CatalogKind.resource)
           .length;
@@ -30,8 +26,6 @@ void main() {
   );
 
   test('catalog wraps every data source of the GA fixture', () {
-    // The weekly schema bump scaffolds a factory for each data source a new
-    // pin adds (tool/bump_new_factories.dart); a type it misses fails here.
     final root =
         jsonDecode(
               File(
@@ -51,7 +45,6 @@ void main() {
       expect(e.tfType, isNotEmpty, reason: 'tfType must be set');
       expect(e.className, isNotEmpty, reason: '${e.tfType}: className');
       expect(e.barrel, isNotEmpty, reason: '${e.tfType}: barrel');
-      // localName is always the first constructor param of every wrapper.
       expect(
         e.constructorParams.first,
         'localName',

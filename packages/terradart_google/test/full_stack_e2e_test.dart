@@ -1,11 +1,3 @@
-/// End-to-end test: every curated factory + DataGoogleProject in one stack,
-/// synthed and matched against `test/golden/full_stack.tf.json`.
-///
-/// `terraform validate` is intentionally NOT invoked here — that belongs in
-/// a CI job that shells out to terraform once a controlled CI base image
-/// lands. v0.0.x sticks to JSON-equality.
-library;
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -132,7 +124,6 @@ void main() {
               as Map<String, dynamic>;
       expect(actual, equals(golden));
 
-      // Sanity: data.google_project is keyed under "data", not "resource".
       final data = (actual['data'] as Map)['google_project'] as Map;
       expect(data.containsKey('current'), isTrue);
     },

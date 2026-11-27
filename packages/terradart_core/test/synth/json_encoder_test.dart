@@ -258,7 +258,6 @@ void main() {
           ],
         }),
       );
-      // One required_providers entry per name, aliases included.
       expect(
         (TfJsonEncoder.terraformBlock(stack)['required_providers'] as Map).keys,
         equals(['google', 'time']),
@@ -322,7 +321,6 @@ void main() {
         (json['resource'] as Map)['google_pubsub_topic']['orders']['provider'],
         equals('google.eu'),
       );
-      // A data source selects an alias the same way, and synth keeps it.
       final withData = stackWith(eu)
         ..add(FakeProjectData('current', argMap: const {}, provider: eu));
       expect(
@@ -422,7 +420,6 @@ void main() {
           },
         }),
       );
-      // The alias is not a provider block; the default configuration is.
       expect(
         json['provider'],
         equals({
@@ -870,7 +867,6 @@ void main() {
           'replace_triggered_by': ['google_pubsub_topic.orders.id'],
         }),
       );
-      // Critical: NOT '${google_pubsub_topic.orders.id}'.
       final entries = out!['replace_triggered_by']! as List<dynamic>;
       expect(entries.first, isNot(startsWith(r'${')));
     });
@@ -1235,7 +1231,6 @@ void main() {
         ),
         isEmpty,
       );
-      // An escaped sequence is literal text, so it is still a plain literal.
       expect(
         literals(
           {

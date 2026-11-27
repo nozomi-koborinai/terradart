@@ -6,7 +6,6 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_cli/terradart_cli.dart';
 import 'package:test/test.dart';
 
-/// One process the CLI asked for.
 typedef Call = ({
   String executable,
   List<String> args,
@@ -16,20 +15,15 @@ typedef Call = ({
   bool toStderr,
 });
 
-/// What a fake entry point does: the `main.tf.json` files it writes
-/// (directory relative to the project → content), the manifest it writes
-/// when `terradart` asks for one, and its exit code.
 typedef FakeSynth = ({
   Map<String, Object?> files,
   Map<String, Object?>? manifest,
   int exitCode,
 });
 
-/// An entry point of its own, writing [files].
 FakeSynth plainEntry(Map<String, Object?> files) =>
     (files: files, manifest: null, exitCode: 0);
 
-/// `runStack(args, ...)` writing [dir].
 FakeSynth runStackEntry({
   String dir = 'tf-out',
   List<String> dartDefines = const [],
@@ -44,8 +38,6 @@ FakeSynth runStackEntry({
   exitCode: 0,
 );
 
-/// `runEnvironments(args, <envs>, ...)` as `terradart_core` runs it: the
-/// `--env` in [args], or every environment.
 FakeSynth runEnvironmentsEntry(
   List<String> args,
   List<String> envs, {
@@ -98,8 +90,6 @@ Map<String, Object?> _root(
   'dart_defines': dartDefines,
 };
 
-/// A [ProcessRunner] that records every call; `dart run` does what [synth]
-/// returns, and the engine answers `version -json` and `output -json`.
 final class FakeRunner implements ProcessRunner {
   FakeRunner({
     this.synth,
@@ -111,30 +101,22 @@ final class FakeRunner implements ProcessRunner {
     this.planChanges = const [],
   });
 
-  /// The entry point, given its arguments.
   final FakeSynth Function(List<String> entryArgs)? synth;
 
-  /// `output -json <name>` answers, by output name.
   final Map<String, Object?> outputs;
 
   final String engineVersion;
 
-  /// The engine subcommand that exits [failCode].
   final String? failOn;
 
   final int failCode;
 
-  /// The `actions` lists of the plan's resource changes: `plan
-  /// -detailed-exitcode` exits 2 when there are any, `plan -out` writes
-  /// the plan file, and `show -json` prints them.
   final List<List<String>> planChanges;
 
-  /// What `state pull` prints.
   final String? pulledState;
 
   final calls = <Call>[];
 
-  /// The engine calls, as `subcommand args...` strings.
   List<String> get engineCalls => [
     for (final c in calls)
       if (c.executable != 'dart') c.args.join(' '),
@@ -240,7 +222,6 @@ final class FakeRunner implements ProcessRunner {
   }
 }
 
-/// A `main.tf.json` with an `output` block holding [outputs].
 Map<String, Object?> mainTf({List<String> outputs = const []}) => {
   'terraform': {'required_version': '>= 1.11.0'},
   if (outputs.isNotEmpty)
@@ -249,9 +230,6 @@ Map<String, Object?> mainTf({List<String> outputs = const []}) => {
     },
 };
 
-/// A temporary project: `pubspec.yaml` with [terradart] as its `terradart:`
-/// section, an empty `bin/infra.dart`, and `bin/` dirs holding fake
-/// `tofu` / `terraform` binaries for [engines].
 final class TestProject {
   TestProject._(this.root, this.binDir);
 
@@ -280,7 +258,6 @@ final class TestProject {
 
   String path(String rel) => p.join(root, rel);
 
-  /// The environment the CLI runs with: only the fake engines on `PATH`.
   Map<String, String> get environment => {
     'PATH': binDir,
     if (Platform.isWindows) 'PATHEXT': '.EXE',
@@ -290,11 +267,6 @@ final class TestProject {
   String engine(String name) =>
       p.join(binDir, Platform.isWindows ? '$name.exe' : name);
 
-  /// Runs the CLI against this project, with [env] added to [environment].
-  ///
-  /// [input] makes it a terminal: the lines answer the CLI's questions,
-  /// which print to `out` as a terminal shows them. Without it there is no
-  /// terminal.
   Future<({int code, String out, String err})> run(
     List<String> args,
     FakeRunner runner, {
@@ -325,7 +297,6 @@ final class TestProject {
   }
 }
 
-/// Writes an executable placeholder named [name] into [dir].
 String fakeExecutable(String dir, String name) {
   final file = File(p.join(dir, Platform.isWindows ? '$name.exe' : name))
     ..writeAsStringSync('#!/bin/sh\nexit 0\n');
@@ -335,8 +306,6 @@ String fakeExecutable(String dir, String name) {
   return file.path;
 }
 
-/// A gzip-compressed tar holding [files] (name → bytes); a name longer than
-/// 100 bytes is written with a PAX `path` record.
 List<int> tarGz(Map<String, List<int>> files) {
   final out = BytesBuilder();
   void entry(String name, List<int> data, int type) {

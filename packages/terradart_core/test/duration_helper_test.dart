@@ -37,9 +37,7 @@ void main() {
     });
 
     test('large whole-second durations are accepted', () {
-      // 1 hour
       expect(const Duration(hours: 1).toTfDurationString(), equals('3600s'));
-      // 30 days
       expect(
         const Duration(days: 30).toTfDurationString(),
         equals('${30 * 86400}s'),

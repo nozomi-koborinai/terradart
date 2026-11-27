@@ -3,8 +3,6 @@ import 'package:terradart_migrate/terradart_migrate.dart'
     show secretArgumentNames;
 import 'package:test/test.dart';
 
-/// Credential arguments of the built-in Terraform backends, from the
-/// backend type docs (http, pg, consul, kubernetes, cos, oss, s3, gcs, remote).
 const _credentialArguments = [
   'password',
   'client_certificate_pem',

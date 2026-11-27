@@ -4,10 +4,6 @@ import 'package:test/test.dart';
 
 import '../_helpers.dart';
 
-/// Behavior tests for the `source` | `content` sealed payload on
-/// `google_storage_bucket_object`, including the part only a synth pass
-/// can show: `content` is provider-Sensitive, so a literal must fail
-/// fast (a SensitiveLiteral synth issue) instead of silently landing in state.
 void main() {
   group('StorageBucketObjectBody', () {
     test('FromSource encodes under source only', () {

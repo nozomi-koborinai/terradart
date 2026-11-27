@@ -107,7 +107,6 @@ final class Console {
   }
 }
 
-/// The steps the commands are made of, for one [Request].
 final class Workflow {
   Workflow({
     required this.request,
@@ -118,17 +117,12 @@ final class Workflow {
     this.dartExecutable,
   });
 
-  /// What the command line asks for; an answer to the environment
-  /// question replaces it.
   Request request;
   final ProcessRunner runner;
   final Console console;
 
-  /// The directory paths are printed relative to.
   final String cwd;
 
-  /// The `dart` binary that runs the entry point; `null` is the running VM
-  /// when it is `dart`, else `dart` on `PATH`.
   final String? dartExecutable;
 
   final EngineResolver _resolver;
@@ -141,7 +135,6 @@ final class Workflow {
 
   File get _manifest => File(p.join(_root, '.terradart', 'manifest.json'));
 
-  /// Runs `dart run <entrypoint>` in the project.
   Future<void> synth() async {
     final entry = request.config.entrypoint;
     if (!File(p.join(_root, entry)).existsSync()) {
@@ -167,24 +160,20 @@ final class Workflow {
       final from = request.envSource == EnvSource.variable
           ? ' (--env ${request.env} comes from $envVariable)'
           : '';
-      // runEnvironments exits 64 for an --env it does not declare, and for
-      // none when its environments share a directory.
+      final isUsageError = code == ExitCode.usage.code;
       throw CliException(
         'synth failed: $entry exited $code$from.',
-        kind: switch ((code, request.env)) {
-          (64, null) => ExitCode.missingFlag,
-          (64, _) => ExitCode.projectConfig,
-          _ => ExitCode.synthFailed,
-        },
-        flag: code == 64 ? '--env' : null,
+        kind: isUsageError
+            ? (request.env == null
+                  ? ExitCode.missingFlag
+                  : ExitCode.projectConfig)
+            : ExitCode.synthFailed,
+        flag: isUsageError ? '--env' : null,
       );
     }
     _target = null;
   }
 
-  /// What this command runs against: what the entry point last wrote, as
-  /// its manifest describes it. Prints the environment and why it is the
-  /// one.
   Target get target {
     if (_target case final target?) return target;
     final manifest = Manifest.read(_manifest);
@@ -217,10 +206,6 @@ final class Workflow {
     return target;
   }
 
-  /// Before `apply` or `destroy`, unless [autoApprove]: without a terminal
-  /// stops with exit code 3, since the engine cannot ask for approval; on
-  /// one asks whether to run against an environment the command line did
-  /// not name (`TERRADART_ENV` or the entry point's `defaultEnv`).
   void confirmEnvironment(String action, {required bool autoApprove}) {
     if (autoApprove) return;
     final env = target.environment;
@@ -250,11 +235,8 @@ final class Workflow {
     }
   }
 
-  /// The Terraform directory this command runs in.
   String get dir => target.dir;
 
-  /// The engine, resolved once and checked against the engine that last
-  /// applied the state.
   Future<Engine> engine() async {
     if (_engine case final engine?) return engine;
     final records = _records();
@@ -283,11 +265,6 @@ final class Workflow {
     return _engine = engine;
   }
 
-  /// Before `init`: stops when the target's local state file was written by
-  /// the other engine than the one about to run, and nothing records which
-  /// engine last applied it (see [_guardState]). A remote backend is not
-  /// read here — a leftover local file is not its state; [checkBackendState]
-  /// pulls that after `init`.
   Future<void> checkLocalState() async {
     final engine = await this.engine();
     if (_stateChecked || !configuredLocalBackend(dir)) return;
@@ -300,9 +277,6 @@ final class Workflow {
     _guardState(writer, engine);
   }
 
-  /// After `init` and the workspace: the same check against the state the
-  /// backend holds (`state pull`), when `init` configured a backend other
-  /// than `local` and [checkLocalState] found nothing.
   Future<void> checkBackendState() async {
     final engine = await this.engine();
     if (_stateChecked || !initializedRemoteBackend(dir)) return;
@@ -319,11 +293,6 @@ final class Workflow {
     if (writer != null) _guardState(writer, engine);
   }
 
-  /// A state written by one engine is rewritten for the other at its next
-  /// apply, and the first may not read it back. An engine the command line
-  /// or `pubspec.yaml` chose runs with a warning; one terradart picked by
-  /// itself (`PATH`, the OpenTofu download) needs a yes on the terminal, and
-  /// without a terminal stops with the flag that decides.
   void _guardState(StateWriter writer, Engine engine) {
     if (writer.kind == engine.kind) return;
     final now = engine.kind.label;
@@ -355,11 +324,6 @@ final class Workflow {
     if (!answer) throw CliException('Stopped. $choose');
   }
 
-  /// `init`, with the target's backend configuration. A target that passes
-  /// `-backend-config` re-initializes (`-reconfigure`) every time, so a
-  /// directory shared by several environments never keeps another one's
-  /// backend. Records which environment this was, so [ensureInitializedEnvironment]
-  /// can refuse to copy a different one's state.
   Future<void> init() async {
     final reconfigure = target.backendConfigArgs.isNotEmpty;
     await _engineRun([
@@ -371,7 +335,6 @@ final class Workflow {
     _recordInitializedEnvironment();
   }
 
-  /// Selects the target's workspace, creating it when [create] is set.
   Future<void> selectWorkspace({required bool create}) async {
     final ws = target.workspace;
     if (ws == null) return;
@@ -383,28 +346,15 @@ final class Workflow {
     ]);
   }
 
-  /// `init -backend=false`, then `validate`: needs the providers, not the
-  /// backend, its credentials or the state.
   Future<void> validate(List<String> extra) async {
     await _engineRun(['init', '-backend=false', '-input=false']);
     await _engineRun(['validate', ...extra]);
   }
 
-  /// The backend the Stack configures, from the `.tf` and `*.tf.json` files
-  /// in [dir] plus this environment's partial `-backend-config` (bucket,
-  /// prefix, and the rest). `local` when nothing configures one.
   String get configuredBackend => _configuredBackend().label;
 
-  /// The backend the last `init` in [dir] actually configured
-  /// (`.terraform/terraform.tfstate`, including bucket and prefix — not only
-  /// the type). `local` before any.
   String get initializedBackend => _initializedBackend().label;
 
-  /// Stops when [target] passes `backendConfig` and the last `init` of [dir]
-  /// was a different environment, or which environment it was is not
-  /// recorded. `init -migrate-state -force-copy` would otherwise copy that
-  /// other state into this environment's backend. `--auto-approve` does not
-  /// skip this.
   void ensureInitializedEnvironment() {
     final env = target.environment;
     if (env == null || target.backendConfig.isEmpty) return;
@@ -421,9 +371,6 @@ final class Workflow {
     );
   }
 
-  /// `init -migrate-state`: copies the state from the backend the last
-  /// `init` configured to the one the Stack configures now. `-force-copy`
-  /// answers the engine's copy prompt, which the caller has already asked.
   Future<void> migrateState() async {
     await _engineRun([
       'init',
@@ -435,9 +382,6 @@ final class Workflow {
     _recordInitializedEnvironment();
   }
 
-  /// Asks before copying the state, unless [autoApprove]. The question names
-  /// the full source and target configuration. Nobody to answer stops with
-  /// exit code 3.
   void confirmStateMove({
     required bool autoApprove,
     required String from,
@@ -460,10 +404,6 @@ final class Workflow {
     if (!answer) throw const CliException('Stopped; the state did not move.');
   }
 
-  /// `plan` (`plan -destroy` with [destroy]); returns [exitChanges] when
-  /// [detailedExitCode] and the plan has changes, else 0. With `--json` the
-  /// plan is saved and read back with `show -json`, so the result counts its
-  /// changes, and with [next] suggests `terradart apply` when there are any.
   Future<int> plan(
     List<String> extra, {
     bool detailedExitCode = false,
@@ -494,13 +434,7 @@ final class Workflow {
       ], workingDirectory: dir);
       saved.deleteSync();
       if (shown.exitCode == 0) {
-        try {
-          if (jsonDecode(shown.stdout) case final Map<String, Object?> json) {
-            result!.plan = PlanSummary.fromShowJson(json);
-          }
-        } on FormatException {
-          // The counts are left out; the plan itself succeeded.
-        }
+        result!.plan = _parsePlanSummary(shown.stdout);
       }
     }
     if (next && (result?.plan?.hasChanges ?? false)) suggest('apply');
@@ -527,8 +461,6 @@ final class Workflow {
     await _record();
   }
 
-  /// Fails when `--define-output` or `pubspec.yaml` names an output the
-  /// Stack does not declare — before `apply` changes anything.
   void checkDefineOutput() {
     final name = target.defineOutput;
     if (name == null || !target.namedDefineOutput) return;
@@ -541,12 +473,6 @@ final class Workflow {
     );
   }
 
-  /// Writes the define file from `output -json <defineOutput>`.
-  ///
-  /// When [required] is false (after `apply`), a Stack that declares no
-  /// define output is skipped; one `--define-output` or `pubspec.yaml`
-  /// names must exist ([checkDefineOutput]). With [dryRun] it prints the
-  /// file and the keys and writes nothing.
   Future<void> writeDefines({
     required bool required,
     bool dryRun = false,
@@ -673,8 +599,6 @@ final class Workflow {
     );
   }
 
-  /// The environment the last `init` recorded, or `null` when that record
-  /// is missing or unreadable.
   String? _readInitializedEnvironment() {
     final file = File(p.join(dir, '.terraform', _initializedEnvFile));
     if (!file.existsSync()) return null;
@@ -705,8 +629,6 @@ final class Workflow {
     }
   }
 
-  /// Adds `terradart <command>` against this target to the `--json` result's
-  /// `next`.
   void suggest(String command) =>
       console.result?.next.add('terradart $command${_envFlag()}');
 
@@ -716,8 +638,6 @@ final class Workflow {
       ' --workspace $ws',
   ].join();
 
-  /// Runs the engine in [dir]; an exit code other than 0 and [succeeds]
-  /// fails the command with [ExitCode.engineFailed].
   Future<int> _engineRun(
     List<String> args, {
     Set<int> succeeds = const {},
@@ -752,7 +672,6 @@ final class Workflow {
   EngineRecords _records() =>
       EngineRecords(File(p.join(_root, '.terradart', 'engines.json')));
 
-  /// Keeps `<project>/.terradart/` out of git without editing `.gitignore`.
   void _ignoreStateDir(Directory dir) {
     if (!p.equals(dir.path, p.join(_root, '.terradart'))) return;
     dir.createSync(recursive: true);
@@ -766,7 +685,6 @@ final class Workflow {
   }
 }
 
-/// The running VM when it is `dart`, else `dart` on `PATH`.
 String dartBinary() {
   final vm = Platform.resolvedExecutable;
   return p.basenameWithoutExtension(vm) == 'dart' ? vm : 'dart';
@@ -789,6 +707,17 @@ final class _Backend {
   }
 }
 
+PlanSummary? _parsePlanSummary(String stdout) {
+  try {
+    if (jsonDecode(stdout) case final Map<String, Object?> json) {
+      return PlanSummary.fromShowJson(json);
+    }
+  } on FormatException {
+    return null;
+  }
+  return null;
+}
+
 Map<String, String> _stringConfig(Map<Object?, Object?> raw) {
   final out = <String, String>{};
   for (final MapEntry(:key, :value) in raw.entries) {
@@ -798,8 +727,6 @@ Map<String, String> _stringConfig(Map<Object?, Object?> raw) {
   return out;
 }
 
-/// A partial backend file: a JSON object, or one `key = "value"` assignment
-/// per line. Not general HCL.
 Map<String, String> _parseBackendFile(String text) {
   final trimmed = text.trim();
   if (trimmed.startsWith('{')) {

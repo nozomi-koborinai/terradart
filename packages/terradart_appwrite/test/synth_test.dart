@@ -98,12 +98,15 @@ void main() {
       resources.keys,
       containsAll(['appwrite_project', 'appwrite_storage_bucket']),
     );
-    // No provider meta-argument needed: appwrite_ implies the appwrite
-    // provider (no prefix collision, unlike google-beta).
     final project =
         (resources['appwrite_project'] as Map<String, dynamic>)['p']
             as Map<String, dynamic>;
-    expect(project.containsKey('provider'), isFalse);
+    expect(
+      project.containsKey('provider'),
+      isFalse,
+      reason:
+          'appwrite_ prefix implies the appwrite provider with no collision',
+    );
   });
 
   test('catalog lists every resource and data source at the pin', () {

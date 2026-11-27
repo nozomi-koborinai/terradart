@@ -7,8 +7,6 @@ import 'package:test/test.dart';
 
 import 'support.dart';
 
-/// Runs `terradart <args>` and returns its code and output; `--help` prints
-/// its usage with `print`.
 Future<({int code, String out, String err})> terradart(
   List<String> args,
 ) async {
@@ -28,8 +26,6 @@ Future<({int code, String out, String err})> terradart(
   return (code: code, out: '$out', err: '$err');
 }
 
-/// The command lines a help text shows: indented lines that start with
-/// `terradart `, with each `<placeholder>` as a value.
 List<List<String>> exampleLines(String text) => [
   for (final line in text.split('\n'))
     if (line.startsWith('  ') && line.trimLeft().startsWith('terradart '))

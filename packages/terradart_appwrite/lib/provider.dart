@@ -1,4 +1,3 @@
-// packages/terradart_appwrite/lib/provider.dart
 /// Provider block factory and version constants for `appwrite/appwrite`.
 ///
 /// Import this alongside one or more per-service barrels:

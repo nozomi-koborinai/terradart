@@ -161,7 +161,6 @@ terraform {
 }
 ''');
     expect(configuredLocalBackend(dir.path), isTrue);
-    // The word "backend" in a leftover block is not a backend configuration.
     File(p.join(dir.path, 'backend.tf')).writeAsStringSync('''
 resource "google_storage_bucket" "states" {
   description = "the backend bucket"
@@ -454,8 +453,6 @@ terraform {
           );
         final runner = FakeRunner(
           synth: (_) {
-            // Same engine as the one about to run: trusting this file would
-            // mark the check done and never pull the remote state.
             File(project.path('tf-out/terraform.tfstate'))
               ..createSync(recursive: true)
               ..writeAsStringSync(

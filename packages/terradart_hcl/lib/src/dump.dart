@@ -1,8 +1,5 @@
 import 'ast.dart';
 
-/// A compact, position-free rendering of a node, for tests and debugging:
-/// two files that dump identically are structurally identical (comments
-/// excluded).
 String dumpHcl(HclNode node) {
   final buf = StringBuffer();
   _Dumper(buf).write(node, 0);

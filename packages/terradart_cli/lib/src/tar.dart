@@ -6,11 +6,6 @@ import 'dart:typed_data';
 import 'cli_exception.dart';
 import 'output/exit_codes.dart';
 
-/// Writes the regular file [entry] of the gzip-compressed tar [archive] to
-/// [destination], streaming, and returns whether the archive held it.
-///
-/// Reads ustar and GNU headers, PAX `path` records and GNU long names, which
-/// covers the archives goreleaser writes for OpenTofu.
 Future<bool> extractTarGzEntry(
   File archive,
   String entry,
@@ -48,7 +43,6 @@ final class _TarReader {
   bool found = false;
   bool _done = false;
 
-  /// Consumes [chunk]; true once the entry was written or the archive ended.
   Future<bool> add(List<int> chunk) async {
     var i = 0;
     while (i < chunk.length && !_done) {
@@ -94,11 +88,12 @@ final class _TarReader {
     _remaining = size;
     _padding = (512 - size % 512) % 512;
     _body = _Body.skip;
-    if (type == 0x78 /* x */ ) {
+    if (type == _tarTypePaxHeader) {
       _body = _Body.pax;
-    } else if (type == 0x4c /* L */ ) {
+    } else if (type == _tarTypeGnuLongName) {
       _body = _Body.longName;
-    } else if ((type == 0x30 /* 0 */ || type == 0) &&
+    } else if ((type == _tarTypeRegularFile ||
+            type == _tarTypeLegacyRegularFile) &&
         _stripDot(name) == _entry) {
       _body = _Body.write;
       found = true;
@@ -172,5 +167,10 @@ final class _TarReader {
 
   static int _min(int a, int b) => a < b ? a : b;
 }
+
+const _tarTypePaxHeader = 0x78;
+const _tarTypeGnuLongName = 0x4c;
+const _tarTypeRegularFile = 0x30;
+const _tarTypeLegacyRegularFile = 0;
 
 enum _Body { skip, write, pax, longName }

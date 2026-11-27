@@ -8,7 +8,6 @@ import 'package:test/test.dart';
 
 import 'support.dart';
 
-/// `runStack` writing a `main.tf.json` whose backend is [backend].
 FakeSynth _withBackend(Map<String, Object?>? backend) {
   final entry = runStackEntry();
   return (
@@ -26,7 +25,6 @@ const _gcs = {
   'gcs': {'bucket': 'acme-tfstate', 'prefix': 'app'},
 };
 
-/// A shared `tf-out` whose per-env backend is a file plus a `prefix` pair.
 FakeSynth _sharedGcs(List<String> args) {
   final entry = runEnvironmentsEntry(
     args,
