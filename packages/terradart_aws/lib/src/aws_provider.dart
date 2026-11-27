@@ -102,8 +102,8 @@ final class AwsProvider implements StackProvider {
   /// Skip looking up the account ID; ARN-derived attributes may be empty.
   final bool? skipRequestingAccountId;
 
-  /// AWS SDK retry mode: `standard` or `adaptive`.
-  final String? retryMode;
+  /// AWS SDK retry mode.
+  final AwsRetryMode? retryMode;
 
   /// Maximum retries for a throttled or failed API call.
   final int? maxRetries;
@@ -151,13 +151,16 @@ final class AwsProvider implements StackProvider {
       'skip_region_validation': skipRegionValidation,
     if (skipRequestingAccountId != null)
       'skip_requesting_account_id': skipRequestingAccountId,
-    if (retryMode != null) 'retry_mode': retryMode,
+    if (retryMode != null) 'retry_mode': retryMode!.name,
     if (maxRetries != null) 'max_retries': maxRetries,
     if (useFipsEndpoint != null) 'use_fips_endpoint': useFipsEndpoint,
     if (useDualstackEndpoint != null)
       'use_dualstack_endpoint': useDualstackEndpoint,
   };
 }
+
+/// The `retry_mode` argument of [AwsProvider].
+enum AwsRetryMode { standard, adaptive }
 
 /// One `assume_role` block of [AwsProvider].
 @immutable

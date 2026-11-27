@@ -44,7 +44,7 @@ const _everySetting = AwsProvider(
   skipMetadataApiCheck: true,
   skipRegionValidation: true,
   skipRequestingAccountId: true,
-  retryMode: 'adaptive',
+  retryMode: .adaptive,
   maxRetries: 5,
   useFipsEndpoint: false,
   useDualstackEndpoint: true,
@@ -202,6 +202,16 @@ void main() {
       'use_fips_endpoint': false,
       'use_dualstack_endpoint': true,
     });
+  });
+
+  test('retry_mode takes only the values the provider accepts', () {
+    expect(
+      [
+        for (final mode in AwsRetryMode.values)
+          AwsProvider(retryMode: mode).configArgs['retry_mode'],
+      ],
+      ['standard', 'adaptive'],
+    );
   });
 
   test('wires the trust policy and the role ARN by reference', () {
