@@ -1,26 +1,3 @@
-// tool/bump_api_surface.dart
-//
-// Snapshots and diffs the public Dart API of the packages a weekly schema
-// bump lane regenerates, read from their migration manifests: every factory
-// class and its barrel, every constructor slot and helper field, every
-// sealed variant, getter and enum member. schema-bump.yml dumps the surface before and after regenerating,
-// and the drift report refuses auto-merge on any breaking entry.
-//
-// Usage:
-//   dart tool/bump_api_surface.dart dump [--lanes=google,google-beta] \
-//     --out=/tmp/api_before.json
-//   dart tool/bump_api_surface.dart diff \
-//     --before=/tmp/api_before.json --after=/tmp/api_after.json \
-//     --out=/tmp/api_diff.json
-//
-// --lanes names tool/providers.yaml lanes (default: google,google-beta, the
-// GA bump and its beta ride-along); each lane's outputPackage selects its
-// manifest. The manifests are const Dart values compiled into this tool, so
-// a dump after `terradart wrap` sees the regenerated manifests.
-//
-// Exit codes: 0 success (breaking changes are reported, not failed on),
-// 64 usage error.
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -89,8 +66,6 @@ Map<String, Map<String, Object?>> _readSurface(String path) {
   };
 }
 
-/// The generated manifests of [lanes] (tool/providers.yaml names), found by
-/// each lane's `outputPackage`.
 List<MigrateManifest> laneManifests(String providersYaml, List<String> lanes) {
   final providers =
       (loadYaml(providersYaml) as YamlMap)['providers'] as YamlMap;
@@ -107,12 +82,6 @@ List<MigrateManifest> laneManifests(String providersYaml, List<String> lanes) {
   return [for (final lane in lanes) manifest(lane)];
 }
 
-/// Surface key → `{sig, required?, owner?}`.
-///
-/// `sig` captures everything a caller's code depends on; `required` is kept
-/// apart so a slot turning optional is not a break, and `owner` names the
-/// class or helper key a slot belongs to, so a new required slot on an
-/// existing owner is recognised as one.
 @visibleForTesting
 Map<String, Map<String, Object?>> apiSurface(List<MigrateManifest> manifests) {
   final out = <String, Map<String, Object?>>{};
@@ -169,9 +138,6 @@ void _addSlots(
   }
 }
 
-/// `{breaking: [..], added: n}`. Breaking: a removed key, a changed `sig`, an
-/// optional slot turning required, or a new required slot on an owner that
-/// already existed.
 @visibleForTesting
 Map<String, Object> diffApiSurface(
   Map<String, Map<String, Object?>> before,

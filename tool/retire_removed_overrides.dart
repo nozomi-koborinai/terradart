@@ -1,18 +1,3 @@
-// retire_removed_overrides.dart — drop curated overrides whose Terraform
-// type the lane's schema fixture no longer has.
-//
-// `terradart wrap` fails closed when an override names a missing schema
-// type (`schema.json missing resource`). The weekly bump refreshes the
-// fixture first, so a removed type used to abort regen and leave the
-// provider pin and every new factory unwritten. Regen calls this before
-// wrap. `wrap --check` does not: a stale override a person left in place
-// is still an error.
-//
-// A barrel whose last type went with the override is removed from the
-// authored manifest too. wrap then deletes the generated barrel as an
-// orphan. A barrel an authored `dataSourceBarrels` entry still names, for
-// a data source the schema kept, stays.
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -23,7 +8,6 @@ import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:yaml/yaml.dart';
 
-/// What [retireRemovedOverrides] deleted, names sorted.
 class RetiredOverrides {
   const RetiredOverrides({
     required this.resources,
@@ -44,13 +28,6 @@ class RetiredOverrides {
       hints.isEmpty;
 }
 
-/// Deletes override YAML under [overridesRoot] for types absent from
-/// [schemaPath], each deleted override's hint file of its own kind
-/// (`hints/<type>.yaml` or `hints/data/<type>.yaml`), and barrel keys in
-/// [barrelsManifest] that then have no type.
-///
-/// A schema with no `data_source_schemas` object leaves data-source
-/// overrides alone. A present object, even an empty one, is the whole set.
 RetiredOverrides retireRemovedOverrides({
   required String schemaPath,
   required String overridesRoot,
@@ -129,10 +106,6 @@ RetiredOverrides retireRemovedOverrides({
   );
 }
 
-/// Drops mapping keys [keys] from the YAML section whose header line is
-/// `[section]:`. A key is an indent-2 line `  name:`. Its block runs until
-/// the next indent-2 key or a line that leaves the section. Other sections
-/// are copied unchanged. An absent section is a no-op.
 String dropYamlSectionKeys(String source, String section, Set<String> keys) {
   if (keys.isEmpty) return source;
   final lines = source.split('\n');

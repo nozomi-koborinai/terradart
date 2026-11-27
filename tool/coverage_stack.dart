@@ -1,16 +1,5 @@
 // ignore_for_file: avoid_print
 
-/// The only writer of a coverage stack (`examples/<slug>_quickstart`). It
-/// renders the lane's stack, proves it with the engine and commands required
-/// CI runs on it, learns into `tool/coverage_dummies/<lane>.yaml` each value
-/// the provider asks for, and leaves out a factory no value satisfies.
-///
-///     dart tool/coverage_stack.dart --lane <name> [--out <verdict.json>]
-///
-/// Exit 0: a verdict was written, green or broken. 64: usage. Anything else
-/// is a crash, which leaves no verdict and the files as they were found.
-library;
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -32,18 +21,11 @@ import 'validate_engine.dart'
     show kValidateLeg, providersNotOnOpenTofu, resolveOpenTofu;
 import 'wrap_lanes.dart' show providersPath;
 
-/// One lane's coverage stack generator: catalog sources and the ledger in,
-/// Dart source out.
 abstract interface class CoverageStackGenerator {
-  /// `aws_leftover`; the stack is `examples/<slug>_quickstart`.
   String get slug;
 
-  /// Names the stack's preamble declares, which a ledger value may read with
-  /// `${name}`.
   Set<String> get bindings;
 
-  /// The stack's `lib/main.dart`, unformatted, without the classes in
-  /// [exclude].
   RenderedStack render(CoverageDummies dummies, {required Set<String> exclude});
 }
 
@@ -51,13 +33,9 @@ final class RenderedStack {
   const RenderedStack(this.source, {this.unplaceable = const {}});
 
   final String source;
-
-  /// Factories the generator could not construct, with why.
   final Map<String, String> unplaceable;
 }
 
-/// `tool/providers.yaml` `bump.exampleGenerator` path to its generator.
-/// `tool/coverage_stack_test.dart` fails when the two disagree.
 const Map<String, CoverageStackGenerator> kCoverageStacks = {
   'tool/generate_data_source_leftover_example.dart': googleDataSourceStack,
   'tool/generate_aws_leftover_example.dart': awsLeftoverStack,
@@ -66,7 +44,6 @@ const Map<String, CoverageStackGenerator> kCoverageStacks = {
   'tool/generate_azure_leftover_example.dart': azureLeftoverStack,
 };
 
-/// Everything one lane's run needs, read and validated at the boundary.
 final class CoverageLane {
   CoverageLane({
     required this.name,
@@ -78,9 +55,6 @@ final class CoverageLane {
   }) : stackPath =
            stackPath ?? 'examples/${generator.slug}_quickstart/lib/main.dart';
 
-  /// The lane [name] of `tool/providers.yaml`, its migration manifest, its
-  /// ledger, and the classes `tool/example_debt.yaml` lists. The synth gate
-  /// forbids a listed class in synth output, so those are always left out.
   static CoverageLane read(String name) {
     final bump =
         parseBumpLanes(
@@ -113,7 +87,6 @@ final class CoverageLane {
   final Set<String> debtListed;
   final String stackPath;
 
-  /// The factory the block [address] instantiates.
   FactoryRef? factoryAt(TfAddress address) {
     final entry = manifest.entryFor(
       address.type,
@@ -122,7 +95,6 @@ final class CoverageLane {
     return entry == null ? null : FactoryRef._(entry);
   }
 
-  /// The factory class [className].
   FactoryRef factoryNamed(String className) => FactoryRef._(
     manifest.entries.where((e) => e.className == className).firstOrNull ??
         (throw StateError('$className is not in the $name manifest')),
@@ -155,13 +127,9 @@ Set<String> _debtListed(File debt) => {
       if (RegExp(r'^(\w+):').firstMatch(line) case final m?) m[1]!,
 };
 
-/// What required CI says about one example.
 abstract interface class Oracle {
-  /// Synths `examples/<slug>_quickstart`, runs `kValidateLeg` in its
-  /// `tf-out` (`validate -json`), then `dart analyze` on the example.
   Future<OracleRun> run(String slug);
 
-  /// `validate -json` alone on [mainTfJson] in the initialized `tf-out`.
   Future<List<Rejection>> revalidate(String slug, String mainTfJson);
 }
 
@@ -172,20 +140,14 @@ sealed class OracleRun {
 final class OracleGreen extends OracleRun {
   const OracleGreen(this.engine, this.providers);
 
-  /// `tofu 1.13.1`.
   final String engine;
-
-  /// `hashicorp/aws` → `6.68.0`.
   final Map<String, String> providers;
 }
 
-/// `validate` reported errors.
 final class OracleRejected extends OracleRun {
   const OracleRejected(this.rejections, this.mainTfJson);
 
   final List<Rejection> rejections;
-
-  /// The `tf-out/main.tf.json` the rejections point into.
   final String mainTfJson;
 }
 
@@ -196,18 +158,10 @@ final class OracleBroken extends OracleRun {
   final String log;
 }
 
-/// Passes that may learn values or required blocks. Later passes only leave
-/// factories out, so the run ends.
 const kLearnPasses = 5;
-
-/// Trial rounds one search may spend, and the wall time it may take.
 const kMaxRounds = 6;
 const kSearchBudget = Duration(minutes: 20);
 
-/// Renders [lane]'s coverage stack, proves it with [oracle], learns the
-/// values the provider asks for, leaves out what it cannot place, and writes
-/// the stack and the ledger. Afterwards the files hold either what the run
-/// found or a green stack.
 Future<CoverageVerdict> runCoverageStack(
   CoverageLane lane, {
   Oracle? oracle,
@@ -480,9 +434,6 @@ Future<CoverageVerdict> runCoverageStack(
   }
 }
 
-/// Candidates for one rejected key, best first: what the messages name, then
-/// what other ledger entries give a parameter of the same name. The rejected
-/// values and repeats are dropped.
 List<Candidate> candidatesFor(
   DummyKey key,
   List<ValueRejection> at,
@@ -499,10 +450,6 @@ List<Candidate> candidatesFor(
   ];
 }
 
-/// Trial rounds at the Terraform layer: each round patches every unresolved
-/// key's next candidate into [mainTfJson] and revalidates once. A key none
-/// of whose blocks draws a rejection is learned. Stops when every queue is
-/// empty, after [kMaxRounds], or past [kSearchBudget].
 Future<Map<DummyKey, LearnedDummy>> search(
   String slug,
   Map<DummyKey, List<ValueRejection>> groups,
@@ -652,9 +599,7 @@ String _excerpt(String log) {
   return text.length > 6000 ? text.substring(text.length - 6000) : text;
 }
 
-/// Formats a written stack as CI expects it. `dart format` splits long
-/// literals without the trailing commas `require_trailing_commas` wants, so
-/// the fix runs between two format passes.
+// dart format splits long literals without trailing commas; fix and re-format for require_trailing_commas.
 Future<void> formatStack(String path) async {
   for (final args in [
     ['format', path],
@@ -673,9 +618,6 @@ Future<void> formatStack(String path) async {
   }
 }
 
-/// Synthesizes and validates with the engine `tool/validate_engine.dart`
-/// picks, the commands of `kValidateLeg`, and `dart analyze` as the CI
-/// example gates run it.
 final class ProcessOracle implements Oracle {
   ProcessOracle();
 
@@ -754,8 +696,6 @@ final class ProcessOracle implements Oracle {
     }
   }
 
-  /// The errors of a `validate -json` run, or null when it printed no report
-  /// or reported invalid without an error.
   static List<Rejection>? _rejections(ProcessResult r, String mainTfJson) {
     try {
       final stdout = stripWorkflowCommands(r.stdout as String);
@@ -823,8 +763,6 @@ Future<void> main(List<String> args) async {
 
 final _enumListType = RegExp(r'\bEnumList<\s*(\w+)\s*>');
 
-/// [file], a generated wrapper, with each `EnumList<E>` written as the type
-/// it aliases, `TfArg<List<E>>`, so a generator reads one list shape.
 String readWrapperSource(File file) => file.readAsStringSync().replaceAllMapped(
   _enumListType,
   (m) => 'TfArg<List<${m[1]}>>',

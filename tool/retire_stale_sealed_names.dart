@@ -1,38 +1,26 @@
-// retire_stale_sealed_names.dart — drop sealedNames keys wrap reported as
-// matching no group.
-
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
-/// One `sealedNames` key [key] on Terraform type [type], as wrap printed it.
 typedef StaleSealedName = ({String type, String key});
 
 final _staleSealedName = RegExp(
   r'\[E406\] terradart wrap: (\S+) sealedNames "([^"]*)" matches no sealed group',
 );
 
-/// The stale names in a wrap log. Other E406 text is left for the caller.
 List<StaleSealedName> staleSealedNamesIn(String log) => [
   for (final m in _staleSealedName.allMatches(log))
     (type: m.group(1)!, key: m.group(2)!),
 ];
 
-/// Removes [keys] from the `sealedNames:` section of an override. Keys are
-/// matched by their canonical sorted member set (`"b, a"` matches `"a, b"`).
-/// Drops the section header when that was its last entry. Other sections stay.
 String dropSealedNames(String source, Set<String> keys) =>
     dropGroupMapSection(source, 'sealedNames', keys);
 
-/// Canonical sorted member key (`"b, a"` -> `"a, b"`).
 String canonicalGroupKey(String key) => ([
   for (final part in key.split(','))
     if (part.trim().isNotEmpty) part.trim(),
 ]..sort()).join(', ');
 
-/// Removes entries matching [keys] (by [canonicalGroupKey]) from the top-level
-/// YAML map [section]. Drops the section header when its last entry is
-/// removed. Other sections stay untouched.
 String dropGroupMapSection(String source, String section, Set<String> keys) {
   if (keys.isEmpty) return source;
   final targets = {for (final k in keys) canonicalGroupKey(k)};
@@ -110,8 +98,6 @@ String dropGroupMapSection(String source, String section, Set<String> keys) {
   return out.join('\n');
 }
 
-/// Resolves an override YAML file under [overridesRoot] for a wrap diagnostic
-/// label (`google_foo` for resources, `data.azurerm_foo` for data sources).
 File overrideFileForLabel(String overridesRoot, String label) {
   if (label.startsWith('data.')) {
     return File(p.join(overridesRoot, 'data_${label.substring(5)}.yaml'));
@@ -119,8 +105,6 @@ File overrideFileForLabel(String overridesRoot, String label) {
   return File(p.join(overridesRoot, '$label.yaml'));
 }
 
-/// Writes the drops into the override file for each name. Returns the
-/// `type key` lines that changed a file.
 List<String> retireStaleSealedNames(
   String overridesRoot,
   List<StaleSealedName> stale,

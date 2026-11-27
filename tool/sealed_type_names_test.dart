@@ -1,11 +1,3 @@
-// Every sealed type `terradart wrap` emits, and every variant of one, reads
-// each block segment once: a concept never repeats the words its owner ends
-// with (`S3BucketBucket`), and a variant never repeats the words its sealed
-// type ends with (`...RagConfigRagConfig`) — no run of words appears twice in
-// a row across the join. Terraform's own block paths may
-// repeat words (`custom_metric.custom_metric_definition`); only the joins
-// wrap makes are checked.
-
 import 'dart:io';
 
 import 'package:terradart_migrate/terradart_migrate.dart';
@@ -15,9 +7,6 @@ List<String> _words(String name) => RegExp(
   r'[A-Z][a-z0-9]*|[a-z0-9]+',
 ).allMatches(name).map((m) => m[0]!).toList();
 
-/// Whether [prefix] followed by [rest] says a run of words twice in a row
-/// across the join. Runs wholly inside [prefix] are Terraform's own block
-/// names and do not count.
 bool repeatsAcrossJoin(String prefix, String rest) {
   final join = _words(prefix).length;
   final w = [..._words(prefix), ..._words(rest)];
@@ -32,8 +21,6 @@ bool repeatsAcrossJoin(String prefix, String rest) {
   return false;
 }
 
-/// Variant class → sealed type, for every `final class V extends S` whose
-/// `S` is a `sealed class` in [package]'s `lib/`.
 Map<String, String> _sealedParents(String package) {
   final sealed = <String>{};
   final extendsOf = <String, String>{};
@@ -57,8 +44,6 @@ Map<String, String> _sealedParents(String package) {
   };
 }
 
-/// The trailing words of [owner] that [sealed] starts with (`AwsS3Bucket`,
-/// `S3BucketName` → `S3Bucket`), or null.
 String? _stem(String owner, String sealed) {
   final words = _words(owner);
   for (var i = 0; i < words.length; i++) {
@@ -73,10 +58,6 @@ String _pascal(String snake) => [
     if (p.isNotEmpty) p[0].toUpperCase() + p.substring(1),
 ].join();
 
-/// Each repeated join in [manifest], as `owner.slot: reason`: a sealed
-/// type that repeats its owner, or a variant that repeats its sealed type
-/// (or, for a hand-written variant not named after its sealed type, its
-/// owner).
 List<String> repeatedJoins(MigrateManifest manifest) {
   final parents = _sealedParents(manifest.package);
   final out = <String>[];

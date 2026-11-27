@@ -1,5 +1,3 @@
-// The tool/ test convention keeps this file outside test/, so the analyzer
-// does not recognize it as a test for @visibleForTesting purposes.
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
 import 'dart:io';
@@ -62,9 +60,7 @@ void main() {
   test(
     'schema-bump commits with git add -A and does not name .schema-bump',
     () {
-      // .schema-bump/ is gitignored. An exclude pathspec that names it makes
-      // `git add` exit 1, which killed every bump that had something to commit
-      // (runs 26–28, and the commit step of any later run).
+      // git add exits 1 when an exclude pathspec names a gitignored path.
       final workflow = File(
         '.github/workflows/schema-bump.yml',
       ).readAsStringSync();

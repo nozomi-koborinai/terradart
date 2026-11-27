@@ -356,8 +356,7 @@ _Arg _stringList(DummyValue? value) {
   return const _Written("TfArg.literal(['leftover'])");
 }
 
-// `sensitive()` passes `terraform validate` without a declared variable,
-// the form the google data-source generator already writes.
+// Terraform's sensitive() passes terraform validate without a declared variable.
 String _sensitiveExpression(String secret) {
   final encoded = jsonEncode(secret);
   return "Sensitive.expression(r'\${sensitive($encoded)}')";

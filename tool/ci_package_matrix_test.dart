@@ -1,7 +1,3 @@
-// Every package under packages/ is tested and publish-dry-run in CI.
-// The matrix is the workspace list that tool/ci_packages.dart prints.
-// A directory that is not a workspace member, or a hardcoded package list,
-// fails this file.
 import 'dart:io';
 
 import 'package:test/test.dart';

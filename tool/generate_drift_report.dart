@@ -1,37 +1,3 @@
-// tool/generate_drift_report.dart
-//
-// Aggregates structured inputs (provided as files in --inputs-dir) into a
-// Markdown drift report. The report is the body of one lane's weekly
-// schema-bump PR.
-//
-// Usage:
-//   dart tool/generate_drift_report.dart \
-//     [--lane=google] \
-//     --inputs-dir=/tmp/schema-bump \
-//     --out=.schema-bump/drift_report.md \
-//     --decision-out=/tmp/auto_merge.json
-//
-// --lane names a tool/providers.yaml lane (default google); its source and
-// schemaDir title the report and its schema-diff pointer.
-//
-// Input layout:
-//   state.json (tool/fetch_schema.dart + bump_date), wrap_check.txt,
-//   wrap_check_exit, gates.txt, gates_exit, schema_diff.json
-//   (tool/schema_resource_diff.dart); optional mm_yaml_sync.json (lanes
-//   with Magic Modules YAML), beta_bump.json (the google-beta ride-along),
-//   api_diff.json (tool/bump_api_surface.dart diff), scaffold.json and
-//   new_factories.json (tool/bump_new_factories.dart scaffold / record),
-//   coverage_stack.json (tool/coverage_stack.dart; absent on a lane with a
-//   coverage stack → blocks).
-//
-// --decision-out (optional) receives `{auto_merge, blockers}`: the
-// workflow enables auto-merge only when `blockers` is empty.
-//
-// Exit codes:
-//   0 report generated (regardless of whether drift was present)
-//   64 usage error
-//   65 missing or unreadable input file
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -113,9 +79,6 @@ _Args? _parseArgs(List<String> args) {
   return _Args(inputs, out, decisionOut, lane);
 }
 
-/// The lane a report is about: its registry source, the Terraform type
-/// prefix of its resources, the fixture the PR diff carries, and what its
-/// QA gates are called.
 @visibleForTesting
 class ReportLane {
   const ReportLane({
@@ -126,8 +89,6 @@ class ReportLane {
     this.hasCoverageStack = false,
   });
 
-  /// Reads [name]'s `source`, `schemaDir`, `bump.mode` and
-  /// `bump.exampleGenerator` from tool/providers.yaml.
   factory ReportLane.fromProviders(String providersYaml, String name) {
     final providers =
         (loadYaml(providersYaml) as YamlMap)['providers'] as YamlMap;
@@ -157,16 +118,9 @@ class ReportLane {
   final String name;
   final String source;
   final String schemaDir;
-
-  /// `bump.mode: pr-only`: the workflow opens the PR but never enables
-  /// auto-merge on it.
   final bool prOnly;
-
-  /// `bump.exampleGenerator` is set: the bump must hand in a coverage
-  /// verdict.
   final bool hasCoverageStack;
 
-  /// `google_`, `aws_`, `cloudflare_`: the source's provider name.
   String get typePrefix => '${source.split('/').last}_';
 
   String get gatesLabel =>
@@ -195,34 +149,13 @@ class ReportInputs {
   final int wrapCheckExitCode;
   final String gatesStdout;
   final int gatesExitCode;
-
-  /// Optional `mm_yaml_sync.json` — only lanes enriched by Magic Modules
-  /// YAML sync it. Absent → the report omits the MM section and row.
   final Map<String, dynamic>? mmYamlSync;
   final Map<String, dynamic> schemaDiff;
   final ReportLane lane;
-
-  /// Optional `beta_bump.json` payload — present only when the workflow ran
-  /// the google-beta ride-along (a GA bump week). Absent file → null → the
-  /// report omits the beta section entirely.
   final Map<String, dynamic>? betaBump;
-
-  /// Optional `api_diff.json` (`tool/bump_api_surface.dart diff`):
-  /// `{breaking: [..], added: n}`. Absent → the surface was not compared,
-  /// which blocks auto-merge.
   final Map<String, dynamic>? apiDiff;
-
-  /// Optional `scaffold.json`: `{exit, log_excerpt}` of the default-override
-  /// scaffolding for the new types. A nonzero exit blocks auto-merge.
   final Map<String, dynamic>? scaffold;
-
-  /// Optional `new_factories.json`: `{factories: [{tf_type, class_name,
-  /// kind}], example_generator}` — the new types the regenerate made
-  /// factories.
   final Map<String, dynamic>? newFactories;
-
-  /// Optional `coverage_stack.json`: the lane's coverage stack after the
-  /// regenerate. Absent on a lane with one → blocks auto-merge.
   final CoverageVerdict? coverage;
 }
 
@@ -330,16 +263,6 @@ String buildReport(ReportInputs i) {
   return b.toString();
 }
 
-/// Why this bump must wait for a human; empty when it may auto-merge.
-///
-/// Auto-merge is for the routine week only: a clean regenerate, green QA
-/// gates, no MM sync failure, no removed curated resource (or data source,
-/// on lanes that diff them), no new major, and no breaking change to the
-/// generated Dart API, and a coverage stack that validated with every
-/// factory the provider accepts ([coverageBlockers]). A new upstream type is
-/// routine: the bump scaffolds its default override and records it for
-/// later polish, so only a failed scaffold blocks. CI's required checks
-/// still gate the merge itself.
 @visibleForTesting
 List<String> autoMergeBlockers(ReportInputs i) {
   final blockers = <String>[
@@ -384,11 +307,6 @@ List<String> autoMergeBlockers(ReportInputs i) {
   return [...blockers, ...coverageBlockers(i)];
 }
 
-/// What the coverage verdict means for auto-merge. A learned value and a
-/// factory the generator cannot place do not block: the first is in the
-/// ledger, the second has an `awaiting-example:` line as before. A factory
-/// the provider rejected does, new or existing, because its dummy value is
-/// what a maintainer must supply.
 @visibleForTesting
 List<String> coverageBlockers(ReportInputs i) {
   if (!i.lane.hasCoverageStack) return const [];
@@ -413,8 +331,6 @@ List<String> coverageBlockers(ReportInputs i) {
   };
 }
 
-/// The lane's coverage stack: what validated it, what it learned, what it
-/// left out. Null on a lane without one.
 @visibleForTesting
 String? buildCoverageSection(ReportInputs i) {
   if (!i.lane.hasCoverageStack) return null;
@@ -558,7 +474,6 @@ String _oneLine(String s) => s.trim().replaceAll(RegExp(r'\s+'), ' ');
 int _count(ReportInputs i, String key) =>
     (i.schemaDiff[key] as List?)?.length ?? 0;
 
-/// Whether the lane's schema diff covers data sources too.
 bool _tracksDataSources(ReportInputs i) =>
     i.schemaDiff.containsKey('added_data_sources');
 

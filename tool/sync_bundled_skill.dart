@@ -1,19 +1,3 @@
-// Keeps the agent skill the terradart CLI bundles identical to its source,
-// skills/terradart/SKILL.md.
-//
-// The source records the CLI version and its content hash in its front
-// matter (`metadata:` `terradart-version` / `terradart-sha256`), so the
-// bundled copy, the one `terradart skill install` writes and the one
-// `npx skills add` fetches from a release tag are the same bytes. The CLI
-// carries the file as a Dart constant (lib/src/assets/skill_md.g.dart)
-// because `dart install` and `dart compile exe` cannot read a
-// file outside the package at run time.
-//
-//   dart tool/sync_bundled_skill.dart        # list what is stale, exit 1
-//   dart tool/sync_bundled_skill.dart --fix  # rewrite the marker and the constant
-//
-// tool/bump_version.sh runs `--fix` after a bump; tool/bundled_skill_test.dart
-// fails while anything is stale.
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -24,7 +8,6 @@ const bundledSkillDart =
     'packages/terradart_cli/lib/src/assets/skill_md.g.dart';
 const cliPubspec = 'packages/terradart_cli/pubspec.yaml';
 
-/// The CLI version in [cliPubspec].
 String cliPubspecVersion(String root) {
   final text = File(p.join(root, cliPubspec)).readAsStringSync();
   return RegExp(
@@ -33,7 +16,6 @@ String cliPubspecVersion(String root) {
   ).firstMatch(text)!.group(1)!;
 }
 
-/// The Dart library that bundles [skill].
 String renderBundledSkill(String skill) {
   if (skill.contains("'''")) {
     throw const FormatException(
@@ -50,7 +32,6 @@ String renderBundledSkill(String skill) {
       "$skill''';\n";
 }
 
-/// The stale files, relative to [root]; with [fix], rewrites them.
 List<String> syncBundledSkill(String root, {bool fix = false}) {
   final stale = <String>[];
   final source = File(p.join(root, skillSource));

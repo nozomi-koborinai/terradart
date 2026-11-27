@@ -1,5 +1,3 @@
-// The tool/ test convention keeps this file outside test/, so the analyzer
-// does not recognize it as a test for @visibleForTesting purposes.
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
 import 'package:test/test.dart';

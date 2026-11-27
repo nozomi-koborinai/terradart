@@ -1,8 +1,3 @@
-// The members a generated wrapper calls to encode its helper and sealed types
-// — `encode()`, `blockKey` and a sealed choice's `argMap` — are `@internal`
-// in every package of a tool/providers.yaml lane, derived and override
-// `prelude` types alike, so a Stack's completion does not offer them.
-
 import 'dart:io';
 
 import 'package:test/test.dart';
@@ -14,8 +9,6 @@ final _member = RegExp(
 );
 final _annotation = RegExp(r'^\s*@\w+');
 
-/// `file:line` of every member [_member] matches whose annotations, the
-/// lines right above it, do not include `@internal`.
 List<String> unannotatedMembers(String path, String source) {
   final lines = source.split('\n');
   return [

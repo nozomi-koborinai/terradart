@@ -418,10 +418,7 @@ GoogleExampleThing(super.localName, {
       const description =
           "Allowed values: - 'ACTIVE' - running. - 'STOPPED' - idle. "
           'Note: There might be more states added in the future.';
-      expect(
-        describedValues(description, null),
-        isNull,
-      );
+      expect(describedValues(description, null), isNull);
     });
 
     test('prose with no cue is not a gap', () {
@@ -549,10 +546,7 @@ GoogleExampleThing(super.localName, {
       );
     });
 
-    // One seeded field per value-set wording. None of them has Magic
-    // Modules `enum_values`, so each fails only if the checker reads its
-    // description.
-    final seeds = <String, (int, Pattern, String, String)>{
+    final descriptionOnlySeeds = <String, (int, Pattern, String, String)>{
       'Possible values separated by spaces': (
         3,
         RegExp(
@@ -610,7 +604,7 @@ GoogleExampleThing(super.localName, {
       ),
     };
     for (final MapEntry(key: wording, value: (i, typed, raw, gap))
-        in seeds.entries) {
+        in descriptionOnlySeeds.entries) {
       test('fails on a seeded $wording field left a string', () {
         seed(wrappers[i], typed, raw);
         final result = check();

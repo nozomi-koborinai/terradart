@@ -1,17 +1,3 @@
-// bump_lane_gates.dart — the QA gates a weekly schema bump runs for one
-// tool/providers.yaml lane after regenerating it; their exit code and log
-// feed the drift report's gate section.
-//
-// Usage (from repo root):
-//   dart tool/bump_lane_gates.dart --lane aws
-//
-// google (and its beta ride-along) runs the universal invariants, which
-// include the beta/GA overlap gate. Every other lane runs its package's
-// tests — the catalog-matches-fixture and credential checks live there —
-// its `terradart lint-override`, and `dart analyze` over every example
-// that depends on the package (a regenerated API can break them).
-//
-// exit: 0 every gate passed; 1 a gate failed; 64 usage error.
 // ignore_for_file: avoid_print
 
 import 'dart:io';
@@ -22,7 +8,6 @@ import 'package:yaml/yaml.dart';
 
 import 'wrap_lanes.dart';
 
-/// One gate: `dart <args>` run in [workingDirectory] (repo-relative).
 @immutable
 class LaneGate {
   const LaneGate(this.label, this.workingDirectory, this.args);
@@ -36,7 +21,6 @@ class LaneGate {
       '$label: (cd $workingDirectory && dart ${args.join(' ')})';
 }
 
-/// The examples/ packages whose pubspec depends on [package], sorted.
 List<String> dependentExamples(String repoRoot, String package) {
   final dir = Directory(p.join(repoRoot, 'examples'));
   if (!dir.existsSync()) return const [];

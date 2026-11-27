@@ -1,19 +1,3 @@
-// release_ledger_check.dart — release-readiness check for the ledgers the
-// weekly schema bump fills.
-//
-// The bump merges with placeholders a human still owes: temporary `Or`
-// sealed names (tool/sealed_name_debt.yaml), `awaiting-example:` lines
-// (tool/example_debt.yaml) and backlog entries (tool/curation_backlog.yaml).
-// Release preparation is where they are paid down (RELEASE.md).
-//
-// Usage (from repo root; tool/bump_version.sh runs it first):
-//   dart tool/release_ledger_check.dart [--since <git-ref>]
-//
-// Fails (exit 1) when tool/sealed_name_debt.yaml has an entry: an `Or`
-// name is a placeholder, and publishing it makes renaming it breaking.
-// The other two ledgers only report their size and the entries new since
-// the last `v*` tag (or --since): the release author pays them down or
-// accepts them by pasting the report into the release PR body.
 // ignore_for_file: avoid_print
 
 import 'dart:io';
@@ -24,7 +8,6 @@ import 'bump_new_factories.dart'
     show awaitingExampleToken, curationBacklogPath, exampleDebtPath;
 import 'wrap_lanes.dart' show sealedNameDebtPath;
 
-/// `<type> [<group key>]` for every tool/sealed_name_debt.yaml entry.
 List<String> sealedNameEntries(String source) => [
   for (final MapEntry(key: type, value: groups) in parseSealedNameDebt(
     source,
@@ -33,10 +16,6 @@ List<String> sealedNameEntries(String source) => [
     for (final key in groups.keys) '$type [$key]',
 ]..sort();
 
-/// Class name → reason for every tool/example_debt.yaml line whose reason
-/// carries [awaitingExampleToken]. The file is `ClassName: reason` lines,
-/// not YAML (reasons contain `: `), split as tool/example_synth_gates.dart
-/// does.
 Map<String, String> awaitingExampleLines(String source) => {
   for (final raw in source.split('\n'))
     if (raw.trim() case final line
@@ -49,11 +28,7 @@ Map<String, String> awaitingExampleLines(String source) => {
           .trim(),
 };
 
-/// `resource: TYPE` / `data_source: TYPE` → `(PROVIDER_VERSION, detected
-/// DATE)` for every tool/curation_backlog.yaml entry. Read line by line in
-/// the layout tool/append_curation_backlog.dart writes, because the ledger
-/// at an older tag is not always valid YAML (a hand-written note once held
-/// an unquoted `: `).
+// Parsed line-by-line rather than with loadYaml because older release tags hold unquoted ": " in notes.
 Map<String, String> backlogEntries(String source) {
   final out = <String, String>{};
   String? current;
@@ -82,7 +57,6 @@ Map<String, String> backlogEntries(String source) {
 final _backlogHead = RegExp(r'^\s*- (resource|data_source): (\S+)\s*$');
 final _backlogField = RegExp(r'^\s+(detected_at|provider_version): (\S+)\s*$');
 
-/// The three ledgers now, against their contents at [since].
 class ReleaseLedgerReport {
   ReleaseLedgerReport({
     required this.since,
@@ -93,9 +67,6 @@ class ReleaseLedgerReport {
     required this.newBacklog,
   });
 
-  /// Builds the report from the ledger sources now and at [since]; a
-  /// `null` previous source (no tag, or the ledger did not exist there)
-  /// makes every current entry new.
   factory ReleaseLedgerReport.from({
     required String? since,
     required String sealedNameDebt,
@@ -135,7 +106,6 @@ class ReleaseLedgerReport {
   final Map<String, String> backlog;
   final List<String> newBacklog;
 
-  /// A release must not ship a temporary `Or` sealed name.
   bool get blocked => sealed.isNotEmpty;
 
   String render() {
@@ -189,8 +159,6 @@ class ReleaseLedgerReport {
   }
 }
 
-/// The newest `v*` tag reachable from HEAD, or null when there is none
-/// (a shallow clone, or before the first release).
 String? latestReleaseTag() {
   final r = Process.runSync('git', [
     'describe',
@@ -203,7 +171,6 @@ String? latestReleaseTag() {
   return r.exitCode == 0 && tag.isNotEmpty ? tag : null;
 }
 
-/// [path] at [ref], or null when [ref] is null or has no such file.
 String? showAt(String? ref, String path) {
   if (ref == null) return null;
   final r = Process.runSync('git', ['show', '$ref:$path']);

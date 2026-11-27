@@ -1,26 +1,3 @@
-// tool/schema_resource_diff.dart
-//
-// Compares a lane's schema fixture before and after a bump and writes the
-// schema_diff.json the drift report and the curation backlog read.
-//
-// Usage (repo root):
-//   dart tool/schema_resource_diff.dart \
-//     --old=/tmp/old_schema.json --new=/tmp/new_schema.json \
-//     --catalog=packages/terradart_aws/lib/src/_catalog.g.dart \
-//     [--data-sources] --out=/tmp/schema_diff.json
-//
-// Output:
-//   {"added_resources": [..], "removed_resources": [..]}
-//   plus "added_data_sources" / "removed_data_sources" with --data-sources.
-//
-// `added_*` lists every type the new schema has and the old one lacks.
-// `removed_*` lists only removed types the lane's catalog still wraps: an
-// uncurated type disappearing upstream changes nothing in TerraDart. Each
-// schema must hold exactly one provider (what `terraform providers schema
-// -json` prints for a single-provider root and what every fixture holds).
-//
-// Exit codes: 0 success, 64 usage error, 65 unreadable input.
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -108,10 +85,8 @@ Map<String, Object> schemaResourceDiff({
   return out;
 }
 
-/// Terraform types in a generated `_catalog.g.dart`, split by kind.
 @visibleForTesting
 ({Set<String> resources, Set<String> dataSources}) catalogTypes(String source) {
-  // dart format may wrap a long `tfType:` literal onto the next line.
   final entry = RegExp(
     r"tfType:\s*'([^']+)'[\s\S]*?kind:\s*CatalogKind\.(\w+)",
   );

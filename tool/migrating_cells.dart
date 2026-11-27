@@ -1,38 +1,3 @@
-// migrating_cells.dart — compiles the Dart code of every Before / After cell
-// of the top section of MIGRATING.md, so an upgrade table cannot show a call
-// or a type its release does not have. The top section is `## Unreleased`,
-// or `## <from> → <to>` (`## 0.35.x → 0.36.0`) once a release PR names it; any
-// other heading, a top section without a cell, or a first line other than
-// `# Migrating terradart`, fails.
-//
-// Run from repo root: dart tool/migrating_cells.dart
-// tool/migrating_cells_test.dart runs the same check (CI: `dart test tool/`).
-//
-// A cell's code is each of its backtick spans. A span that is a type
-// (`TfArg<String>`, `EnumList<X>`, `PubsubTopicSource`) becomes a typedef;
-// any other span is an expression (a factory or helper call, an enum member)
-// and must stand on its own: a named-argument fragment (`warmType: ...`)
-// fails, so the cell names its receiver. `...` elides what the row does not
-// change: as an argument (`Foo(a: x, ...)`) it drops out, as a value
-// (`b: ...`) it is a `dynamic` stand-in, and a cell with any elision may
-// leave required arguments unset; every argument it spells must compile.
-// A member named through its class (`DataFoo.limit`) may be an instance
-// getter.
-// A snake_case span is a Terraform name and is not
-// Dart. A lowerCamel name a cell leaves undefined (`topic`, `push`) is a
-// `dynamic` stand-in; an undefined capitalized name (`NoSuchType`) fails.
-//
-// After cells compile against the workspace packages. Before cells compile
-// against each package pub.dev has in the series the heading allows (any
-// version under `## Unreleased`, `<from>` under `## <from> → <to>`), at its
-// newest release there. A release PR moves the CHANGELOGs to a version
-// pub.dev does not have yet, and the CI checkout has no tags, so pub.dev,
-// which the Before compile resolves against anyway, is the source.
-//
-// Every Before cell compiles against that release. A package with no release
-// in the series has no upgrading user, so a row about it does not belong in
-// MIGRATING.md: a Before cell that names its code fails, and an undefined
-// name says which packages that release lacks.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -47,14 +12,12 @@ import 'wrap_lanes.dart';
 
 const migratingPath = 'MIGRATING.md';
 
-/// One code span of a Before or After cell.
 typedef MigratingCell = ({int line, String section, bool before, String code});
 
 final _typeSpan = RegExp(r'^[A-Z]\w*(<[\w<>, ?]*>)?\??$');
 final _terraformSpan = RegExp(r'^[a-z0-9_]+$');
 final _namedArgument = RegExp(r'^[a-z]\w*:\s');
 
-/// The first `##` heading of [text] and its line.
 ({int line, String heading})? topMigratingHeading(String text) {
   for (final (i, line) in text.split('\n').indexed) {
     if (line.startsWith('## ')) return (line: i + 1, heading: line.trim());
@@ -62,7 +25,6 @@ final _namedArgument = RegExp(r'^[a-z]\w*:\s');
   return null;
 }
 
-/// The Before / After code spans of the top `##` section of [text].
 List<MigratingCell> extractMigratingCells(String text) {
   final lines = text.split('\n');
   final out = <MigratingCell>[];
@@ -126,7 +88,6 @@ List<String> _cells(String row) {
   return out;
 }
 
-/// Why [cell] cannot compile as written, or null.
 String? cellShapeError(MigratingCell cell) {
   if (_namedArgument.hasMatch(cell.code)) {
     return 'is a named-argument fragment; write the call that takes it';
@@ -137,17 +98,10 @@ String? cellShapeError(MigratingCell cell) {
 final _releaseHeading = RegExp(r'^## (\d+\.\d+\.(?:\d+|x)) → \d+\.\d+\.\d+$');
 final _stableVersion = RegExp(r'^\d+\.\d+\.\d+$');
 
-/// The versions the Before cells under [heading] describe, as dotted parts
-/// where `x` matches any: `x` under `## Unreleased`, `<from>` under
-/// `## <from> → <to>` (`0.35.x`, `0.27.0`); null under any other heading.
 String? beforeSeries(String heading) => heading == '## Unreleased'
     ? 'x'
     : _releaseHeading.firstMatch(heading)?.group(1);
 
-/// Each package of [published] (package → its pub.dev versions) with a
-/// stable release in [series], at its newest one: the version a `^` pin of
-/// that series installs, even when a partial publish left the lockstep
-/// packages on different patches.
 Map<String, String> beforeRelease(
   String series,
   Map<String, List<String>> published,
@@ -176,9 +130,6 @@ Map<String, String> beforeRelease(
   };
 }
 
-/// The release the top section of [migrating] upgrades from: [beforeRelease]
-/// of the series its heading names. A publish never moves it, because the
-/// release PR renames the heading before it publishes.
 Map<String, String> previousRelease(
   String migrating,
   Map<String, List<String>> published,
@@ -194,11 +145,14 @@ Map<String, String> previousRelease(
   return beforeRelease(series, published);
 }
 
+<<<<<<< HEAD
 typedef PublishedVersionsLookup =
     Future<Map<String, List<String>>> Function(List<String> packages);
 
 /// Every version [pubHostedUrl] (default: `https://pub.dev`) lists for each
 /// of [packages]; none for a package it does not have.
+=======
+>>>>>>> bdf5e2d77 (chore(tool): clean comments and dead ignores in tool scripts and tests)
 Future<Map<String, List<String>>> publishedVersions(
   List<String> packages, {
   Uri? pubHostedUrl,
@@ -234,19 +188,14 @@ Future<Map<String, List<String>>> publishedVersions(
 final _elidedArgument = RegExp(r'(,\s*)?\.\.\.(?=\s*[)\]])');
 final _elidedValue = RegExp(r'(?<=:\s*)\.\.\.');
 
-/// [code] with its `...` elisions resolved, and whether it elided
-/// arguments.
 ({String code, bool elided}) resolveElisions(String code) {
   final values = code.replaceAll(_elidedValue, '_elided');
   final args = values.replaceAllMapped(_elidedArgument, (m) => '');
   return (code: args, elided: code.contains('...'));
 }
 
-/// A span naming a member through its class (`DataFoo.limit`): the getter
-/// it names may be an instance member.
 final _memberSpan = RegExp(r'^[A-Z]\w*\.[a-z]\w*$');
 
-/// Diagnostics an elided argument list (`Foo(a: x, ...)`) may raise.
 const elisionCodes = {
   'MISSING_REQUIRED_ARGUMENT',
   'NOT_ENOUGH_POSITIONAL_ARGUMENTS',
@@ -256,7 +205,6 @@ const _ignores =
     '// ignore_for_file: unused_import, unused_local_variable, '
     'unused_element, unused_field, dead_code, no_leading_underscores_for_local_identifiers';
 
-/// The sandbox file for [cells], and the document line of each of its lines.
 ({String contents, List<int?> docLines, List<MigratingCell?> cells})
 renderCells(List<MigratingCell> cells, List<String> imports) {
   final lines = <String>[_ignores, ...imports, 'dynamic _elided;'];
@@ -319,8 +267,6 @@ environment:
   sdk: ^3.12.0
 ''';
 
-/// The outcome of [checkMigratingCells]: its failures, the version each
-/// Before package compiled at, and how many Before cells compiled and failed.
 typedef MigratingReport = ({
   List<String> failures,
   Map<String, String> before,
@@ -330,16 +276,12 @@ typedef MigratingReport = ({
 
 const migratingTitle = '# Migrating terradart';
 
-/// Analyzer codes for a name no import declares.
 const _undefinedNameCodes = {
   'UNDEFINED_CLASS',
   'UNDEFINED_FUNCTION',
   'UNDEFINED_IDENTIFIER',
 };
 
-/// Compiles the cells of [migrating] (default: the repo's MIGRATING.md):
-/// After cells against the workspace, Before cells against the previous
-/// release on pub.dev.
 Future<MigratingReport> checkMigratingCells(
   String root, {
   String? migrating,
@@ -504,9 +446,6 @@ Future<MigratingReport> checkMigratingCells(
   );
 }
 
-/// Compiles only the After cells of the top section of [migrating] against the
-/// workspace packages (no pub.dev lookup). Returns failures keyed with their
-/// document line number.
 Future<({List<String> failures, Set<int> failingLines})>
 checkMigratingAfterCells(String root, {String? migrating}) async {
   final text =

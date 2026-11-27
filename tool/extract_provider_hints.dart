@@ -1,82 +1,3 @@
-// tool/extract_provider_hints.dart
-//
-// Extracts enum hints for a plugin-framework provider (cloudflare, appwrite)
-// from the provider's Go source at the pinned tag, into a Magic Modules YAML
-// subset the wrap pipeline already reads (MmYamlParser → IrMerger):
-//
-//   <schemaDir>/hints/<resource_type>.yaml
-//     provider_version: 5.26.0
-//     properties:
-//       - api_name: type
-//         enum_values: ["A", "AAAA", ...]
-//       - api_name: settings
-//         properties:
-//           - api_name: flatten_cname
-//             ...
-//
-// Source: every `internal/services/<svc>/schema.go` (Stainless, paired with
-// the `resource.go` that names the type) or, in a service without one, every
-// hand-written `resource.go` / `*_resource.go` (appwrite); data sources are
-// not read. A hint is a `stringvalidator.OneOf(...)` or
-// `stringvalidator.OneOfCaseInsensitive(...)` validator under an attribute
-// key — the value set the provider itself enforces, including list
-// elements (`listvalidator.ValueStringsAre(...)`) whose description does
-// not spell the values out. The Terraform type name comes from
-// `resp.TypeName = ... + "_<name>"`, or a `fmt.Sprintf` pattern matched
-// against schema.json when one Go type serves several variants. The same
-// files' relation validators become `exactly_one_of_groups`: every
-// `ExactlyOneOf` set (`<kind>validator.ExactlyOneOf` counts the attribute
-// it sits on, `resourcevalidator.ExactlyOneOf` in `ConfigValidators` does
-// not), and every `AtLeastOneOf` set whose members all pairwise
-// `ConflictsWith` / `Conflicting`. The other conflicts become
-// `at_most_one_of_groups`: each set of one block's inputs that pairwise
-// conflict with each other and with nothing else, outside every
-// exactly-one group (`exclusiveGroups` in terradart_codegen, shared with
-// the Magic Modules `conflicts` reader). A conflict no group expresses is
-// listed on stdout.
-//
-// hashicorp/aws (SDKv2 and framework, hand-written) is scanned by
-// tool/provider_hints_aws.dart instead: resources are the functions its
-// `@SDKResource` / `@FrameworkResource` annotations sit on, and a value set
-// may name an aws-sdk-go-v2 `types` enum, whose `enums.go` is read at the
-// module version the provider's go.mod requires. A map-typed attribute's
-// value set is skipped (enums cover string and string-list inputs only),
-// and so is one inside `validation.Any(...)` / `stringvalidator.Any(...)`,
-// where it is one alternative beside `""`, an ARN or a name pattern.
-// Its `ExactlyOneOf` groups (SDKv2 schema fields, framework
-// `*validator.ExactlyOneOf` and `resourcevalidator.ExactlyOneOf` in
-// `ConfigValidators`) are written as `exactly_one_of_groups`; a group whose
-// members are not sibling inputs in schema.json is skipped and listed.
-//
-// hashicorp/azurerm (tool/provider_hints_azurerm.dart) is the one scanner
-// that reads data sources too. A data source's hints go to
-// `<schemaDir>/hints/data/<type>.yaml`, checked against schema.json's
-// `data_source_schemas`, so a resource's hints never type its data-source
-// twin.
-//
-// schema.json at the same version is authoritative: a hint whose path is
-// absent there (a service's custom code reshapes the served schema) is
-// skipped and listed on stdout, and a path that names a non-string
-// attribute fails the tool — that means the scanner misread the Go
-// source. The committed output is never hand-edited — re-extract when the
-// pin moves (the command is in the emitted hints/README.md).
-//
-// Usage (repo root):
-//   dart tool/extract_provider_hints.dart \
-//     --repo=cloudflare/terraform-provider-cloudflare \
-//     --version="$(cat packages/terradart_codegen/test/fixtures/wrap/source_cloudflare/provider_version.txt)" \
-//     --schema-dir=packages/terradart_codegen/test/fixtures/wrap/source_cloudflare
-//
-//   --source-dir=<dir>  read an already-extracted source tree (its
-//                       internal/services) instead of downloading the tag
-//                       tarball from codeload.github.com.
-//   --sdk-dir=<dir>     hashicorp/aws only: read aws-sdk-go-v2
-//                       `service/<svc>/types/enums.go` from <dir> instead of
-//                       downloading them from raw.githubusercontent.com at
-//                       the provider's go.mod versions.
-//
-// Exit codes: 0 success, 64 usage error, 65 a hint names a non-string
-// attribute or schema.go does not scan, 69 download / extraction failure.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -98,7 +19,6 @@ const _exitUsage = 64;
 const _exitData = 65;
 const _exitFetch = 69;
 
-/// One enum validator found under an attribute key.
 final class GoEnumHint {
   const GoEnumHint({
     required this.path,
@@ -106,7 +26,6 @@ final class GoEnumHint {
     required this.caseInsensitive,
   });
 
-  /// Attribute keys from the resource root, e.g. `['settings', 'mode']`.
   final List<String> path;
   final List<String> values;
   final bool caseInsensitive;
@@ -118,9 +37,6 @@ enum GoTok { string, ident, punct }
 
 typedef GoToken = ({GoTok kind, String text});
 
-/// Tokenizes Go source into string literals (decoded), identifiers and
-/// single-character punctuation; comments, numbers and whitespace are
-/// dropped. Enough for Stainless's schema literals, not a Go parser.
 List<GoToken> tokenizeGo(String src) {
   final out = <GoToken>[];
   var i = 0;
@@ -196,15 +112,8 @@ List<GoToken> tokenizeGo(String src) {
 const goClosers = {'{': '}', '(': ')', '[': ']'};
 final goSchemaNode = RegExp(r'(Attribute|Block)$');
 
-/// Scans one `schema.go` for enum validators under attribute keys. A
-/// frame opens at `"key": pkg.SomethingAttribute{` (or `...Block{`); the
-/// keys of the open frames are the hint's path.
 List<GoEnumHint> scanSchemaGo(String src) => scanFrameworkSchema(src).hints;
 
-/// The framework validators that relate an attribute to other inputs
-/// (`<kind>validator.X(paths...)`, which counts the attribute itself as a
-/// member) or relate inputs to each other (`resourcevalidator.X(paths...)`
-/// in `ConfigValidators`).
 const _relationValidators = {
   'ExactlyOneOf',
   'AtLeastOneOf',
@@ -212,8 +121,6 @@ const _relationValidators = {
   'Conflicting',
 };
 
-/// The plugin-framework `<kind>validator` packages whose relation
-/// validators sit on an attribute (and count it as a member).
 const attributeValidatorKinds = {
   'boolvalidator',
   'dynamicvalidator',
@@ -229,31 +136,14 @@ const attributeValidatorKinds = {
   'stringvalidator',
 };
 
-/// What [scanFrameworkSchema] found in one plugin-framework source file.
 typedef FrameworkSchemaScan = ({
-  /// Enum value sets under attribute keys.
   List<GoEnumHint> hints,
-
-  /// The input sets the provider requires exactly one of, as member paths
-  /// from the resource root: an `ExactlyOneOf` set, or an `AtLeastOneOf`
-  /// set whose members all pairwise `ConflictsWith` / `Conflicting`.
   List<List<List<String>>> groups,
-
-  /// Pairwise conflicting sets no rule requires one of (at most one): the
-  /// provider accepts none of their members ([exclusiveGroups]).
   List<List<List<String>>> atMostOne,
-
-  /// Conflicts neither kind of group expresses, with the reason.
   List<String> unsealed,
-
-  /// Relation validators whose paths are not literal path expressions.
   int unresolved,
 });
 
-/// Scans one plugin-framework source file (`schema.go`, or a hand-written
-/// `resource.go`) for enum validators and exactly-one groups. A frame opens
-/// at `"key": pkg.SomethingAttribute{` (or `...Block{`); the keys of the
-/// open frames are the path of the attribute a validator sits on.
 FrameworkSchemaScan scanFrameworkSchema(String src) {
   final toks = tokenizeGo(src);
   final frames = <({String? key, String closer})>[];
@@ -379,10 +269,6 @@ FrameworkSchemaScan scanFrameworkSchema(String src) {
   );
 }
 
-/// The conflicting pairs one relation validator declares over [members]
-/// (dotted paths): an attribute's `ConflictsWith` ([anchored], the
-/// attribute first) conflicts with each other member, a
-/// `resourcevalidator.Conflicting` set pairwise.
 List<(String, String)> conflictPairs(
   List<String> members, {
   required bool anchored,
@@ -391,7 +277,6 @@ List<(String, String)> conflictPairs(
     for (var b = a + 1; b < members.length; b++) (members[a], members[b]),
 ];
 
-/// Index of the bracket closing the one at [open].
 int _matchingTok(List<GoToken> t, int open) {
   var depth = 0;
   for (var k = open; k < t.length; k++) {
@@ -403,12 +288,6 @@ int _matchingTok(List<GoToken> t, int open) {
   throw const FormatException('unclosed validator call');
 }
 
-/// The comma-separated framework path expressions from [i] up to [close],
-/// optionally wrapped in `path.Expressions{...}` (and spread with `...`):
-/// `path.MatchRoot("k")` (from the resource root) or `path.MatchRelative()`
-/// (from [here], the attribute the validator sits on), each followed by
-/// `.AtParent()` / `.AtName("k")` / list-index steps. Null when any part is
-/// something else (a Go constant, a helper call).
 List<List<String>>? parseFrameworkPaths(
   List<GoToken> t,
   int i,
@@ -483,24 +362,16 @@ final _typeNameRe = RegExp(
   r'resp\.TypeName\s*=\s*req\.ProviderTypeName\s*\+\s*"(_[a-z0-9_]+)"',
 );
 
-/// `resp.TypeName = fmt.Sprintf("%s_%s_database", req.ProviderTypeName,
-/// r.engine)`: one Go type registered once per variant (appwrite's
-/// dedicated database engines).
 final _typeNameFormatRe = RegExp(
   r'resp\.TypeName\s*=\s*fmt\.Sprintf\(\s*"%s((?:_[a-z0-9]+|_%s)+)"\s*,'
   r'\s*req\.ProviderTypeName\s*,',
 );
 
-/// The resource's Terraform type from `resource.go`, or null when the
-/// service registers no resource.
 String? resourceTypeName(String resourceGo, {required String provider}) {
   final m = _typeNameRe.firstMatch(resourceGo);
   return m == null ? null : '$provider${m.group(1)}';
 }
 
-/// Every Terraform type in [knownTypes] a resource file registers: the
-/// literal `TypeName` suffix, or each type a `fmt.Sprintf` variant pattern
-/// matches.
 List<String> resourceTypeNames(
   String resourceGo, {
   required String provider,
@@ -519,10 +390,6 @@ List<String> resourceTypeNames(
   ]..sort();
 }
 
-/// The files of one `internal/services/<svc>` directory that declare a
-/// resource schema: Stainless's `schema.go` (paired with the `resource.go`
-/// that names the type), or else every hand-written `resource.go` /
-/// `*_resource.go`, which carries its type name and schema together.
 List<({File schema, File typeName})> resourceSources(Directory dir) {
   final schemaGo = File(p.join(dir.path, 'schema.go'));
   final resourceGo = File(p.join(dir.path, 'resource.go'));
@@ -540,8 +407,6 @@ List<({File schema, File typeName})> resourceSources(Directory dir) {
 
 enum HintResolution { string, missing, map, notString }
 
-/// Whether [path] names a string (or list / set of string) attribute of
-/// the schema.json resource [block].
 HintResolution resolveHint(Map<String, dynamic> block, List<String> path) {
   var current = block;
   for (var k = 0; k < path.length; k++) {
@@ -574,8 +439,6 @@ HintResolution resolveHint(Map<String, dynamic> block, List<String> path) {
   return HintResolution.missing;
 }
 
-/// Renders one resource's hints file: the MM YAML subset
-/// (`properties[].api_name` / `enum_values` / nested `properties`).
 String renderHintsYaml({
   required String repo,
   required String version,
@@ -638,9 +501,6 @@ String renderHintsYaml({
   return buf.toString();
 }
 
-/// Why an exactly-one or at-most-one group of the schema.json resource
-/// [block] cannot be typed, or null: every member must be an input of the
-/// same block.
 String? groupSkipReason(Map<String, dynamic> block, List<List<String>> group) {
   final parent = group.first.sublist(0, group.first.length - 1).join('.');
   for (final m in group) {
@@ -743,9 +603,6 @@ const _awsSources =
     'aws-sdk-go-v2 `types/enums.go` at the version the provider\'s `go.mod`\n'
     'requires';
 
-/// `tool/provider_hints_unresolved.yaml`'s reviewed reasons for
-/// [provider]'s validators the scanner cannot evaluate: `<type> <path>` →
-/// reason.
 Map<String, String> readUnresolvedLedger(
   String provider, {
   String path = 'tool/provider_hints_unresolved.yaml',
@@ -761,8 +618,6 @@ Map<String, String> readUnresolvedLedger(
   };
 }
 
-/// An unresolved value-set validator in [sites] with no [ledger] reason,
-/// and a [ledger] entry that names no unresolved validator.
 List<String> unresolvedSiteErrors(
   List<String> sites,
   Map<String, String> ledger,
@@ -991,25 +846,15 @@ Future<void> main(List<String> args) async {
   );
 }
 
-/// What [writeProviderHints] wrote and left out.
 final class HintsWriteReport {
   var files = 0;
   var hints = 0;
   var groups = 0;
   var atMostOne = 0;
 
-  /// Each type, hint or group left out, as `<type>.<path> (reason)`
-  /// (`data.<type>` for a data source).
   final skipped = <String>[];
 }
 
-/// Recreates `providerHintsDir(schemaDir, kind)` for each kind from [found],
-/// checking each kind's hints against that kind's [schemas] (Terraform type
-/// → schema.json `block`). `hints/data/` is written only when a data source
-/// keeps a hint, and [readme] goes to `hints/README.md`.
-///
-/// Throws [FormatException], after deleting what it wrote, when a hint names
-/// a non-string input: the scanner misread a validator.
 HintsWriteReport writeProviderHints({
   required String schemaDir,
   required String repo,

@@ -1,14 +1,3 @@
-/// One lane's dummy-value ledger, `tool/coverage_dummies/<lane>.yaml`: every
-/// literal a coverage stack (`examples/<slug>_quickstart`) passes to a
-/// factory argument.
-///
-/// Generators read it by Dart owner and parameter ([CoverageDummies.valueFor]).
-/// `tool/coverage_stack.dart` reaches it by Terraform address and attribute
-/// path ([CoverageDummies.keyAt]). The key scheme (`Owner.param`, bare
-/// `param`, `*` globs of either) and the manifest walk between the two faces
-/// are private to this file, so no caller builds a key.
-library;
-
 import 'dart:io';
 
 import 'package:terradart_migrate/terradart_migrate.dart';
@@ -16,25 +5,17 @@ import 'package:yaml/yaml.dart';
 
 import 'provider_diagnostics.dart' show AttrPath, TfAddress;
 
-/// A dummy as the ledger holds it.
 sealed class DummyValue {
   const DummyValue();
 
-  /// The Dart expression the stack writes: `'d-1234567890'`, `64512`,
-  /// `['WebsiteInteract']`, `arn`, `'projects/$projectId/global/networks/x'`.
   String get dart;
 
-  /// Whether the value is one string, the payload of a `String`, `RefTo` or
-  /// enum slot.
   bool get isString;
 }
 
-/// A JSON scalar or a list of scalars: the only kind a provider diagnostic
-/// can teach, because it patches straight into `main.tf.json`.
 final class LiteralDummy extends DummyValue {
   LiteralDummy(this.json) : assert(_isLiteral(json));
 
-  /// `String`, `num`, `bool`, or a `List` of those.
   final Object json;
 
   @override
@@ -55,12 +36,9 @@ final class LiteralDummy extends DummyValue {
   int get hashCode => _yamlValue(json).hashCode;
 }
 
-/// A string, or list of strings and scalars, reading names the stack
-/// declares (`${projectId}`). Hand-written only.
 final class BoundDummy extends DummyValue {
   BoundDummy(this.template);
 
-  /// `String`, or a `List` of strings and scalars.
   final Object template;
 
   @override
@@ -74,8 +52,6 @@ final class BoundDummy extends DummyValue {
   bool get isString => template is String;
 }
 
-/// Dart source the stack writes as it stands: a helper construction, a map,
-/// an expression over declared names. For values no literal can state.
 final class DartDummy extends DummyValue {
   DartDummy(this.source);
 
@@ -88,9 +64,6 @@ final class DartDummy extends DummyValue {
   bool get isString => false;
 }
 
-/// Marks an optional parameter (block or attribute) to be included using the
-/// generator's normal type/helper builder (`include: true`). When [variant] is
-/// set on a sealed parameter, the generator selects that Dart variant member.
 final class IncludeDummy extends DummyValue {
   const IncludeDummy({this.variant});
 
@@ -111,30 +84,22 @@ final class IncludeDummy extends DummyValue {
   int get hashCode => Object.hash(IncludeDummy, variant);
 }
 
-/// A value worth trying where the provider rejected one, and where it came
-/// from.
 final class Candidate {
   const Candidate(this.value, this.source);
 
   final LiteralDummy value;
 
-  /// `family url-host`, `sibling AwsDirectoryServiceTrust.directoryId`.
   final String source;
 }
 
-/// A candidate the provider accepted, and the diagnostic it answered.
 final class LearnedDummy {
   const LearnedDummy(this.candidate, this.evidence);
 
   final Candidate candidate;
 
-  /// `<address>.<path> rejected <value>: <message> (<source>)`, saved as the
-  /// entry's `why:`.
   final String evidence;
 }
 
-/// A required optional block or attribute the provider asked for, and the
-/// diagnostic it answered.
 final class LearnedInclude {
   const LearnedInclude(
     this.evidence, {
@@ -147,7 +112,6 @@ final class LearnedInclude {
   final String? variant;
 }
 
-/// One lane's ledger, parsed and validated.
 final class CoverageDummies {
   CoverageDummies._(this.path, this._header, this._entries, this._manifest)
     : _exact = {
@@ -164,8 +128,6 @@ final class CoverageDummies {
           if (e.key is _GlobKey) e,
       ];
 
-  /// Reads `tool/coverage_dummies/<lane>.yaml` against the lane's [manifest].
-  /// A `${name}` outside [bindings] is a [FormatException].
   static CoverageDummies load(
     String lane, {
     required MigrateManifest manifest,
@@ -180,7 +142,6 @@ final class CoverageDummies {
     );
   }
 
-  /// Parses ledger [source], named [path] in errors and by [save].
   static CoverageDummies parse(
     String source, {
     required String path,
@@ -199,7 +160,6 @@ final class CoverageDummies {
     return CoverageDummies._(path, _headerOf(source), entries, manifest);
   }
 
-  /// Where [save] writes.
   final String path;
   final String _header;
   final List<_Entry> _entries;
@@ -208,10 +168,6 @@ final class CoverageDummies {
   final Map<String, _Entry> _bare;
   final List<_Entry> _globs;
 
-  /// The value for [param] of [owner], or null so the generator writes its
-  /// type default. An exact `Owner.param` wins, then a bare `param`, then the
-  /// first glob in file order. `IncludeDummy` entries mark inclusion only and
-  /// fall through to bare/glob/type defaults for the value.
   DummyValue? valueFor(String owner, String param) {
     final exact = _exact['$owner.$param']?.value;
     if (exact != null && exact is! IncludeDummy) return exact;
@@ -222,16 +178,12 @@ final class CoverageDummies {
         ?.value;
   }
 
-  /// Whether [owner] itself names a concrete value for [param]: an
-  /// `Owner.param` entry carrying a value (not an `include: true` marker, bare
-  /// key, or glob).
   bool ownsValue(String owner, String param) =>
       switch (_exact['$owner.$param']?.value) {
         null || IncludeDummy() => false,
         _ => true,
       };
 
-  /// Optional parameters of [owner] marked `include: true`, sorted.
   List<String> includedParams(String owner) {
     final prefix = '$owner.';
     final out = <String>[
@@ -242,29 +194,20 @@ final class CoverageDummies {
     return out;
   }
 
-  /// The Dart variant member name recorded for a sealed `include: true` entry
-  /// on [owner].[param], or null.
   String? includedVariant(String owner, String param) =>
       switch (_exact['$owner.$param']?.value) {
         IncludeDummy(:final variant) => variant,
         _ => null,
       };
 
-  /// The Dart variant member name recorded for [key], or null.
   String? includedVariantByKey(DummyKey key) =>
       switch (_exact[key.value]?.value) {
         IncludeDummy(:final variant) => variant,
         _ => null,
       };
 
-  /// Whether [key] is already marked `include: true`.
   bool includesParam(DummyKey key) => _exact[key.value]?.value is IncludeDummy;
 
-  /// The exact key for the value the generator wrote at [path] of the block
-  /// [address]: the class holding the slot (factory, helper or sealed
-  /// variant) and the slot's Dart name. Null where the manifest cannot say (a
-  /// passthrough map, a manual slot, an entry inside a scalar map), so the
-  /// factory is left out rather than learned.
   DummyKey? keyAt(TfAddress address, AttrPath path) {
     final entry = _manifest.entryFor(
       address.type,
@@ -275,13 +218,9 @@ final class CoverageDummies {
     return key == null ? null : DummyKey._(key);
   }
 
-  /// The exact key for a block or attribute slot at [path] of [address],
-  /// including helper and sealed block slots themselves (`rest.isEmpty`).
   DummyKey? slotKeyAt(TfAddress address, AttrPath path) =>
       slotTargetAt(address, path)?.key;
 
-  /// Like [slotKeyAt], also returning the Dart variant member name when [path]
-  /// ends at a specific variant key of a merged sealed slot.
   ({DummyKey key, String? variant})? slotTargetAt(
     TfAddress address,
     AttrPath path,
@@ -302,9 +241,6 @@ final class CoverageDummies {
         : (key: DummyKey._(target.key), variant: target.variant);
   }
 
-  /// Literal values other entries give a parameter named like [key]'s,
-  /// closest owner first (longest shared owner-name prefix), deduplicated,
-  /// at most five. Bound and Dart values are never candidates.
   List<Candidate> siblingsOf(DummyKey key) {
     final (owner, param) = _split(key);
     final scored = <(int, _Entry)>[
@@ -325,9 +261,6 @@ final class CoverageDummies {
     ].take(5).toList();
   }
 
-  /// A copy with each of [learned] and [included] under its exact key, with
-  /// the evidence as `why:`, and with [stale] keys removed. A list slot takes
-  /// a scalar candidate as a one-element list. Pure.
   CoverageDummies revised(
     Map<DummyKey, LearnedDummy> learned, {
     Map<DummyKey, LearnedInclude> included = const {},
@@ -369,9 +302,6 @@ final class CoverageDummies {
     return list && value.json is! List ? LiteralDummy([value.json]) : value;
   }
 
-  /// Exact keys whose owner class the lane's manifest knows but whose
-  /// parameter it does not: a renamed or removed slot. A key whose owner the
-  /// manifest never names (a sealed type) is not judged.
   Set<DummyKey> get stale {
     final params = _paramsByOwner(_manifest);
     return {
@@ -382,9 +312,6 @@ final class CoverageDummies {
     };
   }
 
-  /// Writes the file: the header comment, globs in their order (which is
-  /// their precedence), then bare and exact keys, each sorted. A temp file
-  /// plus rename, so a crash leaves the old file or the new one.
   void save() {
     final out = StringBuffer(_header);
     final bare = _entries.where((e) => e.key is _BareKey).toList()
@@ -405,8 +332,6 @@ final class CoverageDummies {
   }
 }
 
-/// A ledger key: `Owner.param`, a bare `param`, or a glob of either. Only
-/// this library makes one.
 extension type const DummyKey._(String value) {}
 
 sealed class _Key {
@@ -428,7 +353,6 @@ final class _BareKey extends _Key {
 final class _GlobKey extends _Key {
   _GlobKey(super.text, this.owner, this.param);
 
-  /// Null when the glob names no owner, so any owner matches.
   final RegExp? owner;
   final RegExp param;
 
@@ -573,9 +497,6 @@ String _headerOf(String source) {
   return lines.isEmpty ? '' : '${lines.join('\n')}\n';
 }
 
-/// The parameters a key may name under each owner: its own slots, and the
-/// member of each variant of its sealed slots, which a generator writes
-/// under the owner that holds the sealed slot.
 Map<String, Set<String>> _paramsByOwner(MigrateManifest manifest) {
   Set<String> params(List<MigrateSlot> slots) => {
     for (final s in slots) ...[
@@ -597,9 +518,6 @@ Map<String, Set<String>> _paramsByOwner(MigrateManifest manifest) {
   return (key.value.substring(0, dot), key.value.substring(dot + 1));
 }
 
-/// How close an entry keyed [key] sits to (`owner`, `param`): the length of
-/// the owner name an exact key shares with [owner], 0 for a bare key or a
-/// glob that answers [param], null when the entry names another parameter.
 int? _closeness(_Key key, String owner, String param) => switch (key) {
   _ExactKey(owner: final o, param: final p) when p == param => _sharedPrefix(
     o,
@@ -618,9 +536,6 @@ int _sharedPrefix(String a, String b) {
   return n;
 }
 
-/// The key of the slot under [owner]'s [slots] that encodes [path]. A merged
-/// slot contributes its helper's keys, or its variants' block keys, at this
-/// level.
 String? _keyIn(
   MigrateManifest m,
   String owner,
@@ -669,9 +584,6 @@ String? _inHelper(MigrateManifest m, String? helper, List<Object> path) {
   return h == null ? null : _keyIn(m, h.className, h.slots, path);
 }
 
-/// The variant a sealed slot's block key picks. The variant's slots read the
-/// key's own level when its `encode()` wrote the key, else the block under
-/// it.
 String? _inVariant(MigrateManifest m, MigrateSlot slot, List<Object> path) {
   path = _skipIndices(path);
   if (path.isEmpty || path.first is! String) return null;
@@ -684,9 +596,6 @@ String? _inVariant(MigrateManifest m, MigrateSlot slot, List<Object> path) {
   return _keyIn(m, v.className, v.slots, writesKey ? path : path.sublist(1));
 }
 
-/// Like [_keyIn], but resolves a block or attribute slot itself when [path]
-/// ends at that slot (`rest.isEmpty`), preserving the Dart variant member name
-/// when [path] ends on a variant key of a merged or wrapped sealed slot.
 ({String key, String? variant})? _slotTargetIn(
   MigrateManifest m,
   String owner,

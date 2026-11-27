@@ -1,15 +1,3 @@
-// Every type a generated file declares in the package of a tool/providers.yaml
-// lane — derived helpers, enums, sealed types and override `prelude` types
-// alike — says each word once across the join with its resource stem: no run
-// of words repeats in a row where the stem ends (`ComputeSnapshotSnapshotType`
-// is `ComputeSnapshotType`). Words Terraform itself repeats past the stem
-// (`custom_metric.custom_metric_definition`) do not count.
-//
-// A doubled name is fine when the name without the repeat is a type the
-// package already declares: dropping the words would collide. Any other one
-// needs a reasoned entry in tool/type_name_stutter_debt.yaml, and an entry that
-// no longer names such a type fails as stale.
-
 import 'dart:io';
 
 import 'package:terradart_codegen/src/codegen/exactly_one_types.dart';
@@ -26,8 +14,6 @@ final _decl = RegExp(
   multiLine: true,
 );
 
-/// [name] with each run of words it repeats across the join after [stem]
-/// dropped once, or empty when it repeats none.
 List<String> dedupedNames(String stem, String name) {
   if (!name.startsWith(stem) ||
       !repeatsAcrossJoin(stem, name.substring(stem.length))) {
@@ -47,8 +33,6 @@ List<String> dedupedNames(String stem, String name) {
   return out;
 }
 
-/// The doubled type names [package]'s generated files declare, each mapped
-/// to whether the name without the repeat is declared too.
 Map<String, bool> doubledTypes(String package) {
   final declared = <String>{};
   final candidates = <String, List<String>>{};

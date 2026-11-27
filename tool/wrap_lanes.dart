@@ -1,37 +1,3 @@
-// wrap_lanes.dart — runs the per-provider generation gates from
-// tool/providers.yaml, so a lane is declared once instead of hand-copied
-// into agent_verify.sh and ci.yml.
-//
-// Usage (from repo root):
-//   dart tool/wrap_lanes.dart                    # every gate, every lane
-//   dart tool/wrap_lanes.dart --gate wrap        # terradart wrap --check only
-//   dart tool/wrap_lanes.dart --gate lint        # terradart lint-override only
-//   dart tool/wrap_lanes.dart --gate regen --lane aws  # terradart wrap (writes)
-//   dart tool/wrap_lanes.dart --lane cloudflare  # one lane
-// `regen` rewrites the lane's generated files (the schema bump runs it after
-// refreshing a fixture), so it only runs when named. It first retires
-// overrides whose type the fixture no longer has
-// (tool/retire_removed_overrides.dart), so a removed upstream type does not
-// abort the wrap that writes the provider pin and the new factories. A
-// `sealedNames` key that matches no group is dropped and wrap is retried
-// once (tool/retire_stale_sealed_names.dart); `wrap --check` still fails on
-// that key. On a `providerEnums`
-// lane whose hints were extracted at another provider version than
-// `<schemaDir>/provider_version.txt`, regen first re-extracts them from the
-// `bump.repo` source (tool/extract_provider_hints.dart, network). On an
-// `mmSync` lane whose `<schemaDir>/mm_sources.yaml` no longer matches the
-// fixture ([staleMmSync]), regen first re-syncs the Magic Modules YAML
-// (tool/sync_lane_mm_yaml.dart, network); the wrap gate fails on a stale
-// sync instead, so a fixture change never ships without its MM hints. On a
-// `discovery` lane whose `<schemaDir>/discovery/roots.yaml` no longer
-// matches the fixture, its MM ref, its wrapped types or its
-// tool/discovery_sources.yaml entries (staleDiscovery), regen first
-// re-fetches the Google API Discovery copy (tool/fetch_discovery_enums.dart,
-// network) and the wrap gate fails instead. After a `discovery` lane's
-// regen, `tool/google_enum_sources.dart --fix` records the lane's new prose
-// enum sets; tool/google_enum_sources_test.dart fails on a new disagreement.
-// exit: 0 every selected gate passed; 1 a gate failed, a lane path is
-//       missing, or the arguments / providers.yaml are invalid.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -54,36 +20,18 @@ import 'self_heal_overrides.dart';
 
 const providersPath = 'tool/providers.yaml';
 
-/// The sealed-name ledger every lane's wrap records its unnamed sealed
-/// groups in.
 const sealedNameDebtPath = 'tool/sealed_name_debt.yaml';
 
-/// The package whose `bin/terradart.dart` runs every gate; lane paths are
-/// repo-relative in providers.yaml and rebased onto it.
 const codegenDir = 'packages/terradart_codegen';
 
-/// The record tool/sync_lane_mm_yaml.dart writes beside an `mmSync` lane's
-/// `mm/` directory.
 const mmSourcesFile = 'mm_sources.yaml';
 
-/// `mmSync:` — where tool/sync_lane_mm_yaml.dart resolves each fixture
-/// resource to its Magic Modules YAML: the provider repo whose release tag
-/// carries the generated Go source, and the services directory in it.
 typedef MmSync = ({String providerRepo, String servicesDir});
 
-/// The reference-target ledger every lane with `references:` wraps with.
 const referenceTargetsPath = 'tool/reference_targets.yaml';
 
-/// `references:` — what a lane does with [referenceTargetsPath].
-enum ReferenceMode {
-  /// Check the ledger against the lane's schema; inputs stay strings.
-  check,
+enum ReferenceMode { check, typed }
 
-  /// Also type every input the ledger matches as `RefTo<Target>`.
-  typed,
-}
-
-/// One `providers:` entry, reduced to the fields the gates read.
 class WrapLane {
   const WrapLane({
     required this.name,
@@ -115,49 +63,16 @@ class WrapLane {
   final String barrelsManifest;
   final String? resourceProvider;
   final String migrateManifest;
-
-  /// `wrap --provider-enums`: type enum-valued inputs from `<schemaDir>/hints`
-  /// and the `Available values:` description dialect.
   final bool providerEnums;
-
-  /// `wrap --mm-hints`: type enum-valued inputs and seal `exactly_one_of`
-  /// groups from the Magic Modules YAML in `<schemaDir>/mm`.
   final bool mmHints;
-
-  /// `wrap --mm-groups`: seal only the Magic Modules `exactly_one_of` /
-  /// `conflicts` / `at_least_one_of` groups; enum typing stays the merged
-  /// IR's (google GA).
   final bool mmGroups;
-
-  /// `wrap --discovery-enums`: an input the Magic Modules YAML and its
-  /// description give no values takes the enum of the lane's Google API
-  /// Discovery copy, `<schemaDir>/discovery` (tool/fetch_discovery_enums.dart).
   final bool discovery;
-
-  /// `mmSync:`, or null when the lane's MM YAML (if any) is synced from a
-  /// hand-kept manifest (google, tool/mm_yaml_sources.yaml).
   final MmSync? mmSync;
-
-  /// `bump.repo`: the GitHub repo regen re-extracts stale hints from.
   final String? hintsRepo;
-
-  /// `references:`, or null when the lane has no reference targets.
   final ReferenceMode? references;
-
-  /// `referencesFrom:` resolved: the lane whose resources the ledger's
-  /// `inherit:` rules target (google for google-beta), or null.
   final WrapLane? referenceLane;
-
-  /// Terraform type prefix (`aws_`, `google_`). The format hook builds its
-  /// generated-file globs from this. [ProviderRules.terraformTypePrefix] is
-  /// the same string. `tool/lane_agreement_test.dart` fails when they differ.
   final String? typePrefix;
-
-  /// Heading on the site's coverage page (`AWS`, `Google Cloud (beta-only)`).
   final String? siteTitle;
-
-  /// `providerGuide`: the providers-page stem when this lane has no page of
-  /// its own. Null means `providers/<name>.md`.
   final String? providerGuide;
 
   WrapLane _withReferenceLane(WrapLane lane) => WrapLane(
@@ -182,9 +97,6 @@ class WrapLane {
     providerGuide: providerGuide,
   );
 
-  /// Paths that must exist before any gate can say something meaningful.
-  /// The migration manifest is absent until the lane's first wrap, so it is
-  /// left to `wrap --check` to report.
   Map<String, String> get requiredPaths => {
     'schemaDir': schemaDir,
     'outputPackage': outputPackage,
@@ -202,7 +114,6 @@ enum WrapGate {
 
   final String label;
 
-  /// `bin/terradart.dart` arguments, with paths relative to [codegenDir].
   List<String> args(WrapLane lane) {
     String rel(String repoPath) => p.relative(repoPath, from: codegenDir);
     return switch (this) {
@@ -242,7 +153,6 @@ enum WrapGate {
         rel(sealedNameDebtPath),
         if (this == WrapGate.wrap) '--check',
       ],
-      // wrap reads MM YAML from <schemaDir>/mm; lint reads the same place.
       WrapGate.lint => [
         'lint-override',
         '--dir',
@@ -256,8 +166,6 @@ enum WrapGate {
   }
 }
 
-/// Parses providers.yaml. Throws [FormatException] naming the lane and field
-/// when an entry is not a lane the gates can run.
 List<WrapLane> parseWrapLanes(String yamlText) {
   final doc = loadYaml(yamlText);
   final providers = doc is YamlMap ? doc['providers'] : null;
@@ -371,10 +279,6 @@ WrapLane _parseLane(String name, Object? entry) {
   );
 }
 
-/// The `provider_version` of every hint file of either kind that differs
-/// from `<schemaDir>/provider_version.txt`, as `file: version` (resources)
-/// or `data/file: version` (data sources). Empty when the hints match the
-/// fixture or the lane has none yet.
 List<String> staleHints(String schemaDir) {
   final versionFile = File(p.join(schemaDir, 'provider_version.txt'));
   if (!versionFile.existsSync()) return const [];
@@ -399,12 +303,6 @@ List<String> staleHints(String schemaDir) {
   return stale..sort();
 }
 
-/// Each data override under [overridesRoot] that lacks a derivation flag,
-/// as `file: flag`. `deriveEnums: true` is required on a [providerEnums]
-/// lane, whose description dialects type data-source inputs with no hint
-/// file, and on a lane whose [schemaDir] has data-source hints; those hints
-/// also require `deriveExactlyOne: true`. Without the flag a data factory
-/// takes a free string for a fixed value set.
 List<String> dataSourceDerivationGaps(
   String schemaDir,
   String overridesRoot, {
@@ -426,9 +324,6 @@ List<String> dataSourceDerivationGaps(
   ]..sort();
 }
 
-/// Why [schemaDir]'s MM sync no longer matches its fixture: empty when
-/// `mm_sources.yaml` records the fixture's `provider_version.txt` and lists
-/// exactly the resources of `schema.json`.
 List<String> staleMmSync(String schemaDir) {
   final record = File(p.join(schemaDir, mmSourcesFile));
   if (!record.existsSync()) return ['$mmSourcesFile is missing'];
@@ -463,8 +358,6 @@ List<String> staleMmSync(String schemaDir) {
   ];
 }
 
-/// `lane <name>: missing <field> <path>` for every required path that does
-/// not exist under [repoRoot].
 List<String> missingLanePaths(List<WrapLane> lanes, String repoRoot) => [
   for (final lane in lanes)
     for (final MapEntry(key: field, value: path) in lane.requiredPaths.entries)
@@ -473,10 +366,6 @@ List<String> missingLanePaths(List<WrapLane> lanes, String repoRoot) => [
         'lane ${lane.name}: missing $field $path',
 ];
 
-/// `<ledger>: <entry> names no override in any lane` for every entry of
-/// [ledgers] (repo-relative ledger path to its entry names) outside
-/// [overrideNames]. Each lane's lint validates only its own entries, so an
-/// entry no lane owns is caught here or nowhere.
 List<String> unownedLedgerEntries(
   Map<String, Iterable<String>> ledgers,
   Set<String> overrideNames,
@@ -487,9 +376,6 @@ List<String> unownedLedgerEntries(
         '$ledger: $entry names no override in any lane',
 ];
 
-/// Ledger failures across every lane in [lanes]: a lane whose overrides
-/// root does not resolve the shared ledgers under `<repoRoot>/tool`, and
-/// [unownedLedgerEntries] over the override names of all lanes.
 List<String> ledgerOwnershipFailures(List<WrapLane> lanes, String repoRoot) {
   final toolDir = p.normalize(p.absolute(repoRoot, 'tool'));
   final failures = <String>[
@@ -805,8 +691,7 @@ Future<void> main(List<String> args) async {
   print('wrap_lanes: OK (${lanes.map((l) => l.name).join(', ')})');
 }
 
-/// Streams are read while the process runs so a full google wrap cannot
-/// fill the pipe and stall.
+// Drain stdout/stderr while the subprocess runs to avoid OS pipe buffer deadlock.
 Future<({int code, String log})> _runDart(
   List<String> args,
   String workingDirectory, {

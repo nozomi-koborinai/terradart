@@ -1,12 +1,3 @@
-// check_example_topology.dart — detect unwired "must reference" example resources.
-//
-// Flags factory types that should be linked into a sibling (SSL cert on a
-// proxy, health check on a backend) but appear only once in synth JSON.
-//
-// Run from repo root: dart tool/check_example_topology.dart
-// Pass --reuse-tf-out to skip synth and read each example's existing
-// tf-out/main.tf.json (fails when one is missing) — run
-// `dart tool/example_synth_gates.dart` first to populate them.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';

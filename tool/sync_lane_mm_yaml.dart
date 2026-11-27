@@ -1,29 +1,3 @@
-// tool/sync_lane_mm_yaml.dart
-//
-// Fetches the Magic Modules YAML of every resource in a lane's schema
-// fixture, for a lane whose curated set is the fixture itself (google-beta,
-// `mmSync:` in tool/providers.yaml) — so there is no hand-kept source
-// manifest to drift. Each resource is resolved through the provider's own
-// generated Go source at the fixture's release tag: MMv1 resources carry a
-// `Configuration: .../magic-modules/tree/main/mmv1/products/<p>/<R>.yaml`
-// header in `<servicesDir>/<svc>/resource_<name>.go`; a hand-written
-// resource (no header) or a type without that file (IAM adjuncts) has no
-// MM YAML. The YAML is read at the magic-modules commit the release was
-// generated from (the `[upstream:<sha>]` stamp nearest the release tag,
-// tool/sync_mm_yaml.dart resolveUpstreamRef).
-//
-// Writes, under the lane's schemaDir (never hand-edit either):
-//   mm/<terraform_type>.yaml  one per resolved resource; stale ones deleted
-//   mm_sources.yaml           the release, the magic-modules commit and the
-//                             resolved path (or null + why) per resource —
-//                             tool/wrap_lanes.dart compares it with the
-//                             fixture to decide whether the sync is stale
-//
-// Usage (repo root; network: api.github.com + raw.githubusercontent.com,
-// GITHUB_TOKEN / GH_TOKEN raises the API rate limit):
-//   dart tool/sync_lane_mm_yaml.dart --lane=google-beta [--ref=<mm sha>]
-//
-// exit: 0 synced; 1 a fetch failed; 64 usage error.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -42,16 +16,11 @@ final _configurationHeader = RegExp(
   r'tree/[^/\s]+/(mmv1/products/\S+\.yaml)',
 );
 
-/// One resource's resolution: its mmv1 path, or null and why not.
 typedef MmSource = ({String? upstream, String? reason});
 
-/// The mmv1 path a generated Go resource file names in its header, or null
-/// for a hand-written one.
 String? mmPathFromGoHeader(String goSource) =>
     _configurationHeader.firstMatch(goSource)?.group(1);
 
-/// `resource_<name>.go` file name → its path under [servicesDir], from the
-/// repo tree listing [treePaths].
 Map<String, String> resourceGoFiles(
   Iterable<String> treePaths,
   String servicesDir,
@@ -65,11 +34,9 @@ Map<String, String> resourceGoFiles(
   };
 }
 
-/// `resource_<name>.go` for a Terraform [type] (`google_<name>`).
 String resourceGoFileName(String type) =>
     'resource_${type.substring(type.indexOf('_') + 1)}.go';
 
-/// The generated `mm_sources.yaml` for [sources] (sorted by type).
 String renderMmSources({
   required String lane,
   required String providerVersion,
@@ -209,8 +176,6 @@ Future<void> main(List<String> args) async {
     await _treePaths(sync.providerRepo, tag),
     sync.servicesDir,
   );
-  // Every fetch completes before anything is written, so a failed sync
-  // leaves the fixture as it was.
   final fetched = <String, String>{};
   final sources = <String, MmSource>{};
   for (final type in types) {

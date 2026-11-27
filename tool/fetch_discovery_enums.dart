@@ -1,33 +1,3 @@
-// fetch_discovery_enums.dart — refreshes a google lane's checked-in copy of
-// the Google API Discovery enums (`<schemaDir>/discovery/`), the machine
-// source of the value sets Magic Modules leaves as a plain `String`.
-//
-// Usage (from repo root, network):
-//   dart tool/fetch_discovery_enums.dart --lane google
-//   dart tool/fetch_discovery_enums.dart --lane google-beta
-//
-// Each lane type resolves to one Discovery schema:
-//   * a Magic Modules resource: the product's `product.yaml` at the MM ref
-//     the lane's YAML was synced at gives the API host and version
-//     (`versions[ga|beta].base_url`), and the resource's
-//     `api_resource_type_kind` (else `name`) is the schema;
-//   * a data source without its own MM YAML: its resource's schema;
-//   * a hand-written resource: its entry in tool/discovery_sources.yaml,
-//     which also wins over the derived root.
-// The tool writes one `<api>.<version>.json` per Discovery document, pruned
-// to the properties under those schemas that lead to an `enum` and carrying
-// its provenance (`name`, `version`, `revision`, `sourceUrl`), and
-// `roots.yaml`, the type → schema record with a SHA-256 digest of each
-// document it wrote. tool/wrap_lanes.dart re-runs it on regen when
-// `roots.yaml` no longer matches the fixture or a document no longer matches
-// its digest ([staleDiscovery]) and fails the wrap gate on either.
-// Never hand-edit the output.
-//
-// A document is absent only when the server says so (404), or when an API's
-// own host does not resolve or refuses (400, 403) and the public directory
-// is tried next. Any other failure (a socket error on the directory or
-// GitHub, a 5xx or 429 that outlasts the retries) stops the run before
-// anything is written, so a network fault never erases the copy.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -48,10 +18,6 @@ const mmYamlSourcesPath = 'tool/mm_yaml_sources.yaml';
 const _mmRaw =
     'https://raw.githubusercontent.com/GoogleCloudPlatform/magic-modules';
 
-/// The hand entries of [lane] in tool/discovery_sources.yaml: `types`,
-/// Terraform type (`data.<type>` for a data source) → `{api, version,
-/// schema?, url?, paths?}`, and `products`, MM product → `{api, version}` for
-/// a product whose `base_url` names no version.
 ({
   Map<String, Map<String, Object?>> types,
   Map<String, Map<String, Object?>> products,
@@ -90,8 +56,6 @@ handRoots(String yamlText, String lane) {
   return (types: entries('types'), products: entries('products'));
 }
 
-/// The `absent` entries of [lane] in tool/discovery_sources.yaml:
-/// `<api>.<version>` → why the API has no Discovery document.
 Map<String, String> absentApis(String yamlText, String lane) {
   final doc = loadYaml(yamlText);
   final raw = doc is YamlMap && doc[lane] is YamlMap
@@ -113,14 +77,10 @@ Map<String, String> absentApis(String yamlText, String lane) {
   return out;
 }
 
-/// The `<api>.<version>` a Discovery URL of [discoveryUrls] or [apiUrls]
-/// names.
 String discoveryApiOf(Uri url) => url.host == 'www.googleapis.com'
     ? '${url.pathSegments[3]}.${url.pathSegments[4]}'
     : '${url.host.split('.').first}.${url.queryParameters['version']}';
 
-/// The digest `roots.yaml` records of [lane]'s hand roots, so an edit to
-/// tool/discovery_sources.yaml makes the copy stale.
 String handRootsDigest(String yamlText, String lane) {
   final hand = handRoots(yamlText, lane);
   return sha256
@@ -137,12 +97,9 @@ String handRootsDigest(String yamlText, String lane) {
       .substring(0, 16);
 }
 
-/// The SHA-256 digest `roots.yaml` records of one copied document.
 String discoveryDocDigest(String text) =>
     sha256.convert(utf8.encode(text)).toString();
 
-/// Why the documents in [dir] differ from the [digests] `roots.yaml`
-/// records: an edited, missing or unrecorded `<doc>.json`.
 List<String> discoveryDigestDrift(Directory dir, Object? digests) {
   const label = '$discoveryDirName/$discoveryRootsFile';
   final recorded = {
@@ -174,11 +131,6 @@ List<String> discoveryDigestDrift(Directory dir, Object? digests) {
   return reasons;
 }
 
-/// Why [lane]'s Discovery copy no longer matches what it was fetched for:
-/// empty when `roots.yaml` records the fixture's `provider_version.txt`, the
-/// MM ref the lane's YAML was synced at, the digest of its hand roots, and
-/// exactly the types its overrides wrap, and every copied document matches
-/// the digest `roots.yaml` records for it.
 List<String> staleDiscovery(WrapLane lane, String repoRoot) {
   final record = File(
     p.join(repoRoot, lane.schemaDir, discoveryDirName, discoveryRootsFile),
@@ -233,11 +185,7 @@ List<String> staleDiscovery(WrapLane lane, String repoRoot) {
   return reasons;
 }
 
-/// Whether a GET of [url] that answered [status], or failed with
-/// [socketError], means there is no document there. A 404 does anywhere;
-/// on an API's own host (tried before the public directory) a refusal (400,
-/// 403) or an unknown host does too. Anything else is a fault the refresh
-/// must not mistake for an absent document.
+// Per-API *.googleapis.com Discovery endpoints return 400/403 or fail DNS when absent; www.googleapis.com returns 404.
 bool discoveryAbsent(Uri url, {int? status, String? socketError}) {
   final ownHost =
       url.host.endsWith('.googleapis.com') && url.host != 'www.googleapis.com';
@@ -247,9 +195,6 @@ bool discoveryAbsent(Uri url, {int? status, String? socketError}) {
   return status == 404 || (ownHost && (status == 400 || status == 403));
 }
 
-/// The schema of [schemas] that [name] is: itself, else the shortest one
-/// whose name ends with it (`GoogleCloudAiplatformV1Endpoint` for
-/// `Endpoint`).
 String? discoverySchemaNamed(Iterable<String> schemas, String name) {
   if (schemas.contains(name)) return name;
   final suffixed = schemas.where((s) => s.endsWith(name)).toList()
@@ -257,15 +202,11 @@ String? discoverySchemaNamed(Iterable<String> schemas, String name) {
   return suffixed.firstOrNull;
 }
 
-/// The Discovery URLs of [api] at [version]: the API host's own endpoint,
-/// then the public directory.
 List<Uri> apiUrls(String api, String version) => [
   Uri.parse('https://$api.googleapis.com/\$discovery/rest?version=$version'),
   Uri.parse('https://www.googleapis.com/discovery/v1/apis/$api/$version/rest'),
 ];
 
-/// The lane's types that the fixture's override registry wraps, as
-/// `(dataSource, type)`.
 List<(bool, String)> laneTypes(String overridesRoot) {
   final loaded = YamlOverrideLoader(rootDir: overridesRoot).load();
   return [
@@ -274,8 +215,6 @@ List<(bool, String)> laneTypes(String overridesRoot) {
   ];
 }
 
-/// The MM ref and MM upstream path per fixture key (`<type>` or
-/// `data_<type>`) of [lane].
 ({String ref, Map<String, String?> upstream}) mmSources(
   WrapLane lane,
   String repoRoot,
@@ -310,8 +249,6 @@ List<(bool, String)> laneTypes(String overridesRoot) {
   );
 }
 
-/// The Discovery URLs to try, in order, for a product `base_url`
-/// (`https://{{region}}-aiplatform.googleapis.com/v1/`).
 List<Uri> discoveryUrls(String baseUrl) {
   final uri = Uri.parse(baseUrl.replaceAll(RegExp(r'\{\{[^}]+\}\}[-.]'), ''));
   final version = uri.pathSegments.lastWhere(
@@ -356,7 +293,6 @@ Future<void> main(List<String> args) async {
   );
 }
 
-/// Refreshes `<schemaDir>/discovery` of [lane].
 Future<({int docs, int resolved, int unresolved})> fetchDiscovery(
   WrapLane lane,
   String repoRoot,

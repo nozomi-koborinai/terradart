@@ -1,27 +1,3 @@
-// example_synth_gates.dart — synth every quickstart once and run machine gates.
-//
-// - Coverage: every provider package's catalog factory tfTypes must
-//   appear in synth output (or tool/example_debt.yaml by className). Reasons
-//   containing `iam-adjunct-debt:` additionally require *IamBinding/*IamPolicy
-//   + sibling *IamMember in synth. Reasons containing `awaiting-example:`
-//   (written by the weekly schema bump for the factories it generates)
-//   require the type's tool/curation_backlog.yaml entry.
-// - API enablement (google examples only — no other provider gates
-//   resources on an enabled service): when an example enables APIs via
-//   google_project_service,
-//   EVERY resource requiring an API must have its API enabled in the same
-//   stack (or be listed in tool/example_api_debt.yaml) and transitively
-//   depend on the enabling service. Examples that enable nothing are exempt
-//   (documented manual-enablement mode) — the gate ratchets as examples
-//   migrate to `enableApis`.
-// - README excerpts: the JSON fences of an example README, in the forms
-//   tool/readme_excerpts.dart reads, are excerpts of that example's synth
-//   output.
-//
-// Run from repo root: dart tool/example_synth_gates.dart
-// Pass --skip-validate to skip the init/validate pass (CI runs the
-// per-example validate matrix separately). The pass runs OpenTofu, the
-// engine `terradart` gives users (tool/validate_engine.dart).
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -90,15 +66,6 @@ Future<void> runExampleSynthGates(
   );
 }
 
-/// Runs `init` + `validate` on each quickstart's synth output with the
-/// engine users get, OpenTofu (tool/validate_engine.dart). Catches
-/// nested-block shape mistakes that synth-only coverage misses (e.g. wrong
-/// keys inside `destination_dataset`).
-///
-/// A quickstart whose provider the OpenTofu registry lacks validates with
-/// `terraform` on `PATH`, as in CI. When OpenTofu cannot be resolved at all
-/// (offline, an unsupported host), `terraform` on `PATH` stands in, with a
-/// warning; CI never takes that fallback.
 Future<void> _checkValidate(
   List<String> errors,
   List<String> quickstarts,
@@ -185,10 +152,6 @@ List<String> _quickstartSlugs() {
     ..sort();
 }
 
-/// Synths `examples/<slug>` (`dart run bin/infra.dart` with CI-safe env) and
-/// returns the decoded `tf-out/main.tf.json`, appending to [errors] and
-/// returning null on failure. Shared with check_example_topology.dart so
-/// every gate synths examples exactly the same way.
 Future<Map<String, dynamic>?> synthExample(
   String slug,
   List<String> errors,
@@ -199,8 +162,6 @@ Future<Map<String, dynamic>?> synthExample(
     errors.add('examples/$slug: missing bin/infra.dart');
     return null;
   }
-  // Readers and agents copy the entry point; it must be the documented one,
-  // which also tells the `terradart` command what it wrote.
   if (!RegExp(
     r'\b(runStack|runEnvironments)\(',
   ).hasMatch(infra.readAsStringSync())) {
@@ -322,8 +283,6 @@ void _checkSynthCoverage(
   );
 }
 
-/// The types of a tool/curation_backlog.yaml [source], as
-/// `resource:<type>` / `dataSource:<type>` keys.
 Set<String> backlogKeys(String source) {
   final doc = loadYaml(source);
   final entries = doc is YamlMap ? doc['entries'] : null;
@@ -336,11 +295,6 @@ Set<String> backlogKeys(String source) {
   };
 }
 
-/// A debt line whose [reason] contains `awaiting-example:` (the schema
-/// bump generated the factory) needs its type in the curation backlog: the
-/// backlog is where the missing example and the API polish get picked up.
-/// [catalogKey] is the class's `kind:tfType`, null when not in a catalog
-/// (reported separately as an unknown class).
 void checkAwaitingExampleEntry({
   required String className,
   required String reason,
@@ -358,9 +312,6 @@ void checkAwaitingExampleEntry({
   }
 }
 
-/// Enforces AGENTS.md IAM binding/policy debt path when [reason] contains
-/// `iam-adjunct-debt:`: class must be `*IamBinding`/`*IamPolicy`, sibling
-/// `*IamMember` must be curated, and sibling `tfType` must appear in synth.
 void checkIamAdjunctDebtEntry({
   required String className,
   required String reason,
@@ -437,24 +388,26 @@ void checkApiEnablement(
   final resources = root['resource'];
   if (resources is! Map) return;
 
-  final nodes = <String, String>{}; // address -> terraform type
+  final tfTypeByAddress = <String, String>{};
   for (final typeEntry in resources.entries) {
     final tfType = typeEntry.key.toString();
     final instances = typeEntry.value;
     if (instances is! Map) continue;
     for (final localName in instances.keys) {
-      nodes['$tfType.$localName'] = tfType;
+      tfTypeByAddress['$tfType.$localName'] = tfType;
     }
   }
 
   final edges = <String, Set<String>>{};
   void addEdge(String from, String to) {
-    if (!nodes.containsKey(from) || !nodes.containsKey(to)) return;
+    if (!tfTypeByAddress.containsKey(from) ||
+        !tfTypeByAddress.containsKey(to)) {
+      return;
+    }
     edges.putIfAbsent(from, () => {}).add(to);
   }
 
-  final enabledApis =
-      <String, Set<String>>{}; // api -> project_service addresses
+  final enablersByApi = <String, Set<String>>{};
   for (final typeEntry in resources.entries) {
     final tfType = typeEntry.key.toString();
     final instances = typeEntry.value;
@@ -476,27 +429,22 @@ void checkApiEnablement(
       if (tfType == 'google_project_service') {
         final service = body['service']?.toString();
         if (service != null && service.isNotEmpty) {
-          enabledApis.putIfAbsent(service, () => {}).add(address);
+          enablersByApi.putIfAbsent(service, () => {}).add(address);
         }
       }
     }
   }
 
-  for (final address in nodes.keys) {
-    final tfType = nodes[address]!;
+  for (final address in tfTypeByAddress.keys) {
+    final tfType = tfTypeByAddress[address]!;
     final api = requiredApiForTerraformType(tfType);
     if (api == null) continue;
-    final enablers = enabledApis[api];
+    final enablers = enablersByApi[api];
     if (enablers == null || enablers.isEmpty) {
-      // Ratchet: examples that enable nothing run in documented
-      // manual-enablement mode and are exempt. An example that enables SOME
-      // APIs claims self-sufficiency, so every API-gated resource must have
-      // its API enabled too — a partial barrel list otherwise fails only at
-      // first apply with SERVICE_DISABLED (the Wave 32 secretmanager gap).
-      if (enabledApis.isNotEmpty && !apiDebt.containsKey('$slug:$api')) {
+      if (enablersByApi.isNotEmpty && !apiDebt.containsKey('$slug:$api')) {
         errors.add(
           'examples/$slug: $address requires $api but the example does not '
-          'enable it (it enables ${enabledApis.keys.join(', ')}). Add the '
+          'enable it (it enables ${enablersByApi.keys.join(', ')}). Add the '
           'matching barrel to enableApis, or record '
           '"$slug:$api: <reason>" in tool/example_api_debt.yaml',
         );
@@ -515,7 +463,6 @@ void checkApiEnablement(
   }
 }
 
-/// Parses `tool/example_api_debt.yaml` (`<slug>:<api>: <reason>` lines).
 Map<String, String> _apiEnablementDebt(List<String> errors) {
   final file = File('tool/example_api_debt.yaml');
   if (!file.existsSync()) return const {};
@@ -523,7 +470,6 @@ Map<String, String> _apiEnablementDebt(List<String> errors) {
   for (final raw in file.readAsLinesSync()) {
     final line = raw.trim();
     if (line.isEmpty || line.startsWith('#')) continue;
-    // Key itself contains one ':' (slug:api), so split on the LAST ':'.
     final sep = line.lastIndexOf(': ');
     if (sep <= 0) {
       errors.add('tool/example_api_debt.yaml: unparsable line "$raw"');
@@ -543,8 +489,6 @@ Map<String, String> _apiEnablementDebt(List<String> errors) {
   return entries;
 }
 
-/// Flags debt entries that no longer suppress anything (the example now
-/// enables the API, or stopped using resources that need it).
 void _checkStaleApiDebt(
   List<String> errors,
   Map<String, Map<String, dynamic>> synthByExample,
@@ -568,9 +512,6 @@ void _checkStaleApiDebt(
   }
 }
 
-/// True when [root] contains an API-gated resource needing [api] while the
-/// example enables other APIs but not [api] — i.e. the debt entry still
-/// suppresses a real mandate.
 bool _wouldMandate(Map<String, dynamic> root, String api) {
   final resources = root['resource'];
   if (resources is! Map) return false;

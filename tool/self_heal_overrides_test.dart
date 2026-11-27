@@ -245,7 +245,6 @@ paramOrder:
   - project
 ''');
 
-      // Second pass is a strict no-op.
       expect(applyMechanicalOverrideFixes(root.path, fixes), isEmpty);
     },
   );

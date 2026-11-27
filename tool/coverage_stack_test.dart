@@ -14,7 +14,6 @@ import 'wrap_lanes.dart' show providersPath;
 
 const _fixtures = 'tool/testdata/provider_diagnostics';
 
-/// One line per factory: `Class(param: <ledger value, else leftover>)`.
 final class _LineStack implements CoverageStackGenerator {
   const _LineStack(this.calls);
 
@@ -39,8 +38,6 @@ final class _LineStack implements CoverageStackGenerator {
   );
 }
 
-/// Answers `run` from the stack the driver wrote, and `revalidate` from the
-/// patched `main.tf.json`.
 final class _FakeOracle implements Oracle {
   _FakeOracle(this.stack, {required this.onRun, required this.onRevalidate});
 
@@ -1266,10 +1263,6 @@ final class _BlockStack implements CoverageStackGenerator {
   }
 }
 
-/// What a coverage-stack generator may not do: declare `main` (only
-/// `tool/coverage_stack.dart` writes a stack, after validating it), keep a
-/// retired value table, or pick a dummy value by comparing the owner's class
-/// name (the ledger `tool/coverage_dummies/<lane>.yaml` owns every value).
 List<String> generatorViolations(String source) => [
   for (final m in RegExp(
     r'^(?:[\w<>?]+\s+)?main\s*\(',

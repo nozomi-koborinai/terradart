@@ -1,28 +1,3 @@
-/// Migrate fixture gate (#661): migrates `config_tree/` (two environment
-/// roots sharing six local modules), `real_plan_src/` (a root with one
-/// child module) and the `lanes/` fixtures with `terradart_migrate`, writes
-/// the generated package to a temp directory, analyzes and synthesizes it,
-/// and runs `terraform init -backend=false && terraform validate` in every
-/// Terraform directory of the mirrored `tf-out/` tree — each holding the
-/// Stack's `main.tf.json` next to its leftover sidecar. A directory whose
-/// synthesized JSON only declares `configuration_aliases` is not validated
-/// on its own: Terraform requires the calling module for that, and the root
-/// validate covers it. Every kept block must have landed in a sidecar file.
-/// `user_project_override` in a fixture must still be present after synth.
-///
-/// The merged-environment gate (#668) migrates `config_tree/` a second time
-/// with `--merge-envs`, and requires that the one `ConfigTreeStack(env: ...)`
-/// synthesizes, per environment, exactly the JSON the two separate Stacks
-/// did: same resources, same addresses, same values. That is the proof that
-/// folding the roots together changes the Dart and nothing else.
-///
-///   dart tool/migrate_fixture_gates.dart [--skip-validate] [--keep]
-///
-/// `--skip-validate` stops before terraform (no terraform on PATH);
-/// `--keep` leaves the generated packages in place. Exit 1 on any failure,
-/// with the failing package kept for inspection.
-library;
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -37,9 +12,6 @@ import 'wrap_lanes.dart';
 
 const _treeFixtures = ['config_tree', 'real_plan_src'];
 
-/// `lanes/` fixtures no wrap lane owns. Sibling directories under one
-/// parent are environment roots and would be merged, so each entry is its
-/// own scan root.
 const _sharedLaneFixtures = [
   'lanes/time',
   'lanes/google_cloudflare',
@@ -217,7 +189,6 @@ List<String> pinDrift(
   return (versions: versions, bad: bad);
 }
 
-/// The fixture whose environment roots `--merge-envs` folds together.
 const _mergeFixture = 'config_tree';
 
 const _terraformInit = [
@@ -275,8 +246,6 @@ Future<void> main(List<String> args) async {
   exitCode = ok ? 0 : 1;
 }
 
-/// `--merge-envs` on [_mergeFixture]: one Stack for both environment roots,
-/// synthesizing per environment exactly what one Stack each did.
 Future<bool> _mergeEnvGate({
   required String repoRoot,
   required bool skipValidate,
@@ -309,8 +278,6 @@ Future<bool> _mergeEnvGate({
       }
     }
 
-    // The proof: every environment's synth is the one the separate Stacks
-    // wrote, key for key.
     final dirs = [for (final m in project.modules) m.terraformDir];
     for (final dir in dirs) {
       final before = File(p.join(plain.path, dir, 'main.tf.json'));
@@ -361,7 +328,6 @@ Future<bool> _mergeEnvGate({
 
 String _count(int n, String what) => '$n $what${n == 1 ? '' : 's'}';
 
-/// `pub get`, `analyze` and `run bin/infra.dart` in a generated package.
 Future<bool> _build(
   Directory temp,
   String repoRoot,
@@ -392,7 +358,6 @@ Future<bool> _build(
   return true;
 }
 
-/// Deep JSON comparison, as the round-trip gate does it.
 void _diff(Object? a, Object? b, String path, List<String> out) {
   if (a is Map && b is Map) {
     for (final key in {...a.keys, ...b.keys}) {
@@ -447,8 +412,6 @@ Future<bool> _gate(
       }
     }
 
-    // The generated pubspec pins hosted lockstep versions; wire the checkout
-    // in so the gate exercises this tree.
     final overrides = StringBuffer('\ndependency_overrides:\n');
     for (final pkg in _workspacePackages) {
       overrides
@@ -468,9 +431,6 @@ Future<bool> _gate(
       final before = errors.length;
       var passed = await _run(step, temp, errors);
       if (!passed && step[1] == 'pub') {
-        // A cold pub cache fails --offline: drop only that failure and retry
-        // online, so an earlier error (a kept block that landed in no
-        // sidecar file) still fails the gate.
         errors.removeRange(before, errors.length);
         passed = await _run(['dart', 'pub', 'get'], temp, errors);
       }
@@ -515,8 +475,7 @@ Future<bool> _gate(
         final mainJson = File(p.join(dir.path, 'main.tf.json'));
         if (mainJson.existsSync() &&
             mainJson.readAsStringSync().contains('"configuration_aliases"')) {
-          // Terraform cannot validate this module alone: the alias is
-          // passed by the caller. The root's validate loads the module.
+          // Terraform cannot validate a configuration_aliases child module standalone; root validate covers it.
           continue;
         }
         if (!await _run(_terraformInit, dir, errors)) continue;
@@ -562,7 +521,6 @@ bool _finish(
   return false;
 }
 
-/// True when any file under [dir] contains [needle].
 bool _treeContains(Directory dir, String needle) {
   if (!dir.existsSync()) return false;
   for (final entity in dir.listSync(recursive: true)) {

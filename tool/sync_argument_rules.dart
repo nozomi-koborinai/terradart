@@ -1,19 +1,3 @@
-// Keeps every copy of the argument-writing rules in step with their one
-// source, the block between the `argument-rules:start` / `:end` markers of
-// website/src/content/docs/docs/arguments.md.
-//
-// A copy is the same pair of markers in another file, in whatever comment
-// syntax the file takes (`<!-- -->`, MDX `{/* */}`), after a line prefix
-// (`/// ` in a doc comment, `  /// ` in a barrels manifest's `umbrellaDoc`).
-// The prefix of the start-marker line is put before every line of the
-// block.
-//
-//   dart tool/sync_argument_rules.dart        # list stale copies, exit 1
-//   dart tool/sync_argument_rules.dart --fix  # rewrite them
-//
-// The barrels manifests feed the generated umbrella libraries; run the wrap
-// lanes (`dart tool/wrap_lanes.dart --gate regen`) after `--fix` touches
-// one. tool/argument_rules_test.dart fails on a stale copy.
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -22,7 +6,6 @@ import 'wrap_lanes.dart';
 
 const argumentRulesSource = 'website/src/content/docs/docs/arguments.md';
 
-/// Copies that are not a lane barrels manifest.
 const argumentRulesFixedCopies = [
   'README.md',
   'website/src/content/docs/docs/getting-started.mdx',
@@ -31,10 +14,6 @@ const argumentRulesFixedCopies = [
   'packages/terradart_core/lib/src/ref_to.dart',
 ];
 
-/// Every file that carries a copy, relative to the repo root.
-///
-/// Each lane's [WrapLane.barrelsManifest] is included. The umbrella doc in
-/// that file is where the lane's copy of the rules lives.
 List<String> argumentRulesCopiesFor(List<WrapLane> lanes) => [
   ...argumentRulesFixedCopies,
   for (final lane in lanes) lane.barrelsManifest,
@@ -49,8 +28,6 @@ final _start = RegExp(
 );
 final _end = RegExp(r'(?:<!--|\{/\*)\s*argument-rules:end\s*(?:-->|\*/\})');
 
-/// The lines of the block in [text], without the markers and with the
-/// start marker's prefix removed.
 List<String> argumentRulesBlock(String text, String file) {
   final (:start, :end, :prefix) = _markers(text.split('\n'), file);
   final lines = text.split('\n').sublist(start + 1, end);
@@ -60,8 +37,6 @@ List<String> argumentRulesBlock(String text, String file) {
   ];
 }
 
-/// [text] with its block replaced by [block], each line prefixed like the
-/// start marker (an empty line gets the prefix without trailing spaces).
 String withArgumentRules(String text, String file, List<String> block) {
   final lines = text.split('\n');
   final (:start, :end, :prefix) = _markers(lines, file);
@@ -97,8 +72,6 @@ String withArgumentRules(String text, String file, List<String> block) {
   );
 }
 
-/// The copies under [root] that differ from the source; with [fix], they
-/// are rewritten first, so the result lists what was rewritten.
 List<String> syncArgumentRules(String root, {bool fix = false}) {
   final source = File(p.join(root, argumentRulesSource)).readAsStringSync();
   final block = argumentRulesBlock(source, argumentRulesSource);

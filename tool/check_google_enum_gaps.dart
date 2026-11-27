@@ -1,31 +1,4 @@
 // ignore_for_file: avoid_print
-//
-// google lane gate: in the GA `hashicorp/google` overrides,
-// schema-documented finite values must not surface as TfArg<String> or
-// TfArg<List<String>> when the wrapper override lacks dartTypeOverrides /
-// prelude enum coverage. Resources and data sources are both checked.
-// Only that lane needs it — google-beta derives its enums from MM YAML
-// (--mm-hints), and aws / cloudflare / appwrite from provider hints
-// (--provider-enums).
-//
-// Top-level gaps (THIN / PARTIAL) and NESTED_PARTIAL (customSlot helpers
-// still using TfArg<String> or TfArg<List<String>> for schema enums) fail
-// CI by default.
-// NESTED_THIN (whole block still TfArg<Map>) prints as advisory unless
-// --strict-nested is passed.
-//
-// An input's value set is its Magic Modules `enum_values` (top-level or
-// nested), else the one its schema description lists: the order and the
-// parsers `wrap` types inputs with. A description neither of those reads is
-// still read by [cueValues], a looser reader that does not share the
-// parser's grammar, so a wording the parser skips fails here instead of
-// passing unseen. Its gaps end in `\tcue`; one that is prose, not a value
-// set, needs a reasoned line in tool/enum_gap_cue_prose.yaml.
-//
-// Usage:
-//   dart tool/check_google_enum_gaps.dart
-//   dart tool/check_google_enum_gaps.dart --strict-nested
-//   dart tool/check_google_enum_gaps.dart --generated-root <dir>
 
 import 'dart:convert';
 import 'dart:io';
@@ -71,8 +44,6 @@ final _mmDir = Directory(
   p.join(_root.path, 'packages/terradart_codegen/test/fixtures/wrap/source/mm'),
 );
 
-/// `--generated-root <dir>` reads the wrappers from another tree, so a test
-/// can seed a gap without touching the package.
 late final Directory _genDir;
 
 typedef NestedEnumSite = ({
@@ -116,11 +87,6 @@ final _rawCtorField = RegExp(
   r'(?:required\s+)?TfArg\s*<\s*(?:String|List\s*<\s*String\s*>)\s*>\s*\??\s+(\w+)',
 );
 
-/// Constructor inputs still typed `TfArg<String>` or `TfArg<List<String>>`.
-///
-/// `dart format` splits `(super.localName, {` and `}) : super(` across
-/// lines, and it can wrap inside `TfArg<List<String>>`. Matching through
-/// whitespace keeps a formatted factory in the check.
 Set<String> ctorRawStringFields(String source) {
   final start = _ctorStart.firstMatch(source);
   if (start == null) return {};
@@ -132,9 +98,6 @@ Set<String> ctorRawStringFields(String source) {
 
 final _factoryStart = RegExp(r'const\s+factory\s+[A-Za-z0-9_.]+\s*\(');
 
-/// `TfArg<String>` and `TfArg<List<String>>` parameters of sealed variant
-/// factories. A value set moved into a sealed argument is not on the
-/// resource constructor (`appEngineBundledServices(...)`).
 Set<String> sealedVariantRawStringFields(String source) {
   final fields = <String>{};
   for (final match in _factoryStart.allMatches(source)) {
@@ -176,10 +139,6 @@ int _matchingParen(String source, int open) {
   return -1;
 }
 
-/// Output-only attribute: computed, and neither optional nor required.
-///
-/// Same meaning as `Constraints.computedOnly`. An optional computed input
-/// is still a constructor parameter.
 bool schemaAttrIsComputedOnly(Map<String, dynamic> meta) =>
     meta['computed'] == true &&
     meta['optional'] != true &&
@@ -187,8 +146,6 @@ bool schemaAttrIsComputedOnly(Map<String, dynamic> meta) =>
 
 typedef _GapTarget = ({String terraformType, Map<String, dynamic>? schema});
 
-/// Schema block for an override file. Data-source files are
-/// `data_<type>.yaml` (legacy `google_project.yaml` stays unprefixed).
 _GapTarget _gapTarget({
   required String stem,
   required Map<String, dynamic> override,
@@ -227,14 +184,6 @@ final _cueToken = RegExp(
   r'\b[a-z][a-z0-9_]*\([^()\s]*\)',
 );
 
-/// The values a description names after a value-set cue, read without
-/// `parseEnumValuesFromDescription`, so a wording the parser skips still
-/// reaches the gap report. Deliberately looser than the parser: it takes
-/// every quoted, upper-case or PascalCase word, and every call-shaped
-/// word (`deny(403)`, `deny(STATUS)`), between a cue (`Possible values`,
-/// `Valid options`, `Options are`, `Values supported are`, `types are
-/// allowed`, `the following values`, `One of`, `either`) and the end of
-/// its sentence.
 List<String>? cueValues(String? description) {
   if (description == null) return null;
   for (final m in _cue.allMatches(description)) {
@@ -254,18 +203,10 @@ final _enumLink = RegExp(
   r'|\[[A-Z][A-Za-z0-9]*\]\(https?://\S*/reference/rest/\S*#[a-z][a-z0-9]*\)',
 );
 
-/// Whether [description] carries a value-set cue (see [cueValues]) or links a REST reference anchor that may
-/// name a canonical enum, whatever tokens follow it. The tokens decide
-/// nothing: every such string input is typed or has a reasoned line in
-/// tool/enum_gap_cue_prose.yaml.
 bool hasValueSetCue(String? description) =>
     description != null &&
     (_cue.hasMatch(description) || _enumLink.hasMatch(description));
 
-/// The value set the gap report holds an input to: Magic Modules
-/// `enum_values`, else the parser's reading, else [cueValues] (`cueOnly`).
-/// None for a description the parser's [describesOpenSet] calls partial:
-/// the same rule keeps that input a string in `wrap`.
 ({List<String> values, bool cueOnly})? describedValues(
   String? description,
   List<String>? mm,
@@ -281,11 +222,6 @@ bool hasValueSetCue(String? description) =>
 
 String _cueTag(bool cueOnly) => cueOnly ? '\tcue' : '';
 
-/// Top-level `THIN` / `PARTIAL` lines for one override.
-///
-/// [stem] is the override file name without `.yaml`. An input's value set
-/// is its Magic Modules `enum_values` in [mmValues] ([mmEnumValues]), else
-/// the one its schema description lists, the order `wrap` reads them in.
 List<String> topLevelEnumGaps({
   required String stem,
   required Map<String, dynamic> override,
@@ -329,9 +265,6 @@ List<String> topLevelEnumGaps({
   return gaps;
 }
 
-/// The `enum_values` of every Magic Modules input in [mmYaml], keyed by
-/// dotted Terraform path: the table `wrap --mm-groups` types inputs from
-/// ([MmResourceOverrides.enumValuesByPath]).
 Map<String, List<String>> mmEnumValues(String mmYaml) =>
     const MmYamlParser().parseString(mmYaml).enumValuesByPath;
 
@@ -366,17 +299,12 @@ Set<String> _customSlotTerraformKeys(Map<String, dynamic> ov) {
 bool _customSlotCoversBlock(Map<String, dynamic> ov, List<String> blockPath) {
   if (blockPath.isEmpty) return false;
   final slotKeys = _customSlotTerraformKeys(ov);
-  // A top-level customSlot (e.g. `rules` → schema `rule`) types the subtree.
   for (var i = blockPath.length; i > 0; i--) {
     if (slotKeys.contains(blockPath[i - 1])) return true;
   }
   return false;
 }
 
-/// Generated source of the helper a custom slot uses for [blockPath], when
-/// that helper is a class in this package. A slot can point at a class in
-/// another file (`EventarcMessageBusLoggingConfig`), so the resource file
-/// alone does not show the field's type.
 String? _helperTextForBlock(Map<String, dynamic> ov, List<String> blockPath) {
   final slots = ov['customSlots'];
   if (slots is! Map) return null;
@@ -427,28 +355,8 @@ Map<String, String> _indexClassSources() {
   return out;
 }
 
-/// Collapses runs of whitespace (including newlines) to a single space.
-///
-/// `dart_style` wraps a field declaration across multiple lines once its
-/// type name is long enough (routine for `deriveNestedTypes` classes, whose
-/// names are `ResourcePrefix + full block path + attr name` chains) — e.g.
-/// `final TfArg<\n  VeryLongEnumClassName\n>?\n  fieldName;`, sometimes with
-/// the wrap landing INSIDE the generic's angle brackets (`TfArg<\n  Foo\n>?`,
-/// three whitespace-separated tokens even after normalizing). The field
-/// -detection regexes below (`[^;]+?` for the type, not `\S+`) tolerate an
-/// arbitrarily-wrapped type as long as it contains no literal semicolon
-/// (true of every Dart type), so normalizing first just keeps the captured
-/// type text comparable to its un-wrapped form (see `_declaredFieldType`).
 String _normalizeWhitespace(String s) => s.replaceAll(RegExp(r'\s+'), ' ');
 
-/// The declared type(s) of every `final <type> <camel>;` field named [camel]
-/// in [genText] (already whitespace-normalized), with internal whitespace
-/// stripped so a wrap-then-normalize round trip (`TfArg< Foo >?`) reads the
-/// same as the never-wrapped form (`TfArg<Foo>?`). Empty when no such field
-/// exists. More than one entry is possible — and INTENTIONALLY not resolved
-/// to "the right one" — when an unrelated block reuses the same attr name
-/// (e.g. top-level `type` vs a nested block's own `type`); see
-/// [nestedEnumFieldIsGap] for why that's the accepted heuristic.
 Iterable<String> _declaredFieldTypes(String genText, String camel) sync* {
   for (final m in RegExp('final ([^;]+?)\\s+$camel\\s*;').allMatches(genText)) {
     yield m.group(1)!.replaceAll(' ', '');
@@ -466,20 +374,11 @@ const _rawGapTypes = {
   'TfArg<List<String>>?',
 };
 
-/// Whether [genText] encodes [attr] as one of [values] in a literal, the
-/// way a hand-written variant pins a single-value input
-/// (`'array_config': 'CONTAINS'`): the caller never passes a string.
 bool encodesFixedValue(String genText, String attr, List<String> values) =>
     RegExp(
       "'${RegExp.escape(attr)}': '(?:${values.map(RegExp.escape).join('|')})'",
     ).hasMatch(genText);
 
-/// The generated helper class for [blockPath] in [genText], found by the
-/// "Typed helper for the block" doc comment `wrap` writes on it, or
-/// null when the block has no class of its own (a shared, sealed or
-/// hand-written helper). A field name repeats across helpers
-/// (`boot_disk.interface`, `scratch_disk.interface`), so only the block's own
-/// class says how its field is typed.
 String? helperClassText(String genText, List<String> blockPath) {
   final start = genText.indexOf(
     '/// Typed helper for the `${blockPath.join('.')}` block of',
@@ -489,12 +388,6 @@ String? helperClassText(String genText, List<String> blockPath) {
   return genText.substring(start, end < 0 ? genText.length : end + 2);
 }
 
-/// The classes that hold [blockPath]'s fields in [genText]: the block's
-/// class, found by following field types from the resource class down
-/// (else by the doc comment [helperClassText] finds), plus the variants of
-/// any sealed field it holds. Null when neither reaches a class (a
-/// hand-written helper), never the whole file: a field name repeats across
-/// helpers, and another block's field says nothing about this one.
 String? blockClassText(String genText, List<String> blockPath) {
   var text = _classText(
     genText,
@@ -520,8 +413,6 @@ String? _namedClassText(String genText, String name) => _classText(
   ),
 );
 
-/// The helper type names of [parent]'s field or constructor parameter
-/// [field].
 Iterable<String> _fieldTypeNames(String parent, String field) sync* {
   for (final type in [
     ..._declaredFieldTypes(parent, field),
@@ -534,11 +425,6 @@ Iterable<String> _fieldTypeNames(String parent, String field) sync* {
   }
 }
 
-/// The class of [parent]'s `segment` block: the type of the field its
-/// encode map writes under that key (`'boot_disk': ?bootDisk?.encode()`)
-/// or of the field named after it; a variant of a sealed field of
-/// [parent] whose `blockKey` is [segment] (a block a sealed argument
-/// holds); else the one variant in the file with that `blockKey`.
 String? _childClassText(String genText, String parent, String segment) {
   final keyed = RegExp(
     "'${RegExp.escape(segment)}':\\s*(?:TfArg\\.literal\\()?"
@@ -564,7 +450,6 @@ String? _childClassText(String genText, String parent, String segment) {
   return variant == null ? null : _unwrapped(genText, variant, segment);
 }
 
-/// The sealed classes [parent]'s fields and parameters are typed with.
 List<String> _sealedFieldTypes(String genText, String parent) => [
   for (final m in RegExp(
     r'(?:final\s+|^\s*(?:required\s+)?)([A-Z][A-Za-z0-9_<>?]*)\s+\w+\s*[;,)]',
@@ -574,8 +459,6 @@ List<String> _sealedFieldTypes(String genText, String parent) => [
       if (_namedClassText(genText, name)?.startsWith('sealed') ?? false) name,
 ];
 
-/// [text] plus the variants of every sealed field it holds, whose classes
-/// set the block's own fields (`...mode.encode()`).
 String _withSealedFields(String genText, String text) {
   final out = StringBuffer(text);
   for (final name in _sealedFieldTypes(genText, text).toSet()) {
@@ -592,7 +475,6 @@ String? _classText(String genText, RegExp start) {
   return genText.substring(m.start, end < 0 ? genText.length : end + 2);
 }
 
-/// `List<FooBar>?` → `FooBar`; null for a `TfArg` or other non-helper type.
 String? _helperTypeName(String type) {
   if (type.startsWith('TfArg<')) return null;
   final names = RegExp(r'[A-Z][A-Za-z0-9_]*')
@@ -602,8 +484,6 @@ String? _helperTypeName(String type) {
   return names.isEmpty ? null : names.last;
 }
 
-/// A variant that holds its block in its one field (`final BigqueryJobCopy
-/// copy;`) stands for that field's class.
 String _unwrapped(String genText, String found, String segment) {
   if (!found.contains("blockKey => '$segment'")) return found;
   final fields = RegExp(r'final ([^;]+?)\s+\w+\s*;').allMatches(found).toList();
@@ -617,8 +497,6 @@ String _unwrapped(String genText, String found, String segment) {
       : inner;
 }
 
-/// A block that is one sealed choice of its fields: the sealed class and
-/// every variant class that extends it, each variant setting one field.
 String _sealedFamilyText(String genText, String name, String sealed) {
   final out = StringBuffer(sealed);
   for (final m in _variantStarts(genText, name)) {
@@ -634,8 +512,6 @@ Iterable<RegExpMatch> _variantStarts(String genText, String? of) => RegExp(
   multiLine: true,
 ).allMatches(genText);
 
-/// The variant whose `blockKey` is [segment]: among [of]'s variants, or
-/// the one such class in the file.
 String? _variantClassText(String genText, String segment, {String? of}) {
   final found = <String>[];
   for (final m in _variantStarts(genText, of)) {
@@ -650,8 +526,6 @@ bool nestedEnumFieldIsGap(String genText, String camel) {
   var sawRaw = false;
   for (final type in _declaredFieldTypes(genText, camel)) {
     if (!_rawGapTypes.contains(type)) {
-      // An enum or helper with this name means covered, even when another
-      // raw string field shares the name (top-level `type` vs nested `type`).
       return false;
     }
     sawRaw = true;
@@ -659,12 +533,6 @@ bool nestedEnumFieldIsGap(String genText, String camel) {
   return sawRaw;
 }
 
-/// Whether [blockPath] (or an ancestor of it) is one of [ov]'s
-/// `nestedTypeExcludes` entries — i.e. a NESTED_THIN site the maintainer
-/// deliberately froze when flipping `deriveNestedTypes: true`, rather than
-/// one nobody has migrated yet. Only meaningful when [ov] actually sets
-/// `deriveNestedTypes: true`; an override that never turned the gate on has
-/// no "frozen" sites, only not-yet-migrated ones.
 bool _isFrozenByExclude(Map<String, dynamic> ov, List<String> blockPath) {
   if (ov['deriveNestedTypes'] != true) return false;
   final excludesRaw = ov['nestedTypeExcludes'] as YamlList?;
@@ -826,11 +694,6 @@ void main(List<String> args) {
     }
   }
 
-  // tool/enum_gap_cue_prose.yaml names the inputs whose value-set cue only
-  // [cueValues] reads and a reviewer found to be prose (a format, an
-  // example, a mutual-exclusion note), each with a reason. It can only
-  // excuse a `cue` gap: an input the parser or Magic Modules reads is a
-  // value set, and a line naming one is stale.
   final prose = _ledger('enum_gap_cue_prose.yaml');
   String keyOf(String gap) => gap.split('\t')[1];
   final cueKeys = {
@@ -872,19 +735,12 @@ void main(List<String> args) {
     if (strictNested) ...nestedThinAdvisory,
   ];
 
-  // tool/enum_gap_debt.yaml suppresses KNOWN gaps with a reviewed reason
-  // (e.g. typed-enum narrowing is a breaking change, so paying a top-level
-  // gap down waits for a breaking minor). Same ledger contract as
-  // example_debt.yaml: adding a line is a reviewed decision, and a stale
-  // line (no longer matching any reported gap) fails so it cannot rot.
   final debt = _ledger('enum_gap_debt.yaml');
   final allGapKeys = {
     ...failing.map(keyOf),
     ...nestedThinAdvisory.map(keyOf),
     ...frozenByExcludeGaps.map(keyOf),
   };
-  // As for the prose ledger, a line can only be judged against a wrapper the
-  // run read (`--generated-root` may hold a subset).
   final staleDebt = debt.keys.where((k) {
     final type = k.split('.').first;
     return checkedTypes.contains(type)
@@ -908,11 +764,6 @@ void main(List<String> args) {
       '${prose.isEmpty ? '' : '; ${prose.length} reviewed prose in '
                 'tool/enum_gap_cue_prose.yaml'}';
 
-  // `frozenByExcludeGaps` never fails, even under --strict-nested — it's a
-  // maintainer's reviewed `nestedTypeExcludes` decision (recorded on the
-  // override, not this ledger), not migration debt to chase down. Still
-  // printed in every branch so "why is this one still a Map" is one command
-  // away, matching the advisory list's visibility.
   void printFrozen() {
     if (frozenByExcludeGaps.isEmpty) return;
     print(
@@ -961,7 +812,6 @@ void main(List<String> args) {
   exit(1);
 }
 
-/// Parses a `tool/<name>` ledger (`<tfType>.<attrPath>: <reason>` lines).
 Map<String, String> _ledger(String name) {
   final file = File(p.join(_root.path, 'tool', name));
   if (!file.existsSync()) return const {};
