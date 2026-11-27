@@ -9,6 +9,8 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 const Set<String> _azurermApiManagementProductTagSensitive = <String>{};
 
 /// Factory wrapper for `azurerm_api_management_product_tag`.
+///
+/// Manages an API Management Product tag.
 final class AzurermApiManagementProductTag extends Resource {
   static const String tfType = 'azurerm_api_management_product_tag';
 

@@ -8,6 +8,8 @@ const Set<String> _azurermApiManagementGatewayCertificateAuthoritySensitive =
     <String>{};
 
 /// Factory wrapper for `azurerm_api_management_gateway_certificate_authority`.
+///
+/// Manages an API Management Gateway Certificate Authority.
 final class AzurermApiManagementGatewayCertificateAuthority extends Resource {
   static const String tfType =
       'azurerm_api_management_gateway_certificate_authority';

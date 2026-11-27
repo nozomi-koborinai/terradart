@@ -203,6 +203,8 @@ final class ApiManagementCustomDomainScm {
 }
 
 /// Factory wrapper for `azurerm_api_management_custom_domain`.
+///
+/// Manages an API Management Custom Domain.
 final class AzurermApiManagementCustomDomain extends Resource {
   static const String tfType = 'azurerm_api_management_custom_domain';
 

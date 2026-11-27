@@ -9,6 +9,9 @@ const Set<String> _azurermApiManagementGatewayHostNameConfigurationSensitive =
     <String>{};
 
 /// Factory wrapper for `azurerm_api_management_gateway_host_name_configuration`.
+///
+/// Use this data source to access information about an existing API Management
+/// Gateway Host Configuration.
 final class DataAzurermApiManagementGatewayHostNameConfiguration extends Data {
   static const String tfType =
       'azurerm_api_management_gateway_host_name_configuration';

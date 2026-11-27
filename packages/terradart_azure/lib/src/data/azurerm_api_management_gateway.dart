@@ -8,6 +8,9 @@ import '../api_management/azurerm_api_management_gateway.dart';
 const Set<String> _azurermApiManagementGatewaySensitive = <String>{};
 
 /// Factory wrapper for `azurerm_api_management_gateway`.
+///
+/// Use this data source to access information about an existing API Management
+/// Gateway.
 final class DataAzurermApiManagementGateway extends Data {
   static const String tfType = 'azurerm_api_management_gateway';
 

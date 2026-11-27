@@ -36,6 +36,8 @@ final class ApiManagementGatewayLocationData {
 }
 
 /// Factory wrapper for `azurerm_api_management_gateway`.
+///
+/// Manages an API Management Gateway.
 final class AzurermApiManagementGateway extends Resource {
   static const String tfType = 'azurerm_api_management_gateway';
 

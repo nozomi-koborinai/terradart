@@ -10,6 +10,8 @@ const Set<String> _azurermApiManagementIdentityProviderTwitterSensitive =
     <String>{'api_key', 'api_secret_key'};
 
 /// Factory wrapper for `azurerm_api_management_identity_provider_twitter`.
+///
+/// Manages an API Management Twitter Identity Provider.
 final class AzurermApiManagementIdentityProviderTwitter extends Resource {
   static const String tfType =
       'azurerm_api_management_identity_provider_twitter';

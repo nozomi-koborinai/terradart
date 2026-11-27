@@ -24,6 +24,8 @@ extension type const ApiManagementGlobalSchemaType._(TfArg<String> _)
 }
 
 /// Factory wrapper for `azurerm_api_management_global_schema`.
+///
+/// Manages a Global Schema within an API Management Service.
 final class AzurermApiManagementGlobalSchema extends Resource {
   static const String tfType = 'azurerm_api_management_global_schema';
 

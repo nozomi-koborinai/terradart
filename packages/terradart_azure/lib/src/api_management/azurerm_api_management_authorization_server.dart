@@ -166,6 +166,8 @@ final class ApiManagementAuthorizationServerTokenBodyParameter {
 }
 
 /// Factory wrapper for `azurerm_api_management_authorization_server`.
+///
+/// Manages an Authorization Server within an API Management Service.
 final class AzurermApiManagementAuthorizationServer extends Resource {
   static const String tfType = 'azurerm_api_management_authorization_server';
 

@@ -575,6 +575,8 @@ final class ApiManagementTenantAccess {
 }
 
 /// Factory wrapper for `azurerm_api_management`.
+///
+/// Manages an API Management Service.
 final class AzurermApiManagement extends Resource {
   static const String tfType = 'azurerm_api_management';
 

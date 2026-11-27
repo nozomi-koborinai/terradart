@@ -9,3 +9,5 @@
 # on a missing or stale entry.
 aws_fsx_s3_access_point_attachment:
   "ontap_configuration, openzfs_configuration": "awaiting-name: hashicorp/aws 6.74.0"
+azurerm_horizondb_cluster:
+  "point_in_time_restore, postgresql_version": "awaiting-name: hashicorp/azurerm 5.15.0"

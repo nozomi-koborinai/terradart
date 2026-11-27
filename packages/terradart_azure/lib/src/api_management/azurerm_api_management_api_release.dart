@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermApiManagementApiReleaseSensitive = <String>{};
 
 /// Factory wrapper for `azurerm_api_management_api_release`.
+///
+/// Manages an API Management API Release.
 final class AzurermApiManagementApiRelease extends Resource {
   static const String tfType = 'azurerm_api_management_api_release';
 

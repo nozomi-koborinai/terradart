@@ -14,5 +14,9 @@ export 'src/search/azurerm_search_service.dart'
         SearchServiceNetworkRuleBypassOption,
         SearchServiceSemanticSearchSku,
         SearchServiceSku;
+export 'src/search/azurerm_search_service_datasource_blob.dart'
+    show
+        AzurermSearchServiceDatasourceBlob,
+        SearchServiceDatasourceBlobEncryptionKey;
 export 'src/search/azurerm_search_shared_private_link_service.dart'
     show AzurermSearchSharedPrivateLinkService;

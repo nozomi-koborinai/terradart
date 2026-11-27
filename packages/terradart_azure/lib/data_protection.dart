@@ -99,5 +99,7 @@ export 'src/data_protection/azurerm_data_protection_backup_vault.dart'
         DataProtectionBackupVaultSoftDelete;
 export 'src/data_protection/azurerm_data_protection_backup_vault_customer_managed_key.dart'
     show AzurermDataProtectionBackupVaultCustomerManagedKey;
+export 'src/data_protection/azurerm_data_protection_backup_vault_resource_guard_association.dart'
+    show AzurermDataProtectionBackupVaultResourceGuardAssociation;
 export 'src/data_protection/azurerm_data_protection_resource_guard.dart'
     show AzurermDataProtectionResourceGuard;

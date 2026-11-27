@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermApiManagementGatewayApiSensitive = <String>{};
 
 /// Factory wrapper for `azurerm_api_management_gateway_api`.
+///
+/// Manages an API Management Gateway API.
 final class AzurermApiManagementGatewayApi extends Resource {
   static const String tfType = 'azurerm_api_management_gateway_api';
 

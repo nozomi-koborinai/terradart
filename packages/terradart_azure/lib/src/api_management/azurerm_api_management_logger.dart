@@ -258,6 +258,8 @@ final class ApiManagementLoggerConnectionEndpointUri
 }
 
 /// Factory wrapper for `azurerm_api_management_logger`.
+///
+/// Manages a Logger within an API Management Service.
 final class AzurermApiManagementLogger extends Resource {
   static const String tfType = 'azurerm_api_management_logger';
 

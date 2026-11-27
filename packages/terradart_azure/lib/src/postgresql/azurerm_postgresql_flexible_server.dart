@@ -135,24 +135,24 @@ extension type const PostgresqlFlexibleServerVersion._(TfArg<String> _)
     : this._(TfArg.expression(template));
   const PostgresqlFlexibleServerVersion.arg(TfArg<String> arg) : this._(arg);
 
-  static const v18 = PostgresqlFlexibleServerVersion._(TfArgLiteral('18'));
-  static const v15 = PostgresqlFlexibleServerVersion._(TfArgLiteral('15'));
-  static const v14 = PostgresqlFlexibleServerVersion._(TfArgLiteral('14'));
   static const v11 = PostgresqlFlexibleServerVersion._(TfArgLiteral('11'));
-  static const v17 = PostgresqlFlexibleServerVersion._(TfArgLiteral('17'));
-  static const v16 = PostgresqlFlexibleServerVersion._(TfArgLiteral('16'));
-  static const v13 = PostgresqlFlexibleServerVersion._(TfArgLiteral('13'));
   static const v12 = PostgresqlFlexibleServerVersion._(TfArgLiteral('12'));
+  static const v13 = PostgresqlFlexibleServerVersion._(TfArgLiteral('13'));
+  static const v14 = PostgresqlFlexibleServerVersion._(TfArgLiteral('14'));
+  static const v15 = PostgresqlFlexibleServerVersion._(TfArgLiteral('15'));
+  static const v16 = PostgresqlFlexibleServerVersion._(TfArgLiteral('16'));
+  static const v17 = PostgresqlFlexibleServerVersion._(TfArgLiteral('17'));
+  static const v18 = PostgresqlFlexibleServerVersion._(TfArgLiteral('18'));
 
   static const List<PostgresqlFlexibleServerVersion> values = [
-    v18,
-    v15,
-    v14,
     v11,
-    v17,
-    v16,
-    v13,
     v12,
+    v13,
+    v14,
+    v15,
+    v16,
+    v17,
+    v18,
   ];
 }
 

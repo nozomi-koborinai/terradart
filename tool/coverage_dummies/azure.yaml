@@ -833,6 +833,12 @@ AzurermDataProtectionBackupVault.redundancy:
 AzurermDataProtectionBackupVaultCustomerManagedKey.dataProtectionBackupVaultId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultName'
   why: 'azurerm_data_protection_backup_vault_customer_managed_key.data_protection_backup_vault_customer_managed_ke.data_protection_backup_vault_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the BackupVault ID: the number of segments didn''t match (family azure-resource-id)'
+AzurermDataProtectionBackupVaultResourceGuardAssociation.dataProtectionBackupVaultId:
+  value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultName'
+  why: 'azurerm_data_protection_backup_vault_resource_guard_association.data_protection_backup_vault_resource_guard_asso.data_protection_backup_vault_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the BackupVault ID: the number of segments didn''t match (family azure-resource-id)'
+AzurermDataProtectionBackupVaultResourceGuardAssociation.dataProtectionResourceGuardId:
+  value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardName'
+  why: 'azurerm_data_protection_backup_vault_resource_guard_association.data_protection_backup_vault_resource_guard_asso.data_protection_resource_guard_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the ResourceGuard ID: the number of segments didn''t match (family azure-resource-id)'
 AzurermDataShare.accountId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName'
   why: 'azurerm_data_share.data_share.account_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the Account ID: the number of segments didn''t match (family azure-resource-id)'
@@ -1154,6 +1160,15 @@ AzurermHealthcareMedtechServiceFhirDestination.destinationFhirServiceId:
 AzurermHealthcareMedtechServiceFhirDestination.medtechServiceId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceName/iotConnectors/iotConnectorName'
   why: 'azurerm_healthcare_medtech_service_fhir_destination.healthcare_medtech_service_fhir_destination.medtech_service_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the IotConnector ID: the number of segments didn''t match (family azure-resource-id)'
+AzurermHorizondbFirewallRule.endIpAddress:
+  value: '10.0.0.1'
+  why: 'azurerm_horizondb_firewall_rule.horizondb_firewall_rule.end_ip_address rejected leftover: expected end_ip_address to contain a valid IPv4 address, got: leftover (family ipv4)'
+AzurermHorizondbFirewallRule.horizondbPoolId:
+  value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HorizonDb/clusters/clusterName/pools/poolName'
+  why: 'azurerm_horizondb_firewall_rule.horizondb_firewall_rule.horizondb_pool_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the Pool ID: the number of segments didn''t match (family azure-resource-id)'
+AzurermHorizondbFirewallRule.startIpAddress:
+  value: '10.0.0.1'
+  why: 'azurerm_horizondb_firewall_rule.horizondb_firewall_rule.start_ip_address rejected leftover: expected start_ip_address to contain a valid IPv4 address, got: leftover (family ipv4)'
 AzurermIotcentralApplicationNetworkRuleSet.iotcentralApplicationId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/iotAppName'
   why: 'azurerm_iotcentral_application_network_rule_set.iotcentral_application_network_rule_set.iotcentral_application_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the IotApp ID: the number of segments didn''t match (family azure-resource-id)'
@@ -2051,6 +2066,9 @@ AzurermRouteServerBgpConnection.peerIp:
 AzurermRouteServerBgpConnection.routeServerId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualHubs/virtualHubName'
   why: 'azurerm_route_server_bgp_connection.route_server_bgp_connection.route_server_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the VirtualHub ID: the number of segments didn''t match (family azure-resource-id)'
+AzurermSearchServiceDatasourceBlob.searchServiceEndpoint:
+  value: 'https://example.com/leftover'
+  why: 'azurerm_search_service_datasource_blob.search_service_datasource_blob.search_service_endpoint rejected leftover: expected "search_service_endpoint" to have a host, got leftover (family url-host)'
 AzurermSearchSharedPrivateLinkService.searchServiceId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceName'
   why: 'azurerm_search_shared_private_link_service.search_shared_private_link_service.search_service_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the SearchService ID: the number of segments didn''t match (family azure-resource-id)'
@@ -3404,6 +3422,21 @@ HdinsightSparkClusterWorkerNode.vmSize:
 HdinsightSparkClusterZookeeperNode.vmSize:
   value: 'ExtraSmall'
   why: 'azurerm_hdinsight_spark_cluster.hdinsight_spark_cluster.roles.zookeeper_node.vm_size rejected leftover: expected roles.0.zookeeper_node.0.vm_size to be one of ["ExtraSmall" "Small" "Medium" "Large" "ExtraLarge" "A5" "A6" "A7" "A8" "A9" "A10" "A11" "Standard_A1_V2" "Standard_A2_V2" "Standard_A2m_V2" "Standard_A3" "Standard_A4_V2" "Standard_A4m_V2" "Standard_A8_V2" "Standard_A8m_V2" "Standard_D1" "Standard_D2" "Standard_D3" "Standard_D4" "Standard_D11" "Standard_D12" "Standard_D13" "Standard_D14" "Standard_D1_V2" "Standard_D2_V2" "Standard_D3_V2" "Standard_D4_V2" "Standard_D5_V2" "Standard_D11_V2" "Standard_D12_V2" "Standard_D13_V2" "Standard_D14_V2" "Standard_DS1_V2" "Standard_DS2_V2" "Standard_DS3_V2" "Standard_DS4_V2" "Standard_DS5_V2" "Standard_DS11_V2" "Standard_DS12_V2" "Standard_DS13_V2" "Standard_DS14_V2" "Standard_E2_V3" "Standard_E4_V3" "Standard_E8_V3" "Standard_E16_V3" "Standard_E20_V3" "Standard_E32_V3" "Standard_E64_V3" "Standard_E64i_V3" "Standard_E2s_V3" "Standard_E4s_V3" "Standard_E8s_V3" "Standard_E16s_V3" "Standard_E20s_V3" "Standard_E32s_V3" "Standard_E64s_V3" "Standard_E64is_V3" "Standard_D2a_V4" "Standard_D4a_V4" "Standard_D8a_V4" "Standard_D16a_V4" "Standard_D32a_V4" "Standard_D48a_V4" "Standard_D64a_V4" "Standard_D96a_V4" "Standard_E2a_V4" "Standard_E4a_V4" "Standard_E8a_V4" "Standard_E16a_V4" "Standard_E20a_V4" "Standard_E32a_V4" "Standard_E48a_V4" "Standard_E64a_V4" "Standard_E96a_V4" "Standard_D2ads_V5" "Standard_D4ads_V5" "Standard_D8ads_V5" "Standard_D16ads_V5" "Standard_D32ads_V5" "Standard_D48ads_V5" "Standard_D64ads_V5" "Standard_D96ads_V5" "Standard_E2ads_V5" "Standard_E4ads_V5" "Standard_E8ads_V5" "Standard_E16ads_V5" "Standard_E20ads_V5" "Standard_E32ads_V5" "Standard_E48ads_V5" "Standard_E64ads_V5" "Standard_E96ads_V5" "Standard_G1" "Standard_G2" "Standard_G3" "Standard_G4" "Standard_G5" "Standard_F2s_V2" "Standard_F4s_V2" "Standard_F8s_V2" "Standard_F16s_V2" "Standard_F32s_V2" "Standard_F64s_V2" "Standard_F72s_V2" "Standard_GS1" "Standard_GS2" "Standard_GS3" "Standard_GS4" "Standard_GS5" "Standard_NC24"], got leftover (family one-of)'
+HorizondbClusterCompute.generation:
+  value: 1
+  why: 'azurerm_horizondb_cluster.horizondb_cluster.read_write_pool.compute.generation rejected 200: expected read_write_pool.0.compute.0.generation to be one of [1], got 200 (family one-of)'
+HorizondbClusterCompute.vcores:
+  value: 2
+  why: 'azurerm_horizondb_cluster.horizondb_cluster.read_write_pool.compute.vcores rejected 200: expected read_write_pool.0.compute.0.vcores to be one of [2 4 8 16 20 32 48 64 96], got 200 (family one-of)'
+HorizondbClusterPointInTimeRestore.pointInTimeUtc:
+  value: '2024-01-01T00:00:00Z'
+  why: 'azurerm_horizondb_cluster.horizondb_cluster.point_in_time_restore.point_in_time_utc rejected leftover: expected "point_in_time_restore.0.point_in_time_utc" to be a valid RFC3339 date, got "leftover": parsing time "leftover" as "2006-01-02T15:04:05Z07:00": cannot parse "leftover" as "2006" (family rfc3339)'
+HorizondbClusterPointInTimeRestore.sourceHorizondbClusterId:
+  value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HorizonDb/clusters/clusterName'
+  why: 'azurerm_horizondb_cluster.horizondb_cluster.point_in_time_restore.source_horizondb_cluster_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the Cluster ID: the number of segments didn''t match (family azure-resource-id)'
+HorizondbClusterReadWritePool.nodeCount:
+  value: 1
+  why: 'azurerm_horizondb_cluster.horizondb_cluster.read_write_pool.node_count rejected 200: expected read_write_pool.0.node_count to be in the range (1 - 16), got 200 (family int-range)'
 IothubDpsSku.name:
   value: 'S1'
   why: 'azurerm_iothub_dps.iothub_dps.sku.name rejected leftover: expected sku.0.name to be one of ["S1"], got leftover (family one-of)'

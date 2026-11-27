@@ -118,6 +118,8 @@ final class ApiManagementApiVersionSetVersionQueryName
 }
 
 /// Factory wrapper for `azurerm_api_management_api_version_set`.
+///
+/// Manages an API Version Set within an API Management Service.
 final class AzurermApiManagementApiVersionSet extends Resource {
   static const String tfType = 'azurerm_api_management_api_version_set';
 
