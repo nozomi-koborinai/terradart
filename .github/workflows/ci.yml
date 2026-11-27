@@ -60,6 +60,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - id: list
         run: echo "packages=$(dart tool/ci_packages.dart)" >> "$GITHUB_OUTPUT"
@@ -75,6 +81,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - name: Resolve provider sets
         id: key
@@ -100,6 +112,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - name: Restore managed OpenTofu
         uses: actions/cache/restore@v4
@@ -143,6 +161,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       # Format check covers every hand-written Dart path in packages/ (the
       # same scope as tool/agent_verify.sh and the afterFileEdit hook, all
@@ -175,6 +199,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - name: Synth all examples + coverage/API gates (populates tf-out)
         run: dart tool/example_synth_gates.dart --skip-validate
@@ -194,6 +224,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       # One step per gate, not per lane: tool/wrap_lanes.dart reads every
       # lane from tool/providers.yaml, so a new provider cannot land with a
@@ -211,6 +247,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - name: terradart lint-override (every providers.yaml lane)
         run: dart tool/wrap_lanes.dart --gate lint
@@ -226,6 +268,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - name: google enum gaps (+ debt ledger staleness)
         run: dart tool/check_google_enum_gaps.dart --strict-nested
@@ -249,6 +297,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - name: pub publish --dry-run
         working-directory: packages/${{ matrix.package }}
@@ -272,6 +326,14 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          # setup-dart exports PUB_CACHE on all three OSes; fall back to
+          # %LOCALAPPDATA%\Pub\Cache on Windows and ~/.pub-cache elsewhere.
+          path: ${{ env.PUB_CACHE || (runner.os == 'Windows' && '~/AppData/Local/Pub/Cache' || '~/.pub-cache') }}
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - name: CLI e2e (managed OpenTofu)
         working-directory: packages/terradart_cli
@@ -286,6 +348,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - name: wrap-init determinism + loader invariant
         working-directory: packages/terradart_codegen
@@ -300,6 +368,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - name: wrap-promote determinism (L4)
         working-directory: packages/terradart_codegen
@@ -343,7 +417,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.pub-cache
-          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
           restore-keys: pub-${{ runner.os }}-
       - name: Cache managed OpenTofu
         uses: actions/cache@v4
@@ -498,6 +572,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - run: dart pub get
       - name: Synthesize every quickstart (no terraform)
         run: dart tool/example_synth_gates.dart --skip-validate
@@ -525,6 +605,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: "1.15.2"
@@ -568,6 +654,12 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: "1.15.2"
