@@ -160,6 +160,33 @@ void main() {
         {'bucket': false},
       );
     });
+
+    test('leaves out every input inside a sensitive object', () {
+      expect(
+        stringInputs({
+          'attributes': {
+            'credentials': {
+              'optional': true,
+              'sensitive': true,
+              'nested_type': {
+                'attributes': {
+                  'network': {'type': 'string', 'optional': true},
+                },
+              },
+            },
+            'settings': {
+              'optional': true,
+              'nested_type': {
+                'attributes': {
+                  'network': {'type': 'string', 'optional': true},
+                },
+              },
+            },
+          },
+        }),
+        {'settings.network': false},
+      );
+    });
   });
 
   group('resolveReferences', () {
