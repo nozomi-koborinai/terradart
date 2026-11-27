@@ -160,7 +160,8 @@ final class BigtableInstanceAutoscalingConfig {
 /// - [name]: instance ID (6-33 chars, lowercase letters, numbers, hyphens).
 /// - [cluster]: at least one [BigtableInstanceCluster] (zone + node count).
 ///
-/// Enable `bigtableadmin.googleapis.com` via [StackApis.enableApis] before apply.
+/// Enable `bigtableadmin.googleapis.com` with a [GoogleProjectService]
+/// before apply.
 ///
 /// Example (single-zone development instance):
 /// ```dart

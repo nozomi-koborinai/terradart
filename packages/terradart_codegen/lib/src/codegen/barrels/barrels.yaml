@@ -666,9 +666,6 @@ barrels:
   project:
     doc: |-
       /// Project services (enabling individual GCP APIs on a project).
-    extraExports:
-      - "export 'src/project/apis.dart' show Apis, StackApis;"
-      - "export 'src/project/barrels.dart' show Barrels;"
   pubsub:
     doc: |-
       /// Pub/Sub topics, subscriptions, schemas, and per-resource IAM bindings.

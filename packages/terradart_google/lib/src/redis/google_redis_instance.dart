@@ -291,8 +291,7 @@ class RedisInstancePersistenceConfig {
 /// - [maintenancePolicy] pins the weekly maintenance window.
 /// - [persistenceConfig] turns on RDB snapshots.
 ///
-/// Enable `redis.googleapis.com` via [GoogleProjectService] or
-/// [StackApis.enableApis] before apply.
+/// Enable `redis.googleapis.com` with a [GoogleProjectService] before apply.
 ///
 /// Example (basic tier on the default VPC):
 /// ```dart

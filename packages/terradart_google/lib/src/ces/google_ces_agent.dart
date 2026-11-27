@@ -710,7 +710,8 @@ final class CesAgentDisablePlannerTransfer {
 /// `9B47-D9B2-C9CB`). billing-behavior: the agent is design-time config
 /// — session SKUs fire only on CX Agent Studio chat/voice sessions. This
 /// factory never creates `google_ces_deployment` and never sends
-/// sessions. Enable `ces.googleapis.com` via [StackApis.enableApis] before apply.
+/// sessions. Enable `ces.googleapis.com` with a [GoogleProjectService]
+/// before apply.
 ///
 /// Example:
 /// ```dart

@@ -242,6 +242,32 @@ OpenZFS attachments is unchanged.
 | `AwsFsxS3AccessPointAttachment('a', name: .literal('a'), type: .openzfs, openzfsConfiguration: [FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'))])` | `AwsFsxS3AccessPointAttachment('a', name: .literal('a'), type: .openzfs, ontapConfigurationOrOpenzfsConfiguration: .openzfsConfiguration([FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'))]))` |
 | `FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'), fileSystemIdentity: [FsxS3AccessPointAttachmentFileSystemIdentity(type: FsxS3AccessPointAttachmentFileSystemIdentityType.posix)])` | `FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'), fileSystemIdentity: [FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity(type: FsxS3AccessPointAttachmentOpenzfsConfigurationType.posix)])` |
 
+### API enablement is explicit
+
+**Breaking (`terradart_google`).** `enableApis`, `Apis.required` and `Barrels`
+are removed, so no call adds `google_project_service` or `time_sleep`
+resources the Stack does not declare. Add one `GoogleProjectService` per API
+and, where the Stack waited for propagation, a `TimeSleep` that the API-gated
+resources depend on ([Enabling APIs](https://terradart.dev/docs/providers/google/#enabling-apis)).
+
+The plan stays empty when the new resources match what the Stack synthesized
+before. Read the APIs from the `google_project_service` resources in your
+current `tf-out/main.tf.json`, keep their local names (`api_` and the API
+without `.googleapis.com`) and `disable_on_destroy = false`, and keep the
+`api_propagation` sleep with its `create_duration` and its `triggers` map from
+each service's local name to its `id`. A barrel enabled the API of every
+factory in it, so that list can be longer than the resources the Stack uses.
+
+`terradart_google` no longer depends on `terradart_time`. A Stack that waits
+already has `TimeProvider` from `terradart_time`; keep that dependency in its
+`pubspec.yaml`.
+
+| Before | After |
+|---|---|
+| `StackApis(stack).enableApis([.pubsub])` | `GoogleProjectService('api_pubsub', service: .literal('pubsub.googleapis.com'), disableOnDestroy: .literal(false))`, then `TimeSleep('api_propagation', createDuration: .duration(const Duration(seconds: 60)), triggers: ..., dependsOn: [...])` |
+| `StackApis(stack).enableApis([.apigee], propagationDelay: Duration.zero)` | `GoogleProjectService('api_apigee', service: .literal('apigee.googleapis.com'), disableOnDestroy: .literal(false))` and no `TimeSleep` |
+| `Apis.required(barrels: [Barrels.redis])` | `[GoogleProjectService('api_redis', service: .literal('redis.googleapis.com'), disableOnDestroy: .literal(false))]` |
+
 ## 0.36.x → 0.37.0
 
 ### Dart 3.12 is the minimum SDK

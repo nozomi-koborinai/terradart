@@ -472,8 +472,8 @@ void checkApiEnablement(
       if (enablersByApi.isNotEmpty && !apiDebt.containsKey('$slug:$api')) {
         errors.add(
           'examples/$slug: $address requires $api but the example does not '
-          'enable it (it enables ${enablersByApi.keys.join(', ')}). Add the '
-          'matching barrel to enableApis, or record '
+          'enable it (it enables ${enablersByApi.keys.join(', ')}). Add a '
+          'GoogleProjectService for it, or record '
           '"$slug:$api: <reason>" in tool/example_api_debt.yaml',
         );
       }

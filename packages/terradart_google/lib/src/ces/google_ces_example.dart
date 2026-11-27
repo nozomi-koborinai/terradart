@@ -204,8 +204,8 @@ final class CesExampleToolResponse {
 /// sessions `AC3D-5A20-CF66` **$0.50/count**; Voice overages
 /// `9B47-D9B2-C9CB` **$0.0025/s**). billing-behavior: examples are
 /// design-time few-shot metadata — session SKUs fire only on CX Agent
-/// Studio chat/voice sessions. Enable `ces.googleapis.com` via
-/// [StackApis.enableApis] before apply.
+/// Studio chat/voice sessions. Enable `ces.googleapis.com` with a
+/// [GoogleProjectService] before apply.
 ///
 /// Example:
 /// ```dart

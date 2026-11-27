@@ -4,8 +4,8 @@ import 'package:terradart_core/terradart_core.dart';
 ///
 /// Waits after create, before destroy, or both — commonly inserted to absorb
 /// eventual consistency, such as GCP API enablement propagation
-/// (`terradart_google`'s `enableApis` wires this automatically) or AWS IAM
-/// role propagation.
+/// (after `terradart_google`'s `GoogleProjectService`) or AWS IAM role
+/// propagation.
 ///
 /// Durations are Terraform duration strings; use [TfArg.duration] to convert
 /// from a Dart [Duration]:

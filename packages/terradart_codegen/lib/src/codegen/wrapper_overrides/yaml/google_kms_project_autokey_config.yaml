@@ -18,8 +18,8 @@ curatedDoc: |-
   /// `RESOURCE_PROJECT` enables Autokey provisioning (HSM Autokey key SKUs
   /// apply only when keys are created).
   ///
-  /// Enable `cloudkms.googleapis.com` via [GoogleProjectService] (or
-  /// [StackApis.enableApis] with [Barrels.kmsApi]) before apply.
+  /// Enable `cloudkms.googleapis.com` with a [GoogleProjectService] before
+  /// apply.
   ///
   /// **Note:** Project Autokey configs cannot be deleted from GCP. Destroying
   /// a Terraform-managed config removes it from state but does not delete the

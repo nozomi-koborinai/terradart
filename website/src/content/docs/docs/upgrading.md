@@ -73,7 +73,7 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 | `dependsOn: [ResourceDependency(api)]`, `addData(...)` | the resource itself (the service's `dependsOn` below), `add(...)` |
 | `provider: 'google.eu'` | the handle `addProvider` returns for a `GoogleProvider` with the `eu` alias (the EU topic's provider below) |
 | `setBackend(...)`, `TfTimeouts(create: '30m')` | the `backend` of the `super(...)` call, and a `Duration` per `TfTimeouts` operation (the service's timeouts below) |
-| `Apis.enable(this, barrels: [Barrels.cloudRun])` | `enableApis([.cloudRun])` |
+| `Apis.enable(this, barrels: [Barrels.cloudRun])` | one `GoogleProjectService` per API, then a `TimeSleep` ([Enabling APIs](/docs/providers/google/#enabling-apis)) |
 | `member: .ref(sa.iamMember)`, `member: .literal('user:a@example.com')` | the account's `principal`, or `.user('a@example.com')` (the two topic IAM members below) |
 | `name: .ref(api.nameRef), location: ...` on an IAM member | the parent's `ref` (the service IAM member below) |
 | `password: .literal('...')` on a sensitive argument | a variable or an expression; `Sensitive<T>` has no `.literal` |

@@ -49,5 +49,3 @@ export 'src/project/google_resource_manager_capability_config.dart'
         ResourceManagerCapabilityConfigTypes;
 export 'src/project/google_resource_manager_lien.dart'
     show GoogleResourceManagerLien;
-export 'src/project/apis.dart' show Apis, StackApis;
-export 'src/project/barrels.dart' show Barrels;
