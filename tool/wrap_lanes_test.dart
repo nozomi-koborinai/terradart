@@ -199,6 +199,37 @@ providers:
       );
     });
 
+    test('requiredApis adds --required-apis to wrap and regen', () {
+      expect(parseWrapLanes(lane).single.requiredApis, isNull);
+      expect(
+        WrapGate.wrap.args(parseWrapLanes(lane).single),
+        isNot(contains('--required-apis')),
+      );
+      final x = parseWrapLanes(
+        '$lane    requiredApis: tool/required_apis.yaml\n',
+      ).single;
+      for (final gate in [WrapGate.wrap, WrapGate.regen]) {
+        expect(
+          gate.args(x).join(' '),
+          contains(
+            '--required-apis ../../tool/required_apis.yaml '
+            '--migrate-manifest',
+          ),
+        );
+      }
+      expect(WrapGate.lint.args(x), isNot(contains('--required-apis')));
+      expect(
+        () => parseWrapLanes('$lane    requiredApis: [x]\n'),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            'lane x: requiredApis must be a non-empty string',
+          ),
+        ),
+      );
+    });
+
     test('providerEnums defaults to off', () {
       expect(parseWrapLanes(lane).single.providerEnums, isFalse);
     });

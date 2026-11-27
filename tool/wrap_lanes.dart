@@ -50,6 +50,7 @@ class WrapLane {
     this.hintsRepo,
     this.references,
     this.referenceLane,
+    this.requiredApis,
     this.typePrefix,
     this.siteTitle,
     this.providerGuide,
@@ -71,6 +72,7 @@ class WrapLane {
   final String? hintsRepo;
   final ReferenceMode? references;
   final WrapLane? referenceLane;
+  final String? requiredApis;
   final String? typePrefix;
   final String? siteTitle;
   final String? providerGuide;
@@ -92,6 +94,7 @@ class WrapLane {
     hintsRepo: hintsRepo,
     references: references,
     referenceLane: lane,
+    requiredApis: requiredApis,
     typePrefix: typePrefix,
     siteTitle: siteTitle,
     providerGuide: providerGuide,
@@ -146,6 +149,10 @@ enum WrapGate {
             '${rel(other.schemaDir)}='
                 '${rel(p.join(other.outputPackage, 'lib', 'src'))}',
           ],
+        ],
+        if (lane.requiredApis case final ledger?) ...[
+          '--required-apis',
+          rel(ledger),
         ],
         '--migrate-manifest',
         rel(lane.migrateManifest),
@@ -273,6 +280,7 @@ WrapLane _parseLane(String name, Object? entry) {
     mmSync: mmSync,
     hintsRepo: hintsRepo is String ? hintsRepo : null,
     references: references,
+    requiredApis: optionalString('requiredApis'),
     typePrefix: optionalString('typePrefix'),
     siteTitle: optionalString('siteTitle'),
     providerGuide: optionalString('providerGuide'),
