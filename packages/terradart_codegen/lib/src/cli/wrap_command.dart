@@ -13,6 +13,7 @@ import '../codegen/data_source_wrapper_emitter.dart';
 import '../codegen/exactly_one_derivation.dart';
 import '../codegen/exactly_one_types.dart';
 import '../codegen/generated_file_header.dart';
+import '../codegen/google_apis.dart';
 import '../codegen/migrate/migrate_entry_builder.dart';
 import '../codegen/migrate/migrate_manifest_emitter.dart';
 import '../codegen/naming.dart' show WrapperOverrideKindNames, snakeToPascal;
@@ -21,6 +22,7 @@ import '../codegen/provider_enums.dart';
 import '../codegen/provider_version_emitter.dart';
 import '../codegen/references/reference_targets.dart';
 import '../codegen/sealed_name_debt.dart';
+import '../codegen/universal_invariants/enum_extractor.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
 import '../codegen/wrapper_overrides/wrapper_override.dart';
@@ -190,6 +192,16 @@ class WrapCommand extends Command<int> {
         help:
             'Type the inputs --reference-targets matches as `RefTo<Target>` '
             '(`TfArg<List<RefTo<Target>>>` for a list).',
+      )
+      ..addOption(
+        'required-apis',
+        help:
+            'The required-API ledger (tool/required_apis.yaml): the Google '
+            'API each Terraform type prefix needs. wrap emits `GoogleApi`, '
+            'one constant per API, and `requiredApiForTerraformType` to '
+            'project/google_api.dart, and the migration manifest records '
+            '`GoogleApi` as an enum. Skipped under --only.',
+        valueHelp: 'FILE',
       );
   }
 
@@ -628,6 +640,25 @@ class WrapCommand extends Command<int> {
       principal: principal,
     );
     final formatter = packageFormatter(output);
+    final requiredApisPath = results['required-apis'] as String?;
+    String? googleApiDart;
+    if (requiredApisPath != null && only == null) {
+      final file = File(requiredApisPath);
+      if (!file.existsSync()) {
+        stderr.writeln('[E406] terradart wrap: $requiredApisPath not found.');
+        return CliExitCodes.dataError;
+      }
+      try {
+        googleApiDart = formatter.format(
+          googleApiSource(parseRequiredApis(file.readAsStringSync())),
+        );
+      } on FormatException catch (e) {
+        stderr.writeln(
+          '[E406] terradart wrap: $requiredApisPath: ${e.message}',
+        );
+        return CliExitCodes.dataError;
+      }
+    }
 
     for (final entry in resourceOverrides.entries) {
       final def = ir.resources[entry.key];
@@ -761,6 +792,10 @@ class WrapCommand extends Command<int> {
           providerVersionSource(providerVersion),
         );
       }
+      if (googleApiDart != null) {
+        buffer[p.join('project', 'google_api.dart')] =
+            generatedFileHeader + googleApiDart;
+      }
 
       final manifestArg = argResults?['barrels-manifest'] as String?;
       final String manifestPath;
@@ -816,6 +851,9 @@ class WrapCommand extends Command<int> {
                 e.key: e.value.fileStemFor(e.key),
             },
             dataSourceBarrels: dataSourceBarrels,
+            laneEnums: googleApiDart == null
+                ? const []
+                : const EnumExtractor().extract(googleApiDart),
           ),
           package: migratePackage!,
           caseInsensitiveEnums:

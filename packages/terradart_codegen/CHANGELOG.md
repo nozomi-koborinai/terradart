@@ -5,6 +5,7 @@
 - A top-level `extraSensitiveFields` entry types its input `Sensitive<T>`, as the schema's `sensitive` flag does.
 - A sensitive input is never typed as a reference: it stays `Sensitive<String>`, and no `tool/reference_targets.yaml` rule matches it.
 - The migration manifest records the attribute a sealed variant's `value` getter encodes through `encodeAs`, so a `RefTo` field there is a reference slot rather than a manual shape.
+- `wrap --required-apis <ledger>` emits `GoogleApi`, one constant per Google API the ledger names, and `requiredApiForTerraformType` from `tool/required_apis.yaml`, and the migration manifest records `GoogleApi` as an enum. The google lane passes it, so the weekly schema bump regenerates both.
 
 ## 0.37.0 - 2026-11-23
 
