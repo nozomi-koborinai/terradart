@@ -7327,7 +7327,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           tfName: 'include_all_resources',
           dartName: 'includeAllResources',
           kind: MigrateSlotKind.helper,
-          required: false,
+          required: true,
           wrapped: false,
           helper: 'ApigeeSecurityMonitoringConditionIncludeAllResources',
         ),

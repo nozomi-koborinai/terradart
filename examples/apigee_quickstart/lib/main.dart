@@ -61,6 +61,8 @@ final class ApigeeAnalyticsStack extends Stack {
         orgId: .literal(orgId),
         profile: .literal('demo-profile'),
         scope: .literal('demo-env'),
+        includeAllResources:
+            const ApigeeSecurityMonitoringConditionIncludeAllResources(),
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
