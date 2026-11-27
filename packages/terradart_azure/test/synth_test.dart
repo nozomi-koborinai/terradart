@@ -28,7 +28,7 @@ const _everySetting = AzureProvider(
   subscriptionId: '00000000-0000-0000-0000-000000000000',
   tenantId: '11111111-1111-1111-1111-111111111111',
   auxiliaryTenantIds: ['22222222-2222-2222-2222-222222222222'],
-  environment: 'public',
+  environment: .usgovernment,
   metadataHost: 'https://management.azure.com',
   useOidc: true,
   useMsi: false,
@@ -39,7 +39,7 @@ const _everySetting = AzureProvider(
   partnerId: 'partner',
   disableCorrelationRequestId: true,
   disableTerraformPartnerId: true,
-  resourceProviderRegistrations: 'none',
+  resourceProviderRegistrations: .none,
   resourceProvidersToRegister: ['Microsoft.Compute'],
   storageUseAzuread: true,
   features: AzureFeatures(
@@ -53,6 +53,30 @@ const _everySetting = AzureProvider(
 final class _BareStack extends Stack {
   _BareStack() : super(providers: const [AzureProvider()]);
 }
+
+final class _UnconfiguredStack extends Stack {
+  _UnconfiguredStack()
+    : super(providers: const [AzureProvider.unconfigured()]) {
+    add(_resourceGroup('app'));
+  }
+}
+
+final class _ConfigurationAliasStack extends Stack {
+  _ConfigurationAliasStack() : super(providers: const []) {
+    final eu = addConfigurationAlias(
+      const AzureProvider.unconfigured(alias: 'eu'),
+    );
+    add(_resourceGroup('eu', provider: eu));
+  }
+}
+
+AzurermResourceGroup _resourceGroup(String name, {StackProvider? provider}) =>
+    AzurermResourceGroup(
+      name,
+      location: const .literal('eastus'),
+      name: .literal(name),
+      provider: provider,
+    );
 
 final class _TestStack extends Stack {
   _TestStack() : super(providers: [_everySetting]) {
@@ -271,6 +295,55 @@ void main() {
                 as Map<String, dynamic>)['azurerm']
             as Map<String, dynamic>;
     expect(bare['features'], [<String, Object?>{}]);
+  });
+
+  test('an unconfigured provider emits no provider block', () {
+    final json = _UnconfiguredStack().synth().tfJson;
+    expect(json.containsKey('provider'), isFalse);
+    final required =
+        (json['terraform'] as Map<String, dynamic>)['required_providers']
+            as Map<String, dynamic>;
+    expect(required['azurerm'], {
+      'source': kAzureProviderSource,
+      'version': kAzureProviderVersionConstraint,
+    });
+  });
+
+  test('an unconfigured alias registers as a configuration alias', () {
+    final json = _ConfigurationAliasStack().synth().tfJson;
+    expect(json.containsKey('provider'), isFalse);
+    final required =
+        ((json['terraform'] as Map<String, dynamic>)['required_providers']
+                as Map<String, dynamic>)['azurerm']
+            as Map<String, dynamic>;
+    expect(required['configuration_aliases'], ['azurerm.eu']);
+    final group =
+        ((json['resource'] as Map<String, dynamic>)['azurerm_resource_group']
+                as Map<String, dynamic>)['eu']
+            as Map<String, dynamic>;
+    expect(group['provider'], 'azurerm.eu');
+  });
+
+  test('environment and resource provider registrations emit wire values', () {
+    final block = _providerBlock();
+    expect(block['environment'], 'usgovernment');
+    expect(block['resource_provider_registrations'], 'none');
+    expect(
+      [
+        for (final e in AzureEnvironment.values)
+          AzureProvider(environment: e).configArgs['environment'],
+      ],
+      ['public', 'usgovernment', 'china'],
+    );
+    expect(
+      [
+        for (final r in AzureResourceProviderRegistrations.values)
+          AzureProvider(
+            resourceProviderRegistrations: r,
+          ).configArgs['resource_provider_registrations'],
+      ],
+      ['core', 'extended', 'all', 'none', 'legacy'],
+    );
   });
 
   test('a Linux VM image source sets the admin user and an image id', () {

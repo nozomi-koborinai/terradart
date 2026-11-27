@@ -8,7 +8,7 @@ The catalog at the current provider pin (`kAzureProviderVersionConstraint`) is f
 
 **Credentials never appear in synth output.** `AzureProvider` has no client id, client secret, client certificate, or OIDC token parameters. Apply authenticates through `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_CLIENT_CERTIFICATE`, `ARM_USE_OIDC`, `ARM_USE_MSI`, `ARM_USE_CLI`, and the other `ARM_*` variables the provider reads.
 
-The provider requires a `features` block. `AzureProvider()` emits an empty one, which is enough for `terraform validate`.
+The provider requires a `features` block in a root module. `AzureProvider()` always emits one, an empty block when `features` is omitted, which is enough for `terraform validate`. A child module or a configuration alias must not carry provider configuration, so register `AzureProvider.unconfigured()` there: it emits no provider block.
 
 ## Installation
 

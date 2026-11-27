@@ -18,9 +18,10 @@ const String kAzureProviderVersionConstraint = terradartProviderVersion;
 /// `ARM_CLIENT_CERTIFICATE`, `ARM_USE_OIDC`, `ARM_USE_MSI`, `ARM_USE_CLI`,
 /// and the other `ARM_*` variables the provider reads.
 ///
-/// The `features` block is required by the provider. An omitted [features]
-/// argument still emits an empty block, which is enough for `terraform
-/// validate`.
+/// azurerm requires a `features` block in every root configuration, so the
+/// unnamed constructor always emits one. An omitted [features] argument emits
+/// an empty block. A child module or a configuration alias carries no provider
+/// configuration, so register those with [AzureProvider.unconfigured].
 @immutable
 final class AzureProvider implements StackProvider {
   const AzureProvider({
@@ -42,8 +43,46 @@ final class AzureProvider implements StackProvider {
     this.resourceProviderRegistrations,
     this.resourceProvidersToRegister,
     this.storageUseAzuread,
-    this.features,
+    AzureFeatures this.features = const AzureFeatures(),
   });
+
+  /// Registers `hashicorp/azurerm` without a provider block, for a child
+  /// module (its caller passes the configuration) and for a configuration
+  /// alias:
+  ///
+  /// ```dart
+  /// final eu = addConfigurationAlias(
+  ///   const AzureProvider.unconfigured(alias: 'eu'),
+  /// );
+  /// add(AzurermResourceGroup(
+  ///   'eu',
+  ///   location: .literal('westeurope'),
+  ///   name: .literal('eu'),
+  ///   provider: eu,
+  /// ));
+  /// ```
+  ///
+  /// It emits no `features` block, so a root module cannot use it. azurerm
+  /// requires the block there.
+  const AzureProvider.unconfigured({this.alias})
+    : subscriptionId = null,
+      tenantId = null,
+      auxiliaryTenantIds = null,
+      environment = null,
+      metadataHost = null,
+      useOidc = null,
+      useMsi = null,
+      msiEndpoint = null,
+      msiApiVersion = null,
+      useCli = null,
+      useAksWorkloadIdentity = null,
+      partnerId = null,
+      disableCorrelationRequestId = null,
+      disableTerraformPartnerId = null,
+      resourceProviderRegistrations = null,
+      resourceProvidersToRegister = null,
+      storageUseAzuread = null,
+      features = null;
 
   @override
   final String? alias;
@@ -58,9 +97,9 @@ final class AzureProvider implements StackProvider {
   /// Extra tenants for cross-tenant resources. At most three.
   final List<String>? auxiliaryTenantIds;
 
-  /// Cloud environment: `public`, `usgovernment`, or `china`.
-  /// Falls back to `ARM_ENVIRONMENT`, then `public`.
-  final String? environment;
+  /// Cloud environment. Falls back to `ARM_ENVIRONMENT`, then
+  /// [AzureEnvironment.public].
+  final AzureEnvironment? environment;
 
   /// Hostname of the Azure Metadata Service. Falls back to
   /// `ARM_METADATA_HOSTNAME`.
@@ -93,9 +132,8 @@ final class AzureProvider implements StackProvider {
   /// Disable the Terraform partner id when [partnerId] is unset.
   final bool? disableTerraformPartnerId;
 
-  /// Which resource providers to register: `core`, `extended`, `all`,
-  /// `none`, or `legacy`.
-  final String? resourceProviderRegistrations;
+  /// Which set of resource providers to register.
+  final AzureResourceProviderRegistrations? resourceProviderRegistrations;
 
   /// Resource providers to register in addition to
   /// [resourceProviderRegistrations].
@@ -104,7 +142,7 @@ final class AzureProvider implements StackProvider {
   /// Use Azure AD for the storage data plane.
   final bool? storageUseAzuread;
 
-  /// Provider feature flags. Omit for an empty `features` block.
+  /// Provider feature flags; `null` only for [AzureProvider.unconfigured].
   final AzureFeatures? features;
 
   @override
@@ -121,7 +159,7 @@ final class AzureProvider implements StackProvider {
     if (subscriptionId != null) 'subscription_id': subscriptionId,
     if (tenantId != null) 'tenant_id': tenantId,
     if (auxiliaryTenantIds != null) 'auxiliary_tenant_ids': auxiliaryTenantIds,
-    if (environment != null) 'environment': environment,
+    if (environment != null) 'environment': environment!.name,
     if (metadataHost != null) 'metadata_host': metadataHost,
     if (useOidc != null) 'use_oidc': useOidc,
     if (useMsi != null) 'use_msi': useMsi,
@@ -136,13 +174,19 @@ final class AzureProvider implements StackProvider {
     if (disableTerraformPartnerId != null)
       'disable_terraform_partner_id': disableTerraformPartnerId,
     if (resourceProviderRegistrations != null)
-      'resource_provider_registrations': resourceProviderRegistrations,
+      'resource_provider_registrations': resourceProviderRegistrations!.name,
     if (resourceProvidersToRegister != null)
       'resource_providers_to_register': resourceProvidersToRegister,
     if (storageUseAzuread != null) 'storage_use_azuread': storageUseAzuread,
-    'features': [features?.toJson() ?? const <String, Object?>{}],
+    if (features case final f?) 'features': [f.toJson()],
   };
 }
+
+/// The `environment` argument of [AzureProvider].
+enum AzureEnvironment { public, usgovernment, china }
+
+/// The `resource_provider_registrations` argument of [AzureProvider].
+enum AzureResourceProviderRegistrations { core, extended, all, none, legacy }
 
 /// The required `features` block of [AzureProvider].
 @immutable
