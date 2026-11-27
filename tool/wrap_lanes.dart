@@ -476,6 +476,40 @@ Never _usage(String message) {
   exit(1);
 }
 
+String? _staleCheckFailure(
+  WrapLane lane,
+  String repoRoot,
+  void Function(String) log,
+) {
+  if (lane.mmSync != null) {
+    final stale = staleMmSync(p.join(repoRoot, lane.schemaDir));
+    if (stale.isNotEmpty) {
+      for (final reason in stale) {
+        log('wrap_lanes: lane ${lane.name}: $reason');
+      }
+      log(
+        'wrap_lanes: lane ${lane.name}: stale MM YAML; run '
+        'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
+      );
+      return '${lane.name} (mm sync)';
+    }
+  }
+  if (lane.discovery) {
+    final stale = staleDiscovery(lane, repoRoot);
+    if (stale.isNotEmpty) {
+      for (final reason in stale) {
+        log('wrap_lanes: lane ${lane.name}: $reason');
+      }
+      log(
+        'wrap_lanes: lane ${lane.name}: stale Discovery copy; run '
+        'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
+      );
+      return '${lane.name} (discovery)';
+    }
+  }
+  return null;
+}
+
 Future<void> main(List<String> args) async {
   var gates = const [WrapGate.wrap, WrapGate.lint];
   String? only;
@@ -545,7 +579,12 @@ Future<void> main(List<String> args) async {
       snapshotPath,
     ], workingDirectory: codegen);
     if (compile.exitCode != 0) {
-      snapshotPath = null;
+      snapshotDir.deleteSync(recursive: true);
+      stderr.writeln(
+        'wrap_lanes: failed to compile bin/terradart.dart kernel snapshot:\n'
+        '${compile.stdout}${compile.stderr}',
+      );
+      exit(compile.exitCode);
     }
   }
 
@@ -575,36 +614,16 @@ Future<void> main(List<String> args) async {
             if (i >= ordered.length) return;
             final lane = ordered[i];
             final buf = StringBuffer();
-            if (gate == WrapGate.wrap && lane.mmSync != null) {
-              final stale = staleMmSync(p.join(repoRoot, lane.schemaDir));
-              if (stale.isNotEmpty) {
-                for (final reason in stale) {
-                  buf.writeln('wrap_lanes: lane ${lane.name}: $reason');
-                }
-                buf.writeln(
-                  'wrap_lanes: lane ${lane.name}: stale MM YAML; run '
-                  'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
-                );
+            if (gate == WrapGate.wrap) {
+              final staleFailure = _staleCheckFailure(
+                lane,
+                repoRoot,
+                buf.writeln,
+              );
+              if (staleFailure != null) {
                 results[lane.name] = (
                   output: buf.toString(),
-                  failure: '${lane.name} (mm sync)',
-                );
-                continue;
-              }
-            }
-            if (gate == WrapGate.wrap && lane.discovery) {
-              final stale = staleDiscovery(lane, repoRoot);
-              if (stale.isNotEmpty) {
-                for (final reason in stale) {
-                  buf.writeln('wrap_lanes: lane ${lane.name}: $reason');
-                }
-                buf.writeln(
-                  'wrap_lanes: lane ${lane.name}: stale Discovery copy; run '
-                  'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
-                );
-                results[lane.name] = (
-                  output: buf.toString(),
-                  failure: '${lane.name} (discovery)',
+                  failure: staleFailure,
                 );
                 continue;
               }
@@ -634,6 +653,13 @@ Future<void> main(List<String> args) async {
       }
 
       for (final lane in lanes) {
+        if (gate == WrapGate.wrap) {
+          final staleFailure = _staleCheckFailure(lane, repoRoot, print);
+          if (staleFailure != null) {
+            failed.add(staleFailure);
+            continue;
+          }
+        }
         if (gate == WrapGate.regen &&
             lane.providerEnums &&
             staleHints(p.join(repoRoot, lane.schemaDir)).isNotEmpty) {
@@ -643,19 +669,8 @@ Future<void> main(List<String> args) async {
             continue;
           }
         }
-        if (gate != WrapGate.lint && lane.mmSync != null) {
+        if (gate == WrapGate.regen && lane.mmSync != null) {
           final stale = staleMmSync(p.join(repoRoot, lane.schemaDir));
-          if (stale.isNotEmpty && gate == WrapGate.wrap) {
-            for (final reason in stale) {
-              print('wrap_lanes: lane ${lane.name}: $reason');
-            }
-            print(
-              'wrap_lanes: lane ${lane.name}: stale MM YAML; run '
-              'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
-            );
-            failed.add('${lane.name} (mm sync)');
-            continue;
-          }
           if (stale.isNotEmpty) {
             final code = await _resyncMm(lane, repoRoot);
             if (code != 0) {
@@ -664,19 +679,8 @@ Future<void> main(List<String> args) async {
             }
           }
         }
-        if (gate != WrapGate.lint && lane.discovery) {
+        if (gate == WrapGate.regen && lane.discovery) {
           final stale = staleDiscovery(lane, repoRoot);
-          if (stale.isNotEmpty && gate == WrapGate.wrap) {
-            for (final reason in stale) {
-              print('wrap_lanes: lane ${lane.name}: $reason');
-            }
-            print(
-              'wrap_lanes: lane ${lane.name}: stale Discovery copy; run '
-              'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
-            );
-            failed.add('${lane.name} (discovery)');
-            continue;
-          }
           if (stale.isNotEmpty) {
             final code = await _refetchDiscovery(lane, repoRoot);
             if (code != 0) {

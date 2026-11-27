@@ -456,10 +456,8 @@ Map<String, String> _exportNamespace(
           final n = namePart.typeName.lexeme;
           if (!n.startsWith('_')) own[n] = uPath;
         case ExtensionTypeDeclaration(:final namePart):
-          if (namePart is PrimaryConstructorDeclaration) {
-            final n = namePart.typeName.lexeme;
-            if (!n.startsWith('_')) own[n] = uPath;
-          }
+          final n = namePart.typeName.lexeme;
+          if (!n.startsWith('_')) own[n] = uPath;
         case ExtensionDeclaration(:final name):
           if (name != null && !name.lexeme.startsWith('_')) {
             own[name.lexeme] = uPath;

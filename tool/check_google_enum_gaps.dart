@@ -44,8 +44,6 @@ final _mmDir = Directory(
   p.join(_root.path, 'packages/terradart_codegen/test/fixtures/wrap/source/mm'),
 );
 
-late Directory _genDir;
-
 typedef NestedEnumSite = ({
   List<String> blockPath,
   String attr,
@@ -280,10 +278,14 @@ Map<String, List<String>> _mmValues(String tfType) =>
       return mmEnumValues(file.readAsStringSync());
     });
 
-String? _generatedSource(String tfType, Map<String, dynamic> ov) {
+String? _generatedSource(
+  Directory genDir,
+  String tfType,
+  Map<String, dynamic> ov,
+) {
   final outDir = ov['outputDir'] as String?;
   if (outDir == null) return null;
-  final genFile = File(p.join(_genDir.path, outDir, '$tfType.dart'));
+  final genFile = File(p.join(genDir.path, outDir, '$tfType.dart'));
   if (!genFile.existsSync()) return null;
   return genFile.readAsStringSync();
 }
@@ -311,7 +313,11 @@ bool _customSlotCoversBlock(Map<String, dynamic> ov, List<String> blockPath) {
   return false;
 }
 
-String? _helperTextForBlock(Map<String, dynamic> ov, List<String> blockPath) {
+String? _helperTextForBlock(
+  Map<String, dynamic> ov,
+  List<String> blockPath,
+  Map<String, String> Function() classSources,
+) {
   final slots = ov['customSlots'];
   if (slots is! Map) return null;
   for (var i = blockPath.length; i > 0; i--) {
@@ -321,7 +327,7 @@ String? _helperTextForBlock(Map<String, dynamic> ov, List<String> blockPath) {
     if (declaration is! String) continue;
     final className = _helperClassName(declaration);
     if (className == null) continue;
-    final text = _classSource(className);
+    final text = classSources()[className];
     if (text != null) return text;
   }
   return null;
@@ -340,18 +346,11 @@ String? _helperClassName(String declaration) {
   return names.last;
 }
 
-Map<String, String>? _classSources;
-
-String? _classSource(String className) {
-  final index = _classSources ??= _indexClassSources();
-  return index[className];
-}
-
-Map<String, String> _indexClassSources() {
+Map<String, String> _indexClassSources(Directory genDir) {
   final out = <String, String>{};
-  if (!_genDir.existsSync()) return out;
+  if (!genDir.existsSync()) return out;
   final className = RegExp(r'\bclass ([A-Z][A-Za-z0-9]*)\b');
-  for (final file in _genDir.listSync(recursive: true).whereType<File>()) {
+  for (final file in genDir.listSync(recursive: true).whereType<File>()) {
     if (!file.path.endsWith('.dart')) continue;
     final text = file.readAsStringSync();
     for (final match in className.allMatches(text)) {
@@ -654,10 +653,12 @@ List<_OverrideCheckData> _buildOverrideCheckData(File ent) {
   final out = StringBuffer();
   void log(String line) => out.writeln(line);
 
-  _genDir = Directory(
+  final genDir = Directory(
     generatedRoot ?? p.join(_root.path, 'packages/terradart_google/lib/src'),
   );
-  _classSources = null;
+  Map<String, String>? indexedClassSources;
+  Map<String, String> classSources() =>
+      indexedClassSources ??= _indexClassSources(genDir);
 
   final topLevelGaps = <String>[];
   final nestedPartialGaps = <String>[];
@@ -672,7 +673,7 @@ List<_OverrideCheckData> _buildOverrideCheckData(File ent) {
     overrideTypes.add(tfType);
     cueInputs.addAll(entryCues);
 
-    final genTextRaw = _generatedSource(tfType, ov);
+    final genTextRaw = _generatedSource(genDir, tfType, ov);
     final fileText = genTextRaw == null
         ? null
         : _normalizeWhitespace(genTextRaw);
@@ -699,7 +700,7 @@ List<_OverrideCheckData> _buildOverrideCheckData(File ent) {
 
       if (!_nestedFieldDeclared(genText, camel)) {
         if (encodesFixedValue(genText, site.attr, site.values)) continue;
-        final helper = _helperTextForBlock(ov, site.blockPath);
+        final helper = _helperTextForBlock(ov, site.blockPath, classSources);
         if (helper != null) {
           final helperText = _normalizeWhitespace(helper);
           if (_nestedFieldDeclared(helperText, camel)) {

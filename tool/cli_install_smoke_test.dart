@@ -282,6 +282,7 @@ final class _WorkspacePubProxy {
       return;
     }
 
+    final HttpClientResponse upstreamRes;
     try {
       final upstreamUri = Uri.https('pub.dev', request.uri.path, {
         if (request.uri.hasQuery) ...request.uri.queryParameters,
@@ -291,22 +292,20 @@ final class _WorkspacePubProxy {
       if (accept != null) {
         upstreamReq.headers.set(HttpHeaders.acceptHeader, accept);
       }
-      final upstreamRes = await upstreamReq.close();
-      request.response.statusCode = upstreamRes.statusCode;
-      final contentType = upstreamRes.headers.value(
-        HttpHeaders.contentTypeHeader,
-      );
-      if (contentType != null) {
-        request.response.headers.set(
-          HttpHeaders.contentTypeHeader,
-          contentType,
-        );
-      }
-      await upstreamRes.pipe(request.response);
-    } on Object {
+      upstreamRes = await upstreamReq.close();
+    } on IOException {
       request.response.statusCode = HttpStatus.badGateway;
       await request.response.close();
+      return;
     }
+    request.response.statusCode = upstreamRes.statusCode;
+    final contentType = upstreamRes.headers.value(
+      HttpHeaders.contentTypeHeader,
+    );
+    if (contentType != null) {
+      request.response.headers.set(HttpHeaders.contentTypeHeader, contentType);
+    }
+    await upstreamRes.pipe(request.response);
   }
 
   _PackedPackage _pack(String name) => _cache.putIfAbsent(name, () {

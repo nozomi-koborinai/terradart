@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -205,16 +206,26 @@ final List<WrapLane> _lanes = parseWrapLanes(
 
 final List<String> _workspacePackages = migrateGatePackages(_lanes);
 
-Future<void> _initLock = Future.value();
+final class _TerraformInitSerializer {
+  Future<void> _tail = Future<void>.value();
 
-Future<bool> _runTerraformInit(Directory dir, List<String> errors) {
-  final prev = _initLock;
-  final done = prev
-      .catchError((_) {})
-      .then((_) => _run(_terraformInit, dir, errors));
-  _initLock = done.then((_) {});
-  return done;
+  Future<T> run<T>(Future<T> Function() action) async {
+    final prev = _tail;
+    final gate = Completer<void>();
+    _tail = gate.future;
+    await prev;
+    try {
+      return await action();
+    } finally {
+      gate.complete();
+    }
+  }
 }
+
+final _terraformInitSerializer = _TerraformInitSerializer();
+
+Future<bool> _runTerraformInit(Directory dir, List<String> errors) =>
+    _terraformInitSerializer.run(() => _run(_terraformInit, dir, errors));
 
 Future<void> main(List<String> args) async {
   final skipValidate = args.contains('--skip-validate');

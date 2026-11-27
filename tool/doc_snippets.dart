@@ -2,6 +2,8 @@
 
 import 'dart:io';
 
+import 'package:analyzer/dart/analysis/utilities.dart';
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:path/path.dart' as p;
 
 import 'lane_surface.dart';
@@ -216,60 +218,116 @@ final Set<String> _lanePackages = {
   for (final lane in _lanes) lane.outputPackage.split('/').last,
 };
 
-final _identifier = RegExp(r'\b[A-Za-z_]\w*\b');
-final _showClause = RegExp(r'\bshow\s+([^;]+);');
-final _topDecl = RegExp(
-  r'^(?:(?:abstract|base|final|interface|sealed|mixin)\s+)*'
-  r'(?:class|enum|mixin|typedef)\s+([A-Z]\w*)\b|'
-  r'^extension\s+type\s+(?:const\s+)?([A-Z]\w*)\b|'
-  r'^extension\s+([A-Z]\w*)\s+on\b|'
-  r'^(?:const|final)\s+(?:[\w<>?, ]+\s+)?([a-zA-Z]\w*)\s*=|'
-  r'^(?:Future(?:<[^>]+>)?|void|String|bool|int|Map<[^>]+>|List<[^>]+>|[A-Z]\w*)\s+([a-z]\w*)\s*[<(]',
-  multiLine: true,
-);
-
 final Map<String, Map<String, Set<String>>> _providerExportsCache = {};
+final _identifier = RegExp(r'\b[A-Za-z_]\w*\b');
+
+Set<String> _declaredPublicNames(CompilationUnit unit) {
+  final names = <String>{};
+  for (final d in unit.declarations) {
+    switch (d) {
+      case ClassDeclaration(:final namePart):
+        final n = namePart.typeName.lexeme;
+        if (!n.startsWith('_')) names.add(n);
+      case MixinDeclaration(:final name):
+        if (!name.lexeme.startsWith('_')) names.add(name.lexeme);
+      case EnumDeclaration(:final namePart):
+        final n = namePart.typeName.lexeme;
+        if (!n.startsWith('_')) names.add(n);
+      case ExtensionTypeDeclaration(:final namePart):
+        final n = namePart.typeName.lexeme;
+        if (!n.startsWith('_')) names.add(n);
+      case ExtensionDeclaration(:final name):
+        if (name != null && !name.lexeme.startsWith('_')) {
+          names.add(name.lexeme);
+        }
+      case ClassTypeAlias(:final name):
+        if (!name.lexeme.startsWith('_')) names.add(name.lexeme);
+      case GenericTypeAlias(:final name):
+        if (!name.lexeme.startsWith('_')) names.add(name.lexeme);
+      case FunctionTypeAlias(:final name):
+        if (!name.lexeme.startsWith('_')) names.add(name.lexeme);
+      case FunctionDeclaration(:final name):
+        if (!name.lexeme.startsWith('_')) names.add(name.lexeme);
+      case TopLevelVariableDeclaration(:final variables):
+        for (final v in variables.variables) {
+          if (!v.name.lexeme.startsWith('_')) names.add(v.name.lexeme);
+        }
+      default:
+        break;
+    }
+  }
+  return names;
+}
+
+Set<String> _exportedNamesOf(String filePath, Set<String> visiting) {
+  final norm = p.normalize(p.absolute(filePath));
+  if (!visiting.add(norm)) return const {};
+  final file = File(norm);
+  if (!file.existsSync()) return const {};
+  final unit = parseString(
+    content: file.readAsStringSync(),
+    throwIfDiagnostics: false,
+  ).unit;
+  final out = _declaredPublicNames(unit);
+  for (final dir in unit.directives) {
+    if (dir is PartDirective) {
+      final uri = dir.uri.stringValue;
+      if (uri == null) continue;
+      final partFile = File(p.normalize(p.join(p.dirname(norm), uri)));
+      if (partFile.existsSync()) {
+        out.addAll(
+          _declaredPublicNames(
+            parseString(
+              content: partFile.readAsStringSync(),
+              throwIfDiagnostics: false,
+            ).unit,
+          ),
+        );
+      }
+    } else if (dir is ExportDirective) {
+      final uri = dir.uri.stringValue;
+      if (uri == null ||
+          uri.startsWith('dart:') ||
+          uri.startsWith('package:')) {
+        continue;
+      }
+      final shown = [
+        for (final c in dir.combinators)
+          if (c is ShowCombinator) c,
+      ];
+      final hidden = {
+        for (final c in dir.combinators)
+          if (c is HideCombinator)
+            for (final id in c.hiddenNames) id.name,
+      };
+      if (shown.isNotEmpty) {
+        final allowed = {for (final id in shown.first.shownNames) id.name};
+        for (final extra in shown.skip(1)) {
+          allowed.retainAll({for (final id in extra.shownNames) id.name});
+        }
+        allowed.removeAll(hidden);
+        out.addAll(allowed);
+      } else {
+        final target = p.normalize(p.join(p.dirname(norm), uri));
+        final nested = _exportedNamesOf(target, visiting);
+        out.addAll(nested.where((n) => !hidden.contains(n)));
+      }
+    }
+  }
+  return out;
+}
 
 Map<String, Set<String>> _providerExports(String root) =>
-    _providerExportsCache.putIfAbsent(root, () {
-      final result = <String, Set<String>>{};
-      for (final pkg in _lanePackages) {
-        final names = <String>{};
-        final libDir = Directory(p.join(root, 'packages', pkg, 'lib'));
-        if (libDir.existsSync()) {
-          for (final ent in libDir.listSync().whereType<File>()) {
-            if (!ent.path.endsWith('.dart')) continue;
-            final text = ent.readAsStringSync();
-            for (final m in _showClause.allMatches(text)) {
-              for (final id in _identifier.allMatches(m.group(1)!)) {
-                names.add(id.group(0)!);
-              }
-            }
-            for (final m in _topDecl.allMatches(text)) {
-              for (var g = 1; g <= m.groupCount; g++) {
-                final v = m.group(g);
-                if (v != null && !v.startsWith('_')) names.add(v);
-              }
-            }
-          }
-          final srcDir = Directory(p.join(libDir.path, 'src'));
-          if (srcDir.existsSync()) {
-            for (final ent in srcDir.listSync().whereType<File>()) {
-              if (!ent.path.endsWith('.dart')) continue;
-              final text = ent.readAsStringSync();
-              for (final m in _topDecl.allMatches(text)) {
-                for (var g = 1; g <= m.groupCount; g++) {
-                  final v = m.group(g);
-                  if (v != null && !v.startsWith('_')) names.add(v);
-                }
-              }
-            }
-          }
-        }
-        result[pkg] = names;
-      }
-      return result;
-    });
+    _providerExportsCache.putIfAbsent(
+      root,
+      () => {
+        for (final pkg in _lanePackages)
+          pkg: _exportedNamesOf(
+            p.join(root, 'packages', pkg, 'lib', '$pkg.dart'),
+            {},
+          ),
+      },
+    );
 
 List<String> _barrelsFor(Snippet s, String? root) {
   if (root == null) return _barrels;
@@ -280,8 +338,7 @@ List<String> _barrelsFor(Snippet s, String? root) {
       : null;
   final out = <String>[];
   for (final imp in _barrels) {
-    final m = RegExp(r"package:(\w+)/").firstMatch(imp);
-    final pkg = m?.group(1);
+    final pkg = RegExp(r'package:(\w+)/').firstMatch(imp)?.group(1);
     if (pkg == null || !_lanePackages.contains(pkg)) {
       out.add(imp);
       continue;
