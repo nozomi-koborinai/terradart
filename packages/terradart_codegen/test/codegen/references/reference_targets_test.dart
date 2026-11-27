@@ -144,6 +144,22 @@ void main() {
         {'config.zone_id': false},
       );
     });
+
+    test('leaves out a sensitive input', () {
+      expect(
+        stringInputs({
+          'attributes': {
+            'bucket': {'type': 'string', 'required': true},
+            'kms_key_id': {
+              'type': 'string',
+              'optional': true,
+              'sensitive': true,
+            },
+          },
+        }),
+        {'bucket': false},
+      );
+    });
   });
 
   group('resolveReferences', () {
