@@ -1199,7 +1199,7 @@ final class GoogleComputeInstanceTemplate extends Resource {
     TfArg<Map<String, String>>? labels,
     TfArg<List<String>>? tags,
     TfArg<Map<String, String>>? metadata,
-    TfArg<String>? metadataStartupScript,
+    Sensitive<String>? metadataStartupScript,
     TfArg<bool>? canIpForward,
     TfArg<String>? minCpuPlatform,
     TfArg<String>? region,

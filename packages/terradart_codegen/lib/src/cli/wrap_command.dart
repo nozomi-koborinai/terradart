@@ -387,10 +387,13 @@ class WrapCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
     final enumErrors = <String>[];
-    final ir = providerEnums.withOverrideEnums(
+    final ir = withOverrideSensitive(
       loaded,
-      enrichedIr,
-      error: enumErrors.add,
+      providerEnums.withOverrideEnums(
+        loaded,
+        enrichedIr,
+        error: enumErrors.add,
+      ),
     );
     if (enumErrors.isNotEmpty) {
       for (final e in enumErrors) {

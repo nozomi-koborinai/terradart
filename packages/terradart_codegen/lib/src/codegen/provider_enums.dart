@@ -694,6 +694,50 @@ String argTypeFor(String dartType, {bool sensitive = false}) =>
 
 bool takesSensitive(Attribute attr) => attr.constraints.sensitive;
 
+/// [ir] with each top-level `extraSensitiveFields` entry of [overrides]
+/// marked sensitive, so the input takes `Sensitive<T>` as a
+/// schema-sensitive one does.
+ProviderSchemaIR withOverrideSensitive(
+  LoadedOverrides overrides,
+  ProviderSchemaIR ir,
+) {
+  Map<String, ResourceDef> marked(WrapperOverrideKind kind) => {
+    for (final MapEntry(key: type, value: def) in ir.of(kind).entries)
+      type: switch (overrides.of(kind)[type]?.extraSensitiveFields) {
+        final extra? => ResourceDef(
+          terraformType: def.terraformType,
+          description: def.description,
+          deprecationMessage: def.deprecationMessage,
+          root: BlockDef(
+            attributes: [
+              for (final a in def.root.attributes)
+                if (extra.contains(a.name))
+                  Attribute(
+                    name: a.name,
+                    type: a.type,
+                    description: a.description,
+                    defaultValue: a.defaultValue,
+                    constraints: a.constraints.copyWith(sensitive: true),
+                  )
+                else
+                  a,
+            ],
+            nestedBlocks: def.root.nestedBlocks,
+            description: def.root.description,
+          ),
+        ),
+        null => def,
+      },
+  };
+  return ProviderSchemaIR(
+    providerName: ir.providerName,
+    providerSource: ir.providerSource,
+    providerVersion: ir.providerVersion,
+    resources: marked(WrapperOverrideKind.resource),
+    dataSources: marked(WrapperOverrideKind.dataSource),
+  );
+}
+
 bool _isStringish(TypeDef t) => switch (t) {
   StringType() => true,
   ListType(:final element) || SetType(:final element) => element is StringType,
