@@ -72,7 +72,8 @@ import 'package:yaml/yaml.dart';
 
 import 'code_spans.dart';
 import 'doc_snippets.dart' show docCommentPackages, snippetDocuments;
-import 'migrating_cells.dart' show previousRelease, publishedVersions;
+import 'migrating_cells.dart'
+    show PublishedVersionsLookup, previousRelease, publishedVersions;
 
 const migratingPath = 'MIGRATING.md';
 const allowPath = 'tool/doc_renames_allow.yaml';
@@ -306,23 +307,36 @@ final class PublicApi {
   /// What the [docCommentPackages] exported at the release the top section
   /// of [migrating] upgrades from ([previousRelease]).
   static Future<({String version, PublicApi api})> released(
-    String migrating,
-  ) async => readReleased(
-    previousRelease(migrating, await publishedVersions(docCommentPackages)),
+    String migrating, {
+    PublishedVersionsLookup? lookupPublished,
+    Map<String, String>? pathOverrides,
+  }) async => readReleased(
+    previousRelease(
+      migrating,
+      await (lookupPublished ?? publishedVersions)(docCommentPackages),
+    ),
+    pathOverrides: pathOverrides,
   );
 
   /// What the entrypoints of [pins] (package → version) export, fetched
   /// from pub.dev into a scratch package.
   static Future<({String version, PublicApi api})> readReleased(
-    Map<String, String> pins,
-  ) => _releases[pins.entries.join(',')] ??= _readReleased(pins);
+    Map<String, String> pins, {
+    Map<String, String>? pathOverrides,
+  }) {
+    if (pathOverrides != null) {
+      return _readReleased(pins, pathOverrides: pathOverrides);
+    }
+    return _releases[pins.entries.join(',')] ??= _readReleased(pins);
+  }
 
   static final _releases =
       <String, Future<({String version, PublicApi api})>>{};
 
   static Future<({String version, PublicApi api})> _readReleased(
-    Map<String, String> pins,
-  ) async {
+    Map<String, String> pins, {
+    Map<String, String>? pathOverrides,
+  }) async {
     final release = (
       version: (pins.values.toSet().toList()..sort()).join(' / '),
       packages: pins.keys.toSet(),
@@ -337,7 +351,12 @@ final class PublicApi {
           '  sdk: ^3.12.0',
           'dependencies:',
           for (final MapEntry(key: pkg, value: version) in pins.entries)
-            '  $pkg: $version',
+            '  $pkg: ${pathOverrides != null ? 'any' : version}',
+          if (pathOverrides != null && pathOverrides.isNotEmpty) ...[
+            'dependency_overrides:',
+            for (final MapEntry(key: pkg, value: path)
+                in pathOverrides.entries) ...['  $pkg:', '    path: $path'],
+          ],
         ].join('\n'),
       );
       var get = Process.runSync('dart', [
@@ -1054,6 +1073,8 @@ Future<List<String>> checkDocRenames(
   List<String>? libs,
   AllowList? allow,
   bool released = true,
+  PublishedVersionsLookup? lookupPublished,
+  Map<String, String>? releasePathOverrides,
 }) async {
   allow ??= parseAllowList(
     File(p.join(root, allowPath)).existsSync()
@@ -1074,7 +1095,13 @@ Future<List<String>> checkDocRenames(
   final removed = removedSymbols(
     migrating: symbols,
     current: current,
-    released: released ? await PublicApi.released(migratingText) : null,
+    released: released
+        ? await PublicApi.released(
+            migratingText,
+            lookupPublished: lookupPublished,
+            pathOverrides: releasePathOverrides,
+          )
+        : null,
   );
   final internal = current.internalSymbols;
   final out = <String>[];

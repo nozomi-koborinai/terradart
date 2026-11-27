@@ -23,14 +23,19 @@ terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); al
   This updates all 12 package pubspecs, the `terradart-migrate --version` const, their inter-package carets, the example pubspec carets, and the README + website pubspec samples in one shot. Idempotent: re-running with the same version is a no-op. Run `git diff --stat` afterwards to review.
 - [ ] Add `## <version> - YYYY-MM-DD` entry to root `CHANGELOG.md` and to each package `CHANGELOG.md` file. Release notes are prose — the bump script intentionally does not generate them.
 - [ ] If the release is breaking, rename the `## Unreleased` section of `MIGRATING.md` to `## 0.W.x → 0.X.Y`, where `0.W` is the previous release series, under the single `# Migrating terradart` title (`## 0.35.x → 0.36.0`). `tool/migrating_cells_test.dart` checks the top section under either heading, and compiles its Before cells against the newest `0.W` release on pub.dev. A package with no `0.W` release has no upgrading user, so the section has no row about it.
-- [ ] Run pana score check on each package:
+- [ ] Run pana score check on each package (requires full marks in every category — `--exit-code-threshold 0` exits `127` whenever `maxPoints - grantedPoints > 0`, so any deduction such as the 10-point formatting check fails):
 
   ```bash
-  dart install pana
-  for pkg in terradart_core terradart_hcl terradart_codegen terradart_time terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_azure terradart_migrate terradart_cli; do
-    (cd "packages/$pkg" && pana --no-warning --exit-code-threshold 100)
-  done
+  dart pub global activate pana
+  (
+    set -e
+    for pkg in terradart_core terradart_hcl terradart_codegen terradart_time terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_azure terradart_migrate terradart_cli; do
+      (cd "packages/$pkg" && dart pub global run pana --exit-code-threshold 0)
+    done
+  )
   ```
+
+  Note: run `pana` via `dart pub global activate` / `dart pub global run` rather than `dart install pana`; AOT-compiled `pana` cannot locate the Dart SDK or bundled SPDX license data without extra flags.
 
 - [ ] Run dry-run after the pre-publish pubspec mutation (the script edits in-place; restore via `git checkout` after):
 

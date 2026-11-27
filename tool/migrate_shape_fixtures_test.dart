@@ -21,14 +21,6 @@ const _lanesWithoutTypeRenames = <String, String>{
 void main() {
   final migrating = File('MIGRATING.md').readAsStringSync();
   final renamed = renamedTypes(migrating);
-  late final Map<String, List<String>> versions;
-  late final Map<String, String> previous;
-  setUpAll(() async {
-    versions = await publishedVersions([
-      for (final m in allMigrateManifests) m.package,
-    ]);
-    previous = previousRelease(migrating, versions);
-  });
 
   test('the rename tables are found', () {
     expect(renamed, contains('Wafv2WebAclRuleNamed'));
@@ -94,27 +86,45 @@ void main() {
     );
   });
 
-  for (final manifest in allMigrateManifests) {
-    final lane = shapeFixtureLane(manifest.package);
-    test('the $lane shape fixture migrates every shape its lane has', () {
-      final file = File(shapeFixturePath(manifest.package));
-      expect(file.existsSync(), isTrue, reason: '${file.path} is missing');
-      final result = _migrate(file);
-      expect(
-        shapeFixtureFindings(
-          manifest,
-          result.report,
-          renamed: renamed,
-          published: _releasedBefore(
-            versions[manifest.package] ?? const [],
-            previous[manifest.package],
-          ),
-          allowNoRename: _lanesWithoutTypeRenames.containsKey(lane),
-        ),
-        isEmpty,
-      );
+  test('_releasedBefore requires a stable release older than from', () {
+    expect(_releasedBefore(['0.36.0'], '0.36.0'), isFalse);
+    expect(_releasedBefore(['0.36.0-dev', '0.36.0'], '0.36.0'), isFalse);
+    expect(_releasedBefore(['0.35.0', '0.36.0'], '0.36.0'), isTrue);
+    expect(_releasedBefore(['0.35.0'], null), isFalse);
+  });
+
+  group('repo shape fixtures', () {
+    late final Map<String, List<String>> versions;
+    late final Map<String, String> previous;
+    setUpAll(() async {
+      versions = await publishedVersions([
+        for (final m in allMigrateManifests) m.package,
+      ]);
+      previous = previousRelease(migrating, versions);
     });
-  }
+
+    for (final manifest in allMigrateManifests) {
+      final lane = shapeFixtureLane(manifest.package);
+      test('the $lane shape fixture migrates every shape its lane has', () {
+        final file = File(shapeFixturePath(manifest.package));
+        expect(file.existsSync(), isTrue, reason: '${file.path} is missing');
+        final result = _migrate(file);
+        expect(
+          shapeFixtureFindings(
+            manifest,
+            result.report,
+            renamed: renamed,
+            published: _releasedBefore(
+              versions[manifest.package] ?? const [],
+              previous[manifest.package],
+            ),
+            allowNoRename: _lanesWithoutTypeRenames.containsKey(lane),
+          ),
+          isEmpty,
+        );
+      });
+    }
+  });
 
   test('every no-rename allowlist entry names a real lane', () {
     final lanes = {

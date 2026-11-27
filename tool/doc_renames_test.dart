@@ -117,14 +117,57 @@ final kind = FencedKind();
       expect(api.declares('GoogleCloudRunV2Service.nameRef'), isFalse);
     });
 
-    const release035 = {
-      'terradart_cli': '0.35.0',
-      'terradart_core': '0.35.0',
-      'terradart_google': '0.35.0',
-    };
+    Map<String, String> fakeReleasedPackages() {
+      final tmp = Directory.systemTemp.createTempSync('doc_renames_rel_');
+      addTearDown(() => tmp.deleteSync(recursive: true));
+      void pkg(String name, Map<String, String> files) {
+        final dir = Directory(p.join(tmp.path, name))..createSync();
+        File(p.join(dir.path, 'pubspec.yaml')).writeAsStringSync('''
+name: $name
+version: 0.35.0
+environment:
+  sdk: ^3.12.0
+''');
+        for (final MapEntry(key: rel, value: content) in files.entries) {
+          File(p.join(dir.path, rel))
+            ..createSync(recursive: true)
+            ..writeAsStringSync(content);
+        }
+      }
+
+      pkg('terradart_core', {'lib/terradart_core.dart': 'class Stack {}\n'});
+      pkg('terradart_google', {
+        'lib/terradart_google.dart': '''
+class GoogleCloudRunV2Service {}
+class ComputeFirewallAllowPolicy {}
+''',
+      });
+      pkg('terradart_cli', {
+        'lib/terradart_cli.dart': '''
+Future<void> runStack(List<String> args) async {}
+Future<int> runTerradart(List<String> args) async => 0;
+''',
+      });
+      return {
+        for (final name in [
+          'terradart_core',
+          'terradart_google',
+          'terradart_cli',
+        ])
+          name: p.join(tmp.path, name),
+      };
+    }
 
     test('a type of the last release the workspace lacks is removed', () async {
-      final released = await PublicApi.readReleased(release035);
+      final overrides = fakeReleasedPackages();
+      final released = await PublicApi.released(
+        '# Migrating terradart\n\n## 0.35.x → 0.36.0\n',
+        lookupPublished: (packages) async => {
+          for (final pkg in packages)
+            pkg: overrides.containsKey(pkg) ? const ['0.35.0'] : const [],
+        },
+        pathOverrides: overrides,
+      );
       final removed = removedSymbols(
         migrating: const {},
         current: api,
@@ -137,9 +180,25 @@ final kind = FencedKind();
     });
 
     test('the last release includes the CLI and top-level names', () async {
-      final released = (await PublicApi.readReleased(release035)).api;
+      final overrides = fakeReleasedPackages();
+      final released = (await PublicApi.readReleased({
+        'terradart_cli': '0.35.0',
+        'terradart_core': '0.35.0',
+        'terradart_google': '0.35.0',
+      }, pathOverrides: overrides)).api;
       expect(released.symbols, containsAll(['runStack', 'runTerradart']));
     });
+
+    test('live pub.dev readReleased reads 0.35.0 from pub.dev', () async {
+      final released = await PublicApi.readReleased(const {
+        'terradart_cli': '0.35.0',
+        'terradart_core': '0.35.0',
+        'terradart_google': '0.35.0',
+      });
+      expect(released.version, '0.35.0');
+      expect(released.api.declares('GoogleCloudRunV2Service'), isTrue);
+      expect(released.api.symbols, containsAll(['runStack', 'runTerradart']));
+    }, tags: ['live']);
 
     test('an unexported declaration is no public API', () async {
       Directory workspace(String exports) {

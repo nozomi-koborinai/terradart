@@ -21,7 +21,7 @@ terradart init
 `dart install` puts executables in `$DART_DATA_HOME/install/bin`, which must be on your `PATH`. Per-platform defaults:
 
 - macOS: `$HOME/Library/Application Support/Dart/install/bin`
-- Linux: `$HOME/.local/share/dart/install/bin` (or `$XDG_DATA_HOME/dart/install/bin`)
+- Linux: `$HOME/.local/state/Dart/install/bin` (or `$XDG_STATE_HOME/Dart/install/bin`)
 - Windows: `%LOCALAPPDATA%\Dart\install\bin`
 
 On macOS with zsh, add it and open a new terminal:
