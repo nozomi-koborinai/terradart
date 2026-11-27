@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-import 'package:terradart_cli/terradart_cli.dart';
+import 'package:terradart_cli/src/cli.dart';
+import 'package:terradart_cli/src/workflow.dart';
 import 'package:test/test.dart';
 
 final workspacePackages = p.normalize(p.join(Directory.current.path, '..'));
@@ -86,7 +87,7 @@ Future<String> terradart(
   Map<String, String>? environment,
 }) async {
   final log = StringBuffer();
-  final code = await runTerradart(
+  final code = await runTerradartWith(
     args,
     workingDirectory: cwd,
     environment: environment,

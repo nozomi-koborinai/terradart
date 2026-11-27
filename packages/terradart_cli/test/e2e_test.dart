@@ -5,7 +5,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-import 'package:terradart_cli/terradart_cli.dart';
+import 'package:terradart_cli/src/cli.dart';
+import 'package:terradart_cli/src/workflow.dart';
+import 'package:terradart_cli/terradart_cli.dart' show kOpenTofuVersion;
 import 'package:test/test.dart';
 
 import 'init_support.dart';
@@ -24,7 +26,7 @@ void main() {
     };
     final log = StringBuffer();
     Future<void> terradart(List<String> args) async {
-      final code = await runTerradart(
+      final code = await runTerradartWith(
         [...args, '--engine', 'tofu', '--project', root.path],
         workingDirectory: root.path,
         environment: environment,
@@ -42,7 +44,7 @@ void main() {
       expect(code, 0, reason: '$log');
     }
 
-    final unknown = await runTerradart(
+    final unknown = await runTerradartWith(
       ['plan', '--env', 'staging', '--project', root.path],
       workingDirectory: root.path,
       environment: environment,
@@ -71,7 +73,7 @@ void main() {
           },
         }),
       );
-    final invalid = await runTerradart(
+    final invalid = await runTerradartWith(
       [
         'validate',
         '--env',

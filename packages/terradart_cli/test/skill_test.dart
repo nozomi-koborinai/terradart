@@ -6,7 +6,8 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_cli/src/assets/skill_md.g.dart';
 import 'package:terradart_cli/src/skill/marker.dart';
 import 'package:terradart_cli/src/version.dart';
-import 'package:terradart_cli/terradart_cli.dart';
+import 'package:terradart_cli/src/cli.dart';
+import 'package:terradart_cli/src/workflow.dart';
 import 'package:test/test.dart';
 
 import 'support.dart';
@@ -283,7 +284,7 @@ void main() {
     test('TERRADART_NO_SKILL_NOTICE=1 turns it off', () async {
       put(agentsSkill, older);
       final err = StringBuffer();
-      final code = await runTerradart(
+      final code = await runTerradartWith(
         ['synth'],
         runner: FakeRunner(),
         console: Console(out: (_) {}, err: err.writeln),

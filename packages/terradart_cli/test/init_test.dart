@@ -6,7 +6,8 @@ import 'package:terradart_cli/src/assets/skill_md.g.dart';
 import 'package:terradart_cli/src/config.dart';
 import 'package:terradart_cli/src/engine.dart';
 import 'package:terradart_cli/src/init_templates.dart';
-import 'package:terradart_cli/terradart_cli.dart';
+import 'package:terradart_cli/src/cli.dart';
+import 'package:terradart_cli/src/workflow.dart';
 import 'package:terradart_migrate/terradart_migrate.dart' show packageVersion;
 import 'package:test/test.dart';
 
@@ -36,7 +37,7 @@ void main() {
     final asked = <String>[];
     final queue = [...?answers];
     final runner = FakeRunner(failOn: failOn);
-    final code = await runTerradart(
+    final code = await runTerradartWith(
       ['init', ...args],
       runner: runner,
       workingDirectory: root,
@@ -921,7 +922,7 @@ void main() {
       );
       expect(agents, isNot(contains('npx skills')));
 
-      final status = await runTerradart(
+      final status = await runTerradartWith(
         ['skill', 'status', '--check', '-C', 'infra'],
         runner: FakeRunner(),
         workingDirectory: root,

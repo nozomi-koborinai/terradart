@@ -4,7 +4,8 @@ import 'dart:io';
 import 'package:terradart_cli/src/assets/skill_md.g.dart';
 import 'package:terradart_cli/src/skill/marker.dart';
 import 'package:terradart_cli/src/version.dart';
-import 'package:terradart_cli/terradart_cli.dart';
+import 'package:terradart_cli/src/cli.dart';
+import 'package:terradart_cli/src/workflow.dart';
 import 'package:test/test.dart';
 
 import 'support.dart';
@@ -36,7 +37,7 @@ void main() {
       final out = StringBuffer();
       final err = StringBuffer();
       final code = await runZoned(
-        () => runTerradart(
+        () => runTerradartWith(
           args,
           runner: runner ?? FakeRunner(),
           console: Console(out: out.writeln, err: err.writeln),
