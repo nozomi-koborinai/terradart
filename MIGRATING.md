@@ -136,6 +136,44 @@ the handle `variable<T>()` returns. Synth output does not change.
 | `CertificateManagerTrustConfigTrustAnchor(pemCertificate: TfArg.variable('anchor_pem'))` | `CertificateManagerTrustConfigTrustAnchor(pemCertificate: .variable('anchor_pem'))` |
 | `AwsS3ObjectCopy('copy', kmsKeyId: AwsKmsKey('key').ref, ...)` | `AwsS3ObjectCopy('copy', kmsKeyId: AwsKmsKey('key').arn, ...)` |
 
+### Hand-written Google helpers take TfArg and RefTo
+
+**Breaking (`terradart_google`).** The hand-written Google helpers now take
+their arguments the way generated ones do.
+
+- The 25 list and map fields that took a bare `List<String>` or
+  `Map<String, String>` take `TfArg<List<String>>` or
+  `TfArg<Map<String, String>>`: wrap the value in `.literal(...)`, or pass a
+  variable or an expression. They are the security policy source ranges, rule
+  ids, header and content type lists, the managed SSL certificate's domains,
+  the DNS response policy's local data records, the BigQuery routine's Spark
+  options, the backend bucket's cache key lists, and the instance group
+  manager's instance labels, metadata and machine types.
+- The image and snapshot sources, the route's instance and VPN tunnel next
+  hops, and the internal load balancer network of a DNS routing policy take a
+  `RefTo` of the resource they name: pass its `ref`, or `RefTo.literal(...)`
+  for one outside the Stack. The route and the image emit the `self_link`
+  they emitted when you passed `selfLink`. A snapshot emits the disk's or the
+  instant snapshot's `name`, so set the snapshot's `zone` when the provider
+  has no default zone. The DNS routing policy emits the network's `id`.
+- `GoogleApigeeSecurityMonitoringCondition` no longer writes
+  `include_all_resources {}` for you: pass
+  `const ApigeeSecurityMonitoringConditionIncludeAllResources()`. Synth output
+  does not change.
+
+| Before | After |
+|---|---|
+| `ComputeSecurityPolicyRuleMatchConfig(srcIpRanges: ['203.0.113.0/24'])` | `ComputeSecurityPolicyRuleMatchConfig(srcIpRanges: .literal(['203.0.113.0/24']))` |
+| `ComputeManagedSslCertificateConfig(domains: ['app.example.com'])` | `ComputeManagedSslCertificateConfig(domains: .literal(['app.example.com']))` |
+| `DnsResponsePolicyRuleLocalDataEntry(name: ..., type: ..., ttl: ..., rrdatas: ['10.0.0.20'])` | `DnsResponsePolicyRuleLocalDataEntry(name: ..., type: ..., ttl: ..., rrdatas: .literal(['10.0.0.20']))` |
+| `BigqueryRoutineSparkOptions(properties: {'spark.executor.instances': '2'})` | `BigqueryRoutineSparkOptions(properties: .literal({'spark.executor.instances': '2'}))` |
+| `GoogleComputeRoute('via_vm', nextHop: .instance(GoogleComputeInstance('vm', ...).selfLink), ...)` | `GoogleComputeRoute('via_vm', nextHop: .instance(GoogleComputeInstance('vm', ...).ref), ...)` |
+| `GoogleComputeImage('image', source: .snapshot(GoogleComputeSnapshot('snap', ...).selfLink), ...)` | `GoogleComputeImage('image', source: .snapshot(GoogleComputeSnapshot('snap', ...).ref), ...)` |
+| `GoogleComputeSnapshot('snap', source: .disk(GoogleComputeDisk('data', ...).selfLink), ...)` | `GoogleComputeSnapshot('snap', source: .disk(GoogleComputeDisk('data', ...).ref), zone: .literal('asia-northeast1-a'), ...)` |
+| `DnsRecordSetRoutingPolicyInternalLoadBalancer(ipAddress: ..., networkUrl: GoogleComputeNetwork('vpc', ...).selfLink)` | `DnsRecordSetRoutingPolicyInternalLoadBalancer(ipAddress: ..., networkUrl: GoogleComputeNetwork('vpc', ...).ref)` |
+| `GoogleComputeRoute('via_tunnel', nextHop: .vpnTunnel(TfArg.literal('projects/p/regions/r/vpnTunnels/t')), ...)` | `GoogleComputeRoute('via_tunnel', nextHop: .vpnTunnel(RefTo.literal('projects/p/regions/r/vpnTunnels/t')), ...)` |
+| `GoogleApigeeSecurityMonitoringCondition('smc', conditionId: ..., orgId: ..., profile: ..., scope: ...)` | `GoogleApigeeSecurityMonitoringCondition('smc', conditionId: ..., orgId: ..., profile: ..., scope: ..., includeAllResources: const ApigeeSecurityMonitoringConditionIncludeAllResources())` |
+
 ### Azure provider 5.15.0
 
 **Breaking (`terradart_azure`).** Provider 5.15.0 adds `managed_rules.exception`
