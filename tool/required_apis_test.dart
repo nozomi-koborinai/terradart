@@ -9,13 +9,21 @@
 /// test does not pin its answer. A rule added to satisfy this test must not
 /// change such a type's answer: carve the type out of the broader prefix
 /// instead of naming an API nothing here confirms.
+///
+/// The rules are `tool/required_apis.yaml`, which `terradart wrap` turns into
+/// `GoogleApi` and `requiredApiForTerraformType`; the last group fails when
+/// the generated code no longer matches the ledger.
 library;
 
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-import 'package:terradart_google/project.dart' show requiredApiForTerraformType;
+import 'package:terradart_codegen/src/codegen/google_apis.dart';
+import 'package:terradart_google/project.dart'
+    show GoogleApi, requiredApiForTerraformType;
+import 'package:terradart_migrate/terradart_migrate.dart'
+    show googleMigrateManifest;
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 
@@ -83,4 +91,36 @@ void main() {
       });
     });
   }
+
+  group('tool/required_apis.yaml', () {
+    const regen = 'run dart tool/wrap_lanes.dart --gate regen --lane google';
+    final ledger = parseRequiredApis(
+      File('tool/required_apis.yaml').readAsStringSync(),
+    );
+
+    test('GoogleApi has one constant per API it names', () {
+      expect(
+        [for (final api in GoogleApi.values) api.toTfJson()],
+        [for (final api in ledger.apis) api.service],
+        reason: regen,
+      );
+    });
+
+    test('every rule answers its own type', () {
+      final wrong = [
+        for (final MapEntry(key: prefix, value: service)
+            in ledger.rules.entries)
+          if (requiredApiForTerraformType(prefix)?.toTfJson() != service)
+            '$prefix: ${requiredApiForTerraformType(prefix)?.toTfJson()}, '
+                'the ledger says $service',
+      ];
+      expect(wrong, isEmpty, reason: '${wrong.join('\n')}\n$regen');
+    });
+
+    test('each constant is named by the codegen naming rule', () {
+      expect(googleMigrateManifest.enums['GoogleApi']?.members, {
+        for (final api in ledger.apis) api.service: api.dartName,
+      }, reason: regen);
+    });
+  });
 }
