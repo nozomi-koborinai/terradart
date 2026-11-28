@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.38.1 - 2026-11-28
+
+- No API changes from 0.38.0. Lockstep recovery release that publishes all twelve packages together. The 0.38.0 publish workflow stopped in Phase 3, so only `terradart_core`, `terradart_hcl`, `terradart_codegen` and `terradart_time` reached pub.dev at 0.38.0. The workflow now verifies each provider package with the wrap gate that PR CI runs ([#1036](https://github.com/nozomi-koborinai/terradart/pull/1036)).
+- This package did not reach pub.dev at 0.38.0, so 0.38.1 is its first release with the 0.38.0 changes below.
+
 ## 0.38.0 - 2026-11-28
 
 - A variable with `default = null` is declared with a nullable type, because `terradart_core` now writes a `null` `defaultValue` as `"default": null`. The default of an `optional(...)` object attribute is migrated as the value Terraform reads, so a `${` in it stays text.

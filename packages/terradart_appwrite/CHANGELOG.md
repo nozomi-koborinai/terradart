@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.38.1 - 2026-11-28
+
+- No API changes from 0.38.0. Lockstep recovery release that publishes all twelve packages together. The 0.38.0 publish workflow stopped in Phase 3, so only `terradart_core`, `terradart_hcl`, `terradart_codegen` and `terradart_time` reached pub.dev at 0.38.0. The workflow now verifies each provider package with the wrap gate that PR CI runs ([#1036](https://github.com/nozomi-koborinai/terradart/pull/1036)).
+- This package did not reach pub.dev at 0.38.0, so 0.38.1 is its first release with the 0.38.0 changes below.
+
 ## 0.38.0 - 2026-11-28
 
 - **Breaking:** `catalog.dart` names its list `terradartAppwriteCatalog` instead of `terradartCatalog`, and re-exports `CatalogEntry` and `CatalogKind` from `package:terradart_core/catalog.dart`. See [MIGRATING.md](../../MIGRATING.md#provider-packages-export-each-public-name-once).

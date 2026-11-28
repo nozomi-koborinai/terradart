@@ -308,7 +308,7 @@ Make sure `$DART_DATA_HOME/install/bin` is on your `PATH` ([Install](https://ter
 terradart skill install   # .agents/skills/ and .claude/skills/, the skill of this CLI's release
 ```
 
-`terradart skill update` keeps it in step with the CLI, and `terradart skill status --check` fails CI when it falls behind. Without the CLI: `npx skills add nozomi-koborinai/terradart#v0.38.0 --skill terradart`, pinned to the release tag.
+`terradart skill update` keeps it in step with the CLI, and `terradart skill status --check` fails CI when it falls behind. Without the CLI: `npx skills add nozomi-koborinai/terradart#v0.38.1 --skill terradart`, pinned to the release tag.
 
 Docs: [Let an AI agent do it](https://terradart.dev/docs/start/ai-agent/).
 
