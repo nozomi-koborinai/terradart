@@ -219,6 +219,56 @@ void main() {
       );
     });
 
+    test(
+      'an optional default is an HCL literal Terraform reads as the value',
+      () {
+        String optional(TfType type, Object? value) =>
+            TfType.optional(type, value).expression;
+        expect(
+          optional(.map(.string), {'env': 'prod', 'team': 'core'}),
+          'optional(map(string), { "env" = "prod", "team" = "core" })',
+        );
+        expect(
+          optional(.map(.string), <String, String>{}),
+          'optional(map(string), {})',
+        );
+        expect(
+          optional(.object({'a': .string, 'b': .number}), {'a': 'x', 'b': 1}),
+          'optional(object({ a = string, b = number }), { "a" = "x", "b" = 1 })',
+        );
+        expect(
+          optional(.map(.list(.map(.bool))), {
+            'k': [
+              {'on': true},
+            ],
+          }),
+          'optional(map(list(map(bool))), { "k" = [{ "on" = true }] })',
+        );
+        expect(
+          optional(.map(.string), {'my-key': 'v'}),
+          'optional(map(string), { "my-key" = "v" })',
+        );
+        expect(
+          optional(.list(.string), ['a']),
+          'optional(list(string), ["a"])',
+        );
+        expect(optional(.set(.string), {'x'}), 'optional(set(string), ["x"])');
+      },
+    );
+
+    test('an optional default string is text, never a template', () {
+      String optional(Object? value) =>
+          TfType.optional(TfType.map(TfType.string), value).expression;
+      expect(
+        optional({r'${k}': r'${v} %{x} $${y}'}),
+        r'optional(map(string), { "$${k}" = "$${v} %%{x} $$${y}" })',
+      );
+      expect(
+        optional({'q': 'say "hi" \\ \n\t\b\f'}),
+        r'optional(map(string), { "q" = "say \"hi\" \\ \n\t\u0008\u000c" })',
+      );
+    });
+
     test('the type terradart migrate writes synthesizes the HCL it read', () {
       const type = TfType.object({
         'a': .optional(.string),

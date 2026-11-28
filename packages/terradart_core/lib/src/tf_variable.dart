@@ -205,14 +205,48 @@ final class TfOptionalType extends TfType {
   /// Whether the attribute has a default, which may be `null`.
   bool get hasDefault => !identical(_defaultValue, omitted);
 
-  /// The default, written as JSON, which Terraform reads as the same value;
-  /// `null` too when [hasDefault] is false.
+  /// The default, written as the HCL literal Terraform reads as the same
+  /// value; `null` too when [hasDefault] is false.
   Object? get defaultValue => hasDefault ? _defaultValue : null;
 
   @override
   String get expression => hasDefault
-      ? 'optional(${type.expression}, ${jsonEncode(_jsonValue(_defaultValue))})'
+      ? 'optional(${type.expression}, ${_hclLiteral(_defaultValue)})'
       : 'optional(${type.expression})';
+}
+
+/// [value] in HCL native syntax. Terraform reads a type constraint's default
+/// as HCL, where a quoted string is a template and `\b` / `\f` are no escapes,
+/// so JSON does not carry every value.
+String _hclLiteral(Object? value) => switch (value) {
+  null => 'null',
+  bool() || num() => jsonEncode(value),
+  String() => _hclString(value),
+  Iterable<Object?>() => '[${value.map(_hclLiteral).join(', ')}]',
+  Map<Object?, Object?>() when value.isEmpty => '{}',
+  Map<Object?, Object?>() =>
+    '{ ${[for (final MapEntry(:key, :value) in value.entries) '${_hclString('$key')} = ${_hclLiteral(value)}'].join(', ')} }',
+  _ => throw ArgumentError.value(value, 'defaultValue', 'has no HCL literal'),
+};
+
+String _hclString(String s) {
+  final out = StringBuffer('"');
+  for (var i = 0; i < s.length; i++) {
+    final c = s[i];
+    out.write(switch (c) {
+      '"' => r'\"',
+      r'\' => r'\\',
+      '\n' => r'\n',
+      '\r' => r'\r',
+      '\t' => r'\t',
+      r'$' || '%' when s.startsWith('{', i + 1) => '$c$c',
+      _ when c.codeUnitAt(0) < 0x20 =>
+        '\\u${c.codeUnitAt(0).toRadixString(16).padLeft(4, '0')}',
+      _ => c,
+    });
+  }
+  out.write('"');
+  return out.toString();
 }
 
 @internal

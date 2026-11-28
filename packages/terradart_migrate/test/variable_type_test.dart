@@ -42,6 +42,10 @@ void main() {
         'Object?',
         ".object({'a': .optional(.string), 'b': .optional(.string, null)})",
       ),
+      r'object({ m = optional(map(string), { "$${k}" = "$${v} %%{x}" }) })': (
+        'Object?',
+        r".object({'m': .optional(.map(.string), {r'${k}': r'${v} %{x}'})})",
+      ),
     };
     cases.forEach((hcl, expected) {
       final t = _of(hcl);

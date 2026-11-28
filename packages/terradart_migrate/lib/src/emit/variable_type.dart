@@ -42,6 +42,18 @@ bool _isValue(Expr e) => switch (e) {
   _ => e.constantString != null,
 };
 
+/// The value Terraform reads from [e]. Unlike [jsonValue] it keeps no
+/// template escape: `TfType.optional` writes its default's `${` as `$${`.
+Object? _value(Expr e) => switch (e) {
+  LiteralExpr(:final value) => value,
+  TupleExpr(:final elements) => [for (final x in elements) _value(x)],
+  ObjectExpr(:final items) => {
+    for (final item in items)
+      item.keyName ?? hclSource(item.key): _value(item.value),
+  },
+  _ => e.constantString,
+};
+
 bool _conforms(Object? value, String dart) {
   if (dart == 'String') return value is String;
   if (dart == 'num') return value is num;
@@ -172,7 +184,7 @@ final class _Parser {
     if (!_isValue(expr)) {
       throw FormatException('default "$source" is not a value');
     }
-    return jsonValue(expr);
+    return _value(expr);
   }
 
   String _key() {

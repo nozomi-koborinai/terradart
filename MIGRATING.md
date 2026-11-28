@@ -192,6 +192,9 @@ references and triggers Terraform would reject at plan.
   apart, and `TfType.optional` writes `optional(string, null)` for a `null`
   default. `terradart migrate` declares a `default = null` variable with a
   nullable type.
+- `TfType.optional` writes its default in HCL syntax, so a `${` or `%{` in a
+  default string is text Terraform keeps, where it used to be a template
+  Terraform rejected or evaluated.
 - `Resource.argMap` is a copy taken when the resource is built; writing to
   it throws `UnsupportedError`.
 - A literal string is a Terraform template, so a `${var.<name>}` in it is
