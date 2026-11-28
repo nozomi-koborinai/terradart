@@ -21,6 +21,7 @@ final class DataGoogleIapWebRegionBackendServiceIamPolicy extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> webRegionBackendService,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

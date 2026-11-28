@@ -14,6 +14,7 @@ final class DataAwsOrganizationsDelegatedAdministrators extends Data {
   DataAwsOrganizationsDelegatedAdministrators(
     super.localName, {
     TfArg<String>? servicePrincipal,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,6 +19,7 @@ final class DataAwsAppmeshGatewayRoute extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> virtualGatewayName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

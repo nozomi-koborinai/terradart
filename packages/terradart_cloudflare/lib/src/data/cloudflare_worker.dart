@@ -78,6 +78,7 @@ final class DataCloudflareWorker extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? workerId,
     DataWorkerFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

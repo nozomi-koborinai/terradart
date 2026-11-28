@@ -337,6 +337,7 @@ final class DataCloudflareDnsRecord extends Data {
     TfArg<bool>? includeShadowMetadata,
     RefTo<CloudflareZone>? zoneId,
     DataDnsRecordFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

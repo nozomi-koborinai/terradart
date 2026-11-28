@@ -15,6 +15,7 @@ final class DataAwsRoute53profilesProfile extends Data {
     super.localName, {
     TfArg<String>? name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': ?name, 'region': ?region});

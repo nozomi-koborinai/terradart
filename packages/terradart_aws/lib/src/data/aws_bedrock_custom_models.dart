@@ -13,6 +13,7 @@ final class DataAwsBedrockCustomModels extends Data {
   DataAwsBedrockCustomModels(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

@@ -20,6 +20,7 @@ final class DataCloudflareImageVariant extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> variantId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

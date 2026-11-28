@@ -5425,9 +5425,6 @@ final class GoogleContainerCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _googleContainerClusterSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleContainerCluster>`.
   RefTo<GoogleContainerCluster> get ref => RefTo.of(this);

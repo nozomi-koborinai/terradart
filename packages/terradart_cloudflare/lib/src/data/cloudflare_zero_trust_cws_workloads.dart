@@ -60,6 +60,7 @@ final class DataCloudflareZeroTrustCwsWorkloads extends Data {
     TfArg<String>? name,
     DataZeroTrustCwsWorkloadsOrder? order,
     TfArg<String>? policySetId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -13,6 +13,7 @@ final class DataAzurermMonitorDiagnosticCategories extends Data {
   DataAzurermMonitorDiagnosticCategories(
     super.localName, {
     required TfArg<String> resourceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'resource_id': resourceId});

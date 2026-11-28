@@ -22,6 +22,7 @@ final class DataCloudflareZeroTrustDeviceDefaultProfileCertificates
   DataCloudflareZeroTrustDeviceDefaultProfileCertificates(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

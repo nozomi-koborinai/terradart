@@ -146,6 +146,7 @@ final class DataCloudflareEmailSecurityImpersonationRegistry extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? impersonationRegistryId,
     DataEmailSecurityImpersonationRegistryFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

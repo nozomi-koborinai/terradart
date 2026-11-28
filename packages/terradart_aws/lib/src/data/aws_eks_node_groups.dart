@@ -14,6 +14,7 @@ final class DataAwsEksNodeGroups extends Data {
     super.localName, {
     required TfArg<String> clusterName,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -10,8 +10,12 @@ const Set<String> _azurermClientConfigSensitive = <String>{};
 final class DataAzurermClientConfig extends Data {
   static const String tfType = 'azurerm_client_config';
 
-  DataAzurermClientConfig(super.localName, {super.provider, super.timeouts})
-    : super(terraformType: tfType, argMap: {});
+  DataAzurermClientConfig(
+    super.localName, {
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(terraformType: tfType, argMap: {});
 
   @override
   Set<String> get sensitiveFields => _azurermClientConfigSensitive;

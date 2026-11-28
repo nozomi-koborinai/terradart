@@ -163,6 +163,7 @@ final class DataCloudflareAccountDnsSettingsInternalView extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? viewId,
     DataAccountDnsSettingsInternalViewFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

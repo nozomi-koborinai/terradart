@@ -19,6 +19,7 @@ final class DataGoogleBigtableTableIamPolicy extends Data {
     required TfArg<String> instanceName,
     TfArg<String>? project,
     required TfArg<String> table,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

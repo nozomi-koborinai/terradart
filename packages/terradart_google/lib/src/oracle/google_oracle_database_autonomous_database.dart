@@ -400,9 +400,6 @@ final class GoogleOracleDatabaseAutonomousDatabase extends Resource {
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseAutonomousDatabaseSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleOracleDatabaseAutonomousDatabase>`.
   RefTo<GoogleOracleDatabaseAutonomousDatabase> get ref => RefTo.of(this);

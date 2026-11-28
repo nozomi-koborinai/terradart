@@ -14,6 +14,7 @@ final class DataAwsS3controlMultiRegionAccessPoints extends Data {
     super.localName, {
     TfArg<String>? accountId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

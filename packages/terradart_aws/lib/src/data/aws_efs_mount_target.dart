@@ -17,6 +17,7 @@ final class DataAwsEfsMountTarget extends Data {
     TfArg<String>? fileSystemId,
     TfArg<String>? mountTargetId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

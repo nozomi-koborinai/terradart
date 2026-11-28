@@ -15,6 +15,7 @@ final class DataAwsOrganizationsOrganizationalUnit extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> parentId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

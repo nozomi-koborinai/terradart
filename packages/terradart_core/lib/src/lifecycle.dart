@@ -43,7 +43,8 @@ final class LifecycleOptions {
   final IgnoreChanges? ignoreChanges;
 
   /// `replace_triggered_by`: resources of the Stack (`template`) and their
-  /// attributes (`template.id`). A data source is not a trigger.
+  /// attributes (`template.id`). A data source or a module output is not a
+  /// trigger.
   final List<ReplaceTrigger>? replaceTriggeredBy;
 
   /// `precondition` / `postcondition` blocks, in order.

@@ -21,6 +21,7 @@ final class DataGoogleMonitoringNotificationChannel extends Data {
     TfArg<String>? project,
     TfArg<String>? type,
     TfArg<Map<String, String>>? userLabels,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

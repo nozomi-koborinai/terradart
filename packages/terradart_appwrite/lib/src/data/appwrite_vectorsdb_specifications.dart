@@ -20,6 +20,7 @@ final class DataAppwriteVectorsdbSpecifications extends Data {
   DataAppwriteVectorsdbSpecifications(
     super.localName, {
     RefTo<AppwriteProject>? projectId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

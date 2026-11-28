@@ -16,6 +16,7 @@ final class DataAwsIamOpenidConnectProvider extends Data {
     TfArg<String>? arn,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? url,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -163,6 +163,7 @@ final class DataCloudflareEmailSecurityDomains extends Data {
     DataEmailSecurityDomainsOrder? order,
     TfArg<String>? search,
     DataEmailSecurityDomainsStatus? status,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

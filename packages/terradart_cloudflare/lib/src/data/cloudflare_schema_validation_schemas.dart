@@ -38,6 +38,7 @@ final class DataCloudflareSchemaValidationSchemas extends Data {
     TfArg<String>? schemaId,
     RefTo<CloudflareZone>? zoneId,
     DataSchemaValidationSchemasFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

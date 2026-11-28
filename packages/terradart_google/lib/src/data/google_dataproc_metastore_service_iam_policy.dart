@@ -20,6 +20,7 @@ final class DataGoogleDataprocMetastoreServiceIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> serviceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

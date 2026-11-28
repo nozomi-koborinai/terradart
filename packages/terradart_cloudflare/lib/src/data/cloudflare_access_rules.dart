@@ -140,6 +140,7 @@ final class DataCloudflareAccessRules extends Data {
     DataAccessRulesOrder? order,
     RefTo<CloudflareZone>? zoneId,
     DataAccessRulesConfiguration? configuration,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

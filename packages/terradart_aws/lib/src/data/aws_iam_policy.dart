@@ -17,6 +17,7 @@ final class DataAwsIamPolicy extends Data {
     TfArg<String>? name,
     TfArg<String>? pathPrefix,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

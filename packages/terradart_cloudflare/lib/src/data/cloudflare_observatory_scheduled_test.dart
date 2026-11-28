@@ -119,6 +119,7 @@ final class DataCloudflareObservatoryScheduledTest extends Data {
     DataObservatoryScheduledTestRegion? region,
     required TfArg<String> url,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

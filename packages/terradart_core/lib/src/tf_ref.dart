@@ -12,12 +12,12 @@ abstract interface class TfAddressed {
 
 /// What `lifecycle.replaceTriggeredBy` lists: a resource of the Stack or an
 /// attribute getter of one. `Resource` and [TfRef] implement it; synth
-/// reports a data source or a data-source attribute as an
+/// reports a data source, a data-source attribute or a module output as an
 /// `InvalidLifecycle`.
 abstract interface class ReplaceTrigger {}
 
-/// A Terraform-side reference: an attribute of a resource ([AttributeRef])
-/// or a data source ([DataRef]), or a whole resource ([ResourceRef]).
+/// A Terraform-side reference: an attribute of a resource, data source or
+/// module call ([AttributeRef]), or a whole resource ([ResourceRef]).
 ///
 /// `T` is the Dart type of the referenced value. A reference is a
 /// [TfArg], so an attribute getter such as `api.uri` fills an argument of
@@ -28,16 +28,10 @@ sealed class TfRef<T> extends TfArg<T> implements Sensitive<T>, ReplaceTrigger {
   @override
   Object? toTfJson() => interpolation;
 
-  /// Reference to an attribute of a `Resource`.
+  /// Reference to an attribute of [owner]: a `Resource`, a `Data` (whose
+  /// address already starts with `data.`) or a `ModuleCall`.
   static TfRef<T> attribute<T>(TfAddressed owner, String attr) =>
       AttributeRef<T>._(owner, attr);
-
-  /// Reference to an attribute of a `Data`.
-  ///
-  /// `owner.tfAddress` MUST already start with `data.` — the caller
-  /// (typically `Data.tfAddress`) is responsible for that prefix.
-  static TfRef<T> data<T>(TfAddressed owner, String attr) =>
-      DataRef<T>._(owner, attr);
 
   /// Whole-resource reference (no attribute suffix). Used in reference-only
   /// positions like `replace_triggered_by = [<address>]` and
@@ -62,22 +56,6 @@ sealed class TfRef<T> extends TfArg<T> implements Sensitive<T>, ReplaceTrigger {
 @immutable
 final class AttributeRef<T> extends TfRef<T> {
   const AttributeRef._(this.owner, this.attr);
-
-  final TfAddressed owner;
-  final String attr;
-
-  @override
-  String get interpolation => '\${${owner.tfAddress}.$attr}';
-
-  @override
-  String get bareAddress => '${owner.tfAddress}.$attr';
-}
-
-/// Public for sealed pattern matching, but constructor is private — only
-/// `TfRef.data()` may construct instances.
-@immutable
-final class DataRef<T> extends TfRef<T> {
-  const DataRef._(this.owner, this.attr);
 
   final TfAddressed owner;
   final String attr;

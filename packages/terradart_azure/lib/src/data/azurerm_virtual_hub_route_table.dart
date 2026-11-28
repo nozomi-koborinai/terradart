@@ -17,6 +17,7 @@ final class DataAzurermVirtualHubRouteTable extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> virtualHubName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

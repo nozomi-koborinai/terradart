@@ -22,6 +22,7 @@ final class DataCloudflareLogExplorerDatasets extends Data {
     TfArg<bool>? includeZones,
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

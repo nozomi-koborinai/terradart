@@ -63,6 +63,7 @@ final class DataCloudflareZeroTrustCwsRegoModules extends Data {
     TfArg<String>? name,
     DataZeroTrustCwsRegoModulesOrder? order,
     TfArg<String>? packagePath,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

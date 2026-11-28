@@ -38,6 +38,7 @@ final class DataCloudflareUserGroupMembers extends Data {
     DataUserGroupMembersDirection? direction,
     TfArg<String>? fuzzyEmail,
     required RefTo<CloudflareUserGroup> userGroupId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

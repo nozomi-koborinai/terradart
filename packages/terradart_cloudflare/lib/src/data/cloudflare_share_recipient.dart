@@ -18,6 +18,7 @@ final class DataCloudflareShareRecipient extends Data {
     TfArg<bool>? includeResources,
     required TfArg<String> recipientId,
     required TfArg<String> shareId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

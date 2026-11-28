@@ -50,6 +50,24 @@ void main() {
       expect(block['required_version'], equals('>= 1.6.0'));
     });
 
+    test('requiredVersion: null writes no required_version', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+        requiredVersion: null,
+      );
+      expect(stack.synth().tfJson['terraform'], {
+        'required_providers': {
+          'google': {'source': 'hashicorp/google', 'version': '~> 7.0'},
+        },
+      });
+    });
+
     test('GCS backend is included when configured', () {
       final stack = TestStack(
         providers: const [
@@ -702,7 +720,7 @@ void main() {
     });
 
     test('data ref returns owner.tfAddress + attr (no \${})', () {
-      final ref = TfRef.data<String>(
+      final ref = TfRef.attribute<String>(
         const AddressStub('data.google_project.this'),
         'project_id',
       );

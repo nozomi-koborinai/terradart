@@ -20,6 +20,7 @@ final class DataGoogleArtifactRegistryPythonPackages extends Data {
     required TfArg<String> location,
     TfArg<String>? project,
     required RefTo<GoogleArtifactRegistryRepository> repositoryId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

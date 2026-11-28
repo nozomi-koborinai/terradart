@@ -17,6 +17,7 @@ final class DataGoogleEndpointsServiceIamPolicy extends Data {
   DataGoogleEndpointsServiceIamPolicy(
     super.localName, {
     required TfArg<String> serviceName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'service_name': serviceName});

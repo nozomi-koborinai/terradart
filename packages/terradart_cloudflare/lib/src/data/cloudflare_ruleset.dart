@@ -18,6 +18,7 @@ final class DataCloudflareRuleset extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? rulesetId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

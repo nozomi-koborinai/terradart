@@ -19,6 +19,7 @@ final class DataGooglePubsubTopicIamPolicy extends Data {
     super.localName, {
     TfArg<String>? project,
     required RefTo<GooglePubsubTopic> topic,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

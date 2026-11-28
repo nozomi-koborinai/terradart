@@ -19,6 +19,7 @@ final class DataCloudflareEmailRoutingSettings extends Data {
   DataCloudflareEmailRoutingSettings(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

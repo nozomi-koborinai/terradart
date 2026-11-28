@@ -16,6 +16,7 @@ final class DataAzurermStorageBlob extends Data {
     TfArg<Map<String, String>>? metadata,
     required TfArg<String> name,
     required TfArg<String> storageContainerId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

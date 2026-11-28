@@ -21,6 +21,7 @@ final class DataCloudflareMagicWanGreTunnel extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> greTunnelId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

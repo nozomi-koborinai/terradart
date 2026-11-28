@@ -38,6 +38,7 @@ final class DataAwsDevopsguruNotificationChannel extends Data {
     TfArg<String>? region,
     List<DataDevopsguruNotificationChannelFilters>? filters,
     List<DataDevopsguruNotificationChannelSns>? sns,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

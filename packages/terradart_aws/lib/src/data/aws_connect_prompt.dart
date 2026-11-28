@@ -15,6 +15,7 @@ final class DataAwsConnectPrompt extends Data {
     required TfArg<String> instanceId,
     required TfArg<String> name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

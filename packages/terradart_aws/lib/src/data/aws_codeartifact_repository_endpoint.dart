@@ -17,6 +17,7 @@ final class DataAwsCodeartifactRepositoryEndpoint extends Data {
     required TfArg<String> format,
     TfArg<String>? region,
     required TfArg<String> repository,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

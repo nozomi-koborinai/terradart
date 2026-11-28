@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustRiskBehavior extends Data {
   DataCloudflareZeroTrustRiskBehavior(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -23,6 +23,7 @@ final class DataCloudflareWorkersCronTrigger extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> scriptName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

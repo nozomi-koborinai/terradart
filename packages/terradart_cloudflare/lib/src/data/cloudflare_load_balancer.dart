@@ -22,6 +22,7 @@ final class DataCloudflareLoadBalancer extends Data {
     TfArg<Map<String, List<String>>>? popPools,
     TfArg<Map<String, List<String>>>? regionPools,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

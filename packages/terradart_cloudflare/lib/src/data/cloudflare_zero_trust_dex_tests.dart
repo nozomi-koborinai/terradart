@@ -39,6 +39,7 @@ final class DataCloudflareZeroTrustDexTests extends Data {
     DataZeroTrustDexTestsKind? kind,
     TfArg<num>? maxItems,
     TfArg<String>? testName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

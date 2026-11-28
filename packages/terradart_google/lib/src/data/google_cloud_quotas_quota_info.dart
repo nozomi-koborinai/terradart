@@ -18,6 +18,7 @@ final class DataGoogleCloudQuotasQuotaInfo extends Data {
     required TfArg<String> parent,
     required TfArg<String> quotaId,
     required TfArg<String> service,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -15,6 +15,7 @@ final class DataAwsCloudfrontDistribution extends Data {
     super.localName, {
     required TfArg<String> id,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'id': id, 'tags': ?tags});

@@ -28,7 +28,6 @@ final class FirebaseAppBackendStack extends Stack {
           GoogleBetaProvider(project: projectId, region: 'asia-northeast1'),
         ],
         backend: const LocalBackend(),
-        devMode: true,
       ) {
     // -------------------------------------------------------------------------
     // 1. Enable required APIs

@@ -22,6 +22,7 @@ final class DataCloudflareFirewallRules extends Data {
     TfArg<num>? maxItems,
     TfArg<bool>? paused,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

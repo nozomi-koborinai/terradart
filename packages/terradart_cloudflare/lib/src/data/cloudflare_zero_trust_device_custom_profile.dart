@@ -54,6 +54,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? policyId,
     DataZeroTrustDeviceCustomProfileFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

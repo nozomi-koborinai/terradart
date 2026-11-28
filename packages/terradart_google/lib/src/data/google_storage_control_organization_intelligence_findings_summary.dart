@@ -54,6 +54,7 @@ final class DataGoogleStorageControlOrganizationIntelligenceFindingsSummary
     required TfArg<String> organization,
     DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope?
     resourceScope,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -738,57 +738,26 @@ void main() {
       },
     );
 
-    test(
-      'emit supportsDeletionProtection override present when schema has deletion_protection',
-      () {
-        final emitter = WrapperEmitter(
-          overrides: overrides,
-          rawResourceSchemas: _perResourceRawBlocks,
-        );
-        const def = ResourceDef(
-          terraformType: 'google_capable_resource',
-          root: BlockDef(
-            attributes: [
-              Attribute(
-                name: 'deletion_protection',
-                type: BoolType(),
-                constraints: Constraints(optional: true),
-              ),
-            ],
-          ),
-        );
-        final out = emitter.emit(def, providerSource: 'hashicorp/google');
-        const expected =
-            '  @override\n'
-            '  bool get supportsDeletionProtection => true;\n';
-        expect(out, contains(expected));
-        expect(out, isNot(contains('${r'$'}supportsDeletionProtection')));
-      },
-    );
-
-    test(
-      'emit supportsDeletionProtection override absent when schema lacks deletion_protection',
-      () {
-        final emitter = WrapperEmitter(
-          overrides: overrides,
-          rawResourceSchemas: _perResourceRawBlocks,
-        );
-        const def = ResourceDef(
-          terraformType: 'google_incapable_resource',
-          root: BlockDef(
-            attributes: [
-              Attribute(
-                name: 'name',
-                type: StringType(),
-                constraints: Constraints(required: true),
-              ),
-            ],
-          ),
-        );
-        final out = emitter.emit(def, providerSource: 'hashicorp/google');
-        expect(out, isNot(contains('supportsDeletionProtection')));
-      },
-    );
+    test('a schema with deletion_protection emits no capability override', () {
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
+      const def = ResourceDef(
+        terraformType: 'google_capable_resource',
+        root: BlockDef(
+          attributes: [
+            Attribute(
+              name: 'deletion_protection',
+              type: BoolType(),
+              constraints: Constraints(optional: true),
+            ),
+          ],
+        ),
+      );
+      final out = emitter.emit(def, providerSource: 'hashicorp/google');
+      expect(out, isNot(contains('supportsDeletionProtection')));
+    });
 
     test('emit constructor excludes computed-only, id, and timeouts', () {
       final def = _loadGooglePubsubTopicV7();

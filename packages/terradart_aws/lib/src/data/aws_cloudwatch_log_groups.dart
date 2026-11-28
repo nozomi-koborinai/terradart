@@ -14,6 +14,7 @@ final class DataAwsCloudwatchLogGroups extends Data {
     super.localName, {
     TfArg<String>? logGroupNamePrefix,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

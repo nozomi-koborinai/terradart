@@ -131,6 +131,7 @@ final class DataCloudflarePageShieldCookiesList extends Data {
     TfArg<bool>? secure,
     DataPageShieldCookiesListType? type,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

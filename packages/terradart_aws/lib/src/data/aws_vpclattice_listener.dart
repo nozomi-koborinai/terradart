@@ -17,6 +17,7 @@ final class DataAwsVpclatticeListener extends Data {
     TfArg<String>? region,
     required TfArg<String> serviceIdentifier,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

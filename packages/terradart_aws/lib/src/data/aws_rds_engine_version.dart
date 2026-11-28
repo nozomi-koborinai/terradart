@@ -43,6 +43,7 @@ final class DataAwsRdsEngineVersion extends Data {
     TfArg<String>? region,
     TfArg<String>? version,
     List<DataRdsEngineVersionFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

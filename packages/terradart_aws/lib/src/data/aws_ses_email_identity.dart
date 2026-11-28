@@ -15,6 +15,7 @@ final class DataAwsSesEmailIdentity extends Data {
     super.localName, {
     required TfArg<String> email,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

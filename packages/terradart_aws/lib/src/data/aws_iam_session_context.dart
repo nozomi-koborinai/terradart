@@ -13,6 +13,7 @@ final class DataAwsIamSessionContext extends Data {
   DataAwsIamSessionContext(
     super.localName, {
     required TfArg<String> arn,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'arn': arn});

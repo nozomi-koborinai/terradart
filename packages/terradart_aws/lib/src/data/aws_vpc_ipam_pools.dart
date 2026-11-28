@@ -32,6 +32,7 @@ final class DataAwsVpcIpamPools extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataVpcIpamPoolsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

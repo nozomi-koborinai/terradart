@@ -19,6 +19,7 @@ final class DataGoogleStorageControlProjectIntelligenceConfig extends Data {
   DataGoogleStorageControlProjectIntelligenceConfig(
     super.localName, {
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': name});

@@ -20,6 +20,7 @@ final class DataAppwritePostgresqlExtensions extends Data {
     super.localName, {
     required RefTo<AppwritePostgresqlDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -22,6 +22,7 @@ final class DataGoogleSqlDatabaseInstanceLatestRecoveryTime extends Data {
     required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? project,
     TfArg<String>? sourceInstanceDeletionTime,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

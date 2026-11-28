@@ -22,6 +22,7 @@ final class DataGoogleDiscoveryEngineSearchEngineIamPolicy extends Data {
     required TfArg<String> engineId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -21,6 +21,7 @@ final class DataGoogleOracleDatabaseCloudExadataInfrastructure extends Data {
     required TfArg<String> cloudExadataInfrastructureId,
     required TfArg<String> location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

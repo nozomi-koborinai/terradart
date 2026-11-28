@@ -15,6 +15,7 @@ final class DataAwsCloudfrontFunction extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> stage,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': name, 'stage': stage});

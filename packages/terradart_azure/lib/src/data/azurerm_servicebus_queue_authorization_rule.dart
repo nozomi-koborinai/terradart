@@ -26,6 +26,7 @@ final class DataAzurermServicebusQueueAuthorizationRule extends Data {
     TfArg<String>? queueId,
     TfArg<String>? queueName,
     RefTo<AzurermResourceGroup>? resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

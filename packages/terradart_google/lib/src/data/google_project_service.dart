@@ -19,6 +19,7 @@ final class DataGoogleProjectService extends Data {
     super.localName, {
     TfArg<String>? project,
     required GoogleApi service,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

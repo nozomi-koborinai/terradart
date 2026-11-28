@@ -717,9 +717,6 @@ final class GoogleDataprocMetastoreService extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataprocMetastoreServiceSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleDataprocMetastoreService>`.
   RefTo<GoogleDataprocMetastoreService> get ref => RefTo.of(this);

@@ -14,6 +14,7 @@ final class DataCloudflareOrganizationProfile extends Data {
   DataCloudflareOrganizationProfile(
     super.localName, {
     required TfArg<String> organizationId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

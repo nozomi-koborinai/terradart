@@ -16,6 +16,7 @@ final class DataCloudflareFieldExtractor extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> extractor,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

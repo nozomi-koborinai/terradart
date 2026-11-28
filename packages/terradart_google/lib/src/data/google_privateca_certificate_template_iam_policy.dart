@@ -21,6 +21,7 @@ final class DataGooglePrivatecaCertificateTemplateIamPolicy extends Data {
     required TfArg<String> certificateTemplate,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

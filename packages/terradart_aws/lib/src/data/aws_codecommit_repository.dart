@@ -15,6 +15,7 @@ final class DataAwsCodecommitRepository extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> repositoryName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

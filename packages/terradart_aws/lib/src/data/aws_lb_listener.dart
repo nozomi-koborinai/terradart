@@ -18,6 +18,7 @@ final class DataAwsLbListener extends Data {
     TfArg<num>? port,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

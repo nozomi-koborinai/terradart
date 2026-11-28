@@ -18,6 +18,7 @@ final class DataGoogleBigqueryDataset extends Data {
     super.localName, {
     required TfArg<String> datasetId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

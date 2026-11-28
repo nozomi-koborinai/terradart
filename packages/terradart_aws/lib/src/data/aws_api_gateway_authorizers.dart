@@ -14,6 +14,7 @@ final class DataAwsApiGatewayAuthorizers extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> restApiId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

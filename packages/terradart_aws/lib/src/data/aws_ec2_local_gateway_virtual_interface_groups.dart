@@ -37,6 +37,7 @@ final class DataAwsEc2LocalGatewayVirtualInterfaceGroups extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2LocalGatewayVirtualInterfaceGroupsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

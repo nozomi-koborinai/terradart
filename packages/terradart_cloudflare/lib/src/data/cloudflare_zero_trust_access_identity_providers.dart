@@ -25,6 +25,7 @@ final class DataCloudflareZeroTrustAccessIdentityProviders extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? scimEnabled,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

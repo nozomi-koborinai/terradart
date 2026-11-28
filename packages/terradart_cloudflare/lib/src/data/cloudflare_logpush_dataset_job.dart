@@ -190,6 +190,7 @@ final class DataCloudflareLogpushDatasetJob extends Data {
     RefTo<CloudflareAccount>? accountId,
     DataLogpushDatasetJobDatasetId? datasetId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

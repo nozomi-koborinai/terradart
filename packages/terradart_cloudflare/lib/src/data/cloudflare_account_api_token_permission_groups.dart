@@ -21,6 +21,7 @@ final class DataCloudflareAccountApiTokenPermissionGroups extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? name,
     TfArg<String>? scope,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

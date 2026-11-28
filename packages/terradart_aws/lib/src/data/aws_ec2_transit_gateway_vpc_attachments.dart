@@ -35,6 +35,7 @@ final class DataAwsEc2TransitGatewayVpcAttachments extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataEc2TransitGatewayVpcAttachmentsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

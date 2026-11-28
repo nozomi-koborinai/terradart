@@ -35,6 +35,7 @@ final class DataAwsEbsVolume extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEbsVolumeFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

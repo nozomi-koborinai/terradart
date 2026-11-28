@@ -23,6 +23,7 @@ final class DataAzurermServicebusNamespaceDisasterRecoveryConfig extends Data {
     TfArg<String>? aliasAuthorizationRuleId,
     required TfArg<String> name,
     required TfArg<String> namespaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

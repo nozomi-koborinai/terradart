@@ -2581,9 +2581,6 @@ final class GoogleOracleDatabaseGoldengateConnection extends Resource {
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseGoldengateConnectionSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleOracleDatabaseGoldengateConnection>`.
   RefTo<GoogleOracleDatabaseGoldengateConnection> get ref => RefTo.of(this);

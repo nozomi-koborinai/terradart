@@ -85,6 +85,7 @@ final class DataAzurermSentinelAlertRuleTemplate extends Data {
     super.localName, {
     required DataSentinelAlertRuleTemplateIdentifier identifier,
     required TfArg<String> logAnalyticsWorkspaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

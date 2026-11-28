@@ -16,6 +16,7 @@ final class DataAwsBackupSelection extends Data {
     required TfArg<String> planId,
     TfArg<String>? region,
     required TfArg<String> selectionId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

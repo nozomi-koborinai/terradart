@@ -15,6 +15,7 @@ final class DataGoogleMonitoringUptimeCheckIps extends Data {
 
   DataGoogleMonitoringUptimeCheckIps(
     super.localName, {
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {});

@@ -174,6 +174,7 @@ final class DataCloudflareShare extends Data {
     DataShareIncludeTagsFrom? includeTagsFrom,
     TfArg<String>? shareId,
     DataShareFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

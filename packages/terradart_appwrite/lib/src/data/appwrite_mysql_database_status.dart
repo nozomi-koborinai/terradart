@@ -23,6 +23,7 @@ final class DataAppwriteMysqlDatabaseStatus extends Data {
     super.localName, {
     required RefTo<AppwriteMysqlDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

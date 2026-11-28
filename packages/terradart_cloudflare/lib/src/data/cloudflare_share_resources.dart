@@ -79,6 +79,7 @@ final class DataCloudflareShareResources extends Data {
     DataShareResourcesResourceType? resourceType,
     required TfArg<String> shareId,
     DataShareResourcesStatus? status,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

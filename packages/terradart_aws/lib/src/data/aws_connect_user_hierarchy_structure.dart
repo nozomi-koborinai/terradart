@@ -15,6 +15,7 @@ final class DataAwsConnectUserHierarchyStructure extends Data {
     super.localName, {
     required TfArg<String> instanceId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -15,6 +15,7 @@ final class DataAwsElasticacheReplicationGroup extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> replicationGroupId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

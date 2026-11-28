@@ -18,6 +18,7 @@ final class DataGoogleHealthcareConsentStoreIamPolicy extends Data {
     super.localName, {
     required TfArg<String> consentStoreId,
     required TfArg<String> dataset,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

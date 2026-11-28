@@ -62,7 +62,7 @@ void main() {
   test('a data source reference reads the data block', () {
     final ref = _FakeNetworkData('default').ref.encodeAs('name');
     expect(ref.toTfJson(), r'${data.fake_network.default.name}');
-    expect(ref, isA<DataRef<String>>());
+    expect(ref, isA<AttributeRef<String>>());
   });
 
   test('pinned keeps its attribute whatever the argument picks', () {

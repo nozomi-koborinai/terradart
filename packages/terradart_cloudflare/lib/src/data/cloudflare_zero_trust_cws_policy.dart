@@ -89,6 +89,7 @@ final class DataCloudflareZeroTrustCwsPolicy extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? policyId,
     DataZeroTrustCwsPolicyFindOneBy? findOneBy,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -35,6 +35,7 @@ final class DataAwsSecretsmanagerSecrets extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataSecretsmanagerSecretsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

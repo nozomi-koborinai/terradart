@@ -60,6 +60,7 @@ final class DataCloudflareWorkers extends Data {
     TfArg<num>? maxItems,
     DataWorkersOrder? order,
     DataWorkersOrderBy? orderBy,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

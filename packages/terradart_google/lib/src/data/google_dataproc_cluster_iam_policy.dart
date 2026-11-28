@@ -19,6 +19,7 @@ final class DataGoogleDataprocClusterIamPolicy extends Data {
     required TfArg<String> cluster,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataGoogleOrganizationIamCustomRole extends Data {
     super.localName, {
     required TfArg<String> orgId,
     required TfArg<String> roleId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

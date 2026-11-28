@@ -174,6 +174,58 @@ their arguments the way generated ones do.
 | `GoogleComputeRoute('via_tunnel', nextHop: .vpnTunnel(TfArg.literal('projects/p/regions/r/vpnTunnels/t')), ...)` | `GoogleComputeRoute('via_tunnel', nextHop: .vpnTunnel(RefTo.literal('projects/p/regions/r/vpnTunnels/t')), ...)` |
 | `GoogleApigeeSecurityMonitoringCondition('smc', conditionId: ..., orgId: ..., profile: ..., scope: ...)` | `GoogleApigeeSecurityMonitoringCondition('smc', conditionId: ..., orgId: ..., profile: ..., scope: ..., includeAllResources: const ApigeeSecurityMonitoringConditionIncludeAllResources())` |
 
+### `terradart_core`: no hidden synth behavior
+
+**Breaking (`terradart_core`, every provider package).** Synth now writes
+what the Stack says and nothing else, and it reports at synth the outputs,
+references and triggers Terraform would reject at plan.
+
+- `Stack.devMode` and `Resource.supportsDeletionProtection` are removed.
+  Synth writes `deletion_protection` only on a resource that sets it, so a
+  disposable Stack sets it to `false` on each such resource.
+- `DataRef` and `TfRef.data` are removed. An attribute of a data source is
+  an `AttributeRef`, like one of a resource or a module call.
+- `defaultValue` of `Stack.variable` takes `null` as a value: it writes
+  `"default": null` and makes the variable optional, where it used to write
+  nothing. A `null` default needs a nullable type, and a default that is not
+  a `T` throws `ArgumentError`. `TfVariable.hasDefault` tells the two
+  apart, and `TfType.optional` writes `optional(string, null)` for a `null`
+  default. `terradart migrate` declares a `default = null` variable with a
+  nullable type.
+- `TfType.optional` writes its default in HCL syntax, so a `${` or `%{` in a
+  default string is text Terraform keeps, where it used to be a template
+  Terraform rejected or evaluated.
+- `Resource.argMap` is a copy taken when the resource is built; writing to
+  it throws `UnsupportedError`.
+- A literal string is a Terraform template, so a `${var.<name>}` in it is
+  an `UndeclaredVariable` when the Stack does not declare the variable.
+  Escape text that holds `${` as `$${`.
+- `SynthIssue` is no longer sealed, so a later release can add an issue
+  without breaking a build: a `switch` over issues needs a default case.
+- An output that is not marked sensitive and reads a sensitive variable or
+  field, directly or inside an expression, is a `SensitiveOutput` at synth.
+  `addOutput` no longer throws `ArgumentError` for it.
+- Synth also reports a sensitive input of a data source set to a literal
+  (`SensitiveLiteral`), a reference to a block of any provider that was
+  never added (`UnregisteredReference`), and a module output in
+  `replaceTriggeredBy` (`InvalidLifecycle`).
+
+New, not breaking: a `null` `requiredVersion` writes no `required_version`
+(the default stays `'>= 1.11.0'`), and every generated data source takes
+`dependsOn`, which synth now writes as `depends_on`.
+
+| Before | After |
+|---|---|
+| `Stack.devMode` | `GoogleSecretManagerSecret('db_password', secretId: .literal('db-password'), replication: const .auto(.new()), deletionProtection: .literal(false))` |
+| `DataRef<String>` | `AttributeRef<String>` |
+| `TfRef.data<String>(project, 'number')` | `TfRef.attribute<String>(project, 'number')` |
+| `stack.variable<String>('suffix', defaultValue: null)`, a required variable | `stack.variable<String>('suffix')` |
+| a variable that defaults to `null` | `stack.variable<String?>('suffix', defaultValue: null)` |
+| `topic.argMap['labels'] = TfArg.literal({'env': 'prod'})` | `GooglePubsubTopic('orders', name: .literal('orders'), labels: .literal({'env': 'prod'}))` |
+| `TfArg.literal(r'arn:aws:iam::*:user/${var.user}')`, the text itself | `TfArg.literal(r'arn:aws:iam::*:user/$${var.user}')` |
+| a `switch` that lists every `SynthIssue` subtype | `switch (issue as SynthIssue) { UndeclaredVariable(:final name) => name, _ => issue.message }` |
+| `ArgumentError` from `stack.addOutput('db_password', dbPassword)` | `stack.addOutput('db_password', dbPassword, sensitive: true)` |
+
 ### Azure provider 5.15.0
 
 **Breaking (`terradart_azure`).** Provider 5.15.0 adds `managed_rules.exception`

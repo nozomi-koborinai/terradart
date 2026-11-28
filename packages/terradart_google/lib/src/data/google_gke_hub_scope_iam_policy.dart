@@ -18,6 +18,7 @@ final class DataGoogleGkeHubScopeIamPolicy extends Data {
     super.localName, {
     TfArg<String>? project,
     required TfArg<String> scopeId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

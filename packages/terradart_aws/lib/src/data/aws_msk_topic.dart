@@ -16,6 +16,7 @@ final class DataAwsMskTopic extends Data {
     required TfArg<String> clusterArn,
     required TfArg<String> name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

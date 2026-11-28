@@ -21,6 +21,7 @@ final class DataCloudflareQueueConsumer extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> queueId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

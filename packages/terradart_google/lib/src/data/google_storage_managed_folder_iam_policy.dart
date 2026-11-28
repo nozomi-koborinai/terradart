@@ -19,6 +19,7 @@ final class DataGoogleStorageManagedFolderIamPolicy extends Data {
     super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> managedFolder,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

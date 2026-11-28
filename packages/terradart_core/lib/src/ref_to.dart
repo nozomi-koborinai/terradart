@@ -140,11 +140,10 @@ extension type const RefTo<R extends Resource>._(_RefSource _source) {
   TfArg<String> encodeAs(String attribute) {
     final arg = _source.arg;
     if (arg != null) return arg;
-    final owner = _source.owner!;
-    final attr = _source.attribute ?? attribute;
-    return owner is Data
-        ? TfRef.data<String>(owner, attr)
-        : TfRef.attribute<String>(owner, attr);
+    return TfRef.attribute<String>(
+      _source.owner!,
+      _source.attribute ?? attribute,
+    );
   }
 
   /// [attribute] of the referenced block, or null for a reference built
@@ -152,7 +151,6 @@ extension type const RefTo<R extends Resource>._(_RefSource _source) {
   /// child (`location`, `project`) this way when the caller sets none.
   TfArg<String>? alsoAs(String attribute) => switch (_source.owner) {
     null => null,
-    final Data owner => TfRef.data<String>(owner, attribute),
     final owner => TfRef.attribute<String>(owner, attribute),
   };
 }

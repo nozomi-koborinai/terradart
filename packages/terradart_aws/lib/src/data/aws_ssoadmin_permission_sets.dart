@@ -14,6 +14,7 @@ final class DataAwsSsoadminPermissionSets extends Data {
     super.localName, {
     required TfArg<String> instanceArn,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -85,6 +85,7 @@ final class DataAzurermPolicyDefinition extends Data {
     super.localName, {
     required DataPolicyDefinitionIdentifier identifier,
     TfArg<String>? managementGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

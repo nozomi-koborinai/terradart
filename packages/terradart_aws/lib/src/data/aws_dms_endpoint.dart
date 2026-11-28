@@ -16,6 +16,7 @@ final class DataAwsDmsEndpoint extends Data {
     required TfArg<String> endpointId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

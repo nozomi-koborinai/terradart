@@ -35,6 +35,7 @@ final class DataAwsLicensemanagerGrants extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataLicensemanagerGrantsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

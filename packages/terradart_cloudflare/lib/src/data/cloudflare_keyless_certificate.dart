@@ -31,6 +31,7 @@ final class DataCloudflareKeylessCertificate extends Data {
     super.localName, {
     required TfArg<String> keylessCertificateId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

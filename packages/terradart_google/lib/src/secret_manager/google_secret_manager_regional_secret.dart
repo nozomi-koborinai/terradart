@@ -149,9 +149,6 @@ final class GoogleSecretManagerRegionalSecret extends Resource {
   Set<String> get sensitiveFields =>
       _googleSecretManagerRegionalSecretSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleSecretManagerRegionalSecret>`.
   RefTo<GoogleSecretManagerRegionalSecret> get ref => RefTo.of(this);

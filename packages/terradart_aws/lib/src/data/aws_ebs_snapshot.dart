@@ -38,6 +38,7 @@ final class DataAwsEbsSnapshot extends Data {
     TfArg<List<String>>? snapshotIds,
     TfArg<Map<String, String>>? tags,
     List<DataEbsSnapshotFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

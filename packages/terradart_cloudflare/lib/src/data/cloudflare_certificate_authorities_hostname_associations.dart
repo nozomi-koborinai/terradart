@@ -23,6 +23,7 @@ final class DataCloudflareCertificateAuthoritiesHostnameAssociations
     super.localName, {
     TfArg<String>? mtlsCertificateId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

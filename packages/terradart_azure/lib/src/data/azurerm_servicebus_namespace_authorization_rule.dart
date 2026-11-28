@@ -24,6 +24,7 @@ final class DataAzurermServicebusNamespaceAuthorizationRule extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> namespaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

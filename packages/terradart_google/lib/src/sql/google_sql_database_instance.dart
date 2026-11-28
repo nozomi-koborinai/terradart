@@ -1662,9 +1662,6 @@ final class GoogleSqlDatabaseInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSqlDatabaseInstanceSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleSqlDatabaseInstance>`.
   RefTo<GoogleSqlDatabaseInstance> get ref => RefTo.of(this);

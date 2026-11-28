@@ -17,6 +17,7 @@ final class DataGoogleTagsTagValueIamPolicy extends Data {
   DataGoogleTagsTagValueIamPolicy(
     super.localName, {
     required TfArg<String> tagValue,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'tag_value': tagValue});

@@ -17,6 +17,7 @@ final class DataAwsVpcIpamPreviewNextCidr extends Data {
     required TfArg<String> ipamPoolId,
     TfArg<num>? netmaskLength,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -32,6 +32,7 @@ final class DataAwsEmrReleaseLabels extends Data {
     super.localName, {
     TfArg<String>? region,
     DataEmrReleaseLabelsFilters? filters,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustConnectivitySettings extends Data {
   DataCloudflareZeroTrustConnectivitySettings(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

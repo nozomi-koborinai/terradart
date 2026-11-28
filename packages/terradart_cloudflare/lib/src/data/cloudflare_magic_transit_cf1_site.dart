@@ -21,6 +21,7 @@ final class DataCloudflareMagicTransitCf1Site extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> cf1SiteId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

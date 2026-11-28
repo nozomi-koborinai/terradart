@@ -21,6 +21,7 @@ final class DataGoogleParameterManagerParameterVersion extends Data {
     required TfArg<String> parameter,
     required TfArg<String> parameterVersionId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

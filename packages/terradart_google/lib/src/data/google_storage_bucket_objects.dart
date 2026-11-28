@@ -19,6 +19,7 @@ final class DataGoogleStorageBucketObjects extends Data {
     required RefTo<GoogleStorageBucket> bucket,
     TfArg<String>? matchGlob,
     TfArg<String>? prefix,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

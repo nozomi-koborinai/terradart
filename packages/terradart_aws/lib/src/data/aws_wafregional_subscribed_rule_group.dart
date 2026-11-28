@@ -15,6 +15,7 @@ final class DataAwsWafregionalSubscribedRuleGroup extends Data {
     TfArg<String>? metricName,
     TfArg<String>? name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

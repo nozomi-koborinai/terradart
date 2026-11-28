@@ -17,6 +17,7 @@ final class DataGoogleAccessContextManagerSupportedServices extends Data {
 
   DataGoogleAccessContextManagerSupportedServices(
     super.localName, {
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {});

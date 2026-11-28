@@ -21,6 +21,7 @@ final class DataGoogleWorkstationsWorkstationIamPolicy extends Data {
     required TfArg<String> workstationClusterId,
     required TfArg<String> workstationConfigId,
     required TfArg<String> workstationId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

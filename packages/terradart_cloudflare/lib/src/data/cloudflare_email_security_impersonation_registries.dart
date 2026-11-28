@@ -116,6 +116,7 @@ final class DataCloudflareEmailSecurityImpersonationRegistries extends Data {
     DataEmailSecurityImpersonationRegistriesOrder? order,
     DataEmailSecurityImpersonationRegistriesProvenance? provenance,
     TfArg<String>? search,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -33,6 +33,7 @@ final class DataAwsSsmPatchBaselines extends Data {
     TfArg<bool>? defaultBaselines,
     TfArg<String>? region,
     List<DataSsmPatchBaselinesFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

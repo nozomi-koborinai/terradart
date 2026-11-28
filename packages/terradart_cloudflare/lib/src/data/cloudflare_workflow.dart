@@ -34,6 +34,7 @@ final class DataCloudflareWorkflow extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? workflowName,
     DataWorkflowFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

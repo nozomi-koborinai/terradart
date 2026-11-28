@@ -15,6 +15,7 @@ final class DataAwsIamRolePolicyAttachments extends Data {
     super.localName, {
     TfArg<String>? pathPrefix,
     required RefTo<AwsIamRole> roleName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

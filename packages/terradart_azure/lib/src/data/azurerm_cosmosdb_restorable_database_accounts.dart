@@ -15,6 +15,7 @@ final class DataAzurermCosmosdbRestorableDatabaseAccounts extends Data {
     super.localName, {
     required TfArg<String> location,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsKmsCustomKeyStore extends Data {
     TfArg<String>? customKeyStoreId,
     TfArg<String>? customKeyStoreName,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

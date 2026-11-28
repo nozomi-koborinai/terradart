@@ -82,6 +82,7 @@ final class DataCloudflareCloudforceOneRequests extends Data {
     TfArg<String>? sortBy,
     DataCloudforceOneRequestsSortOrder? sortOrder,
     DataCloudforceOneRequestsStatus? status,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

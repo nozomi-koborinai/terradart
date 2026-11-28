@@ -14,6 +14,7 @@ final class DataAwsMqBrokerEngineTypes extends Data {
     super.localName, {
     TfArg<String>? engineType,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -93,6 +93,7 @@ final class DataAwsGlueScript extends Data {
     TfArg<String>? region,
     required List<DataGlueScriptDagEdge> dagEdge,
     required List<DataGlueScriptDagNode> dagNode,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

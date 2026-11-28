@@ -17,6 +17,7 @@ final class DataAwsQuicksightAnalysis extends Data {
     TfArg<String>? awsAccountId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

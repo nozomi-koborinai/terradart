@@ -19,6 +19,7 @@ final class DataGoogleDataCatalogTagTemplateIamPolicy extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> tagTemplate,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

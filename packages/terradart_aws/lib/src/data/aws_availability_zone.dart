@@ -36,6 +36,7 @@ final class DataAwsAvailabilityZone extends Data {
     TfArg<String>? state,
     TfArg<String>? zoneId,
     List<DataAvailabilityZoneFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -24,6 +24,7 @@ final class DataCloudflareZeroTrustAccessShortLivedCertificate extends Data {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> appId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

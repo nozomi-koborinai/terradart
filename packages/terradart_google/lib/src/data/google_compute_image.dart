@@ -21,6 +21,7 @@ final class DataGoogleComputeImage extends Data {
     TfArg<bool>? mostRecent,
     TfArg<String>? name,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsKendraExperience extends Data {
     required TfArg<String> experienceId,
     required TfArg<String> indexId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsPrometheusDefaultScraperConfiguration extends Data {
   DataAwsPrometheusDefaultScraperConfiguration(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

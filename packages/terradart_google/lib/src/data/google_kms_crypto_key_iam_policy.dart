@@ -17,6 +17,7 @@ final class DataGoogleKmsCryptoKeyIamPolicy extends Data {
   DataGoogleKmsCryptoKeyIamPolicy(
     super.localName, {
     required TfArg<String> cryptoKeyId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'crypto_key_id': cryptoKeyId});

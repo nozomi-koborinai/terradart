@@ -21,6 +21,7 @@ final class DataAppwriteMongoBackups extends Data {
     required RefTo<AppwriteMongoDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? queries,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

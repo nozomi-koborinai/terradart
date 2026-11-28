@@ -17,6 +17,7 @@ final class DataAwsApiGatewayDomainName extends Data {
     TfArg<String>? domainNameId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

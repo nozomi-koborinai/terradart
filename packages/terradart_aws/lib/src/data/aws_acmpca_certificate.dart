@@ -16,6 +16,7 @@ final class DataAwsAcmpcaCertificate extends Data {
     required TfArg<String> arn,
     required TfArg<String> certificateAuthorityArn,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

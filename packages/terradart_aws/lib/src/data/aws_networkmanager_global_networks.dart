@@ -13,6 +13,7 @@ final class DataAwsNetworkmanagerGlobalNetworks extends Data {
   DataAwsNetworkmanagerGlobalNetworks(
     super.localName, {
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'tags': ?tags});

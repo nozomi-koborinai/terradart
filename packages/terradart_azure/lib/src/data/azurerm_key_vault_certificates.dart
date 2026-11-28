@@ -15,6 +15,7 @@ final class DataAzurermKeyVaultCertificates extends Data {
     super.localName, {
     TfArg<bool>? includePending,
     required RefTo<AzurermKeyVault> keyVaultId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

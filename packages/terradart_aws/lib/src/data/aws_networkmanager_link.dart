@@ -16,6 +16,7 @@ final class DataAwsNetworkmanagerLink extends Data {
     required TfArg<String> globalNetworkId,
     required TfArg<String> linkId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

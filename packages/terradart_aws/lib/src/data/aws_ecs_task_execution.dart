@@ -239,6 +239,7 @@ final class DataAwsEcsTaskExecution extends Data {
     DataEcsTaskExecutionOverrides? overrides,
     List<DataEcsTaskExecutionPlacementConstraints>? placementConstraints,
     List<DataEcsTaskExecutionPlacementStrategy>? placementStrategy,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -22,6 +22,7 @@ final class DataCloudflareMagicTransitSiteLan extends Data {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> lanId,
     required TfArg<String> siteId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

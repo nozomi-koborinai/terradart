@@ -19,6 +19,7 @@ final class DataGoogleGkeHubFeatureIamPolicy extends Data {
     TfArg<String>? location,
     required TfArg<String> name,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

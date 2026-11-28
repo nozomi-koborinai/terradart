@@ -21,6 +21,7 @@ final class DataGoogleComputeInstanceTemplate extends Data {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? selfLinkUnique,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

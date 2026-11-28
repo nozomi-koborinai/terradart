@@ -171,6 +171,7 @@ final class DataAzurermOracleDatabaseSystemVersions extends Data {
     required TfArg<String> location,
     DataOracleDatabaseSystemVersionsStorageManagement? storageManagement,
     TfArg<bool>? upgradeSupported,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

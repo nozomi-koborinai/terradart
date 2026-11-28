@@ -18,6 +18,7 @@ final class DataGoogleCloudAssetSearchAllResources extends Data {
     TfArg<List<String>>? assetTypes,
     TfArg<String>? query,
     required TfArg<String> scope,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

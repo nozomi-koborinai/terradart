@@ -16,6 +16,7 @@ final class DataAwsImagebuilderContainerRecipe extends Data {
     required TfArg<String> arn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

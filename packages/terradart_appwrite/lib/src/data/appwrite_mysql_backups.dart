@@ -21,6 +21,7 @@ final class DataAppwriteMysqlBackups extends Data {
     required RefTo<AppwriteMysqlDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? queries,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

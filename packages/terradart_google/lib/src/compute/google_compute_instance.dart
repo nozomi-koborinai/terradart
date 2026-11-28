@@ -1352,9 +1352,6 @@ final class GoogleComputeInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeInstanceSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleComputeInstance>`.
   RefTo<GoogleComputeInstance> get ref => RefTo.of(this);

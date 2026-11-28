@@ -156,6 +156,130 @@ void main() {
       });
     });
 
+    test('a null default is a default: the variable is optional', () {
+      final stack = TestStack()
+        ..variable<String?>('suffix', defaultValue: null)
+        ..variable<String>('region');
+      expect(stack.variables['suffix']!.toTfJson(), {
+        'type': 'string',
+        'default': null,
+      });
+      expect(stack.variables['suffix']!.hasDefault, isTrue);
+      expect(stack.variables['region']!.toTfJson(), {'type': 'string'});
+      expect(stack.variables['region']!.hasDefault, isFalse);
+    });
+
+    test('a default that is not a T is rejected', () {
+      final stack = TestStack();
+      expect(
+        () => stack.variable<String>('suffix', defaultValue: null),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            contains('variable<String?>'),
+          ),
+        ),
+      );
+      expect(
+        () => stack.variable<num>('replicas', defaultValue: 'two'),
+        throwsArgumentError,
+      );
+      expect(stack.variables, isEmpty);
+    });
+
+    test('an empty list or map literal is a default of any element type', () {
+      final stack = TestStack()
+        ..variable<List<String>>('zones', defaultValue: [])
+        ..variable<Map<String, String>>('labels', defaultValue: {});
+      expect(stack.variables['zones']!.toTfJson()['default'], isEmpty);
+      expect(stack.variables['labels']!.toTfJson()['default'], isEmpty);
+    });
+
+    test('an optional object attribute writes a default only when given', () {
+      final omitted = TfType.optional(TfType.string) as TfOptionalType;
+      final explicitNull =
+          TfType.optional(TfType.string, null) as TfOptionalType;
+      final value = TfType.optional(TfType.string, 'x') as TfOptionalType;
+      expect(
+        [omitted, explicitNull, value].map((t) => (t.hasDefault, t.expression)),
+        [
+          (false, 'optional(string)'),
+          (true, 'optional(string, null)'),
+          (true, 'optional(string, "x")'),
+        ],
+      );
+      expect(
+        const TfType.optional(TfType.string).expression,
+        'optional(string)',
+      );
+      expect(
+        const TfType.optional(TfType.string, null).expression,
+        'optional(string, null)',
+      );
+    });
+
+    test(
+      'an optional default is an HCL literal Terraform reads as the value',
+      () {
+        String optional(TfType type, Object? value) =>
+            TfType.optional(type, value).expression;
+        expect(
+          optional(.map(.string), {'env': 'prod', 'team': 'core'}),
+          'optional(map(string), { "env" = "prod", "team" = "core" })',
+        );
+        expect(
+          optional(.map(.string), <String, String>{}),
+          'optional(map(string), {})',
+        );
+        expect(
+          optional(.object({'a': .string, 'b': .number}), {'a': 'x', 'b': 1}),
+          'optional(object({ a = string, b = number }), { "a" = "x", "b" = 1 })',
+        );
+        expect(
+          optional(.map(.list(.map(.bool))), {
+            'k': [
+              {'on': true},
+            ],
+          }),
+          'optional(map(list(map(bool))), { "k" = [{ "on" = true }] })',
+        );
+        expect(
+          optional(.map(.string), {'my-key': 'v'}),
+          'optional(map(string), { "my-key" = "v" })',
+        );
+        expect(
+          optional(.list(.string), ['a']),
+          'optional(list(string), ["a"])',
+        );
+        expect(optional(.set(.string), {'x'}), 'optional(set(string), ["x"])');
+      },
+    );
+
+    test('an optional default string is text, never a template', () {
+      String optional(Object? value) =>
+          TfType.optional(TfType.map(TfType.string), value).expression;
+      expect(
+        optional({r'${k}': r'${v} %{x} $${y}'}),
+        r'optional(map(string), { "$${k}" = "$${v} %%{x} $$${y}" })',
+      );
+      expect(
+        optional({'q': 'say "hi" \\ \n\t\b\f'}),
+        r'optional(map(string), { "q" = "say \"hi\" \\ \n\t\u0008\u000c" })',
+      );
+    });
+
+    test('the type terradart migrate writes synthesizes the HCL it read', () {
+      const type = TfType.object({
+        'a': .optional(.string),
+        'b': .optional(.string, null),
+      });
+      expect(
+        type.expression,
+        'object({ a = optional(string), b = optional(string, null) })',
+      );
+    });
+
     test('a Set default is written as a JSON list', () {
       final stack = TestStack()
         ..variable<Set<String>>('zones', defaultValue: {'a', 'b'})

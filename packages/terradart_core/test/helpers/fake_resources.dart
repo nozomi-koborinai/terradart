@@ -40,7 +40,6 @@ final class TestStack extends Stack {
     super.backend,
     super.requiredVersion,
     super.appExports,
-    super.devMode,
   });
 }
 
@@ -97,6 +96,7 @@ final class FakeProjectData extends Data {
   FakeProjectData(
     super.localName, {
     required super.argMap,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: 'google_project');

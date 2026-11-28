@@ -56,6 +56,7 @@ final class DataAzurermKeyVaultAccessPolicy extends Data {
   DataAzurermKeyVaultAccessPolicy(
     super.localName, {
     required DataKeyVaultAccessPolicyName name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': name});

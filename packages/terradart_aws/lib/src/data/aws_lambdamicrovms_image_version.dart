@@ -15,6 +15,7 @@ final class DataAwsLambdamicrovmsImageVersion extends Data {
     required TfArg<String> imageIdentifier,
     required TfArg<String> imageVersion,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

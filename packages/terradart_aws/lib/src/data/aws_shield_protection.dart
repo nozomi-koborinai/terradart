@@ -15,6 +15,7 @@ final class DataAwsShieldProtection extends Data {
     super.localName, {
     TfArg<String>? protectionId,
     TfArg<String>? resourceArn,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

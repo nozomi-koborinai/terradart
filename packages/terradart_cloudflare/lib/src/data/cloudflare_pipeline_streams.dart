@@ -55,6 +55,7 @@ final class DataCloudflarePipelineStreams extends Data {
     TfArg<String>? name,
     DataPipelineStreamsOrderBy? orderBy,
     TfArg<String>? pipelineId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

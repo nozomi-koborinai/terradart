@@ -17,6 +17,7 @@ final class DataAwsWafv2WebAcl extends Data {
     TfArg<String>? region,
     TfArg<String>? resourceArn,
     required TfArg<String> scope,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

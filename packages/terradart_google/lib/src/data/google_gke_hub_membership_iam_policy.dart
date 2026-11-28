@@ -19,6 +19,7 @@ final class DataGoogleGkeHubMembershipIamPolicy extends Data {
     TfArg<String>? location,
     required TfArg<String> membershipId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

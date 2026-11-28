@@ -16,6 +16,7 @@ final class DataAwsElasticacheCluster extends Data {
     required TfArg<String> clusterId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

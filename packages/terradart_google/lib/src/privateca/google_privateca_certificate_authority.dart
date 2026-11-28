@@ -805,9 +805,6 @@ final class GooglePrivatecaCertificateAuthority extends Resource {
   Set<String> get sensitiveFields =>
       _googlePrivatecaCertificateAuthoritySensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GooglePrivatecaCertificateAuthority>`.
   RefTo<GooglePrivatecaCertificateAuthority> get ref => RefTo.of(this);

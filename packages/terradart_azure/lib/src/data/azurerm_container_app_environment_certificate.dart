@@ -16,6 +16,7 @@ final class DataAzurermContainerAppEnvironmentCertificate extends Data {
     super.localName, {
     required TfArg<String> containerAppEnvironmentId,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

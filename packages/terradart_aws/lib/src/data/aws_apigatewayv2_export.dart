@@ -19,6 +19,7 @@ final class DataAwsApigatewayv2Export extends Data {
     TfArg<String>? region,
     required TfArg<String> specification,
     TfArg<String>? stageName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

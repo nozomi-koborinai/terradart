@@ -23,6 +23,7 @@ final class DataGoogleArtifactRegistryVersions extends Data {
     TfArg<String>? project,
     required RefTo<GoogleArtifactRegistryRepository> repositoryId,
     TfArg<String>? view,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -17,6 +17,7 @@ final class DataAwsRedshiftOrderableCluster extends Data {
     TfArg<String>? nodeType,
     TfArg<List<String>>? preferredNodeTypes,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -17,6 +17,7 @@ final class DataAwsServicequotasServiceQuota extends Data {
     TfArg<String>? quotaName,
     TfArg<String>? region,
     required TfArg<String> serviceCode,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

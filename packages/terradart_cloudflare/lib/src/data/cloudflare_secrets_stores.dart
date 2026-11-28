@@ -51,6 +51,7 @@ final class DataCloudflareSecretsStores extends Data {
     DataSecretsStoresDirection? direction,
     TfArg<num>? maxItems,
     DataSecretsStoresOrder? order,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

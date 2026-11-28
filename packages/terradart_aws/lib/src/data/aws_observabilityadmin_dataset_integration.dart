@@ -15,6 +15,7 @@ final class DataAwsObservabilityadminDatasetIntegration extends Data {
   DataAwsObservabilityadminDatasetIntegration(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

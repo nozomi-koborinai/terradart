@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustAccessCustomPage extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> customPageId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

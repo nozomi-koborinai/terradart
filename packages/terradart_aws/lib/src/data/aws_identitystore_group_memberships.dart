@@ -15,6 +15,7 @@ final class DataAwsIdentitystoreGroupMemberships extends Data {
     required TfArg<String> groupId,
     required TfArg<String> identityStoreId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

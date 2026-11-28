@@ -35,6 +35,7 @@ final class DataCloudflareMagicTransitSite extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? siteId,
     DataMagicTransitSiteFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

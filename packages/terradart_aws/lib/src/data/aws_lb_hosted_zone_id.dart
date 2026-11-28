@@ -14,6 +14,7 @@ final class DataAwsLbHostedZoneId extends Data {
     super.localName, {
     TfArg<String>? loadBalancerType,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

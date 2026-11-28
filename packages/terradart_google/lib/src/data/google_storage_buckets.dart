@@ -17,6 +17,7 @@ final class DataGoogleStorageBuckets extends Data {
     super.localName, {
     TfArg<String>? prefix,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

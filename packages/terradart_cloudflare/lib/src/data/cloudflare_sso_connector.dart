@@ -20,6 +20,7 @@ final class DataCloudflareSsoConnector extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> ssoConnectorId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

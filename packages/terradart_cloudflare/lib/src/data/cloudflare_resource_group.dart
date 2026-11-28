@@ -19,6 +19,7 @@ final class DataCloudflareResourceGroup extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> resourceGroupId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataAwsAppmeshVirtualRouter extends Data {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

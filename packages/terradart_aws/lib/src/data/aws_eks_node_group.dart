@@ -17,6 +17,7 @@ final class DataAwsEksNodeGroup extends Data {
     required TfArg<String> nodeGroupName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

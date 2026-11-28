@@ -16,6 +16,7 @@ final class DataAwsDmsReplicationSubnetGroup extends Data {
     TfArg<String>? region,
     required TfArg<String> replicationSubnetGroupId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

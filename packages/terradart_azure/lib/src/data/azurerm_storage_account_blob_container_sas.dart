@@ -96,6 +96,7 @@ final class DataAzurermStorageAccountBlobContainerSas extends Data {
     TfArg<String>? ipAddress,
     required TfArg<String> start,
     DataStorageAccountBlobContainerSasPermissions? permissions,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

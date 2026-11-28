@@ -35,6 +35,7 @@ final class DataAzurermDashboardGrafana extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     DataDashboardGrafanaIdentity? identity,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

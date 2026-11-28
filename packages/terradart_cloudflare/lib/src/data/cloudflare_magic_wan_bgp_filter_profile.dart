@@ -16,6 +16,7 @@ final class DataCloudflareMagicWanBgpFilterProfile extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> profileId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

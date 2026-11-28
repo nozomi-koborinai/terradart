@@ -19,6 +19,7 @@ final class DataGoogleColabRuntimeTemplateIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> runtimeTemplate,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

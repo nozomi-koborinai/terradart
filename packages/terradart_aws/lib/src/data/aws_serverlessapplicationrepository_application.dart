@@ -17,6 +17,7 @@ final class DataAwsServerlessapplicationrepositoryApplication extends Data {
     required TfArg<String> applicationId,
     TfArg<String>? region,
     TfArg<String>? semanticVersion,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

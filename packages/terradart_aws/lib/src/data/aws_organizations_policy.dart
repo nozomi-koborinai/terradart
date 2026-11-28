@@ -14,6 +14,7 @@ final class DataAwsOrganizationsPolicy extends Data {
   DataAwsOrganizationsPolicy(
     super.localName, {
     required TfArg<String> policyId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'policy_id': policyId});

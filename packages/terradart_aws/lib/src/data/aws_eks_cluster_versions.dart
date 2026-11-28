@@ -18,6 +18,7 @@ final class DataAwsEksClusterVersions extends Data {
     TfArg<bool>? includeAll,
     TfArg<String>? region,
     TfArg<String>? versionStatus,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

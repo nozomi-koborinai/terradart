@@ -376,7 +376,6 @@ enum _Source { terraform, environment, dartDefine }
         (value: null, problem: problem);
     final (owner, attr) = switch (ref) {
       AttributeRef(:final owner, :final attr) => (owner, attr),
-      DataRef(:final owner, :final attr) => (owner, attr),
       ResourceRef() => throw StateError('unreachable: checked in addConstant'),
     };
     final address = ref.bareAddress;

@@ -29,9 +29,27 @@ void main() {
     expect(dp.argMap['project_id']!.toTfJson(), equals('host-project'));
   });
 
+  test('a data source waits for the blocks in dependsOn', () {
+    final stack = _Stack();
+    final api = stack.add(
+      GoogleProjectService('crm', service: .cloudresourcemanager),
+    );
+    stack.add(DataGoogleProject('current', dependsOn: [api]));
+    final data = stack.synth().tfJson['data'] as Map<String, dynamic>;
+    expect(data['google_project'], {
+      'current': {
+        'depends_on': ['google_project_service.crm'],
+      },
+    });
+  });
+
   test('DataGoogleProject is a Data (not Resource)', () {
     final dp = DataGoogleProject('current');
     expect(dp, isA<Data>());
     expect(dp.tfAddress, equals('data.google_project.current'));
   });
+}
+
+final class _Stack extends Stack {
+  _Stack() : super(providers: [const GoogleProvider(project: 'p')]);
 }

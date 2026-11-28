@@ -17,6 +17,7 @@ final class DataCloudflareZeroTrustDeviceManagedNetworks extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> networkId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

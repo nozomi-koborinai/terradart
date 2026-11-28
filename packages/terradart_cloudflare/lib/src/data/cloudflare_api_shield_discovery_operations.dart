@@ -143,6 +143,7 @@ final class DataCloudflareApiShieldDiscoveryOperations extends Data {
     DataApiShieldDiscoveryOperationsOrigin? origin,
     DataApiShieldDiscoveryOperationsState? state,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

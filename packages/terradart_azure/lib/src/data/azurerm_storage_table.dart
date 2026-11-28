@@ -16,6 +16,7 @@ final class DataAzurermStorageTable extends Data {
     super.localName, {
     required TfArg<String> name,
     required RefTo<AzurermStorageAccount> storageAccountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

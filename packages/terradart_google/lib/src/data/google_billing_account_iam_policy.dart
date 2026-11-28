@@ -17,6 +17,7 @@ final class DataGoogleBillingAccountIamPolicy extends Data {
   DataGoogleBillingAccountIamPolicy(
     super.localName, {
     required TfArg<String> billingAccountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

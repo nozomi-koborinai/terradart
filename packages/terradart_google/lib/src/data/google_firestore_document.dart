@@ -22,6 +22,7 @@ final class DataGoogleFirestoreDocument extends Data {
     required RefTo<GoogleFirestoreDatabase> database,
     required TfArg<String> documentId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

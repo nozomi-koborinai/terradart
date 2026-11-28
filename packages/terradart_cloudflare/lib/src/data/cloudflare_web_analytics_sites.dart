@@ -37,6 +37,7 @@ final class DataCloudflareWebAnalyticsSites extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     DataWebAnalyticsSitesOrderBy? orderBy,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

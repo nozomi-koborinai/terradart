@@ -18,6 +18,7 @@ final class DataAzurermEventhubConsumerGroup extends Data {
     required TfArg<String> name,
     required TfArg<String> namespaceName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

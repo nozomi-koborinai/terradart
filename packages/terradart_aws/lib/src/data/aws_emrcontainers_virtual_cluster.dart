@@ -16,6 +16,7 @@ final class DataAwsEmrcontainersVirtualCluster extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> virtualClusterId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

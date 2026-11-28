@@ -31,6 +31,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredRoutes extends Data {
     TfArg<List<String>>? tunTypes,
     TfArg<String>? tunnelId,
     TfArg<String>? virtualNetworkId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

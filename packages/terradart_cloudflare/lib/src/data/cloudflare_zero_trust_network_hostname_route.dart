@@ -60,6 +60,7 @@ final class DataCloudflareZeroTrustNetworkHostnameRoute extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? hostnameRouteId,
     DataZeroTrustNetworkHostnameRouteFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

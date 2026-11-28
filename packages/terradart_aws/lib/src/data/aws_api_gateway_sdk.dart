@@ -17,6 +17,7 @@ final class DataAwsApiGatewaySdk extends Data {
     required TfArg<String> restApiId,
     required TfArg<String> sdkType,
     required TfArg<String> stageName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -25,6 +25,7 @@ final class DataCloudflareWorkersDeployment extends Data {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> deploymentId,
     required TfArg<String> scriptName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -32,6 +32,7 @@ final class DataAwsEc2InstanceTypes extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataEc2InstanceTypesFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

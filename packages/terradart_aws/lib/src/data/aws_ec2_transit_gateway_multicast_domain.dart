@@ -38,6 +38,7 @@ final class DataAwsEc2TransitGatewayMulticastDomain extends Data {
     TfArg<Map<String, String>>? tags,
     TfArg<String>? transitGatewayMulticastDomainId,
     List<DataEc2TransitGatewayMulticastDomainFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsLocationTracker extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> trackerName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

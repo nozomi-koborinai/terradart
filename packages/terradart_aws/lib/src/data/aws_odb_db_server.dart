@@ -15,6 +15,7 @@ final class DataAwsOdbDbServer extends Data {
     required TfArg<String> cloudExadataInfrastructureId,
     required TfArg<String> id,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

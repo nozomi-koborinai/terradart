@@ -16,6 +16,7 @@ final class DataAzurermMarketplaceAgreement extends Data {
     required TfArg<String> offer,
     required TfArg<String> plan,
     required TfArg<String> publisher,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

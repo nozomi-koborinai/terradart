@@ -60,6 +60,7 @@ final class DataCloudflareZeroTrustCwsBasicAuthSecrets extends Data {
     DataZeroTrustCwsBasicAuthSecretsDirection? direction,
     TfArg<num>? maxItems,
     DataZeroTrustCwsBasicAuthSecretsOrder? order,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

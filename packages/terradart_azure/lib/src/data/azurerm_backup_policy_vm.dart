@@ -17,6 +17,7 @@ final class DataAzurermBackupPolicyVm extends Data {
     required TfArg<String> name,
     required TfArg<String> recoveryVaultName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

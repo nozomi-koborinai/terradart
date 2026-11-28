@@ -360,9 +360,6 @@ final class GoogleRedisInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleRedisInstanceSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleRedisInstance>`.
   RefTo<GoogleRedisInstance> get ref => RefTo.of(this);

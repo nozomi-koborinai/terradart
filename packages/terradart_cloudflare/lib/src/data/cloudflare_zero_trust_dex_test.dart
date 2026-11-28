@@ -67,6 +67,7 @@ final class DataCloudflareZeroTrustDexTest extends Data {
     TfArg<String>? dexTestId,
     DataZeroTrustDexTestFilter? filter,
     List<DataZeroTrustDexTestTargetPolicies>? targetPolicies,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

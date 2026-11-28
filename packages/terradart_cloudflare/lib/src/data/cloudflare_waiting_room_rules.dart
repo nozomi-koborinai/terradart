@@ -20,6 +20,7 @@ final class DataCloudflareWaitingRoomRules extends Data {
     super.localName, {
     required TfArg<String> waitingRoomId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

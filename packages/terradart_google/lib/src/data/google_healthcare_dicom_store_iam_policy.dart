@@ -17,6 +17,7 @@ final class DataGoogleHealthcareDicomStoreIamPolicy extends Data {
   DataGoogleHealthcareDicomStoreIamPolicy(
     super.localName, {
     required TfArg<String> dicomStoreId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'dicom_store_id': dicomStoreId});

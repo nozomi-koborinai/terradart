@@ -15,6 +15,7 @@ final class DataAzurermDataShareDatasetDataLakeGen2 extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> shareId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

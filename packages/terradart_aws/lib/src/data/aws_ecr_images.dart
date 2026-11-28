@@ -15,6 +15,7 @@ final class DataAwsEcrImages extends Data {
     TfArg<String>? region,
     TfArg<String>? registryId,
     required TfArg<String> repositoryName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

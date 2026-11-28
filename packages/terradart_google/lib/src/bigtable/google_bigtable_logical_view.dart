@@ -63,9 +63,6 @@ final class GoogleBigtableLogicalView extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigtableLogicalViewSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleBigtableLogicalView>`.
   RefTo<GoogleBigtableLogicalView> get ref => RefTo.of(this);

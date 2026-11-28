@@ -61,6 +61,7 @@ final class DataCloudflareZeroTrustCwsDomainAcls extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? name,
     DataZeroTrustCwsDomainAclsOrder? order,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

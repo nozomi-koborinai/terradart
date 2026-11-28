@@ -19,6 +19,7 @@ final class DataCloudflareZoneSubscription extends Data {
   DataCloudflareZoneSubscription(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

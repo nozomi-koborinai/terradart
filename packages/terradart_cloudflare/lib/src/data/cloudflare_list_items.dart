@@ -22,6 +22,7 @@ final class DataCloudflareListItems extends Data {
     TfArg<num>? maxItems,
     TfArg<num>? perPage,
     TfArg<String>? search,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

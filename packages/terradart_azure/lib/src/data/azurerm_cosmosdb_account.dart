@@ -29,6 +29,7 @@ final class DataAzurermCosmosdbAccount extends Data {
     super.localName, {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

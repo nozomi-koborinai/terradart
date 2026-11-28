@@ -15,6 +15,7 @@ final class DataAwsApiGatewayApiKeys extends Data {
     TfArg<String>? customerId,
     TfArg<bool>? includeValues,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

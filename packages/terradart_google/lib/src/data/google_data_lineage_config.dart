@@ -18,6 +18,7 @@ final class DataGoogleDataLineageConfig extends Data {
     super.localName, {
     required TfArg<String> location,
     required TfArg<String> parent,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

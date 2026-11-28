@@ -13,6 +13,7 @@ final class DataAwsOamLinks extends Data {
   DataAwsOamLinks(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

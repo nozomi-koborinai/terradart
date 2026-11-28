@@ -217,6 +217,7 @@ final class DataAwsCloudwatchLogDataProtectionPolicyDocument extends Data {
     DataCloudwatchLogDataProtectionPolicyDocumentConfiguration? configuration,
     required List<DataCloudwatchLogDataProtectionPolicyDocumentStatement>
     statement,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

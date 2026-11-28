@@ -17,6 +17,7 @@ final class DataGoogleKmsAutokeyConfig extends Data {
   DataGoogleKmsAutokeyConfig(
     super.localName, {
     required TfArg<String> folder,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'folder': folder});

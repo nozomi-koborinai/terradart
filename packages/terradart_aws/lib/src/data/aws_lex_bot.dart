@@ -16,6 +16,7 @@ final class DataAwsLexBot extends Data {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? version,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

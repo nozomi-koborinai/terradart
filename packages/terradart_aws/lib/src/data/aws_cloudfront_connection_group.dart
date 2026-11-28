@@ -14,6 +14,7 @@ final class DataAwsCloudfrontConnectionGroup extends Data {
   DataAwsCloudfrontConnectionGroup(
     super.localName, {
     TfArg<String>? routingEndpoint,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

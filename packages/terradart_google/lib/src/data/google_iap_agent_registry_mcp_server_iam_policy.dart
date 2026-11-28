@@ -21,6 +21,7 @@ final class DataGoogleIapAgentRegistryMcpServerIamPolicy extends Data {
     TfArg<String>? location,
     required TfArg<String> mcpServerId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -28,6 +28,7 @@ final class DataAwsPollyVoices extends Data {
     TfArg<String>? languageCode,
     TfArg<String>? region,
     List<DataPollyVoices>? voices,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

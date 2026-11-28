@@ -15,6 +15,7 @@ final class DataAzurermServicebusQueue extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> namespaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

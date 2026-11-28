@@ -18,6 +18,7 @@ final class DataGoogleSpannerInstanceIamPolicy extends Data {
     super.localName, {
     required TfArg<String> instance,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -17,6 +17,7 @@ final class DataAzurermDatabaseMigrationProject extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> serviceName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

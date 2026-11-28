@@ -14,6 +14,7 @@ final class DataAwsCloudfrontOriginAccessControl extends Data {
   DataAwsCloudfrontOriginAccessControl(
     super.localName, {
     required TfArg<String> id,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'id': id});

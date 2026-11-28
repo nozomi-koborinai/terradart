@@ -35,6 +35,7 @@ final class DataAwsImagebuilderImagePipelines extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataImagebuilderImagePipelinesFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

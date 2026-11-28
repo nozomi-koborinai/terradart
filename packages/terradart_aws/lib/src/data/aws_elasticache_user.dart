@@ -39,6 +39,7 @@ final class DataAwsElasticacheUser extends Data {
     required TfArg<String> userId,
     TfArg<String>? userName,
     List<DataElasticacheUserAuthenticationMode>? authenticationMode,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

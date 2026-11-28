@@ -14,6 +14,7 @@ final class DataAwsIdentitystoreGroups extends Data {
     super.localName, {
     required TfArg<String> identityStoreId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

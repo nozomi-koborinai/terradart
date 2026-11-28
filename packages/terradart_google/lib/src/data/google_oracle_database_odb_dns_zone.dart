@@ -20,6 +20,7 @@ final class DataGoogleOracleDatabaseOdbDnsZone extends Data {
     required TfArg<String> odbDnsZoneId,
     required TfArg<String> odbnetwork,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

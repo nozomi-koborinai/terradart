@@ -16,6 +16,7 @@ final class DataGoogleComputeInterconnectLocations extends Data {
   DataGoogleComputeInterconnectLocations(
     super.localName, {
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'project': ?project});

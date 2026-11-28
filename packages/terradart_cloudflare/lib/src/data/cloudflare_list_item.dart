@@ -21,6 +21,7 @@ final class DataCloudflareListItem extends Data {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> itemId,
     required TfArg<String> listId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

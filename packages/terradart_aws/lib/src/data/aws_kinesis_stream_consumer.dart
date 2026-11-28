@@ -18,6 +18,7 @@ final class DataAwsKinesisStreamConsumer extends Data {
     TfArg<String>? region,
     required TfArg<String> streamArn,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

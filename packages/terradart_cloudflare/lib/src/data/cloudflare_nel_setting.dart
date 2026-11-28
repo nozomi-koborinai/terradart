@@ -19,6 +19,7 @@ final class DataCloudflareNelSetting extends Data {
   DataCloudflareNelSetting(
     super.localName, {
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'zone_id': zoneId.encodeAs('id')});

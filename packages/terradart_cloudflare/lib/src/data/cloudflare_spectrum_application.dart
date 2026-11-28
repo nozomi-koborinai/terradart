@@ -84,6 +84,7 @@ final class DataCloudflareSpectrumApplication extends Data {
     TfArg<String>? appId,
     RefTo<CloudflareZone>? zoneId,
     DataSpectrumApplicationFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

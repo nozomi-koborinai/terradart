@@ -107,6 +107,7 @@ final class DataGoogleIamPolicy extends Data {
     super.localName, {
     List<DataIamPolicyAuditConfig>? auditConfig,
     List<DataIamPolicyBinding>? binding,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

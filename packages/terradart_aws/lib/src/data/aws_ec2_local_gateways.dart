@@ -33,6 +33,7 @@ final class DataAwsEc2LocalGateways extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2LocalGatewaysFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

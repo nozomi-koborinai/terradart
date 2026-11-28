@@ -30,7 +30,6 @@ final class SingleProjectAppStack extends Stack {
          ],
          backend: const LocalBackend(),
          appExports: AppExports('lib/generated/single_project_app.app.dart'),
-         devMode: true,
        ) {
     // ===== Tier 1 — API enablement (8 services) ===========================
     for (final api in buildProjectServices()) {

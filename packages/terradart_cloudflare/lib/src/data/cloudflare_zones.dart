@@ -114,6 +114,7 @@ final class DataCloudflareZones extends Data {
     DataZonesStatus? status,
     TfArg<List<String>>? type,
     DataZonesAccount? account,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

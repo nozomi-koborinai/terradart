@@ -21,6 +21,7 @@ final class DataGoogleDataprocMetastoreTableIamPolicy extends Data {
     TfArg<String>? project,
     required TfArg<String> serviceId,
     required TfArg<String> table,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,6 +19,7 @@ final class DataGoogleDataplexGlossaryIamPolicy extends Data {
     required TfArg<String> glossaryId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

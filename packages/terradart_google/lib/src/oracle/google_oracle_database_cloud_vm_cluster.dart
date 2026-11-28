@@ -351,9 +351,6 @@ final class GoogleOracleDatabaseCloudVmCluster extends Resource {
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseCloudVmClusterSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleOracleDatabaseCloudVmCluster>`.
   RefTo<GoogleOracleDatabaseCloudVmCluster> get ref => RefTo.of(this);

@@ -16,6 +16,7 @@ final class DataAwsServicecatalogPortfolioConstraints extends Data {
     required TfArg<String> portfolioId,
     TfArg<String>? productId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

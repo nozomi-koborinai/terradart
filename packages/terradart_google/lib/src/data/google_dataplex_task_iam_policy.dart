@@ -20,6 +20,7 @@ final class DataGoogleDataplexTaskIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> taskId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

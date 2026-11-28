@@ -19,6 +19,7 @@ final class DataGoogleComputeNetworkPeering extends Data {
     super.localName, {
     required TfArg<String> name,
     required RefTo<GoogleComputeNetwork> network,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

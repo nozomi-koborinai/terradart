@@ -16,6 +16,7 @@ final class DataAwsServiceDiscoveryDnsNamespace extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

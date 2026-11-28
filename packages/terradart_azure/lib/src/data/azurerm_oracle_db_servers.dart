@@ -15,6 +15,7 @@ final class DataAzurermOracleDbServers extends Data {
     super.localName, {
     required TfArg<String> cloudExadataInfrastructureName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

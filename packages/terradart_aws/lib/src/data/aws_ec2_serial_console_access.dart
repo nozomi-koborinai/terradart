@@ -14,6 +14,7 @@ final class DataAwsEc2SerialConsoleAccess extends Data {
   DataAwsEc2SerialConsoleAccess(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

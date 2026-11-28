@@ -17,6 +17,7 @@ final class DataGoogleBigqueryDefaultServiceAccount extends Data {
   DataGoogleBigqueryDefaultServiceAccount(
     super.localName, {
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'project': ?project});
@@ -39,5 +40,5 @@ final class DataGoogleBigqueryDefaultServiceAccount extends Data {
 
   /// This identity as an IAM principal, for `member` / `members`.
   IamPrincipal get principal =>
-      IamPrincipal.arg(TfRef.data<String>(this, 'member'));
+      IamPrincipal.arg(TfRef.attribute<String>(this, 'member'));
 }

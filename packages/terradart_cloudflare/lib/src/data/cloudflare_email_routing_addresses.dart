@@ -38,6 +38,7 @@ final class DataCloudflareEmailRoutingAddresses extends Data {
     DataEmailRoutingAddressesDirection? direction,
     TfArg<num>? maxItems,
     TfArg<bool>? verified,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

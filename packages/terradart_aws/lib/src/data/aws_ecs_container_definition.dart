@@ -15,6 +15,7 @@ final class DataAwsEcsContainerDefinition extends Data {
     required TfArg<String> containerName,
     TfArg<String>? region,
     required TfArg<String> taskDefinition,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

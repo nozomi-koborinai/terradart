@@ -74,6 +74,7 @@ final class DataCloudflareZeroTrustGatewayProxyEndpoints extends Data {
     TfArg<num>? maxItems,
     DataZeroTrustGatewayProxyEndpointsOrderBy? orderBy,
     TfArg<String>? search,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

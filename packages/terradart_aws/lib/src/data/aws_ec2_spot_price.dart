@@ -34,6 +34,7 @@ final class DataAwsEc2SpotPrice extends Data {
     TfArg<String>? instanceType,
     TfArg<String>? region,
     List<DataEc2SpotPriceFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -20,6 +20,7 @@ final class DataGoogleBiglakeHiveTableIamPolicy extends Data {
     required TfArg<String> database,
     required TfArg<String> name,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

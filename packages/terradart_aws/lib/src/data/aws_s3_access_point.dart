@@ -16,6 +16,7 @@ final class DataAwsS3AccessPoint extends Data {
     TfArg<String>? accountId,
     required TfArg<String> name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

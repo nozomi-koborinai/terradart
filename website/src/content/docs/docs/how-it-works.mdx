@@ -53,21 +53,22 @@ graph LR
 
 ### Synth issues
 
-Before it encodes anything, synth checks the whole Stack and collects every problem it finds into one `SynthException`, so a broken Stack reports all of its issues in one run instead of one per fix. Each problem is a subtype of the sealed `SynthIssue`, carrying the address of the block that holds it and a message that says how to fix it:
+Before it encodes anything, synth checks the whole Stack and collects every problem it finds into one `SynthException`, so a broken Stack reports all of its issues in one run instead of one per fix. Each problem is a subtype of `SynthIssue`, carrying the address of the block that holds it and a message that says how to fix it:
 
 | Issue | When |
 |-------|------|
 | `NoProviders` / `MissingProvider` / `ProviderConflict` | no provider is registered, a block needs one that is not, or two registrations clash (a repeated alias, different version pins for one name) |
-| `UndeclaredVariable` | a `.variable('x')` or `var.x` names a variable neither `variable` nor `externalVariable` declared |
-| `UnregisteredReference` | a block reads (or `depends_on`) a resource, data source or module that was built but never passed to `add` / `addModule` |
-| `SensitiveLiteral` | a sensitive field is set to a literal, which would write the secret into `main.tf.json` |
+| `UndeclaredVariable` | a `.variable('x')` or a `var.x` in an expression or a literal string names a variable neither `variable` nor `externalVariable` declared |
+| `UnregisteredReference` | a block reads (or `depends_on`) a resource, data source or module, of any provider, that was built but never passed to `add` / `addModule` |
+| `SensitiveLiteral` | a sensitive field of a resource or data source is set to a literal, which would write the secret into `main.tf.json` |
+| `SensitiveOutput` | an output not marked sensitive reads a sensitive variable or field, which Terraform rejects at plan |
 | `InvalidTimeout` | a `TfTimeouts` `Duration` is negative |
-| `InvalidLifecycle` | a `lifecycle` block Terraform rejects: a data source (or one of its attributes) in `replaceTriggeredBy`, `all` inside `IgnoreChanges.of`, or a condition with an empty error message |
+| `InvalidLifecycle` | a `lifecycle` block Terraform rejects: a data source (or one of its attributes) or a module output in `replaceTriggeredBy`, `all` inside `IgnoreChanges.of`, or a condition with an empty error message |
 | `InvalidMoveTarget` | an `addMoved` target names no resource of the Stack |
 | `UnresolvableConstant` | an `addConstant(...)` attribute has no literal value at synth |
 | `InvalidDartDefineOutput` | an `addDartDefineOutput` output names an output that is not registered, is sensitive or has no environment value, two of its outputs read one variable, or it carries no output at all |
 
-`stack.validate()` returns the same list without throwing — the shape a test or a pre-commit check wants. The sealed hierarchy lets a `switch` handle the issues it cares about:
+`stack.validate()` returns the same list without throwing — the shape a test or a pre-commit check wants. A `switch` handles the issues it cares about and keeps a `default`, since a later release may add one:
 
 ```dart
 // lib/explain_stack.dart

@@ -20,6 +20,7 @@ final class DataCloudflareAddressMap extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> addressMapId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

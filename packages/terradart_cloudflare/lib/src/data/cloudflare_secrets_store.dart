@@ -69,6 +69,7 @@ final class DataCloudflareSecretsStore extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? storeId,
     DataSecretsStoreFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

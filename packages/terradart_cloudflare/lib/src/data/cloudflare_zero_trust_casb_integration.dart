@@ -144,6 +144,7 @@ final class DataCloudflareZeroTrustCasbIntegration extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     DataZeroTrustCasbIntegrationFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

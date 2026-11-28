@@ -18,6 +18,7 @@ final class DataAwsRedshiftserverlessCredentials extends Data {
     TfArg<num>? durationSeconds,
     TfArg<String>? region,
     required TfArg<String> workgroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

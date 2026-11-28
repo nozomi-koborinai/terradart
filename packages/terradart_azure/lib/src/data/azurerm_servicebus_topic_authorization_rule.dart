@@ -27,6 +27,7 @@ final class DataAzurermServicebusTopicAuthorizationRule extends Data {
     RefTo<AzurermResourceGroup>? resourceGroupName,
     TfArg<String>? topicId,
     TfArg<String>? topicName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

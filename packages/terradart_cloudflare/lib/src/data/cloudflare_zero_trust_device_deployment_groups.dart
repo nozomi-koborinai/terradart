@@ -17,6 +17,7 @@ final class DataCloudflareZeroTrustDeviceDeploymentGroups extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> groupId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

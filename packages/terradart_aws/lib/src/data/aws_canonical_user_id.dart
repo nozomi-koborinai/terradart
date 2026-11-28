@@ -10,8 +10,12 @@ const Set<String> _awsCanonicalUserIdSensitive = <String>{};
 final class DataAwsCanonicalUserId extends Data {
   static const String tfType = 'aws_canonical_user_id';
 
-  DataAwsCanonicalUserId(super.localName, {super.provider, super.timeouts})
-    : super(terraformType: tfType, argMap: {});
+  DataAwsCanonicalUserId(
+    super.localName, {
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(terraformType: tfType, argMap: {});
 
   @override
   Set<String> get sensitiveFields => _awsCanonicalUserIdSensitive;

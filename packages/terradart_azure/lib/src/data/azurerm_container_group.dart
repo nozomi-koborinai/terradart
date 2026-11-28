@@ -17,6 +17,7 @@ final class DataAzurermContainerGroup extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<List<String>>? zones,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

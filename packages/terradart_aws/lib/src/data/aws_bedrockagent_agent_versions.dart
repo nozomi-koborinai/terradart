@@ -47,6 +47,7 @@ final class DataAwsBedrockagentAgentVersions extends Data {
     TfArg<String>? region,
     List<DataBedrockagentAgentVersionsAgentVersionSummaries>?
     agentVersionSummaries,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

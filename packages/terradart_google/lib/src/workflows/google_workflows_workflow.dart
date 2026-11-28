@@ -124,9 +124,6 @@ final class GoogleWorkflowsWorkflow extends Resource {
   @override
   Set<String> get sensitiveFields => _googleWorkflowsWorkflowSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleWorkflowsWorkflow>`.
   RefTo<GoogleWorkflowsWorkflow> get ref => RefTo.of(this);

@@ -152,7 +152,7 @@ void main() {
       );
       stack.addConstant(
         'projectId',
-        .ref(TfRef.data<String>(project, 'project_id')),
+        .ref(TfRef.attribute<String>(project, 'project_id')),
       );
 
       expect(
@@ -365,7 +365,10 @@ void main() {
             argMap: const {'plaintext': TfArgLiteral<String>('pw')},
           ),
         );
-        stack.addConstant('x', .ref(TfRef.data<String>(secret, 'plaintext')));
+        stack.addConstant(
+          'x',
+          .ref(TfRef.attribute<String>(secret, 'plaintext')),
+        );
         expect(stack.synth, _unresolvable('sensitive field'));
       });
 
@@ -425,34 +428,44 @@ void main() {
       );
     });
 
-    test('requires sensitive: true for a sensitive field', () {
+    test('synth requires sensitive: true for a sensitive field', () {
       final stack = _plainStack();
       final version = stack.add(FakeSecretVersion('s', argMap: const {}));
       final ref = TfRef.attribute<String>(version, 'secret_data');
-      expect(
-        () => stack.addOutput('pw', ref),
-        _argumentError('sensitive: true'),
+      stack.addOutput('pw', ref);
+      expect(stack.validate(), [
+        isA<SensitiveOutput>()
+            .having((i) => i.address, 'address', 'output.pw')
+            .having(
+              (i) => i.reads,
+              'reads',
+              'google_secret_manager_secret_version.s.secret_data',
+            ),
+      ]);
+      final marked = _plainStack();
+      marked.addOutput(
+        'pw',
+        TfRef.attribute<String>(
+          marked.add(FakeSecretVersion('s', argMap: const {})),
+          'secret_data',
+        ),
+        sensitive: true,
       );
-      stack.addOutput('pw', ref, sensitive: true);
-      expect(stack.outputs.keys, ['pw']);
+      expect(marked.validate(), isEmpty);
     });
 
-    test('requires sensitive: true for a data source sensitive field', () {
-      final stack = _plainStack();
-      final secret = stack.add(FakeSecretData('s', argMap: const {}));
-      final ref = TfRef.data<String>(secret, 'plaintext');
-      expect(
-        () => stack.addOutput('pw', ref),
-        _argumentError('sensitive: true'),
-      );
-      expect(
-        () => stack.addOutput(
-          'pw2',
-          TfRef.attribute<String>(secret, 'plaintext'),
-        ),
-        _argumentError('sensitive: true'),
-      );
-    });
+    test(
+      'synth requires sensitive: true for a data source sensitive field',
+      () {
+        final stack = _plainStack();
+        final secret = stack.add(FakeSecretData('s', argMap: const {}));
+        stack.addOutput('pw', TfRef.attribute<String>(secret, 'plaintext'));
+        expect(
+          stack.synth,
+          throwsSynthIssue<SensitiveOutput>(contains('plaintext')),
+        );
+      },
+    );
 
     test('synth rejects an undeclared variable in an output', () {
       final stack = _plainStack()

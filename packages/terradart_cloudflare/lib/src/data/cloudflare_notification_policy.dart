@@ -21,6 +21,7 @@ final class DataCloudflareNotificationPolicy extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> policyId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

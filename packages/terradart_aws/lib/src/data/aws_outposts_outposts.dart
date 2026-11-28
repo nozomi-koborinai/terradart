@@ -17,6 +17,7 @@ final class DataAwsOutpostsOutposts extends Data {
     TfArg<String>? ownerId,
     TfArg<String>? region,
     TfArg<String>? siteId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -22,6 +22,7 @@ final class DataAppwritePostgresqlBackups extends Data {
     required RefTo<AppwritePostgresqlDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? queries,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataGoogleLoggingSink extends Data {
   DataGoogleLoggingSink(
     super.localName, {
     required TfArg<String> id,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'id': id});

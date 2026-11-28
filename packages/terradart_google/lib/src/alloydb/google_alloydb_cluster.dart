@@ -887,9 +887,6 @@ final class GoogleAlloydbCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _googleAlloydbClusterSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleAlloydbCluster>`.
   RefTo<GoogleAlloydbCluster> get ref => RefTo.of(this);

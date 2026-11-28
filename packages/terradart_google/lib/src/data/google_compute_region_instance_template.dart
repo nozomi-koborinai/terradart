@@ -21,6 +21,7 @@ final class DataGoogleComputeRegionInstanceTemplate extends Data {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

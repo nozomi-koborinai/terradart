@@ -15,6 +15,7 @@ final class DataAwsRoute53ResolverFirewallConfig extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> resourceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsCloudfrontLogDeliveryCanonicalUserId extends Data {
   DataAwsCloudfrontLogDeliveryCanonicalUserId(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

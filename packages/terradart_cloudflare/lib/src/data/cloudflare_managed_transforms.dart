@@ -32,6 +32,7 @@ final class DataCloudflareManagedTransforms extends Data {
   DataCloudflareManagedTransforms(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

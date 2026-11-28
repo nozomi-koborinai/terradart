@@ -24,6 +24,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredConfig extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> tunnelId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

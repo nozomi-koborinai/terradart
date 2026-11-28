@@ -26,6 +26,7 @@ final class DataGoogleStorageObjectSignedUrl extends Data {
     TfArg<Map<String, String>>? extensionHeaders,
     TfArg<String>? httpMethod,
     required TfArg<String> path,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

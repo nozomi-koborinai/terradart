@@ -13,6 +13,7 @@ final class DataAwsIamOutboundWebIdentityFederation extends Data {
 
   DataAwsIamOutboundWebIdentityFederation(
     super.localName, {
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {});

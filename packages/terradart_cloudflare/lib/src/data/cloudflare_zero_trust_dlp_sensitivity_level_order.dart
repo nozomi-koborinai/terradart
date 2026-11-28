@@ -22,6 +22,7 @@ final class DataCloudflareZeroTrustDlpSensitivityLevelOrder extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> sensitivityGroupId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -35,6 +35,7 @@ final class DataAwsEc2Host extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2HostFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

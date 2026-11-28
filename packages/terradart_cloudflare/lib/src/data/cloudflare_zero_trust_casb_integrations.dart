@@ -108,6 +108,7 @@ final class DataCloudflareZeroTrustCasbIntegrations extends Data {
     TfArg<String>? search,
     DataZeroTrustCasbIntegrationsStatus? status,
     TfArg<String>? useCases,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -21,6 +21,7 @@ final class DataGooglePrivatecaCertificateAuthority extends Data {
     TfArg<String>? location,
     RefTo<GooglePrivatecaCaPool>? pool,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

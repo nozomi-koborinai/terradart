@@ -15,6 +15,7 @@ final class DataAwsRoute53ResolverFirewallRuleGroup extends Data {
     super.localName, {
     required TfArg<String> firewallRuleGroupId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

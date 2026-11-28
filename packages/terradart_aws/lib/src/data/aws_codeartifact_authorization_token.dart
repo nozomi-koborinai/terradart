@@ -18,6 +18,7 @@ final class DataAwsCodeartifactAuthorizationToken extends Data {
     TfArg<String>? domainOwner,
     TfArg<num>? durationSeconds,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,6 +19,7 @@ final class DataCloudflareStreamKey extends Data {
   DataCloudflareStreamKey(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

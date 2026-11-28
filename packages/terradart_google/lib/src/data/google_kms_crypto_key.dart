@@ -19,6 +19,7 @@ final class DataGoogleKmsCryptoKey extends Data {
     super.localName, {
     required RefTo<GoogleKmsKeyRing> keyRing,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

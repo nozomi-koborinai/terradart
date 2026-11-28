@@ -33,6 +33,7 @@ final class DataAwsVpcIpams extends Data {
     TfArg<List<String>>? ipamIds,
     TfArg<String>? region,
     List<DataVpcIpamsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

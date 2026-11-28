@@ -20,6 +20,7 @@ final class DataGoogleStorageControlProjectIntelligenceFinding extends Data {
     required TfArg<String> findingId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataGoogleAccessApprovalOrganizationServiceAccount extends Data {
   DataGoogleAccessApprovalOrganizationServiceAccount(
     super.localName, {
     required TfArg<String> organizationId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

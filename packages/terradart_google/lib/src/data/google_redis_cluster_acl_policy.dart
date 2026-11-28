@@ -19,6 +19,7 @@ final class DataGoogleRedisClusterAclPolicy extends Data {
     required TfArg<String> aclPolicyId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -43,6 +43,7 @@ final class DataCloudflareTokenValidationRulesList extends Data {
     TfArg<String>? ruleId,
     TfArg<List<String>>? tokenConfiguration,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

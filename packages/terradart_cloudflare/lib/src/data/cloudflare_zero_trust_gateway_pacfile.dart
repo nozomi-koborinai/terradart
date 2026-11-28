@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustGatewayPacfile extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> pacfileId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

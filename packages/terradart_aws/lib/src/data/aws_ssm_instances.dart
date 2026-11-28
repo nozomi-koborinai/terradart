@@ -32,6 +32,7 @@ final class DataAwsSsmInstances extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataSsmInstancesFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

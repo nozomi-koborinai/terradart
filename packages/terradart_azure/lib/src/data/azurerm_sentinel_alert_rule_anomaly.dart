@@ -85,6 +85,7 @@ final class DataAzurermSentinelAlertRuleAnomaly extends Data {
     super.localName, {
     required DataSentinelAlertRuleAnomalyIdentifier identifier,
     required TfArg<String> logAnalyticsWorkspaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

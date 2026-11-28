@@ -1536,9 +1536,6 @@ final class GoogleCloudRunV2Service extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudRunV2ServiceSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleCloudRunV2Service>`.
   RefTo<GoogleCloudRunV2Service> get ref => RefTo.of(this);

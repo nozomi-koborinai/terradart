@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustDeviceSubnet extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> subnetId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataGoogleIamWorkforcePoolIamPolicy extends Data {
     super.localName, {
     TfArg<String>? location,
     required TfArg<String> workforcePoolId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

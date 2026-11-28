@@ -15,6 +15,7 @@ final class DataAzurermStorageAccountStaticWebsite extends Data {
   DataAzurermStorageAccountStaticWebsite(
     super.localName, {
     required RefTo<AzurermStorageAccount> storageAccountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

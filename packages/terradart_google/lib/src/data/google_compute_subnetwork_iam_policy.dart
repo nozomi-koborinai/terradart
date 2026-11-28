@@ -20,6 +20,7 @@ final class DataGoogleComputeSubnetworkIamPolicy extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required RefTo<GoogleComputeSubnetwork> subnetwork,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

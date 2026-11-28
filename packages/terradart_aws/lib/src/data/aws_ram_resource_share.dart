@@ -37,6 +37,7 @@ final class DataAwsRamResourceShare extends Data {
     TfArg<String>? resourceShareStatus,
     TfArg<Map<String, String>>? tags,
     List<DataRamResourceShareFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

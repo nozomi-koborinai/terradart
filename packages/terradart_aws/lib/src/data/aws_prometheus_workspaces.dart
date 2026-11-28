@@ -14,6 +14,7 @@ final class DataAwsPrometheusWorkspaces extends Data {
     super.localName, {
     TfArg<String>? aliasPrefix,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

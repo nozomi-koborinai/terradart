@@ -17,6 +17,7 @@ final class DataGoogleCertificateManagerCertificates extends Data {
     super.localName, {
     TfArg<String>? filter,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

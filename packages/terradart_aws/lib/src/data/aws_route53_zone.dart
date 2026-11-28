@@ -20,6 +20,7 @@ final class DataAwsRoute53Zone extends Data {
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,
     TfArg<String>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

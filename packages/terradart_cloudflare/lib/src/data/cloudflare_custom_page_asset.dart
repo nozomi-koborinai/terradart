@@ -18,6 +18,7 @@ final class DataCloudflareCustomPageAsset extends Data {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> assetName,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

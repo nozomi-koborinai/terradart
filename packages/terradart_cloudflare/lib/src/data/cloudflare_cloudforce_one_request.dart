@@ -128,6 +128,7 @@ final class DataCloudflareCloudforceOneRequest extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? requestId,
     DataCloudforceOneRequestFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

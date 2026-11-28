@@ -17,6 +17,7 @@ final class DataAzurermStorageQueue extends Data {
     TfArg<Map<String, String>>? metadata,
     required TfArg<String> name,
     required RefTo<AzurermStorageAccount> storageAccountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

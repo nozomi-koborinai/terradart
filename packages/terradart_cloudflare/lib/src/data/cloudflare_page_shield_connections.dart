@@ -20,6 +20,7 @@ final class DataCloudflarePageShieldConnections extends Data {
     super.localName, {
     required TfArg<String> connectionId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

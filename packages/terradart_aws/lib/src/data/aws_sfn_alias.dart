@@ -17,6 +17,7 @@ final class DataAwsSfnAlias extends Data {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> statemachineArn,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

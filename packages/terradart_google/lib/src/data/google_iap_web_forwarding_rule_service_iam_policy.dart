@@ -20,6 +20,7 @@ final class DataGoogleIapWebForwardingRuleServiceIamPolicy extends Data {
     super.localName, {
     required TfArg<String> forwardingRuleServiceName,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

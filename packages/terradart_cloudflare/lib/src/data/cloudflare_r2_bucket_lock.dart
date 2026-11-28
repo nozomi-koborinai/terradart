@@ -16,6 +16,7 @@ final class DataCloudflareR2BucketLock extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

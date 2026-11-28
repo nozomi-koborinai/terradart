@@ -23,6 +23,7 @@ final class DataAppwriteMongoDatabaseStatus extends Data {
     super.localName, {
     required RefTo<AppwriteMongoDatabase> databaseId,
     RefTo<AppwriteProject>? projectId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

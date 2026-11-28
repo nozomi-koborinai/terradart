@@ -94,9 +94,6 @@ final class AwsVerifiedpermissionsPolicyStore extends Resource {
   Set<String> get sensitiveFields =>
       _awsVerifiedpermissionsPolicyStoreSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsVerifiedpermissionsPolicyStore>`.
   RefTo<AwsVerifiedpermissionsPolicyStore> get ref => RefTo.of(this);

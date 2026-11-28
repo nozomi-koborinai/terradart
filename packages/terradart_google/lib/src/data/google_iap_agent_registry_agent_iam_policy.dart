@@ -19,6 +19,7 @@ final class DataGoogleIapAgentRegistryAgentIamPolicy extends Data {
     required TfArg<String> agentId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

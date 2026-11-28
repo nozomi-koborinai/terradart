@@ -17,6 +17,7 @@ final class DataAwsEcsService extends Data {
     TfArg<String>? region,
     required TfArg<String> serviceName,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,12 +19,12 @@ abstract base class Resource implements TfAddressed, ReplaceTrigger {
   Resource(
     this.localName, {
     required this.terraformType,
-    required this.argMap,
+    required Map<String, TfArg<dynamic>?> argMap,
     this.lifecycle,
     this.dependsOn,
     this.provider,
     this.timeouts,
-  });
+  }) : argMap = Map<String, TfArg<dynamic>?>.unmodifiable(argMap);
 
   /// Terraform resource type, e.g. `google_pubsub_topic`.
   final String terraformType;
@@ -35,6 +35,10 @@ abstract base class Resource implements TfAddressed, ReplaceTrigger {
   /// Argument-name → TfArg map. **Keys are snake_case** (Terraform JSON name).
   /// Synth emits these keys directly; the factory is responsible for the
   /// camelCase → snake_case translation at construction time.
+  ///
+  /// A copy taken when the resource is built: writing to it throws
+  /// [UnsupportedError], and a later change to the map the factory passed
+  /// does not reach synth.
   final Map<String, TfArg<dynamic>?> argMap;
 
   /// Optional `lifecycle { ... }` block.
@@ -88,16 +92,4 @@ abstract base class Resource implements TfAddressed, ReplaceTrigger {
   /// this member.
   @protected
   Set<String> get sensitiveFields;
-
-  /// Capability flag: true when this resource's underlying Terraform
-  /// schema has a `deletion_protection` boolean attribute that the
-  /// synth-time devMode flow can flip to `false`. Defaults to false;
-  /// the codegen emitter overrides this to `true` for wrappers whose
-  /// schema includes the attribute.
-  ///
-  /// `@protected` (v0.11.0, ADR-0016): same rationale as
-  /// [sensitiveFields] — subclass / synth contract member, not part of
-  /// the user-facing wrapper API.
-  @protected
-  bool get supportsDeletionProtection => false;
 }

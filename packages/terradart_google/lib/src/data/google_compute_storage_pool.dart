@@ -19,6 +19,7 @@ final class DataGoogleComputeStoragePool extends Data {
     required TfArg<String> name,
     TfArg<String>? project,
     required TfArg<String> zone,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

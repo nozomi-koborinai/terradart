@@ -47,6 +47,7 @@ final class DataAwsIamPrincipalPolicySimulation extends Data {
     TfArg<String>? resourceOwnerAccountId,
     TfArg<String>? resourcePolicyJson,
     List<DataIamPrincipalPolicySimulationContext>? context,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

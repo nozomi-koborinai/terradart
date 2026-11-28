@@ -15,6 +15,7 @@ final class DataAzurermOracleAutonomousDatabaseBackup extends Data {
     super.localName, {
     required TfArg<String> autonomousDatabaseId,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

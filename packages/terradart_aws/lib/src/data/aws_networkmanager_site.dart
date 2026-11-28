@@ -16,6 +16,7 @@ final class DataAwsNetworkmanagerSite extends Data {
     required TfArg<String> globalNetworkId,
     required TfArg<String> siteId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

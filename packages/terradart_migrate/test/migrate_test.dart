@@ -1814,6 +1814,29 @@ resource "google_pubsub_topic" "orders" {
       expect(r.report.warnings.single, contains('"other"'));
     });
 
+    test('default = null keeps the variable optional, typed nullable', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'variable': {
+          'suffix': {'type': 'string', 'default': null},
+          'labels': {'default': null},
+        },
+        'resource': {
+          'google_pubsub_topic': {
+            'x': {'name': r'orders${var.suffix}'},
+          },
+        },
+      });
+      expect(
+        r.stackSource,
+        contains("variable<String?>('suffix', defaultValue: null);"),
+      );
+      expect(
+        r.stackSource,
+        contains("variable<Object?>('labels', defaultValue: null);"),
+      );
+    });
+
     test('a variable whose type is unreadable stays in the sidecar', () {
       final r = _migrateJson({
         'terraform': _google,

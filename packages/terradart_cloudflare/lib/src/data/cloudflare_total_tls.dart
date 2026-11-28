@@ -19,6 +19,7 @@ final class DataCloudflareTotalTls extends Data {
   DataCloudflareTotalTls(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

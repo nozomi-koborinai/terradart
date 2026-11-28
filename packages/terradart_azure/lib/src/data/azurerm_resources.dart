@@ -17,6 +17,7 @@ final class DataAzurermResources extends Data {
     TfArg<Map<String, String>>? requiredTags,
     RefTo<AzurermResourceGroup>? resourceGroupName,
     TfArg<String>? type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

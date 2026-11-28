@@ -14,6 +14,7 @@ final class DataAzurermManagedDisks extends Data {
   DataAzurermManagedDisks(
     super.localName, {
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

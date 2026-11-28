@@ -20,6 +20,7 @@ final class DataGoogleRedisClusterTokenAuthUser extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> userId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

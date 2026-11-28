@@ -49,7 +49,7 @@ An exclusive group a factory keeps as separate arguments, because sealing it wou
 _Avoid_: exactly-one debt, lint exemption
 
 **Synth issue**:
-One reason a Stack cannot synthesize — a subtype of the sealed `SynthIssue` (`UnregisteredReference`, `SensitiveLiteral`, `MissingProvider`, ...) carrying the address of the block that holds it and a fix. Synth collects every issue before it encodes anything and throws them together as one `SynthException`; `Stack.validate()` returns them without throwing. A name problem is not a synth issue: `add` / `variable` / `addOutput` throw `ArgumentError` where the name is registered.
+One reason a Stack cannot synthesize — a subtype of `SynthIssue` (`UnregisteredReference`, `SensitiveLiteral`, `MissingProvider`, ...) carrying the address of the block that holds it and a fix. Only `terradart_core` declares them, and the set is not sealed, so a new issue is not a breaking change and a switch over them keeps a `default`. Synth collects every issue before it encodes anything and throws them together as one `SynthException`; `Stack.validate()` returns them without throwing. A name problem is not a synth issue: `add` / `variable` / `addOutput` throw `ArgumentError` where the name is registered.
 _Avoid_: Synth error, validation failure
 
 **External block**:

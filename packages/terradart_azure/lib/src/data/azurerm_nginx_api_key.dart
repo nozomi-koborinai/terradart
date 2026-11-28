@@ -15,6 +15,7 @@ final class DataAzurermNginxApiKey extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> nginxDeploymentId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

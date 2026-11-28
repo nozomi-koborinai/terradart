@@ -20,6 +20,7 @@ final class DataCloudflareLeakedCredentialCheck extends Data {
   DataCloudflareLeakedCredentialCheck(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -17,6 +17,7 @@ final class DataAzurermFirewall extends Data {
     TfArg<bool>? dnsProxyEnabled,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

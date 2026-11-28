@@ -20,6 +20,7 @@ final class DataGoogleComputeInstance extends Data {
     TfArg<String>? project,
     TfArg<String>? selfLink,
     TfArg<String>? zone,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

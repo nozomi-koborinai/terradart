@@ -82,6 +82,7 @@ final class DataCloudflarePipelineStream extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? streamId,
     DataPipelineStreamFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

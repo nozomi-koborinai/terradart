@@ -2123,7 +2123,8 @@ final class StackEmitter {
     final values = objectMap(bodyAsObject(v.body)) ?? {};
     final defaultExpr = values['default'];
     final defaultValue = defaultExpr == null ? null : jsonValue(defaultExpr);
-    return variableTypeOf(values['type'], defaultValue: defaultValue);
+    final type = variableTypeOf(values['type'], defaultValue: defaultValue);
+    return defaultExpr != null && defaultValue == null ? type.nullable : type;
   }
 
   static String _externalVariable(String name) =>

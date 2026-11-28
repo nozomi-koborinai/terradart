@@ -14,6 +14,7 @@ final class DataAwsWafWebAcl extends Data {
   DataAwsWafWebAcl(
     super.localName, {
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': name});

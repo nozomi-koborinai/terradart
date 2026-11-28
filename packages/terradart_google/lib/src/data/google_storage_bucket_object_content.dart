@@ -19,6 +19,7 @@ final class DataGoogleStorageBucketObjectContent extends Data {
     required RefTo<GoogleStorageBucket> bucket,
     TfArg<String>? content,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

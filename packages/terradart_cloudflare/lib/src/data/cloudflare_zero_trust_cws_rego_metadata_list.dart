@@ -71,6 +71,7 @@ final class DataCloudflareZeroTrustCwsRegoMetadataList extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? name,
     DataZeroTrustCwsRegoMetadataListOrder? order,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsMskBootstrapBrokers extends Data {
     super.localName, {
     required TfArg<String> clusterArn,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

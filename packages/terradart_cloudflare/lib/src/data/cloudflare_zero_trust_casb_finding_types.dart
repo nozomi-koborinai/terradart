@@ -98,6 +98,7 @@ final class DataCloudflareZeroTrustCasbFindingTypes extends Data {
     TfArg<List<String>>? severities,
     TfArg<List<String>>? types,
     TfArg<List<String>>? vendors,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

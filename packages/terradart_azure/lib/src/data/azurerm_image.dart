@@ -83,6 +83,7 @@ final class DataAzurermImage extends Data {
     required DataImageName name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? sortDescending,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

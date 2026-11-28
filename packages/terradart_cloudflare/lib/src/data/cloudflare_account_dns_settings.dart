@@ -19,6 +19,7 @@ final class DataCloudflareAccountDnsSettings extends Data {
   DataCloudflareAccountDnsSettings(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

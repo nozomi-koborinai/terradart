@@ -35,6 +35,7 @@ final class DataAwsFsxOntapStorageVirtualMachines extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataFsxOntapStorageVirtualMachinesFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

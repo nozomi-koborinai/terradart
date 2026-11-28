@@ -19,6 +19,7 @@ final class DataGoogleAlloydbCluster extends Data {
     required TfArg<String> clusterId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

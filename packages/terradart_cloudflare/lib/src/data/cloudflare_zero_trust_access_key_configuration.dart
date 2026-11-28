@@ -21,6 +21,7 @@ final class DataCloudflareZeroTrustAccessKeyConfiguration extends Data {
   DataCloudflareZeroTrustAccessKeyConfiguration(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataAwsKmsCiphertext extends Data {
     required RefTo<AwsKmsKey> keyId,
     required Sensitive<String> plaintext,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

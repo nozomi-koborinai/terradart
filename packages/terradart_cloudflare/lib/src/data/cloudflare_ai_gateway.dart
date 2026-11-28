@@ -33,6 +33,7 @@ final class DataCloudflareAiGateway extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     DataAiGatewayFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

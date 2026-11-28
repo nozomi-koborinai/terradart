@@ -176,6 +176,7 @@ final class DataCloudflareAccessRule extends Data {
     TfArg<String>? ruleId,
     RefTo<CloudflareZone>? zoneId,
     DataAccessRuleFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

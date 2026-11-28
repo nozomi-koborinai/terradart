@@ -103,6 +103,7 @@ final class DataAwsEcrLifecyclePolicyDocument extends Data {
   DataAwsEcrLifecyclePolicyDocument(
     super.localName, {
     List<DataEcrLifecyclePolicyDocumentRule>? rule,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

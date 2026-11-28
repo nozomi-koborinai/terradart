@@ -264,9 +264,6 @@ final class AwsNeptuneCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNeptuneClusterSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsNeptuneCluster>`.
   RefTo<AwsNeptuneCluster> get ref => RefTo.of(this);

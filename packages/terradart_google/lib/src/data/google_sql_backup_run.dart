@@ -21,6 +21,7 @@ final class DataGoogleSqlBackupRun extends Data {
     required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<bool>? mostRecent,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,6 +19,7 @@ final class DataAppwriteMysqlSpecifications extends Data {
   DataAppwriteMysqlSpecifications(
     super.localName, {
     RefTo<AppwriteProject>? projectId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

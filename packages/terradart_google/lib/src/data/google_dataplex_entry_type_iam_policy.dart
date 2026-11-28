@@ -19,6 +19,7 @@ final class DataGoogleDataplexEntryTypeIamPolicy extends Data {
     required TfArg<String> entryTypeId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

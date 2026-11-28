@@ -90,6 +90,7 @@ final class DataCloudflareZeroTrustCwsRegoMetadata extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? regoMetadataId,
     DataZeroTrustCwsRegoMetadataFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

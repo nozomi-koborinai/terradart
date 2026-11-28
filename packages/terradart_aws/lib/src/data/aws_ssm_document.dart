@@ -17,6 +17,7 @@ final class DataAwsSsmDocument extends Data {
     TfArg<String>? documentVersion,
     required TfArg<String> name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

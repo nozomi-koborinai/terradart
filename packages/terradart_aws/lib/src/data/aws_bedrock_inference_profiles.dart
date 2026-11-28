@@ -14,6 +14,7 @@ final class DataAwsBedrockInferenceProfiles extends Data {
     super.localName, {
     TfArg<String>? region,
     TfArg<String>? type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region, 'type': ?type});

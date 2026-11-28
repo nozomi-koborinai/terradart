@@ -56,6 +56,7 @@ final class DataAzurermSystemCenterVirtualMachineManagerInventoryItems
     required DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType
     inventoryType,
     required TfArg<String> systemCenterVirtualMachineManagerServerId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

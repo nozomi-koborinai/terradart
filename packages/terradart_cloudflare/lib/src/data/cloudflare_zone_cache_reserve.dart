@@ -19,6 +19,7 @@ final class DataCloudflareZoneCacheReserve extends Data {
   DataCloudflareZoneCacheReserve(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataGoogleSourcerepoRepositoryIamPolicy extends Data {
     super.localName, {
     TfArg<String>? project,
     required TfArg<String> repository,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

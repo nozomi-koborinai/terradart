@@ -18,6 +18,7 @@ final class DataAwsConnectVocabulary extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? vocabularyId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

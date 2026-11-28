@@ -16,6 +16,7 @@ final class DataAwsCloudfrontDistributionTenant extends Data {
     TfArg<String>? arn,
     TfArg<String>? domain,
     TfArg<String>? name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsLicensemanagerReceivedLicense extends Data {
     super.localName, {
     required TfArg<String> licenseArn,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

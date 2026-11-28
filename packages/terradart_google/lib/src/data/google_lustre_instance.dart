@@ -19,6 +19,7 @@ final class DataGoogleLustreInstance extends Data {
     required TfArg<String> instanceId,
     TfArg<String>? project,
     TfArg<String>? zone,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAzurermHealthcareFhirService extends Data {
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> workspaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

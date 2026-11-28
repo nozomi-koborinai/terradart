@@ -29,6 +29,7 @@ final class DataCloudflareAccounts extends Data {
     DataAccountsDirection? direction,
     TfArg<num>? maxItems,
     TfArg<String>? name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

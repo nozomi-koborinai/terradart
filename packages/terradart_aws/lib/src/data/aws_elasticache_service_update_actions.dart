@@ -16,6 +16,7 @@ final class DataAwsElasticacheServiceUpdateActions extends Data {
     TfArg<String>? region,
     TfArg<String>? replicationGroupId,
     TfArg<List<String>>? serviceUpdateStatus,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

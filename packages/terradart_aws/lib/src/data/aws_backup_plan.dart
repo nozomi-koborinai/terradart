@@ -16,6 +16,7 @@ final class DataAwsBackupPlan extends Data {
     required TfArg<String> planId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

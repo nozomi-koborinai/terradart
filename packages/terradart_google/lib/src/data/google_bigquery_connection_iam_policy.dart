@@ -19,6 +19,7 @@ final class DataGoogleBigqueryConnectionIamPolicy extends Data {
     required TfArg<String> connectionId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

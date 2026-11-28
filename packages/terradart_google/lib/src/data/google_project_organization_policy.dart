@@ -18,6 +18,7 @@ final class DataGoogleProjectOrganizationPolicy extends Data {
     super.localName, {
     required TfArg<String> constraint,
     required TfArg<String> project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

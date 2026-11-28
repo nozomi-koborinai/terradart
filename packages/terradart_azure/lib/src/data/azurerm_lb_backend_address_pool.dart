@@ -15,6 +15,7 @@ final class DataAzurermLbBackendAddressPool extends Data {
     super.localName, {
     required TfArg<String> loadbalancerId,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

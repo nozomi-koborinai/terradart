@@ -20,6 +20,7 @@ final class DataCloudflareDnsFirewall extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> dnsFirewallId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -41,6 +41,7 @@ final class DataAwsEc2LocalGatewayRouteTable extends Data {
     TfArg<String>? state,
     TfArg<Map<String, String>>? tags,
     List<DataEc2LocalGatewayRouteTableFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

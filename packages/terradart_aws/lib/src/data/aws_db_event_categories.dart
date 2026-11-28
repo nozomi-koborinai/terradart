@@ -14,6 +14,7 @@ final class DataAwsDbEventCategories extends Data {
     super.localName, {
     TfArg<String>? region,
     TfArg<String>? sourceType,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

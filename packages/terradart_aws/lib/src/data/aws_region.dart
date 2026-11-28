@@ -15,6 +15,7 @@ final class DataAwsRegion extends Data {
     TfArg<String>? endpoint,
     TfArg<String>? name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

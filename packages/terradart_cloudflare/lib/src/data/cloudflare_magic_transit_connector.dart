@@ -57,6 +57,7 @@ final class DataCloudflareMagicTransitConnector extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? connectorId,
     DataMagicTransitConnectorFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

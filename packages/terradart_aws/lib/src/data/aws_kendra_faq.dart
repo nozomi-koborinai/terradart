@@ -17,6 +17,7 @@ final class DataAwsKendraFaq extends Data {
     required TfArg<String> indexId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -17,6 +17,7 @@ final class DataGoogleVmwareengineAnnouncements extends Data {
     super.localName, {
     TfArg<String>? name,
     required TfArg<String> parent,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': ?name, 'parent': parent});

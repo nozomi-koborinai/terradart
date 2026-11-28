@@ -19,6 +19,7 @@ final class DataGoogleDataCatalogTaxonomyIamPolicy extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> taxonomy,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

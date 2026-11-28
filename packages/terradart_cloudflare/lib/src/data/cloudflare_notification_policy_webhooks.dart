@@ -23,6 +23,7 @@ final class DataCloudflareNotificationPolicyWebhooks extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> webhookId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

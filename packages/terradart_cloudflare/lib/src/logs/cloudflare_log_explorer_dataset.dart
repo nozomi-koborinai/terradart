@@ -138,9 +138,6 @@ final class CloudflareLogExplorerDataset extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareLogExplorerDatasetSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<CloudflareLogExplorerDataset>`.
   RefTo<CloudflareLogExplorerDataset> get ref => RefTo.of(this);

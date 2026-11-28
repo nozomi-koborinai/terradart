@@ -17,6 +17,7 @@ final class DataAzurermCdnFrontdoorCustomDomain extends Data {
     required TfArg<String> name,
     required TfArg<String> profileName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

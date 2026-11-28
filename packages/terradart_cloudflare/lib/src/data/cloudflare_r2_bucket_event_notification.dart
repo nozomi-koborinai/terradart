@@ -21,6 +21,7 @@ final class DataCloudflareR2BucketEventNotification extends Data {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     required TfArg<String> queueId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -219,9 +219,6 @@ final class GoogleBigtableInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigtableInstanceSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleBigtableInstance>`.
   RefTo<GoogleBigtableInstance> get ref => RefTo.of(this);

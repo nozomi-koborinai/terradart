@@ -18,6 +18,7 @@ final class DataAwsSsmPatchBaseline extends Data {
     TfArg<String>? operatingSystem,
     required TfArg<String> owner,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

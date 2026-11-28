@@ -39,6 +39,7 @@ final class DataAwsNatGateway extends Data {
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,
     List<DataNatGatewayFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

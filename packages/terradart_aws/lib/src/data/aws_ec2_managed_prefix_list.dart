@@ -38,6 +38,7 @@ final class DataAwsEc2ManagedPrefixList extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2ManagedPrefixListFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

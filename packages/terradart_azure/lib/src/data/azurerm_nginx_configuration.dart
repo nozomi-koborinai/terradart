@@ -14,6 +14,7 @@ final class DataAzurermNginxConfiguration extends Data {
   DataAzurermNginxConfiguration(
     super.localName, {
     required TfArg<String> nginxDeploymentId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

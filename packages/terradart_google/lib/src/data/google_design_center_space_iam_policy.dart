@@ -19,6 +19,7 @@ final class DataGoogleDesignCenterSpaceIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> spaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

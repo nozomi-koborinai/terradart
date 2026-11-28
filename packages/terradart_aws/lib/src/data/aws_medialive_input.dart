@@ -15,6 +15,7 @@ final class DataAwsMedialiveInput extends Data {
     super.localName, {
     required TfArg<String> id,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'id': id, 'region': ?region});

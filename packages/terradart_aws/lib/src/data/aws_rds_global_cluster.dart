@@ -15,6 +15,7 @@ final class DataAwsRdsGlobalCluster extends Data {
     super.localName, {
     required TfArg<String> identifier,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

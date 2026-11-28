@@ -20,6 +20,7 @@ final class DataGoogleComputeReservationSubBlock extends Data {
     required TfArg<String> reservation,
     required TfArg<String> reservationBlock,
     TfArg<String>? zone,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

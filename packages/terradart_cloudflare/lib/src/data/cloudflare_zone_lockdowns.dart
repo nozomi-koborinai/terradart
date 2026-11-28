@@ -28,6 +28,7 @@ final class DataCloudflareZoneLockdowns extends Data {
     TfArg<num>? priority,
     TfArg<String>? uriSearch,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

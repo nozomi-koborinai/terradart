@@ -33,6 +33,7 @@ final class DataCloudflareApiTokens extends Data {
     DataApiTokensDirection? direction,
     TfArg<bool>? includeExpired,
     TfArg<num>? maxItems,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

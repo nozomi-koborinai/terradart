@@ -82,6 +82,7 @@ final class DataCloudflareAiSearchInstance extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? namespace,
     DataAiSearchInstanceFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

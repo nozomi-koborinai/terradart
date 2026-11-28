@@ -62,6 +62,7 @@ final class DataCloudflareZeroTrustDexRules extends Data {
     TfArg<String>? name,
     DataZeroTrustDexRulesSortBy? sortBy,
     DataZeroTrustDexRulesSortOrder? sortOrder,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

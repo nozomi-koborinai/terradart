@@ -108,6 +108,7 @@ final class DataCloudflareAccountMember extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? memberId,
     DataAccountMemberFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

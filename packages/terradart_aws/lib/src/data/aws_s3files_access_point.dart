@@ -55,6 +55,7 @@ final class DataAwsS3filesAccessPoint extends Data {
     TfArg<String>? region,
     List<DataS3filesAccessPointPosixUser>? posixUser,
     List<DataS3filesAccessPointRootDirectory>? rootDirectory,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

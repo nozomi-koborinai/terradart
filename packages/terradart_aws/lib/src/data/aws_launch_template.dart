@@ -35,6 +35,7 @@ final class DataAwsLaunchTemplate extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataLaunchTemplateFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -203,6 +203,7 @@ final class DataCloudflareEmailSecurityDomain extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? domainId,
     DataEmailSecurityDomainFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -38,6 +38,7 @@ final class DataCloudflareZeroTrustAccessIdentityProvider extends Data {
     TfArg<String>? identityProviderId,
     RefTo<CloudflareZone>? zoneId,
     DataZeroTrustAccessIdentityProviderFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

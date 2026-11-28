@@ -76,6 +76,7 @@ final class DataGoogleSiteVerificationToken extends Data {
     required TfArg<String> identifier,
     required DataSiteVerificationTokenType type,
     required DataSiteVerificationTokenVerificationMethod verificationMethod,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

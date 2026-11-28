@@ -14,6 +14,7 @@ final class DataAwsResourcegroupstaggingapiRequiredTags extends Data {
   DataAwsResourcegroupstaggingapiRequiredTags(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

@@ -16,6 +16,7 @@ final class DataAwsApigatewayv2VpcLink extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> vpcLinkId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

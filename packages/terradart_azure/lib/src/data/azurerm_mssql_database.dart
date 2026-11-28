@@ -15,6 +15,7 @@ final class DataAzurermMssqlDatabase extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> serverId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

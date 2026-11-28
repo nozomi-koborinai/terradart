@@ -19,6 +19,7 @@ final class DataGoogleMonitoringMeshIstioService extends Data {
     TfArg<String>? project,
     required TfArg<String> serviceName,
     required TfArg<String> serviceNamespace,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsNetworkmanagerCoreNetwork extends Data {
   DataAwsNetworkmanagerCoreNetwork(
     super.localName, {
     required TfArg<String> coreNetworkId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'core_network_id': coreNetworkId});

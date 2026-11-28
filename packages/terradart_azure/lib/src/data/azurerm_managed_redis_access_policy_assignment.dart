@@ -18,6 +18,7 @@ final class DataAzurermManagedRedisAccessPolicyAssignment extends Data {
     required TfArg<String> managedRedisName,
     required TfArg<String> objectId,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

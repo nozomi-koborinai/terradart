@@ -21,6 +21,7 @@ final class DataCloudflareMagicWanIpsecTunnel extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> ipsecTunnelId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

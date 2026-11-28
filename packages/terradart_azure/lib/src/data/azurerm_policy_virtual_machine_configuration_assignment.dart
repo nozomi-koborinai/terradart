@@ -20,6 +20,7 @@ final class DataAzurermPolicyVirtualMachineConfigurationAssignment
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> virtualMachineName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

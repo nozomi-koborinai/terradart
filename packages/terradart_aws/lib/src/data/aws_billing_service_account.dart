@@ -12,6 +12,7 @@ final class DataAwsBillingServiceAccount extends Data {
 
   DataAwsBillingServiceAccount(
     super.localName, {
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {});

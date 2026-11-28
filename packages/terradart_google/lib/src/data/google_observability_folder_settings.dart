@@ -18,6 +18,7 @@ final class DataGoogleObservabilityFolderSettings extends Data {
     super.localName, {
     required TfArg<String> folder,
     required TfArg<String> location,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,6 +19,7 @@ final class DataCloudflareMoqRelays extends Data {
     TfArg<String>? createdBefore,
     TfArg<num>? maxItems,
     TfArg<num>? perPage,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -13,6 +13,7 @@ final class DataAwsOrganizationsEntityPath extends Data {
   DataAwsOrganizationsEntityPath(
     super.localName, {
     required TfArg<String> entityId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'entity_id': entityId});

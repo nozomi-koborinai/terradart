@@ -14,6 +14,7 @@ final class DataAwsSsmincidentsReplicationSet extends Data {
   DataAwsSsmincidentsReplicationSet(
     super.localName, {
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'tags': ?tags});

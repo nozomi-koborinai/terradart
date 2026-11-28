@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustDlpCustomPromptTopic extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> entryId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

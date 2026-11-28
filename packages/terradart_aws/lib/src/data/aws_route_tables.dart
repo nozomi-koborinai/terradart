@@ -35,6 +35,7 @@ final class DataAwsRouteTables extends Data {
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,
     List<DataRouteTablesFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -49,6 +49,7 @@ final class DataCloudflareWebAnalyticsSite extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? siteId,
     DataWebAnalyticsSiteFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

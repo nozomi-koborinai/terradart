@@ -16,6 +16,7 @@ final class DataAwsEksAddonVersion extends Data {
     required TfArg<String> kubernetesVersion,
     TfArg<bool>? mostRecent,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

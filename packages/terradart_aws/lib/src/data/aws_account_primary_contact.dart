@@ -14,6 +14,7 @@ final class DataAwsAccountPrimaryContact extends Data {
   DataAwsAccountPrimaryContact(
     super.localName, {
     TfArg<String>? accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'account_id': ?accountId});

@@ -20,6 +20,7 @@ final class DataCloudflareFirewallRule extends Data {
     super.localName, {
     TfArg<String>? ruleId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

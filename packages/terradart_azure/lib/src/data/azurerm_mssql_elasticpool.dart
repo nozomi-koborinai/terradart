@@ -17,6 +17,7 @@ final class DataAzurermMssqlElasticpool extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> serverName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

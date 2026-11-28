@@ -88,6 +88,7 @@ final class DataCloudflareZeroTrustCwsRegoModule extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? regoModuleId,
     DataZeroTrustCwsRegoModuleFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

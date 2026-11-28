@@ -15,6 +15,7 @@ final class DataAwsSsmcontactsPlan extends Data {
     super.localName, {
     required TfArg<String> contactId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

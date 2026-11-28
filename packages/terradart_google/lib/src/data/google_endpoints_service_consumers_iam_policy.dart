@@ -19,6 +19,7 @@ final class DataGoogleEndpointsServiceConsumersIamPolicy extends Data {
     super.localName, {
     required TfArg<String> consumerProject,
     required TfArg<String> serviceName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,6 +19,7 @@ final class DataGoogleDataplexAspectTypeIamPolicy extends Data {
     required TfArg<String> aspectTypeId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

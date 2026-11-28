@@ -43,6 +43,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfiles extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     DataZeroTrustDeviceCustomProfilesProfileType? profileType,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsCloudhsmV2Cluster extends Data {
     required TfArg<String> clusterId,
     TfArg<String>? clusterState,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

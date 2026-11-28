@@ -19,6 +19,7 @@ final class DataGoogleBackupDrBackup extends Data {
     required TfArg<String> dataSourceId,
     required TfArg<String> location,
     required TfArg<String> project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

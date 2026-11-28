@@ -19,6 +19,7 @@ final class DataAwsLambdaLayerVersion extends Data {
     TfArg<String>? layerVersionArn,
     TfArg<String>? region,
     TfArg<num>? version,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

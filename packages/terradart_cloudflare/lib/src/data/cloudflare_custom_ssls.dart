@@ -61,6 +61,7 @@ final class DataCloudflareCustomSsls extends Data {
     TfArg<num>? maxItems,
     DataCustomSslsStatus? status,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

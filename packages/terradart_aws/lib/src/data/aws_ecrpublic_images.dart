@@ -36,6 +36,7 @@ final class DataAwsEcrpublicImages extends Data {
     TfArg<String>? registryId,
     required TfArg<String> repositoryName,
     List<DataEcrpublicImagesImageIds>? imageIds,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

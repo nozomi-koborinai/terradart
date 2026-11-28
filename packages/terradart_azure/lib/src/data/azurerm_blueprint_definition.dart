@@ -14,6 +14,7 @@ final class DataAzurermBlueprintDefinition extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> scopeId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

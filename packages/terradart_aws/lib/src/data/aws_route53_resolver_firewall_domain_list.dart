@@ -15,6 +15,7 @@ final class DataAwsRoute53ResolverFirewallDomainList extends Data {
     super.localName, {
     required TfArg<String> firewallDomainListId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

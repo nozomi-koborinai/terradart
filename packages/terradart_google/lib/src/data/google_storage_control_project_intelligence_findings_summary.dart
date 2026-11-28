@@ -53,6 +53,7 @@ final class DataGoogleStorageControlProjectIntelligenceFindingsSummary
     TfArg<String>? project,
     DataStorageControlProjectIntelligenceFindingsSummaryResourceScope?
     resourceScope,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

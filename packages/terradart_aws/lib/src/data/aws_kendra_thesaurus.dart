@@ -17,6 +17,7 @@ final class DataAwsKendraThesaurus extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> thesaurusId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

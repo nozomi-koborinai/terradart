@@ -41,6 +41,7 @@ final class DataAwsOpensearchserverlessSecurityPolicy extends Data {
     required TfArg<String> name,
     TfArg<String>? region,
     required DataOpensearchserverlessSecurityPolicyType type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

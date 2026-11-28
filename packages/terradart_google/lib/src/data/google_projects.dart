@@ -16,6 +16,7 @@ final class DataGoogleProjects extends Data {
   DataGoogleProjects(
     super.localName, {
     required TfArg<String> filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'filter': filter});

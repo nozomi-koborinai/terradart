@@ -68,6 +68,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredRoute extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? routeId,
     DataZeroTrustTunnelCloudflaredRouteFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -160,6 +160,7 @@ final class DataCloudflareZone extends Data {
     super.localName, {
     TfArg<String>? zoneId,
     DataZoneFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

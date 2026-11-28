@@ -30,6 +30,7 @@ final class DataGoogleProject extends Data {
   DataGoogleProject(
     super.localName, {
     TfArg<String>? projectId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'project_id': ?projectId});

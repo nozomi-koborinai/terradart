@@ -16,6 +16,7 @@ final class DataAwsKmsPublicKey extends Data {
     TfArg<List<String>>? grantTokens,
     required RefTo<AwsKmsKey> keyId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

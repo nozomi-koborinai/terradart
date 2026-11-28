@@ -13,6 +13,7 @@ final class DataAwsBillingViews extends Data {
   DataAwsBillingViews(
     super.localName, {
     TfArg<List<String>>? billingViewTypes,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

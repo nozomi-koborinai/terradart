@@ -24,6 +24,7 @@ final class DataGoogleGeminiRepositoryGroupIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required RefTo<GoogleGeminiRepositoryGroup> repositoryGroupId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

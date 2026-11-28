@@ -21,6 +21,7 @@ final class DataCloudflarePagesDomain extends Data {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> domainName,
     required TfArg<String> projectName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

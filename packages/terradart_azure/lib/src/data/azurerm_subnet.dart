@@ -17,6 +17,7 @@ final class DataAzurermSubnet extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> virtualNetworkName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

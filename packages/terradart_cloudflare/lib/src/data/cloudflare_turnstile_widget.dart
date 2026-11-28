@@ -85,6 +85,7 @@ final class DataCloudflareTurnstileWidget extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? sitekey,
     DataTurnstileWidgetFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

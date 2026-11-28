@@ -44,9 +44,6 @@ final class GoogleOracleDatabaseOdbDnsZone extends Resource {
   @override
   Set<String> get sensitiveFields => _googleOracleDatabaseOdbDnsZoneSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleOracleDatabaseOdbDnsZone>`.
   RefTo<GoogleOracleDatabaseOdbDnsZone> get ref => RefTo.of(this);

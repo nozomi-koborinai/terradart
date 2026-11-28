@@ -19,6 +19,7 @@ final class DataCloudflareBotManagement extends Data {
   DataCloudflareBotManagement(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

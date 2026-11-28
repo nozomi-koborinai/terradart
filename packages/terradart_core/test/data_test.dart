@@ -10,7 +10,7 @@ final class _FakeProjectData extends Data {
   @override
   Set<String> get sensitiveFields => const {};
 
-  TfRef<String> get number => TfRef.data<String>(this, 'number');
+  TfRef<String> get number => TfRef.attribute<String>(this, 'number');
 }
 
 void main() {
@@ -28,7 +28,7 @@ void main() {
       expect(d.tfAddress, 'data.google_project.current');
     });
 
-    test('exposes TfRef<T> via TfRef.data factory', () {
+    test('an attribute getter reads the data block', () {
       expect(d.number.interpolation, r'${data.google_project.current.number}');
       expect(d.number.bareAddress, 'data.google_project.current.number');
     });

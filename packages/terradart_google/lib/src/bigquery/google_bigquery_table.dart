@@ -1215,9 +1215,6 @@ final class GoogleBigqueryTable extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryTableSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleBigqueryTable>`.
   RefTo<GoogleBigqueryTable> get ref => RefTo.of(this);

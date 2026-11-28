@@ -87,6 +87,7 @@ final class DataCloudflareZeroTrustCwsDomainAcl extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? domainAclId,
     DataZeroTrustCwsDomainAclFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

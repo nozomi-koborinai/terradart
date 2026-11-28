@@ -22,6 +22,7 @@ final class DataGoogleLoggingLogView extends Data {
     required TfArg<String> location,
     required TfArg<String> name,
     required TfArg<String> parent,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

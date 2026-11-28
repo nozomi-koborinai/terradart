@@ -19,6 +19,7 @@ final class DataGoogleOracleDatabaseOdbNetwork extends Data {
     required TfArg<String> location,
     required TfArg<String> odbNetworkId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

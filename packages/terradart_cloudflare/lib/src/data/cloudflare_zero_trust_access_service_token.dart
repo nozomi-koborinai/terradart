@@ -41,6 +41,7 @@ final class DataCloudflareZeroTrustAccessServiceToken extends Data {
     TfArg<String>? serviceTokenId,
     RefTo<CloudflareZone>? zoneId,
     DataZeroTrustAccessServiceTokenFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

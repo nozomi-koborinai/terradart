@@ -274,15 +274,6 @@ class WrapperEmitter {
       buf.writeln("  String get defaultProvider => '$resourceProvider';");
     }
 
-    final hasDeletionProtection = def.root.attributes.any(
-      (a) => a.name == 'deletion_protection',
-    );
-    if (hasDeletionProtection) {
-      buf.writeln();
-      buf.writeln('  @override');
-      buf.writeln('  bool get supportsDeletionProtection => true;');
-    }
-
     final handGetters = extraGetterNames(override?.extraGetters);
     final derived = (override?.deriveOutputGetters ?? false)
         ? emitDerivedOutputGetters(
@@ -308,7 +299,7 @@ class WrapperEmitter {
     if (principals.contains(def.terraformType)) {
       buf
         ..writeln()
-        ..write(emitPrincipalGetter(data: false));
+        ..write(emitPrincipalGetter());
     }
 
     final extraGetters = override?.extraGetters;

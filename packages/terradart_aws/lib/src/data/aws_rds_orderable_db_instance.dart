@@ -36,6 +36,7 @@ final class DataAwsRdsOrderableDbInstance extends Data {
     TfArg<bool>? supportsStorageAutoscaling,
     TfArg<bool>? supportsStorageEncryption,
     TfArg<bool>? vpc,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

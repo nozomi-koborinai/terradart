@@ -26,6 +26,7 @@ final class DataCloudflareWorkersDeployments extends Data {
     required TfArg<String> scriptName,
     TfArg<String>? since,
     TfArg<String>? until,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsServicePrincipal extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> serviceName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

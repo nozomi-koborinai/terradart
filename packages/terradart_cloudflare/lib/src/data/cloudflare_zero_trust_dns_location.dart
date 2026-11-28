@@ -90,6 +90,7 @@ final class DataCloudflareZeroTrustDnsLocation extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? locationId,
     DataZeroTrustDnsLocationFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -20,6 +20,7 @@ final class DataCloudflareZoneDnsSettings extends Data {
   DataCloudflareZoneDnsSettings(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

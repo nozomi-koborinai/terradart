@@ -17,6 +17,7 @@ final class DataAwsWafv2ManagedRuleGroup extends Data {
     required TfArg<String> scope,
     required TfArg<String> vendorName,
     TfArg<String>? versionName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -78,9 +78,6 @@ final class GoogleOracleDatabaseOdbNetwork extends Resource {
   @override
   Set<String> get sensitiveFields => _googleOracleDatabaseOdbNetworkSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleOracleDatabaseOdbNetwork>`.
   RefTo<GoogleOracleDatabaseOdbNetwork> get ref => RefTo.of(this);

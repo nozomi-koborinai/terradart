@@ -20,6 +20,7 @@ final class DataAwsSecretsmanagerSecretVersion extends Data {
     required TfArg<String> secretId,
     TfArg<String>? versionId,
     TfArg<String>? versionStage,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

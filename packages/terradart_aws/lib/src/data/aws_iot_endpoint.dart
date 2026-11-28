@@ -14,6 +14,7 @@ final class DataAwsIotEndpoint extends Data {
     super.localName, {
     TfArg<String>? endpointType,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

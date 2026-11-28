@@ -17,6 +17,7 @@ final class DataAwsConnectLambdaFunctionAssociation extends Data {
     required RefTo<AwsLambdaFunction> functionArn,
     required TfArg<String> instanceId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

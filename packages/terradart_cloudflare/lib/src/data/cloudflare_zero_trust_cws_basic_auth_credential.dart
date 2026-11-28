@@ -100,6 +100,7 @@ final class DataCloudflareZeroTrustCwsBasicAuthCredential extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? credentialId,
     DataZeroTrustCwsBasicAuthCredentialFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

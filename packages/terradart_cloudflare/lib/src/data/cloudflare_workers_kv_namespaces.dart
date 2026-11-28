@@ -51,6 +51,7 @@ final class DataCloudflareWorkersKvNamespaces extends Data {
     DataWorkersKvNamespacesDirection? direction,
     TfArg<num>? maxItems,
     DataWorkersKvNamespacesOrder? order,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

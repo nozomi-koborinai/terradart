@@ -22,6 +22,7 @@ final class DataGoogleStorageControlProjectIntelligenceFindingRevision
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> revisionId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

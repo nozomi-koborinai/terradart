@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustDlpPredefinedEntry extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> entryId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

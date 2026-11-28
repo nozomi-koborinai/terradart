@@ -13,6 +13,7 @@ final class DataAzurermAutomationVariables extends Data {
   DataAzurermAutomationVariables(
     super.localName, {
     required TfArg<String> automationAccountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataGoogleFolderOrganizationPolicy extends Data {
     super.localName, {
     required TfArg<String> constraint,
     required TfArg<String> folder,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

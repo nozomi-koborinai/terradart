@@ -34,6 +34,7 @@ final class DataAwsEbsSnapshotIds extends Data {
     TfArg<String>? region,
     TfArg<List<String>>? restorableByUserIds,
     List<DataEbsSnapshotIdsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAzurermKeyVaultCertificateData extends Data {
     required RefTo<AzurermKeyVault> keyVaultId,
     required TfArg<String> name,
     TfArg<String>? version,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

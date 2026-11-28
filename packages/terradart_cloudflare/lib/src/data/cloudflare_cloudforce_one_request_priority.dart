@@ -20,6 +20,7 @@ final class DataCloudflareCloudforceOneRequestPriority extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> priorityId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

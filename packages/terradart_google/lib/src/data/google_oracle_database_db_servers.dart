@@ -18,6 +18,7 @@ final class DataGoogleOracleDatabaseDbServers extends Data {
     required TfArg<String> cloudExadataInfrastructure,
     required TfArg<String> location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

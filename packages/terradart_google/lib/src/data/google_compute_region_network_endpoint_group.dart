@@ -21,6 +21,7 @@ final class DataGoogleComputeRegionNetworkEndpointGroup extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     TfArg<String>? selfLink,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

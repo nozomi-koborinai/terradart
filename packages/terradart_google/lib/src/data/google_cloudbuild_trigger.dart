@@ -19,6 +19,7 @@ final class DataGoogleCloudbuildTrigger extends Data {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> triggerId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

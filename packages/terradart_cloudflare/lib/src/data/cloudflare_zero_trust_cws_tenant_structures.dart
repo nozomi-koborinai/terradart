@@ -71,6 +71,7 @@ final class DataCloudflareZeroTrustCwsTenantStructures extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? name,
     DataZeroTrustCwsTenantStructuresOrder? order,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -81,6 +81,7 @@ final class DataCloudflarePipelineSink extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? sinkId,
     DataPipelineSinkFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

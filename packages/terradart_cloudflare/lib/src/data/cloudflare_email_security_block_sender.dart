@@ -133,6 +133,7 @@ final class DataCloudflareEmailSecurityBlockSender extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? patternId,
     DataEmailSecurityBlockSenderFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

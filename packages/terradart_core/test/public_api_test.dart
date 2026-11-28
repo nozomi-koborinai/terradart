@@ -11,7 +11,6 @@ void main() {
       TfArgLiteral,
       TfRef,
       AttributeRef,
-      DataRef,
       ResourceRef,
       RefTo,
       TfAddressed,
@@ -40,7 +39,7 @@ void main() {
       TfTimeouts,
       EnumList,
     ];
-    expect(symbols, hasLength(33));
+    expect(symbols, hasLength(32));
   });
 
   test('generator building blocks stay out of the public library', () {

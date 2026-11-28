@@ -14,6 +14,7 @@ final class DataAwsWafSubscribedRuleGroup extends Data {
     super.localName, {
     TfArg<String>? metricName,
     TfArg<String>? name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -20,6 +20,7 @@ final class DataAzurermApiManagementProduct extends Data {
     required TfArg<String> apiManagementName,
     required TfArg<String> productId,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

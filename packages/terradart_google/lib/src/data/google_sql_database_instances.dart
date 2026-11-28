@@ -308,6 +308,7 @@ final class DataGoogleSqlDatabaseInstances extends Data {
     DataSqlDatabaseInstancesState? state,
     TfArg<String>? tier,
     TfArg<String>? zone,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

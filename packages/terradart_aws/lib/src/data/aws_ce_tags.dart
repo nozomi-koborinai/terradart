@@ -211,6 +211,7 @@ final class DataAwsCeTags extends Data {
     DataCeTagsFilter? filter,
     List<DataCeTagsSortBy>? sortBy,
     required DataCeTagsTimePeriod timePeriod,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

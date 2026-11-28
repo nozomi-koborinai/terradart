@@ -18,6 +18,7 @@ final class DataGoogleServiceAccounts extends Data {
     TfArg<String>? prefix,
     TfArg<String>? project,
     TfArg<String>? regex,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

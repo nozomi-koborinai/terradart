@@ -14,6 +14,7 @@ final class DataAwsRoute53DelegationSet extends Data {
   DataAwsRoute53DelegationSet(
     super.localName, {
     required TfArg<String> id,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'id': id});

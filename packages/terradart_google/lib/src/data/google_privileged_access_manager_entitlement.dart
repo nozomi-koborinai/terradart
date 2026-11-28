@@ -20,6 +20,7 @@ final class DataGooglePrivilegedAccessManagerEntitlement extends Data {
     TfArg<String>? entitlementId,
     TfArg<String>? location,
     TfArg<String>? parent,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

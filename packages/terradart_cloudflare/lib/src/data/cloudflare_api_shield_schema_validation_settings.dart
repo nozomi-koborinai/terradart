@@ -22,6 +22,7 @@ final class DataCloudflareApiShieldSchemaValidationSettings extends Data {
   DataCloudflareApiShieldSchemaValidationSettings(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

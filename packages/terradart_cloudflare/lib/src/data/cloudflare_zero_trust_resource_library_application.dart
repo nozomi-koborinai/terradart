@@ -64,6 +64,7 @@ final class DataCloudflareZeroTrustResourceLibraryApplication extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     DataZeroTrustResourceLibraryApplicationFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

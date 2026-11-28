@@ -15,6 +15,7 @@ final class DataAzurermDataFactoryTriggerSchedule extends Data {
     super.localName, {
     required TfArg<String> dataFactoryId,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

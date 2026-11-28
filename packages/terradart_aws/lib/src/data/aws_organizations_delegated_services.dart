@@ -13,6 +13,7 @@ final class DataAwsOrganizationsDelegatedServices extends Data {
   DataAwsOrganizationsDelegatedServices(
     super.localName, {
     required TfArg<String> accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'account_id': accountId});

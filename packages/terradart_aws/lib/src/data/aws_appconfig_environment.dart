@@ -17,6 +17,7 @@ final class DataAwsAppconfigEnvironment extends Data {
     required TfArg<String> environmentId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

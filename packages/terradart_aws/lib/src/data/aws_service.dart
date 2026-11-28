@@ -17,6 +17,7 @@ final class DataAwsService extends Data {
     TfArg<String>? reverseDnsName,
     TfArg<String>? reverseDnsPrefix,
     TfArg<String>? serviceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

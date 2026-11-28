@@ -75,6 +75,7 @@ final class DataCloudflareZeroTrustCwsBasicAuthCredentials extends Data {
     TfArg<num>? maxItems,
     DataZeroTrustCwsBasicAuthCredentialsOrder? order,
     TfArg<String>? username,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -31,6 +31,7 @@ final class DataCloudflareOriginCaCertificate extends Data {
     super.localName, {
     TfArg<String>? certificateId,
     DataOriginCaCertificateFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

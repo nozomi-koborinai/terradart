@@ -22,6 +22,7 @@ final class DataCloudflareLogpushJob extends Data {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<num> jobId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -64,6 +64,7 @@ final class DataCloudflareUserGroup extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? userGroupId,
     DataUserGroupFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

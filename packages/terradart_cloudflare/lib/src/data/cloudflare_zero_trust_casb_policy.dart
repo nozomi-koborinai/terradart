@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustCasbPolicy extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> policyId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

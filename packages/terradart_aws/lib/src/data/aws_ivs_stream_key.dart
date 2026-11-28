@@ -15,6 +15,7 @@ final class DataAwsIvsStreamKey extends Data {
     required TfArg<String> channelArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

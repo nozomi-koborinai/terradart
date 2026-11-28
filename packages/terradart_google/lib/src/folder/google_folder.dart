@@ -42,9 +42,6 @@ final class GoogleFolder extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFolderSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleFolder>`.
   RefTo<GoogleFolder> get ref => RefTo.of(this);

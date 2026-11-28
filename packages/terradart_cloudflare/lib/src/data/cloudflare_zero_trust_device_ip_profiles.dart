@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustDeviceIpProfiles extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<num>? perPage,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

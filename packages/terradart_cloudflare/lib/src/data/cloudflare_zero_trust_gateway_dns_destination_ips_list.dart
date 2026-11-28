@@ -22,6 +22,7 @@ final class DataCloudflareZeroTrustGatewayDnsDestinationIpsList extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

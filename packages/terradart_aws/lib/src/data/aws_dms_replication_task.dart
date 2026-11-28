@@ -16,6 +16,7 @@ final class DataAwsDmsReplicationTask extends Data {
     TfArg<String>? region,
     required TfArg<String> replicationTaskId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

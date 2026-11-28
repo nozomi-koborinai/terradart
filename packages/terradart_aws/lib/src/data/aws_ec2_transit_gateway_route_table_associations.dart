@@ -38,6 +38,7 @@ final class DataAwsEc2TransitGatewayRouteTableAssociations extends Data {
     TfArg<String>? region,
     required TfArg<String> transitGatewayRouteTableId,
     List<DataEc2TransitGatewayRouteTableAssociationsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

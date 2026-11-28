@@ -18,6 +18,7 @@ final class DataGoogleStorageBucketIamPolicy extends Data {
   DataGoogleStorageBucketIamPolicy(
     super.localName, {
     required RefTo<GoogleStorageBucket> bucket,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

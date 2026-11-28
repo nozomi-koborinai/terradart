@@ -23,6 +23,7 @@ final class DataCloudflareFilters extends Data {
     TfArg<bool>? paused,
     TfArg<String>? ref,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

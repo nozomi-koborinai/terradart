@@ -20,6 +20,7 @@ final class DataAppwriteDocumentsdbSpecifications extends Data {
   DataAppwriteDocumentsdbSpecifications(
     super.localName, {
     RefTo<AppwriteProject>? projectId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

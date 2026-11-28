@@ -16,6 +16,7 @@ final class DataAwsS3BucketPolicy extends Data {
     super.localName, {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

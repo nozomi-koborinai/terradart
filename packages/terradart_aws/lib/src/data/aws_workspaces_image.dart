@@ -14,6 +14,7 @@ final class DataAwsWorkspacesImage extends Data {
     super.localName, {
     required TfArg<String> imageId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

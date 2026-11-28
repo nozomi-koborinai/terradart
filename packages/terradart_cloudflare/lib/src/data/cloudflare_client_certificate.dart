@@ -74,6 +74,7 @@ final class DataCloudflareClientCertificate extends Data {
     TfArg<String>? clientCertificateId,
     RefTo<CloudflareZone>? zoneId,
     DataClientCertificateFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

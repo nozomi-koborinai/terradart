@@ -13,6 +13,7 @@ final class DataAwsIamAccessKeys extends Data {
   DataAwsIamAccessKeys(
     super.localName, {
     required TfArg<String> user,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'user': user});

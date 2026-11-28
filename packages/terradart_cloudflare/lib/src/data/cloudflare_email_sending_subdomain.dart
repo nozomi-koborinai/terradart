@@ -16,6 +16,7 @@ final class DataCloudflareEmailSendingSubdomain extends Data {
     super.localName, {
     required TfArg<String> subdomainId,
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

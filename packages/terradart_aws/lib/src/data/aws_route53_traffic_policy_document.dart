@@ -291,6 +291,7 @@ final class DataAwsRoute53TrafficPolicyDocument extends Data {
     TfArg<String>? version,
     List<DataRoute53TrafficPolicyDocumentEndpoint>? endpoint,
     List<DataRoute53TrafficPolicyDocumentRule>? rule,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -112,7 +112,7 @@ a service's environment cannot reference the service itself.
 The recipe uses these parts of the API:
 
 - **`LocalBackend`**: `const LocalBackend()` as the Stack's backend emits `terraform.backend.local: {}` in `main.tf.json`.
-- **Dev mode**: a Stack with `devMode` on sets `deletion_protection: false` on Cloud Run, Cloud SQL, and Secret Manager at synth time, so no resource sets it by hand.
+- **Deletion protection**: Cloud Run, Cloud SQL and Secret Manager each set `deletionProtection` to `false` in their builders, so `terraform destroy` tears the recipe down.
 - **`synth()`**: `Stack.synth()` writes `tf-out/main.tf.json`; the Stack subclass does not override it.
 - **Secrets**: the database password stays in Secret Manager and reaches the service through `secretKeyRef`. A value the Stack must take from outside goes through a `variable<String>` declared sensitive.
 - **`.principal`**: `GoogleServiceAccount.principal` is the account as an `IamPrincipal`, so an IAM binding's member is the runtime account's `principal`.

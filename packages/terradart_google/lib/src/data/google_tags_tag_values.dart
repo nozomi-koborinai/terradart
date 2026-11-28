@@ -16,6 +16,7 @@ final class DataGoogleTagsTagValues extends Data {
   DataGoogleTagsTagValues(
     super.localName, {
     required TfArg<String> parent,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'parent': parent});

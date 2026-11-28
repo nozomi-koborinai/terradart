@@ -20,6 +20,7 @@ final class DataCloudflareContentScanning extends Data {
   DataCloudflareContentScanning(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

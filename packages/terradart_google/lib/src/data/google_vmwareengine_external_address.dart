@@ -18,6 +18,7 @@ final class DataGoogleVmwareengineExternalAddress extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> parent,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': name, 'parent': parent});

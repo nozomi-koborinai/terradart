@@ -40,6 +40,7 @@ final class DataAwsFsxOpenzfsSnapshot extends Data {
     TfArg<List<String>>? snapshotIds,
     TfArg<Map<String, String>>? tags,
     List<DataFsxOpenzfsSnapshotFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -15,6 +15,7 @@ final class DataCloudflarePrecursor extends Data {
   DataCloudflarePrecursor(
     super.localName, {
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'zone_id': zoneId.encodeAs('id')});

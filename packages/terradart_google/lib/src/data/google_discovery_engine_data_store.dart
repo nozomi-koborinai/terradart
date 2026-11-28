@@ -43,6 +43,7 @@ final class DataGoogleDiscoveryEngineDataStore extends Data {
     TfArg<String>? displayName,
     DataDiscoveryEngineDataStoreLocation? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

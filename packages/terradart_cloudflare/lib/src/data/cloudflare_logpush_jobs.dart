@@ -23,6 +23,7 @@ final class DataCloudflareLogpushJobs extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -96,6 +96,7 @@ final class DataCloudflareZeroTrustCwsTenantStructure extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? structureId,
     DataZeroTrustCwsTenantStructureFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

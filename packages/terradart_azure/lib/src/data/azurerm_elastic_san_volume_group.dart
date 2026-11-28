@@ -15,6 +15,7 @@ final class DataAzurermElasticSanVolumeGroup extends Data {
     super.localName, {
     required TfArg<String> elasticSanId,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

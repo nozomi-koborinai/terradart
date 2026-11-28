@@ -588,6 +588,7 @@ final class DataAwsNetworkmanagerCoreNetworkPolicyDocument extends Data {
     List<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActions>?
     segmentActions,
     required List<DataNetworkmanagerCoreNetworkPolicyDocumentSegments> segments,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

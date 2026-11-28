@@ -27,6 +27,7 @@ final class DataAwsDatapipelinePipelineDefinition extends Data {
     required TfArg<String> pipelineId,
     TfArg<String>? region,
     List<DataDatapipelinePipelineDefinitionParameterValue>? parameterValue,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

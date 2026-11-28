@@ -19,6 +19,7 @@ final class DataAwsGlueConnection extends Data {
     required TfArg<String> id,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataAwsConnectRoutingProfile extends Data {
     TfArg<String>? region,
     TfArg<String>? routingProfileId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

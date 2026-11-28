@@ -21,6 +21,7 @@ final class DataGoogleDnsRecordSet extends Data {
     required TfArg<String> name,
     TfArg<String>? project,
     required TfArg<String> type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

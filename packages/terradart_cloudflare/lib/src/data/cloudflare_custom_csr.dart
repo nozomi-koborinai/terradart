@@ -35,6 +35,7 @@ final class DataCloudflareCustomCsr extends Data {
     TfArg<String>? customCsrId,
     RefTo<CloudflareZone>? zoneId,
     DataCustomCsrFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsEmrSupportedInstanceTypes extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> releaseLabel,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

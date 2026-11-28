@@ -158,6 +158,7 @@ final class DataCloudflareZeroTrustAccessInfrastructureTarget extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? targetId,
     DataZeroTrustAccessInfrastructureTargetFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

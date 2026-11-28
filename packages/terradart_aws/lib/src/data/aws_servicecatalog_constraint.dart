@@ -17,6 +17,7 @@ final class DataAwsServicecatalogConstraint extends Data {
     TfArg<String>? description,
     required TfArg<String> id,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

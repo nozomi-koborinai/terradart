@@ -22,6 +22,7 @@ final class DataCloudflareMagicNetworkMonitoringConfiguration extends Data {
   DataCloudflareMagicNetworkMonitoringConfiguration(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

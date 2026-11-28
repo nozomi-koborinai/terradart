@@ -135,9 +135,6 @@ final class GoogleOracleDatabaseExascaleDbStorageVault extends Resource {
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseExascaleDbStorageVaultSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleOracleDatabaseExascaleDbStorageVault>`.
   RefTo<GoogleOracleDatabaseExascaleDbStorageVault> get ref => RefTo.of(this);

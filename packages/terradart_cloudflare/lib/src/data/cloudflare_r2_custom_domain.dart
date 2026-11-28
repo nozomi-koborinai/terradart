@@ -21,6 +21,7 @@ final class DataCloudflareR2CustomDomain extends Data {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     required TfArg<String> domain,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

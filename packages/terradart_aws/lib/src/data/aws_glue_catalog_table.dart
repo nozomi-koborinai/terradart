@@ -19,6 +19,7 @@ final class DataAwsGlueCatalogTable extends Data {
     TfArg<String>? queryAsOfTime,
     TfArg<String>? region,
     TfArg<num>? transactionId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

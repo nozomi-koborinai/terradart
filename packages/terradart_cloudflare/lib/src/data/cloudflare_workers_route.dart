@@ -20,6 +20,7 @@ final class DataCloudflareWorkersRoute extends Data {
     super.localName, {
     required TfArg<String> routeId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsElasticacheServiceUpdates extends Data {
     super.localName, {
     TfArg<String>? region,
     TfArg<List<String>>? status,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

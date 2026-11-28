@@ -28,6 +28,7 @@ final class DataAzurermEventhubAuthorizationRule extends Data {
     required TfArg<String> namespaceName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? send,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

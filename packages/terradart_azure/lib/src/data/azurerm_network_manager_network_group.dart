@@ -15,6 +15,7 @@ final class DataAzurermNetworkManagerNetworkGroup extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> networkManagerId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

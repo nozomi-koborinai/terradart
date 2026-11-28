@@ -15,6 +15,7 @@ final class DataAwsRedshiftserverlessNamespace extends Data {
     super.localName, {
     required TfArg<String> namespaceName,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

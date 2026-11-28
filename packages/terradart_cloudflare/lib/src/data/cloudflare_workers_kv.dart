@@ -21,6 +21,7 @@ final class DataCloudflareWorkersKv extends Data {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> keyName,
     required TfArg<String> namespaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

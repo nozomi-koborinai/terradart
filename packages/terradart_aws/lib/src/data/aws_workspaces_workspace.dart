@@ -18,6 +18,7 @@ final class DataAwsWorkspacesWorkspace extends Data {
     TfArg<Map<String, String>>? tags,
     TfArg<String>? userName,
     TfArg<String>? workspaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

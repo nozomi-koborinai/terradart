@@ -26,6 +26,7 @@ final class DataCloudflareZeroTrustAccessApplications extends Data {
     TfArg<String>? name,
     TfArg<String>? search,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

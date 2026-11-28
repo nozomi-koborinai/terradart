@@ -20,6 +20,7 @@ final class DataCloudflareR2DataCatalog extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> bucketName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsOpensearchserverlessLifecyclePolicy extends Data {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

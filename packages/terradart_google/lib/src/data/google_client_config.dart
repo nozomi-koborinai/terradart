@@ -16,8 +16,12 @@ const Set<String> _googleClientConfigSensitive = <String>{'access_token'};
 final class DataGoogleClientConfig extends Data {
   static const String tfType = 'google_client_config';
 
-  DataGoogleClientConfig(super.localName, {super.provider, super.timeouts})
-    : super(terraformType: tfType, argMap: {});
+  DataGoogleClientConfig(
+    super.localName, {
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(terraformType: tfType, argMap: {});
 
   @override
   Set<String> get sensitiveFields => _googleClientConfigSensitive;

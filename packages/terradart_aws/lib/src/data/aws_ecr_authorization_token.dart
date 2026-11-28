@@ -17,6 +17,7 @@ final class DataAwsEcrAuthorizationToken extends Data {
     super.localName, {
     TfArg<String>? region,
     TfArg<String>? registryId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

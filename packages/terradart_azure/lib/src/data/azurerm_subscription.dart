@@ -14,6 +14,7 @@ final class DataAzurermSubscription extends Data {
   DataAzurermSubscription(
     super.localName, {
     TfArg<String>? subscriptionId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

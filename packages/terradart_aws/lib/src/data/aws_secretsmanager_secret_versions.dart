@@ -15,6 +15,7 @@ final class DataAwsSecretsmanagerSecretVersions extends Data {
     TfArg<bool>? includeDeprecated,
     TfArg<String>? region,
     required TfArg<String> secretId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataGoogleIamTestablePermissions extends Data {
     TfArg<String>? customSupportLevel,
     required TfArg<String> fullResourceName,
     TfArg<List<String>>? stages,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

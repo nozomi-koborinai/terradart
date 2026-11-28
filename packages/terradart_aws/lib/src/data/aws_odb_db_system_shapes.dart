@@ -14,6 +14,7 @@ final class DataAwsOdbDbSystemShapes extends Data {
     super.localName, {
     TfArg<String>? availabilityZoneId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

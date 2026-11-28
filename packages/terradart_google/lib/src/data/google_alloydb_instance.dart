@@ -20,6 +20,7 @@ final class DataGoogleAlloydbInstance extends Data {
     required TfArg<String> instanceId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

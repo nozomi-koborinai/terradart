@@ -15,6 +15,7 @@ final class DataAzurermStorageManagementPolicy extends Data {
   DataAzurermStorageManagementPolicy(
     super.localName, {
     required RefTo<AzurermStorageAccount> storageAccountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

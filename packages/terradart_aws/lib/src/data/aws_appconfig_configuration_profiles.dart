@@ -14,6 +14,7 @@ final class DataAwsAppconfigConfigurationProfiles extends Data {
     super.localName, {
     required TfArg<String> applicationId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

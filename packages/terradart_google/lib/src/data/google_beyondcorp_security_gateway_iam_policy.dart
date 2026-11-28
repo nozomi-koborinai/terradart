@@ -20,6 +20,7 @@ final class DataGoogleBeyondcorpSecurityGatewayIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> securityGatewayId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

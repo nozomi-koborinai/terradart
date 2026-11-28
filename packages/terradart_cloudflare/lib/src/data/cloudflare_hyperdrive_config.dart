@@ -23,6 +23,7 @@ final class DataCloudflareHyperdriveConfig extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> hyperdriveId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

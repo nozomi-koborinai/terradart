@@ -21,6 +21,7 @@ final class DataAzurermApiManagementApi extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> revision,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -15,6 +15,7 @@ final class DataAwsOutpostsAsset extends Data {
     required TfArg<String> arn,
     required TfArg<String> assetId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

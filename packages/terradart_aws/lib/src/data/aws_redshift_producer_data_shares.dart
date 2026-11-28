@@ -15,6 +15,7 @@ final class DataAwsRedshiftProducerDataShares extends Data {
     required TfArg<String> producerArn,
     TfArg<String>? region,
     TfArg<String>? status,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataCloudflareDcvDelegation extends Data {
   DataCloudflareDcvDelegation(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

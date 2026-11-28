@@ -18,6 +18,7 @@ final class DataGoogleIamWorkloadIdentityPoolOpenidConfig extends Data {
   DataGoogleIamWorkloadIdentityPoolOpenidConfig(
     super.localName, {
     required TfArg<String> resourceName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'resource_name': resourceName});

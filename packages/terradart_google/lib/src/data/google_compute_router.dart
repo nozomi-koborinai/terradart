@@ -21,6 +21,7 @@ final class DataGoogleComputeRouter extends Data {
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

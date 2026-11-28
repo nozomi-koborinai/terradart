@@ -15,6 +15,7 @@ final class DataAwsIamRole extends Data {
     super.localName, {
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': name, 'tags': ?tags});

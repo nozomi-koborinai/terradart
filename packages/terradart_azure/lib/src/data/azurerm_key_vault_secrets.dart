@@ -14,6 +14,7 @@ final class DataAzurermKeyVaultSecrets extends Data {
   DataAzurermKeyVaultSecrets(
     super.localName, {
     required RefTo<AzurermKeyVault> keyVaultId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

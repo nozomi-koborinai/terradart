@@ -18,6 +18,7 @@ final class DataAwsApiGatewayExport extends Data {
     TfArg<String>? region,
     required TfArg<String> restApiId,
     required TfArg<String> stageName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

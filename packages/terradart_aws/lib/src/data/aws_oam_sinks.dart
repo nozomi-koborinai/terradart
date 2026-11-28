@@ -13,6 +13,7 @@ final class DataAwsOamSinks extends Data {
   DataAwsOamSinks(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

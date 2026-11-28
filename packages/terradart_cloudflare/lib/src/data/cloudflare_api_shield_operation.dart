@@ -102,6 +102,7 @@ final class DataCloudflareApiShieldOperation extends Data {
     TfArg<bool>? withSchemas,
     RefTo<CloudflareZone>? zoneId,
     DataApiShieldOperationFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -34,6 +34,7 @@ export 'src/synth/synth_issue.dart'
         NoProviders,
         ProviderConflict,
         SensitiveLiteral,
+        SensitiveOutput,
         SynthException,
         SynthIssue,
         UndeclaredVariable,
@@ -42,7 +43,6 @@ export 'src/synth/synth_issue.dart'
 export 'src/tf_arg.dart'
     show
         AttributeRef,
-        DataRef,
         ResourceRef,
         ReplaceTrigger,
         Sensitive,

@@ -17,6 +17,7 @@ final class DataAzurermCognitiveAccountProject extends Data {
     required TfArg<String> cognitiveAccountName,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -17,6 +17,7 @@ final class DataAzurermKustoDatabase extends Data {
     required TfArg<String> clusterName,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

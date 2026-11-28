@@ -38,6 +38,7 @@ final class DataCloudflareWorkersScript extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? scriptName,
     DataWorkersScriptFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

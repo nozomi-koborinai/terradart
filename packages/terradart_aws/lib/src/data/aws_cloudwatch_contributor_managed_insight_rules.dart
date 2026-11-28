@@ -16,6 +16,7 @@ final class DataAwsCloudwatchContributorManagedInsightRules extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> resourceArn,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
