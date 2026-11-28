@@ -208,16 +208,7 @@ jobs:
       - run: dart pub get
 
       - name: Verify generated wrapper files
-        run: |
-          # Source of truth: per-resource yaml overrides under terradart_codegen.
-          yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml -name '*.yaml' | wc -l | tr -d ' ')
-          data_source_count=$(grep -l '^kind: data_source$' packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/*.yaml | wc -l | tr -d ' ')
-          resource_count=$((yaml_count - data_source_count))
-          # Count wrap output only: hand-written files under lib/src can share the
-          # prefix (appwrite's auth/appwrite_permission.dart) but lack wrap's header.
-          wrapper_count=$(find packages/terradart_google/lib/src -mindepth 2 -name 'google_*.dart' -not -path '*/generated/*' -exec head -qn1 {} + | grep -cxF '// GENERATED FILE - DO NOT EDIT' || true)
-          echo "yaml=$yaml_count (resources=$resource_count, data_sources=$data_source_count) wrapper=$wrapper_count"
-          [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
+        run: dart tool/wrap_lanes.dart --gate wrap --lane google
 
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_google
@@ -255,14 +246,7 @@ jobs:
       - run: dart pub get
 
       - name: Verify generated wrapper files
-        run: |
-          # Source of truth: the google_beta override registry.
-          yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/google_beta/yaml -name '*.yaml' | wc -l | tr -d ' ')
-          # Count wrap output only: hand-written files under lib/src can share the
-          # prefix (appwrite's auth/appwrite_permission.dart) but lack wrap's header.
-          wrapper_count=$(find packages/terradart_google_beta/lib/src -mindepth 2 -name 'google_*.dart' -exec head -qn1 {} + | grep -cxF '// GENERATED FILE - DO NOT EDIT' || true)
-          echo "yaml=$yaml_count wrapper=$wrapper_count"
-          [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
+        run: dart tool/wrap_lanes.dart --gate wrap --lane google-beta
 
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_google_beta
@@ -295,14 +279,7 @@ jobs:
       - run: dart pub get
 
       - name: Verify generated wrapper files
-        run: |
-          # Source of truth: the appwrite override registry.
-          yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/appwrite/yaml -name '*.yaml' | wc -l | tr -d ' ')
-          # Count wrap output only: hand-written files under lib/src can share the
-          # prefix (appwrite's auth/appwrite_permission.dart) but lack wrap's header.
-          wrapper_count=$(find packages/terradart_appwrite/lib/src -mindepth 2 -name 'appwrite_*.dart' -exec head -qn1 {} + | grep -cxF '// GENERATED FILE - DO NOT EDIT' || true)
-          echo "yaml=$yaml_count wrapper=$wrapper_count"
-          [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
+        run: dart tool/wrap_lanes.dart --gate wrap --lane appwrite
 
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_appwrite
@@ -335,14 +312,7 @@ jobs:
       - run: dart pub get
 
       - name: Verify generated wrapper files
-        run: |
-          # Source of truth: the cloudflare override registry.
-          yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/cloudflare/yaml -name '*.yaml' | wc -l | tr -d ' ')
-          # Count wrap output only: hand-written files under lib/src can share the
-          # prefix (appwrite's auth/appwrite_permission.dart) but lack wrap's header.
-          wrapper_count=$(find packages/terradart_cloudflare/lib/src -mindepth 2 -name 'cloudflare_*.dart' -exec head -qn1 {} + | grep -cxF '// GENERATED FILE - DO NOT EDIT' || true)
-          echo "yaml=$yaml_count wrapper=$wrapper_count"
-          [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
+        run: dart tool/wrap_lanes.dart --gate wrap --lane cloudflare
 
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_cloudflare
@@ -375,14 +345,7 @@ jobs:
       - run: dart pub get
 
       - name: Verify generated wrapper files
-        run: |
-          # Source of truth: the aws override registry.
-          yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/aws/yaml -name '*.yaml' | wc -l | tr -d ' ')
-          # Count wrap output only: hand-written files under lib/src can share the
-          # prefix (appwrite's auth/appwrite_permission.dart) but lack wrap's header.
-          wrapper_count=$(find packages/terradart_aws/lib/src -mindepth 2 -name 'aws_*.dart' -exec head -qn1 {} + | grep -cxF '// GENERATED FILE - DO NOT EDIT' || true)
-          echo "yaml=$yaml_count wrapper=$wrapper_count"
-          [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
+        run: dart tool/wrap_lanes.dart --gate wrap --lane aws
 
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_aws
@@ -415,14 +378,7 @@ jobs:
       - run: dart pub get
 
       - name: Verify generated wrapper files
-        run: |
-          # Source of truth: the azure override registry.
-          yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/azure/yaml -name '*.yaml' | wc -l | tr -d ' ')
-          # Count wrap output only: hand-written files under lib/src can share the
-          # prefix but lack wrap's header.
-          wrapper_count=$(find packages/terradart_azure/lib/src -mindepth 2 -name 'azurerm_*.dart' -exec head -qn1 {} + | grep -cxF '// GENERATED FILE - DO NOT EDIT' || true)
-          echo "yaml=$yaml_count wrapper=$wrapper_count"
-          [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
+        run: dart tool/wrap_lanes.dart --gate wrap --lane azure
 
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_azure

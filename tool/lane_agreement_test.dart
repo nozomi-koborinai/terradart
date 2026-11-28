@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:terradart_codegen/src/codegen/providers/provider_registry.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
+import 'package:yaml/yaml.dart';
 
 import 'bump_plan.dart';
 import 'wrap_lanes.dart';
@@ -48,6 +49,42 @@ void main() {
   test('publish.yml names every lane package', () {
     for (final lane in lanes) {
       expectMentions('.github/workflows/publish.yml', packageOf(lane));
+    }
+  });
+
+  test('publish.yml verifies each lane package with the wrap gate CI runs', () {
+    YamlMap jobsOf(String path) =>
+        (loadYaml(File(path).readAsStringSync()) as YamlMap)['jobs'] as YamlMap;
+    List<String> runsOf(YamlMap job) => [
+      for (final step in (job['steps'] as YamlList).cast<YamlMap>())
+        if (step['run'] case final String run) run.trim(),
+    ];
+
+    final ci = jobsOf('.github/workflows/ci.yml');
+    expect(
+      runsOf(ci['wrap_check'] as YamlMap),
+      contains('dart tool/wrap_lanes.dart --gate wrap'),
+    );
+    expect((ci['ci_gate'] as YamlMap)['needs'], contains('wrap_check'));
+
+    final publish = jobsOf('.github/workflows/publish.yml');
+    for (final lane in lanes) {
+      final package = packageOf(lane);
+      final jobs = [
+        for (final job in publish.values.cast<YamlMap>())
+          if (job['name'] == 'publish $package') job,
+      ];
+      expect(jobs, hasLength(1), reason: 'publish $package');
+      final runs = runsOf(jobs.single);
+      final verify = runs.indexOf(
+        'dart tool/wrap_lanes.dart --gate wrap --lane ${lane.name}',
+      );
+      expect(verify, isNonNegative, reason: '$package skips the wrap gate');
+      expect(
+        verify,
+        lessThan(runs.indexOf('dart pub publish --force')),
+        reason: '$package publishes before the wrap gate',
+      );
     }
   });
 
