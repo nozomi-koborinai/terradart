@@ -6500,7 +6500,7 @@ final class AwsLeftoverStack extends Stack {
         'fsx_s3_access_point_attachment',
         name: .literal(leftover),
         type: .openzfs,
-        ontapConfigurationOrOpenzfsConfiguration: .openzfsConfiguration([
+        volume: .openzfsConfiguration([
           .new(
             volumeId: .literal(leftover),
             fileSystemIdentity: [.new(type: .posix)],

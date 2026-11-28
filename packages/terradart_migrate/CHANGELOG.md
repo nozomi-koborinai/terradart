@@ -1,7 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.38.0 - 2026-11-28
 
+- A variable with `default = null` is declared with a nullable type, because `terradart_core` now writes a `null` `defaultValue` as `"default": null`. The default of an `optional(...)` object attribute is migrated as the value Terraform reads, so a `${` in it stays text.
+- The `google` and `aws` manifests follow the inputs `terradart_google` and `terradart_aws` retype: sensitive inputs take `Sensitive`, the list and map fields of the hand-written Google helpers take `TfArg`, and their image, snapshot, route and DNS network inputs take `RefTo`.
+- The `aws` and `azure` manifests cover `hashicorp/aws` 6.74.0 and `hashicorp/azurerm` 5.15.0, including the sealed `volume` and `creation` arguments.
 - A migrated `google_project_service` `service` is written as a `GoogleApi`: a constant for an API that has one, `GoogleApi.custom` for any other `<name>.googleapis.com` API, `GoogleApi.variable` for a variable, and `GoogleApi.arg` for an attribute or a service outside `googleapis.com` (which also warns).
 - A migrated `aws` `retry_mode` and `azurerm` `environment` and `resource_provider_registrations` are written as members of `AwsRetryMode`, `AzureEnvironment` and `AzureResourceProviderRegistrations`. A value the enum does not list keeps that provider in Terraform, and `--merge-envs` types a value that differs between environments as the enum in the `Env` enum.
 - A child-module Stack registers `azurerm` as `AzureProvider.unconfigured`, and so does an `azurerm` configuration alias, so a child module the root calls with `count` or `for_each` carries no provider block.

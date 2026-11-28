@@ -14,8 +14,8 @@ Beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terra
 
 ```yaml
 dependencies:
-  terradart_core: ^0.37.0
-  terradart_google: ^0.37.0
+  terradart_core: ^0.38.0
+  terradart_google: ^0.38.0
 ```
 
 ## Usage example

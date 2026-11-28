@@ -9,7 +9,7 @@ const String bundledSkillMd = r'''
 name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_azure` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
-  terradart-version: "0.37.0"
+  terradart-version: "0.38.0"
   terradart-sha256: "3ca7bf2dd043ca0317a7ce0ce6810377798ab83abdbf258322535fb78321aa34"
 ---
 

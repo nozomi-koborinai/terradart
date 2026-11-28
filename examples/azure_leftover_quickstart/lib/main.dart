@@ -4695,7 +4695,7 @@ final class AzureLeftoverStack extends Stack {
         administratorPassword: .administratorPassword(leftoverSecret),
         location: .literal(location),
         name: .literal(leftover),
-        pointInTimeRestoreOrPostgresqlVersion: .pointInTimeRestore(
+        creation: .pointInTimeRestore(
           .new(
             pointInTimeUtc: .literal('2024-01-01T00:00:00Z'),
             sourceHorizondbClusterId: .literal(

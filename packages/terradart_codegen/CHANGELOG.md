@@ -1,11 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.38.0 - 2026-11-28
 
+- `wrap` names each lane's catalog list after its umbrella file (`terradartGoogleCatalog`, `terradartAwsCatalog`, ...), and the generated `_catalog.g.dart` takes `CatalogEntry` and `CatalogKind` from `package:terradart_core/catalog.dart`.
+- Generated data sources take `dependsOn`. Wrappers no longer override `supportsDeletionProtection`, which `terradart_core` removes, and the `principal` getter of an IAM data source reads `TfRef.attribute`.
 - A top-level `extraSensitiveFields` entry types its input `Sensitive<T>`, as the schema's `sensitive` flag does.
 - A sensitive input is never typed as a reference: it stays `Sensitive<String>`, and no `tool/reference_targets.yaml` rule matches it.
 - The migration manifest records the attribute a sealed variant's `value` getter encodes through `encodeAs`, so a `RefTo` field there is a reference slot rather than a manual shape.
 - `wrap --required-apis <ledger>` emits `GoogleApi`, one constant per Google API the ledger names, and `requiredApiForTerraformType` from `tool/required_apis.yaml`, and the migration manifest records `GoogleApi` as an enum. The google lane passes it, so the weekly schema bump regenerates both.
+- Updated provider schemas, fixtures, and wrapper overrides for `hashicorp/aws` 6.74.0 and `hashicorp/azurerm` 5.15.0. The overrides name the sealed groups of `aws_fsx_s3_access_point_attachment` (`volume`) and `azurerm_horizondb_cluster` (`creation`).
 
 ## 0.37.0 - 2026-11-23
 

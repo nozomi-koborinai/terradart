@@ -1,9 +1,13 @@
 # Changelog
 
-## Unreleased
+## 0.38.0 - 2026-11-28
 
 - **Breaking:** `AwsProvider.retryMode` takes the `AwsRetryMode` enum (`.standard` or `.adaptive`) instead of a string. See [MIGRATING.md](../../MIGRATING.md#awsproviderretrymode-takes-awsretrymode).
 - **Breaking:** `AwsS3ObjectCopy.kmsKeyId` takes `Sensitive<String>` instead of `RefTo<AwsKmsKey>`, because the provider marks it sensitive and a `RefTo` takes the `.literal` synth rejects there. Pass the key's `arn` getter. See [MIGRATING.md](../../MIGRATING.md#secrets-take-sensitive).
+- **Breaking:** `catalog.dart` names its list `terradartAwsCatalog` instead of `terradartCatalog`, and re-exports `CatalogEntry` and `CatalogKind` from `package:terradart_core/catalog.dart`. See [MIGRATING.md](../../MIGRATING.md#provider-packages-export-each-public-name-once).
+- **Breaking (provider 6.74.0):** `AwsFsxS3AccessPointAttachment.openzfsConfiguration` moves onto the required sealed `volume` argument (`.ontapConfiguration(...)` or `.openzfsConfiguration(...)`). The OpenZFS identity helper becomes `FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity`, and its `type` enum becomes `FsxS3AccessPointAttachmentOpenzfsConfigurationType`. See [MIGRATING.md](../../MIGRATING.md#aws-provider-6740).
+- Every data source takes `dependsOn`, which synth writes as `depends_on`.
+- Follows `hashicorp/aws` 6.74.0 (was 6.73.0), and synth output pins that version. Adds `AwsCloudwatchomniAlert`, `AwsCloudwatchomniOrganizationAccessGrant`, `AwsDevopsagentAssetFile`, `AwsPinpointsmsvoicev2AccountDefaultProtectConfiguration`, and `AwsPinpointsmsvoicev2ProtectConfigurationAssociation` (1771 resources + 689 data sources).
 
 ## 0.37.0 - 2026-11-23
 

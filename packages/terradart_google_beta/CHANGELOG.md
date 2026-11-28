@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.38.0 - 2026-11-28
+
+- **Breaking:** `catalog.dart` names its list `terradartGoogleBetaCatalog` instead of `terradartCatalog`, and re-exports `CatalogEntry` and `CatalogKind` from `package:terradart_core/catalog.dart`. See [MIGRATING.md](../../MIGRATING.md#provider-packages-export-each-public-name-once).
+- `terradart_google` removes `google_beta.dart` and its own `kBetaProviderSource`, so `GoogleBetaProvider`, `GoogleProjectServiceIdentity` and `kBetaProviderSource` come only from this package. Import `package:terradart_google_beta/provider.dart` and `project.dart`.
+- No provider pin moves (`hashicorp/google-beta` 8.12.0).
+
 ## 0.37.0 - 2026-11-23
 
 - **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).

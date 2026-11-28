@@ -30,18 +30,18 @@ extension type const FsxS3AccessPointAttachmentType._(TfArg<String> _)
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.ontapConfiguration(...)`.
-sealed class FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration {
-  const FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration();
+sealed class FsxS3AccessPointAttachmentVolume {
+  const FsxS3AccessPointAttachmentVolume();
 
   /// Sets `ontap_configuration`.
-  const factory FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration.ontapConfiguration(
+  const factory FsxS3AccessPointAttachmentVolume.ontapConfiguration(
     List<FsxS3AccessPointAttachmentOntapConfiguration> ontapConfiguration,
-  ) = FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOntapConfiguration;
+  ) = FsxS3AccessPointAttachmentVolumeOntapConfiguration;
 
   /// Sets `openzfs_configuration`.
-  const factory FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration.openzfsConfiguration(
+  const factory FsxS3AccessPointAttachmentVolume.openzfsConfiguration(
     List<FsxS3AccessPointAttachmentOpenzfsConfiguration> openzfsConfiguration,
-  ) = FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationChoice;
+  ) = FsxS3AccessPointAttachmentVolumeOpenzfsConfiguration;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -56,10 +56,10 @@ sealed class FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration 
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration.ontapConfiguration] choice: sets `ontap_configuration`.
-final class FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOntapConfiguration
-    extends FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration {
-  const FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOntapConfiguration(
+/// The [FsxS3AccessPointAttachmentVolume.ontapConfiguration] choice: sets `ontap_configuration`.
+final class FsxS3AccessPointAttachmentVolumeOntapConfiguration
+    extends FsxS3AccessPointAttachmentVolume {
+  const FsxS3AccessPointAttachmentVolumeOntapConfiguration(
     this.ontapConfiguration,
   );
 
@@ -84,10 +84,10 @@ final class FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOn
   };
 }
 
-/// The [FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration.openzfsConfiguration] choice: sets `openzfs_configuration`.
-final class FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationChoice
-    extends FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration {
-  const FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationChoice(
+/// The [FsxS3AccessPointAttachmentVolume.openzfsConfiguration] choice: sets `openzfs_configuration`.
+final class FsxS3AccessPointAttachmentVolumeOpenzfsConfiguration
+    extends FsxS3AccessPointAttachmentVolume {
+  const FsxS3AccessPointAttachmentVolumeOpenzfsConfiguration(
     this.openzfsConfiguration,
   );
 
@@ -394,8 +394,7 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     required FsxS3AccessPointAttachmentType type,
-    required FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration
-    ontapConfigurationOrOpenzfsConfiguration,
+    required FsxS3AccessPointAttachmentVolume volume,
     List<FsxS3AccessPointAttachmentS3AccessPoint>? s3AccessPoint,
     super.lifecycle,
     super.dependsOn,
@@ -407,7 +406,7 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
            'name': name,
            'region': ?region,
            'type': type,
-           ...ontapConfigurationOrOpenzfsConfiguration.argMap,
+           ...volume.argMap,
            if (s3AccessPoint != null)
              's3_access_point': TfArg.literal([
                for (final e in s3AccessPoint) e.encode(),

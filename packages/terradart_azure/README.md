@@ -14,8 +14,8 @@ The provider requires a `features` block in a root module. `AzureProvider()` alw
 
 ```yaml
 dependencies:
-  terradart_core: ^0.37.0
-  terradart_azure: ^0.37.0
+  terradart_core: ^0.38.0
+  terradart_azure: ^0.38.0
 ```
 
 ## Usage

@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.38.0 - 2026-11-28
+
+Synth writes what the Stack says and nothing else, and reports at synth what Terraform would reject at plan. See [MIGRATING.md](../../MIGRATING.md#terradart_core-no-hidden-synth-behavior).
+
+- **Breaking:** `Stack.devMode` and `Resource.supportsDeletionProtection` are removed. Synth writes `deletion_protection` only on a resource that sets it.
+- **Breaking:** `DataRef` and `TfRef.data` are removed. An attribute of a data source is an `AttributeRef`, like one of a resource.
+- **Breaking:** a `null` `defaultValue` on `Stack.variable` writes `"default": null` and makes the variable optional, where it used to write nothing. A `null` default needs a nullable type, and a default that is not a `T` throws `ArgumentError`. The new `TfVariable.hasDefault` tells the two apart, and `TfType.optional` writes its default in HCL syntax.
+- **Breaking:** `Resource.argMap` is a copy taken when the resource is built. Writing to it throws `UnsupportedError`.
+- **Breaking:** a literal string is a Terraform template, so a `${var.<name>}` in it is an `UndeclaredVariable` issue when the Stack does not declare the variable. Escape text that holds `${` as `$${`.
+- **Breaking:** `SynthIssue` is `abstract final` instead of `sealed`, so a `switch` over issues needs a default case.
+- **Breaking:** an output that is not marked sensitive and reads a sensitive variable or field is a `SensitiveOutput` issue at synth, and `addOutput` no longer throws `ArgumentError` for it. Synth also reports a sensitive data source input set to a literal (`SensitiveLiteral`), a reference to a block of a provider the Stack never added (`UnregisteredReference`), and a module output in `replaceTriggeredBy` (`InvalidLifecycle`).
+- **Breaking (`internal.dart`):** `TfJsonEncoder.defaultRequiredVersion` is removed. Read `Stack.requiredVersion`. See [MIGRATING.md](../../MIGRATING.md#tfjsonencoderdefaultrequiredversion-removed).
+- A `null` `requiredVersion` writes no `required_version`. The default stays `'>= 1.11.0'`.
+- Synth writes the `dependsOn` of a data source as `depends_on`.
+- The new `package:terradart_core/catalog.dart` declares `CatalogEntry` and `CatalogKind`. Every provider package's `catalog.dart` re-exports it.
+
 ## 0.37.0 - 2026-11-23
 
 - **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).

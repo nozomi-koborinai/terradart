@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.38.0 - 2026-11-28
 
 - `TimeSleep` waits after create, before destroy, or both: `createDuration` is optional, and a sleep with neither duration throws an `ArgumentError`. It gains `tfType`, `ref`, and the `id`, `createDuration`, `destroyDuration`, and `triggers` getters.
 - `kTimeProviderSource` names the `hashicorp/time` source.
