@@ -1,6 +1,6 @@
 # Migrating terradart
 
-## Unreleased
+## 0.37.x → 0.38.0
 
 ### Provider packages export each public name once
 
@@ -202,6 +202,9 @@ references and triggers Terraform would reject at plan.
   Escape text that holds `${` as `$${`.
 - `SynthIssue` is no longer sealed, so a later release can add an issue
   without breaking a build: a `switch` over issues needs a default case.
+- `Stack.requiredVersion` is a `String?`, because a `null`
+  `requiredVersion` writes no `required_version`. The default stays
+  `'>= 1.11.0'`. Code that reads it as a `String` handles `null`.
 - An output that is not marked sensitive and reads a sensitive variable or
   field, directly or inside an expression, is a `SensitiveOutput` at synth.
   `addOutput` no longer throws `ArgumentError` for it.
@@ -210,9 +213,8 @@ references and triggers Terraform would reject at plan.
   never added (`UnregisteredReference`), and a module output in
   `replaceTriggeredBy` (`InvalidLifecycle`).
 
-New, not breaking: a `null` `requiredVersion` writes no `required_version`
-(the default stays `'>= 1.11.0'`), and every generated data source takes
-`dependsOn`, which synth now writes as `depends_on`.
+New, not breaking: every generated data source takes `dependsOn`, which
+synth now writes as `depends_on`.
 
 | Before | After |
 |---|---|
@@ -266,6 +268,8 @@ the old type names break.
 `package:terradart_core/internal.dart`) was unused after
 `Stack.requiredVersion` took over the `'>= 1.11.0'` default in `0.32.0`, and is
 now removed. Read `Stack.requiredVersion` instead.
+`TfJsonEncoder.resourceBlock` no longer takes
+`devModeInjectDeletionProtection`, which went with `Stack.devMode`.
 
 ### AWS provider 6.74.0
 
@@ -347,6 +351,7 @@ needs beside it.
 | `GoogleProjectService('api', service: TfArg.variable('api'))` | `GoogleProjectService('api', service: .arg(TfArg.variable('api')))` |
 | `DataGoogleProjectService('compute', service: .literal('compute.googleapis.com'))` | `DataGoogleProjectService('compute', service: .compute)` |
 | `[for (final api in ['run', 'iam']) GoogleProjectService('api_$api', service: .literal('$api.googleapis.com'))]` | `[for (final (name, api) in [('run', GoogleApi.run), ('iam', GoogleApi.iam)]) GoogleProjectService('api_$name', service: api)]` |
+
 ## 0.36.x → 0.37.0
 
 ### Dart 3.12 is the minimum SDK

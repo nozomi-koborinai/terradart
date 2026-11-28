@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.38.0 - 2026-11-28
+
+- **Breaking:** `catalog.dart` names its list `terradartAppwriteCatalog` instead of `terradartCatalog`, and re-exports `CatalogEntry` and `CatalogKind` from `package:terradart_core/catalog.dart`. See [MIGRATING.md](../../MIGRATING.md#provider-packages-export-each-public-name-once).
+- Every data source takes `dependsOn`, which synth writes as `depends_on`.
+- No provider pin moves (`appwrite/appwrite` 2.7.0).
+
 ## 0.37.0 - 2026-11-23
 
 - **Breaking:** requires Dart 3.12 (`sdk: ^3.12.0`, was `^3.10.0`). See [MIGRATING.md](../../MIGRATING.md#dart-312-is-the-minimum-sdk).

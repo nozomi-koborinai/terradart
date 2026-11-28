@@ -1,7 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.38.0 - 2026-11-28
 
+- **Breaking:** `package:terradart_cli/terradart_cli.dart` exports only `runTerradart` and `kOpenTofuVersion`, and `runTerradart` no longer takes `runner` or `console`. `Console`, `ProcessRunner`, `IoProcessRunner` and `CapturedProcess` were test seams. See [MIGRATING.md](../../MIGRATING.md#terradart_cli-exports-runterradart-and-kopentofuversion-only).
+- **Breaking:** `--define-file <path>` writes to `<path>` exactly. With an environment or a workspace it used to insert that name before the extension, so `--env stg --define-file app.stg.json` wrote `app.stg.stg.json`. The default `.terradart/<output>.json` and `terradart.dart_defines.file` in `pubspec.yaml` still take the name. See [MIGRATING.md](../../MIGRATING.md#--define-file-writes-to-the-path-you-give).
+- `terradart help environments`, `help agents` and the bundled agent skill say that `--workspace` overrides the workspace of `runEnvironments` for one run, and that `terradart migrate` is the exception to `--no-input --json`.
+- The README's Linux `dart install` path is `$HOME/.local/state/Dart/install/bin`.
 - `terradart init --provider google` writes the Pub/Sub API enablement as a `GoogleProjectService` and a `TimeSleep` in the Stack instead of calling `enableApis`, which `terradart_google` removes. The synthesized Terraform is the same.
 
 ## 0.37.0 - 2026-11-23

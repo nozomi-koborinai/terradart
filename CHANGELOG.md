@@ -4,6 +4,57 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## [0.38.0] - 2026-11-28
+
+Lockstep release across the twelve packages, and the pre-beta pass over the public API. Every provider package, `terradart_time`, `terradart_codegen` and `terradart_migrate` now requires `terradart_core` 0.38.0. Across the packages:
+- synth writes what the Stack says and nothing else, and reports at synth what Terraform would reject at plan;
+- a secret takes `Sensitive<T>`, and a Google API name takes `GoogleApi`, so a literal secret or a misspelled API does not compile;
+- no helper adds resources the Stack does not declare (`enableApis` is gone);
+- each provider package exports every public name once, so a Stack can import any of them together;
+- `terradart_cli` exports `runTerradart` and `kOpenTofuVersion` only.
+
+**Breaking** for `terradart_core`, `terradart_cli`, and the Dart APIs of `terradart_google`, `terradart_google_beta`, `terradart_aws`, `terradart_azure`, `terradart_cloudflare` and `terradart_appwrite`. Read [MIGRATING.md](MIGRATING.md#037x--0380) before bumping. For a Stack ported as MIGRATING.md shows, the Terraform JSON stays the same apart from the provider pins and the cases that file names, such as the disk `name` a `GoogleComputeSnapshot` source now emits.
+
+Provider pins move:
+- `hashicorp/aws`: 6.73.0 to 6.74.0;
+- `hashicorp/azurerm`: 5.14.0 to 5.15.0.
+
+`terradart_aws` grows to **1771 resources + 689 data sources**, and `terradart_azure` to **1114 resources + 398 data sources**. The Google, Google beta, Cloudflare and Appwrite pins and catalogs do not move.
+
+### Added
+
+- **`GoogleApi`** (`terradart_google`, #1033). One constant per Google API a wrapped resource type needs, generated with `requiredApiForTerraformType` from `tool/required_apis.yaml`. `package:terradart_google/project.dart` exports both (#1030).
+- **`AzureProvider.unconfigured`** (`terradart_azure`, #1028). Registers `hashicorp/azurerm` with no provider block, for a child-module Stack and for `addConfigurationAlias`.
+- **`TimeSleep` waits before destroy** (`terradart_time`, #1028). `createDuration` is optional, a sleep needs at least one duration, and `TimeSleep` gains `ref` and its attribute getters. `kTimeProviderSource` names the source.
+- **`package:terradart_core/catalog.dart`** (#1029). Declares `CatalogEntry` and `CatalogKind` once, and every provider package's `catalog.dart` re-exports it.
+- **New synth checks** (`terradart_core`, #1032). `SensitiveOutput` reports an output that reads a sensitive value and is not marked sensitive, and synth also reports sensitive data source literals, references to providers the Stack never added, and module outputs in `replaceTriggeredBy`.
+- **`dependsOn` on data sources** (#1032). Every generated data source takes `dependsOn`, which synth writes as `depends_on`.
+- **New factories from the provider bumps.** AWS adds `AwsCloudwatchomniAlert`, `AwsCloudwatchomniOrganizationAccessGrant`, `AwsDevopsagentAssetFile`, `AwsPinpointsmsvoicev2AccountDefaultProtectConfiguration` and `AwsPinpointsmsvoicev2ProtectConfigurationAssociation` (#1017). Azure adds `AzurermCdnFrontdoorEdgeAction`, `AzurermDataProtectionBackupVaultResourceGuardAssociation`, `AzurermHorizondbCluster`, `AzurermHorizondbFirewallRule` and `AzurermSearchServiceDatasourceBlob` (#1023).
+
+### Changed
+
+- **Breaking: synth writes only what the Stack says** (`terradart_core`, #1032). `Stack.devMode`, `Resource.supportsDeletionProtection`, `DataRef` and `TfRef.data` are removed. A `null` variable default writes `"default": null`, `Resource.argMap` is a copy, a literal string is a Terraform template (escape `${` as `$${`), and `SynthIssue` is no longer sealed. See [MIGRATING.md](MIGRATING.md#terradart_core-no-hidden-synth-behavior).
+- **Breaking: secrets take `Sensitive<T>`** (`terradart_google`, `terradart_aws`, #1030). See [MIGRATING.md](MIGRATING.md#secrets-take-sensitive).
+- **Breaking: hand-written Google helpers take `TfArg` and `RefTo`** (`terradart_google`, #1030). See [MIGRATING.md](MIGRATING.md#hand-written-google-helpers-take-tfarg-and-refto).
+- **Breaking: API enablement is explicit** (`terradart_google`, #1030). `enableApis`, `Apis.required` and `Barrels` are removed, and `terradart_google` no longer depends on `terradart_time`. A Stack declares each `GoogleProjectService` and its `TimeSleep`. See [MIGRATING.md](MIGRATING.md#api-enablement-is-explicit).
+- **Breaking: Google API names are typed** (`terradart_google`, #1033). `GoogleProjectService` and `DataGoogleProjectService` take a `GoogleApi`. See [MIGRATING.md](MIGRATING.md#google-api-names-are-typed).
+- **Breaking: provider packages export each public name once** (#1029). `package:terradart_google/google_beta.dart` and the `kBetaProviderSource` of `terradart_google` are removed, and each `catalog.dart` names its list after its package (`terradartGoogleCatalog`, `terradartAwsCatalog`, ...). See [MIGRATING.md](MIGRATING.md#provider-packages-export-each-public-name-once).
+- **Breaking: prefixed Google constants and enum-typed provider fields** (#1028). `kGoogleProviderSource` and `kGoogleProviderVersionConstraint` replace the unprefixed names, `AwsProvider.retryMode` takes `AwsRetryMode`, `AzureProvider` takes `AzureEnvironment` and `AzureResourceProviderRegistrations`, and its `features` no longer takes `null`. See [MIGRATING.md](MIGRATING.md#037x--0380).
+- **Breaking: `terradart_cli` exports `runTerradart` and `kOpenTofuVersion` only, and `--define-file` writes the exact path it gets** (#1031). See [MIGRATING.md](MIGRATING.md#terradart_cli-exports-runterradart-and-kopentofuversion-only).
+- **Breaking: provider schema bumps** (`terradart_aws`, `terradart_azure`). AWS 6.74.0 moves `AwsFsxS3AccessPointAttachment.openzfsConfiguration` onto the required sealed `volume` argument (#1017), and Azure 5.15.0 splits three `azurerm_web_application_firewall_policy` exclusion types (#1023). See [MIGRATING.md](MIGRATING.md#037x--0380).
+- **Breaking: `TfJsonEncoder.defaultRequiredVersion` is removed** (`terradart_core` `internal.dart`, #1021). See [MIGRATING.md](MIGRATING.md#tfjsonencoderdefaultrequiredversion-removed).
+- **CI** (#1022, #1024, #1026, #1027). Format, analyze and tool tests run apart from the package tests, `terraform_validate` runs in shards, and the codegen, wrap and example synth gates run faster.
+
+### Fixed
+
+- **Migrated Azure child modules validate** (`terradart_migrate`, #1028). A child module the root calls with `count` or `for_each` registers `AzureProvider.unconfigured`, so `terraform init` no longer rejects the call.
+- **Release tooling** (#1019, #1025). `RELEASE.md`'s pana check fails on any lost point, `tool/prepare_publish.sh` no longer needs `yq`, and the release-lookup tests run without network access.
+
+### Docs
+
+- Corrected hand-written docs on workspaces, the define file and synth issues (#1031), and the Linux `dart install` path (#1019).
+- Removed stale and narrating comments across the hand-written Dart code (#1020).
+
 ## [0.37.0] - 2026-11-23
 
 Lockstep release across the twelve packages. Every package raises its minimum Dart SDK to **3.12** (`sdk: ^3.12.0`), CLI installs move to `dart install terradart_cli`, and `terradart --version` is added. All six provider packages advance to the latest upstream schemas.

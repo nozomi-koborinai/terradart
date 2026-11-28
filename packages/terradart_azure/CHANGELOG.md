@@ -1,10 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.38.0 - 2026-11-28
 
 - **Breaking:** `AzureProvider.environment` takes `AzureEnvironment` and `AzureProvider.resourceProviderRegistrations` takes `AzureResourceProviderRegistrations` instead of a string, and `features` no longer takes `null`. The new `AzureProvider.unconfigured` emits no provider block, for a child-module Stack and for `addConfigurationAlias`, which threw for every `AzureProvider` before. See [MIGRATING.md](../../MIGRATING.md#azure-provider-enums-and-azureproviderunconfigured).
 - **Breaking (provider 5.15.0):** adding `managed_rules.exception` to `azurerm_web_application_firewall_policy` splits three exclusion types. `WebApplicationFirewallPolicyRuleGroup` becomes `WebApplicationFirewallPolicyExcludedRuleSetRuleGroup`, `WebApplicationFirewallPolicyMatchVariable` becomes `WebApplicationFirewallPolicyExclusionMatchVariable`, and `WebApplicationFirewallPolicySelectorMatchOperator` becomes `WebApplicationFirewallPolicyExclusionSelectorMatchOperator`. Dot shorthands and Terraform JSON output are unchanged, and only explicit references to the old type names break. See [MIGRATING.md](../../MIGRATING.md#azure-provider-5150).
-- Follows `hashicorp/azurerm` 5.15.0 (was 5.14.0), and synth output pins that version. Adds `AzurermCdnFrontdoorEdgeAction`, `AzurermDataProtectionBackupVaultResourceGuardAssociation`, `AzurermHorizondbCluster`, `AzurermHorizondbFirewallRule`, and `AzurermSearchServiceDatasourceBlob` (1114 resources + 398 data sources).
+- **Breaking:** `catalog.dart` names its list `terradartAzureCatalog` instead of `terradartCatalog`, and re-exports `CatalogEntry` and `CatalogKind` from `package:terradart_core/catalog.dart`. See [MIGRATING.md](../../MIGRATING.md#provider-packages-export-each-public-name-once).
+- Every data source takes `dependsOn`, which synth writes as `depends_on`.
+- Follows `hashicorp/azurerm` 5.15.0 (was 5.14.0), and synth output pins that version. Adds `AzurermCdnFrontdoorEdgeAction`, `AzurermDataProtectionBackupVaultResourceGuardAssociation`, `AzurermHorizondbCluster`, `AzurermHorizondbFirewallRule`, and `AzurermSearchServiceDatasourceBlob` (1114 resources + 398 data sources). `AzurermHorizondbCluster` takes the required sealed `creation` argument (`.postgresqlVersion(...)` or `.pointInTimeRestore(...)`).
 
 ## 0.37.0 - 2026-11-23
 
