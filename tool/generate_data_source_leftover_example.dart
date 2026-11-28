@@ -234,6 +234,7 @@ const _sensitiveValue =
 const _requiredHelpers = <String, String>{
   'DataCloudIdentityGroupLookupGroupKey':
       'DataCloudIdentityGroupLookupGroupKey(id: .literal(leftover))',
+  'GoogleApi': '.arg(TfArg.literal(leftover))',
 };
 
 final _enumDecl = RegExp(

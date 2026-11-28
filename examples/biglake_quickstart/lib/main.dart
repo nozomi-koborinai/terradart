@@ -35,7 +35,7 @@ final class MetastoreStack extends Stack {
     final apiBiglake = add(
       GoogleProjectService(
         'api_biglake',
-        service: .literal('biglake.googleapis.com'),
+        service: .biglake,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -43,7 +43,7 @@ final class MetastoreStack extends Stack {
     final apiStorage = add(
       GoogleProjectService(
         'api_storage',
-        service: .literal('storage.googleapis.com'),
+        service: .storage,
         disableOnDestroy: .literal(false),
       ),
     );

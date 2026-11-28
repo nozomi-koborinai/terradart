@@ -29,6 +29,7 @@ Set<MigratedShape> requiredShapes(MigrateManifest manifest) {
             MigratedShape.enumExpression,
             MigratedShape.enumUnlisted,
           ]);
+          if (s.dartType == 'GoogleApi') out.add(MigratedShape.googleApiCustom);
         case MigrateSlotKind.sealed:
           out.add(
             s.required

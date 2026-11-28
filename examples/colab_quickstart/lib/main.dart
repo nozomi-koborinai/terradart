@@ -28,7 +28,7 @@ final class ColabStack extends Stack {
     final apiAi = add(
       GoogleProjectService(
         'api_aiplatform',
-        service: .literal('aiplatform.googleapis.com'),
+        service: .aiplatform,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -36,7 +36,7 @@ final class ColabStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         'api_compute',
-        service: .literal('compute.googleapis.com'),
+        service: .compute,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -44,7 +44,7 @@ final class ColabStack extends Stack {
     final apiStorage = add(
       GoogleProjectService(
         'api_storage',
-        service: .literal('storage.googleapis.com'),
+        service: .storage,
         disableOnDestroy: .literal(false),
       ),
     );

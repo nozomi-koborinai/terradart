@@ -21,7 +21,7 @@ final class ModelArmorStack extends Stack {
     final apiModelArmor = add(
       GoogleProjectService(
         'api_modelarmor',
-        service: .literal('modelarmor.googleapis.com'),
+        service: .modelarmor,
         disableOnDestroy: .literal(false),
       ),
     );

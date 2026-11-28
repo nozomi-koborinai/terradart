@@ -25,7 +25,7 @@ final class WorkflowStack extends Stack {
     final apiWorkflows = add(
       GoogleProjectService(
         'api_workflows',
-        service: .literal('workflows.googleapis.com'),
+        service: .workflows,
         disableOnDestroy: .literal(false),
       ),
     );

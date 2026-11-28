@@ -36,21 +36,21 @@ final class IntegrationsStack extends Stack {
     final apiIntegrations = add(
       GoogleProjectService(
         'api_integrations',
-        service: .literal('integrations.googleapis.com'),
+        service: .integrations,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiSecretManager = add(
       GoogleProjectService(
         'api_secretmanager',
-        service: .literal('secretmanager.googleapis.com'),
+        service: .secretmanager,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiConnectors = add(
       GoogleProjectService(
         'api_connectors',
-        service: .literal('connectors.googleapis.com'),
+        service: .connectors,
         disableOnDestroy: .literal(false),
       ),
     );

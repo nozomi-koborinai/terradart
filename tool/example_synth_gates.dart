@@ -465,7 +465,7 @@ void checkApiEnablement(
 
   for (final address in tfTypeByAddress.keys) {
     final tfType = tfTypeByAddress[address]!;
-    final api = requiredApiForTerraformType(tfType);
+    final api = requiredApiForTerraformType(tfType)?.toTfJson() as String?;
     if (api == null) continue;
     final enablers = enablersByApi[api];
     if (enablers == null || enablers.isEmpty) {
@@ -559,7 +559,9 @@ bool _wouldMandate(Map<String, dynamic> root, String api) {
       }
       continue;
     }
-    if (requiredApiForTerraformType(tfType) == api) needsThis = true;
+    if (requiredApiForTerraformType(tfType)?.toTfJson() == api) {
+      needsThis = true;
+    }
   }
   return enablesAny && needsThis && !enablesThis;
 }

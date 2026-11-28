@@ -22,7 +22,7 @@ final class StorageIntelligenceStack extends Stack {
     final apiStorage = add(
       GoogleProjectService(
         'api_storage',
-        service: .literal('storage.googleapis.com'),
+        service: .storage,
         disableOnDestroy: .literal(false),
       ),
     );

@@ -2527,7 +2527,7 @@ final class DataSourceLeftoverStack extends Stack {
     add(
       DataGoogleProjectService(
         'project_service',
-        service: TfArg.literal(leftover),
+        service: .arg(TfArg.literal(leftover)),
       ),
     );
 

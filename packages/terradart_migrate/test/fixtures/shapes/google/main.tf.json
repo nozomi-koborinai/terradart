@@ -172,6 +172,12 @@
         "member": "user:auditor@shapes.example.com",
         "project": "${google_secret_manager_secret.secret.project}"
       }
+    },
+    "google_project_service": {
+      "generative_language": {
+        "service": "generativelanguage.googleapis.com",
+        "disable_on_destroy": false
+      }
     }
   }
 }

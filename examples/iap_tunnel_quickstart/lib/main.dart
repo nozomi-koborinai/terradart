@@ -22,7 +22,7 @@ final class IapTunnelStack extends Stack {
     final apiIap = add(
       GoogleProjectService(
         'api_iap',
-        service: .literal('iap.googleapis.com'),
+        service: .iap,
         disableOnDestroy: .literal(false),
       ),
     );

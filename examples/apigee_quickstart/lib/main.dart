@@ -26,7 +26,7 @@ final class ApigeeAnalyticsStack extends Stack {
       add(
         GoogleProjectService(
           'api_apigee',
-          service: .literal('apigee.googleapis.com'),
+          service: .apigee,
           disableOnDestroy: .literal(false),
         ),
       ),

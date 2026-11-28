@@ -11,6 +11,7 @@ import 'package:terradart_google/dialogflow.dart';
 import 'package:terradart_google/dlp.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/kms.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/secret_manager.dart';
 
@@ -177,6 +178,13 @@ final class ShapesGoogleStack extends Stack {
         secret: secret.ref,
         role: .literal('roles/secretmanager.viewer'),
         member: .user('auditor@shapes.example.com'),
+      ),
+    );
+    add(
+      GoogleProjectService(
+        'generative_language',
+        service: .custom('generativelanguage.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
   }

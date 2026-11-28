@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import '../project/google_api.dart' show GoogleApi;
 import 'package:terradart_core/terradart_core.dart';
 import '../project/google_project_service.dart';
 
@@ -17,7 +18,7 @@ final class DataGoogleProjectService extends Data {
   DataGoogleProjectService(
     super.localName, {
     TfArg<String>? project,
-    required TfArg<String> service,
+    required GoogleApi service,
     super.provider,
     super.timeouts,
   }) : super(

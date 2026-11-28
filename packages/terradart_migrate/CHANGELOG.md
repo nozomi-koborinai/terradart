@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A migrated `google_project_service` `service` is written as a `GoogleApi`: a constant for an API that has one, `GoogleApi.custom` for any other `<name>.googleapis.com` API, `GoogleApi.variable` for a variable, and `GoogleApi.arg` for an attribute or a service outside `googleapis.com` (which also warns).
 - A migrated `aws` `retry_mode` and `azurerm` `environment` and `resource_provider_registrations` are written as members of `AwsRetryMode`, `AzureEnvironment` and `AzureResourceProviderRegistrations`. A value the enum does not list keeps that provider in Terraform, and `--merge-envs` types a value that differs between environments as the enum in the `Env` enum.
 - A child-module Stack registers `azurerm` as `AzureProvider.unconfigured`, and so does an `azurerm` configuration alias, so a child module the root calls with `count` or `for_each` carries no provider block.
 - The `hashicorp/time` manifest follows `TimeSleep`: `create_duration` is optional, and `create_duration`, `destroy_duration` and `triggers` are output getters.

@@ -22,10 +22,7 @@ final class EventarcStack extends Stack {
     const location = 'us-central1';
 
     final eventarcApi = add(
-      GoogleProjectService(
-        'eventarc_api',
-        service: .literal('eventarc.googleapis.com'),
-      ),
+      GoogleProjectService('eventarc_api', service: .eventarc),
     );
     // google_eventarc_channel (the partner channel below) additionally
     // requires the Eventarc Publishing API; without it the create call fails
@@ -34,7 +31,7 @@ final class EventarcStack extends Stack {
     final eventarcPublishingApi = add(
       GoogleProjectService(
         'eventarc_publishing_api',
-        service: .literal('eventarcpublishing.googleapis.com'),
+        service: .custom('eventarcpublishing.googleapis.com'),
       ),
     );
     final eventarcDeps = [eventarcApi, eventarcPublishingApi];

@@ -34,7 +34,7 @@ final class FeatureStack extends Stack {
     final apiVertex = add(
       GoogleProjectService(
         'api_aiplatform',
-        service: .literal('aiplatform.googleapis.com'),
+        service: .aiplatform,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -45,7 +45,7 @@ final class FeatureStack extends Stack {
     final apiBigquery = add(
       GoogleProjectService(
         'api_bigquery',
-        service: .literal('bigquery.googleapis.com'),
+        service: .bigquery,
         disableOnDestroy: .literal(false),
       ),
     );

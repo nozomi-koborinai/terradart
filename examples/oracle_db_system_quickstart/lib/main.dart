@@ -24,11 +24,14 @@ final class OracleDbSystemStack extends Stack {
     const odbSubnetId = 'terradart-dbs-odbsub';
 
     final apis = [
-      for (final api in ['compute', 'oracledatabase'])
+      for (final (name, api) in [
+        ('compute', GoogleApi.compute),
+        ('oracledatabase', GoogleApi.oracledatabase),
+      ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

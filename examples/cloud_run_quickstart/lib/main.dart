@@ -62,20 +62,20 @@ final class ApiServiceStack extends Stack {
     // not enabled".
 
     final apis = [
-      for (final api in [
-        'compute',
-        'iap',
-        'memcache',
-        'redis',
-        'run',
-        'secretmanager',
-        'servicenetworking',
-        'vpcaccess',
+      for (final (name, api) in [
+        ('compute', GoogleApi.compute),
+        ('iap', GoogleApi.iap),
+        ('memcache', GoogleApi.memcache),
+        ('redis', GoogleApi.redis),
+        ('run', GoogleApi.run),
+        ('secretmanager', GoogleApi.secretmanager),
+        ('servicenetworking', GoogleApi.servicenetworking),
+        ('vpcaccess', GoogleApi.vpcaccess),
       ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

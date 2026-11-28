@@ -29,7 +29,7 @@ final class DataCatalogStack extends Stack {
     final apiDataCatalog = add(
       GoogleProjectService(
         'api_datacatalog',
-        service: .literal('datacatalog.googleapis.com'),
+        service: .datacatalog,
         disableOnDestroy: .literal(false),
       ),
     );

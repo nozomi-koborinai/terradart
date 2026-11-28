@@ -26,7 +26,7 @@ final class ListsStack extends Stack {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         'api_networksecurity',
-        service: .literal('networksecurity.googleapis.com'),
+        service: .networksecurity,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -62,7 +62,7 @@ final class ListsStack extends Stack {
     final apiNetworkConnectivity = add(
       GoogleProjectService(
         'api_networkconnectivity',
-        service: .literal('networkconnectivity.googleapis.com'),
+        service: .networkconnectivity,
         disableOnDestroy: .literal(false),
       ),
     );

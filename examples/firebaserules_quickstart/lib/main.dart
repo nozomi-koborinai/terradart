@@ -22,7 +22,7 @@ final class FirebaserulesStack extends Stack {
     final apiRules = add(
       GoogleProjectService(
         'api_firebaserules',
-        service: .literal('firebaserules.googleapis.com'),
+        service: .firebaserules,
         disableOnDestroy: .literal(false),
       ),
     );

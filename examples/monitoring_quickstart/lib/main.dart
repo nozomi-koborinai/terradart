@@ -21,7 +21,7 @@ final class LatencyAlertStack extends Stack {
     final apiMonitoring = add(
       GoogleProjectService(
         'api_monitoring',
-        service: .literal('monitoring.googleapis.com'),
+        service: .monitoring,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -219,7 +219,7 @@ final class LatencyAlertStack extends Stack {
     final apiEssentialContacts = add(
       GoogleProjectService(
         'api_essentialcontacts',
-        service: .literal('essentialcontacts.googleapis.com'),
+        service: .essentialcontacts,
         disableOnDestroy: .literal(false),
       ),
     );

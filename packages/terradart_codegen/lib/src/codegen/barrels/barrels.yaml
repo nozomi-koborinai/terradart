@@ -668,7 +668,7 @@ barrels:
       /// Project services (enabling individual GCP APIs on a project), and
       /// the API each wrapped resource type needs.
     extraExports:
-      - "export 'src/project/terraform_api_requirements.dart' show requiredApiForTerraformType;"
+      - "export 'src/project/google_api.dart' show GoogleApi, requiredApiForTerraformType;"
   pubsub:
     doc: |-
       /// Pub/Sub topics, subscriptions, schemas, and per-resource IAM bindings.

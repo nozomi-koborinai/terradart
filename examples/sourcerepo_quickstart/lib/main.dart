@@ -20,7 +20,7 @@ final class SourcerepoStack extends Stack {
     final apiSource = add(
       GoogleProjectService(
         'api_sourcerepo',
-        service: .literal('sourcerepo.googleapis.com'),
+        service: .sourcerepo,
         disableOnDestroy: .literal(false),
       ),
     );

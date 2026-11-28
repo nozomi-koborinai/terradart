@@ -22,7 +22,7 @@ final class TranscoderStack extends Stack {
     final apiTranscoder = add(
       GoogleProjectService(
         'api_transcoder',
-        service: .literal('transcoder.googleapis.com'),
+        service: .transcoder,
         disableOnDestroy: .literal(false),
       ),
     );

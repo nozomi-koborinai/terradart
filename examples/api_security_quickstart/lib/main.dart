@@ -17,18 +17,18 @@ final class ApiSecurityStack extends Stack {
         ],
       ) {
     final apis = [
-      for (final api in [
-        'apikeys',
-        'networkconnectivity',
-        'networkmanagement',
-        'networksecurity',
-        'networkservices',
-        'recaptchaenterprise',
+      for (final (name, api) in [
+        ('apikeys', GoogleApi.apikeys),
+        ('networkconnectivity', GoogleApi.networkconnectivity),
+        ('networkmanagement', GoogleApi.networkmanagement),
+        ('networksecurity', GoogleApi.networksecurity),
+        ('networkservices', GoogleApi.networkservices),
+        ('recaptchaenterprise', GoogleApi.recaptchaenterprise),
       ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

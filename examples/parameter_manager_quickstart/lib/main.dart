@@ -28,7 +28,7 @@ final class ParamsStack extends Stack {
     final apiParams = add(
       GoogleProjectService(
         'api_parametermanager',
-        service: .literal('parametermanager.googleapis.com'),
+        service: .parametermanager,
         disableOnDestroy: .literal(false),
       ),
     );

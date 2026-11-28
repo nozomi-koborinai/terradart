@@ -50,5 +50,5 @@ export 'src/project/google_resource_manager_capability_config.dart'
         ResourceManagerCapabilityConfigTypes;
 export 'src/project/google_resource_manager_lien.dart'
     show GoogleResourceManagerLien;
-export 'src/project/terraform_api_requirements.dart'
-    show requiredApiForTerraformType;
+export 'src/project/google_api.dart'
+    show GoogleApi, requiredApiForTerraformType;

@@ -21,7 +21,7 @@ final class GkeHubFeatureStack extends Stack {
     final apiGkeHub = add(
       GoogleProjectService(
         'api_gkehub',
-        service: .literal('gkehub.googleapis.com'),
+        service: .gkehub,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -29,7 +29,7 @@ final class GkeHubFeatureStack extends Stack {
     final apiMcsd = add(
       GoogleProjectService(
         'api_mcsd',
-        service: .literal('multiclusterservicediscovery.googleapis.com'),
+        service: .custom('multiclusterservicediscovery.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );

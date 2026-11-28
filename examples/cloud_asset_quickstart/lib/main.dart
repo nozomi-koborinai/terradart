@@ -29,11 +29,14 @@ final class CloudAssetStack extends Stack {
         ],
       ) {
     final apis = [
-      for (final api in ['cloudasset', 'pubsub'])
+      for (final (name, api) in [
+        ('cloudasset', GoogleApi.cloudasset),
+        ('pubsub', GoogleApi.pubsub),
+      ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

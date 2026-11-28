@@ -28,7 +28,7 @@ final class FirestoreSeededDataStack extends Stack {
     final apiFirestore = add(
       GoogleProjectService(
         'api_firestore',
-        service: .literal('firestore.googleapis.com'),
+        service: .firestore,
         disableOnDestroy: .literal(false),
       ),
     );

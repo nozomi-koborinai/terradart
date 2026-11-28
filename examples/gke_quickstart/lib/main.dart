@@ -36,28 +36,28 @@ final class GkeQuickstartStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         'api_compute',
-        service: .literal('compute.googleapis.com'),
+        service: .compute,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiContainer = add(
       GoogleProjectService(
         'api_container',
-        service: .literal('container.googleapis.com'),
+        service: .container,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiGkeBackup = add(
       GoogleProjectService(
         'api_gkebackup',
-        service: .literal('gkebackup.googleapis.com'),
+        service: .gkebackup,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiGkeHub = add(
       GoogleProjectService(
         'api_gkehub',
-        service: .literal('gkehub.googleapis.com'),
+        service: .gkehub,
         disableOnDestroy: .literal(false),
       ),
     );

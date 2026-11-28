@@ -26,11 +26,14 @@ final class NightlyCleanupStack extends Stack {
     // Enable the Cloud Scheduler and Pub/Sub APIs and wait for propagation
     // before the topic and job apply.
     final apis = [
-      for (final api in ['cloudscheduler', 'pubsub'])
+      for (final (name, api) in [
+        ('cloudscheduler', GoogleApi.cloudscheduler),
+        ('pubsub', GoogleApi.pubsub),
+      ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

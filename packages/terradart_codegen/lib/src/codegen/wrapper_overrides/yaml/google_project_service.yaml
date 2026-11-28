@@ -4,6 +4,11 @@ deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  service: GoogleApi
+extraImports:
+  - "import 'google_api.dart' show GoogleApi;"
+
 curatedDoc: |-
   /// Enables a single Google Cloud API on a project. Each GCP API (Pub/Sub,
   /// Cloud Tasks, Secret Manager, Cloud Scheduler, …) requires its matching
@@ -14,8 +19,11 @@ curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
   ///   `google_project_service.`).
-  /// - `service`: API endpoint name, e.g. `pubsub.googleapis.com`.
-  ///   Pass `TfArg.literal('pubsub.googleapis.com')`.
+  /// - `service`: the API to enable, a [GoogleApi] constant such as
+  ///   [GoogleApi.pubsub] for `pubsub.googleapis.com`. A Google API without
+  ///   a constant goes through [GoogleApi.custom]; a variable, another
+  ///   resource's attribute or a service outside `googleapis.com` (a Cloud
+  ///   Endpoints service) goes through [GoogleApi.arg].
   ///
   /// Optional knobs:
   /// - `project`: explicit project ID; defaults to the provider's `project`
@@ -31,13 +39,13 @@ curatedDoc: |-
   /// ```dart
   /// final pubsubApi = GoogleProjectService(
   ///   'pubsub',
-  ///   service: TfArg.literal('pubsub.googleapis.com'),
-  ///   disableOnDestroy: TfArg.literal(false),
+  ///   service: .pubsub,
+  ///   disableOnDestroy: .literal(false),
   /// );
   ///
   /// final orders = GooglePubsubTopic(
   ///   'orders',
-  ///   name: TfArg.literal('orders-prod'),
+  ///   name: .literal('orders-prod'),
   ///   dependsOn: [pubsubApi],
   /// );
   /// ```

@@ -110,6 +110,8 @@ void main() {
         'hashicorp/google',
         '--mm-groups',
         '--discovery-enums',
+        '--required-apis',
+        p.join('..', '..', 'tool', 'required_apis.yaml'),
         '--source',
         p.join('test', 'fixtures', 'wrap', 'source'),
         '--output',
@@ -1324,6 +1326,129 @@ barrels:
         }
       },
     );
+  });
+
+  group('WrapCommand --required-apis', () {
+    late Directory tmp;
+    late File ledger;
+    late List<String> args;
+    late String manifestPath;
+    setUp(() async {
+      tmp = await Directory.systemTemp.createTemp('wrap_required_apis_');
+      final subset = _prepareGoogleSubset(
+        tmp,
+        stems: const ['google_pubsub_topic'],
+      );
+      File(
+        p.join(subset.overridesDir, 'google_project_service.yaml'),
+      ).writeAsStringSync('''
+outputDir: project
+dartTypeOverrides:
+  service: GoogleApi
+extraImports:
+  - "import 'google_api.dart' show GoogleApi;"
+paramOrder:
+  - service
+''');
+      File(subset.barrelsManifest).writeAsStringSync(
+        '  project:\n    doc: |-\n      /// Project.\n',
+        mode: FileMode.append,
+      );
+      ledger = File(p.join(tmp.path, 'required_apis.yaml'))
+        ..writeAsStringSync('apis:\n  google_pubsub_: pubsub.googleapis.com\n');
+      manifestPath = p.join(tmp.path, 'google.g.dart');
+      args = [
+        'wrap',
+        '--provider',
+        'hashicorp/google',
+        '--source',
+        p.join('test', 'fixtures', 'wrap', 'source'),
+        '--output',
+        _libSrcOut(tmp),
+        '--overrides-root',
+        subset.overridesDir,
+        '--barrels-manifest',
+        subset.barrelsManifest,
+        '--migrate-manifest',
+        manifestPath,
+        '--migrate-package',
+        'terradart_google',
+        '--required-apis',
+        ledger.path,
+      ];
+    });
+    tearDown(() => tmp.delete(recursive: true));
+
+    Future<(int?, String)> run(List<String> extra) async {
+      final err = StringBuffer();
+      final code = await IOOverrides.runZoned(
+        () => buildCliRunner().run([...args, ...extra]),
+        stderr: () => _BufferSink(err),
+      );
+      return (code, err.toString());
+    }
+
+    File googleApi() =>
+        File(p.join(_libSrcOut(tmp), 'project', 'google_api.dart'));
+
+    test('emits GoogleApi, records it as an enum, and --check fails on a '
+        'ledger the file no longer matches', () async {
+      expect((await run(const [])).$1, CliExitCodes.success);
+      final src = googleApi().readAsStringSync();
+      expect(src, startsWith('// GENERATED FILE - DO NOT EDIT\n'));
+      expect(src, contains('static const pubsub = GoogleApi._('));
+      expect(src, contains("'google_pubsub_': GoogleApi.pubsub,"));
+
+      final manifest = File(manifestPath)
+          .readAsStringSync()
+          .replaceAllMapped(RegExp(r',?\s*([)}\]])'), (m) => m[1]!)
+          .replaceAllMapped(RegExp(r'([({\[])\s+'), (m) => m[1]!)
+          .replaceAll(RegExp(r'\s+'), ' ');
+      expect(
+        manifest,
+        contains(
+          "'GoogleApi': MigrateEnum(name: 'GoogleApi', members: "
+          "<String, String>{'pubsub.googleapis.com': 'pubsub'})",
+        ),
+      );
+      expect(
+        manifest,
+        contains(
+          "MigrateSlot(tfName: 'service', dartName: 'service', "
+          "kind: MigrateSlotKind.enumValue, required: true, "
+          "dartType: 'GoogleApi')",
+        ),
+      );
+
+      expect((await run(const ['--check'])).$1, CliExitCodes.success);
+      ledger.writeAsStringSync(
+        'apis:\n'
+        '  google_pubsub_: pubsub.googleapis.com\n'
+        '  google_redis_: redis.googleapis.com\n',
+      );
+      final (code, err) = await run(const ['--check']);
+      expect(code, CliExitCodes.dataError);
+      expect(err, contains('project/google_api.dart: bytes differ'));
+    }, timeout: const Timeout(Duration(minutes: 3)));
+
+    test('fails (E406) on a malformed or missing ledger', () async {
+      ledger.writeAsStringSync('apis:\n  google_pubsub_: pubsub.example.com\n');
+      final (code, err) = await run(const []);
+      expect(code, CliExitCodes.dataError);
+      expect(err, contains('[E406] terradart wrap: ${ledger.path}: apis:'));
+      expect(googleApi().existsSync(), isFalse);
+
+      ledger.deleteSync();
+      final (missing, missingErr) = await run(const []);
+      expect(missing, CliExitCodes.dataError);
+      expect(missingErr, contains('[E406]'));
+    });
+
+    test('--only leaves GoogleApi alone', () async {
+      final (code, _) = await run(const ['--only', 'google_pubsub_topic']);
+      expect(code, CliExitCodes.success);
+      expect(googleApi().existsSync(), isFalse);
+    });
   });
 
   group('WrapCommand --provider-enums', () {

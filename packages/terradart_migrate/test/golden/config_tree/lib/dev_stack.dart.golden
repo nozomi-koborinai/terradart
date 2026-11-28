@@ -33,7 +33,7 @@ final class DevStack extends Stack {
     // Environment root module. Resources declared directly here, plus calls into
     // the shared local modules under ../modules.
     add(DataGoogleProject('current', projectId: projectId));
-    add(GoogleProjectService('run', service: .literal('run.googleapis.com')));
+    add(GoogleProjectService('run', service: .run));
     add(
       GoogleArtifactRegistryRepository(
         'images',

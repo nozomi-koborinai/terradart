@@ -31,7 +31,7 @@ final class VectorSearchStack extends Stack {
     final apiVectorSearch = add(
       GoogleProjectService(
         'api_vectorsearch',
-        service: .literal('vectorsearch.googleapis.com'),
+        service: .vectorsearch,
         disableOnDestroy: .literal(false),
       ),
     );

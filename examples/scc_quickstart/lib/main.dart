@@ -23,18 +23,18 @@ final class SccLeftoverStack extends Stack {
     const org = '123456789';
     const folder = '123456789';
     final apis = [
-      for (final api in [
-        'bigquery',
-        'bigquerydatapolicy',
-        'bigqueryreservation',
-        'iam',
-        'pubsub',
-        'securitycenter',
+      for (final (name, api) in [
+        ('bigquery', GoogleApi.bigquery),
+        ('bigquerydatapolicy', GoogleApi.bigquerydatapolicy),
+        ('bigqueryreservation', GoogleApi.bigqueryreservation),
+        ('iam', GoogleApi.iam),
+        ('pubsub', GoogleApi.pubsub),
+        ('securitycenter', GoogleApi.securitycenter),
       ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

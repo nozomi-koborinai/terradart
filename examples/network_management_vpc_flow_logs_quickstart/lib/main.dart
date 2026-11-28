@@ -23,7 +23,7 @@ final class VpcFlowLogsStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         'api_compute',
-        service: .literal('compute.googleapis.com'),
+        service: .compute,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -31,7 +31,7 @@ final class VpcFlowLogsStack extends Stack {
     final apiNetworkManagement = add(
       GoogleProjectService(
         'api_networkmanagement',
-        service: .literal('networkmanagement.googleapis.com'),
+        service: .networkmanagement,
         disableOnDestroy: .literal(false),
       ),
     );

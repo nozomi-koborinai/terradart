@@ -33,7 +33,7 @@ final class ConfigTreeStack extends Stack {
     );
     final region = variable<String>('region', defaultValue: 'asia-northeast1');
     add(DataGoogleProject('current', projectId: projectId));
-    add(GoogleProjectService('run', service: .literal('run.googleapis.com')));
+    add(GoogleProjectService('run', service: .run));
     add(
       GoogleArtifactRegistryRepository(
         'images',

@@ -53,10 +53,14 @@ final class MigrateEntryInput {
   final Map<String, Set<String>> laneInputs;
 }
 
+/// [laneEnums] are enums the lane declares outside any wrapper (`GoogleApi`):
+/// a slot typed with one is an enum value, and each entry records the ones
+/// its slots reach.
 List<MigrateEntryBuild> buildMigrateEntries(
   List<MigrateEntryInput> inputs, {
   Map<String, String> barrelFiles = const {},
   Map<String, String> dataSourceBarrels = const {},
+  List<EmittedEnum> laneEnums = const [],
 }) {
   const helperExtractor = HelperClassExtractor();
   const enumExtractor = EnumExtractor();
@@ -69,7 +73,7 @@ List<MigrateEntryBuild> buildMigrateEntries(
   final ctx = ShapeContext(
     helpers: HelperExtraction.merge(perFileHelpers),
     enumNames: {
-      for (final enums in perFileEnums)
+      for (final enums in [...perFileEnums, laneEnums])
         for (final e in enums) e.name,
     },
   );
@@ -91,6 +95,7 @@ List<MigrateEntryBuild> buildMigrateEntries(
         context: ctx,
         fileHelpers: perFileHelpers[i],
         fileEnums: perFileEnums[i],
+        laneEnums: laneEnums,
         barrelFile: _barrelFile(inputs[i], barrelFiles, dataSourceBarrels),
       ),
   ];
@@ -123,6 +128,7 @@ MigrateEntryBuild buildMigrateEntry({
   ShapeContext? context,
   HelperExtraction? fileHelpers,
   List<EmittedEnum>? fileEnums,
+  List<EmittedEnum> laneEnums = const [],
   String? barrelFile,
 }) {
   final isDataSource = kind == 'dataSource';
@@ -137,7 +143,9 @@ MigrateEntryBuild buildMigrateEntry({
       context ??
       ShapeContext(
         helpers: extraction,
-        enumNames: {for (final e in enums) e.name},
+        enumNames: {
+          for (final e in [...enums, ...laneEnums]) e.name,
+        },
       );
 
   final overrideSlots = override.overrideSlots;
@@ -253,8 +261,16 @@ MigrateEntryBuild buildMigrateEntry({
     for (final h in extraction.helpers.values) _helper(h, ctx),
   ];
 
+  final reached = {
+    for (final s in [...slots, for (final h in helpers) ...h.slots])
+      if (s.kind == MigrateSlotKind.enumValue) s.dartType,
+  };
   final enumData = <MigrateEnumData>[
-    for (final e in enums)
+    for (final e in [
+      ...enums,
+      for (final e in laneEnums)
+        if (reached.contains(e.name)) e,
+    ])
       MigrateEnumData(
         name: e.name,
         members: {for (final m in e.members.entries) m.value: m.key},

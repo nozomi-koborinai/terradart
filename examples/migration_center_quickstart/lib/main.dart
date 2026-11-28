@@ -23,7 +23,7 @@ final class MigrationCenterStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_migrationcenter',
-        service: .literal('migrationcenter.googleapis.com'),
+        service: .migrationcenter,
         disableOnDestroy: .literal(false),
       ),
     );

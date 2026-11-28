@@ -18,17 +18,17 @@ final class NetworkConnectivityStack extends Stack {
     const region = 'us-east4';
 
     final apis = [
-      for (final api in [
-        'compute',
-        'networkconnectivity',
-        'networkmanagement',
-        'networksecurity',
-        'networkservices',
+      for (final (name, api) in [
+        ('compute', GoogleApi.compute),
+        ('networkconnectivity', GoogleApi.networkconnectivity),
+        ('networkmanagement', GoogleApi.networkmanagement),
+        ('networksecurity', GoogleApi.networksecurity),
+        ('networkservices', GoogleApi.networkservices),
       ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

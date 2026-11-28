@@ -31,16 +31,16 @@ final class AnalystPersonaStack extends Stack {
         ],
       ) {
     final apis = [
-      for (final api in [
-        'agenticapplications',
-        'bigquery',
-        'bigquerydatapolicy',
-        'bigqueryreservation',
+      for (final (name, api) in [
+        ('agenticapplications', GoogleApi.agenticapplications),
+        ('bigquery', GoogleApi.bigquery),
+        ('bigquerydatapolicy', GoogleApi.bigquerydatapolicy),
+        ('bigqueryreservation', GoogleApi.bigqueryreservation),
       ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

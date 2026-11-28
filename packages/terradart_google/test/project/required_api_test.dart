@@ -11,39 +11,39 @@ void main() {
     test('names the API a wrapped resource type needs', () {
       expect(
         requiredApiForTerraformType(GoogleRedisInstance.tfType),
-        'redis.googleapis.com',
+        GoogleApi.redis,
       );
       expect(
         requiredApiForTerraformType(GoogleIapSettings.tfType),
-        'iap.googleapis.com',
+        GoogleApi.iap,
       );
     });
 
     test('a narrower service wins over its family', () {
       expect(
         requiredApiForTerraformType(GoogleBigqueryDataset.tfType),
-        'bigquery.googleapis.com',
+        GoogleApi.bigquery,
       );
       expect(
         requiredApiForTerraformType(GoogleBigqueryConnection.tfType),
-        'bigqueryconnection.googleapis.com',
+        GoogleApi.bigqueryconnection,
       );
     });
 
     test('an IAM adjunct needs the API of the resource it grants on', () {
       expect(
         requiredApiForTerraformType(GooglePubsubTopicIamMember.tfType),
-        'pubsub.googleapis.com',
+        GoogleApi.pubsub,
       );
       expect(
         requiredApiForTerraformType(GoogleIapTunnelInstanceIamMember.tfType),
-        'iap.googleapis.com',
+        GoogleApi.iap,
       );
       expect(
         requiredApiForTerraformType(
           GoogleIapWebCloudRunServiceIamMember.tfType,
         ),
-        'iap.googleapis.com',
+        GoogleApi.iap,
       );
     });
 

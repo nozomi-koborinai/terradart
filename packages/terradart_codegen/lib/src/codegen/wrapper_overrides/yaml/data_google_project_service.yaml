@@ -4,6 +4,11 @@ schemaStubBodyMode: bare
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  service: GoogleApi
+extraImports:
+  - "import '../project/google_api.dart' show GoogleApi;"
+
 curatedDoc: |-
   /// Read-only data source on the apply-excluded leftover path
   /// (synth + `terraform validate` only). Do not apply.

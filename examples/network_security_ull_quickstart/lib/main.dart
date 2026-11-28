@@ -17,16 +17,16 @@ final class NetworkSecurityUllStack extends Stack {
     const zone = 'us-south1-d';
 
     final apis = [
-      for (final api in [
-        'networkconnectivity',
-        'networkmanagement',
-        'networksecurity',
-        'networkservices',
+      for (final (name, api) in [
+        ('networkconnectivity', GoogleApi.networkconnectivity),
+        ('networkmanagement', GoogleApi.networkmanagement),
+        ('networksecurity', GoogleApi.networksecurity),
+        ('networkservices', GoogleApi.networkservices),
       ])
         add(
           GoogleProjectService(
-            'api_$api',
-            service: .literal('$api.googleapis.com'),
+            'api_$name',
+            service: api,
             disableOnDestroy: .literal(false),
           ),
         ),

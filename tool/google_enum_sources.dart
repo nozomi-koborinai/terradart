@@ -38,7 +38,9 @@ Map<InputKey, InputSite> stringInputs(MigrateManifest manifest) {
       final at = [...path, if (slot.tfName.isNotEmpty) slot.tfName];
       final key = (kind, type, at.join('.'));
       switch (slot.kind) {
-        case MigrateSlotKind.enumValue:
+        // GoogleApi's values are tool/required_apis.yaml, which
+        // tool/required_apis_test.dart checks against Discovery.
+        case MigrateSlotKind.enumValue when slot.dartType != 'GoogleApi':
           if (manifest.enums[slot.dartType] case final e?) {
             out[key] = e.members.keys.toList();
           }

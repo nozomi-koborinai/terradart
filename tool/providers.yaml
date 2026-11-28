@@ -86,6 +86,11 @@
 #                            matches; inputs stay strings
 #                    typed — also type every matched input `RefTo<Target>`
 #                            (wrap --typed-references)
+#   requiredApis:    (optional) the required-API ledger (wrap
+#                    --required-apis): the Google API each Terraform type
+#                    prefix needs. wrap emits `GoogleApi`, one constant per
+#                    API it names, and `requiredApiForTerraformType` from it
+#                    to project/google_api.dart (google GA only).
 #   bump:            (optional) the weekly schema bump's coordinates for
 #                    the lane; a lane without it is never bumped by the
 #                    workflow (google-beta rides the google bump at the
@@ -144,6 +149,7 @@ providers:
     resourceProvider: null
     migrateManifest: packages/terradart_migrate/lib/src/manifest/google.g.dart
     references: typed
+    requiredApis: tool/required_apis.yaml
     bump:
       mode: auto
       repo: hashicorp/terraform-provider-google

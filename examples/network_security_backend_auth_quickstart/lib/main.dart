@@ -21,7 +21,7 @@ final class NetworkSecurityBackendAuthStack extends Stack {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         'api_networksecurity',
-        service: .literal('networksecurity.googleapis.com'),
+        service: .networksecurity,
         disableOnDestroy: .literal(false),
       ),
     );

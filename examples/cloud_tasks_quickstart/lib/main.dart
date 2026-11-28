@@ -30,7 +30,7 @@ final class EmailJobsStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_cloudtasks',
-        service: .literal('cloudtasks.googleapis.com'),
+        service: .cloudtasks,
         disableOnDestroy: .literal(false),
       ),
     );

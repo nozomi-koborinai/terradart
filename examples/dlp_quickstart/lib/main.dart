@@ -29,7 +29,7 @@ final class DlpStack extends Stack {
     final apiDlp = add(
       GoogleProjectService(
         'api_dlp',
-        service: .literal('dlp.googleapis.com'),
+        service: .dlp,
         disableOnDestroy: .literal(false),
       ),
     );
@@ -37,7 +37,7 @@ final class DlpStack extends Stack {
     final apiStorage = add(
       GoogleProjectService(
         'api_storage',
-        service: .literal('storage.googleapis.com'),
+        service: .storage,
         disableOnDestroy: .literal(false),
       ),
     );

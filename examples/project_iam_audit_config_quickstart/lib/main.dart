@@ -26,14 +26,14 @@ final class ProjectIamAuditConfigStack extends Stack {
     final apiIam = add(
       GoogleProjectService(
         'api_iam',
-        service: .literal('iam.googleapis.com'),
+        service: .iam,
         disableOnDestroy: .literal(false),
       ),
     );
     final apiResourceManager = add(
       GoogleProjectService(
         'api_cloudresourcemanager',
-        service: .literal('cloudresourcemanager.googleapis.com'),
+        service: .cloudresourcemanager,
         disableOnDestroy: .literal(false),
       ),
     );

@@ -10,6 +10,7 @@ import 'package:terradart_codegen/src/codegen/migrate/migrate_entry_builder.dart
 import 'package:terradart_codegen/src/codegen/migrate/migrate_manifest_data.dart';
 import 'package:terradart_codegen/src/codegen/package_formatter.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
+import 'package:terradart_codegen/src/codegen/universal_invariants/enum_extractor.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
@@ -387,6 +388,48 @@ class Holder {
       expect(_slot(builds[1], 'config').kind, MigrateSlotKind.helper);
       expect(builds[0].helpers.map((h) => h.className), ['Config']);
       expect(builds[1].helpers, isEmpty);
+    });
+
+    test('a lane enum types a slot, and only the entries it reaches record '
+        'it', () {
+      const api = EmittedEnum(
+        name: 'GoogleApi',
+        members: {'compute': 'compute.googleapis.com'},
+      );
+      MigrateEntryInput input(String type, WrapperOverride override) =>
+          MigrateEntryInput(
+            tfType: type,
+            override: override,
+            def: def,
+            kind: 'resource',
+            emittedSource: emitted,
+          );
+      final builds = buildMigrateEntries(
+        [
+          input(
+            'google_thing',
+            const WrapperOverride(
+              outputDir: 'thing',
+              paramOrder: ['name'],
+              dartTypeOverrides: {'name': 'GoogleApi'},
+            ),
+          ),
+          input(
+            'google_other',
+            const WrapperOverride(outputDir: 'thing', paramOrder: ['name']),
+          ),
+        ],
+        laneEnums: const [api],
+      );
+      final slot = _slot(builds[0], 'name');
+      expect(slot.kind, MigrateSlotKind.enumValue);
+      expect(slot.dartType, 'GoogleApi');
+      expect(
+        builds[0].enums.singleWhere((e) => e.name == 'GoogleApi').members,
+        {'compute.googleapis.com': 'compute'},
+      );
+      expect(_slot(builds[1], 'name').kind, MigrateSlotKind.scalar);
+      expect(builds[1].enums.map((e) => e.name), isNot(contains('GoogleApi')));
     });
 
     test('buildMigrateEntries records the barrel file stem', () {

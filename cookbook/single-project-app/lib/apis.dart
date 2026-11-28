@@ -8,42 +8,42 @@ import 'package:terradart_google/project.dart';
 List<GoogleProjectService> buildProjectServices() => [
   GoogleProjectService(
     'api_run',
-    service: .literal('run.googleapis.com'),
+    service: .run,
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     'api_sql',
-    service: .literal('sqladmin.googleapis.com'),
+    service: .sqladmin,
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     'api_pubsub',
-    service: .literal('pubsub.googleapis.com'),
+    service: .pubsub,
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     'api_monitoring',
-    service: .literal('monitoring.googleapis.com'),
+    service: .monitoring,
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     'api_secret',
-    service: .literal('secretmanager.googleapis.com'),
+    service: .secretmanager,
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     'api_iam',
-    service: .literal('iam.googleapis.com'),
+    service: .iam,
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     'api_compute',
-    service: .literal('compute.googleapis.com'),
+    service: .compute,
     disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     'api_servicenetworking',
-    service: .literal('servicenetworking.googleapis.com'),
+    service: .servicenetworking,
     disableOnDestroy: .literal(false),
   ),
 ];

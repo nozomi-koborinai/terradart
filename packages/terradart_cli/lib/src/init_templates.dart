@@ -459,7 +459,7 @@ String _stack(InitPlan plan) {
     final pubsubApi = add(
       GoogleProjectService(
         'api_pubsub',
-        service: .literal('pubsub.googleapis.com'),
+        service: .pubsub,
         disableOnDestroy: .literal(false),
       ),
     );

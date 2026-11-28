@@ -29,7 +29,7 @@ final class DataformStack extends Stack {
     final api = add(
       GoogleProjectService(
         'api_dataform',
-        service: .literal('dataform.googleapis.com'),
+        service: .dataform,
         disableOnDestroy: .literal(false),
       ),
     );
