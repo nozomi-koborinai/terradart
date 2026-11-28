@@ -20,9 +20,23 @@ final class MigrationCenterStack extends Stack {
     const importJobId = 'terradart-import';
     const reportConfigId = 'terradart-report-config';
 
-    final apiDeps = enableApis([
-      .migration,
-    ], propagationDelay: const Duration(seconds: 60));
+    final api = add(
+      GoogleProjectService(
+        'api_migrationcenter',
+        service: .literal('migrationcenter.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({api.localName: api.id.interpolation}),
+          dependsOn: [api],
+        ),
+      ),
+    ];
 
     add(
       GoogleMigrationCenterSettings(

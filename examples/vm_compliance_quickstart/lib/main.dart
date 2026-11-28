@@ -40,10 +40,28 @@ final class VmComplianceStack extends Stack {
       ) {
     const zone = 'us-central1-a';
 
-    final apiDeps = enableApis([
-      .osConfig,
-      .binaryAuthorization,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in ['binaryauthorization', 'osconfig'])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     add(
       GoogleBinaryAuthorizationPolicy(

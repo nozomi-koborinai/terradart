@@ -32,7 +32,7 @@ Workload identity pools and providers are soft-deleted for 30 days, so applying 
 
 - Dart SDK >= 3.12
 - The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
-- A GCP project with Pub/Sub, Cloud Tasks, Secret Manager, and IAM APIs enabled.
+- A GCP project. The stack enables the APIs it uses (IAM, Pub/Sub, Cloud Tasks, Secret Manager, IAP, OS Login, Workload Identity).
 
 ## Usage
 

@@ -1247,7 +1247,7 @@ final class GoogleComputeInstance extends Resource {
     TfArg<Map<String, String>>? labels,
     TfArg<List<String>>? tags,
     TfArg<Map<String, String>>? metadata,
-    TfArg<String>? metadataStartupScript,
+    Sensitive<String>? metadataStartupScript,
     TfArg<bool>? canIpForward,
     TfArg<bool>? deletionProtection,
     TfArg<bool>? allowStoppingForUpdate,

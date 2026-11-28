@@ -158,7 +158,7 @@ final class ComputeLbStack extends Stack {
         'lb_cert',
         name: .literal('app-lb-cert'),
         managed: ComputeManagedSslCertificateConfig(
-          domains: ['app.example.com'],
+          domains: .literal(['app.example.com']),
         ),
       ),
     );
@@ -179,16 +179,20 @@ final class ComputeLbStack extends Stack {
     // [GoogleComputeTargetHttpsProxy.certificateMap] to `cmMap.id` at
     // apply time when migrating off Compute SSL certificates.
 
-    final apisByEndpoint = <String, GoogleProjectService>{};
-    for (final api in Apis.required(
-      barrels: [Barrels.certificateManager, Barrels.privateca],
-    )) {
-      final added = add(api);
-      apisByEndpoint[added.argMap['service']!.toTfJson() as String] = added;
-    }
-    final apiCertificateManager =
-        apisByEndpoint['certificatemanager.googleapis.com']!;
-    final apiPrivateca = apisByEndpoint['privateca.googleapis.com']!;
+    final apiCertificateManager = add(
+      GoogleProjectService(
+        'api_certificatemanager',
+        service: .literal('certificatemanager.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiPrivateca = add(
+      GoogleProjectService(
+        'api_privateca',
+        service: .literal('privateca.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
 
     final cmDnsAuth = GoogleCertificateManagerDnsAuthorization(
       'cm_dns_auth',
@@ -421,7 +425,7 @@ final class ComputeLbStack extends Stack {
             action: SecurityPolicyRuleAction.allow,
             match: ComputeSecurityPolicyRulesMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-              config: .new(srcIpRanges: ['*']),
+              config: .new(srcIpRanges: .literal(['*'])),
             ),
             description: .literal('default allow-all'),
           ),
@@ -550,7 +554,7 @@ final class ComputeLbStack extends Stack {
         description: .literal('Block example CIDR'),
         match: const ComputeSecurityPolicyRuleMatch(
           versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-          config: .new(srcIpRanges: ['203.0.113.0/24']),
+          config: .new(srcIpRanges: .literal(['203.0.113.0/24'])),
         ),
       ),
     );
@@ -650,7 +654,7 @@ final class ComputeLbStack extends Stack {
             action: .allow,
             match: ComputeRegionSecurityPolicyRulesMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-              config: .new(srcIpRanges: const ['*']),
+              config: .new(srcIpRanges: .literal(['*'])),
             ),
             description: .literal('default allow-all'),
           ),
@@ -668,7 +672,7 @@ final class ComputeLbStack extends Stack {
         description: .literal('Block example CIDR (regional)'),
         match: const ComputeRegionSecurityPolicyRuleMatch(
           versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-          config: .new(srcIpRanges: ['198.51.100.0/24']),
+          config: .new(srcIpRanges: .literal(['198.51.100.0/24'])),
         ),
       ),
     );
@@ -912,7 +916,16 @@ final class ComputeLbStack extends Stack {
     // ---- Wave 23: IAP on the global HTTPS backend ------------------------
     //
     // Member (additive) is the default pattern. Binding (authoritative per
-    // role) is shown for stacks that fully own the IAP accessor list.
+    // role) is shown for stacks that fully own the IAP accessor list. Every
+    // IAP grant goes through the IAP API, so each one depends on it.
+
+    final apiIap = add(
+      GoogleProjectService(
+        'api_iap',
+        service: .literal('iap.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
 
     add(
       GoogleIapWebBackendServiceIamMember(
@@ -920,7 +933,7 @@ final class ComputeLbStack extends Stack {
         webBackendService: lbBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
-        dependsOn: [lbBackend],
+        dependsOn: [lbBackend, apiIap],
       ),
     );
 
@@ -930,7 +943,7 @@ final class ComputeLbStack extends Stack {
         webBackendService: lbBackend.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         members: .literal([.group('platform-admins@example.com')]),
-        dependsOn: [lbBackend],
+        dependsOn: [lbBackend, apiIap],
       ),
     );
 
@@ -941,7 +954,7 @@ final class ComputeLbStack extends Stack {
         forwardingRuleServiceName: ilbHttps.name,
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
-        dependsOn: [ilbHttps],
+        dependsOn: [ilbHttps, apiIap],
       ),
     );
 
@@ -952,7 +965,7 @@ final class ComputeLbStack extends Stack {
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
         region: .literal(region),
-        dependsOn: [ilbHttps],
+        dependsOn: [ilbHttps, apiIap],
       ),
     );
 
@@ -963,7 +976,7 @@ final class ComputeLbStack extends Stack {
         role: .literal('roles/iap.httpsResourceAccessor'),
         member: .allAuthenticatedUsers,
         region: .literal(region),
-        dependsOn: [regionalBackend],
+        dependsOn: [regionalBackend, apiIap],
       ),
     );
   }

@@ -172,7 +172,7 @@ final class InternalDnsStack extends Stack {
               name: .literal('legacy.internal.corp.'),
               type: DnsResponsePolicyRuleRecordType.a,
               ttl: .literal(300),
-              rrdatas: const ['10.0.0.20'],
+              rrdatas: .literal(['10.0.0.20']),
             ),
           ],
         ),

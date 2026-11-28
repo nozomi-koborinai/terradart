@@ -16,9 +16,33 @@ final class NetworkSecurityUllStack extends Stack {
       ) {
     const zone = 'us-south1-d';
 
-    final apiDeps = enableApis([
-      .network,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in [
+        'networkconnectivity',
+        'networkmanagement',
+        'networksecurity',
+        'networkservices',
+      ])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     final engine = GoogleNetworkSecurityUllMirroringEngine(
       'mirror',

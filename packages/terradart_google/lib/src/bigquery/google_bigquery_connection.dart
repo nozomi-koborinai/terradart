@@ -156,11 +156,10 @@ class BigqueryConnectionCloudSqlCredential {
 sealed class BigqueryConnectionCloudSqlPassword {
   const BigqueryConnectionCloudSqlPassword();
 
-  /// Sets `password`. Wire it to a Secret Manager-backed variable rather
-  /// than a literal: the value is stored in Terraform state, and the
-  /// generated `sensitiveFields` set masks it in `main.tf.json`.
+  /// Sets `password`: a sensitive variable or an expression, never a
+  /// literal. The value is stored in Terraform state.
   const factory BigqueryConnectionCloudSqlPassword.password(
-    TfArg<String> password,
+    Sensitive<String> password,
   ) = BigqueryConnectionCloudSqlPasswordChoice;
 
   /// Sets `password_wo` (Terraform 1.11+), which never lands in state.
@@ -180,7 +179,7 @@ final class BigqueryConnectionCloudSqlPasswordChoice
     extends BigqueryConnectionCloudSqlPassword {
   const BigqueryConnectionCloudSqlPasswordChoice(this.password);
 
-  final TfArg<String> password;
+  final Sensitive<String> password;
 
   @override
   @internal
@@ -538,10 +537,9 @@ class BigqueryConnectionConfigurationAuthenticationPassword {
     required this.plaintext,
   });
 
-  /// Required. Plaintext password. Wire it to a Secret
-  /// Manager-backed variable; the value is masked in the rendered
-  /// `main.tf.json` via the generated `sensitiveFields` set.
-  final TfArg<String> plaintext;
+  /// Required. Plaintext password: a sensitive variable or an
+  /// expression, never a literal.
+  final Sensitive<String> plaintext;
 
   Map<String, Object?> toArgMap() => {'plaintext': plaintext.toTfJson()};
 }

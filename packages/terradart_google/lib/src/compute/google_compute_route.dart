@@ -4,7 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_instance.dart' show GoogleComputeInstance;
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_vpn_tunnel.dart' show GoogleComputeVpnTunnel;
 
 /// Sensitive field paths for `google_compute_route`.
 const Set<String> _googleComputeRouteSensitive = <String>{};
@@ -23,17 +25,19 @@ sealed class ComputeRouteNextHop {
   const factory ComputeRouteNextHop.ip(TfArg<String> nextHopIp) =
       ComputeRouteIpNextHop;
 
-  /// Route via a Compute Engine VM instance (name or self-link).
-  const factory ComputeRouteNextHop.instance(TfArg<String> nextHopInstance) =
-      ComputeRouteInstanceNextHop;
+  /// Route via a Compute Engine VM instance.
+  const factory ComputeRouteNextHop.instance(
+    RefTo<GoogleComputeInstance> nextHopInstance,
+  ) = ComputeRouteInstanceNextHop;
 
   /// Route via an internal load balancer.
   const factory ComputeRouteNextHop.ilb(TfArg<String> nextHopIlb) =
       ComputeRouteIlbNextHop;
 
   /// Route via a Cloud VPN tunnel.
-  const factory ComputeRouteNextHop.vpnTunnel(TfArg<String> nextHopVpnTunnel) =
-      ComputeRouteVpnTunnelNextHop;
+  const factory ComputeRouteNextHop.vpnTunnel(
+    RefTo<GoogleComputeVpnTunnel> nextHopVpnTunnel,
+  ) = ComputeRouteVpnTunnelNextHop;
 
   /// Terraform attribute name (`next_hop_gateway`, `next_hop_ip`, …).
   @internal
@@ -76,19 +80,19 @@ final class ComputeRouteIpNextHop extends ComputeRouteNextHop {
   TfArg<String> get value => nextHopIp;
 }
 
-/// Route via a Compute Engine VM instance (name or self-link).
+/// Route via a Compute Engine VM instance.
 @immutable
 final class ComputeRouteInstanceNextHop extends ComputeRouteNextHop {
   const ComputeRouteInstanceNextHop(this.nextHopInstance);
 
-  final TfArg<String> nextHopInstance;
+  final RefTo<GoogleComputeInstance> nextHopInstance;
 
   @override
   @internal
   String get blockKey => 'next_hop_instance';
 
   @override
-  TfArg<String> get value => nextHopInstance;
+  TfArg<String> get value => nextHopInstance.encodeAs('self_link');
 }
 
 /// Route via an internal load balancer.
@@ -111,14 +115,14 @@ final class ComputeRouteIlbNextHop extends ComputeRouteNextHop {
 final class ComputeRouteVpnTunnelNextHop extends ComputeRouteNextHop {
   const ComputeRouteVpnTunnelNextHop(this.nextHopVpnTunnel);
 
-  final TfArg<String> nextHopVpnTunnel;
+  final RefTo<GoogleComputeVpnTunnel> nextHopVpnTunnel;
 
   @override
   @internal
   String get blockKey => 'next_hop_vpn_tunnel';
 
   @override
-  TfArg<String> get value => nextHopVpnTunnel;
+  TfArg<String> get value => nextHopVpnTunnel.encodeAs('self_link');
 }
 
 /// Typed helper for the `params` block of

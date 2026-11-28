@@ -123,8 +123,8 @@ hook_is_protected_write_path() {
   # the lane's typePrefix from tool/providers.yaml (lib/src/*/<prefix>*.dart),
   # plus the catalog, the provider pin (_provider_version.g.dart) and the
   # migration manifests (terradart_migrate/lib/src/manifest/*.g.dart).
-  # Hand-written files under lib/src (google_provider.dart, apis.dart)
-  # stay editable.
+  # Hand-written files under lib/src (google_provider.dart,
+  # terraform_api_requirements.dart) stay editable.
   case "$rel" in
     packages/*/lib/src/_provider_version.g.dart) return 0 ;;
     packages/terradart_migrate/lib/src/manifest/*.g.dart) return 0 ;;

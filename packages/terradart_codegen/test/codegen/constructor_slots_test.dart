@@ -2,12 +2,15 @@ import 'package:terradart_codegen/src/codegen/constructor_params.dart';
 import 'package:terradart_codegen/src/codegen/constructor_slots.dart';
 import 'package:terradart_codegen/src/codegen/data_source_wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
+import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/references/reference_targets.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:terradart_codegen/src/ir/attribute.dart';
 import 'package:terradart_codegen/src/ir/constraints.dart';
 import 'package:terradart_codegen/src/ir/nested_block.dart';
+import 'package:terradart_codegen/src/ir/provider_schema_ir.dart';
 import 'package:terradart_codegen/src/ir/resource_def.dart';
 import 'package:terradart_codegen/src/ir/type_def.dart';
 import 'package:test/test.dart';
@@ -513,6 +516,30 @@ void main() {
       expect(source, contains("@Deprecated('old') TfArg<String>? note"));
       expect(source, contains('RefTo<GoogleProject>? project'));
       expect(source, contains("?(location ?? project?.alsoAs('location'))"));
+    });
+
+    test('a top-level extraSensitiveFields entry takes Sensitive<T>', () {
+      const type = 'google_test';
+      const override = WrapperOverride(
+        outputDir: 'test',
+        extraSensitiveFields: ['note'],
+      );
+      final ir = withOverrideSensitive(
+        const LoadedOverrides(resources: {type: override}, dataSources: {}),
+        ProviderSchemaIR(
+          providerName: 'google',
+          providerSource: 'hashicorp/google',
+          providerVersion: '1.0.0',
+          resources: {type: _def()},
+          dataSources: const {},
+        ),
+      );
+      final source = WrapperEmitter(
+        overrides: {type: override},
+      ).emit(ir.resources[type]!, providerSource: 'hashicorp/google');
+
+      expect(source, contains('Sensitive<String>? note'));
+      expect(source, contains("<String>{'note', 'token'}"));
     });
 
     test('a data source constructor does not absorb or deprecate', () {

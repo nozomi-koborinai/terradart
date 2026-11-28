@@ -429,7 +429,7 @@ terradart apply
 
 Each command synthesizes first, then runs `init` and `plan` or `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH`, or a checksum-verified OpenTofu it downloads when there is neither. A Stack that uses Appwrite runs on the `terraform` on your `PATH`, and stops before `init` when there is none or `--engine tofu` asks for OpenTofu. For several environments, declare them as a Dart enum and hand it to `runEnvironments` in `bin/infra.dart`; `terradart apply --env prod` then runs one of them. See [Environments](/docs/environments/) and [The terradart command](/docs/cli/).
 
-On a new Google Cloud project every API is off, so the first apply fails with a 403 until the Stack turns on the ones it uses with `enableApis([.pubsub])` — see [Enabling APIs](/docs/providers/google/#enabling-apis). The project `terradart init` writes does it already.
+On a new Google Cloud project every API is off, so the first apply fails with a 403 until the Stack turns on the ones it uses, one `GoogleProjectService` each — see [Enabling APIs](/docs/providers/google/#enabling-apis). The project `terradart init` writes does it already.
 
 The output is ordinary Terraform JSON, so your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
 

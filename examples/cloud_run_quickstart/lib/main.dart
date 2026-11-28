@@ -27,7 +27,7 @@
 /// Wave 25 adds a Serverless VPC Access connector and pins the service
 /// revision to it via `template.vpcAccess` (`VpcAccessEgress.privateRangesOnly`).
 ///
-/// Wave 32 adds Memorystore Redis and [StackApis.enableApis] propagation
+/// Wave 32 adds Memorystore Redis and an API propagation wait
 /// ([TimeSleep] after API enablement), wiring the cache's typed `host` ref
 /// into the service env (`REDIS_HOST`).
 library;
@@ -54,22 +54,44 @@ final class ApiServiceStack extends Stack {
       ) {
     // ---- API enablement + Wave 25 VPC Access + Wave 32 Redis --------------
     //
-    // [StackApis.enableApis] enables the Compute, Run, Secret Manager, Service
-    // Networking, VPC Access, Redis, and Memcache APIs and waits 60s for
-    // propagation before dependents apply. Compute + Service Networking back
+    // One [GoogleProjectService] per API (Compute, IAP, Run, Secret Manager,
+    // Service Networking, VPC Access, Redis, Memcache), then a [TimeSleep]
+    // that waits 60s for propagation before dependents apply. Compute + Service Networking back
     // the Private Service Access (PSA) chain the Memorystore instances peer
     // into; without them apply fails with "Google private service access is
     // not enabled".
 
-    final apiDeps = enableApis([
-      .compute,
-      .cloudRun,
-      .secretManager,
-      .serviceNetworking,
-      .redis,
-      .memcache,
-      .iapApi,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in [
+        'compute',
+        'iap',
+        'memcache',
+        'redis',
+        'run',
+        'secretmanager',
+        'servicenetworking',
+        'vpcaccess',
+      ])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     final dbPassword = add(
       GoogleSecretManagerSecret(

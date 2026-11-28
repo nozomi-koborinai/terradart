@@ -391,12 +391,12 @@ class ComputeInstanceGroupManagerAllInstancesConfig {
     this.metadata,
   });
 
-  final Map<String, String>? labels;
-  final Map<String, String>? metadata;
+  final TfArg<Map<String, String>>? labels;
+  final TfArg<Map<String, String>>? metadata;
 
   Map<String, Object?> toArgMap() => {
-    if (labels != null) 'labels': labels,
-    if (metadata != null) 'metadata': metadata,
+    if (labels != null) 'labels': labels!.toTfJson(),
+    if (metadata != null) 'metadata': metadata!.toTfJson(),
   };
 }
 

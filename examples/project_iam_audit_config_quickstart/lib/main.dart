@@ -1,8 +1,9 @@
 /// Project IAM audit config + deny policy quickstart.
 ///
-/// Enables `ADMIN_READ` audit logs for `storage.googleapis.com` via
-/// `google_project_iam_audit_config`. Admin Activity logs are free; this
-/// stack does not enable Data Access (`DATA_READ` / `DATA_WRITE`) logging.
+/// Enables `cloudresourcemanager.googleapis.com`, then `ADMIN_READ` audit logs
+/// for `storage.googleapis.com` via `google_project_iam_audit_config`. Admin
+/// Activity logs are free; this stack does not enable Data Access
+/// (`DATA_READ` / `DATA_WRITE`) logging.
 ///
 /// Also enables `iam.googleapis.com`, mints an in-stack service account,
 /// and attaches a project IAM deny policy that denies only that account
@@ -29,6 +30,13 @@ final class ProjectIamAuditConfigStack extends Stack {
         disableOnDestroy: .literal(false),
       ),
     );
+    final apiResourceManager = add(
+      GoogleProjectService(
+        'api_cloudresourcemanager',
+        service: .literal('cloudresourcemanager.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
 
     add(
       GoogleProjectIamAuditConfig(
@@ -40,6 +48,7 @@ final class ProjectIamAuditConfigStack extends Stack {
             logType: ProjectIamAuditConfigAuditLogConfigLogType.adminRead,
           ),
         ],
+        dependsOn: [apiResourceManager],
       ),
     );
 

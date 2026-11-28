@@ -144,6 +144,49 @@ void main() {
         {'config.zone_id': false},
       );
     });
+
+    test('leaves out a sensitive input', () {
+      expect(
+        stringInputs({
+          'attributes': {
+            'bucket': {'type': 'string', 'required': true},
+            'kms_key_id': {
+              'type': 'string',
+              'optional': true,
+              'sensitive': true,
+            },
+          },
+        }),
+        {'bucket': false},
+      );
+    });
+
+    test('leaves out every input inside a sensitive object', () {
+      expect(
+        stringInputs({
+          'attributes': {
+            'credentials': {
+              'optional': true,
+              'sensitive': true,
+              'nested_type': {
+                'attributes': {
+                  'network': {'type': 'string', 'optional': true},
+                },
+              },
+            },
+            'settings': {
+              'optional': true,
+              'nested_type': {
+                'attributes': {
+                  'network': {'type': 'string', 'optional': true},
+                },
+              },
+            },
+          },
+        }),
+        {'settings.network': false},
+      );
+    });
   });
 
   group('resolveReferences', () {

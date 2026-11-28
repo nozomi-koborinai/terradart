@@ -26,9 +26,23 @@ final class DataformStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = enableApis([
-      .dataform,
-    ], propagationDelay: const Duration(seconds: 60));
+    final api = add(
+      GoogleProjectService(
+        'api_dataform',
+        service: .literal('dataform.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({api.localName: api.id.interpolation}),
+          dependsOn: [api],
+        ),
+      ),
+    ];
 
     final team = add(
       GoogleDataformTeamFolder(

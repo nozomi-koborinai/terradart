@@ -39,8 +39,8 @@ void main() {
       final v = GoogleSecretManagerSecretVersion(
         'v',
         secret: RefTo.literal('projects/p/secrets/s'),
-        payload: const SecretManagerSecretVersionPlaintextPayload(
-          TfArg.literal('legacy-value'),
+        payload: SecretManagerSecretVersionPlaintextPayload(
+          .variable('legacy_value'),
         ),
       );
       expect(v.sensitiveFields, equals(<String>{'secret_data'}));
@@ -51,40 +51,21 @@ void main() {
     final v = GoogleSecretManagerSecretVersion(
       'v',
       secret: RefTo.literal('projects/p/secrets/s'),
-      payload: const SecretManagerSecretVersionPlaintextPayload(
-        TfArg.literal('legacy-value'),
+      payload: SecretManagerSecretVersionPlaintextPayload(
+        .variable('legacy_value'),
       ),
     );
     expect(v.argMap.keys, isNot(contains('secret_data_wo')));
-    expect(v.argMap['secret_data']!.toTfJson(), equals('legacy-value'));
+    expect(v.argMap['secret_data']!.toTfJson(), equals(r'${var.legacy_value}'));
   });
 
   group('payload sensitivity at synth time', () {
-    GoogleSecretManagerSecretVersion plaintext(TfArg<String> data) =>
+    GoogleSecretManagerSecretVersion plaintext(Sensitive<String> data) =>
         GoogleSecretManagerSecretVersion(
           'v',
           secret: RefTo.literal('projects/p/secrets/s'),
           payload: SecretManagerSecretVersionPlaintextPayload(data),
         );
-
-    test('a literal secret_data fails synth with a SensitiveLiteral issue', () {
-      final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
-      stack.add(plaintext(const TfArg.literal('legacy-value')));
-      expect(
-        () => stack.synth(),
-        throwsA(
-          isA<SynthException>().having(
-            (e) => e.issues.single,
-            'issue',
-            isA<SensitiveLiteral>().having(
-              (i) => i.field,
-              'field',
-              'secret_data',
-            ),
-          ),
-        ),
-      );
-    });
 
     test('a variable secret_data synths to a var reference', () {
       final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);

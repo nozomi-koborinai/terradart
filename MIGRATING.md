@@ -112,6 +112,68 @@ path the command gets:
 | `terradart outputs --env stg --define-file ../app/dart_defines.json` | `../app/dart_defines.stg.json` | `../app/dart_defines.json` |
 | `terradart apply --env stg --define-file app.stg.json` | `app.stg.stg.json` | `app.stg.json` |
 
+### Secrets take Sensitive
+
+**Breaking (`terradart_google`, `terradart_aws`).** Every input a provider
+marks sensitive takes `Sensitive<T>`, which has no `.literal`. Synth already
+rejected a literal there with a `SensitiveLiteral` issue; now it does not
+compile. The inputs that still took a `TfArg<T>` were `metadataStartupScript`
+on `GoogleComputeInstance` and `GoogleComputeInstanceTemplate`, which the
+override marks sensitive, and the hand-written Google helpers in the table.
+`AwsS3ObjectCopy.kmsKeyId` took a `RefTo<AwsKmsKey>`; pass the key's `arn`
+getter. Pass a variable, an expression or an attribute getter.
+`TfArg.variable(...)` returns a `TfArg<T>`, so write `.variable(...)` or pass
+the handle `variable<T>()` returns. Synth output does not change.
+
+| Before | After |
+|---|---|
+| `GoogleComputeInstance('vm', metadataStartupScript: .literal('echo hi'), ...)` | `GoogleComputeInstance('vm', metadataStartupScript: .expression(r'${file("startup.sh")}'), ...)` |
+| `GoogleSecretManagerSecretVersion('v1', secret: ..., payload: .plaintext(.literal('s3cret')))` | `GoogleSecretManagerSecretVersion('v1', secret: ..., payload: .plaintext(.variable('secret_value')))` |
+| `GoogleStorageBucketObject('o', bucket: ..., name: ..., body: .content(.literal('hello')))` | `GoogleStorageBucketObject('o', bucket: ..., name: ..., body: .content(.variable('object_content')))` |
+| `StorageBucketObjectCustomerEncryption(encryptionKey: .literal('a2V5'))` | `StorageBucketObjectCustomerEncryption(encryptionKey: .variable('csek_key'))` |
+| `BigqueryConnectionCloudSqlCredential(username: ..., password: .password(.literal('pw')))` | `BigqueryConnectionCloudSqlCredential(username: ..., password: .password(.variable('db_password')))` |
+| `BigqueryConnectionConfigurationAuthenticationPassword(plaintext: .literal('pw'))` | `BigqueryConnectionConfigurationAuthenticationPassword(plaintext: .variable('db_password'))` |
+| `CertificateManagerTrustConfigTrustAnchor(pemCertificate: TfArg.variable('anchor_pem'))` | `CertificateManagerTrustConfigTrustAnchor(pemCertificate: .variable('anchor_pem'))` |
+| `AwsS3ObjectCopy('copy', kmsKeyId: AwsKmsKey('key').ref, ...)` | `AwsS3ObjectCopy('copy', kmsKeyId: AwsKmsKey('key').arn, ...)` |
+
+### Hand-written Google helpers take TfArg and RefTo
+
+**Breaking (`terradart_google`).** The hand-written Google helpers now take
+their arguments the way generated ones do.
+
+- The 25 list and map fields that took a bare `List<String>` or
+  `Map<String, String>` take `TfArg<List<String>>` or
+  `TfArg<Map<String, String>>`: wrap the value in `.literal(...)`, or pass a
+  variable or an expression. They are the security policy source ranges, rule
+  ids, header and content type lists, the managed SSL certificate's domains,
+  the DNS response policy's local data records, the BigQuery routine's Spark
+  options, the backend bucket's cache key lists, and the instance group
+  manager's instance labels, metadata and machine types.
+- The image and snapshot sources, the route's instance and VPN tunnel next
+  hops, and the internal load balancer network of a DNS routing policy take a
+  `RefTo` of the resource they name: pass its `ref`, or `RefTo.literal(...)`
+  for one outside the Stack. The route and the image emit the `self_link`
+  they emitted when you passed `selfLink`. A snapshot emits the disk's or the
+  instant snapshot's `name`, so set the snapshot's `zone` when the provider
+  has no default zone. The DNS routing policy emits the network's `id`.
+- `GoogleApigeeSecurityMonitoringCondition` no longer writes
+  `include_all_resources {}` for you: pass
+  `const ApigeeSecurityMonitoringConditionIncludeAllResources()`. Synth output
+  does not change.
+
+| Before | After |
+|---|---|
+| `ComputeSecurityPolicyRuleMatchConfig(srcIpRanges: ['203.0.113.0/24'])` | `ComputeSecurityPolicyRuleMatchConfig(srcIpRanges: .literal(['203.0.113.0/24']))` |
+| `ComputeManagedSslCertificateConfig(domains: ['app.example.com'])` | `ComputeManagedSslCertificateConfig(domains: .literal(['app.example.com']))` |
+| `DnsResponsePolicyRuleLocalDataEntry(name: ..., type: ..., ttl: ..., rrdatas: ['10.0.0.20'])` | `DnsResponsePolicyRuleLocalDataEntry(name: ..., type: ..., ttl: ..., rrdatas: .literal(['10.0.0.20']))` |
+| `BigqueryRoutineSparkOptions(properties: {'spark.executor.instances': '2'})` | `BigqueryRoutineSparkOptions(properties: .literal({'spark.executor.instances': '2'}))` |
+| `GoogleComputeRoute('via_vm', nextHop: .instance(GoogleComputeInstance('vm', ...).selfLink), ...)` | `GoogleComputeRoute('via_vm', nextHop: .instance(GoogleComputeInstance('vm', ...).ref), ...)` |
+| `GoogleComputeImage('image', source: .snapshot(GoogleComputeSnapshot('snap', ...).selfLink), ...)` | `GoogleComputeImage('image', source: .snapshot(GoogleComputeSnapshot('snap', ...).ref), ...)` |
+| `GoogleComputeSnapshot('snap', source: .disk(GoogleComputeDisk('data', ...).selfLink), ...)` | `GoogleComputeSnapshot('snap', source: .disk(GoogleComputeDisk('data', ...).ref), zone: .literal('asia-northeast1-a'), ...)` |
+| `DnsRecordSetRoutingPolicyInternalLoadBalancer(ipAddress: ..., networkUrl: GoogleComputeNetwork('vpc', ...).selfLink)` | `DnsRecordSetRoutingPolicyInternalLoadBalancer(ipAddress: ..., networkUrl: GoogleComputeNetwork('vpc', ...).ref)` |
+| `GoogleComputeRoute('via_tunnel', nextHop: .vpnTunnel(TfArg.literal('projects/p/regions/r/vpnTunnels/t')), ...)` | `GoogleComputeRoute('via_tunnel', nextHop: .vpnTunnel(RefTo.literal('projects/p/regions/r/vpnTunnels/t')), ...)` |
+| `GoogleApigeeSecurityMonitoringCondition('smc', conditionId: ..., orgId: ..., profile: ..., scope: ...)` | `GoogleApigeeSecurityMonitoringCondition('smc', conditionId: ..., orgId: ..., profile: ..., scope: ..., includeAllResources: const ApigeeSecurityMonitoringConditionIncludeAllResources())` |
+
 ### Azure provider 5.15.0
 
 **Breaking (`terradart_azure`).** Provider 5.15.0 adds `managed_rules.exception`
@@ -180,6 +242,37 @@ OpenZFS attachments is unchanged.
 | `AwsFsxS3AccessPointAttachment('a', name: .literal('a'), type: .openzfs, openzfsConfiguration: [FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'))])` | `AwsFsxS3AccessPointAttachment('a', name: .literal('a'), type: .openzfs, ontapConfigurationOrOpenzfsConfiguration: .openzfsConfiguration([FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'))]))` |
 | `FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'), fileSystemIdentity: [FsxS3AccessPointAttachmentFileSystemIdentity(type: FsxS3AccessPointAttachmentFileSystemIdentityType.posix)])` | `FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'), fileSystemIdentity: [FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity(type: FsxS3AccessPointAttachmentOpenzfsConfigurationType.posix)])` |
 
+### API enablement is explicit
+
+**Breaking (`terradart_google`).** `enableApis`, `Apis.required` and `Barrels`
+are removed, so no call adds `google_project_service` or `time_sleep`
+resources the Stack does not declare. Add one `GoogleProjectService` per API
+and, where the Stack waited for propagation, a `TimeSleep` that the API-gated
+resources depend on ([Enabling APIs](https://terradart.dev/docs/providers/google/#enabling-apis)).
+
+The plan stays empty when the new resources match what the Stack synthesized
+before. Read the APIs from the `google_project_service` resources in your
+current `tf-out/main.tf.json`, keep their local names (`api_` and the API
+without `.googleapis.com`) and `disable_on_destroy = false`, and keep the
+`api_propagation` sleep with its `create_duration` and its `triggers` map from
+each service's local name to its `id`. A barrel enabled the API of every
+factory in it, so that list can be longer than the resources the Stack uses.
+
+`terradart_google` no longer depends on `terradart_time`. A Stack that waits
+already has `TimeProvider` from `terradart_time`; keep that dependency in its
+`pubspec.yaml`.
+
+To work out an API in code, `package:terradart_google/project.dart` now
+exports `requiredApiForTerraformType`, the API a wrapped resource type needs.
+It follows the Google API Discovery documents, so a few answers differ from
+what `Apis.required` derived: a BigQuery connection, for example, needs
+`bigqueryconnection.googleapis.com`, not `bigquery.googleapis.com`.
+
+| Before | After |
+|---|---|
+| `StackApis(stack).enableApis([.pubsub])` | `GoogleProjectService('api_pubsub', service: .literal('pubsub.googleapis.com'), disableOnDestroy: .literal(false))`, then `TimeSleep('api_propagation', createDuration: .duration(const Duration(seconds: 60)), triggers: ..., dependsOn: [...])` |
+| `StackApis(stack).enableApis([.apigee], propagationDelay: Duration.zero)` | `GoogleProjectService('api_apigee', service: .literal('apigee.googleapis.com'), disableOnDestroy: .literal(false))` and no `TimeSleep` |
+| `Apis.required(barrels: [Barrels.redis])` | `[GoogleProjectService('api_redis', service: .literal('redis.googleapis.com'), disableOnDestroy: .literal(false))]` |
 ## 0.36.x → 0.37.0
 
 ### Dart 3.12 is the minimum SDK

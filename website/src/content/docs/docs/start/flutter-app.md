@@ -112,13 +112,28 @@ final class MyAppInfraStack extends Stack {
         backend: const LocalBackend(),
         appExports: AppExports('../lib/generated/infra.g.dart'),
       ) {
-    // Enables the Pub/Sub API on the project and waits for it to propagate.
-    final apis = enableApis([.pubsub]);
+    // A new project has every API off: enable Pub/Sub, then wait for the
+    // enablement to propagate before the topic uses it.
+    final pubsubApi = add(
+      GoogleProjectService(
+        'api_pubsub',
+        service: .literal('pubsub.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiReady = add(
+      TimeSleep(
+        'api_propagation',
+        createDuration: .duration(const Duration(seconds: 60)),
+        triggers: .literal({pubsubApi.localName: pubsubApi.id.interpolation}),
+        dependsOn: [pubsubApi],
+      ),
+    );
     final topic = add(
       GooglePubsubTopic(
         'events',
         name: .literal('${env.name}-events'),
-        dependsOn: apis,
+        dependsOn: [apiReady],
       ),
     );
     addOutput('events_topic_id', topic.id);

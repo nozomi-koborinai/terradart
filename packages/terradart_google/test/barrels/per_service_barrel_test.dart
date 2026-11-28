@@ -39,7 +39,14 @@ Set<String> _topLevelDeclarations(String source) {
     r"^const\s+\w+(?:<[^>]*>)?\s+(\w+)\s*=",
     multiLine: true,
   );
+  final functionRegex = RegExp(
+    r'^\w+(?:<[^>]*>)?\??\s+(\w+)\s*\(',
+    multiLine: true,
+  );
   final names = <String>{};
+  for (final m in functionRegex.allMatches(source)) {
+    names.add(m.group(1)!);
+  }
   for (final m in typeDeclRegex.allMatches(source)) {
     names.add(m.group(1)!);
   }
@@ -62,8 +69,9 @@ extension NamedExt on String {}
 extension on String {}
 extension type const Wrapper(int value) {}
 const String kBar = 'bar';
+String? lookup(String key) => null;
 ''');
-      expect(names, equals({'Foo', 'NamedExt', 'Wrapper', 'kBar'}));
+      expect(names, equals({'Foo', 'NamedExt', 'Wrapper', 'kBar', 'lookup'}));
     },
   );
 

@@ -140,8 +140,8 @@ final class MemcacheInstanceMemcacheParameters {
 /// - [name]: instance ID.
 /// - [nodeCount]: number of Memcached nodes.
 ///
-/// Enable `memcache.googleapis.com` via [GoogleProjectService] or
-/// [StackApis.enableApis] before apply.
+/// Enable `memcache.googleapis.com` with a [GoogleProjectService] before
+/// apply.
 ///
 /// Example:
 /// ```dart

@@ -173653,10 +173653,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'kms_key_id',
           dartName: 'kmsKeyId',
-          kind: MigrateSlotKind.reference,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          dartType: 'AwsKmsKey',
-          attribute: 'arn',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'metadata',

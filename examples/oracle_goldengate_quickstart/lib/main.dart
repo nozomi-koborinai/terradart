@@ -22,10 +22,28 @@ final class OracleGoldengateStack extends Stack {
     const deploymentId = 'terradart-gg-deploy';
     const assignmentId = 'terradart-gg-assign';
 
-    final apiDeps = enableApis([
-      .oracle,
-      .compute,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in ['compute', 'oracledatabase'])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     final vpc = GoogleComputeNetwork(
       'ora_vpc',

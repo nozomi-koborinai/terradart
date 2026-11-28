@@ -43,14 +43,32 @@ final class CryptoStack extends Stack {
 
     // ---- API enablement ---------------------------------------------------
     //
-    // [StackApis.enableApis] enables the Cloud KMS API and waits 60s for propagation
-    // before the key ring, keys, and versions apply. (Service accounts and
-    // `_iam_member` adjuncts below are not API-gated.)
+    // Enables the Cloud KMS and Contact Center AI Insights APIs, then waits
+    // 60s for propagation before the key ring, keys, and versions apply.
+    // (Service accounts and `_iam_member` adjuncts below are not API-gated.)
 
-    final apiDeps = enableApis([
-      .kmsApi,
-      .contact,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in ['cloudkms', 'contactcenterinsights'])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     final ring = GoogleKmsKeyRing(
       'main',

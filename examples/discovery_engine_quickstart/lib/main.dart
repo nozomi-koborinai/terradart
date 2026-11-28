@@ -29,9 +29,23 @@ final class DiscoveryEngineCatalogStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = enableApis([
-      .discoveryEngine,
-    ], propagationDelay: const Duration(seconds: 90));
+    final api = add(
+      GoogleProjectService(
+        'api_discoveryengine',
+        service: .literal('discoveryengine.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 90)),
+          triggers: .literal({api.localName: api.id.interpolation}),
+          dependsOn: [api],
+        ),
+      ),
+    ];
 
     final reader = add(
       GoogleServiceAccount(

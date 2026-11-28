@@ -24,12 +24,26 @@ final class EmailJobsStack extends Stack {
       ) {
     // ---- API enablement ---------------------------------------------------
     //
-    // [StackApis.enableApis] enables the Cloud Tasks API and waits 60s for propagation
-    // before the queue applies.
+    // Enables the Cloud Tasks API and waits 60s for propagation before the
+    // queue applies.
 
-    final apiDeps = enableApis([
-      .cloudTasks,
-    ], propagationDelay: const Duration(seconds: 60));
+    final api = add(
+      GoogleProjectService(
+        'api_cloudtasks',
+        service: .literal('cloudtasks.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({api.localName: api.id.interpolation}),
+          dependsOn: [api],
+        ),
+      ),
+    ];
 
     final queue = add(
       GoogleCloudTasksQueue(
@@ -53,7 +67,7 @@ final class EmailJobsStack extends Stack {
     // The service account that enqueues tasks. The IAM binding below grants it
     // the enqueuer role; without this SA the binding fails with "Service
     // account ... does not exist". `google_service_account` is not API-gated,
-    // so no Apis dependency is required.
+    // so it does not wait for the API.
     final enqueuerSa = add(
       GoogleServiceAccount(
         'enqueuer',

@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 import '../dns/google_dns_managed_zone.dart' show GoogleDnsManagedZone;
 
 /// Sensitive field paths for `google_dns_record_set`.
@@ -101,7 +102,7 @@ class DnsRecordSetRoutingPolicyInternalLoadBalancer {
   final TfArg<String> ipAddress;
   final DnsRecordSetRoutingPolicyIlbIpProtocol? ipProtocol;
   final DnsRecordSetRoutingPolicyIlbType? loadBalancerType;
-  final TfArg<String>? networkUrl;
+  final RefTo<GoogleComputeNetwork>? networkUrl;
   final TfArg<String>? port;
   final TfArg<String>? project;
   final TfArg<String>? region;
@@ -111,7 +112,8 @@ class DnsRecordSetRoutingPolicyInternalLoadBalancer {
     if (ipProtocol != null) 'ip_protocol': ipProtocol!.toTfJson(),
     if (loadBalancerType != null)
       'load_balancer_type': loadBalancerType!.toTfJson(),
-    if (networkUrl != null) 'network_url': networkUrl!.toTfJson(),
+    if (networkUrl != null)
+      'network_url': networkUrl!.encodeAs('id').toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
     if (project != null) 'project': project!.toTfJson(),
     if (region != null) 'region': region!.toTfJson(),

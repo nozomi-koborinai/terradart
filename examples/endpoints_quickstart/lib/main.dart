@@ -78,8 +78,8 @@ final class EndpointsStack extends Stack {
       ) {
     final serviceName = 'terradart.endpoints.$projectId.cloud.goog';
 
-    // `google_endpoints_*` is absent from terraformApiPrefixRules — enable
-    // the APIs Google's Endpoints setup lists without editing that map.
+    // `requiredApiForTerraformType` names no API for `google_endpoints_*`:
+    // enable the APIs Google's Endpoints setup lists.
     final apiServiceManagement = add(
       GoogleProjectService(
         'api_servicemanagement',

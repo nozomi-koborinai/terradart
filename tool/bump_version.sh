@@ -11,7 +11,7 @@
 # What it touches:
 #   - packages/terradart_core/pubspec.yaml        (version: line)
 #   - packages/terradart_codegen/pubspec.yaml     (version: + terradart_core caret)
-#   - packages/terradart_google/pubspec.yaml      (version: + terradart_{core,time} carets + terradart_codegen dev caret)
+#   - packages/terradart_google/pubspec.yaml      (version: + terradart_core caret + terradart_codegen dev caret)
 #   - packages/terradart_google_beta/pubspec.yaml (version: + terradart_{core,google} carets)
 #   - packages/terradart_appwrite/pubspec.yaml    (version: + terradart_core caret)
 #   - packages/terradart_cloudflare/pubspec.yaml  (version: + terradart_core caret)
@@ -136,8 +136,8 @@ sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terra
 echo "    - terradart_codegen.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_(core|google|google_beta|appwrite|cloudflare|aws|azure|hcl|time)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_migrate/pubspec.yaml
 echo "    - terradart_migrate.dependencies.terradart_{core,google,google_beta,appwrite,cloudflare,aws,azure,hcl,time}: ^${NEW}"
-sed_inplace "s#^( *terradart_(core|time)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
-echo "    - terradart_google.dependencies.terradart_{core,time}: ^${NEW}"
+sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
+echo "    - terradart_google.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_codegen): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
 echo "    - terradart_google.dev_dependencies.terradart_codegen: ^${NEW}"
 sed_inplace "s#^( *terradart_(core|google)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google_beta/pubspec.yaml

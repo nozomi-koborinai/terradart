@@ -15,9 +15,23 @@ final class ChronicleCustomListStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    final apiDeps = enableApis([
-      .chronicle,
-    ], propagationDelay: const Duration(seconds: 60));
+    final api = add(
+      GoogleProjectService(
+        'api_chronicle',
+        service: .literal('chronicle.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({api.localName: api.id.interpolation}),
+          dependsOn: [api],
+        ),
+      ),
+    ];
 
     const instanceId = '00000000-0000-0000-0000-000000000000';
 

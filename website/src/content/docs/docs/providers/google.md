@@ -25,27 +25,64 @@ Each Google service is its own barrel, so IDE completion stays scoped to what a 
 
 ## Enabling APIs
 
-A fresh project has most APIs off. `enableApis` registers a `google_project_service` for every API the factories of the given barrels need, plus a propagation wait (`TimeSleep` from [`terradart_time`](https://pub.dev/packages/terradart_time)) that resources depend on:
+A fresh project has most APIs off. Add a `GoogleProjectService` for each API the Stack's resources need, then a propagation wait (`TimeSleep` from [`terradart_time`](https://pub.dev/packages/terradart_time)) that those resources depend on. Each one is a resource you can see in the Stack and in the plan:
 
 ```dart
 // lib/events_stack.dart
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
+import 'package:terradart_google/storage.dart';
 import 'package:terradart_time/terradart_time.dart';
 
 final class EventsStack extends Stack {
   EventsStack({required String projectId})
     : super(providers: [GoogleProvider(project: projectId), const TimeProvider()]) {
-    final apis = enableApis( [.pubsub]);
+    final apis = [
+      for (final api in ['pubsub', 'storage'])
+        add(GoogleProjectService(
+          'api_$api',
+          service: .literal('$api.googleapis.com'),
+          disableOnDestroy: .literal(false),
+        )),
+    ];
+    final apisReady = add(TimeSleep(
+      'api_propagation',
+      createDuration: .duration(const Duration(seconds: 60)),
+      triggers: .literal({
+        for (final api in apis) api.localName: api.id.interpolation,
+      }),
+      dependsOn: apis,
+    ));
     add(GooglePubsubTopic(
       'events',
       name: .literal('events'),
-      dependsOn: apis,
+      dependsOn: [apisReady],
+    ));
+    add(GoogleStorageBucket(
+      'archive',
+      name: .literal('$projectId-archive'),
+      location: .literal('US'),
+      dependsOn: [apisReady],
     ));
   }
 }
 ```
+
+The sleep's `triggers` map is keyed to the services, so a later apply that enables one more API replaces the sleep and waits again. Leaving `disableOnDestroy` false keeps an API on when the Stack is destroyed, so other workloads in the project keep working.
+
+To look up which API a resource needs, `requiredApiForTerraformType` (from `package:terradart_google/project.dart`) takes its Terraform type and returns the API, checked against Google's API Discovery documents:
+
+```dart
+// lib/redis_api.dart
+import 'package:terradart_google/project.dart';
+import 'package:terradart_google/redis.dart';
+
+final redisApi = requiredApiForTerraformType(GoogleRedisInstance.tfType);
+// 'redis.googleapis.com'
+```
+
+It returns null for IAM grants and `GoogleProjectService`, which need no API of their own, and only reads: enabling the API is still a `GoogleProjectService` you add.
 
 ## IAM grants
 

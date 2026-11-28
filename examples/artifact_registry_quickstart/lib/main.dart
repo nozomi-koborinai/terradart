@@ -1,8 +1,9 @@
 /// Artifact Registry quickstart — project config, Docker repo, download
 /// rule, and a location-scoped tag binding.
 ///
-/// Defines an `ArtifactRegistryStack` that enables the Artifact Registry API,
-/// manages the per-location `google_artifact_registry_project_config`
+/// Defines an `ArtifactRegistryStack` that enables the Artifact Registry and
+/// Cloud Resource Manager APIs, manages the per-location
+/// `google_artifact_registry_project_config`
 /// (platform logs), creates an empty Docker repository, attaches a
 /// repository-level DENY DOWNLOAD rule, and binds a TagValue to the repo
 /// via `google_tags_location_tag_binding`.
@@ -31,6 +32,13 @@ final class ArtifactRegistryStack extends Stack {
       GoogleProjectService(
         'api_artifactregistry',
         service: .literal('artifactregistry.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiResourceManager = add(
+      GoogleProjectService(
+        'api_cloudresourcemanager',
+        service: .literal('cloudresourcemanager.googleapis.com'),
         disableOnDestroy: .literal(false),
       ),
     );
@@ -79,6 +87,7 @@ final class ArtifactRegistryStack extends Stack {
         shortName: .literal('terradart-ar-env'),
         parent: .literal('projects/${current.number.interpolation}'),
         description: .literal('Artifact Registry environment tag'),
+        dependsOn: [apiResourceManager],
       ),
     );
 

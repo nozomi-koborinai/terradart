@@ -17,10 +17,34 @@ final class NetworkConnectivityStack extends Stack {
       ) {
     const region = 'us-east4';
 
-    final apiDeps = enableApis([
-      .compute,
-      .network,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in [
+        'compute',
+        'networkconnectivity',
+        'networkmanagement',
+        'networksecurity',
+        'networkservices',
+      ])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     final vpc = add(
       GoogleComputeNetwork(

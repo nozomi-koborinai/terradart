@@ -77,7 +77,7 @@ enum Env {
 }
 ```
 
-The Stack is the infrastructure of one environment. It enables the API its resource needs first — a new Google Cloud project has every API off, and the apply would fail with a 403 without `enableApis` — then adds a Pub/Sub topic and an output:
+The Stack is the infrastructure of one environment. It enables the API its resource needs first — a new Google Cloud project has every API off, and the apply would fail with a 403 without the `GoogleProjectService` — then waits for the enablement to propagate, and adds a Pub/Sub topic and an output:
 
 ```dart
 // lib/stack.dart
@@ -99,13 +99,28 @@ final class MyAppStack extends Stack {
         ],
         backend: const LocalBackend(),
       ) {
-    // Enables the Pub/Sub API on the project and waits for it to propagate.
-    final apis = enableApis([.pubsub]);
+    // A new project has every API off: enable Pub/Sub, then wait for the
+    // enablement to propagate before the topic uses it.
+    final pubsubApi = add(
+      GoogleProjectService(
+        'api_pubsub',
+        service: .literal('pubsub.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiReady = add(
+      TimeSleep(
+        'api_propagation',
+        createDuration: .duration(const Duration(seconds: 60)),
+        triggers: .literal({pubsubApi.localName: pubsubApi.id.interpolation}),
+        dependsOn: [pubsubApi],
+      ),
+    );
     final topic = add(
       GooglePubsubTopic(
         'events',
         name: .literal('${env.name}-events'),
-        dependsOn: apis,
+        dependsOn: [apiReady],
       ),
     );
     addOutput('events_topic_id', topic.id);

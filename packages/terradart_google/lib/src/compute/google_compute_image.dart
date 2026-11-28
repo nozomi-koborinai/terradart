@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_disk.dart' show GoogleComputeDisk;
+import '../compute/google_compute_snapshot.dart' show GoogleComputeSnapshot;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_compute_image`.
@@ -25,17 +27,18 @@ const Set<String> _googleComputeImageSensitive = <String>{
 sealed class ComputeImageSource {
   const ComputeImageSource();
 
-  /// Create the image from a Persistent Disk (name or self-link).
-  const factory ComputeImageSource.disk(TfArg<String> sourceDisk) =
+  /// Create the image from a Persistent Disk.
+  const factory ComputeImageSource.disk(RefTo<GoogleComputeDisk> sourceDisk) =
       ComputeImageSourceDisk;
 
   /// Create the image from another Image (name or self-link).
   const factory ComputeImageSource.image(TfArg<String> sourceImage) =
       ComputeImageSourceImage;
 
-  /// Create the image from a Persistent Disk Snapshot (name or self-link).
-  const factory ComputeImageSource.snapshot(TfArg<String> sourceSnapshot) =
-      ComputeImageSourceSnapshot;
+  /// Create the image from a Persistent Disk Snapshot.
+  const factory ComputeImageSource.snapshot(
+    RefTo<GoogleComputeSnapshot> sourceSnapshot,
+  ) = ComputeImageSourceSnapshot;
 
   /// Import the image from a tarball in Cloud Storage (`raw_disk`).
   const factory ComputeImageSource.rawDisk(ComputeImageRawDisk rawDisk) =
@@ -53,19 +56,19 @@ sealed class ComputeImageSource {
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
 
-/// Create the image from a Persistent Disk (name or self-link).
+/// Create the image from a Persistent Disk.
 @immutable
 final class ComputeImageSourceDisk extends ComputeImageSource {
   const ComputeImageSourceDisk(this.sourceDisk);
 
-  final TfArg<String> sourceDisk;
+  final RefTo<GoogleComputeDisk> sourceDisk;
 
   @override
   @internal
   String get blockKey => 'source_disk';
 
   @override
-  TfArg<String> get value => sourceDisk;
+  TfArg<String> get value => sourceDisk.encodeAs('self_link');
 }
 
 /// Create the image from another Image (name or self-link).
@@ -83,19 +86,19 @@ final class ComputeImageSourceImage extends ComputeImageSource {
   TfArg<String> get value => sourceImage;
 }
 
-/// Create the image from a Persistent Disk Snapshot (name or self-link).
+/// Create the image from a Persistent Disk Snapshot.
 @immutable
 final class ComputeImageSourceSnapshot extends ComputeImageSource {
   const ComputeImageSourceSnapshot(this.sourceSnapshot);
 
-  final TfArg<String> sourceSnapshot;
+  final RefTo<GoogleComputeSnapshot> sourceSnapshot;
 
   @override
   @internal
   String get blockKey => 'source_snapshot';
 
   @override
-  TfArg<String> get value => sourceSnapshot;
+  TfArg<String> get value => sourceSnapshot.encodeAs('self_link');
 }
 
 /// Import the image from a tarball in Cloud Storage (`raw_disk`).

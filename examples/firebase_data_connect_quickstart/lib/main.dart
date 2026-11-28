@@ -31,9 +31,23 @@ final class DataConnectStack extends Stack {
       ) {
     // Enable the Firebase Data Connect API and wait for propagation before
     // the service applies.
-    final apiDeps = enableApis([
-      .firebaseDataConnect,
-    ], propagationDelay: const Duration(seconds: 60));
+    final api = add(
+      GoogleProjectService(
+        'api_firebasedataconnect',
+        service: .literal('firebasedataconnect.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({api.localName: api.id.interpolation}),
+          dependsOn: [api],
+        ),
+      ),
+    ];
 
     // Top-level Data Connect service container.
     // The service_id becomes the final segment of the full resource name and

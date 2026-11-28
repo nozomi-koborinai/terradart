@@ -72,14 +72,32 @@ final class NetworkStack extends Stack {
           const TimeProvider(),
         ],
       ) {
-    // Enable the Compute + Filestore APIs and wait for propagation before
-    // the resources below apply; otherwise apply fails with SERVICE_DISABLED.
+    // Enable the Compute, Filestore and IAP APIs and wait for propagation
+    // before the resources below apply; otherwise apply fails with
+    // SERVICE_DISABLED.
     // Every API-gated resource below carries `dependsOn: apiDeps`.
-    final apiDeps = enableApis([
-      .compute,
-      .filestore,
-      .iapApi,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in ['compute', 'file', 'iap'])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     // Look up the live project so IAM bindings can reference the real
     // Google APIs service agent (`<number>@cloudservices.gserviceaccount.com`)
@@ -482,12 +500,14 @@ final class NetworkStack extends Stack {
     );
 
     // Durable PD Snapshot of the scratch disk (Compute Snapshot IAM parent).
-    // Exactly one source: disk self-link (not the instant snapshot).
+    // Exactly one source: the disk (not the instant snapshot), which the
+    // snapshot names in its own zone.
     final scratchSnapshot = add(
       GoogleComputeSnapshot(
         'scratch_snapshot',
         name: .literal('ops-scratch-snapshot'),
-        source: .disk(scratchDisk.selfLink),
+        source: .disk(scratchDisk.ref),
+        zone: .literal('asia-northeast1-a'),
         storageLocations: .literal(['asia-northeast1']),
         dependsOn: [scratchDisk],
       ),
@@ -508,7 +528,7 @@ final class NetworkStack extends Stack {
       GoogleComputeImage(
         'scratch_image',
         name: .literal('ops-scratch-image'),
-        source: .snapshot(scratchSnapshot.selfLink),
+        source: .snapshot(scratchSnapshot.ref),
         family: .literal('ops-scratch'),
         storageLocations: .literal(['asia-northeast1']),
         dependsOn: [scratchSnapshot],

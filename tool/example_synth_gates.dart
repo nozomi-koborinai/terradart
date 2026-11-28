@@ -3,12 +3,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:terradart_google/project.dart' show requiredApiForTerraformType;
 import 'package:yaml/yaml.dart';
 
 import 'example_synth_env.dart';
 import 'lane_surface.dart';
 import 'readme_excerpts.dart';
-import 'terraform_api_requirements.dart';
 import 'validate_engine.dart';
 import 'wrap_lanes.dart';
 
@@ -472,8 +472,8 @@ void checkApiEnablement(
       if (enablersByApi.isNotEmpty && !apiDebt.containsKey('$slug:$api')) {
         errors.add(
           'examples/$slug: $address requires $api but the example does not '
-          'enable it (it enables ${enablersByApi.keys.join(', ')}). Add the '
-          'matching barrel to enableApis, or record '
+          'enable it (it enables ${enablersByApi.keys.join(', ')}). Add a '
+          'GoogleProjectService for it, or record '
           '"$slug:$api: <reason>" in tool/example_api_debt.yaml',
         );
       }

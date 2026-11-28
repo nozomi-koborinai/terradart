@@ -30,8 +30,9 @@ final class ApigeeSecurityMonitoringConditionIncludeAllResources {
 /// Prefer a thin smoke stack: placeholder [orgId]
 /// `organizations/demo-org`, [profile] and [scope] environment IDs,
 /// and [conditionId] `terradart-smc`. Set [deletionPolicy] to
-/// `DELETE`. The provider requires empty
-/// [includeAllResources] (`include_all_resources {}`); the GA
+/// `DELETE`. The provider requires the empty
+/// `include_all_resources {}` block, so pass
+/// `const ApigeeSecurityMonitoringConditionIncludeAllResources()`; the GA
 /// sibling `include` block is not shipped yet.
 ///
 /// `apigee_quickstart` is apply-smoke skipped (needs a live Apigee
@@ -45,6 +46,8 @@ final class ApigeeSecurityMonitoringConditionIncludeAllResources {
 ///   orgId: TfArg.literal('organizations/demo-org'),
 ///   profile: TfArg.literal('demo-profile'),
 ///   scope: TfArg.literal('demo-env'),
+///   includeAllResources:
+///       const ApigeeSecurityMonitoringConditionIncludeAllResources(),
 ///   deletionPolicy: TfArg.literal('DELETE'),
 /// );
 /// ```
@@ -57,8 +60,8 @@ final class GoogleApigeeSecurityMonitoringCondition extends Resource {
     required TfArg<String> orgId,
     required TfArg<String> profile,
     required TfArg<String> scope,
-    ApigeeSecurityMonitoringConditionIncludeAllResources includeAllResources =
-        const ApigeeSecurityMonitoringConditionIncludeAllResources(),
+    required ApigeeSecurityMonitoringConditionIncludeAllResources
+    includeAllResources,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

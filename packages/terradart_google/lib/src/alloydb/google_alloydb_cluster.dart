@@ -780,8 +780,8 @@ final class AlloydbClusterSecondaryConfig {
 /// - [location]: regional location (e.g. `asia-northeast1`).
 /// - [networkConfig]: VPC + optional allocated PSA range name.
 ///
-/// Enable `alloydb.googleapis.com` via [GoogleProjectService] or
-/// [StackApis.enableApis] before apply.
+/// Enable `alloydb.googleapis.com` with a [GoogleProjectService] before
+/// apply.
 ///
 /// Example:
 /// ```dart

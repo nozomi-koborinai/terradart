@@ -30,9 +30,23 @@ final class AccessControlsStack extends Stack {
     // the values themselves arrive at `terradart apply -- -var` time.
     final opsOrganizationId = variable<String>('ops_organization_id');
 
-    final apiDeps = enableApis([
-      .accessContextManager,
-    ], propagationDelay: const Duration(seconds: 60));
+    final api = add(
+      GoogleProjectService(
+        'api_accesscontextmanager',
+        service: .literal('accesscontextmanager.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({api.localName: api.id.interpolation}),
+          dependsOn: [api],
+        ),
+      ),
+    ];
 
     final policy = add(
       GoogleAccessContextManagerAccessPolicy(

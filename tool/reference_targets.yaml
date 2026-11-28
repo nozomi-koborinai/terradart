@@ -65,6 +65,8 @@
 # attribute the target (or its data source) does not export, or an input two
 # rules match. Enum-typed inputs and inputs an override types by hand stay
 # as they are; a member of a sealed group is typed inside its variant.
+# Sensitive inputs stay `Sensitive<String>` and match no rule: a `RefTo`
+# takes the `.literal` synth rejects at a sensitive path.
 # wrap also fails on a matched input that stays a string
 # (`reference input not typed:`): type it, or exclude it with the reason.
 # An input of a derived helper no constructor input takes is typed in that
@@ -132,15 +134,6 @@ hashicorp/google:
       # Also a managed SSL certificate.
       - google_compute_target_https_proxy.ssl_certificates
       - google_compute_target_ssl_proxy.ssl_certificates
-      # A string field of the sealed type the override writes by hand
-      # (ComputeImageSource, ComputeRouteNextHop, ComputeSnapshotSource).
-      # Typing it changes that public type, a breaking change.
-      - google_compute_image.source_disk
-      - google_compute_image.source_snapshot
-      - google_compute_route.next_hop_instance
-      - google_compute_route.next_hop_vpn_tunnel
-      - google_compute_snapshot.source_disk
-      - google_compute_snapshot.source_instant_snapshot
       # Not a constructor input: the override's paramOrder leaves it out.
       # Delete the line when the factory takes it, so wrap types it.
       - google_compute_interconnect_attachment.ipsec_internal_addresses
@@ -183,13 +176,6 @@ hashicorp/google:
       - google_vmwareengine_network_peering.peer_network
       # A Service Directory endpoint takes the network by project number.
       - google_service_directory_endpoint.network
-      # A string field of the DnsRecordSetRoutingPolicy helpers the override
-      # writes by hand. Typing it changes those public types, a breaking
-      # change.
-      - google_dns_record_set.routing_policy.geo.health_checked_targets.internal_load_balancers.network_url
-      - google_dns_record_set.routing_policy.primary_backup.backup_geo.health_checked_targets.internal_load_balancers.network_url
-      - google_dns_record_set.routing_policy.primary_backup.primary.internal_load_balancers.network_url
-      - google_dns_record_set.routing_policy.wrr.health_checked_targets.internal_load_balancers.network_url
   - target: google_compute_subnetwork
     attribute: id
     slots: '(^|\.)(subnetwork|subnet|subnetwork_self_link|subnetwork_uri)$'

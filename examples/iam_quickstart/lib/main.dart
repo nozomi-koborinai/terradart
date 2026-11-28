@@ -51,6 +51,14 @@ final class IamShowcaseStack extends Stack {
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
       ) {
+    final apiIam = add(
+      GoogleProjectService(
+        'api_iam',
+        service: .literal('iam.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+
     // ---- Workload Identity Federation pool + provider --------------------
     //
     // Pool namespace plus GitHub Actions OIDC trust binding (sealed
@@ -61,6 +69,7 @@ final class IamShowcaseStack extends Stack {
         'ci',
         workloadIdentityPoolId: .literal('github-actions'),
         displayName: .literal('GitHub Actions CI/CD'),
+        dependsOn: [apiIam],
       ),
     );
 
@@ -97,6 +106,7 @@ final class IamShowcaseStack extends Stack {
         'demo',
         accountId: .literal('demo-sa'),
         displayName: .literal('IAM quickstart demo SA'),
+        dependsOn: [apiIam],
       ),
     );
 
@@ -332,6 +342,7 @@ final class IamShowcaseStack extends Stack {
           'Read-only access to GCS objects and bucket metadata.',
         ),
         stage: .ga,
+        dependsOn: [apiIam],
       ),
     );
 
@@ -456,6 +467,7 @@ final class IamShowcaseStack extends Stack {
         allowedScopes: .literal(['openid']),
         clientType: .publicClient,
         deletionPolicy: .literal('DELETE'),
+        dependsOn: [apiIam],
       ),
     );
 
@@ -469,6 +481,7 @@ final class IamShowcaseStack extends Stack {
         workforcePoolId: .literal('terradart-wf'),
         displayName: .literal('terradart workforce'),
         deletionPolicy: .literal('DELETE'),
+        dependsOn: [apiIam],
       ),
     );
 

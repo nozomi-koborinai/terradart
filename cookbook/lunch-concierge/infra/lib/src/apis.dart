@@ -1,5 +1,6 @@
 import 'package:terradart_google/artifact_registry.dart';
 import 'package:terradart_google/project.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 import 'constants.dart';
 
@@ -16,13 +17,35 @@ final class LunchApis {
 }
 
 LunchApis addApisAndRepository(Stack stack) {
-  final apiDeps = stack.enableApis([
-    .artifactRegistry,
-    .cloudRun,
-    .compute,
-    .serviceNetworking,
-    .sql,
-  ]);
+  final apis = [
+    for (final api in [
+      'artifactregistry',
+      'compute',
+      'run',
+      'servicenetworking',
+      'sqladmin',
+      'vpcaccess',
+    ])
+      stack.add(
+        GoogleProjectService(
+          'api_$api',
+          service: .literal('$api.googleapis.com'),
+          disableOnDestroy: .literal(false),
+        ),
+      ),
+  ];
+  final apiDeps = [
+    stack.add(
+      TimeSleep(
+        'api_propagation',
+        createDuration: .duration(const Duration(seconds: 60)),
+        triggers: .literal({
+          for (final api in apis) api.localName: api.id.interpolation,
+        }),
+        dependsOn: apis,
+      ),
+    ),
+  ];
 
   final vertexApi = stack.add(
     GoogleProjectService(

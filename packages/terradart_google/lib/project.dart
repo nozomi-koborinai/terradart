@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Project services (enabling individual GCP APIs on a project).
+/// Project services (enabling individual GCP APIs on a project), and
+/// the API each wrapped resource type needs.
 library;
 
 export 'package:terradart_core/terradart_core.dart';
@@ -49,5 +50,5 @@ export 'src/project/google_resource_manager_capability_config.dart'
         ResourceManagerCapabilityConfigTypes;
 export 'src/project/google_resource_manager_lien.dart'
     show GoogleResourceManagerLien;
-export 'src/project/apis.dart' show Apis, StackApis;
-export 'src/project/barrels.dart' show Barrels;
+export 'src/project/terraform_api_requirements.dart'
+    show requiredApiForTerraformType;

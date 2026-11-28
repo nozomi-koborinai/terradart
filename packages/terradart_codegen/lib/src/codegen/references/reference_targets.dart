@@ -802,7 +802,10 @@ Map<String, bool> stringInputs(Map<String, dynamic> block) {
         in attributes?.entries ?? const <MapEntry<String, dynamic>>[]) {
       final attr = (raw as Map).cast<String, dynamic>();
       final input = attr['optional'] == true || attr['required'] == true;
-      if (!input) continue;
+      // A sensitive input takes `Sensitive<T>`; a `RefTo` would take the
+      // `.literal` synth rejects there. A sensitive object is sensitive as a
+      // whole value, so none of its inner inputs is a reference either.
+      if (!input || attr['sensitive'] == true) continue;
       final nested = attr['nested_type'];
       if (nested is Map) {
         walk(nested.cast<String, dynamic>(), '$prefix$name.');

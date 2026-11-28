@@ -85,7 +85,9 @@ final Map<String, Object Function()> _syntheticInstances = {
   'ComputeSecurityPolicyRulesMatchConfigChoice': () =>
       const ComputeSecurityPolicyRulesMatchConfigChoice(
         versionedExpr: .srcIpsV1,
-        config: ComputeSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
+        config: ComputeSecurityPolicyRulesMatchConfig(
+          srcIpRanges: .literal(['*']),
+        ),
       ),
   'ComputeSecurityPolicyRulesMatchExprChoice': () =>
       const ComputeSecurityPolicyRulesMatchExprChoice(
@@ -94,7 +96,9 @@ final Map<String, Object Function()> _syntheticInstances = {
   'ComputeRegionSecurityPolicyRulesMatchConfigChoice': () =>
       const ComputeRegionSecurityPolicyRulesMatchConfigChoice(
         versionedExpr: .srcIpsV1,
-        config: ComputeRegionSecurityPolicyRulesMatchConfig(srcIpRanges: ['*']),
+        config: ComputeRegionSecurityPolicyRulesMatchConfig(
+          srcIpRanges: .literal(['*']),
+        ),
       ),
   'ComputeRegionSecurityPolicyRulesMatchExprChoice': () =>
       const ComputeRegionSecurityPolicyRulesMatchExprChoice(
@@ -170,37 +174,35 @@ final Map<String, Object Function()> _syntheticInstances = {
   'ComputeRouteIpNextHop': () =>
       const ComputeRouteIpNextHop(TfArg.literal('10.0.0.1')),
   'ComputeRouteInstanceNextHop': () =>
-      const ComputeRouteInstanceNextHop(TfArg.literal('mock-instance')),
+      ComputeRouteInstanceNextHop(.literal('mock-instance')),
   'ComputeRouteIlbNextHop': () => const ComputeRouteIlbNextHop(
     TfArg.literal('projects/p/regions/r/forwardingRules/fr'),
   ),
-  'ComputeRouteVpnTunnelNextHop': () => const ComputeRouteVpnTunnelNextHop(
-    TfArg.literal('projects/p/regions/r/vpnTunnels/t'),
+  'ComputeRouteVpnTunnelNextHop': () => ComputeRouteVpnTunnelNextHop(
+    .literal('projects/p/regions/r/vpnTunnels/t'),
   ),
-  'ComputeSnapshotDiskSource': () => const ComputeSnapshotDiskSource(
-    TfArg.literal('projects/p/zones/z/disks/d'),
-  ),
-  'ComputeSnapshotInstantSource': () => const ComputeSnapshotInstantSource(
-    TfArg.literal('projects/p/zones/z/instantSnapshots/s'),
+  'ComputeSnapshotDiskSource': () =>
+      ComputeSnapshotDiskSource(.literal('projects/p/zones/z/disks/d')),
+  'ComputeSnapshotInstantSource': () => ComputeSnapshotInstantSource(
+    .literal('projects/p/zones/z/instantSnapshots/s'),
   ),
   'ComputeImageSourceDisk': () =>
-      const ComputeImageSourceDisk(TfArg.literal('projects/p/zones/z/disks/d')),
+      ComputeImageSourceDisk(.literal('projects/p/zones/z/disks/d')),
   'ComputeImageSourceImage': () => const ComputeImageSourceImage(
     TfArg.literal('projects/p/global/images/i'),
   ),
-  'ComputeImageSourceSnapshot': () => const ComputeImageSourceSnapshot(
-    TfArg.literal('projects/p/global/snapshots/s'),
-  ),
+  'ComputeImageSourceSnapshot': () =>
+      ComputeImageSourceSnapshot(.literal('projects/p/global/snapshots/s')),
   'ComputeImageSourceRawDisk': () => const ComputeImageSourceRawDisk(
     ComputeImageRawDisk(source: TfArg.literal('gs://b/disk.tar.gz')),
   ),
-  'BigqueryConnectionCloudSql': () => const BigqueryConnectionCloudSql(
-    instanceId: TfArg.literal('p:us:inst'),
-    database: TfArg.literal('db'),
+  'BigqueryConnectionCloudSql': () => BigqueryConnectionCloudSql(
+    instanceId: const TfArg.literal('p:us:inst'),
+    database: const TfArg.literal('db'),
     type: BigqueryConnectionCloudSqlType.postgres,
     credential: BigqueryConnectionCloudSqlCredential(
-      username: TfArg.literal('user'),
-      password: .password(TfArg.literal('secret')),
+      username: const TfArg.literal('user'),
+      password: .password(.variable('secret')),
     ),
   ),
   'BigqueryConnectionCloudSpanner': () =>
@@ -216,7 +218,7 @@ final Map<String, Object Function()> _syntheticInstances = {
       const BigqueryConnectionCloudResource(),
   'BigqueryConnectionSpark': () => const BigqueryConnectionSpark(),
   'BigqueryConnectionCloudSqlPasswordChoice': () =>
-      const BigqueryConnectionCloudSqlPasswordChoice(TfArg.literal('secret')),
+      BigqueryConnectionCloudSqlPasswordChoice(.variable('secret')),
   'BigqueryConnectionCloudSqlPasswordWo': () =>
       const BigqueryConnectionCloudSqlPasswordWo(TfArg.literal('secret')),
   'BigqueryConnectionConfiguration': () =>
@@ -255,9 +257,7 @@ final Map<String, Object Function()> _syntheticInstances = {
         secretDataWoVersion: TfArg.literal('1'),
       ),
   'SecretManagerSecretVersionPlaintextPayload': () =>
-      const SecretManagerSecretVersionPlaintextPayload(
-        TfArg.literal('mock-secret'),
-      ),
+      SecretManagerSecretVersionPlaintextPayload(.variable('mock_secret')),
   'FirestoreBackupScheduleDailyRecurrence': () =>
       const FirestoreBackupScheduleDailyRecurrence(),
   'FirestoreBackupScheduleWeeklyRecurrence': () =>
@@ -272,9 +272,8 @@ final Map<String, Object Function()> _syntheticInstances = {
       const FirestoreIndexFieldVectorConfig(TfArgLiteral<int>(768)),
   'StorageBucketObjectBodySource': () =>
       const StorageBucketObjectBodySource(TfArg.literal('./mock/path.bin')),
-  'StorageBucketObjectBodyContent': () => const StorageBucketObjectBodyContent(
-    TfArg.literal('mock-inline-payload'),
-  ),
+  'StorageBucketObjectBodyContent': () =>
+      StorageBucketObjectBodyContent(.variable('mock_inline_payload')),
   'DataCatalogEntryFileset': () => const DataCatalogEntryFileset(),
   'DataCatalogEntryCustomType': () =>
       const DataCatalogEntryCustomType(TfArg.literal('my_custom_type')),

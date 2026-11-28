@@ -22,12 +22,35 @@ final class SccLeftoverStack extends Stack {
       ) {
     const org = '123456789';
     const folder = '123456789';
-    final apiDeps = enableApis([
-      .sccApi,
-      .pubsub,
-      .bigquery,
-      .iamApi,
-    ], propagationDelay: const Duration(seconds: 60));
+    final apis = [
+      for (final api in [
+        'bigquery',
+        'bigquerydatapolicy',
+        'bigqueryreservation',
+        'iam',
+        'pubsub',
+        'securitycenter',
+      ])
+        add(
+          GoogleProjectService(
+            'api_$api',
+            service: .literal('$api.googleapis.com'),
+            disableOnDestroy: .literal(false),
+          ),
+        ),
+    ];
+    final apiDeps = [
+      add(
+        TimeSleep(
+          'api_propagation',
+          createDuration: .duration(const Duration(seconds: 60)),
+          triggers: .literal({
+            for (final api in apis) api.localName: api.id.interpolation,
+          }),
+          dependsOn: apis,
+        ),
+      ),
+    ];
 
     final sa = add(
       GoogleServiceAccount(

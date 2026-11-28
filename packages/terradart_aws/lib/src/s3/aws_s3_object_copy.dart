@@ -4,7 +4,6 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import '../kms/aws_kms_key.dart' show AwsKmsKey;
 import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 
 /// Sensitive field paths for `aws_s3_object_copy`.
@@ -579,7 +578,7 @@ final class AwsS3ObjectCopy extends Resource {
     TfArg<bool>? forceDestroy,
     required TfArg<String> key,
     Sensitive<String>? kmsEncryptionContext,
-    RefTo<AwsKmsKey>? kmsKeyId,
+    Sensitive<String>? kmsKeyId,
     TfArg<Map<String, String>>? metadata,
     S3ObjectCopyMetadataDirective? metadataDirective,
     S3ObjectCopyObjectLockEventHold? objectLockEventHold,
@@ -628,7 +627,7 @@ final class AwsS3ObjectCopy extends Resource {
            'force_destroy': ?forceDestroy,
            'key': key,
            'kms_encryption_context': ?kmsEncryptionContext,
-           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'kms_key_id': ?kmsKeyId,
            'metadata': ?metadata,
            'metadata_directive': ?metadataDirective,
            'object_lock_event_hold': ?objectLockEventHold,

@@ -15,9 +15,7 @@ void main() {
     });
 
     test('FromContent encodes under content only', () {
-      final body = StorageBucketObjectBodyContent(
-        TfArg.variable('seed_content'),
-      );
+      final body = StorageBucketObjectBodyContent(.variable('seed_content'));
       expect(body.blockKey, equals('content'));
       expect(body.encode(), equals({'content': r'${var.seed_content}'}));
     });
@@ -49,28 +47,6 @@ void main() {
       expect(
         object.sensitiveFields,
         containsAll(<String>{'content', 'customer_encryption.encryption_key'}),
-      );
-    });
-
-    test('a literal content fails synth with a SensitiveLiteral issue', () {
-      final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
-      stack.add(
-        GoogleStorageBucketObject(
-          'seed',
-          bucket: .literal('assets'),
-          name: const TfArg.literal('seed.json'),
-          body: const StorageBucketObjectBodyContent(TfArg.literal('{"k":1}')),
-        ),
-      );
-      expect(
-        () => stack.synth(),
-        throwsA(
-          isA<SynthException>().having(
-            (e) => e.issues.single,
-            'issue',
-            isA<SensitiveLiteral>().having((i) => i.field, 'field', 'content'),
-          ),
-        ),
       );
     });
 

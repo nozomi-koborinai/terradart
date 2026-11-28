@@ -1,7 +1,7 @@
 /// GKE quickstart — Wave 8 + 9 + 10 end-to-end example.
 ///
 /// Provisions:
-/// - API enablement via [Apis.required] (Compute, GKE, GKE Hub, GKE Backup);
+/// - one [GoogleProjectService] per API (Compute, GKE, GKE Hub, GKE Backup);
 /// - a custom-mode VPC + regional subnet;
 /// - a regional GKE cluster (Backup for GKE agent enabled, default node
 ///   pool removed);
@@ -33,17 +33,34 @@ final class GkeQuickstartStack extends Stack {
     const region = 'asia-northeast1';
     const clusterName = 'main-gke';
 
-    final apisByEndpoint = <String, GoogleProjectService>{};
-    for (final api in Apis.required(
-      barrels: [Barrels.compute, Barrels.container, Barrels.gkeBackup],
-    )) {
-      final added = add(api);
-      apisByEndpoint[added.argMap['service']!.toTfJson() as String] = added;
-    }
-    final apiCompute = apisByEndpoint['compute.googleapis.com']!;
-    final apiContainer = apisByEndpoint['container.googleapis.com']!;
-    final apiGkeHub = apisByEndpoint['gkehub.googleapis.com']!;
-    final apiGkeBackup = apisByEndpoint['gkebackup.googleapis.com']!;
+    final apiCompute = add(
+      GoogleProjectService(
+        'api_compute',
+        service: .literal('compute.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiContainer = add(
+      GoogleProjectService(
+        'api_container',
+        service: .literal('container.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiGkeBackup = add(
+      GoogleProjectService(
+        'api_gkebackup',
+        service: .literal('gkebackup.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
+    final apiGkeHub = add(
+      GoogleProjectService(
+        'api_gkehub',
+        service: .literal('gkehub.googleapis.com'),
+        disableOnDestroy: .literal(false),
+      ),
+    );
 
     final vpc = add(
       GoogleComputeNetwork(

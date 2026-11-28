@@ -4,13 +4,14 @@ End-to-end terradart example for Artifact Registry: per-location platform logs
 (`google_artifact_registry_project_config`), an empty Docker repository, a
 repository-level DENY DOWNLOAD rule, and a location-scoped tag binding on the
 repo (`google_tags_location_tag_binding`). Enables
-`artifactregistry.googleapis.com`.
+`artifactregistry.googleapis.com`, and `cloudresourcemanager.googleapis.com`
+for the tag key and value.
 
 ## Prerequisites
 
 - Dart SDK >= 3.12
 - The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
-- A GCP project with credentials configured (`gcloud auth application-default login`). The Artifact Registry API is enabled by the stack.
+- A GCP project with credentials configured (`gcloud auth application-default login`). The stack enables the Artifact Registry and Cloud Resource Manager APIs.
 
 ## Layout
 

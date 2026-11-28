@@ -10,7 +10,7 @@ The Bigtable instance is a production instance billed per node-hour while it exi
 
 - Dart SDK >= 3.12
 - The [`terradart` command](https://terradart.dev/docs/cli/): `dart install terradart_cli`. It brings its own OpenTofu, so there is no Terraform to install
-- A GCP project (the stack enables `bigtableadmin.googleapis.com` via `enableApis`).
+- A GCP project (the stack enables `bigtableadmin.googleapis.com` with a `GoogleProjectService`).
 
 ## Usage
 
