@@ -56348,16 +56348,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'pointInTimeRestoreOrPostgresqlVersion',
+          dartName: 'creation',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'point_in_time_restore':
-                'HorizondbClusterPointInTimeRestoreOrPostgresqlVersionPointInTimeRestore',
-            'postgresql_version':
-                'HorizondbClusterPointInTimeRestoreOrPostgresqlVersionChoice',
+                'HorizondbClusterCreationPointInTimeRestore',
+            'postgresql_version': 'HorizondbClusterCreationPostgresqlVersion',
           },
         ),
         MigrateSlot(
@@ -181324,6 +181323,35 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'HorizondbClusterCreationPointInTimeRestore': MigrateHelper(
+      className: 'HorizondbClusterCreationPointInTimeRestore',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'point_in_time_restore',
+          dartName: 'pointInTimeRestore',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'HorizondbClusterPointInTimeRestore',
+        ),
+      ],
+      shorthand: 'pointInTimeRestore',
+    ),
+    'HorizondbClusterCreationPostgresqlVersion': MigrateHelper(
+      className: 'HorizondbClusterCreationPostgresqlVersion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'postgresql_version',
+          dartName: 'postgresqlVersion',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'HorizondbClusterPostgresqlVersion',
+        ),
+      ],
+      shorthand: 'postgresqlVersion',
+    ),
     'HorizondbClusterIdentity': MigrateHelper(
       className: 'HorizondbClusterIdentity',
       slots: <MigrateSlot>[
@@ -181369,39 +181397,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'HorizondbClusterPointInTimeRestoreOrPostgresqlVersionChoice':
-        MigrateHelper(
-          className:
-              'HorizondbClusterPointInTimeRestoreOrPostgresqlVersionChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'postgresql_version',
-              dartName: 'postgresqlVersion',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              positional: true,
-              dartType: 'HorizondbClusterPostgresqlVersion',
-            ),
-          ],
-          shorthand: 'postgresqlVersion',
-        ),
-    'HorizondbClusterPointInTimeRestoreOrPostgresqlVersionPointInTimeRestore':
-        MigrateHelper(
-          className:
-              'HorizondbClusterPointInTimeRestoreOrPostgresqlVersionPointInTimeRestore',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'point_in_time_restore',
-              dartName: 'pointInTimeRestore',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'HorizondbClusterPointInTimeRestore',
-            ),
-          ],
-          shorthand: 'pointInTimeRestore',
-        ),
     'HorizondbClusterReadWritePool': MigrateHelper(
       className: 'HorizondbClusterReadWritePool',
       slots: <MigrateSlot>[

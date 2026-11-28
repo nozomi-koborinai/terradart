@@ -273,8 +273,7 @@ now removed. Read `Stack.requiredVersion` instead.
 `aws_fsx_s3_access_point_attachment` and requires exactly one of
 `ontap_configuration` and `openzfs_configuration`.
 `AwsFsxS3AccessPointAttachment.openzfsConfiguration` moves onto the required
-sealed argument `ontapConfigurationOrOpenzfsConfiguration`
-(`FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfiguration`, with
+sealed argument `volume` (`FsxS3AccessPointAttachmentVolume`, with
 `.ontapConfiguration(...)` and `.openzfsConfiguration(...)`).
 
 Because `ontap_configuration` and `openzfs_configuration` have different
@@ -291,7 +290,7 @@ OpenZFS attachments is unchanged.
 
 | Before | After |
 |---|---|
-| `AwsFsxS3AccessPointAttachment('a', name: .literal('a'), type: .openzfs, openzfsConfiguration: [FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'))])` | `AwsFsxS3AccessPointAttachment('a', name: .literal('a'), type: .openzfs, ontapConfigurationOrOpenzfsConfiguration: .openzfsConfiguration([FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'))]))` |
+| `AwsFsxS3AccessPointAttachment('a', name: .literal('a'), type: .openzfs, openzfsConfiguration: [FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'))])` | `AwsFsxS3AccessPointAttachment('a', name: .literal('a'), type: .openzfs, volume: .openzfsConfiguration([FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'))]))` |
 | `FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'), fileSystemIdentity: [FsxS3AccessPointAttachmentFileSystemIdentity(type: FsxS3AccessPointAttachmentFileSystemIdentityType.posix)])` | `FsxS3AccessPointAttachmentOpenzfsConfiguration(volumeId: .literal('fsvol-12345678'), fileSystemIdentity: [FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity(type: FsxS3AccessPointAttachmentOpenzfsConfigurationType.posix)])` |
 
 ### API enablement is explicit

@@ -131,18 +131,18 @@ final class HorizondbClusterAdministratorPasswordWo
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.pointInTimeRestore(...)`.
-sealed class HorizondbClusterPointInTimeRestoreOrPostgresqlVersion {
-  const HorizondbClusterPointInTimeRestoreOrPostgresqlVersion();
+sealed class HorizondbClusterCreation {
+  const HorizondbClusterCreation();
 
   /// Sets `point_in_time_restore`.
-  const factory HorizondbClusterPointInTimeRestoreOrPostgresqlVersion.pointInTimeRestore(
+  const factory HorizondbClusterCreation.pointInTimeRestore(
     HorizondbClusterPointInTimeRestore pointInTimeRestore,
-  ) = HorizondbClusterPointInTimeRestoreOrPostgresqlVersionPointInTimeRestore;
+  ) = HorizondbClusterCreationPointInTimeRestore;
 
   /// Sets `postgresql_version`.
-  const factory HorizondbClusterPointInTimeRestoreOrPostgresqlVersion.postgresqlVersion(
+  const factory HorizondbClusterCreation.postgresqlVersion(
     HorizondbClusterPostgresqlVersion postgresqlVersion,
-  ) = HorizondbClusterPointInTimeRestoreOrPostgresqlVersionChoice;
+  ) = HorizondbClusterCreationPostgresqlVersion;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -157,12 +157,10 @@ sealed class HorizondbClusterPointInTimeRestoreOrPostgresqlVersion {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [HorizondbClusterPointInTimeRestoreOrPostgresqlVersion.pointInTimeRestore] choice: sets `point_in_time_restore`.
-final class HorizondbClusterPointInTimeRestoreOrPostgresqlVersionPointInTimeRestore
-    extends HorizondbClusterPointInTimeRestoreOrPostgresqlVersion {
-  const HorizondbClusterPointInTimeRestoreOrPostgresqlVersionPointInTimeRestore(
-    this.pointInTimeRestore,
-  );
+/// The [HorizondbClusterCreation.pointInTimeRestore] choice: sets `point_in_time_restore`.
+final class HorizondbClusterCreationPointInTimeRestore
+    extends HorizondbClusterCreation {
+  const HorizondbClusterCreationPointInTimeRestore(this.pointInTimeRestore);
 
   final HorizondbClusterPointInTimeRestore pointInTimeRestore;
 
@@ -183,12 +181,10 @@ final class HorizondbClusterPointInTimeRestoreOrPostgresqlVersionPointInTimeRest
   };
 }
 
-/// The [HorizondbClusterPointInTimeRestoreOrPostgresqlVersion.postgresqlVersion] choice: sets `postgresql_version`.
-final class HorizondbClusterPointInTimeRestoreOrPostgresqlVersionChoice
-    extends HorizondbClusterPointInTimeRestoreOrPostgresqlVersion {
-  const HorizondbClusterPointInTimeRestoreOrPostgresqlVersionChoice(
-    this.postgresqlVersion,
-  );
+/// The [HorizondbClusterCreation.postgresqlVersion] choice: sets `postgresql_version`.
+final class HorizondbClusterCreationPostgresqlVersion
+    extends HorizondbClusterCreation {
+  const HorizondbClusterCreationPostgresqlVersion(this.postgresqlVersion);
 
   final HorizondbClusterPostgresqlVersion postgresqlVersion;
 
@@ -360,8 +356,7 @@ final class AzurermHorizondbCluster extends Resource {
     TfArg<bool>? geoRedundantBackupEnabled,
     required TfArg<String> location,
     required TfArg<String> name,
-    required HorizondbClusterPointInTimeRestoreOrPostgresqlVersion
-    pointInTimeRestoreOrPostgresqlVersion,
+    required HorizondbClusterCreation creation,
     HorizondbClusterPublicNetworkAccess? publicNetworkAccess,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
@@ -381,7 +376,7 @@ final class AzurermHorizondbCluster extends Resource {
            'geo_redundant_backup_enabled': ?geoRedundantBackupEnabled,
            'location': location,
            'name': name,
-           ...pointInTimeRestoreOrPostgresqlVersion.argMap,
+           ...creation.argMap,
            'public_network_access': ?publicNetworkAccess,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'tags': ?tags,

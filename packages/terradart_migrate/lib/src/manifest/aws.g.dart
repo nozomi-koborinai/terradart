@@ -92809,16 +92809,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'ontapConfigurationOrOpenzfsConfiguration',
+          dartName: 'volume',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'ontap_configuration':
-                'FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOntapConfiguration',
+                'FsxS3AccessPointAttachmentVolumeOntapConfiguration',
             'openzfs_configuration':
-                'FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationChoice',
+                'FsxS3AccessPointAttachmentVolumeOpenzfsConfiguration',
           },
         ),
         MigrateSlot(
@@ -288018,42 +288018,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationChoice':
-        MigrateHelper(
-          className:
-              'FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'openzfs_configuration',
-              dartName: 'openzfsConfiguration',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'FsxS3AccessPointAttachmentOpenzfsConfiguration',
-            ),
-          ],
-          shorthand: 'openzfsConfiguration',
-        ),
-    'FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOntapConfiguration':
-        MigrateHelper(
-          className:
-              'FsxS3AccessPointAttachmentOntapConfigurationOrOpenzfsConfigurationOntapConfiguration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'ontap_configuration',
-              dartName: 'ontapConfiguration',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'FsxS3AccessPointAttachmentOntapConfiguration',
-            ),
-          ],
-          shorthand: 'ontapConfiguration',
-        ),
     'FsxS3AccessPointAttachmentOpenzfsConfiguration': MigrateHelper(
       className: 'FsxS3AccessPointAttachmentOpenzfsConfiguration',
       slots: <MigrateSlot>[
@@ -288173,6 +288137,38 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'unixUser',
+    ),
+    'FsxS3AccessPointAttachmentVolumeOntapConfiguration': MigrateHelper(
+      className: 'FsxS3AccessPointAttachmentVolumeOntapConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'ontap_configuration',
+          dartName: 'ontapConfiguration',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'FsxS3AccessPointAttachmentOntapConfiguration',
+        ),
+      ],
+      shorthand: 'ontapConfiguration',
+    ),
+    'FsxS3AccessPointAttachmentVolumeOpenzfsConfiguration': MigrateHelper(
+      className: 'FsxS3AccessPointAttachmentVolumeOpenzfsConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'openzfs_configuration',
+          dartName: 'openzfsConfiguration',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'FsxS3AccessPointAttachmentOpenzfsConfiguration',
+        ),
+      ],
+      shorthand: 'openzfsConfiguration',
     ),
     'FsxS3AccessPointAttachmentVpcConfiguration': MigrateHelper(
       className: 'FsxS3AccessPointAttachmentVpcConfiguration',
