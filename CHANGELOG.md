@@ -4,6 +4,14 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## [0.38.1] - 2026-11-28
+
+Lockstep recovery release with no API changes from 0.38.0. It publishes all twelve packages together. The 0.38.0 publish workflow stopped in Phase 3 (`publish terradart_google`), so only `terradart_core`, `terradart_hcl`, `terradart_codegen` and `terradart_time` reached pub.dev at 0.38.0, and the other eight packages stayed at 0.37.0. Read [0.38.0](#0380---2026-11-28) for the release notes, and [MIGRATING.md](MIGRATING.md#037x--0380) before bumping from 0.37.x.
+
+### Fixed
+
+- The publish workflow verifies each provider package with the wrap gate that PR CI runs (`dart tool/wrap_lanes.dart --gate wrap --lane <lane>`), instead of counting `google_*.dart` files. The count took the generated `GoogleApi` file for a factory and stopped the 0.38.0 publish ([#1036](https://github.com/nozomi-koborinai/terradart/pull/1036)).
+
 ## [0.38.0] - 2026-11-28
 
 Lockstep release across the twelve packages, and the pre-beta pass over the public API. Every provider package, `terradart_time`, `terradart_codegen` and `terradart_migrate` now requires `terradart_core` 0.38.0. Across the packages:

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.38.1 - 2026-11-28
+
+- No API changes from 0.38.0. Lockstep recovery release that publishes all twelve packages together. The 0.38.0 publish workflow stopped in Phase 3, so only `terradart_core`, `terradart_hcl`, `terradart_codegen` and `terradart_time` reached pub.dev at 0.38.0. The workflow now verifies each provider package with the wrap gate that PR CI runs ([#1036](https://github.com/nozomi-koborinai/terradart/pull/1036)).
+- This package did not reach pub.dev at 0.38.0, so 0.38.1 is its first release with the 0.38.0 changes below.
+
 ## 0.38.0 - 2026-11-28
 
 - **Breaking:** `AzureProvider.environment` takes `AzureEnvironment` and `AzureProvider.resourceProviderRegistrations` takes `AzureResourceProviderRegistrations` instead of a string, and `features` no longer takes `null`. The new `AzureProvider.unconfigured` emits no provider block, for a child-module Stack and for `addConfigurationAlias`, which threw for every `AzureProvider` before. See [MIGRATING.md](../../MIGRATING.md#azure-provider-enums-and-azureproviderunconfigured).

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.38.1 - 2026-11-28
+
+- No API changes from 0.38.0. Lockstep recovery release that publishes all twelve packages together. The 0.38.0 publish workflow stopped in Phase 3, so only `terradart_core`, `terradart_hcl`, `terradart_codegen` and `terradart_time` reached pub.dev at 0.38.0. The workflow now verifies each provider package with the wrap gate that PR CI runs ([#1036](https://github.com/nozomi-koborinai/terradart/pull/1036)).
+- This package did not reach pub.dev at 0.38.0, so 0.38.1 is its first release with the 0.38.0 changes below.
+
 ## 0.38.0 - 2026-11-28
 
 - **Breaking:** `package:terradart_google/google_beta.dart` is removed, and `terradart_google` no longer exports `kBetaProviderSource`. Their `GoogleBetaProvider`, `GoogleProjectServiceIdentity` and `kBetaProviderSource` duplicated the ones `terradart_google_beta` generates, so a library could not import both packages. Import `package:terradart_google_beta/provider.dart` and `project.dart`. See [MIGRATING.md](../../MIGRATING.md#provider-packages-export-each-public-name-once).

@@ -3,4 +3,4 @@
 /// Stack imports).
 /// Bumped by `tool/bump_version.sh`; `test/version_test.dart` keeps it equal
 /// to this package's own `pubspec.yaml`.
-const String packageVersion = '0.38.0';
+const String packageVersion = '0.38.1';
