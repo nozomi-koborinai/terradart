@@ -12,8 +12,8 @@ description: terradart_azure wraps every hashicorp/azurerm resource and data sou
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.37.0
-  terradart_azure: ^0.37.0
+  terradart_core: ^0.38.0
+  terradart_azure: ^0.38.0
 ```
 
 ## Credentials

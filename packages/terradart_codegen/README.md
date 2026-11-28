@@ -21,7 +21,7 @@ End users depend on [`terradart_google`](https://pub.dev/packages/terradart_goog
 Install on the same minor line as your workspace when working on the repo:
 
 ```bash
-dart install terradart_codegen@^0.37.0
+dart install terradart_codegen@^0.38.0
 ```
 
 Check [pub.dev](https://pub.dev/packages/terradart_codegen) for the latest patch. Inside the repository, `dart run terradart_codegen:terradart <command>` runs the same CLI without installing it.

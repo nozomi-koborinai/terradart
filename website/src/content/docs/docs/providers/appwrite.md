@@ -10,8 +10,8 @@ description: terradart_appwrite — the appwrite/appwrite provider as typed Dart
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.37.0
-  terradart_appwrite: ^0.37.0
+  terradart_core: ^0.38.0
+  terradart_appwrite: ^0.38.0
 ```
 
 ## Terraform, not OpenTofu
