@@ -605,6 +605,9 @@ Future<bool> _run(
     command.first,
     command.sublist(1),
     workingDirectory: cwd.path,
+    // A fresh temp dir has no lock file, and without this opt-in terraform
+    // ignores TF_PLUGIN_CACHE_DIR and downloads every provider again.
+    environment: const {'TF_PLUGIN_CACHE_MAY_BREAK_DEPENDENCY_LOCK_FILE': '1'},
   );
   if (r.exitCode == 0) return true;
   errors.add(
