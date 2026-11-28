@@ -20,6 +20,7 @@ final class DataGoogleComputeRouterNat extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> router,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

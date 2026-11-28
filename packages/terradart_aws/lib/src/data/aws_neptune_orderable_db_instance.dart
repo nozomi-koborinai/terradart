@@ -19,6 +19,7 @@ final class DataAwsNeptuneOrderableDbInstance extends Data {
     TfArg<List<String>>? preferredInstanceClasses,
     TfArg<String>? region,
     TfArg<bool>? vpc,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

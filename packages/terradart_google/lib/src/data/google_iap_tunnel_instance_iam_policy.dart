@@ -19,6 +19,7 @@ final class DataGoogleIapTunnelInstanceIamPolicy extends Data {
     required TfArg<String> instance,
     TfArg<String>? project,
     TfArg<String>? zone,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

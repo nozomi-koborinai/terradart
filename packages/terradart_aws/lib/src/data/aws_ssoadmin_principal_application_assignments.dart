@@ -29,6 +29,7 @@ final class DataAwsSsoadminPrincipalApplicationAssignments extends Data {
     required TfArg<String> principalType,
     TfArg<String>? region,
     List<DataSsoadminPrincipalApplicationAssignments>? applicationAssignments,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

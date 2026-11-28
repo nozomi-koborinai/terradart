@@ -19,6 +19,7 @@ final class DataCloudflareRegionalTieredCache extends Data {
   DataCloudflareRegionalTieredCache(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

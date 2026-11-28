@@ -18,6 +18,7 @@ final class DataGoogleSccSourceIamPolicy extends Data {
     super.localName, {
     required TfArg<String> organization,
     required TfArg<String> source,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

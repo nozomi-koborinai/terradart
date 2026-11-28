@@ -18,6 +18,7 @@ final class DataGoogleBeyondcorpSecurityGateway extends Data {
     super.localName, {
     TfArg<String>? project,
     required TfArg<String> securityGatewayId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

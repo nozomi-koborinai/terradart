@@ -24,6 +24,7 @@ final class DataCloudflareWorkersScriptSubdomain extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> scriptName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

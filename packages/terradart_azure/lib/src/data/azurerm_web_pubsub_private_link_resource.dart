@@ -13,6 +13,7 @@ final class DataAzurermWebPubsubPrivateLinkResource extends Data {
   DataAzurermWebPubsubPrivateLinkResource(
     super.localName, {
     required TfArg<String> webPubsubId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'web_pubsub_id': webPubsubId});

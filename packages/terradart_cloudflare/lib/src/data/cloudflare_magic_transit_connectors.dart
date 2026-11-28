@@ -43,6 +43,7 @@ final class DataCloudflareMagicTransitConnectors extends Data {
     required RefTo<CloudflareAccount> accountId,
     DataMagicTransitConnectorsDeviceType? deviceType,
     TfArg<num>? maxItems,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

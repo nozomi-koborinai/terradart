@@ -15,6 +15,7 @@ final class DataAwsS3Bucket extends Data {
     super.localName, {
     required TfArg<String> bucket,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

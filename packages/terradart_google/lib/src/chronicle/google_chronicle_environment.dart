@@ -102,9 +102,6 @@ final class GoogleChronicleEnvironment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleChronicleEnvironmentSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleChronicleEnvironment>`.
   RefTo<GoogleChronicleEnvironment> get ref => RefTo.of(this);

@@ -19,6 +19,7 @@ final class DataGoogleComputeSecurityPolicy extends Data {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? selfLink,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

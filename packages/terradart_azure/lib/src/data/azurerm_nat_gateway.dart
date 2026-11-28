@@ -18,6 +18,7 @@ final class DataAzurermNatGateway extends Data {
     TfArg<List<String>>? publicIpAddressIds,
     TfArg<List<String>>? publicIpPrefixIds,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

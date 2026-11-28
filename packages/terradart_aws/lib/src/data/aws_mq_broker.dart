@@ -17,6 +17,7 @@ final class DataAwsMqBroker extends Data {
     TfArg<String>? brokerName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

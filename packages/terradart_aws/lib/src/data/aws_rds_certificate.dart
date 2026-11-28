@@ -16,6 +16,7 @@ final class DataAwsRdsCertificate extends Data {
     TfArg<bool>? defaultForNewLaunches,
     TfArg<bool>? latestValidTill,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

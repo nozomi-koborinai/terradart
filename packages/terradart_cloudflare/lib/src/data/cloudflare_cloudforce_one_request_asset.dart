@@ -21,6 +21,7 @@ final class DataCloudflareCloudforceOneRequestAsset extends Data {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> assetId,
     required TfArg<String> requestId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -244,9 +244,6 @@ final class GoogleSecretManagerSecret extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSecretManagerSecretSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleSecretManagerSecret>`.
   RefTo<GoogleSecretManagerSecret> get ref => RefTo.of(this);

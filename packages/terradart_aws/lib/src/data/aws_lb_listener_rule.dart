@@ -346,6 +346,7 @@ final class DataAwsLbListenerRule extends Data {
     List<DataLbListenerRuleAction>? action,
     List<DataLbListenerRuleCondition>? condition,
     List<DataLbListenerRuleTransform>? transform,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

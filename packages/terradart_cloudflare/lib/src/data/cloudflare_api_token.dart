@@ -51,6 +51,7 @@ final class DataCloudflareApiToken extends Data {
     super.localName, {
     TfArg<String>? tokenId,
     DataApiTokenFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataGoogleComputeSubnetworks extends Data {
     TfArg<String>? filter,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

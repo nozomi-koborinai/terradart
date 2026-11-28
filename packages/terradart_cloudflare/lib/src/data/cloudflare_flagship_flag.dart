@@ -35,6 +35,7 @@ final class DataCloudflareFlagshipFlag extends Data {
     required TfArg<String> appId,
     TfArg<String>? flagKey,
     DataFlagshipFlagFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

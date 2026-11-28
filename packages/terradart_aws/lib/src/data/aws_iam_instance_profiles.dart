@@ -14,6 +14,7 @@ final class DataAwsIamInstanceProfiles extends Data {
   DataAwsIamInstanceProfiles(
     super.localName, {
     required RefTo<AwsIamRole> roleName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

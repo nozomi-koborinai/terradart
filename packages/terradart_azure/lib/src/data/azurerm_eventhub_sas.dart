@@ -17,6 +17,7 @@ final class DataAzurermEventhubSas extends Data {
     super.localName, {
     required Sensitive<String> connectionString,
     required TfArg<String> expiry,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

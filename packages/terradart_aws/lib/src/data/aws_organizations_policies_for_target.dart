@@ -14,6 +14,7 @@ final class DataAwsOrganizationsPoliciesForTarget extends Data {
     super.localName, {
     required TfArg<String> filter,
     required TfArg<String> targetId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

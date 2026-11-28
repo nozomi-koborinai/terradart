@@ -16,6 +16,7 @@ final class DataAwsBedrockFoundationModelAgreementOffers extends Data {
     required TfArg<String> modelId,
     TfArg<String>? offerType,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

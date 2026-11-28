@@ -18,6 +18,7 @@ final class DataAwsElasticacheReservedCacheNodeOffering extends Data {
     required TfArg<String> offeringType,
     required TfArg<String> productDescription,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -33,6 +33,7 @@ final class DataAwsAutoscalingGroups extends Data {
     TfArg<List<String>>? names,
     TfArg<String>? region,
     List<DataAutoscalingGroupsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

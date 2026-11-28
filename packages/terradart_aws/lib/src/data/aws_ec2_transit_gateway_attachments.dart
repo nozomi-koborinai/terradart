@@ -36,6 +36,7 @@ final class DataAwsEc2TransitGatewayAttachments extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2TransitGatewayAttachmentsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

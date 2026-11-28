@@ -21,6 +21,7 @@ final class DataCloudflareStreamCaptionLanguage extends Data {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> identifier,
     required TfArg<String> language,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

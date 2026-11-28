@@ -17,6 +17,7 @@ final class DataAzurermPlatformImage extends Data {
     required TfArg<String> publisher,
     required TfArg<String> sku,
     TfArg<String>? version,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

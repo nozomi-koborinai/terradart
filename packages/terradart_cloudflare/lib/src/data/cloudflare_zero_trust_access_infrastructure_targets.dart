@@ -84,6 +84,7 @@ final class DataCloudflareZeroTrustAccessInfrastructureTargets extends Data {
     TfArg<List<String>>? tag,
     TfArg<List<String>>? targetIds,
     TfArg<String>? virtualNetworkId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

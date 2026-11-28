@@ -15,6 +15,7 @@ final class DataAzurermNetappVolumeBucketWithServer extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> netappVolumeId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

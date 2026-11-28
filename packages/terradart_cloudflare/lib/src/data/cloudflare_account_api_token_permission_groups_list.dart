@@ -23,6 +23,7 @@ final class DataCloudflareAccountApiTokenPermissionGroupsList extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? name,
     TfArg<String>? scope,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

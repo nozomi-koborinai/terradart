@@ -92,6 +92,7 @@ final class DataAwsAccountaccessEntitlements extends Data {
     required TfArg<String> applicationArn,
     TfArg<String>? region,
     List<DataAccountaccessEntitlementsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

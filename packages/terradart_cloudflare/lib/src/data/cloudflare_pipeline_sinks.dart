@@ -54,6 +54,7 @@ final class DataCloudflarePipelineSinks extends Data {
     TfArg<String>? name,
     DataPipelineSinksOrderBy? orderBy,
     TfArg<String>? pipelineId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

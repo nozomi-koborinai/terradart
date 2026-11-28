@@ -20,6 +20,7 @@ final class DataCloudflareEmailRoutingRules extends Data {
     TfArg<bool>? enabled,
     TfArg<num>? maxItems,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

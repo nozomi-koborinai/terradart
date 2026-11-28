@@ -63,6 +63,7 @@ final class DataCloudflareWorkersCustomDomain extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? domainId,
     DataWorkersCustomDomainFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

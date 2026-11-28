@@ -46,6 +46,7 @@ final class DataCloudflareUserAgentBlockingRule extends Data {
     TfArg<String>? uaRuleId,
     RefTo<CloudflareZone>? zoneId,
     DataUserAgentBlockingRuleFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

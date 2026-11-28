@@ -14,6 +14,7 @@ final class DataAwsOpensearchserverlessCollectionGroups extends Data {
   DataAwsOpensearchserverlessCollectionGroups(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

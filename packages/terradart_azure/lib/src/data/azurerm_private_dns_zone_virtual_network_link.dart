@@ -18,6 +18,7 @@ final class DataAzurermPrivateDnsZoneVirtualNetworkLink extends Data {
     required TfArg<String> name,
     required TfArg<String> privateDnsZoneName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

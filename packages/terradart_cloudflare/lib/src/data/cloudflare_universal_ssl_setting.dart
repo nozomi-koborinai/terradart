@@ -19,6 +19,7 @@ final class DataCloudflareUniversalSslSetting extends Data {
   DataCloudflareUniversalSslSetting(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

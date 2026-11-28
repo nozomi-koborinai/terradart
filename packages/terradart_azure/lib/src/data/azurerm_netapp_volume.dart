@@ -19,6 +19,7 @@ final class DataAzurermNetappVolume extends Data {
     required TfArg<String> poolName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<String>? securityStyle,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

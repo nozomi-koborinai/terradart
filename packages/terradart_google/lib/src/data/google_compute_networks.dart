@@ -16,6 +16,7 @@ final class DataGoogleComputeNetworks extends Data {
   DataGoogleComputeNetworks(
     super.localName, {
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'project': ?project});

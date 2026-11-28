@@ -14,6 +14,7 @@ final class DataAwsSavingsplansSavingsPlan extends Data {
   DataAwsSavingsplansSavingsPlan(
     super.localName, {
     required TfArg<String> savingsPlanId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'savings_plan_id': savingsPlanId});

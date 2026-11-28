@@ -18,6 +18,7 @@ final class DataGooglePubsubSubscriptionIamPolicy extends Data {
     super.localName, {
     TfArg<String>? project,
     required TfArg<String> subscription,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

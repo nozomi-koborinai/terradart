@@ -17,6 +17,7 @@ final class DataAzurermPrivateDnsSrvRecord extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> zoneName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

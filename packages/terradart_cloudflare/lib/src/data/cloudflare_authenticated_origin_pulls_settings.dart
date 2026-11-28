@@ -20,6 +20,7 @@ final class DataCloudflareAuthenticatedOriginPullsSettings extends Data {
   DataCloudflareAuthenticatedOriginPullsSettings(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -21,6 +21,7 @@ final class DataGoogleServiceAccountAccessToken extends Data {
     TfArg<String>? lifetime,
     required TfArg<List<String>> scopes,
     required TfArg<String> targetServiceAccount,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

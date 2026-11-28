@@ -20,6 +20,7 @@ final class DataGoogleSpannerInstance extends Data {
     TfArg<String>? displayName,
     required TfArg<String> name,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

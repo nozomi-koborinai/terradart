@@ -17,6 +17,7 @@ final class DataAwsBedrockFoundationModels extends Data {
     TfArg<String>? byOutputModality,
     TfArg<String>? byProvider,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

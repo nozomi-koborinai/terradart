@@ -39,6 +39,7 @@ final class DataAzurermOracleGiVersions extends Data {
     required TfArg<String> location,
     DataOracleGiVersionsShape? shape,
     TfArg<String>? zone,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

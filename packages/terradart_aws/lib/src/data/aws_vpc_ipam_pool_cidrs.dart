@@ -33,6 +33,7 @@ final class DataAwsVpcIpamPoolCidrs extends Data {
     required TfArg<String> ipamPoolId,
     TfArg<String>? region,
     List<DataVpcIpamPoolCidrsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

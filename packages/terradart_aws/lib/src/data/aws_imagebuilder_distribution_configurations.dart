@@ -36,6 +36,7 @@ final class DataAwsImagebuilderDistributionConfigurations extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataImagebuilderDistributionConfigurationsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

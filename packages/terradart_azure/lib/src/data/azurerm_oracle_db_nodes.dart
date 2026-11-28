@@ -13,6 +13,7 @@ final class DataAzurermOracleDbNodes extends Data {
   DataAzurermOracleDbNodes(
     super.localName, {
     required TfArg<String> cloudVmClusterId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsAthenaNamedQuery extends Data {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? workgroup,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

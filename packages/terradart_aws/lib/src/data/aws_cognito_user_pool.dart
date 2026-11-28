@@ -15,6 +15,7 @@ final class DataAwsCognitoUserPool extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> userPoolId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

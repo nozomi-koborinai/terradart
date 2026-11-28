@@ -15,6 +15,7 @@ final class DataAwsCurReportDefinition extends Data {
     super.localName, {
     required TfArg<String> reportName,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

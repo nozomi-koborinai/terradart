@@ -20,6 +20,7 @@ final class DataCloudflareOauthClient extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> oauthClientId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

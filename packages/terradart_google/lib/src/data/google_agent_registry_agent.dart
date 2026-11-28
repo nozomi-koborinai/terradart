@@ -19,6 +19,7 @@ final class DataGoogleAgentRegistryAgent extends Data {
     TfArg<String>? filter,
     required TfArg<String> location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

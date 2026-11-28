@@ -20,6 +20,7 @@ final class DataCloudflareMtlsCertificateAssociations extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> mtlsCertificateId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

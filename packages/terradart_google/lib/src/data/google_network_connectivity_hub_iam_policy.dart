@@ -18,6 +18,7 @@ final class DataGoogleNetworkConnectivityHubIamPolicy extends Data {
     super.localName, {
     required TfArg<String> hub,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'hub': hub, 'project': ?project});

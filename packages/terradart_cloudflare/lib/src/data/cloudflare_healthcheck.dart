@@ -20,6 +20,7 @@ final class DataCloudflareHealthcheck extends Data {
     super.localName, {
     required TfArg<String> healthcheckId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

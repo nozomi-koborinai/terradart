@@ -39,6 +39,7 @@ final class DataAwsResourcegroupstaggingapiResources extends Data {
     TfArg<List<String>>? resourceArnList,
     TfArg<List<String>>? resourceTypeFilters,
     List<DataResourcegroupstaggingapiResourcesTagFilter>? tagFilter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

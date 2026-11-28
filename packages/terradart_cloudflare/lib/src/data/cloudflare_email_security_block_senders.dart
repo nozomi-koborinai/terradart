@@ -101,6 +101,7 @@ final class DataCloudflareEmailSecurityBlockSenders extends Data {
     TfArg<String>? pattern,
     DataEmailSecurityBlockSendersPatternType? patternType,
     TfArg<String>? search,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

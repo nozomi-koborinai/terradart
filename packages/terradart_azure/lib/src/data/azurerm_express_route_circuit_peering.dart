@@ -43,6 +43,7 @@ final class DataAzurermExpressRouteCircuitPeering extends Data {
     required TfArg<String> expressRouteCircuitName,
     required DataExpressRouteCircuitPeeringType peeringType,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

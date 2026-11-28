@@ -22,6 +22,7 @@ final class DataCloudflareMagicTransitSiteAcl extends Data {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> aclId,
     required TfArg<String> siteId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

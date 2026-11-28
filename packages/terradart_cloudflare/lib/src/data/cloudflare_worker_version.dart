@@ -43,6 +43,7 @@ final class DataCloudflareWorkerVersion extends Data {
     DataWorkerVersionInclude? include,
     required TfArg<String> versionId,
     required TfArg<String> workerId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,6 +19,7 @@ final class DataGoogleKmsSecret extends Data {
     TfArg<String>? additionalAuthenticatedData,
     required TfArg<String> ciphertext,
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

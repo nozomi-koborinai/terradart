@@ -17,6 +17,7 @@ final class DataAwsSagemakerHubContent extends Data {
     TfArg<String>? hubContentVersion,
     required TfArg<String> hubName,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

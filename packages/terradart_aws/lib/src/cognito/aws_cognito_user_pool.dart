@@ -1178,9 +1178,6 @@ final class AwsCognitoUserPool extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCognitoUserPoolSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsCognitoUserPool>`.
   RefTo<AwsCognitoUserPool> get ref => RefTo.of(this);

@@ -18,6 +18,7 @@ final class DataAwsCloudformationType extends Data {
     TfArg<String>? type,
     TfArg<String>? typeName,
     TfArg<String>? versionId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

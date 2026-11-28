@@ -37,6 +37,7 @@ final class DataAwsAmiIds extends Data {
     TfArg<String>? region,
     TfArg<bool>? sortAscending,
     List<DataAmiIdsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

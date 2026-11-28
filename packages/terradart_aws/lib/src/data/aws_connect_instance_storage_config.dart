@@ -17,6 +17,7 @@ final class DataAwsConnectInstanceStorageConfig extends Data {
     required TfArg<String> instanceId,
     TfArg<String>? region,
     required TfArg<String> resourceType,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

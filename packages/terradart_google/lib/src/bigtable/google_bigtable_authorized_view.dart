@@ -86,9 +86,6 @@ final class GoogleBigtableAuthorizedView extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigtableAuthorizedViewSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleBigtableAuthorizedView>`.
   RefTo<GoogleBigtableAuthorizedView> get ref => RefTo.of(this);

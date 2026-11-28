@@ -79,6 +79,7 @@ final class DataAzurermPublicMaintenanceConfigurations extends Data {
     TfArg<String>? location,
     DataPublicMaintenanceConfigurationsRecurEvery? recurEvery,
     DataPublicMaintenanceConfigurationsScope? scope,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

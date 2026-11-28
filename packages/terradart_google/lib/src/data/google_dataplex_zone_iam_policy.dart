@@ -20,6 +20,7 @@ final class DataGoogleDataplexZoneIamPolicy extends Data {
     required TfArg<String> lake,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

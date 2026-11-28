@@ -19,6 +19,7 @@ final class DataGoogleOracleDatabaseGoldengateDeploymentVersions extends Data {
     super.localName, {
     required TfArg<String> location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

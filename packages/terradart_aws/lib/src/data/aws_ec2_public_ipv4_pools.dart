@@ -36,6 +36,7 @@ final class DataAwsEc2PublicIpv4Pools extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2PublicIpv4PoolsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

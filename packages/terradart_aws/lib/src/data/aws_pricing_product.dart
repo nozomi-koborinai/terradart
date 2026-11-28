@@ -32,6 +32,7 @@ final class DataAwsPricingProduct extends Data {
     super.localName, {
     required TfArg<String> serviceCode,
     required List<DataPricingProductFilters> filters,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -21,6 +21,7 @@ final class DataGoogleSecretManagerRegionalSecretIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> secretId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -22,6 +22,7 @@ final class DataGoogleServiceNetworkingPeeredDnsDomain extends Data {
     required RefTo<GoogleComputeNetwork> network,
     required TfArg<String> project,
     required TfArg<String> service,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

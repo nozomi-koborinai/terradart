@@ -19,6 +19,7 @@ final class DataCloudflareZoneDnssec extends Data {
   DataCloudflareZoneDnssec(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -44,6 +44,7 @@ final class DataAwsVpcPeeringConnection extends Data {
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,
     List<DataVpcPeeringConnectionFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

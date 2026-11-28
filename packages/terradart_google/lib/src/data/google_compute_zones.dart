@@ -18,6 +18,7 @@ final class DataGoogleComputeZones extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     TfArg<String>? status,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataAppwriteAuthUser extends Data {
     super.localName, {
     required TfArg<String> id,
     RefTo<AppwriteProject>? projectId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

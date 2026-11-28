@@ -29,6 +29,7 @@ final class DataAwsRoute extends Data {
     required TfArg<String> routeTableId,
     TfArg<String>? transitGatewayId,
     TfArg<String>? vpcPeeringConnectionId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

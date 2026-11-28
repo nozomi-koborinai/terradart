@@ -66,6 +66,7 @@ final class DataCloudflareSpectrumApplications extends Data {
     TfArg<num>? maxItems,
     DataSpectrumApplicationsOrder? order,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

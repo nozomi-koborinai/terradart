@@ -51,6 +51,7 @@ final class DataAwsOpensearchserverlessSecurityConfig extends Data {
     List<DataOpensearchserverlessSecurityConfigIamIdentityCenterOptions>?
     iamIdentityCenterOptions,
     List<DataOpensearchserverlessSecurityConfigSamlOptions>? samlOptions,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

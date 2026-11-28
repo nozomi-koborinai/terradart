@@ -16,6 +16,7 @@ final class DataAwsMskCluster extends Data {
     required TfArg<String> clusterName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

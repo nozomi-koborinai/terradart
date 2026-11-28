@@ -95,9 +95,6 @@ final class AwsRdsGlobalCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRdsGlobalClusterSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsRdsGlobalCluster>`.
   RefTo<AwsRdsGlobalCluster> get ref => RefTo.of(this);

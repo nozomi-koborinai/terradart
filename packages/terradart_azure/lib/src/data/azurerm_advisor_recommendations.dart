@@ -57,6 +57,7 @@ final class DataAzurermAdvisorRecommendations extends Data {
     TfArg<List<String>>? filterByRecommendationTypeGuids,
     TfArg<List<String>>? filterByResourceGroups,
     TfArg<List<String>>? filterByResourceIds,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -13,6 +13,7 @@ final class DataAwsOdbCloudAutonomousVmClusters extends Data {
   DataAwsOdbCloudAutonomousVmClusters(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

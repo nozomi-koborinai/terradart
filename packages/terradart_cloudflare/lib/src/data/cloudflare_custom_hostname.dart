@@ -327,6 +327,7 @@ final class DataCloudflareCustomHostname extends Data {
     TfArg<String>? customHostnameId,
     RefTo<CloudflareZone>? zoneId,
     DataCustomHostnameFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

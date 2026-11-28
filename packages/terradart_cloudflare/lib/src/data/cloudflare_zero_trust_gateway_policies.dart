@@ -70,6 +70,7 @@ final class DataCloudflareZeroTrustGatewayPolicies extends Data {
     TfArg<num>? maxItems,
     DataZeroTrustGatewayPoliciesOrderBy? orderBy,
     TfArg<String>? search,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

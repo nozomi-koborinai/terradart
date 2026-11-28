@@ -28,6 +28,7 @@ final class DataAzurermElasticCloudElasticsearch extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     List<DataElasticCloudElasticsearchLogs>? logs,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

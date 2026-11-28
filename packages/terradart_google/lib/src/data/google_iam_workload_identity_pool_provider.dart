@@ -21,6 +21,7 @@ final class DataGoogleIamWorkloadIdentityPoolProvider extends Data {
     TfArg<String>? project,
     required RefTo<GoogleIamWorkloadIdentityPool> workloadIdentityPoolId,
     required TfArg<String> workloadIdentityPoolProviderId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

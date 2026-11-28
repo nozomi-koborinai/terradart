@@ -37,6 +37,7 @@ final class DataAwsSecurityGroup extends Data {
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,
     List<DataSecurityGroupFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

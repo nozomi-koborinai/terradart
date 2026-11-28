@@ -18,6 +18,7 @@ final class DataAwsEc2CapacityBlockOffering extends Data {
     required TfArg<String> instanceType,
     TfArg<String>? region,
     TfArg<String>? startDateRange,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

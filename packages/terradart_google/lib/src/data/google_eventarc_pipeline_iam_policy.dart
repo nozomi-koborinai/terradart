@@ -19,6 +19,7 @@ final class DataGoogleEventarcPipelineIamPolicy extends Data {
     TfArg<String>? location,
     required TfArg<String> pipelineId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -35,6 +35,7 @@ final class DataAwsEc2TransitGatewayPeeringAttachments extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataEc2TransitGatewayPeeringAttachmentsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

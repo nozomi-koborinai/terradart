@@ -21,6 +21,7 @@ final class DataCloudflareZeroTrustDlpProximityValidator extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> validatorId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

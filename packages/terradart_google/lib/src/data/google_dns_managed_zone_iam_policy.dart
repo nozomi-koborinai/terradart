@@ -18,6 +18,7 @@ final class DataGoogleDnsManagedZoneIamPolicy extends Data {
     super.localName, {
     required TfArg<String> managedZone,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

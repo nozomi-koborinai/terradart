@@ -1226,9 +1226,6 @@ final class GoogleComputeInstanceFromMachineImage extends Resource {
   @override
   String get defaultProvider => 'google-beta';
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleComputeInstanceFromMachineImage>`.
   RefTo<GoogleComputeInstanceFromMachineImage> get ref => RefTo.of(this);

@@ -15,6 +15,7 @@ final class DataAwsNetworkmanagerGlobalNetwork extends Data {
     super.localName, {
     required TfArg<String> globalNetworkId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

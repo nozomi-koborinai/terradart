@@ -19,6 +19,7 @@ final class DataAzurermKeyVaultManagedHardwareSecurityModuleRoleDefinition
     super.localName, {
     required TfArg<String> managedHsmId,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

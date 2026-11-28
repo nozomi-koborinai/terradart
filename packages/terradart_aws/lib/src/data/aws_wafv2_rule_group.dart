@@ -16,6 +16,7 @@ final class DataAwsWafv2RuleGroup extends Data {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> scope,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

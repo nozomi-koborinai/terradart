@@ -40,6 +40,7 @@ final class DataAwsVpcEndpointService extends Data {
     TfArg<String>? serviceType,
     TfArg<Map<String, String>>? tags,
     List<DataVpcEndpointServiceFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

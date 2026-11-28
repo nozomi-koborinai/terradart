@@ -20,6 +20,7 @@ final class DataCloudflareZoneSetting extends Data {
     super.localName, {
     required TfArg<String> settingId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

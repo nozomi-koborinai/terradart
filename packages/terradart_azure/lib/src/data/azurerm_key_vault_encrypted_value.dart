@@ -47,6 +47,7 @@ final class DataAzurermKeyVaultEncryptedValue extends Data {
     Sensitive<String>? encryptedData,
     required TfArg<String> keyVaultKeyId,
     Sensitive<String>? plainTextValue,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

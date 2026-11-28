@@ -15,6 +15,7 @@ final class DataAzurermApiManagementWorkspace extends Data {
     super.localName, {
     required TfArg<String> apiManagementId,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

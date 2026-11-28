@@ -19,6 +19,7 @@ final class DataCloudflareAccountRole extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> roleId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

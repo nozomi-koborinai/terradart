@@ -69,6 +69,7 @@ final class DataCloudflareWorkersKvNamespace extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? namespaceId,
     DataWorkersKvNamespaceFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

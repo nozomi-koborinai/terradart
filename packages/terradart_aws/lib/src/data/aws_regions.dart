@@ -32,6 +32,7 @@ final class DataAwsRegions extends Data {
     super.localName, {
     TfArg<bool>? allRegions,
     List<DataRegionsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

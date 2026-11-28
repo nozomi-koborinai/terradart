@@ -16,6 +16,7 @@ final class DataAwsS3Buckets extends Data {
     TfArg<num>? maxBuckets,
     TfArg<String>? prefix,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsSsmParametersByPath extends Data {
     TfArg<bool>? recursive,
     TfArg<String>? region,
     TfArg<bool>? withDecryption,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

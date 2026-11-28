@@ -16,6 +16,7 @@ final class DataCloudflareZeroTrustAccessTag extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> tagName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

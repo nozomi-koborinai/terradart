@@ -43,6 +43,7 @@ final class DataAzurermSourceControlToken extends Data {
   DataAzurermSourceControlToken(
     super.localName, {
     required DataSourceControlTokenType type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'type': type});

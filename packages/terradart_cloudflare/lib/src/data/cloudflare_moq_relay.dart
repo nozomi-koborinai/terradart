@@ -46,6 +46,7 @@ final class DataCloudflareMoqRelay extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? relayId,
     DataMoqRelayFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

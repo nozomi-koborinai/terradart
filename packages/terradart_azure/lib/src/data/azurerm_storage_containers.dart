@@ -15,6 +15,7 @@ final class DataAzurermStorageContainers extends Data {
     super.localName, {
     TfArg<String>? namePrefix,
     required RefTo<AzurermStorageAccount> storageAccountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

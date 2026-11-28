@@ -21,6 +21,7 @@ final class DataCloudflareLoadBalancerMonitor extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> monitorId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

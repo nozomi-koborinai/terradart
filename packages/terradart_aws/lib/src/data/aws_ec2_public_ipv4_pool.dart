@@ -15,6 +15,7 @@ final class DataAwsEc2PublicIpv4Pool extends Data {
     required TfArg<String> poolId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

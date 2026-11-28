@@ -24,6 +24,7 @@ final class DataCloudflareWorkersScripts extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

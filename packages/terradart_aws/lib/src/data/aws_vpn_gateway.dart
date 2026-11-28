@@ -38,6 +38,7 @@ final class DataAwsVpnGateway extends Data {
     TfArg<String>? state,
     TfArg<Map<String, String>>? tags,
     List<DataVpnGatewayFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -65,6 +65,7 @@ final class DataCloudflareZeroTrustDnsLocations extends Data {
     TfArg<num>? maxItems,
     DataZeroTrustDnsLocationsOrderBy? orderBy,
     TfArg<String>? search,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

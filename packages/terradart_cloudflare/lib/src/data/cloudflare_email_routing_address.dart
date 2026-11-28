@@ -54,6 +54,7 @@ final class DataCloudflareEmailRoutingAddress extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? destinationAddressIdentifier,
     DataEmailRoutingAddressFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

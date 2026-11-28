@@ -17,6 +17,7 @@ final class DataGoogleComputeImages extends Data {
     super.localName, {
     TfArg<String>? filter,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

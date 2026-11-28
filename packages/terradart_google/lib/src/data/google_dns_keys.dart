@@ -18,6 +18,7 @@ final class DataGoogleDnsKeys extends Data {
     super.localName, {
     required RefTo<GoogleDnsManagedZone> managedZone,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

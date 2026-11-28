@@ -13,6 +13,7 @@ final class DataAwsSyntheticsRuntimeVersions extends Data {
   DataAwsSyntheticsRuntimeVersions(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

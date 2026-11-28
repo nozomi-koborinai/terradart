@@ -18,6 +18,7 @@ final class DataGoogleParameterManagerParameter extends Data {
     super.localName, {
     required TfArg<String> parameterId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

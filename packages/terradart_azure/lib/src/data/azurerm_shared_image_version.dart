@@ -20,6 +20,7 @@ final class DataAzurermSharedImageVersion extends Data {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? sortVersionsBySemver,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

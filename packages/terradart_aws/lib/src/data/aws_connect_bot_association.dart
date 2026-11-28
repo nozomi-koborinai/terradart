@@ -34,6 +34,7 @@ final class DataAwsConnectBotAssociation extends Data {
     required TfArg<String> instanceId,
     TfArg<String>? region,
     required DataConnectBotAssociationLexBot lexBot,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

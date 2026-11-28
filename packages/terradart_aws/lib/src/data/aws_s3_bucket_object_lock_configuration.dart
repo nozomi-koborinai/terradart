@@ -17,6 +17,7 @@ final class DataAwsS3BucketObjectLockConfiguration extends Data {
     required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

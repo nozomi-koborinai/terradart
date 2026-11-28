@@ -29,6 +29,7 @@ final class DataCloudflareAiSearchToken extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     DataAiSearchTokenFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -23,6 +23,7 @@ final class DataGoogleArtifactRegistryFile extends Data {
     TfArg<bool>? overwrite,
     TfArg<String>? project,
     required RefTo<GoogleArtifactRegistryRepository> repositoryId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

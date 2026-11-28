@@ -131,6 +131,7 @@ final class DataCloudflareAccountDnsSettingsInternalViews extends Data {
     RefTo<CloudflareZone>? zoneId,
     TfArg<String>? zoneName,
     DataAccountDnsSettingsInternalViewsName? name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

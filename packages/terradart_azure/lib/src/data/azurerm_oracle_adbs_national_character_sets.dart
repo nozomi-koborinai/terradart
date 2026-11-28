@@ -13,6 +13,7 @@ final class DataAzurermOracleAdbsNationalCharacterSets extends Data {
   DataAzurermOracleAdbsNationalCharacterSets(
     super.localName, {
     required TfArg<String> location,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'location': location});

@@ -19,6 +19,7 @@ final class DataGoogleComputeRegionTargetHttpsProxy extends Data {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

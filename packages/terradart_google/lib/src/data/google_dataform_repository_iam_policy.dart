@@ -19,6 +19,7 @@ final class DataGoogleDataformRepositoryIamPolicy extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> repository,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,6 +19,7 @@ final class DataGoogleIapTunnelDestGroupIamPolicy extends Data {
     required TfArg<String> destGroup,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

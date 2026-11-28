@@ -78,6 +78,7 @@ final class DataCloudflareZeroTrustCwsTenantStructureNodes extends Data {
     DataZeroTrustCwsTenantStructureNodesOrder? order,
     TfArg<String>? parent,
     required TfArg<String> structureId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

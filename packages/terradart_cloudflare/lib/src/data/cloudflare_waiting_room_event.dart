@@ -21,6 +21,7 @@ final class DataCloudflareWaitingRoomEvent extends Data {
     required TfArg<String> eventId,
     required TfArg<String> waitingRoomId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

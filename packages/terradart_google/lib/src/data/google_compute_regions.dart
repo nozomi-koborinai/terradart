@@ -17,6 +17,7 @@ final class DataGoogleComputeRegions extends Data {
     super.localName, {
     TfArg<String>? project,
     TfArg<String>? status,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

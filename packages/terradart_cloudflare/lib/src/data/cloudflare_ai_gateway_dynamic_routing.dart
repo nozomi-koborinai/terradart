@@ -21,6 +21,7 @@ final class DataCloudflareAiGatewayDynamicRouting extends Data {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> gatewayId,
     required TfArg<String> id,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

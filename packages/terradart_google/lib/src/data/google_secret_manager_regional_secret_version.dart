@@ -23,6 +23,7 @@ final class DataGoogleSecretManagerRegionalSecretVersion extends Data {
     TfArg<String>? project,
     required TfArg<String> secret,
     TfArg<String>? version,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

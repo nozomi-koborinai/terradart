@@ -21,6 +21,7 @@ final class DataAzurermApiManagementGatewayHostNameConfiguration extends Data {
     required TfArg<String> apiManagementId,
     required TfArg<String> gatewayName,
     required TfArg<String> name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

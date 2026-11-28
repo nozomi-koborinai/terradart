@@ -20,6 +20,7 @@ final class DataCloudflareDlsPrefixBinding extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bindingId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -20,6 +20,7 @@ final class DataCloudflareDnsZoneTransfersAcl extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> aclId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

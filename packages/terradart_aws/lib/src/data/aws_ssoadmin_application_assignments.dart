@@ -14,6 +14,7 @@ final class DataAwsSsoadminApplicationAssignments extends Data {
     super.localName, {
     required TfArg<String> applicationArn,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

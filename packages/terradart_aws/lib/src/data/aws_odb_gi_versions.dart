@@ -14,6 +14,7 @@ final class DataAwsOdbGiVersions extends Data {
     super.localName, {
     TfArg<String>? region,
     TfArg<String>? shape,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

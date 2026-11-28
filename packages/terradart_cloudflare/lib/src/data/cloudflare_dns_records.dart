@@ -282,6 +282,7 @@ final class DataCloudflareDnsRecords extends Data {
     DataDnsRecordsContent? content,
     DataDnsRecordsName? name,
     DataDnsRecordsTag? tag,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

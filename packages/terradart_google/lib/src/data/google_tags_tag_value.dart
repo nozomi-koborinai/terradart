@@ -19,6 +19,7 @@ final class DataGoogleTagsTagValue extends Data {
     super.localName, {
     required RefTo<GoogleTagsTagKey> parent,
     required TfArg<String> shortName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

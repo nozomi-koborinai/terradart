@@ -19,6 +19,7 @@ final class DataCloudflareEmailRoutingCatchAll extends Data {
   DataCloudflareEmailRoutingCatchAll(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

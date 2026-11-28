@@ -92,6 +92,7 @@ final class DataCloudflareZeroTrustGatewayPolicy extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? ruleId,
     DataZeroTrustGatewayPolicyFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

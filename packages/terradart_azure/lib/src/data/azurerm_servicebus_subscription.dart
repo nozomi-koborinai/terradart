@@ -15,6 +15,7 @@ final class DataAzurermServicebusSubscription extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> topicId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsAuditmanagerFramework extends Data {
     required TfArg<String> frameworkType,
     required TfArg<String> name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

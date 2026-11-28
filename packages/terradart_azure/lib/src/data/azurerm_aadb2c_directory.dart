@@ -16,6 +16,7 @@ final class DataAzurermAadb2cDirectory extends Data {
     super.localName, {
     required TfArg<String> domainName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

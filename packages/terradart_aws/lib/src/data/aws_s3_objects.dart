@@ -22,6 +22,7 @@ final class DataAwsS3Objects extends Data {
     TfArg<String>? region,
     TfArg<String>? requestPayer,
     TfArg<String>? startAfter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

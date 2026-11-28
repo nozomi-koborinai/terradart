@@ -34,6 +34,7 @@ final class DataAwsPrefixList extends Data {
     TfArg<String>? prefixListId,
     TfArg<String>? region,
     List<DataPrefixListFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

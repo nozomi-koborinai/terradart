@@ -19,6 +19,7 @@ final class DataAzurermNetappSnapshot extends Data {
     required TfArg<String> poolName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> volumeName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

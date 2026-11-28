@@ -17,6 +17,7 @@ final class DataAwsEcrRepository extends Data {
     TfArg<String>? region,
     TfArg<String>? registryId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsLambdawebFunction extends Data {
     super.localName, {
     required RefTo<AwsLambdaFunction> functionName,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

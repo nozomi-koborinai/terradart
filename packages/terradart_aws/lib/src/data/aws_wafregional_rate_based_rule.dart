@@ -15,6 +15,7 @@ final class DataAwsWafregionalRateBasedRule extends Data {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': name, 'region': ?region});

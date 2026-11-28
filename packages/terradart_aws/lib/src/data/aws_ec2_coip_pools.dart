@@ -33,6 +33,7 @@ final class DataAwsEc2CoipPools extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataEc2CoipPoolsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

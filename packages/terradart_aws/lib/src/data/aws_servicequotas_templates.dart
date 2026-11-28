@@ -14,6 +14,7 @@ final class DataAwsServicequotasTemplates extends Data {
     super.localName, {
     TfArg<String>? awsRegion,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

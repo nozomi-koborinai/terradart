@@ -42,6 +42,7 @@ final class DataAwsSubnet extends Data {
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,
     List<DataSubnetFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

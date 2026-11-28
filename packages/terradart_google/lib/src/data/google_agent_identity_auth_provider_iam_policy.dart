@@ -20,6 +20,7 @@ final class DataGoogleAgentIdentityAuthProviderIamPolicy extends Data {
     required TfArg<String> authProviderId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

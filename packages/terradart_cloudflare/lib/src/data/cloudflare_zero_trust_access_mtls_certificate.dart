@@ -24,6 +24,7 @@ final class DataCloudflareZeroTrustAccessMtlsCertificate extends Data {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> certificateId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

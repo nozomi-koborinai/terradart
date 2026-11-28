@@ -33,6 +33,7 @@ final class DataAwsDbInstances extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataDbInstancesFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

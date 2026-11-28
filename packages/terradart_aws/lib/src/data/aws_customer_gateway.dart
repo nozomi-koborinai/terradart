@@ -34,6 +34,7 @@ final class DataAwsCustomerGateway extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataCustomerGatewayFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

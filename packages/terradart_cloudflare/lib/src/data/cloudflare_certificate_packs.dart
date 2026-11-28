@@ -52,6 +52,7 @@ final class DataCloudflareCertificatePacks extends Data {
     TfArg<num>? maxItems,
     DataCertificatePacksStatus? status,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

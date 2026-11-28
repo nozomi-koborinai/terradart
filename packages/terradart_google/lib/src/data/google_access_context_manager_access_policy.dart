@@ -18,6 +18,7 @@ final class DataGoogleAccessContextManagerAccessPolicy extends Data {
     super.localName, {
     required TfArg<String> parent,
     TfArg<List<String>>? scopes,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

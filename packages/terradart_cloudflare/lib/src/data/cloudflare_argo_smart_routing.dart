@@ -19,6 +19,7 @@ final class DataCloudflareArgoSmartRouting extends Data {
   DataCloudflareArgoSmartRouting(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

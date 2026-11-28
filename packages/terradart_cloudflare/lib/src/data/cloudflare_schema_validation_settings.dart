@@ -20,6 +20,7 @@ final class DataCloudflareSchemaValidationSettings extends Data {
   DataCloudflareSchemaValidationSettings(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

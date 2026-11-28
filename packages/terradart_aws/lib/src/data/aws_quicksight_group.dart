@@ -17,6 +17,7 @@ final class DataAwsQuicksightGroup extends Data {
     required TfArg<String> groupName,
     TfArg<String>? namespace,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

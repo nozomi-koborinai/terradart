@@ -35,6 +35,7 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpPortal extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     DataZeroTrustAccessAiControlsMcpPortalFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

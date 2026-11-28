@@ -39,6 +39,7 @@ final class DataCloudflareCustomOriginTrustStore extends Data {
     TfArg<String>? customOriginTrustStoreId,
     RefTo<CloudflareZone>? zoneId,
     DataCustomOriginTrustStoreFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -29,6 +29,7 @@ final class DataCloudflareAccountPermissionGroup extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> permissionGroupId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

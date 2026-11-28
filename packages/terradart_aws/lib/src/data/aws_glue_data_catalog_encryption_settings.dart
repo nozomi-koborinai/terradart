@@ -15,6 +15,7 @@ final class DataAwsGlueDataCatalogEncryptionSettings extends Data {
     super.localName, {
     required TfArg<String> catalogId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsIamRolePolicies extends Data {
   DataAwsIamRolePolicies(
     super.localName, {
     required RefTo<AwsIamRole> roleName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

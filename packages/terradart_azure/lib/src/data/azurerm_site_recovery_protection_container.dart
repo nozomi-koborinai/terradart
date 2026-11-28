@@ -18,6 +18,7 @@ final class DataAzurermSiteRecoveryProtectionContainer extends Data {
     required TfArg<String> recoveryFabricName,
     required TfArg<String> recoveryVaultName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

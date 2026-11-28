@@ -15,6 +15,7 @@ final class DataCloudflareZeroTrustGatewaySettings extends Data {
   DataCloudflareZeroTrustGatewaySettings(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

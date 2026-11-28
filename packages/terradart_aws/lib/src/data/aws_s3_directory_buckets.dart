@@ -13,6 +13,7 @@ final class DataAwsS3DirectoryBuckets extends Data {
   DataAwsS3DirectoryBuckets(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

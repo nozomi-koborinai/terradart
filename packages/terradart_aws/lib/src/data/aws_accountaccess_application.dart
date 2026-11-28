@@ -16,6 +16,7 @@ final class DataAwsAccountaccessApplication extends Data {
     TfArg<String>? arn,
     TfArg<String>? identityCenterInstanceArn,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

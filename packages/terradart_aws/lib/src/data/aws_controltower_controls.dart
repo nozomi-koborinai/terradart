@@ -14,6 +14,7 @@ final class DataAwsControltowerControls extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> targetIdentifier,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

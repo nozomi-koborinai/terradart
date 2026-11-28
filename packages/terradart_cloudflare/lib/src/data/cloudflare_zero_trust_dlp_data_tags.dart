@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustDlpDataTags extends Data {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> categoryId,
     TfArg<num>? maxItems,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

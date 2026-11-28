@@ -20,6 +20,7 @@ final class DataCloudflarePipeline extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> pipelineId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

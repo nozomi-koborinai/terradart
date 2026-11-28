@@ -36,6 +36,7 @@ final class DataAwsImagebuilderImageRecipes extends Data {
     TfArg<String>? owner,
     TfArg<String>? region,
     List<DataImagebuilderImageRecipesFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

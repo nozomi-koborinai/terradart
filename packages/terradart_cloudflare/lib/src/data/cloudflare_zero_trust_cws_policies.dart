@@ -59,6 +59,7 @@ final class DataCloudflareZeroTrustCwsPolicies extends Data {
     DataZeroTrustCwsPoliciesOrder? order,
     TfArg<String>? packagePath,
     TfArg<String>? policySetId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

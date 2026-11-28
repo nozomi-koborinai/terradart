@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback
   DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

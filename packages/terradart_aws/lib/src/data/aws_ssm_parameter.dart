@@ -16,6 +16,7 @@ final class DataAwsSsmParameter extends Data {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<bool>? withDecryption,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

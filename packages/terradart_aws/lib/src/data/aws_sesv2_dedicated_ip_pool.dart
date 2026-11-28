@@ -16,6 +16,7 @@ final class DataAwsSesv2DedicatedIpPool extends Data {
     required TfArg<String> poolName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

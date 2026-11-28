@@ -16,6 +16,7 @@ final class DataAwsLocationRouteCalculator extends Data {
     required TfArg<String> calculatorName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsDbInstance extends Data {
     TfArg<String>? dbInstanceIdentifier,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

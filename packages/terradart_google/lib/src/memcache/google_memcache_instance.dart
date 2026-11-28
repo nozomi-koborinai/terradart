@@ -201,9 +201,6 @@ final class GoogleMemcacheInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleMemcacheInstanceSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleMemcacheInstance>`.
   RefTo<GoogleMemcacheInstance> get ref => RefTo.of(this);

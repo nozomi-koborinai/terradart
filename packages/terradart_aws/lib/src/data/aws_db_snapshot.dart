@@ -21,6 +21,7 @@ final class DataAwsDbSnapshot extends Data {
     TfArg<String>? region,
     TfArg<String>? snapshotType,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

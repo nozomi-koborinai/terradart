@@ -19,6 +19,7 @@ final class DataAwsCloudcontrolapiResource extends Data {
     RefTo<AwsIamRole>? roleArn,
     required TfArg<String> typeName,
     TfArg<String>? typeVersionId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

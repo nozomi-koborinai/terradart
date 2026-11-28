@@ -131,6 +131,7 @@ final class DataCloudflareOrganizations extends Data {
     DataOrganizationsMember? member,
     DataOrganizationsName? name,
     DataOrganizationsParent? parent,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

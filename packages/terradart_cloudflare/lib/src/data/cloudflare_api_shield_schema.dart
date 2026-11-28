@@ -22,6 +22,7 @@ final class DataCloudflareApiShieldSchema extends Data {
     TfArg<bool>? omitSource,
     required TfArg<String> schemaId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

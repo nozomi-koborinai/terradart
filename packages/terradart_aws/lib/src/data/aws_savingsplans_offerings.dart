@@ -44,6 +44,7 @@ final class DataAwsSavingsplansOfferings extends Data {
     TfArg<List<String>>? serviceCodes,
     TfArg<List<String>>? usageTypes,
     List<DataSavingsplansOfferingsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

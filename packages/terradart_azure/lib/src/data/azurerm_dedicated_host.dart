@@ -17,6 +17,7 @@ final class DataAzurermDedicatedHost extends Data {
     required TfArg<String> dedicatedHostGroupName,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

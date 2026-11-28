@@ -16,6 +16,7 @@ final class DataCloudflareOriginCloudRegion extends Data {
     super.localName, {
     required TfArg<String> originIp,
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

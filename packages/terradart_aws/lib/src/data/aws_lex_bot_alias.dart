@@ -16,6 +16,7 @@ final class DataAwsLexBotAlias extends Data {
     required TfArg<String> botName,
     required TfArg<String> name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

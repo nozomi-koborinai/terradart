@@ -20,6 +20,7 @@ final class DataAzurermContainerApp extends Data {
     required TfArg<String> name,
     TfArg<bool>? readSecrets,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

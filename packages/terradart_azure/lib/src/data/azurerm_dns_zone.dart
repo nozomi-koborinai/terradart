@@ -16,6 +16,7 @@ final class DataAzurermDnsZone extends Data {
     super.localName, {
     required TfArg<String> name,
     RefTo<AzurermResourceGroup>? resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

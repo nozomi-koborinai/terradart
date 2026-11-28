@@ -16,6 +16,7 @@ final class DataAwsWorkspacesDirectory extends Data {
     required TfArg<String> directoryId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,6 +19,7 @@ final class DataAwsLambdaInvocation extends Data {
     TfArg<String>? qualifier,
     TfArg<String>? region,
     TfArg<String>? tenantId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

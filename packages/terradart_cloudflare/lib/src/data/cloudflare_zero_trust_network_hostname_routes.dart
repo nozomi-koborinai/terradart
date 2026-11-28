@@ -26,6 +26,7 @@ final class DataCloudflareZeroTrustNetworkHostnameRoutes extends Data {
     TfArg<bool>? isDeleted,
     TfArg<num>? maxItems,
     TfArg<String>? tunnelId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

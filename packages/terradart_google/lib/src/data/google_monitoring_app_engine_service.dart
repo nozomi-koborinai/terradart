@@ -17,6 +17,7 @@ final class DataGoogleMonitoringAppEngineService extends Data {
     super.localName, {
     required TfArg<String> moduleId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

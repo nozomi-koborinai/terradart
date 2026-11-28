@@ -16,6 +16,7 @@ final class DataAwsLbTrustStore extends Data {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

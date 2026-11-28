@@ -19,6 +19,7 @@ final class DataAppwriteMongoSpecifications extends Data {
   DataAppwriteMongoSpecifications(
     super.localName, {
     RefTo<AppwriteProject>? projectId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -19,6 +19,7 @@ final class DataGoogleOracleDatabaseAutonomousDatabase extends Data {
     required TfArg<String> autonomousDatabaseId,
     required TfArg<String> location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

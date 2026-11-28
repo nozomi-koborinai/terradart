@@ -99,6 +99,7 @@ final class DataCloudflareZeroTrustGatewayProxyEndpoint extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? proxyEndpointId,
     DataZeroTrustGatewayProxyEndpointFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

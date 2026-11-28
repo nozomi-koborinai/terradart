@@ -179,6 +179,7 @@ final class DataCloudflareOrganization extends Data {
     super.localName, {
     TfArg<String>? organizationId,
     DataOrganizationFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

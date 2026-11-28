@@ -52,6 +52,7 @@ final class DataCloudflareClientCertificates extends Data {
     TfArg<num>? offset,
     DataClientCertificatesStatus? status,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -128,9 +128,6 @@ final class AwsDocdbGlobalCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDocdbGlobalClusterSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsDocdbGlobalCluster>`.
   RefTo<AwsDocdbGlobalCluster> get ref => RefTo.of(this);

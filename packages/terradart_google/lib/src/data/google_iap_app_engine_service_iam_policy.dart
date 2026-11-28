@@ -19,6 +19,7 @@ final class DataGoogleIapAppEngineServiceIamPolicy extends Data {
     required TfArg<String> appId,
     TfArg<String>? project,
     required TfArg<String> service,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

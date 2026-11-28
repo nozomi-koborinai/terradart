@@ -61,6 +61,7 @@ final class DataCloudflareAccount extends Data {
     super.localName, {
     TfArg<String>? accountId,
     DataAccountFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

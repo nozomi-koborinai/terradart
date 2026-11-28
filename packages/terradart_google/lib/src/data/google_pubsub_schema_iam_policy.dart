@@ -18,6 +18,7 @@ final class DataGooglePubsubSchemaIamPolicy extends Data {
     super.localName, {
     TfArg<String>? project,
     required TfArg<String> schema,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

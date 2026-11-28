@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustDlpSettings extends Data {
   DataCloudflareZeroTrustDlpSettings(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

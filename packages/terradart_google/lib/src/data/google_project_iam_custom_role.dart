@@ -18,6 +18,7 @@ final class DataGoogleProjectIamCustomRole extends Data {
     super.localName, {
     TfArg<String>? project,
     required TfArg<String> roleId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

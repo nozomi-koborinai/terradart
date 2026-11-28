@@ -762,9 +762,6 @@ final class AwsEksCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEksClusterSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsEksCluster>`.
   RefTo<AwsEksCluster> get ref => RefTo.of(this);

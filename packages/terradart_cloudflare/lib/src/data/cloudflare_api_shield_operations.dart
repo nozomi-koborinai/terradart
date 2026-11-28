@@ -67,6 +67,7 @@ final class DataCloudflareApiShieldOperations extends Data {
     TfArg<List<String>>? method,
     DataApiShieldOperationsOrder? order,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

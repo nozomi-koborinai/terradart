@@ -137,9 +137,6 @@ final class AwsNeptunegraphGraph extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNeptunegraphGraphSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsNeptunegraphGraph>`.
   RefTo<AwsNeptunegraphGraph> get ref => RefTo.of(this);

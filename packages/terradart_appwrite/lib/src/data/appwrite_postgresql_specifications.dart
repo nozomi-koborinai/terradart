@@ -19,6 +19,7 @@ final class DataAppwritePostgresqlSpecifications extends Data {
   DataAppwritePostgresqlSpecifications(
     super.localName, {
     RefTo<AppwriteProject>? projectId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

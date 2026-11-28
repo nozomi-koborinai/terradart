@@ -54,6 +54,7 @@ final class DataCloudflareFilter extends Data {
     TfArg<String>? filterId,
     RefTo<CloudflareZone>? zoneId,
     DataFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsIamUserSshKey extends Data {
     required TfArg<String> encoding,
     required TfArg<String> sshPublicKeyId,
     required TfArg<String> username,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

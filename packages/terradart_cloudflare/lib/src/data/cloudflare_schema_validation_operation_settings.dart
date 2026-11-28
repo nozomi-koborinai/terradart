@@ -23,6 +23,7 @@ final class DataCloudflareSchemaValidationOperationSettings extends Data {
     super.localName, {
     required TfArg<String> operationId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

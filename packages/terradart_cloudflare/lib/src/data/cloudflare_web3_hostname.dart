@@ -20,6 +20,7 @@ final class DataCloudflareWeb3Hostname extends Data {
     super.localName, {
     required TfArg<String> identifier,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

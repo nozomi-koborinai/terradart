@@ -117,6 +117,7 @@ final class DataCloudflareShares extends Data {
     DataSharesStatus? status,
     TfArg<List<String>>? tag,
     DataSharesTargetType? targetType,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAzurermNetappAccountEncryption extends Data {
   DataAzurermNetappAccountEncryption(
     super.localName, {
     required TfArg<String> netappAccountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

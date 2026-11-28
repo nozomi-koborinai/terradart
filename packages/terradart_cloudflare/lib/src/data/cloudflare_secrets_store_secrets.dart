@@ -69,6 +69,7 @@ final class DataCloudflareSecretsStoreSecrets extends Data {
     TfArg<List<String>>? scopes,
     TfArg<String>? search,
     required TfArg<String> storeId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAzurermRoleAssignments extends Data {
     TfArg<String>? principalId,
     required TfArg<String> scope,
     TfArg<String>? tenantId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

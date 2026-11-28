@@ -21,6 +21,7 @@ final class DataCloudflareAccountSubscription extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -112,9 +112,6 @@ final class GoogleOracleDatabaseGoldengateConnectionAssignment
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseGoldengateConnectionAssignmentSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleOracleDatabaseGoldengateConnectionAssignment>`.
   RefTo<GoogleOracleDatabaseGoldengateConnectionAssignment> get ref =>

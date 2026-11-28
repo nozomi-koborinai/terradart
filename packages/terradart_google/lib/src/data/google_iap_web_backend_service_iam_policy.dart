@@ -18,6 +18,7 @@ final class DataGoogleIapWebBackendServiceIamPolicy extends Data {
     super.localName, {
     TfArg<String>? project,
     required TfArg<String> webBackendService,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

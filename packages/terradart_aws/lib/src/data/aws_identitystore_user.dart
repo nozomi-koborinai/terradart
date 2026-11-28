@@ -78,6 +78,7 @@ final class DataAwsIdentitystoreUser extends Data {
     TfArg<String>? region,
     TfArg<String>? userId,
     DataIdentitystoreUserAlternateIdentifier? alternateIdentifier,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -36,6 +36,7 @@ final class DataAwsImagebuilderInfrastructureConfigurations extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataImagebuilderInfrastructureConfigurationsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

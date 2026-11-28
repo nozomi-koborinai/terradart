@@ -35,6 +35,7 @@ final class DataAwsSsmMaintenanceWindows extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataSsmMaintenanceWindowsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

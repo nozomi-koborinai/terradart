@@ -17,6 +17,7 @@ final class DataAwsDynamodbBackups extends Data {
     TfArg<String>? tableName,
     TfArg<String>? timeRangeLowerBound,
     TfArg<String>? timeRangeUpperBound,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

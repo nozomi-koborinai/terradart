@@ -42,6 +42,7 @@ final class DataCloudflareHostnameTlsSettings extends Data {
     TfArg<num>? maxItems,
     required DataHostnameTlsSettingsName settingId,
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

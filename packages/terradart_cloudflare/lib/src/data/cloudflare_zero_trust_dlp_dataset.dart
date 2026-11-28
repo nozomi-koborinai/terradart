@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustDlpDataset extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> datasetId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

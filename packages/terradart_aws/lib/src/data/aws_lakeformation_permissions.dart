@@ -225,6 +225,7 @@ final class DataAwsLakeformationPermissions extends Data {
     DataLakeformationPermissionsLfTagPolicy? lfTagPolicy,
     DataLakeformationPermissionsTable? table,
     DataLakeformationPermissionsTableWithColumns? tableWithColumns,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

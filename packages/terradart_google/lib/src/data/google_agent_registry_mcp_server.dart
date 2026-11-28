@@ -19,6 +19,7 @@ final class DataGoogleAgentRegistryMcpServer extends Data {
     required TfArg<String> location,
     TfArg<String>? mcpServerId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

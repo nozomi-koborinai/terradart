@@ -21,6 +21,7 @@ final class DataCloudflareLoadBalancerPools extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? monitor,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -74,6 +74,7 @@ final class DataCloudflareEmailSecurityTrustedDomainsList extends Data {
     DataEmailSecurityTrustedDomainsListOrder? order,
     TfArg<String>? pattern,
     TfArg<String>? search,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

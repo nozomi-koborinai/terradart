@@ -19,6 +19,7 @@ final class DataGoogleCloudfunctionsFunctionIamPolicy extends Data {
     required TfArg<String> cloudFunction,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

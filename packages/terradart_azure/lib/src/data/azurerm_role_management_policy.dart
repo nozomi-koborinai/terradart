@@ -15,6 +15,7 @@ final class DataAzurermRoleManagementPolicy extends Data {
     super.localName, {
     required TfArg<String> roleDefinitionId,
     required TfArg<String> scope,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

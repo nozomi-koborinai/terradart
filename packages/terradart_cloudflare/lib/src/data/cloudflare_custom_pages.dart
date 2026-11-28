@@ -75,6 +75,7 @@ final class DataCloudflareCustomPages extends Data {
     RefTo<CloudflareAccount>? accountId,
     required DataCustomPagesIdentifier identifier,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

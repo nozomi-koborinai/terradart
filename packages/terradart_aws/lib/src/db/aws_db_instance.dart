@@ -640,9 +640,6 @@ final class AwsDbInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDbInstanceSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsDbInstance>`.
   RefTo<AwsDbInstance> get ref => RefTo.of(this);

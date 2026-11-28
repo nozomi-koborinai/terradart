@@ -19,6 +19,7 @@ final class DataCloudflareLogpullRetention extends Data {
   DataCloudflareLogpullRetention(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

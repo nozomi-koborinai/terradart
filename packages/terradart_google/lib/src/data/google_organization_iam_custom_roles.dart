@@ -18,6 +18,7 @@ final class DataGoogleOrganizationIamCustomRoles extends Data {
     TfArg<String>? orgId,
     TfArg<bool>? showDeleted,
     TfArg<String>? view,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

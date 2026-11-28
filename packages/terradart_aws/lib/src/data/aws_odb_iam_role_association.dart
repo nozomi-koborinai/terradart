@@ -17,6 +17,7 @@ final class DataAwsOdbIamRoleAssociation extends Data {
     required RefTo<AwsIamRole> iamRoleArn,
     TfArg<String>? region,
     required TfArg<String> resourceArn,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsSfnStateMachineVersions extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> statemachineArn,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

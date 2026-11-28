@@ -1076,9 +1076,6 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudRunV2WorkerPoolSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleCloudRunV2WorkerPool>`.
   RefTo<GoogleCloudRunV2WorkerPool> get ref => RefTo.of(this);

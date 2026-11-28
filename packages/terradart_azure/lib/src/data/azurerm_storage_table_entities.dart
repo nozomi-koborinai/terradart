@@ -15,6 +15,7 @@ final class DataAzurermStorageTableEntities extends Data {
     required TfArg<String> filter,
     TfArg<List<String>>? select,
     required TfArg<String> storageTableId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

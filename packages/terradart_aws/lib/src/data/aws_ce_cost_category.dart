@@ -15,6 +15,7 @@ final class DataAwsCeCostCategory extends Data {
     super.localName, {
     required TfArg<String> costCategoryArn,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

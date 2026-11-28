@@ -21,6 +21,7 @@ final class DataCloudflareMagicTransitSites extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? connectorid,
     TfArg<num>? maxItems,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

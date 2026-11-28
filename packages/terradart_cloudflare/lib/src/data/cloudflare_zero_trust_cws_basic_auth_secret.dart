@@ -76,6 +76,7 @@ final class DataCloudflareZeroTrustCwsBasicAuthSecret extends Data {
     required TfArg<String> credentialId,
     TfArg<String>? secretId,
     DataZeroTrustCwsBasicAuthSecretFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

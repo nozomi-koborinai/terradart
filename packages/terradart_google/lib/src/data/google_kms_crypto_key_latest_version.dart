@@ -18,6 +18,7 @@ final class DataGoogleKmsCryptoKeyLatestVersion extends Data {
     super.localName, {
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
     TfArg<String>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

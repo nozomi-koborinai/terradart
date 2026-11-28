@@ -37,6 +37,7 @@ final class DataAwsRoute53ResolverEndpoint extends Data {
     TfArg<String>? region,
     TfArg<String>? resolverEndpointId,
     List<DataRoute53ResolverEndpointFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -29,6 +29,7 @@ final class DataAzurermStorageShare extends Data {
     required TfArg<String> name,
     required RefTo<AzurermStorageAccount> storageAccountId,
     List<DataStorageShareAcl>? acl,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

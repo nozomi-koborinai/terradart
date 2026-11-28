@@ -18,6 +18,7 @@ final class DataAwsConnectQuickConnect extends Data {
     TfArg<String>? quickConnectId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

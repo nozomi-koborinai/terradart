@@ -285,6 +285,7 @@ final class DataCloudflareCustomHostnames extends Data {
     TfArg<bool>? wildcard,
     RefTo<CloudflareZone>? zoneId,
     DataCustomHostnamesHostname? hostname,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

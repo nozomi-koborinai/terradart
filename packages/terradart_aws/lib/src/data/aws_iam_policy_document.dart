@@ -142,6 +142,7 @@ final class DataAwsIamPolicyDocument extends Data {
     TfArg<List<String>>? sourcePolicyDocuments,
     TfArg<String>? version,
     List<DataIamPolicyDocumentStatement>? statement,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

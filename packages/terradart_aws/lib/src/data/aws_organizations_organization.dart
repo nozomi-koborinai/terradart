@@ -14,6 +14,7 @@ final class DataAwsOrganizationsOrganization extends Data {
   DataAwsOrganizationsOrganization(
     super.localName, {
     TfArg<bool>? returnOrganizationOnly,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

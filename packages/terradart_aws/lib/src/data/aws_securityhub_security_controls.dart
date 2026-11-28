@@ -14,6 +14,7 @@ final class DataAwsSecurityhubSecurityControls extends Data {
     super.localName, {
     TfArg<String>? region,
     TfArg<String>? standardsArn,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

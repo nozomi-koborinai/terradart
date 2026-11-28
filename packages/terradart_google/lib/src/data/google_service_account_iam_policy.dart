@@ -18,6 +18,7 @@ final class DataGoogleServiceAccountIamPolicy extends Data {
   DataGoogleServiceAccountIamPolicy(
     super.localName, {
     required RefTo<GoogleServiceAccount> serviceAccountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

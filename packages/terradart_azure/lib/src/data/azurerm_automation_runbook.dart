@@ -17,6 +17,7 @@ final class DataAzurermAutomationRunbook extends Data {
     required TfArg<String> automationAccountName,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

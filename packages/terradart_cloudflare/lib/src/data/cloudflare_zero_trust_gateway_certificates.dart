@@ -15,6 +15,7 @@ final class DataCloudflareZeroTrustGatewayCertificates extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

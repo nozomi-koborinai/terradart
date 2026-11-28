@@ -105,6 +105,7 @@ final class DataCloudflareZeroTrustTunnelWarpConnector extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? tunnelId,
     DataZeroTrustTunnelWarpConnectorFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

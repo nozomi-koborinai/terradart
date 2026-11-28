@@ -15,6 +15,7 @@ final class DataAwsGlobalacceleratorAccelerator extends Data {
     super.localName, {
     TfArg<String>? arn,
     TfArg<String>? name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'arn': ?arn, 'name': ?name});

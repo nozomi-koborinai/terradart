@@ -270,9 +270,6 @@ final class GoogleOracleDatabaseExadbVmCluster extends Resource {
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseExadbVmClusterSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleOracleDatabaseExadbVmCluster>`.
   RefTo<GoogleOracleDatabaseExadbVmCluster> get ref => RefTo.of(this);

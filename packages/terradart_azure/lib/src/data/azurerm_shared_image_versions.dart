@@ -17,6 +17,7 @@ final class DataAzurermSharedImageVersions extends Data {
     required TfArg<String> imageName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tagsFilter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

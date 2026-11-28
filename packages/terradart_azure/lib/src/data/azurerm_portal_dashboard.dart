@@ -87,6 +87,7 @@ final class DataAzurermPortalDashboard extends Data {
     TfArg<String>? dashboardProperties,
     required DataPortalDashboardIdentifier identifier,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataCloudflareZeroTrustDeviceDefaultProfile extends Data {
   DataCloudflareZeroTrustDeviceDefaultProfile(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

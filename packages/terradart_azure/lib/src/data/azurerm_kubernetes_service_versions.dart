@@ -15,6 +15,7 @@ final class DataAzurermKubernetesServiceVersions extends Data {
     TfArg<bool>? includePreview,
     required TfArg<String> location,
     TfArg<String>? versionPrefix,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

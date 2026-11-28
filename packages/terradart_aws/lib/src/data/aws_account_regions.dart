@@ -14,6 +14,7 @@ final class DataAwsAccountRegions extends Data {
     super.localName, {
     TfArg<String>? accountId,
     TfArg<List<String>>? regionOptStatusContains,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

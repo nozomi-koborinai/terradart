@@ -15,6 +15,7 @@ final class DataAwsSesDomainIdentity extends Data {
     super.localName, {
     required TfArg<String> domain,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

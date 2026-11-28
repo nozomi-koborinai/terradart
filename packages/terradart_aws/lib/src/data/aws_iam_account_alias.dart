@@ -11,8 +11,12 @@ const Set<String> _awsIamAccountAliasSensitive = <String>{};
 final class DataAwsIamAccountAlias extends Data {
   static const String tfType = 'aws_iam_account_alias';
 
-  DataAwsIamAccountAlias(super.localName, {super.provider, super.timeouts})
-    : super(terraformType: tfType, argMap: {});
+  DataAwsIamAccountAlias(
+    super.localName, {
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(terraformType: tfType, argMap: {});
 
   @override
   Set<String> get sensitiveFields => _awsIamAccountAliasSensitive;

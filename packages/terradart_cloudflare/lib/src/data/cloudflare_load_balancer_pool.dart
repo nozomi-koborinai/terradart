@@ -35,6 +35,7 @@ final class DataCloudflareLoadBalancerPool extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? poolId,
     DataLoadBalancerPoolFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAzurermBillingEnrollmentAccountScope extends Data {
     super.localName, {
     required TfArg<String> billingAccountName,
     required TfArg<String> enrollmentAccountName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

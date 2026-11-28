@@ -17,6 +17,7 @@ final class DataAzurermCosmosdbSqlRoleDefinition extends Data {
     required TfArg<String> accountName,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> roleDefinitionId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

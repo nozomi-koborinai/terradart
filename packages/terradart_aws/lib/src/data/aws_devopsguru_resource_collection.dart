@@ -15,6 +15,7 @@ final class DataAwsDevopsguruResourceCollection extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region, 'type': type});

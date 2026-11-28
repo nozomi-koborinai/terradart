@@ -16,6 +16,7 @@ final class DataGoogleBigqueryDatasets extends Data {
   DataGoogleBigqueryDatasets(
     super.localName, {
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'project': ?project});

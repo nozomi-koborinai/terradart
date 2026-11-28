@@ -30,6 +30,7 @@ final class DataCloudflareZoneHold extends Data {
   DataCloudflareZoneHold(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

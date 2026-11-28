@@ -22,6 +22,7 @@ final class DataGoogleBeyondcorpSecurityGatewayApplicationIamPolicy
     required TfArg<String> applicationId,
     TfArg<String>? project,
     required TfArg<String> securityGatewayId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

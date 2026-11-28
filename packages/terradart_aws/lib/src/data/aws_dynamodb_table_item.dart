@@ -18,6 +18,7 @@ final class DataAwsDynamodbTableItem extends Data {
     TfArg<String>? projectionExpression,
     TfArg<String>? region,
     required TfArg<String> tableName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataAwsS3controlAccessPoints extends Data {
     TfArg<String>? dataSourceId,
     TfArg<String>? dataSourceType,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

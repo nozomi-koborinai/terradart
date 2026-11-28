@@ -16,6 +16,7 @@ final class DataCloudflareZeroTrustDevicePostureRule extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> ruleId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

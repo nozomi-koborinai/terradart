@@ -18,6 +18,7 @@ final class DataAwsLocationGeofenceCollection extends Data {
     RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

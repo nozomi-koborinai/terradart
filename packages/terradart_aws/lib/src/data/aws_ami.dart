@@ -41,6 +41,7 @@ final class DataAwsAmi extends Data {
     TfArg<Map<String, String>>? tags,
     TfArg<String>? uefiData,
     List<DataAmiFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

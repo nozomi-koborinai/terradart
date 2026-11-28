@@ -14,6 +14,7 @@ final class DataAwsOutpostsOutpostInstanceTypes extends Data {
     super.localName, {
     required TfArg<String> arn,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'arn': arn, 'region': ?region});

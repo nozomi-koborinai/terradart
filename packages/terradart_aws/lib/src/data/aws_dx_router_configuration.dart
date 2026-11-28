@@ -15,6 +15,7 @@ final class DataAwsDxRouterConfiguration extends Data {
     TfArg<String>? region,
     required TfArg<String> routerTypeIdentifier,
     required TfArg<String> virtualInterfaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

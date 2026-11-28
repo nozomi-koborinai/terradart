@@ -20,6 +20,7 @@ final class DataGoogleContainerRegistryImage extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     TfArg<String>? tag,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

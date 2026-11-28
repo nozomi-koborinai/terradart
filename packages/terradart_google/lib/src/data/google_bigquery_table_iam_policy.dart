@@ -20,6 +20,7 @@ final class DataGoogleBigqueryTableIamPolicy extends Data {
     required RefTo<GoogleBigqueryDataset> datasetId,
     TfArg<String>? project,
     required TfArg<String> tableId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -15,6 +15,7 @@ final class DataAwsAgentregistryRegistry extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> registryId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

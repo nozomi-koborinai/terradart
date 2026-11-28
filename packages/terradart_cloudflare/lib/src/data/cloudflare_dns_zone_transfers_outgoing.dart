@@ -20,6 +20,7 @@ final class DataCloudflareDnsZoneTransfersOutgoing extends Data {
   DataCloudflareDnsZoneTransfersOutgoing(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsGuarddutyFindingIds extends Data {
     super.localName, {
     required TfArg<String> detectorId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

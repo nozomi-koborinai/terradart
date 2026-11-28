@@ -37,6 +37,7 @@ final class DataGoogleCloudIdentityGroupLookup extends Data {
   DataGoogleCloudIdentityGroupLookup(
     super.localName, {
     required DataCloudIdentityGroupLookupGroupKey groupKey,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

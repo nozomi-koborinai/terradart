@@ -15,6 +15,7 @@ final class DataAwsNetworkmanagerConnections extends Data {
     TfArg<String>? deviceId,
     required TfArg<String> globalNetworkId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

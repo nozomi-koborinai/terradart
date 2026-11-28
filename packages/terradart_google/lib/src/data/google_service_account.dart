@@ -19,6 +19,7 @@ final class DataGoogleServiceAccount extends Data {
     super.localName, {
     required TfArg<String> accountId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
@@ -64,5 +65,5 @@ final class DataGoogleServiceAccount extends Data {
 
   /// This identity as an IAM principal, for `member` / `members`.
   IamPrincipal get principal =>
-      IamPrincipal.arg(TfRef.data<String>(this, 'member'));
+      IamPrincipal.arg(TfRef.attribute<String>(this, 'member'));
 }

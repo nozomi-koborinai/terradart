@@ -58,6 +58,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? virtualNetworkId,
     DataZeroTrustTunnelCloudflaredVirtualNetworkFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

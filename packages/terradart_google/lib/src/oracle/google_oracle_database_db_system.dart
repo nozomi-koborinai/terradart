@@ -704,9 +704,6 @@ final class GoogleOracleDatabaseDbSystem extends Resource {
   @override
   Set<String> get sensitiveFields => _googleOracleDatabaseDbSystemSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleOracleDatabaseDbSystem>`.
   RefTo<GoogleOracleDatabaseDbSystem> get ref => RefTo.of(this);

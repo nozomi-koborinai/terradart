@@ -112,6 +112,7 @@ final class DataCloudflarePageShieldScriptsList extends Data {
     DataPageShieldScriptsListStatus? status,
     TfArg<String>? urls,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -14,6 +14,7 @@ final class DataAwsEfsAccessPoints extends Data {
     super.localName, {
     required TfArg<String> fileSystemId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

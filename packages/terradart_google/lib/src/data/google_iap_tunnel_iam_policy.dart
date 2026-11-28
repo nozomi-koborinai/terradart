@@ -17,6 +17,7 @@ final class DataGoogleIapTunnelIamPolicy extends Data {
   DataGoogleIapTunnelIamPolicy(
     super.localName, {
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'project': ?project});

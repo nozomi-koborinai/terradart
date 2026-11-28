@@ -16,6 +16,7 @@ final class DataAwsOpensearchDomain extends Data {
     required TfArg<String> domainName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

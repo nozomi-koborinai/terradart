@@ -20,6 +20,7 @@ final class DataCloudflareEmailRoutingDns extends Data {
     super.localName, {
     TfArg<String>? subdomain,
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

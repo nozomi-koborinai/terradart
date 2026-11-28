@@ -15,6 +15,7 @@ final class DataAzurermBillingMcaAccountScope extends Data {
     required TfArg<String> billingAccountName,
     required TfArg<String> billingProfileName,
     required TfArg<String> invoiceSectionName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

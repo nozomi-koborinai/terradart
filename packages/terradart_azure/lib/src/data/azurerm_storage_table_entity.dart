@@ -16,6 +16,7 @@ final class DataAzurermStorageTableEntity extends Data {
     required TfArg<String> partitionKey,
     required TfArg<String> rowKey,
     required TfArg<String> storageTableId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

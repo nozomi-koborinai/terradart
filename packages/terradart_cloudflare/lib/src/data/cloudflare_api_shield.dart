@@ -21,6 +21,7 @@ final class DataCloudflareApiShield extends Data {
     super.localName, {
     TfArg<bool>? normalize,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

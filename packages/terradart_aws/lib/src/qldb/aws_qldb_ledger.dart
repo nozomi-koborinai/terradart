@@ -56,9 +56,6 @@ final class AwsQldbLedger extends Resource {
   @override
   Set<String> get sensitiveFields => _awsQldbLedgerSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsQldbLedger>`.
   RefTo<AwsQldbLedger> get ref => RefTo.of(this);

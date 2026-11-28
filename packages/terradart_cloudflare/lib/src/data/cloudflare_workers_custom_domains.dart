@@ -27,6 +27,7 @@ final class DataCloudflareWorkersCustomDomains extends Data {
     TfArg<String>? service,
     RefTo<CloudflareZone>? zoneId,
     TfArg<String>? zoneName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

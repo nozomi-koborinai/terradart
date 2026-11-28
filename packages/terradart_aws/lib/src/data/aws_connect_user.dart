@@ -18,6 +18,7 @@ final class DataAwsConnectUser extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? userId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

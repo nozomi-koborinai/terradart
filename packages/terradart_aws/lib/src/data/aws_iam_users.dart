@@ -14,6 +14,7 @@ final class DataAwsIamUsers extends Data {
     super.localName, {
     TfArg<String>? nameRegex,
     TfArg<String>? pathPrefix,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

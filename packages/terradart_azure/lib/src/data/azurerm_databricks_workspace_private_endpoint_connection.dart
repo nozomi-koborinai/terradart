@@ -17,6 +17,7 @@ final class DataAzurermDatabricksWorkspacePrivateEndpointConnection
     super.localName, {
     required TfArg<String> privateEndpointId,
     required TfArg<String> workspaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

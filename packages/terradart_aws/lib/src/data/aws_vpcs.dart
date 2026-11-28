@@ -33,6 +33,7 @@ final class DataAwsVpcs extends Data {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DataVpcsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

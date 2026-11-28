@@ -39,6 +39,7 @@ final class DataCloudflareHostnameTlsSetting extends Data {
     required TfArg<String> hostname,
     required DataHostnameTlsSettingName settingId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

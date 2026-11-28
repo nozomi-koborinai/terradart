@@ -17,6 +17,7 @@ final class DataAzurermPrivateDnsZone extends Data {
     required TfArg<String> name,
     RefTo<AzurermResourceGroup>? resourceGroupName,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -136,6 +136,7 @@ final class DataCloudflareZeroTrustCasbFindingType extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? findingTypeId,
     DataZeroTrustCasbFindingTypeFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

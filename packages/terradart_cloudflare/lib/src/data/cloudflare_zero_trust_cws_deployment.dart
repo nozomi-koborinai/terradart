@@ -84,6 +84,7 @@ final class DataCloudflareZeroTrustCwsDeployment extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? deploymentId,
     DataZeroTrustCwsDeploymentFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

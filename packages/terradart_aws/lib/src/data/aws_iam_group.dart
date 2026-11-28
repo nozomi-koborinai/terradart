@@ -14,6 +14,7 @@ final class DataAwsIamGroup extends Data {
   DataAwsIamGroup(
     super.localName, {
     required TfArg<String> groupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'group_name': groupName});

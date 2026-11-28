@@ -36,6 +36,7 @@ final class DataAwsEc2CapacityBlockReservation extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataEc2CapacityBlockReservationFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

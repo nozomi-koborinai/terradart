@@ -344,9 +344,6 @@ final class GoogleOracleDatabaseCloudExadataInfrastructure extends Resource {
   Set<String> get sensitiveFields =>
       _googleOracleDatabaseCloudExadataInfrastructureSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleOracleDatabaseCloudExadataInfrastructure>`.
   RefTo<GoogleOracleDatabaseCloudExadataInfrastructure> get ref =>

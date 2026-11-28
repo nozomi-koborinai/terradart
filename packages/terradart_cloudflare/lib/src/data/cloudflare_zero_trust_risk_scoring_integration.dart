@@ -21,6 +21,7 @@ final class DataCloudflareZeroTrustRiskScoringIntegration extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> integrationId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

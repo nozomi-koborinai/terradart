@@ -15,6 +15,7 @@ final class DataAwsSecretsmanagerSecretRotation extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> secretId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

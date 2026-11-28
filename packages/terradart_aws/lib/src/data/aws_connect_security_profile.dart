@@ -18,6 +18,7 @@ final class DataAwsConnectSecurityProfile extends Data {
     TfArg<String>? region,
     TfArg<String>? securityProfileId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

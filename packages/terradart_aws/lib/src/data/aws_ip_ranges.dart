@@ -15,6 +15,7 @@ final class DataAwsIpRanges extends Data {
     TfArg<List<String>>? regions,
     required TfArg<List<String>> services,
     TfArg<String>? url,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

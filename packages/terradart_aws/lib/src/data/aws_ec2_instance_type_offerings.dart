@@ -36,6 +36,7 @@ final class DataAwsEc2InstanceTypeOfferings extends Data {
     TfArg<String>? locationType,
     TfArg<String>? region,
     List<DataEc2InstanceTypeOfferingsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

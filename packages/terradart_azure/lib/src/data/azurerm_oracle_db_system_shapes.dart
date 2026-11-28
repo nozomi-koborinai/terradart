@@ -14,6 +14,7 @@ final class DataAzurermOracleDbSystemShapes extends Data {
     super.localName, {
     required TfArg<String> location,
     TfArg<String>? zone,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -21,6 +21,7 @@ final class DataCloudflareLeakedCredentialCheckRule extends Data {
     super.localName, {
     required TfArg<String> detectionId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

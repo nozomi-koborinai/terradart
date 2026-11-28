@@ -54,6 +54,7 @@ final class DataAzurermPublicIps extends Data {
     DataPublicIpsAttachmentStatus? attachmentStatus,
     TfArg<String>? namePrefix,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

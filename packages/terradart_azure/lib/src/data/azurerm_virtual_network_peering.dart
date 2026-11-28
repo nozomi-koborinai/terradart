@@ -16,6 +16,7 @@ final class DataAzurermVirtualNetworkPeering extends Data {
     super.localName, {
     required TfArg<String> name,
     required RefTo<AzurermVirtualNetwork> virtualNetworkId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

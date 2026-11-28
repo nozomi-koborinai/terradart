@@ -17,6 +17,7 @@ final class DataAzurermContainerRegistryScopeMap extends Data {
     required TfArg<String> containerRegistryName,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

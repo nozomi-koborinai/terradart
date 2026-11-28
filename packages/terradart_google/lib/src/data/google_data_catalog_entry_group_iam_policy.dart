@@ -19,6 +19,7 @@ final class DataGoogleDataCatalogEntryGroupIamPolicy extends Data {
     required TfArg<String> entryGroup,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

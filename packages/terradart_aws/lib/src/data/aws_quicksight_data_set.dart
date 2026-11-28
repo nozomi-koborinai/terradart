@@ -17,6 +17,7 @@ final class DataAwsQuicksightDataSet extends Data {
     required TfArg<String> dataSetId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

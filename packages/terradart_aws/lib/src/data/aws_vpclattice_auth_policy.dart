@@ -17,6 +17,7 @@ final class DataAwsVpclatticeAuthPolicy extends Data {
     TfArg<String>? region,
     required TfArg<String> resourceIdentifier,
     TfArg<String>? state,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

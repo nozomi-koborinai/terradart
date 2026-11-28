@@ -54,6 +54,7 @@ final class DataCloudflareAccountToken extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? tokenId,
     DataAccountTokenFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

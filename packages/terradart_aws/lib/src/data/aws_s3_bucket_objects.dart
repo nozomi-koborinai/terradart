@@ -21,6 +21,7 @@ final class DataAwsS3BucketObjects extends Data {
     TfArg<String>? prefix,
     TfArg<String>? region,
     TfArg<String>? startAfter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

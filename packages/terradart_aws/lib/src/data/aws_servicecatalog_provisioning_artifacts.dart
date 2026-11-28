@@ -15,6 +15,7 @@ final class DataAwsServicecatalogProvisioningArtifacts extends Data {
     TfArg<String>? acceptLanguage,
     required TfArg<String> productId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

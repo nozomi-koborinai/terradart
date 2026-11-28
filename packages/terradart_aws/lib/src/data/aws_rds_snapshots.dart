@@ -37,6 +37,7 @@ final class DataAwsRdsSnapshots extends Data {
     TfArg<String>? region,
     TfArg<String>? snapshotType,
     List<DataRdsSnapshotsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

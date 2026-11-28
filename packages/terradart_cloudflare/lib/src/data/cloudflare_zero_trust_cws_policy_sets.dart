@@ -61,6 +61,7 @@ final class DataCloudflareZeroTrustCwsPolicySets extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? name,
     DataZeroTrustCwsPolicySetsOrder? order,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

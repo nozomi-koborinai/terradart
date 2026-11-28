@@ -15,6 +15,7 @@ final class DataCloudflareZeroTrustGatewayLogging extends Data {
   DataCloudflareZeroTrustGatewayLogging(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

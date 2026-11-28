@@ -18,6 +18,7 @@ final class DataAzurermApiManagementSubscription extends Data {
     super.localName, {
     required TfArg<String> apiManagementId,
     required TfArg<String> subscriptionId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

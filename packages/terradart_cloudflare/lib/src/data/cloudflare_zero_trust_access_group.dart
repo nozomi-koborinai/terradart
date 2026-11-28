@@ -42,6 +42,7 @@ final class DataCloudflareZeroTrustAccessGroup extends Data {
     TfArg<String>? groupId,
     RefTo<CloudflareZone>? zoneId,
     DataZeroTrustAccessGroupFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

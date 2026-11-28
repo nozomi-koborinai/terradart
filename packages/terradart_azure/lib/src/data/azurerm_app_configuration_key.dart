@@ -16,6 +16,7 @@ final class DataAzurermAppConfigurationKey extends Data {
     required TfArg<String> configurationStoreId,
     required TfArg<String> key,
     TfArg<String>? label,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

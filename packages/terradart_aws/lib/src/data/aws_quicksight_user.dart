@@ -17,6 +17,7 @@ final class DataAwsQuicksightUser extends Data {
     TfArg<String>? namespace,
     TfArg<String>? region,
     required TfArg<String> userName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

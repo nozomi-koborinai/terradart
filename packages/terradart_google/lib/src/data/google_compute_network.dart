@@ -20,6 +20,7 @@ final class DataGoogleComputeNetwork extends Data {
     TfArg<String>? networkProfile,
     TfArg<String>? project,
     TfArg<String>? selfLink,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

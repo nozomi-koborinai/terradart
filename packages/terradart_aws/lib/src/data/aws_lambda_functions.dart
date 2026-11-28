@@ -13,6 +13,7 @@ final class DataAwsLambdaFunctions extends Data {
   DataAwsLambdaFunctions(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

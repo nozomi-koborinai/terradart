@@ -32,6 +32,7 @@ final class DataAwsCodecatalystDevEnvironment extends Data {
     required TfArg<String> spaceName,
     TfArg<Map<String, String>>? tags,
     List<DataCodecatalystDevEnvironmentRepositories>? repositories,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

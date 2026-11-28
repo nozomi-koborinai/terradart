@@ -22,6 +22,7 @@ final class DataGoogleBigqueryAnalyticsHubListingIamPolicy extends Data {
     required TfArg<String> listingId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

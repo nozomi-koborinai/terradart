@@ -108,6 +108,7 @@ final class DataCloudflareEmailSecurityAllowPolicies extends Data {
     DataEmailSecurityAllowPoliciesPatternType? patternType,
     TfArg<String>? search,
     TfArg<bool>? verifySender,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

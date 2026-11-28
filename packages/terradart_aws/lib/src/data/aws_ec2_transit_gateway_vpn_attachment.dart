@@ -38,6 +38,7 @@ final class DataAwsEc2TransitGatewayVpnAttachment extends Data {
     TfArg<String>? transitGatewayId,
     TfArg<String>? vpnConnectionId,
     List<DataEc2TransitGatewayVpnAttachmentFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

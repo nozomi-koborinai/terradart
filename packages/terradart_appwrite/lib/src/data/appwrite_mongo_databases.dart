@@ -20,6 +20,7 @@ final class DataAppwriteMongoDatabases extends Data {
     super.localName, {
     RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? queries,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

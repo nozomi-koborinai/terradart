@@ -22,6 +22,7 @@ final class DataGoogleArtifactRegistryTags extends Data {
     required TfArg<String> packageName,
     TfArg<String>? project,
     required RefTo<GoogleArtifactRegistryRepository> repositoryId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

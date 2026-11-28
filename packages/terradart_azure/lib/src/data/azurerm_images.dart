@@ -15,6 +15,7 @@ final class DataAzurermImages extends Data {
     super.localName, {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tagsFilter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

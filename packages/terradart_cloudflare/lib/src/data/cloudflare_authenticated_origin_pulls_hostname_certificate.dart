@@ -19,6 +19,7 @@ final class DataCloudflareAuthenticatedOriginPullsHostnameCertificate
     super.localName, {
     required TfArg<String> certificateId,
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

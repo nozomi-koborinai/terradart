@@ -18,6 +18,7 @@ final class DataGoogleContainerAnalysisNoteIamPolicy extends Data {
     super.localName, {
     required TfArg<String> note,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -16,6 +16,7 @@ final class DataAwsOrganizationsOrganizationalUnitDescendantAccounts
   DataAwsOrganizationsOrganizationalUnitDescendantAccounts(
     super.localName, {
     required TfArg<String> parentId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'parent_id': parentId});

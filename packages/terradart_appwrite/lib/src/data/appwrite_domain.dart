@@ -19,6 +19,7 @@ final class DataAppwriteDomain extends Data {
     super.localName, {
     TfArg<String>? domain,
     TfArg<String>? organizationId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

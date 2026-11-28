@@ -16,6 +16,7 @@ final class DataCloudflareAuthenticatedOriginPulls extends Data {
     super.localName, {
     required TfArg<String> hostname,
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

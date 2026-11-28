@@ -56,6 +56,7 @@ final class DataCloudflareAiSearchInstances extends Data {
     DataAiSearchInstancesOrderBy? orderBy,
     DataAiSearchInstancesOrderByDirection? orderByDirection,
     TfArg<String>? search,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

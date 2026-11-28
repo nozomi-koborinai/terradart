@@ -84,6 +84,7 @@ final class DataAzurermManagementGroup extends Data {
   DataAzurermManagementGroup(
     super.localName, {
     required DataManagementGroupIdentifier identifier,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {...identifier.argMap});

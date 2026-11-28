@@ -19,6 +19,7 @@ final class DataGoogleKmsSecretCiphertext extends Data {
     super.localName, {
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
     required Sensitive<String> plaintext,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

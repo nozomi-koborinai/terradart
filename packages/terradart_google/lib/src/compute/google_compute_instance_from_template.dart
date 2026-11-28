@@ -1413,9 +1413,6 @@ final class GoogleComputeInstanceFromTemplate extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeInstanceFromTemplateSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleComputeInstanceFromTemplate>`.
   RefTo<GoogleComputeInstanceFromTemplate> get ref => RefTo.of(this);

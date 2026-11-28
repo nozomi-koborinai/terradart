@@ -104,6 +104,7 @@ final class DataCloudflareEmailSecurityTrustedDomains extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? trustedDomainId,
     DataEmailSecurityTrustedDomainsFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

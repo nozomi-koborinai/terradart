@@ -15,6 +15,7 @@ final class DataAwsIamSamlProvider extends Data {
     super.localName, {
     required TfArg<String> arn,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'arn': arn, 'tags': ?tags});

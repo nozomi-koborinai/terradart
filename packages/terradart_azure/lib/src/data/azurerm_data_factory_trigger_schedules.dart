@@ -13,6 +13,7 @@ final class DataAzurermDataFactoryTriggerSchedules extends Data {
   DataAzurermDataFactoryTriggerSchedules(
     super.localName, {
     required TfArg<String> dataFactoryId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'data_factory_id': dataFactoryId});

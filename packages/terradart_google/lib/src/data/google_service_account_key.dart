@@ -18,6 +18,7 @@ final class DataGoogleServiceAccountKey extends Data {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? publicKeyType,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataGoogleFolder extends Data {
     super.localName, {
     required TfArg<String> folder,
     TfArg<bool>? lookupOrganization,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

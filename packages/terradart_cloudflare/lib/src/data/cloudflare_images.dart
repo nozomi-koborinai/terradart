@@ -20,6 +20,7 @@ final class DataCloudflareImages extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? creator,
     TfArg<num>? maxItems,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

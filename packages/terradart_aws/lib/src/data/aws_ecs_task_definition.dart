@@ -15,6 +15,7 @@ final class DataAwsEcsTaskDefinition extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> taskDefinition,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

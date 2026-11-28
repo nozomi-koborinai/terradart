@@ -28,6 +28,7 @@ final class DataCloudflarePagesProject extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> projectName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

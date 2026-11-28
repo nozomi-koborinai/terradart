@@ -17,6 +17,7 @@ final class DataAzurermAppServiceCertificate extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -15,6 +15,7 @@ final class DataAwsOdbDbNode extends Data {
     required TfArg<String> cloudVmClusterId,
     required TfArg<String> id,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

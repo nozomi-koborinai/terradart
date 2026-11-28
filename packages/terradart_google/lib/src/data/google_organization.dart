@@ -17,6 +17,7 @@ final class DataGoogleOrganization extends Data {
     super.localName, {
     TfArg<String>? domain,
     TfArg<String>? organization,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

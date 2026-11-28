@@ -20,6 +20,7 @@ final class DataAwsAcmCertificate extends Data {
     TfArg<List<String>>? statuses,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? types,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

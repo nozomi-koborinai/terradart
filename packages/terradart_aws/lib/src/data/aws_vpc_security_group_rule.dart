@@ -36,6 +36,7 @@ final class DataAwsVpcSecurityGroupRule extends Data {
     TfArg<String>? region,
     TfArg<String>? securityGroupRuleId,
     List<DataVpcSecurityGroupRuleFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

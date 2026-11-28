@@ -35,6 +35,7 @@ final class DataAwsEc2ServiceLinkVirtualInterface extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataEc2ServiceLinkVirtualInterfaceFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

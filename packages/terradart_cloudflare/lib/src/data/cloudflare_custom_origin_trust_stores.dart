@@ -21,6 +21,7 @@ final class DataCloudflareCustomOriginTrustStores extends Data {
     TfArg<num>? maxItems,
     TfArg<num>? offset,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

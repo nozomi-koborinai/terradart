@@ -16,6 +16,7 @@ final class DataAwsStoragegatewayLocalDisk extends Data {
     TfArg<String>? diskPath,
     required TfArg<String> gatewayArn,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

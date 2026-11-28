@@ -16,6 +16,7 @@ final class DataAwsSyntheticsRuntimeVersion extends Data {
     required TfArg<String> prefix,
     TfArg<String>? region,
     TfArg<String>? version,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -120,6 +120,7 @@ final class DataCloudflarePageShieldConnectionsList extends Data {
     DataPageShieldConnectionsListStatus? status,
     TfArg<String>? urls,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

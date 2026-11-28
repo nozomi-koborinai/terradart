@@ -15,6 +15,7 @@ final class DataAzurermConsumptionBudgetResourceGroup extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> resourceGroupId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

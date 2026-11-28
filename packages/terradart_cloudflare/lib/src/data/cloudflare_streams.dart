@@ -64,6 +64,7 @@ final class DataCloudflareStreams extends Data {
     DataStreamsStatus? status,
     TfArg<String>? type,
     TfArg<String>? videoName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

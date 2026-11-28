@@ -17,6 +17,7 @@ final class DataAwsEfsFileSystem extends Data {
     TfArg<String>? fileSystemId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

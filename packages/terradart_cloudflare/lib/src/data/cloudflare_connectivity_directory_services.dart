@@ -37,6 +37,7 @@ final class DataCloudflareConnectivityDirectoryServices extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     DataConnectivityDirectoryServicesType? type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

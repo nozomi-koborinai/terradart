@@ -21,6 +21,7 @@ final class DataCloudflareQueue extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> queueId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

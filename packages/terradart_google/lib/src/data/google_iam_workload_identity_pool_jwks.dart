@@ -16,6 +16,7 @@ final class DataGoogleIamWorkloadIdentityPoolJwks extends Data {
   DataGoogleIamWorkloadIdentityPoolJwks(
     super.localName, {
     required TfArg<String> resourceName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'resource_name': resourceName});

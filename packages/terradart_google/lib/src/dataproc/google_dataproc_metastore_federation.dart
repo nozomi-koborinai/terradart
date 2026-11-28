@@ -129,9 +129,6 @@ final class GoogleDataprocMetastoreFederation extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataprocMetastoreFederationSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleDataprocMetastoreFederation>`.
   RefTo<GoogleDataprocMetastoreFederation> get ref => RefTo.of(this);

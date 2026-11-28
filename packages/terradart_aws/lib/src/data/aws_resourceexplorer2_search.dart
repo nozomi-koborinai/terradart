@@ -15,6 +15,7 @@ final class DataAwsResourceexplorer2Search extends Data {
     required TfArg<String> queryString,
     TfArg<String>? region,
     TfArg<String>? viewArn,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

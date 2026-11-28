@@ -17,6 +17,7 @@ final class DataAzurermKubernetesClusterNodePool extends Data {
     required TfArg<String> kubernetesClusterName,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

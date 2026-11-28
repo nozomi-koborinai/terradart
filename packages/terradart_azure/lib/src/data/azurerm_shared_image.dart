@@ -17,6 +17,7 @@ final class DataAzurermSharedImage extends Data {
     required TfArg<String> galleryName,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

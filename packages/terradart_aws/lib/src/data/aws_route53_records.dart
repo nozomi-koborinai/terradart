@@ -15,6 +15,7 @@ final class DataAwsRoute53Records extends Data {
     super.localName, {
     TfArg<String>? nameRegex,
     required RefTo<AwsRoute53Zone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

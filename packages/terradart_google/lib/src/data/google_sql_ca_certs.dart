@@ -19,6 +19,7 @@ final class DataGoogleSqlCaCerts extends Data {
     super.localName, {
     required RefTo<GoogleSqlDatabaseInstance> instance,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

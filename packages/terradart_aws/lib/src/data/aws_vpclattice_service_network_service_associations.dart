@@ -17,6 +17,7 @@ final class DataAwsVpclatticeServiceNetworkServiceAssociations extends Data {
     TfArg<String>? region,
     TfArg<String>? serviceIdentifier,
     TfArg<String>? serviceNetworkIdentifier,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

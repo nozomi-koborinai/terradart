@@ -32,6 +32,7 @@ final class DataAwsRdsClusters extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataRdsClustersFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

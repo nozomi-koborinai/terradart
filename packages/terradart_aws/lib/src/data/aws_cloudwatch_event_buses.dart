@@ -14,6 +14,7 @@ final class DataAwsCloudwatchEventBuses extends Data {
     super.localName, {
     TfArg<String>? namePrefix,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

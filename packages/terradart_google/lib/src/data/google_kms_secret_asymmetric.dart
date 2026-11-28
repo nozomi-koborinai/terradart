@@ -18,6 +18,7 @@ final class DataGoogleKmsSecretAsymmetric extends Data {
     required TfArg<String> ciphertext,
     TfArg<String>? crc32,
     required TfArg<String> cryptoKeyVersion,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

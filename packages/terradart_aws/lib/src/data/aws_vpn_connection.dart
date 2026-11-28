@@ -34,6 +34,7 @@ final class DataAwsVpnConnection extends Data {
     TfArg<String>? region,
     TfArg<String>? vpnConnectionId,
     List<DataVpnConnectionFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

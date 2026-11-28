@@ -85,6 +85,7 @@ final class DataCloudflareZeroTrustCwsWorkload extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? workloadId,
     DataZeroTrustCwsWorkloadFindOneBy? findOneBy,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

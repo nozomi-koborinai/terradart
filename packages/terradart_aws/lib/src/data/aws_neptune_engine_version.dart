@@ -23,6 +23,7 @@ final class DataAwsNeptuneEngineVersion extends Data {
     TfArg<List<String>>? preferredVersions,
     TfArg<String>? region,
     TfArg<String>? version,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -36,6 +36,7 @@ final class DataAwsImagebuilderComponents extends Data {
     TfArg<String>? owner,
     TfArg<String>? region,
     List<DataImagebuilderComponentsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

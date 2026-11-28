@@ -84,6 +84,7 @@ final class DataAzurermPolicyDefinitionBuiltIn extends Data {
     super.localName, {
     required DataPolicyDefinitionBuiltInIdentifier identifier,
     TfArg<String>? managementGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

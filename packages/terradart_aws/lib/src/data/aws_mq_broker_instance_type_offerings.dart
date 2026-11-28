@@ -16,6 +16,7 @@ final class DataAwsMqBrokerInstanceTypeOfferings extends Data {
     TfArg<String>? hostInstanceType,
     TfArg<String>? region,
     TfArg<String>? storageType,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

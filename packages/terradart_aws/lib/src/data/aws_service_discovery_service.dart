@@ -17,6 +17,7 @@ final class DataAwsServiceDiscoveryService extends Data {
     required TfArg<String> namespaceId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

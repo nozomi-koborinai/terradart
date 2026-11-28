@@ -14,6 +14,7 @@ final class DataAzurermElasticSanVolumeSnapshot extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> volumeGroupId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

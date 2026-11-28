@@ -24,6 +24,7 @@ final class DataAzurermStorageAccount extends Data {
     TfArg<String>? minTlsVersion,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

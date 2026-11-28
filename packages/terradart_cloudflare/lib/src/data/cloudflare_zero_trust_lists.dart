@@ -94,6 +94,7 @@ final class DataCloudflareZeroTrustLists extends Data {
     DataZeroTrustListsOrderBy? orderBy,
     TfArg<String>? search,
     DataZeroTrustListsType? type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

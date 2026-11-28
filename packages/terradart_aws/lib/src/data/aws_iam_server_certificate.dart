@@ -17,6 +17,7 @@ final class DataAwsIamServerCertificate extends Data {
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<String>? pathPrefix,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

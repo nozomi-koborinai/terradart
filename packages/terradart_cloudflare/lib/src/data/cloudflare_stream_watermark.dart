@@ -20,6 +20,7 @@ final class DataCloudflareStreamWatermark extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> identifier,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

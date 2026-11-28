@@ -16,6 +16,7 @@ final class DataAwsSesv2ConfigurationSet extends Data {
     required TfArg<String> configurationSetName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

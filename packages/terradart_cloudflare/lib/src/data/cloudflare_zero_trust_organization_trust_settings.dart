@@ -23,6 +23,7 @@ final class DataCloudflareZeroTrustOrganizationTrustSettings extends Data {
   DataCloudflareZeroTrustOrganizationTrustSettings(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

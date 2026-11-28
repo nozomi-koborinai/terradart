@@ -27,6 +27,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetworks
     TfArg<bool>? isDeleted,
     TfArg<num>? maxItems,
     TfArg<String>? name,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

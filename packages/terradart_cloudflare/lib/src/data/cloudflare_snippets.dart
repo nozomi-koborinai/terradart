@@ -16,6 +16,7 @@ final class DataCloudflareSnippets extends Data {
     super.localName, {
     required TfArg<String> snippetName,
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -17,6 +17,7 @@ final class DataGoogleContainerRegistryRepository extends Data {
     super.localName, {
     TfArg<String>? project,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

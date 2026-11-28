@@ -18,6 +18,7 @@ final class DataGoogleKmsKeyHandles extends Data {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> resourceTypeSelector,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -20,6 +20,7 @@ final class DataGoogleBinaryAuthorizationAttestorIamPolicy extends Data {
     super.localName, {
     required TfArg<String> attestor,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

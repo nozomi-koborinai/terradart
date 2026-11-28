@@ -149,6 +149,7 @@ final class DataCloudflareEmailSecurityAllowPolicy extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? policyId,
     DataEmailSecurityAllowPolicyFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

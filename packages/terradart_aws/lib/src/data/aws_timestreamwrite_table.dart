@@ -16,6 +16,7 @@ final class DataAwsTimestreamwriteTable extends Data {
     required TfArg<String> databaseName,
     required TfArg<String> name,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

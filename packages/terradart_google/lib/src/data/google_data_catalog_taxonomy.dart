@@ -19,6 +19,7 @@ final class DataGoogleDataCatalogTaxonomy extends Data {
     required TfArg<String> displayName,
     TfArg<String>? project,
     required TfArg<String> region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

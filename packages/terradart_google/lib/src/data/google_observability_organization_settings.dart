@@ -19,6 +19,7 @@ final class DataGoogleObservabilityOrganizationSettings extends Data {
     super.localName, {
     required TfArg<String> location,
     required TfArg<String> organization,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

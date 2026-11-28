@@ -19,6 +19,7 @@ final class DataAwsRdsEvents extends Data {
     TfArg<String>? sourceIdentifier,
     TfArg<String>? sourceType,
     TfArg<String>? startTime,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -34,6 +34,7 @@ final class DataCloudflareEmailRoutingRule extends Data {
     TfArg<String>? ruleIdentifier,
     RefTo<CloudflareZone>? zoneId,
     DataEmailRoutingRuleFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

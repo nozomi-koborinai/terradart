@@ -18,6 +18,7 @@ final class DataGoogleLoggingProjectCmekSettings extends Data {
     super.localName, {
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required TfArg<String> project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

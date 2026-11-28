@@ -16,6 +16,7 @@ final class DataCloudflareAiSearchNamespaces extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
     TfArg<String>? search,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

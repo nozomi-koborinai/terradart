@@ -16,6 +16,7 @@ final class DataAzurermPrivateDnsResolverOutboundEndpoint extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> privateDnsResolverId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

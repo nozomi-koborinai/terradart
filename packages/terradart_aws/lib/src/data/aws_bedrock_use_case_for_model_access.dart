@@ -13,6 +13,7 @@ final class DataAwsBedrockUseCaseForModelAccess extends Data {
 
   DataAwsBedrockUseCaseForModelAccess(
     super.localName, {
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {});

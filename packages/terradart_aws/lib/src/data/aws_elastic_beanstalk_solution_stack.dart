@@ -15,6 +15,7 @@ final class DataAwsElasticBeanstalkSolutionStack extends Data {
     TfArg<bool>? mostRecent,
     required TfArg<String> nameRegex,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

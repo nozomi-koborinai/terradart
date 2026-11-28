@@ -14,6 +14,7 @@ final class DataAwsLocationTrackerAssociations extends Data {
     super.localName, {
     TfArg<String>? region,
     required TfArg<String> trackerName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

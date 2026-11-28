@@ -21,6 +21,7 @@ final class DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Data {
     required TfArg<String> dataExchangeId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

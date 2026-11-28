@@ -30,6 +30,7 @@ final class DataCloudflareAiSearchNamespace extends Data {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? name,
     DataAiSearchNamespaceFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustDlpCustomProfile extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> profileId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

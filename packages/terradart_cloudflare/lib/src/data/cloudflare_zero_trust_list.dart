@@ -128,6 +128,7 @@ final class DataCloudflareZeroTrustList extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? listId,
     DataZeroTrustListFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

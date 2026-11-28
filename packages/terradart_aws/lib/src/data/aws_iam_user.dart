@@ -15,6 +15,7 @@ final class DataAwsIamUser extends Data {
     super.localName, {
     TfArg<Map<String, String>>? tags,
     required TfArg<String> userName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

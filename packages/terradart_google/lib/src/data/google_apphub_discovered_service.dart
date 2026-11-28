@@ -18,6 +18,7 @@ final class DataGoogleApphubDiscoveredService extends Data {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> serviceUri,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

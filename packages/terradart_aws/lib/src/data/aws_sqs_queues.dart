@@ -14,6 +14,7 @@ final class DataAwsSqsQueues extends Data {
     super.localName, {
     TfArg<String>? queueNamePrefix,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

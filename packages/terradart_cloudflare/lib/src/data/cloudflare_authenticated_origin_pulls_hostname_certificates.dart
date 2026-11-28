@@ -18,6 +18,7 @@ final class DataCloudflareAuthenticatedOriginPullsHostnameCertificates
     super.localName, {
     TfArg<num>? maxItems,
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

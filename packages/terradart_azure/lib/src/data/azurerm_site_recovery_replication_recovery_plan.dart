@@ -17,6 +17,7 @@ final class DataAzurermSiteRecoveryReplicationRecoveryPlan extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> recoveryVaultId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

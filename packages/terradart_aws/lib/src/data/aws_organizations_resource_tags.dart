@@ -14,6 +14,7 @@ final class DataAwsOrganizationsResourceTags extends Data {
     super.localName, {
     required TfArg<String> resourceId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

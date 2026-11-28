@@ -17,6 +17,7 @@ final class DataGoogleComputeNodeTypes extends Data {
     super.localName, {
     TfArg<String>? project,
     TfArg<String>? zone,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

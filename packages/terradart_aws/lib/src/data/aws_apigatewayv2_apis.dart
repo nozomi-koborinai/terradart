@@ -16,6 +16,7 @@ final class DataAwsApigatewayv2Apis extends Data {
     TfArg<String>? protocolType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

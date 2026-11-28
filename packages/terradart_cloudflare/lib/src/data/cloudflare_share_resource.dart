@@ -104,6 +104,7 @@ final class DataCloudflareShareResource extends Data {
     required TfArg<String> shareId,
     TfArg<String>? shareResourceId,
     DataShareResourceFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataAwsRoute53ResolverRules extends Data {
     TfArg<String>? resolverEndpointId,
     TfArg<String>? ruleType,
     TfArg<String>? shareStatus,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

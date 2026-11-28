@@ -21,6 +21,7 @@ final class DataGoogleSqlDatabase extends Data {
     required RefTo<GoogleSqlDatabaseInstance> instance,
     required TfArg<String> name,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

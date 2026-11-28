@@ -21,6 +21,7 @@ final class DataAwsRedshiftClusterCredentials extends Data {
     required TfArg<String> dbUser,
     TfArg<num>? durationSeconds,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

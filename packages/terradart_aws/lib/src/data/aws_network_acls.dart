@@ -35,6 +35,7 @@ final class DataAwsNetworkAcls extends Data {
     TfArg<Map<String, String>>? tags,
     RefTo<AwsVpc>? vpcId,
     List<DataNetworkAclsFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

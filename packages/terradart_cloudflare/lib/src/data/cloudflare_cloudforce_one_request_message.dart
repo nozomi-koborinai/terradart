@@ -49,6 +49,7 @@ final class DataCloudflareCloudforceOneRequestMessage extends Data {
     required TfArg<String> requestId,
     TfArg<String>? sortBy,
     DataCloudforceOneRequestMessageSortOrder? sortOrder,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataAzurermTrafficManagerProfile extends Data {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? trafficViewEnabled,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

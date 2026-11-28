@@ -43,6 +43,7 @@ final class DataAwsKmsSecret extends Data {
     super.localName, {
     TfArg<String>? region,
     required List<DataKmsSecret> secret,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

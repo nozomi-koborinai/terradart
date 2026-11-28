@@ -16,6 +16,7 @@ final class DataAwsApiGatewayResource extends Data {
     required TfArg<String> path,
     TfArg<String>? region,
     required TfArg<String> restApiId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

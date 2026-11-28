@@ -25,6 +25,7 @@ final class DataGoogleClientOpenidUserinfo extends Data {
 
   DataGoogleClientOpenidUserinfo(
     super.localName, {
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {});

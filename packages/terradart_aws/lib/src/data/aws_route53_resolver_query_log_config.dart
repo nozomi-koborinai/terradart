@@ -39,6 +39,7 @@ final class DataAwsRoute53ResolverQueryLogConfig extends Data {
     TfArg<String>? resolverQueryLogConfigId,
     TfArg<Map<String, String>>? tags,
     List<DataRoute53ResolverQueryLogConfigFilter>? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -18,6 +18,7 @@ final class DataGoogleComputeImageIamPolicy extends Data {
     super.localName, {
     required TfArg<String> image,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

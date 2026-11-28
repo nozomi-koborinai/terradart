@@ -15,6 +15,7 @@ final class DataAzurermBlueprintPublishedVersion extends Data {
     required TfArg<String> blueprintName,
     required TfArg<String> scopeId,
     required TfArg<String> version,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

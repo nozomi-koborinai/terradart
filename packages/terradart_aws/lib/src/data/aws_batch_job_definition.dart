@@ -18,6 +18,7 @@ final class DataAwsBatchJobDefinition extends Data {
     TfArg<String>? region,
     TfArg<num>? revision,
     TfArg<String>? status,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

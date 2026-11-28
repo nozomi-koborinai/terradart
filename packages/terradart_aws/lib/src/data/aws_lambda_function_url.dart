@@ -17,6 +17,7 @@ final class DataAwsLambdaFunctionUrl extends Data {
     required RefTo<AwsLambdaFunction> functionName,
     TfArg<String>? qualifier,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

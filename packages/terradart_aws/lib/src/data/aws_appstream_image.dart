@@ -18,6 +18,7 @@ final class DataAwsAppstreamImage extends Data {
     TfArg<String>? nameRegex,
     TfArg<String>? region,
     TfArg<String>? type,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -21,6 +21,7 @@ final class DataCloudflareFlagshipFlags extends Data {
     required TfArg<String> appId,
     TfArg<num>? limit,
     TfArg<num>? maxItems,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

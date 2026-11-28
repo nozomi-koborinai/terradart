@@ -15,6 +15,7 @@ final class DataAwsOrganizationsAccount extends Data {
     super.localName, {
     required TfArg<String> accountId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

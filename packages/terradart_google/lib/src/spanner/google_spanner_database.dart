@@ -159,9 +159,6 @@ final class GoogleSpannerDatabase extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSpannerDatabaseSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleSpannerDatabase>`.
   RefTo<GoogleSpannerDatabase> get ref => RefTo.of(this);

@@ -15,6 +15,7 @@ final class DataAzurermNetworkServiceTags extends Data {
     required TfArg<String> location,
     TfArg<String>? locationFilter,
     required TfArg<String> service,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

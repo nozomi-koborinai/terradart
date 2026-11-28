@@ -129,6 +129,7 @@ final class DataAzurermStorageAccountSas extends Data {
     DataStorageAccountSasPermissions? permissions,
     required DataStorageAccountSasResourceTypes resourceTypes,
     required DataStorageAccountSasServices services,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

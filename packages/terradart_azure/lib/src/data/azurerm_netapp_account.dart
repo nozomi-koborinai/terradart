@@ -35,6 +35,7 @@ final class DataAzurermNetappAccount extends Data {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     DataNetappAccountIdentity? identity,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

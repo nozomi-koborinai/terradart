@@ -13,6 +13,7 @@ final class DataAwsRedshiftDataShares extends Data {
   DataAwsRedshiftDataShares(
     super.localName, {
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'region': ?region});

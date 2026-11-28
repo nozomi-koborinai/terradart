@@ -19,6 +19,7 @@ final class DataGoogleDataprocJobIamPolicy extends Data {
     required TfArg<String> jobId,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

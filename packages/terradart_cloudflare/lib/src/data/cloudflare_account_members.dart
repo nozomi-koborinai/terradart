@@ -83,6 +83,7 @@ final class DataCloudflareAccountMembers extends Data {
     TfArg<num>? maxItems,
     DataAccountMembersOrder? order,
     DataAccountMembersStatus? status,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

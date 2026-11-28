@@ -56,9 +56,6 @@ final class GoogleActiveDirectoryDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _googleActiveDirectoryDomainSensitive;
 
-  @override
-  bool get supportsDeletionProtection => true;
-
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleActiveDirectoryDomain>`.
   RefTo<GoogleActiveDirectoryDomain> get ref => RefTo.of(this);

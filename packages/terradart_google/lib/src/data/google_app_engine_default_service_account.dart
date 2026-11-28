@@ -17,6 +17,7 @@ final class DataGoogleAppEngineDefaultServiceAccount extends Data {
   DataGoogleAppEngineDefaultServiceAccount(
     super.localName, {
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'project': ?project});
@@ -49,5 +50,5 @@ final class DataGoogleAppEngineDefaultServiceAccount extends Data {
 
   /// This identity as an IAM principal, for `member` / `members`.
   IamPrincipal get principal =>
-      IamPrincipal.arg(TfRef.data<String>(this, 'member'));
+      IamPrincipal.arg(TfRef.attribute<String>(this, 'member'));
 }

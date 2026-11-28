@@ -80,6 +80,7 @@ final class DataCloudflareCustomSsl extends Data {
     TfArg<String>? customCertificateId,
     RefTo<CloudflareZone>? zoneId,
     DataCustomSslFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

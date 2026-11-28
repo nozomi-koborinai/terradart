@@ -18,6 +18,7 @@ final class DataGoogleSecretManagerSecretIamPolicy extends Data {
     super.localName, {
     TfArg<String>? project,
     required TfArg<String> secretId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

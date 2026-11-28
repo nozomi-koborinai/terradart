@@ -13,6 +13,7 @@ final class DataAwsCloudfrontOriginAccessIdentities extends Data {
   DataAwsCloudfrontOriginAccessIdentities(
     super.localName, {
     TfArg<List<String>>? comments,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'comments': ?comments});

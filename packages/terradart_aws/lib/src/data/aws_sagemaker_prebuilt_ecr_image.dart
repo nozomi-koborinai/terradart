@@ -16,6 +16,7 @@ final class DataAwsSagemakerPrebuiltEcrImage extends Data {
     TfArg<String>? imageTag,
     TfArg<String>? region,
     required TfArg<String> repositoryName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -105,6 +105,7 @@ final class DataCloudflareZeroTrustTunnelCloudflared extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<String>? tunnelId,
     DataZeroTrustTunnelCloudflaredFilter? filter,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -21,6 +21,7 @@ final class DataAwsSecretsmanagerRandomPassword extends Data {
     TfArg<num>? passwordLength,
     TfArg<String>? region,
     TfArg<bool>? requireEachIncludedType,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

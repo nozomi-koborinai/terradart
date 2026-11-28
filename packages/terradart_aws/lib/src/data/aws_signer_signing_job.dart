@@ -15,6 +15,7 @@ final class DataAwsSignerSigningJob extends Data {
     super.localName, {
     required TfArg<String> jobId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

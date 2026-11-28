@@ -17,6 +17,7 @@ final class DataAzurermNetappBackupVault extends Data {
     required TfArg<String> accountName,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

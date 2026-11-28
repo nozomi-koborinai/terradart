@@ -16,6 +16,7 @@ final class DataAwsLocationMap extends Data {
     required TfArg<String> mapName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

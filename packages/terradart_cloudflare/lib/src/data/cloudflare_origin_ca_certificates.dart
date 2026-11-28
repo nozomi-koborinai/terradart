@@ -15,6 +15,7 @@ final class DataCloudflareOriginCaCertificates extends Data {
     super.localName, {
     TfArg<num>? maxItems,
     required RefTo<CloudflareZone> zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

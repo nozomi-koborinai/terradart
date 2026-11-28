@@ -16,6 +16,7 @@ final class DataAwsTransferServer extends Data {
     TfArg<String>? region,
     required TfArg<String> serverId,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

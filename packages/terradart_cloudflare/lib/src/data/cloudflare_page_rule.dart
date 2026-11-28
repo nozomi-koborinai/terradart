@@ -31,6 +31,7 @@ final class DataCloudflarePageRule extends Data {
     super.localName, {
     required TfArg<String> pageruleId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

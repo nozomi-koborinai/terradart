@@ -15,6 +15,7 @@ final class DataAzurermNetappVolumeQuotaRule extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> volumeId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -15,6 +15,7 @@ final class DataAwsLakeformationDataLakeSettings extends Data {
     super.localName, {
     TfArg<String>? catalogId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

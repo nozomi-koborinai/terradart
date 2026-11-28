@@ -16,6 +16,7 @@ final class DataAwsOutpostsOutpostInstanceType extends Data {
     TfArg<String>? instanceType,
     TfArg<List<String>>? preferredInstanceTypes,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

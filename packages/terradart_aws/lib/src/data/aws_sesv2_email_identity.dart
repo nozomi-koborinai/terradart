@@ -16,6 +16,7 @@ final class DataAwsSesv2EmailIdentity extends Data {
     required TfArg<String> emailIdentity,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

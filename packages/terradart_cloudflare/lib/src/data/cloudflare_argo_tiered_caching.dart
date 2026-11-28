@@ -15,6 +15,7 @@ final class DataCloudflareArgoTieredCaching extends Data {
   DataCloudflareArgoTieredCaching(
     super.localName, {
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

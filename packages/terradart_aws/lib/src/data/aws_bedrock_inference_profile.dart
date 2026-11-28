@@ -15,6 +15,7 @@ final class DataAwsBedrockInferenceProfile extends Data {
     super.localName, {
     required TfArg<String> inferenceProfileId,
     TfArg<String>? region,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

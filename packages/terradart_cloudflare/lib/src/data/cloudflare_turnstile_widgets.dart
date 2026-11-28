@@ -66,6 +66,7 @@ final class DataCloudflareTurnstileWidgets extends Data {
     TfArg<String>? filter,
     TfArg<num>? maxItems,
     DataTurnstileWidgetsOrder? order,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

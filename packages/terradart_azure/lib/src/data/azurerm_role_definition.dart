@@ -88,6 +88,7 @@ final class DataAzurermRoleDefinition extends Data {
     super.localName, {
     required DataRoleDefinitionLookup lookup,
     TfArg<String>? scope,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

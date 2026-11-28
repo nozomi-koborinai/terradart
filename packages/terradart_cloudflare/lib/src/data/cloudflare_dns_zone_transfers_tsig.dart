@@ -20,6 +20,7 @@ final class DataCloudflareDnsZoneTransfersTsig extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> tsigId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

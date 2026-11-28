@@ -21,6 +21,7 @@ final class DataCloudflareMagicWanStaticRoute extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> routeId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

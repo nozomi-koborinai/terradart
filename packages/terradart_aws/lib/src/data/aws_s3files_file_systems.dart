@@ -25,6 +25,7 @@ final class DataAwsS3filesFileSystems extends Data {
     super.localName, {
     TfArg<String>? region,
     List<DataS3filesFileSystems>? fileSystems,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

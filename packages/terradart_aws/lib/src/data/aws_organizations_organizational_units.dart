@@ -13,6 +13,7 @@ final class DataAwsOrganizationsOrganizationalUnits extends Data {
   DataAwsOrganizationsOrganizationalUnits(
     super.localName, {
     required TfArg<String> parentId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'parent_id': parentId});

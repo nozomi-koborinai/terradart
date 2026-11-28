@@ -18,6 +18,7 @@ final class DataAwsGlobalacceleratorCustomRoutingAccelerator extends Data {
     TfArg<String>? arn,
     TfArg<String>? name,
     TfArg<Map<String, String>>? tags,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

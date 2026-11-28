@@ -22,6 +22,7 @@ final class DataCloudflareWorkersForPlatformsDispatchNamespace extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     required TfArg<String> dispatchNamespace,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

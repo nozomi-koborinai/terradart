@@ -20,6 +20,7 @@ final class DataCloudflareRateLimit extends Data {
     super.localName, {
     required TfArg<String> rateLimitId,
     RefTo<CloudflareZone>? zoneId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

@@ -15,6 +15,7 @@ final class DataAzurermHealthcareMedtechService extends Data {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> workspaceId,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(

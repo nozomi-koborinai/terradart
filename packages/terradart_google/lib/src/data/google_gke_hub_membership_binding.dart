@@ -20,6 +20,7 @@ final class DataGoogleGkeHubMembershipBinding extends Data {
     required TfArg<String> membershipBindingId,
     required TfArg<String> membershipId,
     TfArg<String>? project,
+    super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
